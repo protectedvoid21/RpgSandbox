@@ -1,4 +1,4 @@
-package Classes;
+package game;
 
 public class Spells {
 }

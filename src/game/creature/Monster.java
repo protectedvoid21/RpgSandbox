@@ -1,4 +1,4 @@
-package Classes.ClassesCreature;
+package game.creature;
 
 public class Monster extends Creature{
 }

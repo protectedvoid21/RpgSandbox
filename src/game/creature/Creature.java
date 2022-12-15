@@ -1,4 +1,4 @@
-package Classes.ClassesCreature;
+package game.creature;
 
 abstract public class Creature {
 
@@ -6,23 +6,23 @@ abstract public class Creature {
     private int weaponSkill;
     private int ballisticSkill;
     private int strength;
-    private int tougness;
+    private int toughness;
     private int agility;
     private int intelligence;
     private int willPower;
     private int fellowship;
 
-    // statystyki drugożędne
+    // statystyki drugorzędne
     private int attacks; // ilość ataków możliwych do wykonania
-    private int healthpoints;
-    private int streangthBonus; // Bonus do obrażen zależny od siły ( SB = strength%10)
-    private int tougnessBonus; // Zmniejsza otrzymane obrażenia o swoją wartość. Zależne od odporności (TB = tougness %10)
+    private int healthPoints;
+    private int strengthBonus; // Bonus do obrażen zależny od siły ( SB = strength%10)
+    private int toughnessBonus; // Zmniejsza otrzymane obrażenia o swoją wartość. Zależne od odporności (TB = tougness %10)
     private int movement; // ile Pól może przejść w jednej akcji
     private int magic; // ilość kości przy teście rzutu zaklęcia;
 
     //Stany
 
-    private boolean isBleading;
+    private boolean isBleeding;
     private boolean isShocked;
     private boolean isPoisoned;
     private boolean isInFire;
@@ -31,16 +31,16 @@ abstract public class Creature {
         weaponSkill = 30;
         ballisticSkill = 30;
         strength = 30;
-        tougness = 30;
+        toughness = 30;
         agility = 30;
         intelligence = 30;
         willPower = 30;
         fellowship = 30;
 
         attacks = 1;
-        healthpoints = 12;
-        streangthBonus = strength%10;
-        tougnessBonus = tougness%10;
+        healthPoints = 12;
+        strengthBonus = strength%10;
+        toughnessBonus = toughness%10;
         movement = 4;
         magic = 0;
     }
@@ -77,11 +77,11 @@ abstract public class Creature {
     }
 
     public int getTougness() {
-        return tougness;
+        return toughness;
     }
 
-    public void setTougness(int tougness) {
-        this.tougness = tougness;
+    public void setTougness(int toughness) {
+        this.toughness = toughness;
     }
 
     public int getAgility() {
@@ -124,28 +124,28 @@ abstract public class Creature {
         this.attacks = attacks;
     }
 
-    public int getHealthpoints() {
-        return healthpoints;
+    public int getHealthPoints() {
+        return healthPoints;
     }
 
-    public void setHealthpoints(int healthpoints) {
-        this.healthpoints = healthpoints;
+    public void setHealthPoints(int healthPoints) {
+        this.healthPoints = healthPoints;
     }
 
     public int getStreangthBonus() {
-        return streangthBonus;
+        return strengthBonus;
     }
 
-    public void setStreangthBonus(int streangthBonus) {
-        this.streangthBonus = streangthBonus;
+    public void setStreangthBonus(int strengthBonus) {
+        this.strengthBonus = strengthBonus;
     }
 
-    public int getTougnessBonus() {
-        return tougnessBonus;
+    public int getToughnessBonus() {
+        return toughnessBonus;
     }
 
-    public void setTougnessBonus(int tougnessBonus) {
-        this.tougnessBonus = tougnessBonus;
+    public void setToughnessBonus(int tougnessBonus) {
+        this.toughnessBonus = toughnessBonus;
     }
 
     public int getMovement() {
@@ -164,12 +164,12 @@ abstract public class Creature {
         this.magic = magic;
     }
 
-    public boolean isBleading() {
-        return isBleading;
+    public boolean isBleeding() {
+        return isBleeding;
     }
 
-    public void setBleading(boolean bleading) {
-        isBleading = bleading;
+    public void setBleeding(boolean bleeding) {
+        isBleeding = bleeding;
     }
 
     public boolean isShocked() {
