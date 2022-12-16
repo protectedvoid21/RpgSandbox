@@ -2,7 +2,7 @@ package game.generals;
 
 /**Class which purpose is to control unlimited attribute value
  * User has to set it between two specified values (included to range). */
-final public class LimitedAttribute extends AttributeValue {
+public class LimitedAttribute extends AttributeValue {
 
     private int rightRangeValue;
 
