@@ -3,8 +3,27 @@ package game.creature;
 import game.generals.AttributeValue;
 import game.generals.LimitedAttribute;
 import game.generals.UnlimitedAttribute;
+import game.interfaceWarhammer.StatisticsWarhammer;
+import game.interfaces.Statistics;
 
-abstract public class Creature {
+import java.util.ArrayList;
+
+abstract public class Creature implements Statistics {
+
+
+    // Pokazanie propozycji. Trzeba uporządkować jeśli przejdzie
+    protected Statistics statistics;
+    ArrayList<AttributeValue> attributes =  new ArrayList<AttributeValue>();;
+    @Override
+    public ArrayList<AttributeValue> createStatistics() {
+        statistics = new StatisticsWarhammer();
+        return statistics.createStatistics();
+
+    }
+
+
+
+
 
     // statysyki podstawowe są z przedziału 0-100
     private AttributeValue weaponSkill;
@@ -43,6 +62,8 @@ abstract public class Creature {
         healthPoints = new LimitedAttribute(12);
         movement = new UnlimitedAttribute(4);
         //        magic = 0; todo
+
+        attributes = createStatistics();
     }
 
 
