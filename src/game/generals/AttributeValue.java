@@ -1,29 +1,8 @@
 package game.generals;
 
-public class AttributeValue {
-
-    private int value;
-    private int leftRangeValue;
-    private int rightRangeValue;
-
-    public AttributeValue(int leftValue, int rightValue, int startValue){ //limits are included to the range
-        if (leftValue<rightValue){
-            leftRangeValue = leftValue;
-            rightRangeValue = rightValue;
-        }else{
-            leftRangeValue = rightValue;
-            rightRangeValue = leftValue;
-        }
-        value = startValue;
-    }
-
-    public AttributeValue(int startValue){
-        leftRangeValue = 0;
-        rightRangeValue = 100;
-        value = startValue;
-
-    }
-
+public abstract class AttributeValue {
+    protected int value;
+    protected int leftRangeValue;
     public int getValue(){
         return value;
     }
@@ -35,14 +14,5 @@ public class AttributeValue {
         setValue(value-valueChange);
     }
 
-    public void setValue(int newValue){
-        value = newValue;
-        if(value>rightRangeValue){
-            value = rightRangeValue;
-        }
-        if (value<leftRangeValue){
-            value = leftRangeValue;
-        }
-    }
-
+    public abstract void setValue(int valueChanged);
 }
