@@ -1,24 +1,26 @@
 package game.creature;
 
+import game.generals.AttributeValue;
+import game.generals.LimitedAttribute;
+import game.generals.UnlimitedAttribute;
+
 abstract public class Creature {
 
     // statysyki podstawowe są z przedziału 0-100
-    private int weaponSkill;
-    private int ballisticSkill;
-    private int strength;
-    private int toughness;
-    private int agility;
-    private int intelligence;
-    private int willPower;
-    private int fellowship;
+    private AttributeValue weaponSkill;
+    private AttributeValue ballisticSkill;
+    private AttributeValue strength;
+    private AttributeValue toughness;
+    private AttributeValue agility;
+    private AttributeValue intelligence;
+    private AttributeValue willPower;
+    private AttributeValue fellowship;
 
     // statystyki drugorzędne
-    private int attacks; // ilość ataków możliwych do wykonania
-    private int healthPoints;
-    private int strengthBonus; // Bonus do obrażen zależny od siły ( SB = strength%10)
-    private int toughnessBonus; // Zmniejsza otrzymane obrażenia o swoją wartość. Zależne od odporności (TB = tougness %10)
-    private int movement; // ile Pól może przejść w jednej akcji
-    private int magic; // ilość kości przy teście rzutu zaklęcia;
+    private AttributeValue attacks; // ilość ataków możliwych do wykonania
+    private AttributeValue healthPoints;
+    private AttributeValue movement; // ile Pól może przejść w jednej akcji
+    private AttributeValue magic; // ilość kości przy teście rzutu zaklęcia; ---trzeba dopisac inicjalizacje, nie do konca rozumiem koncept tego atrybutu
 
     //Stany
 
@@ -27,141 +29,77 @@ abstract public class Creature {
     private boolean isPoisoned;
     private boolean isInFire;
 
-    public Creature(){
-        weaponSkill = 30;
-        ballisticSkill = 30;
-        strength = 30;
-        toughness = 30;
-        agility = 30;
-        intelligence = 30;
-        willPower = 30;
-        fellowship = 30;
+    public Creature() {
+        weaponSkill = new LimitedAttribute(30);
+        ballisticSkill = new LimitedAttribute(30);
+        strength = new LimitedAttribute(30);
+        toughness = new LimitedAttribute(30);
+        agility = new LimitedAttribute(30);
+        intelligence = new LimitedAttribute(30);
+        willPower = new LimitedAttribute(30);
+        fellowship = new LimitedAttribute(30);
 
-        attacks = 1;
-        healthPoints = 12;
-        strengthBonus = strength%10;
-        toughnessBonus = toughness%10;
-        movement = 4;
-        magic = 0;
+        attacks = new UnlimitedAttribute(1);
+        healthPoints = new LimitedAttribute(12);
+        movement = new UnlimitedAttribute(4);
+        //        magic = 0; todo
     }
 
 
-
-
-
-
-
-
-    public int getWeaponSkill() {
+    public AttributeValue getWeaponSkill() {
         return weaponSkill;
     }
 
-    public void setWeaponSkill(int weaponSkill) {
-        this.weaponSkill = weaponSkill;
-    }
-
-    public int getBallisticSkill() {
+    public AttributeValue getBallisticSkill() {
         return ballisticSkill;
     }
 
-    public void setBallisticSkill(int ballisticSkill) {
-        this.ballisticSkill = ballisticSkill;
-    }
-
-    public int getStrength() {
+    public AttributeValue getStrength() {
         return strength;
     }
 
-    public void setStrength(int strength) {
-        this.strength = strength;
-    }
-
-    public int getTougness() {
+    public AttributeValue getTougness() {
         return toughness;
     }
 
-    public void setTougness(int toughness) {
-        this.toughness = toughness;
-    }
-
-    public int getAgility() {
+    public AttributeValue getAgility() {
         return agility;
     }
 
-    public void setAgility(int agility) {
-        this.agility = agility;
-    }
-
-    public int getIntelligence() {
+    public AttributeValue getIntelligence() {
         return intelligence;
     }
 
-    public void setIntelligence(int intelligence) {
-        this.intelligence = intelligence;
-    }
-
-    public int getWillPower() {
+    public AttributeValue getWillPower() {
         return willPower;
     }
 
-    public void setWillPower(int willPower) {
-        this.willPower = willPower;
-    }
-
-    public int getFellowship() {
+    public AttributeValue getFellowship() {
         return fellowship;
     }
 
-    public void setFellowship(int fellowship) {
-        this.fellowship = fellowship;
-    }
-
-    public int getAttacks() {
+    public AttributeValue getAttacks() {
         return attacks;
     }
 
-    public void setAttacks(int attacks) {
-        this.attacks = attacks;
-    }
-
-    public int getHealthPoints() {
+    public AttributeValue getHealthPoints() {
         return healthPoints;
     }
 
-    public void setHealthPoints(int healthPoints) {
-        this.healthPoints = healthPoints;
-    }
-
     public int getStreangthBonus() {
-        return strengthBonus;
-    }
-
-    public void setStreangthBonus(int strengthBonus) {
-        this.strengthBonus = strengthBonus;
+        return strength.getValue() % 10;
     }
 
     public int getToughnessBonus() {
-        return toughnessBonus;
+        return toughness.getValue() % 10;
     }
 
-    public void setToughnessBonus(int tougnessBonus) {
-        this.toughnessBonus = toughnessBonus;
-    }
-
-    public int getMovement() {
+    public AttributeValue getMovement() {
         return movement;
     }
 
-    public void setMovement(int movement) {
-        this.movement = movement;
-    }
-
-    public int getMagic() {
+    public AttributeValue getMagic() {
         return magic;
-    }
-
-    public void setMagic(int magic) {
-        this.magic = magic;
     }
 
     public boolean isBleeding() {
