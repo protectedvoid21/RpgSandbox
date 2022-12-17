@@ -1,6 +1,7 @@
 package game.interfaceWarhammer;
 
 import game.generals.AttributeValue;
+import game.generals.Effect;
 import game.generals.LimitedAttribute;
 import game.interfaces.Statistics;
 
@@ -11,6 +12,7 @@ public class StatisticsWarhammer implements Statistics {
     public ArrayList<AttributeValue> createStatistics() {
         ArrayList<AttributeValue>  result = new ArrayList<AttributeValue>();
         ArrayList<String> statistics = new ArrayList<String>();;
+        // statysyki podstawowe są z przedziału 0-100
         statistics.add("weaponSkill");
         statistics.add("ballisticSkill");
         statistics.add("strength");
@@ -23,12 +25,33 @@ public class StatisticsWarhammer implements Statistics {
         for(int i = 0; i < statistics.size(); i++){
             result.add(new LimitedAttribute(30,statistics.get(i)));
         }
-        result.add(new LimitedAttribute(1, "attacks"));
+
+        // statystyki drugorzędne
+        result.add(new LimitedAttribute(1, "attacks"));  // ilość ataków możliwych do wykonania
         result.add(new LimitedAttribute(13, "healthPoints"));
-        result.add(new LimitedAttribute(5, "movement"));
-        result.add(new LimitedAttribute(1, "magic"));
+        result.add(new LimitedAttribute(5, "movement")); // ile Pól może przejść w jednej akcji
+        result.add(new LimitedAttribute(1, "magic")); // ilość kości przy teście rzutu zaklęcia; ---trzeba dopisac inicjalizacje, nie do konca rozumiem koncept tego atrybutu
 
         return  result;
 
     }
+
+    public ArrayList<Effect> createEffects(){
+        ArrayList<Effect> result = new ArrayList<Effect>();
+        ArrayList<String> effects = new ArrayList<String>();
+
+        effects.add("bleding");
+        effects.add("schock");
+        effects.add("poison");
+        effects.add("inFire");
+
+
+        for (int i = 0; i < effects.size(); i++){
+            result.add(new Effect(effects.get(i),false,0));
+        }
+
+        return result;
+
+    }
+
 }
