@@ -1,11 +1,12 @@
 package game.interfaces;
 
 import game.generals.AttributeValue;
-import game.generals.EffectAttribute;
+import game.generals.Effect;
 
 public interface IStatistics {
-
     AttributeValue getAttribute(String attributeEnumName);
-    EffectAttribute getEffect(String effectEnumName);
+    
+    Effect getEffect(String effectEnumName);
+    
     int getDependantAttrValue(String dependantAttributeEnumName);
 }
