@@ -1,57 +1,32 @@
 package game.interfaceWarhammer;
 
-import game.generals.AttributeValue;
-import game.generals.Effect;
+import game.generals.EffectAttribute;
 import game.generals.LimitedAttribute;
+import game.generals.UnlimitedAttribute;
 import game.interfaces.Statistics;
 
-import java.util.ArrayList;
+import java.util.EnumSet;
 
-public class StatisticsWarhammer implements Statistics {
+public class StatisticsWarhammer extends Statistics {
     @Override
-    public ArrayList<AttributeValue> createStatistics() {
-        ArrayList<AttributeValue>  result = new ArrayList<AttributeValue>();
-        ArrayList<String> statistics = new ArrayList<String>();;
-        // statysyki podstawowe są z przedziału 0-100
-        statistics.add("weaponSkill");
-        statistics.add("ballisticSkill");
-        statistics.add("strength");
-        statistics.add("toughness");
-        statistics.add("agility");
-        statistics.add("intelligence");
-        statistics.add("willPower");
-        statistics.add("fellowship");
-
-        for(int i = 0; i < statistics.size(); i++){
-            result.add(new LimitedAttribute(30,statistics.get(i)));
-        }
-
-        // statystyki drugorzędne
-        result.add(new LimitedAttribute(1, "attacks"));  // ilość ataków możliwych do wykonania
-        result.add(new LimitedAttribute(13, "healthPoints"));
-        result.add(new LimitedAttribute(5, "movement")); // ile Pól może przejść w jednej akcji
-        result.add(new LimitedAttribute(1, "magic")); // ilość kości przy teście rzutu zaklęcia; ---trzeba dopisac inicjalizacje, nie do konca rozumiem koncept tego atrybutu
-
-        return  result;
-
+    public void initializeAttributes() {
+        EnumSet.range(AttributeEnum.POWER, AttributeEnum.FELLOWSHIP).forEach(attr -> attributes.put(attr.name(), new LimitedAttribute(30)));
+        attributes.put(AttributeEnum.ATTACKS.name(), new UnlimitedAttribute(1));
+        attributes.put(AttributeEnum.HEALTH_POINTS.name(), new UnlimitedAttribute(13));
+        attributes.put(AttributeEnum.MOVEMENT.name(), new UnlimitedAttribute(5));
+        attributes.put(AttributeEnum.MAGIC.name(), new UnlimitedAttribute(1));
     }
 
-    public ArrayList<Effect> createEffects(){
-        ArrayList<Effect> result = new ArrayList<Effect>();
-        ArrayList<String> effects = new ArrayList<String>();
-
-        effects.add("bleding");
-        effects.add("schock");
-        effects.add("poison");
-        effects.add("inFire");
-
-
-        for (int i = 0; i < effects.size(); i++){
-            result.add(new Effect(effects.get(i),false,0));
+    @Override
+    public void initializeEffects() {
+        for (var effect : EffectEnum.values()) {
+            effects.put(effect.name(), new EffectAttribute());
         }
-
-        return result;
-
     }
 
+    @Override
+    protected void initializeDependantAttributes() {
+        dependantAttributes.put(DependantEnum.STRENGTH_BONUS.name(), (var stats) -> stats.getAttribute(AttributeEnum.STRENGTH.name()).getValue() % 10);
+        dependantAttributes.put(DependantEnum.TOUGHNESS_BONUS.name(), (var stats) -> stats.getAttribute(AttributeEnum.TOUGHNESS.name()).getValue() % 10);
+    }
 }
