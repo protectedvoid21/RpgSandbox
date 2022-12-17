@@ -2,15 +2,13 @@ package game.interfaces;
 
 import game.generals.AttributeValue;
 import game.generals.EffectAttribute;
-import game.interfaceWarhammer.AttributeEnum;
-import game.interfaceWarhammer.DependantEnum;
 
 import java.util.function.Function;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class Statistics implements StatisticsInterface {
+public abstract class Statistics implements IStatistics {
 
     protected Map<String, AttributeValue> attributes = new HashMap<>();
     protected Map<String, EffectAttribute> effects = new HashMap<>();
@@ -29,6 +27,7 @@ public abstract class Statistics implements StatisticsInterface {
 
     protected abstract void initializeDependantAttributes();
 
+
     @Override
     public AttributeValue getAttribute(String attributeEnumName) {
         return attributes.get(attributeEnumName);
@@ -42,5 +41,6 @@ public abstract class Statistics implements StatisticsInterface {
     public int getDependantAttrValue(String dependantAttributeEnumName){
         return dependantAttributes.get(dependantAttributeEnumName).apply(this);
     }
+
 
 }
