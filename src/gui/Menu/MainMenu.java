@@ -1,103 +1,109 @@
 package gui.Menu;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.EmptyBorder;
-import javax.swing.plaf.basic.BasicBorders;
 import java.awt.*;
 
 public class MainMenu extends JPanel {
-    JPanel restPanel;
-    GridBagLayout restLayout;
-    GridBagConstraints cst;
+    private JPanel restPanel;
+    private JPanel titlePanel;
+    private  GridBagConstraints restCst;
+    private  GridBagConstraints mainCst;
+    private int componentsNumber = 0;
 
-    public MainMenu(Container parent) {
+    public MainMenu() {
         super();
-        int horizontalMargin = (int) (parent.getSize().width * 0.25);
-        int verticalMargin = (int) (parent.getSize().height * 0.125);
-        setBorder(BorderFactory.createEmptyBorder(verticalMargin, horizontalMargin, verticalMargin, horizontalMargin));
+        titlePanel = new JPanel();
+        var layout = new BorderLayout();
+        titlePanel.setLayout(layout);
 
-        var lay = new BorderLayout();
-        setBackground(Color.BLUE);
-        System.out.println(getMinimumSize());
-        lay.setVgap((int) (0.125 * parent.getSize().height));
-        setLayout(lay);
-
-        cst = new GridBagConstraints();
+        restCst = new GridBagConstraints();
         restPanel = new JPanel();
-        restPanel.setBackground(Color.ORANGE);
-        restLayout = new GridBagLayout();
-        restPanel.setBorder(BorderFactory.createEmptyBorder(0, 60, 0, 60));
-        add(restPanel, BorderLayout.CENTER);
+        var restLayout = new GridBagLayout();
         restPanel.setLayout(restLayout);
 
-
-        cst.gridx = 0;
-        cst.fill = GridBagConstraints.BOTH;
-        cst.weightx = 10;
-
-        cst.gridy = 0;
-        cst.weighty = 20;
-        restPanel.add(Box.createVerticalBox(), cst);
-
-        cst.gridy = 1;
-        cst.weighty = 10;
-        restPanel.add(new JButton("xxxx"), cst);
-
-        cst.gridy = 2;
-        cst.weighty = 20;
-        restPanel.add(Box.createVerticalBox(), cst);
-
-        cst.gridy = 3;
-        cst.weighty = 10;
-        restPanel.add(new JButton("xxsdfxx"), cst);
-
-        cst.gridy = 4;
-        cst.weighty = 20;
-        restPanel.add(Box.createVerticalBox(), cst);
-
-        cst.gridy = 5;
-        cst.weighty = 10;
-        restPanel.add(new JButton("xfsdfsxxx"), cst);
-
-        cst.gridy = 6;
-        cst.weighty = 20;
-        restPanel.add(Box.createVerticalBox(), cst);
+        mainCst = new GridBagConstraints();
+        var mainLayout = new GridBagLayout();
+        setLayout(mainLayout);
 
 
-        setTitle("HELLOOfsfjsdjgfsdjgjsdgjsdjgfdsjfsdjfjsdfj");
+        mainCst.fill = GridBagConstraints.BOTH;
+        mainCst.gridx = 1;
+        mainCst.gridy = 2;
+        mainCst.weighty = 7;
+        mainCst.weightx = 2;
+        add(restPanel, mainCst);
+
+
+        restCst.fill = GridBagConstraints.BOTH;
+        restCst.weightx = 2;
+    }
+
+    public MainMenu(Container parent){
+        this();
         parent.add(this);
     }
 
-    public void addOption(String name) {
-//        var rowsNumber = restLayout.getRows();
-//        System.out.println(rowsNumber);
-//        if (rowsNumber!=0){
-//            restLayout.setRows(rowsNumber + 1);
-//        }
-        var button = new JButton(name);
-        restPanel.add(button);
-        System.out.println(button.getSize());
-        System.out.println(button.getPreferredSize());
-        System.out.println(restLayout.minimumLayoutSize(button));
-        System.out.println(restLayout.preferredLayoutSize(button));
-        restLayout.preferredLayoutSize(button);
-
-        if (restPanel.getComponents().length != 1) {
-            var value = 200 / (restPanel.getComponents().length - 1);
-//            restLayout.setVgap(value);
-//            restPanel.setBorder(BorderFactory.createEmptyBorder(value, 50, value, 50));
-//            restPanel.getBorder().getBorderInsets(restPanel).set(value/3, 0, value/3, 0);
+    private void initializeTitlePanel(){
+        mainCst.gridy = 1;
+        mainCst.weighty = 3;
+        mainCst.fill = GridBagConstraints.HORIZONTAL;
+        add(titlePanel, mainCst);
+    }
+    public void setTitle(Component component){
+        if (titlePanel.getComponents().length>0){
+            titlePanel.remove(0);
+        }else{
+            initializeTitlePanel();
         }
-//        System.out.println(restLayout.getVgap());
+        titlePanel.add(component);
     }
 
-    public void setTitle(String name) {
-        var label = new JLabel(name);
-        label.setOpaque(true);
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        label.setBackground(Color.ORANGE);
-        label.setPreferredSize(new Dimension(0, 60));
-        add(label, BorderLayout.NORTH);
+    private void addElementToRestPanel(Component component,int gridy, int weighty){
+        restCst.gridy = gridy;
+        restCst.weighty = weighty;
+        restPanel.add(component, restCst);
     }
+    private void addEmptyElementToRestPanel(int gridy){
+        addElementToRestPanel(Box.createVerticalBox(), gridy, 20);
+    }
+    private void addComponentToRestPanel(Component component){
+        addElementToRestPanel(component, componentsNumber*3+1, 20);
+    }
+    public void addOption(Component component) {
+        restCst.gridx = 1;
+        addEmptyElementToRestPanel(componentsNumber*3);
+        addComponentToRestPanel(component);
+        addEmptyElementToRestPanel(componentsNumber*3+2);
+        componentsNumber++;
+    }
+
+    private void addVerticalPanelHelper(GridBagConstraints constraints, JPanel panel){
+        constraints.weightx = 1;
+
+        constraints.gridx = 0;
+        panel.add(Box.createVerticalBox(), constraints);
+
+        constraints.gridx = 2;
+        panel.add(Box.createVerticalBox(), constraints);
+    }
+
+
+    public void addMiddlePartVerticalPanels(){
+        addVerticalPanelHelper(restCst, restPanel);
+    }
+
+    public void addVerticalPanels() {
+        addVerticalPanelHelper(mainCst, this);
+    }
+    public void addHorizontalPanels() {
+        mainCst.weighty = 1;
+
+        mainCst.gridy = 0;
+        add(Box.createHorizontalBox(), mainCst);
+
+        mainCst.gridy = 3;
+        add(Box.createHorizontalBox(), mainCst);
+    }
+
+
 }
