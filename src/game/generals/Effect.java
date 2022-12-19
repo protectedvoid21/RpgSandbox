@@ -30,6 +30,9 @@ public abstract class Effect {
         }
     }
     
+    /** Core method for main properties of effect influence on its owner. Responsible for using decreaseLength()
+     * every its call when effect is active.
+     * @see #decreaseLength() */
     protected abstract void affect();
     
     protected abstract void onEnd();
