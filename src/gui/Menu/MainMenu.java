@@ -67,9 +67,10 @@ public class MainMenu extends JPanel {
         addElementToRestPanel(Box.createVerticalBox(), gridy, 20);
     }
     private void addComponentToRestPanel(Component component){
-        addElementToRestPanel(component, componentsNumber*3+1, 20);
+        addElementToRestPanel(component, componentsNumber*3+1, 30);
     }
     public void addOption(Component component) {
+        System.out.println("jestem");
         restCst.gridx = 1;
         addEmptyElementToRestPanel(componentsNumber*3);
         addComponentToRestPanel(component);
