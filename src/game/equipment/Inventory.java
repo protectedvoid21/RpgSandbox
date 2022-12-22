@@ -10,7 +10,7 @@ public class Inventory {
         itemList = new ArrayList<>();
     }
     
-    public List<Item> getItems() {
+    public ArrayList<Item> getItems() {
         return itemList;
     }
     
@@ -20,5 +20,15 @@ public class Inventory {
 
     public void removeItem(Item item) {
         itemList.remove(item);
+    }
+    public void removeItemIfNotValid(Item item){
+        if (!item.isValid()){
+            removeItem(item);
+        }
+    }
+    public void removeEachItemIfNotValid(){//this method will be
+        for (var item: itemList){
+            removeItemIfNotValid(item);
+        }
     }
 }
