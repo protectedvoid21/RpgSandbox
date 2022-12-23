@@ -5,8 +5,6 @@ package game.generals;
 public class LimitedAttribute extends AttributeValue {
 
     private int rightRangeValue;
-//    private String name;
-
     public LimitedAttribute(int leftValue, int rightValue, int startValue){
         if (leftValue<rightValue){
             leftRangeValue = leftValue;
@@ -23,12 +21,6 @@ public class LimitedAttribute extends AttributeValue {
         rightRangeValue = 100;
         setValue(startValue);
     }
-//    public LimitedAttribute(int startValue){
-//        leftRangeValue = 0;
-//        rightRangeValue = 100;
-////        this.name = name;
-//        setValue(startValue);
-//    }
 
     public void setValue(int newValue){
         value = newValue;

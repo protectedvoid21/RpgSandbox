@@ -1,5 +1,6 @@
 package game.generals;
 
+/**Abstract class which is base for "UnlimitedAttribute" and "LimitedAttribute" classes*/
 public abstract class AttributeValue {
     protected int value;
     protected int leftRangeValue;
