@@ -13,21 +13,21 @@ import java.util.Map;
  *Contain 3 abstract methods which has to be overridden in its child class(specific for given RPG game)
  *String used as argument in many methods is enum name value which are specific for given RPG game.*/
 public abstract class Statistics implements IStatistics {
-    protected Map<String, AttributeValue> attributes = new HashMap<>();
-    protected Map<String, Effect> effects = new HashMap<>();
-    protected Map<String, Function<Statistics, Integer>> dependantAttributes = new HashMap<>();
+    protected Map<String, AttributeValue> attributes;
+    protected Map<String, Effect> effects;
+    protected Map<String, Function<Statistics, Integer>> dependantAttributes;
 
     public Statistics() {
-        initializeAttributes();
-        initializeEffects();
-        initializeDependantAttributes();
+        attributes = initializeAttributes();
+        effects = initializeEffects();
+        dependantAttributes = initializeDependantAttributes();
     }
 
-    protected abstract void initializeAttributes();
+    protected abstract Map<String, AttributeValue> initializeAttributes();
 
-    protected abstract void initializeEffects();
+    protected abstract Map<String, Effect> initializeEffects();
 
-    protected abstract void initializeDependantAttributes();
+    protected abstract Map<String, Function<Statistics, Integer>> initializeDependantAttributes();
     
     @Override
     public AttributeValue getAttribute(String attributeEnumName) {
