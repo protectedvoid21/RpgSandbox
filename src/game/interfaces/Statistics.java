@@ -9,9 +9,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public abstract class Statistics implements IStatistics {
-    protected Map<String, AttributeValue> attributes = new HashMap<>();
-    protected Map<String, Effect> effects = new HashMap<>();
-    protected Map<String, Function<Statistics, Integer>> dependantAttributes = new HashMap<>();
+    protected Map<IAttributeEnum, AttributeValue> attributes = new HashMap<>();
+    protected Map<Enum, Effect> effects = new HashMap<>();
+    protected Map<Enum, Function<Statistics, Integer>> dependantAttributes = new HashMap<>();
 
     public Statistics() {
         initializeAttributes();
@@ -26,16 +26,16 @@ public abstract class Statistics implements IStatistics {
     protected abstract void initializeDependantAttributes();
     
     @Override
-    public AttributeValue getAttribute(String attributeEnumName) {
-        return attributes.get(attributeEnumName);
+    public AttributeValue getAttribute(IAttributeEnum attributeEnum) {
+        return attributes.get(attributeEnum);
     }
 
     @Override
-    public Effect getEffect(String effectEnumName) {
-        return effects.get(effectEnumName);
+    public Effect getEffect(IEffectEnum effectEnum) {
+        return effects.get(effectEnum);
     }
 
-    public int getDependantAttrValue(String dependantAttributeEnumName){
-        return dependantAttributes.get(dependantAttributeEnumName).apply(this);
+    public int getDependantAttrValue(IDependantEnum dependantAttributeEnum){
+        return dependantAttributes.get(dependantAttributeEnum).apply(this);
     }
 }

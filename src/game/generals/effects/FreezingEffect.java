@@ -1,6 +1,7 @@
 package game.generals.effects;
 
 import game.generals.Effect;
+import game.interfaceWarhammer.AttributeEnum;
 import game.interfaces.Statistics;
 
 public class FreezingEffect extends Effect {
@@ -10,15 +11,15 @@ public class FreezingEffect extends Effect {
 
     @Override
     protected void affect() {
-        statistics.getAttribute("AGILITY").decreaseValue(5);
-        statistics.getAttribute("MOVEMENT").decreaseValue(5);
+        statistics.getAttribute(AttributeEnum.AGILITY).decreaseValue(5);
+        statistics.getAttribute(AttributeEnum.MOVEMENT).decreaseValue(5);
         
         decreaseLength();
     }
 
     @Override
     protected void onEnd() {
-        statistics.getAttribute("AGILITY").increaseValue(5);
-        statistics.getAttribute("MOVEMENT").decreaseValue(5);
+        statistics.getAttribute(AttributeEnum.AGILITY).increaseValue(5);
+        statistics.getAttribute(AttributeEnum.MOVEMENT).decreaseValue(5);
     }
 }

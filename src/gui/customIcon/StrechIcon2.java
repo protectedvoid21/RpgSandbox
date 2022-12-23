@@ -1,5 +1,7 @@
 package gui.customIcon;
 
+import com.kitfox.svg.app.beans.SVGIcon;
+
 import java.awt.*;
 import java.awt.font.TextAttribute;
 import java.awt.image.ImageObserver;
@@ -12,7 +14,7 @@ import javax.swing.*;
 //import org.jfree;
 //import
 
-public class StretchIcon extends ImageIcon {
+public class StrechIcon2 extends SVGIcon {
 
     protected HashMap<TextAttribute, Object> attrsMap = new HashMap<>();
     protected boolean proportionate;
@@ -75,20 +77,21 @@ public class StretchIcon extends ImageIcon {
     }
 
 
-    public StretchIcon(JComponent parent, String filename) {
+    public StrechIcon2(JComponent parent, String filename) {
         this(parent, filename, null, false);
     }
 
-    public StretchIcon(JComponent parent, String filename, String textContent) {
+    public StrechIcon2(JComponent parent, String filename, String textContent) {
         this(parent, filename, textContent, false);
     }
 
-    public StretchIcon(JComponent parent, String filename, boolean proportionate) {
+    public StrechIcon2(JComponent parent, String filename, boolean proportionate) {
         this(parent, filename, null, proportionate);
     }
 
-    public StretchIcon(JComponent parent, String filename, String textContent, boolean proportionate) {
-        super(filename);
+    public StrechIcon2(JComponent parent, String filename, String textContent, boolean proportionate) {
+        super();
+        setSvgURI(new File("src/gui/classroom-svgrepo-com.svg").toURI());
         this.parent = parent;
         addBasicAttributes();
         setText(textContent);
@@ -99,48 +102,52 @@ public class StretchIcon extends ImageIcon {
 
     @Override
     public synchronized void paintIcon(Component c, Graphics g, int x, int y) {
-        Image image = getImage();
-        if (image == null) {
-            return;
-        }
-        Insets insets = ((Container) c).getInsets();
-        x = insets.left;
-        y = insets.top;
+        super.paintIcon(c, g, x, y);
+        if (c != null) {
+            Image image = getImage();
+            if (image == null) {
+                return;
+            }
+            Insets insets = ((Container) c).getInsets();
+            x = insets.left;
+            y = insets.top;
 
-        int w = c.getWidth() - x - insets.right;
-        int h = c.getHeight() - y - insets.bottom;
+            int w = c.getWidth() - x - insets.right;
+            int h = c.getHeight() - y - insets.bottom;
 
-        if (proportionate) {
-            int iw = image.getWidth(c);
-            int ih = image.getHeight(c);
+            if (proportionate) {
+                int iw = image.getWidth(c);
+                int ih = image.getHeight(c);
 
-            if (iw * h < ih * w) {
-                iw = (h * iw) / ih;
-                x += (w - iw) / 2;
-                w = iw;
-            } else {
-                ih = (w * ih) / iw;
-                y += (h - ih) / 2;
-                h = ih;
+                if (iw * h < ih * w) {
+                    iw = (h * iw) / ih;
+                    x += (w - iw) / 2;
+                    w = iw;
+                } else {
+                    ih = (w * ih) / iw;
+                    y += (h - ih) / 2;
+                    h = ih;
+                }
+            }
+            ImageObserver io = getImageObserver();
+            g.drawImage(image, x, y, w, h, io == null ? c : io);
+            if (text != null) {
+                FontMetrics metrics = g.getFontMetrics((Font) text.getIterator().getAttribute(TextAttribute.FONT));
+                int positionX = (c.getWidth() - metrics.stringWidth(getPlainText())) / 2;
+                int positionY = (c.getHeight() - metrics.getHeight()) / 2 + metrics.getAscent();
+                g.drawString(text.getIterator(), positionX, positionY);
             }
         }
-        ImageObserver io = getImageObserver();
-        g.drawImage(image, x, y, w, h, io == null ? c : io);
-        if (text != null) {
-            FontMetrics metrics = g.getFontMetrics((Font) text.getIterator().getAttribute(TextAttribute.FONT));
-            int positionX = (c.getWidth() - metrics.stringWidth(getPlainText())) / 2;
-            int positionY = (c.getHeight() - metrics.getHeight()) / 2 + metrics.getAscent();
-            g.drawString(text.getIterator(), positionX, positionY);
-        }
+//        super.paintIcon(c, g, x, y);
     }
 
-    @Override
-    public int getIconWidth() {
-        return 0;
-    }
-
-    @Override
-    public int getIconHeight() {
-        return 0;
-    }
+//    @Override
+//    public int getIconWidth() {
+//        return 0;
+//    }
+//
+//    @Override
+//    public int getIconHeight() {
+//        return 0;
+//    }
 }

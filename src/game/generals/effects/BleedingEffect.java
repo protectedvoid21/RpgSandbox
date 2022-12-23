@@ -1,6 +1,7 @@
 package game.generals.effects;
 
 import game.generals.Effect;
+import game.interfaceWarhammer.AttributeEnum;
 import game.interfaces.Statistics;
 
 public class BleedingEffect extends Effect {
@@ -10,7 +11,7 @@ public class BleedingEffect extends Effect {
 
     @Override
     protected void affect() {
-        statistics.getAttribute("HEALTH_POINTS").decreaseValue(3);
+        statistics.getAttribute(AttributeEnum.HEALTH_POINTS).decreaseValue(3);
         
         decreaseLength();
     }
