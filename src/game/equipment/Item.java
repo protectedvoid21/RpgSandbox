@@ -1,14 +1,16 @@
 package game.equipment;
 
+import game.interfaces.IStatistics;
 import game.interfaces.Statistics;
 
 public abstract class Item {
+      protected IStatistics statistics;
 
-      protected Statistics playerStats;
-
-      public Item(Statistics stats) {
-            playerStats = stats;
+      public Item(IStatistics statistics) {
+            this.statistics = statistics;
       }
+      
       public abstract void use();
+      
       public abstract boolean isValid();
 }

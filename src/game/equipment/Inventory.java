@@ -21,12 +21,14 @@ public class Inventory {
     public void removeItem(Item item) {
         itemList.remove(item);
     }
-    public void removeItemIfNotValid(Item item){
+    
+    private void removeItemIfNotValid(Item item){
         if (!item.isValid()){
             removeItem(item);
         }
     }
-    public void removeEachItemIfNotValid(){//this method will be
+    
+    public void removeEachItemIfNotValid(){
         for (var item: itemList){
             removeItemIfNotValid(item);
         }
