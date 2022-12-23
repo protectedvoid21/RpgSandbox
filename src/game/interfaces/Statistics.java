@@ -2,12 +2,16 @@ package game.interfaces;
 
 import game.generals.AttributeValue;
 import game.generals.Effect;
+import game.generals.LimitedAttribute;
 
 import java.util.function.Function;
 
 import java.util.HashMap;
 import java.util.Map;
 
+/**General statistics class which controlling attributes, effects and dependant attributes(attrs which are dependent on other attributes, their influence is based on other values)
+ *Contain 3 abstract methods which has to be overridden in its child class(specific for given RPG game)
+ *String used as argument in many methods is enum name value which are specific for given RPG game.*/
 public abstract class Statistics implements IStatistics {
     protected Map<String, AttributeValue> attributes = new HashMap<>();
     protected Map<String, Effect> effects = new HashMap<>();

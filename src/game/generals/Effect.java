@@ -2,6 +2,9 @@ package game.generals;
 
 import game.interfaces.Statistics;
 
+/**Effect class which is some kind of implementation of effect in every RPG game.
+ * Contain reference to player statistics to have an ability of changing its components by invoking "affect" method.
+ * Also calculates automatically validation.*/
 public abstract class Effect {
     protected final Statistics statistics;
     protected int remainingRounds;

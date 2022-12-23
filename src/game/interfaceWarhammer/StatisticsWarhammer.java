@@ -8,6 +8,7 @@ import game.interfaces.Statistics;
 
 import java.util.EnumSet;
 
+/**Specific Warhammer RPG stats class whose task is to initialize attributes, effects and create lambda functions for dependant attributes */
 public class StatisticsWarhammer extends Statistics {
     @Override
     public void initializeAttributes() {
