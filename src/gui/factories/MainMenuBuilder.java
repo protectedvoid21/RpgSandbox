@@ -1,9 +1,7 @@
 package gui.factories;
 
-import com.sun.tools.javac.Main;
-import gui.Menu.MainMenu;
+import gui.menu.MainMenu;
 
-import javax.swing.*;
 import java.util.HashMap;
 import java.util.function.Function;
 

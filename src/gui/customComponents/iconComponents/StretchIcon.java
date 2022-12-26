@@ -1,12 +1,10 @@
-package gui.customIcon;
+package gui.customComponents.iconComponents;
 
 import java.awt.*;
 import java.awt.font.TextAttribute;
 import java.awt.image.ImageObserver;
-import java.io.File;
 import java.text.AttributedString;
 import java.util.HashMap;
-import javax.print.attribute.Attribute;
 import javax.swing.*;
 //import org.jfree.graphics2d.svg.SVGGraphics2D;
 //import org.jfree;

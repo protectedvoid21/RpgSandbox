@@ -1,23 +1,20 @@
 package gui;
 
-import com.kitfox.svg.app.beans.SVGIcon;
-import gui.Menu.MainMenu;
-import gui.customIcon.StrechIcon2;
-import gui.customIcon.StretchIcon;
-import gui.factories.IconButton;
-import gui.factories.MainMenuBuilder;
-import gui.factories.StyledButtonUI;
-import gui.factories.StyledLabelUI;
+import gui.customComponents.CustomButton;
+import gui.customComponents.CustomLabel;
+import gui.customComponents.customTextComponents.CustomTextField;
+import gui.customUI.customUIStyles.ClickedStyleUI;
+import gui.factories.WinterStyleGuiFactory;
+import gui.margin.ComponentTextMarginMenager;
+import gui.menu.MainMenu;
+import gui.customUI.CustomLabelUI;
+import gui.customUI.ICustomUI;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.net.MalformedURLException;
-import java.awt.image.MultiResolutionImage;
-import java.awt.image.BaseMultiResolutionImage;
 
 public class TestMainGui {
 
@@ -96,42 +93,91 @@ public class TestMainGui {
 //        var buttt = new JButton();
 //        buttt.setIcon(new StrechIcon2(buttt,"Ada"));
 //        menu.addOption(buttt);
+        var factory = new WinterStyleGuiFactory();
 
 
-         MainMenu  menu = new MainMenu(ramka);
-         menu.addVerticalPanels();
+        MainMenu menu = new MainMenu(ramka);
+        menu.setTitle(new CustomButton("Nazywam sie filip"));
+        menu.addOption(factory.createLabel("WINTER TIME"));
+        menu.addOption(factory.createLabel("HELLO WORLD"));
+        menu.addOption(factory.createButton("HELLO WORLD", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
-         JButton button = new JButton("Button #");
-        button.setFont(new Font("Calibri", Font.PLAIN, 14));
-        button.setBackground(new Color(0x2dce98));
-        button.setForeground(Color.white);
-        // customize the button with your own look
-        button.setUI(new StyledButtonUI());
-        menu.addOption(button);
-         var button2 = new JButton();
-         button2.setBackground(Color.CYAN);
-        button2.setUI(new StyledButtonUI());
-        button2.setPreferredSize(button2.getSize());button2.setMinimumSize(button2.getSize());
-        button2.setMaximumSize(button2.getSize());
-        button2.setText("Fsfsfsf");
+            }
+        }));
 
-//         button.setPressedIcon(new StrechIcon2(button2, "src/gui/Menu/border.png"));
-         button2.addActionListener(new ActionListener() {
-             @Override
-             public void actionPerformed(ActionEvent e) {
-                 menu.increaseSize(3,1.5);
-             }
-         });
-         var label = new JLabel();
-        label.setFont(new Font("Calibri", Font.PLAIN, 14));
-         label.setBackground(Color.white);
-         label.setUI(new StyledLabelUI());
-         menu.addOption(label);
-         menu.addOption(button2);
-         menu.addOption(new JButton("sdfsf"));
-         menu.addOption(new IconButton("src/gui/Menu/border.png"));
-         menu.addOption(new IconButton("src/gui/Menu/border.png"));
-         menu.addOption(new IconButton("src/gui/Menu/border.png"));
+        menu.addVerticalPanels();
+//        menu.addOption(new CustomButton("Nazywam sie filip"));
+//
+//        var button = new CustomLabel();//color zeby fajnie tez background byl w liscie, przeciazyc setbackground
+//
+//
+//        button.setFont(new Font("Calibri", Font.PLAIN, 14));
+//        button.setBackground(new Color(0x2dce98));
+////        button.setForeground(Color.white);
+//        // customize the button with your own look
+//        var field = new CustomTextField();
+//        field.setBackground(Color.RED);
+//        var uu = new ChangingBackgroundGrowingStyle();
+//        field.setUI(uu);
+//        field.getMargin().set(ComponentTextMarginMenager.Side.LEFT, 30);
+//        field.getMargin().set(ComponentTextMarginMenager.Side.TOP, 30);
+//        field.getMargin().set(ComponentTextMarginMenager.Side.LEFT, 20);
+//
+////        field.setUI(new GrowingBorderStyleUI());
+//        menu.addOption(field);
+////        menu.increaseSize(0, 0.6);
+//        var u = new ClickedStyleUI();
+////        u.setAdditionaldColor(Color.gray, ICustomUI.Index.FIRST);
+////        });
+////        u.setAdditionaldColor(Color.CYAN, ICustomUI.Index.FIRST);
+//        var uii = new CustomLabelUI(u);
+////        uii.setAdditionaldColor(new Color(0x2dce98), ICustomUI.Index.BASE_BACKGROUND);
+//        uii.setAdditionaldColor(new Color(0xB98108), ICustomUI.Index.FIRST);
+//        uii.setAdditionaldColor(new Color(0x52060F), ICustomUI.Index.SECOND);
+//        button.setBackground(new Color(0xC95C69));
+//        button.setUI(uii);
+//        uii.getMargin().set(ComponentTextMarginMenager.Side.LEFT, 20);
+////        button.setBackground(Color.RED);
+//        menu.addOption(button);
+//
+//
+//        var button2 = new JLabel("asdasdasd");
+////         button2.setBackground(Color.CYAN);
+//        var ll =  new CustomLabelUI(new GrowingBorderStyleUI());
+//        ll.installUI(button2);
+//
+//        button2.setUI(ll);
+//        button2.setBackground(Color.CYAN);
+////        button2.setOpaque(true);
+//        button2.setFont(new Font("Serif", Font.ITALIC, 24));
+//        button2.repaint();
+//        button2.revalidate();
+//        System.out.println(button2.getText());
+//        menu.addOption(button2);
+//
+////        button2.setBackground(Color.BLUE);
+////        button2.setPreferredSize(button2.getSize());button2.setMinimumSize(button2.getSize());
+////        button2.setMaximumSize(button2.getSize());
+//
+////         button.setPressedIcon(new StrechIcon2(button2, "src/gui/Menu/border.png"));
+////         button2.addActionListener(new ActionListener() {
+////             @Override
+////             public void actionPerformed(ActionEvent e) {
+////                 menu.increaseSize(3,1.5);
+////             }
+////         });
+//        var label = new JLabel("fdfdsfsdfsd");
+////        label.setHorizontalTextPosition(10);
+//        label.setFont(new Font("Calibri", Font.PLAIN, 14));
+//        label.setBackground(Color.white);
+////         label.setUI(new StyledLabelUI());
+//        menu.addOption(label);
+//        menu.addOption(new JButton("sdfsf"));
+//         menu.addOption(new IconButton("src/gui/Menu/border.png"));
+//         menu.addOption(new IconButton("src/gui/Menu/border.png"));
+//         menu.addOption(new IconButton("src/gui/Menu/border.png"));
 //         var label = new IconLabel("src/gui/image2.png");
 ////         var i = new SV("classroom-svgrepo-com.svg", 100, 100);
 //         var i = new SVGIcon();

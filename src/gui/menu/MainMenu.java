@@ -1,4 +1,4 @@
-package gui.Menu;
+package gui.menu;
 
 import javax.swing.*;
 import java.awt.*;
@@ -51,6 +51,7 @@ public class MainMenu extends JPanel {
         add(titlePanel, mainCst);
     }
     public void setTitle(Component component){
+
         if (titlePanel.getComponents().length>0){
             titlePanel.remove(0);
         }else{
@@ -71,6 +72,7 @@ public class MainMenu extends JPanel {
         addElementToRestPanel(component, componentsNumber*3+1, 30);
     }
     public void addOption(Component component) {
+        component.setPreferredSize(new Dimension(1, 1));
         restCst.gridx = 1;
         addEmptyElementToRestPanel(componentsNumber*3);
         addComponentToRestPanel(component);
@@ -88,9 +90,6 @@ public class MainMenu extends JPanel {
         restPanel.repaint();
     }
 
-    public void increseTitleSize(){
-        //todo
-    }
 
     private void addVerticalPanelHelper(GridBagConstraints constraints, JPanel panel){
         constraints.weightx = 1;

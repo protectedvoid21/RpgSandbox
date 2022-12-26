@@ -1,11 +1,9 @@
-package gui.factories;
-
-import gui.customIcon.StretchIcon;
+package gui.customComponents.iconComponents;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-public class IconButton extends JButton  implements IIconComponent{
+public class IconButton extends JButton  implements IIconComponent {
 
     private StretchIcon icon;
     public IconButton(String iconPath) {
