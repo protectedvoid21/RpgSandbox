@@ -4,6 +4,7 @@ import game.generals.AttributeValue;
 import game.generals.Effect;
 import java.lang.Enum;
 
+/**Interface for every RPG stats*/
 public interface IStatistics {
     AttributeValue getAttribute( IAttributeEnum attributeEnum);
     

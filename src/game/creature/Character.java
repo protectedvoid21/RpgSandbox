@@ -1,5 +1,9 @@
 package game.creature;
 
-public abstract class Character extends Creature{
+import game.interfaces.Statistics;
 
+public abstract class Character extends Creature{
+    public Character(Statistics creatureStats) {
+        super(creatureStats);
+    }
 }
