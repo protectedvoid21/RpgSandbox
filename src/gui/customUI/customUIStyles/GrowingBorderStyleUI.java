@@ -1,6 +1,6 @@
 //package gui.customUI.customUIStyles;
 //
-//import gui.customUI.CustomUI;
+//import gui.customUI.customUIStyles.CustomUI;
 //
 //import javax.swing.*;
 //import java.awt.*;

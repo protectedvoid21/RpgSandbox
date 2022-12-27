@@ -1,4 +1,7 @@
-package gui.customUI;
+package gui.customUI.componentsUIs;
+
+import gui.customUI.customUIStyles.CustomUI;
+import gui.customUI.interfaces.ICustomUI;
 
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicButtonUI;

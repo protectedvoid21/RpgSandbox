@@ -1,4 +1,4 @@
-package gui.customUI;
+package gui.customUI.interfaces;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;

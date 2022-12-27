@@ -1,7 +1,6 @@
-package gui.customUI.customUIStyles;
+package gui.customUI.wrapers;
 
-import gui.customUI.CustomUI;
-import gui.customUI.ICustomUI;
+import gui.customUI.interfaces.ICustomUI;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,11 +1,7 @@
 package gui.customUI.customUIStyles;
 
-import gui.customUI.CustomUI;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class RoundedBorderUI extends CustomUI {
     final private int offSet;

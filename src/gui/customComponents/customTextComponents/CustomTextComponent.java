@@ -1,8 +1,8 @@
 package gui.customComponents.customTextComponents;
 
 import gui.customComponents.CustomLabel;
-import gui.customUI.CustomLabelUI;
-import gui.customUI.ICustomUI;
+import gui.customUI.componentsUIs.CustomLabelUI;
+import gui.customUI.interfaces.ICustomUI;
 import gui.margin.ComponentTextMarginMenager;
 import gui.margin.IComponentTextMargin;
 

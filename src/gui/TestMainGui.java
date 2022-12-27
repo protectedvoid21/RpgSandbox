@@ -1,17 +1,11 @@
 package gui;
 
-import gui.customComponents.CustomButton;
-import gui.customComponents.CustomLabel;
-import gui.customComponents.customTextComponents.CustomTextField;
-import gui.customUI.customUIStyles.ClickedStyleUI;
-import gui.factories.WinterStyleGuiFactory;
-import gui.margin.ComponentTextMarginMenager;
+import gui.factories.*;
+import gui.factories.customFactories.buttonFactories.WinterGrowingBorderButtonFactory;
+import gui.factories.customFactories.labelFactories.WinterDarkerBackgroundLabelFactory;
 import gui.menu.MainMenu;
-import gui.customUI.CustomLabelUI;
-import gui.customUI.ICustomUI;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.MalformedURLException;
@@ -93,13 +87,15 @@ public class TestMainGui {
 //        var buttt = new JButton();
 //        buttt.setIcon(new StrechIcon2(buttt,"Ada"));
 //        menu.addOption(buttt);
-        var factory = new WinterStyleGuiFactory();
+        var factory = new GuiFactory();
+        factory.setButtonFactory(new WinterGrowingBorderButtonFactory());
+        factory.setLabelFactory(new WinterDarkerBackgroundLabelFactory());
 
 
         MainMenu menu = new MainMenu(ramka);
-        menu.setTitle(new CustomButton("Nazywam sie filip"));
+        menu.addOption(factory.createButton("WINTER TIME", null));
         menu.addOption(factory.createLabel("WINTER TIME"));
-        menu.addOption(factory.createLabel("HELLO WORLD"));
+        menu.addOption(factory.createButton("HELLO WORLD", null));
         menu.addOption(factory.createButton("HELLO WORLD", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -108,6 +104,7 @@ public class TestMainGui {
         }));
 
         menu.addVerticalPanels();
+//        menu.addMiddlePartVerticalPanels();
 //        menu.addOption(new CustomButton("Nazywam sie filip"));
 //
 //        var button = new CustomLabel();//color zeby fajnie tez background byl w liscie, przeciazyc setbackground

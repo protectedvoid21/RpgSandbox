@@ -1,9 +1,7 @@
 package gui.customComponents;
 
-import gui.customUI.CustomLabelUI;
-import gui.customUI.ICustomUI;
-import gui.margin.ComponentTextMarginMenager;
-import gui.margin.IComponentTextMargin;
+import gui.customUI.componentsUIs.CustomLabelUI;
+import gui.customUI.interfaces.ICustomUI;
 
 import javax.swing.*;
 import java.awt.*;

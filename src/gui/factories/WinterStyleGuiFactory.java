@@ -2,10 +2,15 @@ package gui.factories;
 
 import gui.customComponents.CustomButton;
 import gui.customComponents.CustomLabel;
-import gui.customUI.CustomButtonUI;
-import gui.customUI.CustomLabelUI;
-import gui.customUI.ICustomUI;
+import gui.customUI.componentsUIs.CustomButtonUI;
+import gui.customUI.componentsUIs.CustomLabelUI;
+import gui.customUI.interfaces.ICustomUI;
 import gui.customUI.customUIStyles.*;
+import gui.customUI.wrapers.ChangingBackgroundColorWraper;
+import gui.customUI.wrapers.ChangingBorderColorWraper;
+import gui.customUI.wrapers.GrowingBorderWraper;
+import gui.customUI.wrapers.ImageBorderWraper;
+import gui.factories.GuiFactory;
 
 import javax.swing.*;
 import javax.swing.text.JTextComponent;
@@ -33,12 +38,15 @@ public class WinterStyleGuiFactory extends GuiFactory {
         button.addActionListener(listener);
         button.setForeground(new Color(0xE8E5E1));
         button.setHorizontalAlignment(SwingConstants.CENTER);
-        var ui = new ClickedStyleUI();
-        RoundedBorderDecorator uiHelper = new ImageBorderWraper(ui,"src/gui/snowman.png");
-        uiHelper = new GrowingBorderWraper(uiHelper);
+        var ui = new ClickedStyleUI(2, 10);
+        var uiHelper = new ImageBorderWraper(ui,"src/gui/snowman.png");
+        ui.addComponent(uiHelper);
+//        var uiHelper2 = new GrowingBorderWraper(uiHelper);
         button.setBackground(new Color(0xBB3831));
         uiHelper.setAdditionaldColor(button.getBackground().darker(), ICustomUI.Index.FIRST);
-        var ui2 = new CustomButtonUI(uiHelper);
+        var ui2 = new CustomButtonUI(new ChangingBackgroundColorWraper(new ChangingBorderColorWraper(new GrowingBorderWraper(uiHelper))));
+        ui2.setAdditionaldColor(Color.CYAN, ICustomUI.Index.SECOND);
+        ui2.setAdditionaldColor(Color.gray, ICustomUI.Index.THIRD);
         button.setUI(ui2);
         return button;
     }
