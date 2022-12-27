@@ -2,12 +2,13 @@ package game.interfaces;
 
 import game.generals.AttributeValue;
 import game.generals.Effect;
+import java.lang.Enum;
 
 /**Interface for every RPG stats*/
 public interface IStatistics {
-    AttributeValue getAttribute(String attributeEnumName);
+    AttributeValue getAttribute( IAttributeEnum attributeEnum);
     
-    Effect getEffect(String effectEnumName);
+    Effect getEffect(IEffectEnum effectEnum);
     
-    int getDependantAttrValue(String dependantAttributeEnumName);
+    int getDependantAttrValue(IDependantEnum dependantAttributeEnum);
 }

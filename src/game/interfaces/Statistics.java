@@ -2,44 +2,40 @@ package game.interfaces;
 
 import game.generals.AttributeValue;
 import game.generals.Effect;
-import game.generals.LimitedAttribute;
 
 import java.util.function.Function;
 
 import java.util.HashMap;
 import java.util.Map;
 
-/**General statistics class which controlling attributes, effects and dependant attributes(attrs which are dependent on other attributes, their influence is based on other values)
- *Contain 3 abstract methods which has to be overridden in its child class(specific for given RPG game)
- *String used as argument in many methods is enum name value which are specific for given RPG game.*/
 public abstract class Statistics implements IStatistics {
-    protected Map<String, AttributeValue> attributes;
-    protected Map<String, Effect> effects;
-    protected Map<String, Function<Statistics, Integer>> dependantAttributes;
+    protected Map<IAttributeEnum, AttributeValue> attributes = new HashMap<>();
+    protected Map<Enum, Effect> effects = new HashMap<>();
+    protected Map<Enum, Function<Statistics, Integer>> dependantAttributes = new HashMap<>();
 
     public Statistics() {
-        attributes = initializeAttributes();
-        effects = initializeEffects();
-        dependantAttributes = initializeDependantAttributes();
+        initializeAttributes();
+        initializeEffects();
+        initializeDependantAttributes();
     }
 
-    protected abstract Map<String, AttributeValue> initializeAttributes();
+    protected abstract void initializeAttributes();
 
-    protected abstract Map<String, Effect> initializeEffects();
+    protected abstract void initializeEffects();
 
-    protected abstract Map<String, Function<Statistics, Integer>> initializeDependantAttributes();
+    protected abstract void initializeDependantAttributes();
     
     @Override
-    public AttributeValue getAttribute(String attributeEnumName) {
-        return attributes.get(attributeEnumName);
+    public AttributeValue getAttribute(IAttributeEnum attributeEnum) {
+        return attributes.get(attributeEnum);
     }
 
     @Override
-    public Effect getEffect(String effectEnumName) {
-        return effects.get(effectEnumName);
+    public Effect getEffect(IEffectEnum effectEnum) {
+        return effects.get(effectEnum);
     }
 
-    public int getDependantAttrValue(String dependantAttributeEnumName){
-        return dependantAttributes.get(dependantAttributeEnumName).apply(this);
+    public int getDependantAttrValue(IDependantEnum dependantAttributeEnum){
+        return dependantAttributes.get(dependantAttributeEnum).apply(this);
     }
 }

@@ -1,6 +1,7 @@
 package game.interfaceWarhammer;
 
-/**Specific Warhammer effect enum*/
-public enum EffectEnum {
+import game.interfaces.IEffectEnum;
+
+public enum EffectEnum implements IEffectEnum {
     BLEEDING, SHOCKED, POISON, IN_FIRE, FREEZING
 }

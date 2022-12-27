@@ -1,4 +1,4 @@
-package gui.Menu;
+package gui.menu;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,6 +8,7 @@ public class MainMenu extends JPanel {
     private JPanel titlePanel;
     private  GridBagConstraints restCst;
     private  GridBagConstraints mainCst;
+    private GridBagLayout restLayout;
     private int componentsNumber = 0;
 
     public MainMenu() {
@@ -18,7 +19,7 @@ public class MainMenu extends JPanel {
 
         restCst = new GridBagConstraints();
         restPanel = new JPanel();
-        var restLayout = new GridBagLayout();
+        restLayout = new GridBagLayout();
         restPanel.setLayout(restLayout);
 
         mainCst = new GridBagConstraints();
@@ -50,6 +51,7 @@ public class MainMenu extends JPanel {
         add(titlePanel, mainCst);
     }
     public void setTitle(Component component){
+
         if (titlePanel.getComponents().length>0){
             titlePanel.remove(0);
         }else{
@@ -67,15 +69,27 @@ public class MainMenu extends JPanel {
         addElementToRestPanel(Box.createVerticalBox(), gridy, 20);
     }
     private void addComponentToRestPanel(Component component){
-        addElementToRestPanel(component, componentsNumber*3+1, 20);
+        addElementToRestPanel(component, componentsNumber*3+1, 30);
     }
     public void addOption(Component component) {
+        component.setPreferredSize(new Dimension(1, 1));
         restCst.gridx = 1;
         addEmptyElementToRestPanel(componentsNumber*3);
         addComponentToRestPanel(component);
         addEmptyElementToRestPanel(componentsNumber*3+2);
         componentsNumber++;
     }
+
+    public void increaseSize(int index, double ratio){
+        int currentIndex = index*3+1;
+        var cmpnt =  restPanel.getComponent(currentIndex);
+        var constraint = restLayout.getConstraints(cmpnt);
+        constraint.weighty = restLayout.getConstraints(cmpnt).weighty*ratio;
+        restLayout.setConstraints(cmpnt, constraint);
+        restPanel.revalidate();
+        restPanel.repaint();
+    }
+
 
     private void addVerticalPanelHelper(GridBagConstraints constraints, JPanel panel){
         constraints.weightx = 1;
@@ -104,6 +118,7 @@ public class MainMenu extends JPanel {
         mainCst.gridy = 3;
         add(Box.createHorizontalBox(), mainCst);
     }
+
 
 
 }
