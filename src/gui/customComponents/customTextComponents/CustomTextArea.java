@@ -7,7 +7,7 @@ public class CustomTextArea extends CustomTextComponent {///to fix
         super();
         var textComponent = new JTextArea();
         var scroll = new JScrollPane(textComponent);
-        scroll.setOpaque(false);
+//        scroll.setOpaque(false);
 //        scroll.setViewportView(textComponent);
         scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         add(scroll);

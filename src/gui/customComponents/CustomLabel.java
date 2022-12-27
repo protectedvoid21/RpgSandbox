@@ -31,7 +31,7 @@ public class CustomLabel extends JLabel {
         super.setBackground(color);
     }
 
-    CustomLabelUI getLabelUI() {
+    public CustomLabelUI getLabelUI() {
         return labelUI;
     }
 

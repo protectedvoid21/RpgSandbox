@@ -4,4 +4,5 @@ import gui.customComponents.customTextComponents.CustomTextComponent;
 
 public interface TextFactory {
     CustomTextComponent createTextField();
+    CustomTextComponent createTextArea();
 }

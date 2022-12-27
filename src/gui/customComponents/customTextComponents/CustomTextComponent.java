@@ -107,4 +107,10 @@ public abstract class CustomTextComponent extends JPanel implements IComponentTe
         }
         super.setBackground(bg);
     }
+
+    public void setListener(CustomDocumentListener listener){
+        listener.setLabel(label);
+        listener.setTextComponent(textField);
+        textField.getDocument().addDocumentListener(listener);
+    }
 }

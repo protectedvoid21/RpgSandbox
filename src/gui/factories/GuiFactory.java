@@ -1,5 +1,6 @@
 package gui.factories;
 
+import gui.customComponents.customTextComponents.CustomDocumentListener;
 import gui.customComponents.customTextComponents.CustomTextComponent;
 import gui.customComponents.iconComponents.IconButton;
 import gui.customComponents.iconComponents.IconLabel;
@@ -13,6 +14,7 @@ import gui.factories.customFactories.textComponentFactory.TextFactory;
 
 import javax.swing.*;
 import javax.swing.text.JTextComponent;
+import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class GuiFactory {
@@ -55,6 +57,10 @@ public class GuiFactory {
 
     public CustomTextComponent createTextField() {
         return textFactory.createTextField();
+    }
+
+    public CustomTextComponent createTextArea(){
+        return textFactory.createTextArea();
     }
 
     public JLabel createIconLabel(String path) {

@@ -25,7 +25,6 @@ public class CustomButton extends JButton {
     public void setBackground(Color color) {
         if (buttonUI != null) {
             buttonUI.setAdditionaldColor(color, ICustomUI.Index.BASE_BACKGROUND);
-//            buttonUI.setAdditionaldColor(color, ICustomUI.Index.CURRENT_BACKGROUND);
         }
         super.setBackground(color);
     }

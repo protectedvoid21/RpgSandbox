@@ -1,6 +1,7 @@
 package gui;
 
 import gui.factories.*;
+import gui.factories.customFactories.buttonFactories.WinterClickedButtonFactory;
 import gui.factories.customFactories.buttonFactories.WinterGrowingBorderButtonFactory;
 import gui.factories.customFactories.labelFactories.WinterDarkerBackgroundLabelFactory;
 import gui.factories.customFactories.textComponentFactory.TextFieldFactory;
@@ -90,19 +91,20 @@ public class TestMainGui {
 //        buttt.setIcon(new StrechIcon2(buttt,"Ada"));
 //        menu.addOption(buttt);
         var factory = new GuiFactory();
-        factory.setButtonFactory(new WinterGrowingBorderButtonFactory());
+        factory.setButtonFactory(new WinterClickedButtonFactory(0.4, 0.2));
         factory.setLabelFactory(new WinterDarkerBackgroundLabelFactory());
         factory.setTextFactory(new TextFieldFactory());
 
 
 
         MainMenu menu = new MainMenu(ramka);
-        menu.setBackground(Color.ORANGE);
-        menu.addOption(factory.createButton("WINTER TIME", null));
-        menu.addOption(factory.createTextField());
-        menu.addOption(factory.createIconLabel("src/gui/image2.png"));
-        menu.addOption(factory.createLabel("WINTER TIME"));
-        menu.addOption(factory.createButton("HELLO WORLD", null));
+//        menu.setBackground(Color.ORANGE);
+//        menu.addOption(factory.createButton("WINTER TIME", null));
+//        menu.addOption(factory.createTextArea());
+//        menu.addOption(factory.createTextField());
+//        menu.addOption(factory.createIconLabel("src/gui/image2.png"));
+//        menu.addOption(factory.createLabel("WINTER TIME"));
+//        menu.addOption(factory.createButton("HELLO WORLD", null));
         menu.addOption(factory.createButton("HELLO WORLD", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -111,6 +113,7 @@ public class TestMainGui {
         }));
 
         menu.addVerticalPanels();
+        menu.addMiddlePartVerticalPanels();
 //        menu.addMiddlePartVerticalPanels();
 //        menu.addOption(new CustomButton("Nazywam sie filip"));
 //
