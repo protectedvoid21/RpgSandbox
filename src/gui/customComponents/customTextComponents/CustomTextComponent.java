@@ -21,10 +21,12 @@ public abstract class CustomTextComponent extends JPanel implements IComponentTe
 
     public CustomTextComponent() {
         setLayout(layout);
+        setOpaque(false);
     }
 
     protected void addComponentsToPanel(){
         var panel = new JPanel();
+        panel.setOpaque(false);
         panel.setLayout(new BorderLayout());
         add(textField);
         panel.add(label, BorderLayout.CENTER);
@@ -103,5 +105,6 @@ public abstract class CustomTextComponent extends JPanel implements IComponentTe
         if (label != null) {
             label.setBackground(bg);
         }
+        super.setBackground(bg);
     }
 }

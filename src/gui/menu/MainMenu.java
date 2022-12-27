@@ -119,6 +119,11 @@ public class MainMenu extends JPanel {
         add(Box.createHorizontalBox(), mainCst);
     }
 
-
-
+    @Override
+    public void setBackground(Color bg) {
+        super.setBackground(bg);
+        if (restPanel!=null){
+            restPanel.setBackground(bg);
+        }
+    }
 }

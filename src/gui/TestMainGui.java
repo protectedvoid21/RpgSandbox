@@ -7,6 +7,7 @@ import gui.factories.customFactories.textComponentFactory.TextFieldFactory;
 import gui.menu.MainMenu;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.MalformedURLException;
@@ -96,6 +97,7 @@ public class TestMainGui {
 
 
         MainMenu menu = new MainMenu(ramka);
+        menu.setBackground(Color.ORANGE);
         menu.addOption(factory.createButton("WINTER TIME", null));
         menu.addOption(factory.createTextField());
         menu.addOption(factory.createIconLabel("src/gui/image2.png"));
