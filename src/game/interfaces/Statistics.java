@@ -10,8 +10,8 @@ import java.util.Map;
 
 public abstract class Statistics implements IStatistics {
     protected Map<IAttributeEnum, AttributeValue> attributes = new HashMap<>();
-    protected Map<Enum, Effect> effects = new HashMap<>();
-    protected Map<Enum, Function<Statistics, Integer>> dependantAttributes = new HashMap<>();
+    protected Map<IEffectEnum, Effect> effects = new HashMap<>();
+    protected Map<IDependantEnum, Function<Statistics, Integer>> dependantAttributes = new HashMap<>();
 
     public Statistics() {
         initializeAttributes();

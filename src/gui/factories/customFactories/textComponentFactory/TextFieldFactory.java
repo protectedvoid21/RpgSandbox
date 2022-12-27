@@ -5,7 +5,7 @@ import gui.customComponents.customTextComponents.CustomTextField;
 import gui.customUI.customUIStyles.RoundedBorderUI;
 import gui.customUI.interfaces.ICustomUI;
 import gui.customUI.wrapers.DarkerHoverComponentWraper;
-import gui.margin.ComponentTextMarginMenager;
+import gui.margin.ComponentTextMarginManager;
 
 import java.awt.*;
 
@@ -18,8 +18,8 @@ public class TextFieldFactory implements TextFactory{
         ui.setAdditionaldColor(Color.BLUE, ICustomUI.Index.FIRST);
         textField.setUI(new DarkerHoverComponentWraper(ui));
         textField.setUI(ui);
-        textField.getMargin().set(ComponentTextMarginMenager.Side.LEFT, 10);
-        textField.getMargin().set(ComponentTextMarginMenager.Side.RIGHT, 10);
+        textField.getMargin().set(ComponentTextMarginManager.Side.LEFT, 10);
+        textField.getMargin().set(ComponentTextMarginManager.Side.RIGHT, 10);
         textField.getTextComponent().setForeground(Color.RED);
         return textField;
     }

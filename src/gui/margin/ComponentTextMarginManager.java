@@ -2,17 +2,14 @@ package gui.margin;
 
 import javax.swing.*;
 import javax.swing.border.Border;
-import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
-import javax.swing.plaf.basic.BasicBorders;
-import java.awt.*;
 
-public class ComponentTextMarginMenager {
+public class ComponentTextMarginManager {
     private JComponent component;
 
     public enum Side {LEFT, TOP, RIGHT, BOTTOM}
 
-    public ComponentTextMarginMenager(JComponent component) {
+    public ComponentTextMarginManager(JComponent component) {
         this.component = component;
     }
 

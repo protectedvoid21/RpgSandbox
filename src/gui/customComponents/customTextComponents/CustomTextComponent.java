@@ -3,7 +3,7 @@ package gui.customComponents.customTextComponents;
 import gui.customComponents.CustomLabel;
 import gui.customUI.componentsUIs.CustomLabelUI;
 import gui.customUI.interfaces.ICustomUI;
-import gui.margin.ComponentTextMarginMenager;
+import gui.margin.ComponentTextMarginManager;
 import gui.margin.IComponentTextMargin;
 
 import javax.swing.*;
@@ -17,7 +17,7 @@ public abstract class CustomTextComponent extends JPanel implements IComponentTe
     private OverlayLayout layout = new OverlayLayout(this);
     protected JTextComponent textField;
     private CustomLabel label = new CustomLabel();
-   private ComponentTextMarginMenager margin;
+   private ComponentTextMarginManager margin;
 
     public CustomTextComponent() {
         setLayout(layout);
@@ -33,7 +33,7 @@ public abstract class CustomTextComponent extends JPanel implements IComponentTe
     }
 
     protected void initializeTextField(){
-        margin = new ComponentTextMarginMenager(textField);
+        margin = new ComponentTextMarginManager(textField);
         textField.setOpaque(false);
         textField.setPreferredSize(new Dimension(1, 1));
         textField.setBorder(new EmptyBorder(1, 1, 1, 1));
@@ -94,7 +94,7 @@ public abstract class CustomTextComponent extends JPanel implements IComponentTe
     }
 
     @Override
-    public ComponentTextMarginMenager getMargin() {
+    public ComponentTextMarginManager getMargin() {
         return margin;
     }
 

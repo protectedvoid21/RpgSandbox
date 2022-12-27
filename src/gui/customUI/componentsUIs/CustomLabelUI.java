@@ -2,7 +2,7 @@ package gui.customUI.componentsUIs;
 
 import gui.customUI.customUIStyles.CustomUI;
 import gui.customUI.interfaces.ICustomUI;
-import gui.margin.ComponentTextMarginMenager;
+import gui.margin.ComponentTextMarginManager;
 import gui.margin.IComponentTextMargin;
 
 import javax.swing.*;
@@ -11,14 +11,14 @@ import java.awt.*;
 
 public class CustomLabelUI extends BasicLabelUI implements  IComponentTextMargin {
     private ICustomUI ui;
-    private ComponentTextMarginMenager margin;
+    private ComponentTextMarginManager margin;
     public CustomLabelUI(ICustomUI ui){
         this.ui = ui;
 
     }
     @Override
     public void installUI (JComponent c) {
-        margin = new ComponentTextMarginMenager(c);
+        margin = new ComponentTextMarginManager(c);
         super.installUI(c);
         ui.installUI(c);
     }
@@ -38,7 +38,7 @@ public class CustomLabelUI extends BasicLabelUI implements  IComponentTextMargin
     }
 
     @Override
-    public ComponentTextMarginMenager getMargin() {
+    public ComponentTextMarginManager getMargin() {
         return margin;
     }
 }
