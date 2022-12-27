@@ -19,7 +19,6 @@ public class ImageBorderWraper extends RoundedBorderDecorator implements IRequie
 
     public ImageBorderWraper(ICustomUI ui, String path) {
         super(ui);
-        System.out.println("jestemmm");
         uploadImage(path);
     }
 
@@ -38,7 +37,7 @@ public class ImageBorderWraper extends RoundedBorderDecorator implements IRequie
     }
 
     @Override//to do for every shape
-    public void paintBackground(Graphics g, JComponent c, int yOffset) {
+    public void paintBackground(Graphics g, JComponent c, int yOffset) {//zrefactoryzowac i dorzucic jakos zmiany pozycji x na start
         super.paintBackground(g, c, yOffset);
         var w = c.getWidth();
         var h = c.getHeight();

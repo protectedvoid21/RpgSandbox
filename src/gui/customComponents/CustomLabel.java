@@ -25,7 +25,6 @@ public class CustomLabel extends JLabel {
     }
 
     public void setBackground(Color color) {
-        System.out.println("wchpodze w settera");
         if (labelUI != null) {
             labelUI.setAdditionaldColor(color, ICustomUI.Index.BASE_BACKGROUND);
         }

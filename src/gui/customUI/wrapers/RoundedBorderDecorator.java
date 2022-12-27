@@ -34,7 +34,6 @@ public abstract class RoundedBorderDecorator implements ICustomUI {
 
     @Override
     public int getBorderSize() {
-        System.out.println(customUI.getBorderSize());
         return customUI.getBorderSize();
     }
 

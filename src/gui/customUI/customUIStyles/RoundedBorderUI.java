@@ -3,30 +3,18 @@ package gui.customUI.customUIStyles;
 import javax.swing.*;
 import java.awt.*;
 
-public class RoundedBorderUI extends CustomUI {
-    final private int offSet;
+public class RoundedBorderUI extends BorderUI {
     final private int arcWidth;
 
     public RoundedBorderUI(int offSet, int arcWidth) {
-        this.offSet = offSet;
+        super(offSet);
         this.arcWidth = arcWidth;
+
     }
 
     public RoundedBorderUI() {
-        this(6,10);
+        this(6, 10);
     }
-
-
-    @Override
-    public void paint(Graphics g, JComponent c) {
-        paintBackground(g, c, offSet);
-    }
-
-    @Override
-    public int getBorderSize() {
-        return offSet;
-    }
-
 
     public void paintBackground(Graphics g, JComponent c, int yOffset) {
         Dimension size = c.getSize();

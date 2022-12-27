@@ -3,6 +3,7 @@ package gui;
 import gui.factories.*;
 import gui.factories.customFactories.buttonFactories.WinterGrowingBorderButtonFactory;
 import gui.factories.customFactories.labelFactories.WinterDarkerBackgroundLabelFactory;
+import gui.factories.customFactories.textComponentFactory.TextFieldFactory;
 import gui.menu.MainMenu;
 
 import javax.swing.*;
@@ -90,10 +91,14 @@ public class TestMainGui {
         var factory = new GuiFactory();
         factory.setButtonFactory(new WinterGrowingBorderButtonFactory());
         factory.setLabelFactory(new WinterDarkerBackgroundLabelFactory());
+        factory.setTextFactory(new TextFieldFactory());
+
 
 
         MainMenu menu = new MainMenu(ramka);
         menu.addOption(factory.createButton("WINTER TIME", null));
+        menu.addOption(factory.createTextField());
+        menu.addOption(factory.createIconLabel("src/gui/image2.png"));
         menu.addOption(factory.createLabel("WINTER TIME"));
         menu.addOption(factory.createButton("HELLO WORLD", null));
         menu.addOption(factory.createButton("HELLO WORLD", new ActionListener() {

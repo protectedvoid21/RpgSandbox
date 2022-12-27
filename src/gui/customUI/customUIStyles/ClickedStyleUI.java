@@ -9,7 +9,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-public class ClickedStyleUI extends CustomUI implements IMovementComponent {
+public class ClickedStyleUI extends CustomUI implements IMovementComponent {//to fix, text cant changing its place
 
     final private int offSet;
     final private int arcWidth;
