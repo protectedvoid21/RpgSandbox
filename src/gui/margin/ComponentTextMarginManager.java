@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
+/**Class used for setting margin of text. Actually it is empty border but class contain some methods which make it simpler. */
 public class ComponentTextMarginManager {
     private JComponent component;
 

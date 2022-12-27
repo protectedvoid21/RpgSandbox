@@ -9,6 +9,7 @@ import javax.swing.*;
 import javax.swing.plaf.basic.BasicLabelUI;
 import java.awt.*;
 
+/**Custom Label UI Adapter which, class has to be created because QLabel has to receive BasicLabelUI instance during setting UI. */
 public class CustomLabelUI extends BasicLabelUI implements  IComponentTextMargin {
     private ICustomUI ui;
     private ComponentTextMarginManager margin;

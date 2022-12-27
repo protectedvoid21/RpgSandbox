@@ -10,6 +10,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Some kind of decorator for customTextComponent. Offers possibility of changing color when something is being
+ * entered to text component.
+ */
 public class CustomDocumentListener implements DocumentListener {
     private CustomLabel label;
     private JTextComponent textComponent;

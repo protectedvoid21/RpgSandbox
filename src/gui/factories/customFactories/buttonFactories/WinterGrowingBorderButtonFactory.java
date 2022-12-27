@@ -12,6 +12,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+ * Implementation of button factory which cretes specific kind of winter button (only for testing and to show
+ * possibilities of using factories for creating new objects). It is created based on implementation of
+ * ClickedStyleUI. Also this button has stars on its sides, scaling values can be set by client.
+ */
 public class WinterGrowingBorderButtonFactory extends ImageButtonFactory {
     public WinterGrowingBorderButtonFactory(double scalingSizeValue, double scalingPositionValue) {
         super(scalingSizeValue, scalingPositionValue);

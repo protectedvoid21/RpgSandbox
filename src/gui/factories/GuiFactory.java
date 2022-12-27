@@ -17,14 +17,18 @@ import javax.swing.text.JTextComponent;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+ * Base GUI factory used for creating every object used in application. User has to used set method to define
+ * specific component factory.
+ */
 public class GuiFactory {
     private ButtonFactory buttonFactory;
-    private LabelFactory labelFactory;
+    private LabelFactory labelFactory;//dorzucic defaultowe typy
     private TextFactory textFactory;
     private ButtonIconFactory buttonIconFactory = new DefaultIconButtonFactory();
     private LabelIconFactory labelIconFactory = new DefaultIconLabelFactory();
 
-    public GuiFactory(){
+    public GuiFactory() {
     }
 
     public JLabel createLabel(String text) {
@@ -59,7 +63,7 @@ public class GuiFactory {
         return textFactory.createTextField();
     }
 
-    public CustomTextComponent createTextArea(){
+    public CustomTextComponent createTextArea() {
         return textFactory.createTextArea();
     }
 

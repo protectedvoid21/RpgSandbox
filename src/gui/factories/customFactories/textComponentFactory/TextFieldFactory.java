@@ -12,8 +12,12 @@ import gui.margin.ComponentTextMarginManager;
 
 import java.awt.*;
 
-public class TextFieldFactory implements TextFactory{
-    @Override
+/**
+ * Implementation of TextFactory interface.
+ * Provides the basic components for integrating the text with the client.
+ */
+public class TextFieldFactory implements TextFactory {
+    @Override//to fix
     public CustomTextComponent createTextField() {
         return initializeTextComponent(new CustomTextField());
     }
@@ -23,7 +27,7 @@ public class TextFieldFactory implements TextFactory{
         return initializeTextComponent(new CustomTextArea());
     }
 
-    private CustomTextComponent initializeTextComponent(CustomTextComponent textField){
+    private CustomTextComponent initializeTextComponent(CustomTextComponent textField) {
         textField.getTextComponent().setForeground(Color.BLACK);
         textField.setBackground(Color.WHITE);
         var ui = new RoundedBorderUI();
@@ -31,7 +35,7 @@ public class TextFieldFactory implements TextFactory{
         ui.setAdditionaldColor(new Color(0xEE3B51), ICustomUI.Index.SECOND);
         textField.setUI(new ChangingBorderColorWraper(ui));
         textField.setUI(ui);
-        textField.setListener( new CustomDocumentListener(new Color(0xD08888)));
+        textField.setListener(new CustomDocumentListener(new Color(0xD08888)));
         textField.getMargin().set(ComponentTextMarginManager.Side.LEFT, 10);
         textField.getMargin().set(ComponentTextMarginManager.Side.RIGHT, 10);
         return textField;

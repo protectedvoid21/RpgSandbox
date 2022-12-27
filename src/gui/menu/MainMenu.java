@@ -2,7 +2,7 @@ package gui.menu;
 
 import javax.swing.*;
 import java.awt.*;
-
+///to repair
 public class MainMenu extends JPanel {
     private JPanel restPanel;
     private JPanel titlePanel;

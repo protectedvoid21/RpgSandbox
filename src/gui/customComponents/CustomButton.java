@@ -6,6 +6,7 @@ import gui.customUI.interfaces.ICustomUI;
 import javax.swing.*;
 import java.awt.*;
 
+/**Custom Button instance used in whole app, has methods which can menage the customButtonUI instance.  */
 public class CustomButton extends JButton {
     private CustomButtonUI buttonUI;
     public CustomButton(){

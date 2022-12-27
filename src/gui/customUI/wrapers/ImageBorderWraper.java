@@ -10,7 +10,14 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
-public class ImageBorderWraper extends RoundedBorderDecorator implements IRequieredReactionOnMovementComponent {
+/**
+ * Wrapper which can creates two images on component. Their position can be automatic calculated (sometimes it can be
+ * a bit suprising...ususally) but also user can specife scalingPositionValue and scalingSizeValue. First attribute
+ * determines how far from the edge is this image. Second is used for defining size of imeges. Each value is
+ * dependant on smaller of values : width, height of component. To get know whole algorithm I recommend to see
+ * paintBackground method. Good luck! :) It will some someone task to make this method simpler...
+ */
+public class ImageBorderWraper extends BorderDecorator implements IRequieredReactionOnMovementComponent {
     private Image img;
     private int componentMovement = 0;
     private IMovementComponent.Direction direction;
@@ -86,18 +93,18 @@ public class ImageBorderWraper extends RoundedBorderDecorator implements IRequie
         } else {//to fix
             if (w > h) {
                 g.drawImage(img.getScaledInstance((int) (scalingSizeValue * h * scale), (int) (scalingSizeValue * h),
-                        Image.SCALE_SMOOTH), (int) (scalingPositionValue * h) + horizontalMovement,
+                                Image.SCALE_SMOOTH), (int) (scalingPositionValue * h) + horizontalMovement,
                         (int) (0.5 * (1 - scalingSizeValue) * h) + verticalMovement, null);
                 g.drawImage(img.getScaledInstance((int) (scalingSizeValue * h * scale), (int) (scalingSizeValue * h),
-                        Image.SCALE_SMOOTH),
+                                Image.SCALE_SMOOTH),
                         (int) (w - ((scalingPositionValue + scale * scalingSizeValue) * h)) - horizontalMovement,
                         (int) (0.5 * (1 - scalingSizeValue) * h) + verticalMovement, null);
             } else {
                 g.drawImage(img.getScaledInstance((int) (scalingSizeValue * w), (int) (scalingSizeValue * w / scale),
-                        Image.SCALE_SMOOTH), (int) (0.5 * (1 - scalingSizeValue) * w) + horizontalMovement,
+                                Image.SCALE_SMOOTH), (int) (0.5 * (1 - scalingSizeValue) * w) + horizontalMovement,
                         (int) (scalingPositionValue * w) + verticalMovement, null);
                 g.drawImage(img.getScaledInstance((int) (scalingSizeValue * w), (int) (scalingSizeValue * w / scale),
-                        Image.SCALE_SMOOTH), (int) (0.5 * (1 - scalingSizeValue) * w) + horizontalMovement,
+                                Image.SCALE_SMOOTH), (int) (0.5 * (1 - scalingSizeValue) * w) + horizontalMovement,
                         (int) (h - ((scalingPositionValue + scalingSizeValue / scale) * w)) + verticalMovement, null);
             }
         }

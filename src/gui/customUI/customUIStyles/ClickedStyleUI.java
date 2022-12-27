@@ -9,6 +9,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
+/**Specific UI used buttons. */
 public class ClickedStyleUI extends CustomUI implements IMovementComponent {//to fix, text cant changing its place
 
     final private int offSet;
