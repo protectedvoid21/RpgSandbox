@@ -3,6 +3,7 @@ package gui.customUI.customUIStyles;
 import javax.swing.*;
 import java.awt.*;
 
+/**3D (really?) border UI*/
 public class ThreeDUI extends BorderUI{
     public ThreeDUI(int offSet) {
         super(offSet);

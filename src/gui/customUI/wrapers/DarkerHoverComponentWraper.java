@@ -7,11 +7,17 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class DarkerHoverComponentWraper extends RoundedBorderDecorator{
+/**
+ * Wraper which changes background color when mouse is hovering component. New color is dependant on previous
+ * background color of component, it is always its darker variety.
+ */
+public class DarkerHoverComponentWraper extends BorderDecorator {
     private Color currentBaseBackgroundHelper;
+
     public DarkerHoverComponentWraper(ICustomUI ui) {
         super(ui);
     }
+
     @Override
     public void installUI(JComponent c) {
         super.installUI(c);

@@ -2,7 +2,7 @@ package gui.menu;
 
 import javax.swing.*;
 import java.awt.*;
-
+///to repair
 public class MainMenu extends JPanel {
     private JPanel restPanel;
     private JPanel titlePanel;
@@ -119,6 +119,11 @@ public class MainMenu extends JPanel {
         add(Box.createHorizontalBox(), mainCst);
     }
 
-
-
+    @Override
+    public void setBackground(Color bg) {
+        super.setBackground(bg);
+        if (restPanel!=null){
+            restPanel.setBackground(bg);
+        }
+    }
 }

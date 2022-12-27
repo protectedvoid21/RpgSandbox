@@ -7,6 +7,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.HashMap;
 
+
 public abstract class CustomUI implements ICustomUI {
 
     private JComponent parent;
@@ -23,7 +24,8 @@ public abstract class CustomUI implements ICustomUI {
     }
 
     public Color getAdditionalColor(ICustomUI.Index index) {
-        return additionalColors.get(index) != null ? additionalColors.get(index) : additionalColors.get(Index.BASE_BACKGROUND);
+        return additionalColors.get(index) != null ? additionalColors.get(index) :
+                additionalColors.get(Index.BASE_BACKGROUND);
     }
 
 

@@ -6,6 +6,7 @@ import gui.customUI.interfaces.ICustomUI;
 import javax.swing.*;
 import java.awt.*;
 
+/**Custom Button instance used in whole app, has methods which can menage the customButtonUI instance.  */
 public class CustomButton extends JButton {
     private CustomButtonUI buttonUI;
     public CustomButton(){
@@ -25,7 +26,6 @@ public class CustomButton extends JButton {
     public void setBackground(Color color) {
         if (buttonUI != null) {
             buttonUI.setAdditionaldColor(color, ICustomUI.Index.BASE_BACKGROUND);
-//            buttonUI.setAdditionaldColor(color, ICustomUI.Index.CURRENT_BACKGROUND);
         }
         super.setBackground(color);
     }

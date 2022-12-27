@@ -6,10 +6,13 @@ import gui.customUI.interfaces.ICustomUI;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Custom Label instance used in whole app, has methods which can menage the customLabelUI instance.
+ */
 public class CustomLabel extends JLabel {
     private CustomLabelUI labelUI;
 
-    public CustomLabel(){
+    public CustomLabel() {
         super("");
     }
 
@@ -31,7 +34,7 @@ public class CustomLabel extends JLabel {
         super.setBackground(color);
     }
 
-    CustomLabelUI getLabelUI() {
+    public CustomLabelUI getLabelUI() {
         return labelUI;
     }
 

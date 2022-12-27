@@ -13,6 +13,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**Base abstract class for CustomTextField and CustomTextArea classes.*/
 public abstract class CustomTextComponent extends JPanel implements IComponentTextMargin {
     private OverlayLayout layout = new OverlayLayout(this);
     protected JTextComponent textField;
@@ -21,10 +22,12 @@ public abstract class CustomTextComponent extends JPanel implements IComponentTe
 
     public CustomTextComponent() {
         setLayout(layout);
+        setOpaque(false);
     }
 
     protected void addComponentsToPanel(){
         var panel = new JPanel();
+        panel.setOpaque(false);
         panel.setLayout(new BorderLayout());
         add(textField);
         panel.add(label, BorderLayout.CENTER);
@@ -103,5 +106,12 @@ public abstract class CustomTextComponent extends JPanel implements IComponentTe
         if (label != null) {
             label.setBackground(bg);
         }
+        super.setBackground(bg);
+    }
+
+    public void setListener(CustomDocumentListener listener){
+        listener.setLabel(label);
+        listener.setTextComponent(textField);
+        textField.getDocument().addDocumentListener(listener);
     }
 }

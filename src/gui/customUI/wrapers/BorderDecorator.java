@@ -5,10 +5,11 @@ import gui.customUI.interfaces.ICustomUI;
 import javax.swing.*;
 import java.awt.*;
 
-public abstract class RoundedBorderDecorator implements ICustomUI {
+/**Abstract class used for creating new Wrappers.*/
+public abstract class BorderDecorator implements ICustomUI {
     protected ICustomUI customUI;
 
-    public RoundedBorderDecorator(ICustomUI ui){
+    public BorderDecorator(ICustomUI ui){
         customUI = ui;
     }
 

@@ -12,6 +12,12 @@ import gui.factories.customFactories.labelFactories.LabelFactory;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Implementation of label factory which cretes specific kind of winter label (only for testing and to show
+ * possibilities of using factories for creating new objects). It is created based on implementation of
+ * ThreeDUI class. It is simple 3D CustomUI implementation . Also this label contains few more features like changing
+ * color when hovering, setting text in middle of component.
+ */
 public class WinterDarkerBackgroundLabelFactory implements LabelFactory {
     @Override
     public JLabel create(String text) {

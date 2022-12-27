@@ -7,7 +7,8 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class GrowingBorderWraper extends RoundedBorderDecorator {
+/**Wrapper which can increase size of border when mouse is hovering component. The ratio is equals 2.*/
+public class GrowingBorderWraper extends BorderDecorator {
     private boolean componentHovered = false;
 
     public GrowingBorderWraper(ICustomUI ui){

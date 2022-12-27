@@ -7,6 +7,7 @@ import javax.swing.*;
 import javax.swing.plaf.basic.BasicButtonUI;
 import java.awt.*;
 
+/**Custom Button UI Adapter which, class has to be created because QButton has to receive BasicButtonUI instance during setting UI. */
 public class CustomButtonUI extends BasicButtonUI {
 
     private ICustomUI ui;

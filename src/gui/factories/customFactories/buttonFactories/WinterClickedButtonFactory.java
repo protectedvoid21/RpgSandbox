@@ -12,7 +12,20 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class WinterClickedButtonFactory implements ButtonFactory {
+/**
+ * Implementation of button factory which cretes specific kind of winter button (only for testing and to show
+ * possibilities of using factories for creating new objects). It is created based on implementation of
+ * ClickedStyleUI. Also this button has snowman on its sides, scaling values can be set by client.
+ */
+public class WinterClickedButtonFactory extends ImageButtonFactory {
+    public WinterClickedButtonFactory(double scalingSizeValue, double scalingPositionValue) {
+        super(scalingSizeValue, scalingPositionValue);
+    }
+
+    public WinterClickedButtonFactory() {
+        super();
+    }
+
     @Override
     public JButton create(String text, ActionListener listener) {
         var button = new CustomButton(text);
@@ -20,7 +33,11 @@ public class WinterClickedButtonFactory implements ButtonFactory {
         button.setForeground(new Color(0xE8E5E1));
         button.setHorizontalAlignment(SwingConstants.CENTER);
         var ui = new ClickedStyleUI(2, 10);
-        var uiHelper = new ImageBorderWraper(ui,"src/gui/snowman.png");
+        var uiHelper = new ImageBorderWraper(ui, "src/gui/snowman.png");
+        if (isScaled) {
+            uiHelper.setScalingValue(scalingSizeValue, scalingPositionValue);
+            uiHelper.setScalingStatus(true);
+        }
         ui.addComponent(uiHelper);
         button.setBackground(new Color(0xBB3831));
         uiHelper.setAdditionaldColor(button.getBackground().darker(), ICustomUI.Index.FIRST);

@@ -7,7 +7,11 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class ChangingBorderColorWraper extends RoundedBorderDecorator {
+/**
+ * Wraper which provides possibility of changing borders color when mouse presses component. It uses Index.SECOND
+ * enum to specifies color which should be applied during this activity
+ */
+public class ChangingBorderColorWraper extends BorderDecorator {
     private Color currentBaseBackgroundHelper;
 
     public ChangingBorderColorWraper(ICustomUI ui) {

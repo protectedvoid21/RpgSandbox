@@ -4,7 +4,7 @@ import gui.customUI.interfaces.ICustomUI;
 
 import javax.swing.*;
 import java.awt.*;
-
+/**Normal border style UI, creates to generalize style of UI and components in app */
 public class NormalBorderUI extends BorderUI {
     public NormalBorderUI(int offSet) {
         super(offSet);
