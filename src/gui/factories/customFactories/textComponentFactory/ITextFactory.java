@@ -7,7 +7,7 @@ import gui.customComponents.customTextComponents.CustomTextComponent;
  * creates customized panel with label and text field. Method 'createTextArea' creates customized panel with label
  * and text area.
  */
-public interface TextFactory {
+public interface ITextFactory {
     CustomTextComponent createTextField();
     CustomTextComponent createTextArea();
 }

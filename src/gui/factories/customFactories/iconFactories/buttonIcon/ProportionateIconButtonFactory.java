@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
  * Button factory which creates icon button. Component is auto filled to given space, but contain proportionate so
  * only one side will be at the edge of the layout.
  */
-public class ProportionateIconButtonFactory implements ButtonIconFactory {
+public class ProportionateIconButtonFactory implements IButtonIconFactory {
     @Override
     public JButton create(String path, ActionListener listener) {
         var button = new IconButton(path, true);

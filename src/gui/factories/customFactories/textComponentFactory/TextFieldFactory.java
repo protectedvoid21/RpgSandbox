@@ -7,7 +7,6 @@ import gui.customComponents.customTextComponents.CustomTextField;
 import gui.customUI.customUIStyles.RoundedBorderUI;
 import gui.customUI.interfaces.ICustomUI;
 import gui.customUI.wrapers.ChangingBorderColorWraper;
-import gui.customUI.wrapers.DarkerHoverComponentWraper;
 import gui.margin.ComponentTextMarginManager;
 
 import java.awt.*;
@@ -16,7 +15,7 @@ import java.awt.*;
  * Implementation of TextFactory interface.
  * Provides the basic components for integrating the text with the client.
  */
-public class TextFieldFactory implements TextFactory {
+public class TextFieldFactory implements ITextFactory {
     @Override//to fix
     public CustomTextComponent createTextField() {
         return initializeTextComponent(new CustomTextField());

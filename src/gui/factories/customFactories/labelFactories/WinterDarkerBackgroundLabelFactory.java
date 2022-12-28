@@ -2,12 +2,9 @@ package gui.factories.customFactories.labelFactories;
 
 import gui.customComponents.CustomLabel;
 import gui.customUI.componentsUIs.CustomLabelUI;
-import gui.customUI.customUIStyles.NormalBorderUI;
-import gui.customUI.customUIStyles.RoundedBorderUI;
 import gui.customUI.customUIStyles.ThreeDUI;
 import gui.customUI.interfaces.ICustomUI;
 import gui.customUI.wrapers.DarkerHoverComponentWraper;
-import gui.factories.customFactories.labelFactories.LabelFactory;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,7 +15,7 @@ import java.awt.*;
  * ThreeDUI class. It is simple 3D CustomUI implementation . Also this label contains few more features like changing
  * color when hovering, setting text in middle of component.
  */
-public class WinterDarkerBackgroundLabelFactory implements LabelFactory {
+public class WinterDarkerBackgroundLabelFactory implements ILabelFactory {
     @Override
     public JLabel create(String text) {
         var label = new CustomLabel(text);

@@ -1,20 +1,15 @@
 package gui.factories;
 
-import gui.customComponents.customTextComponents.CustomDocumentListener;
 import gui.customComponents.customTextComponents.CustomTextComponent;
-import gui.customComponents.iconComponents.IconButton;
-import gui.customComponents.iconComponents.IconLabel;
-import gui.factories.customFactories.buttonFactories.ButtonFactory;
-import gui.factories.customFactories.iconFactories.buttonIcon.ButtonIconFactory;
+import gui.factories.customFactories.buttonFactories.IButtonFactory;
+import gui.factories.customFactories.iconFactories.buttonIcon.IButtonIconFactory;
 import gui.factories.customFactories.iconFactories.buttonIcon.DefaultIconButtonFactory;
 import gui.factories.customFactories.iconFactories.labelIcon.DefaultIconLabelFactory;
-import gui.factories.customFactories.iconFactories.labelIcon.LabelIconFactory;
-import gui.factories.customFactories.labelFactories.LabelFactory;
-import gui.factories.customFactories.textComponentFactory.TextFactory;
+import gui.factories.customFactories.iconFactories.labelIcon.ILabelIconFactory;
+import gui.factories.customFactories.labelFactories.ILabelFactory;
+import gui.factories.customFactories.textComponentFactory.ITextFactory;
 
 import javax.swing.*;
-import javax.swing.text.JTextComponent;
-import java.awt.*;
 import java.awt.event.ActionListener;
 
 /**
@@ -22,11 +17,11 @@ import java.awt.event.ActionListener;
  * specific component factory.
  */
 public class GuiFactory {
-    private ButtonFactory buttonFactory;
-    private LabelFactory labelFactory;//dorzucic defaultowe typy
-    private TextFactory textFactory;
-    private ButtonIconFactory buttonIconFactory = new DefaultIconButtonFactory();
-    private LabelIconFactory labelIconFactory = new DefaultIconLabelFactory();
+    private IButtonFactory buttonFactory;
+    private ILabelFactory labelFactory;//dorzucic defaultowe typy
+    private ITextFactory textFactory;
+    private IButtonIconFactory buttonIconFactory = new DefaultIconButtonFactory();
+    private ILabelIconFactory labelIconFactory = new DefaultIconLabelFactory();
 
     public GuiFactory() {
     }
@@ -39,23 +34,23 @@ public class GuiFactory {
         return buttonFactory.create(text, listener);
     }
 
-    public void setButtonFactory(ButtonFactory buttonFactory) {
+    public void setButtonFactory(IButtonFactory buttonFactory) {
         this.buttonFactory = buttonFactory;
     }
 
-    public void setLabelFactory(LabelFactory labelFactory) {
+    public void setLabelFactory(ILabelFactory labelFactory) {
         this.labelFactory = labelFactory;
     }
 
-    public void setTextFactory(TextFactory textFactory) {
+    public void setTextFactory(ITextFactory textFactory) {
         this.textFactory = textFactory;
     }
 
-    public void setButtonIconFactory(ButtonIconFactory buttonIconFactory) {
+    public void setButtonIconFactory(IButtonIconFactory buttonIconFactory) {
         this.buttonIconFactory = buttonIconFactory;
     }
 
-    public void setLabelIconFactory(LabelIconFactory labelIconFactory) {
+    public void setLabelIconFactory(ILabelIconFactory labelIconFactory) {
         this.labelIconFactory = labelIconFactory;
     }
 
