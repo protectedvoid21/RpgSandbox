@@ -11,6 +11,7 @@ public class ComponentPanelMenager<T extends JComponent> extends JPanel {
 
     public ComponentPanelMenager(T component) {
         this.component = component;
+        component.setPreferredSize(new Dimension(1, 1));
         setLayout(new GridBagLayout());
         cst.fill = GridBagConstraints.BOTH;
         cst.gridx = 1;

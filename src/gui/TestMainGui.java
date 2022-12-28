@@ -39,7 +39,7 @@ public class TestMainGui {
 //        menu.getColumn(1).getOption(0).addSpace(10, ComponentMenager.Side.TOP);
         menu.addMiddleComponent(factory.createLabel("WINTER TIME"), 1, 1);
         menu.getMiddleComponent(1, 0).addSpace(20, ComponentPanelMenager.Side.LEFT);
-        menu.addMiddleComponent(factory.createButton("HELLO WORLD", null), 1, 20);
+        menu.addMiddleComponent(factory.createButton("HELLO WORLD", null), 1, 1);
         factory.setButtonFactory(new WinterGrowingBorderButtonFactory(0.6, 0.2));
         menu.getMiddleComponent(0, 3).addSpace(10, ComponentPanelMenager.Side.LEFT);
         menu.getMiddleComponent(0, 3).addSpace(20, ComponentPanelMenager.Side.TOP);
