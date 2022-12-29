@@ -6,7 +6,7 @@ import game.interfaces.Statistics;
 import game.equipment.Inventory;
 
 public class PlayerCharacter extends Character {
-    public PlayerCharacter(IStatistics statistics) {
+    public PlayerCharacter(Statistics statistics) {
         super(statistics);
     }
 }

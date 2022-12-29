@@ -9,7 +9,8 @@ public class ExclusionStrategyBuilder {
         return new ExclusionStrategy() {
             @Override
             public boolean shouldSkipField(FieldAttributes field) {
-                if(field.getName().equals("inventory") || field.getName().equals("effects")) {
+                if(field.getName().equals("inventory") || field.getName().equals("effects")
+                || field.getName().equals("dependantAttributes")) {
                     return true;
                 }
                 return false;
