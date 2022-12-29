@@ -3,7 +3,14 @@ package game.creature;
 import game.interfaces.Statistics;
 
 public class Monster extends Creature{
-    public Monster(Statistics creatureStats) {
+    private int experienceDrop;
+
+    public Monster(Statistics creatureStats, int experienceDrop) {
         super(creatureStats);
+        this.experienceDrop = experienceDrop;
+    }
+
+    public int getExperienceDrop() {
+        return experienceDrop;
     }
 }
