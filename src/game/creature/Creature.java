@@ -7,10 +7,10 @@ import game.interfaces.Statistics;
  * He creates stats and apply them to this class instance
  * (probably this director will be also able to create equipment so using one factory (builder) class there will be possibility of creating whole object.)*/
 public abstract class Creature {
-    protected Statistics statistics;
+    protected IStatistics statistics;
     protected String name = "Adam";
     
-    public Creature(Statistics statistics) {
+    public Creature(IStatistics statistics) {
         this.statistics = statistics;//this can be also removed, what about creating new builder which creates required creature for given RPG game, then stats will be created by this builder class.
     }
 

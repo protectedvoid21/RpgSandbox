@@ -37,14 +37,13 @@ public class FileManager {
         directoryMap.put(Item.class, "items.txt");
         //directoryMap.put(Spell.class, "spells.txt");
         gson = new GsonBuilder()
-                .registerTypeAdapter(Statistics.class, new CustomAdapter<Statistics>())
+                .registerTypeAdapter(IStatistics.class, new CustomAdapter<IStatistics>())
                 .registerTypeAdapter(Map.class, new CustomAdapter<Map<AttributeEnum, AttributeValue>>())
-                .registerTypeAdapter(AttributeEnum.class, new CustomAdapter<AttributeEnum>())
+                .registerTypeAdapter(IAttributeEnum.class, new CustomAdapter<IAttributeEnum>())
                 .registerTypeAdapter(AttributeValue.class, new CustomAdapter<AttributeValue>())
                 .setPrettyPrinting()
                 .addSerializationExclusionStrategy(new ExclusionStrategyBuilder().create())
                 //.addDeserializationExclusionStrategy(new ExclusionStrategyBuilder().create())
-                //.addDeserializationExclusionStrategy(new )
                 .create();
 
         try {
@@ -99,7 +98,7 @@ public class FileManager {
 
     }
 
-    public PlayerCharacter readFromFile(Class objectType) {
+    public <T> T readFromFile(Class<T> objectType) {
         if (!directoryMap.containsKey(objectType)) {
             System.out.println("The " + objectType.toString() + " doesn't exist in directoryMap as a key");
             return null;
@@ -114,8 +113,6 @@ public class FileManager {
         }
         BufferedReader bufferedReader = new BufferedReader(fileReader);
 
-        Type type = new TypeToken<PlayerCharacter>(){}.getType();
-
-        return gson.fromJson(bufferedReader, type);
+        return gson.fromJson(bufferedReader, objectType);
     }
 }

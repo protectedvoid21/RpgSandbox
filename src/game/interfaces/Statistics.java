@@ -2,15 +2,13 @@ package game.interfaces;
 
 import game.generals.AttributeValue;
 import game.generals.Effect;
-import game.interfaceWarhammer.AttributeEnum;
-
-import java.util.function.Function;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
 
 public abstract class Statistics implements IStatistics {
-    protected Map<AttributeEnum, AttributeValue> attributes = new HashMap<>();
+    protected Map<IAttributeEnum, AttributeValue> attributes = new HashMap<>();
     protected Map<IEffectEnum, Effect> effects = new HashMap<>();
     protected Map<IDependantEnum, Function<Statistics, Integer>> dependantAttributes = new HashMap<>();
 

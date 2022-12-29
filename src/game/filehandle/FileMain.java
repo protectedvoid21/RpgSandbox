@@ -3,6 +3,7 @@ package game.filehandle;
 import game.creature.Monster;
 import game.creature.PlayerCharacter;
 import game.generals.LimitedAttribute;
+import game.interfaceWarhammer.AttributeEnum;
 import game.interfaceWarhammer.StatisticsWarhammer;
 import game.interfaces.StatisticsBuilder;
 
@@ -11,16 +12,15 @@ import java.util.Arrays;
 import java.util.List;
 
 public class FileMain {
+    private static FileManager fileManager;
+    
     public static void main(String[] args) {
         System.out.println("File tester");
         
-        FileManager fileManager = new FileManager("Warhammer");
-
-        //fileManager.writeToFile(createSeedPlayer("Kacper"));
+        fileManager = new FileManager("Warhammer");
         
-        var playersList = fileManager.readFromFile(PlayerCharacter.class);
-        
-        System.out.println(playersList);
+        //write();
+        read();
     }
     
     static PlayerCharacter createSeedPlayer(String name) {
@@ -28,5 +28,15 @@ public class FileMain {
         playerCharacter.setName(name);
         
         return playerCharacter;
+    }
+    
+    static void write() {
+        fileManager.writeToFile(createSeedPlayer("Kaspar Hauser"));
+    }
+    
+    static void read() {
+        var playersList = fileManager.readFromFile(PlayerCharacter.class);
+
+        System.out.println(playersList.getStatistics());
     }
 }
