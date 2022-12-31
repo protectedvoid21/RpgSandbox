@@ -1,10 +1,13 @@
 package game.generals;
 
+import com.owlike.genson.annotation.JsonProperty;
+
 /**Class which purpose is to control unlimited attribute value
  * User cannot set it below some specified value(included to range). */
 public class UnlimitedAttribute extends AttributeValue {
 
-    public UnlimitedAttribute(int leftValue, int startValue){ //limit included to the range
+    public UnlimitedAttribute(@JsonProperty("leftRangeValue")int leftValue, 
+                              @JsonProperty("value") int startValue){ //limit included to the range
         leftRangeValue = leftValue;
         setValue(startValue);
     }

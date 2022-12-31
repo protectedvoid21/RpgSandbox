@@ -1,11 +1,16 @@
 package game.generals;
 
+import com.owlike.genson.annotation.JsonIgnore;
+import com.owlike.genson.annotation.JsonProperty;
+
 /**Class which purpose is to control unlimited attribute value
  * User has to set it between two specified values (included to range). */
 public class LimitedAttribute extends AttributeValue {
 
-    private int rightRangeValue;
-    public LimitedAttribute(int leftValue, int rightValue, int startValue){
+    protected int rightRangeValue;
+    public LimitedAttribute(@JsonProperty("leftRangeValue") int leftValue,
+                            @JsonProperty("rightRangeValue") int rightValue, 
+                            @JsonProperty("value") int startValue){
         if (leftValue<rightValue){
             leftRangeValue = leftValue;
             rightRangeValue = rightValue;

@@ -1,15 +1,18 @@
 package game.filehandle;
 
-import game.creature.Monster;
 import game.creature.PlayerCharacter;
+import game.generals.AttributeValue;
 import game.generals.LimitedAttribute;
+import game.generals.UnlimitedAttribute;
 import game.interfaceWarhammer.AttributeEnum;
 import game.interfaceWarhammer.StatisticsWarhammer;
+import game.interfaceWarhammer.WarhammerStatisticsBuilder;
+import game.interfaces.IAttributeEnum;
 import game.interfaces.StatisticsBuilder;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map;
 
 public class FileMain {
     private static FileManager fileManager;
@@ -37,6 +40,6 @@ public class FileMain {
     static void read() {
         var playersList = fileManager.readFromFile(PlayerCharacter.class);
 
-        System.out.println(playersList.getStatistics());
+        System.out.println(playersList);
     }
 }

@@ -1,32 +1,25 @@
 package game.filehandle;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.internal.bind.ObjectTypeAdapter;
-import com.google.gson.reflect.TypeToken;
-import game.Spells;
+import com.owlike.genson.Genson;
+import com.owlike.genson.GensonBuilder;
+import com.owlike.genson.reflect.VisibilityFilter;
 import game.creature.Monster;
 import game.creature.NPC;
 import game.creature.PlayerCharacter;
 import game.equipment.Item;
-import game.generals.AttributeValue;
-import game.interfaceWarhammer.AttributeEnum;
-import game.interfaceWarhammer.StatisticsWarhammer;
-import game.interfaces.IAttributeEnum;
-import game.interfaces.IStatistics;
-import game.interfaces.Statistics;
 
 import java.io.*;
-import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class FileManager {
     private final Map<Class, String> directoryMap = new HashMap<>();
     private final String gameName;
-    private final Gson gson;
+    private final Genson genson;
 
     public FileManager(String gameName) {
         this.gameName = gameName;
@@ -35,15 +28,16 @@ public class FileManager {
         directoryMap.put(NPC.class, "npcs.txt");
         directoryMap.put(PlayerCharacter.class, "players.txt");
         directoryMap.put(Item.class, "items.txt");
-        //directoryMap.put(Spell.class, "spells.txt");
-        gson = new GsonBuilder()
-                .registerTypeAdapter(IStatistics.class, new CustomAdapter<IStatistics>())
-                .registerTypeAdapter(Map.class, new CustomAdapter<Map<AttributeEnum, AttributeValue>>())
-                .registerTypeAdapter(IAttributeEnum.class, new CustomAdapter<IAttributeEnum>())
-                .registerTypeAdapter(AttributeValue.class, new CustomAdapter<AttributeValue>())
-                .setPrettyPrinting()
-                .addSerializationExclusionStrategy(new ExclusionStrategyBuilder().create())
-                //.addDeserializationExclusionStrategy(new ExclusionStrategyBuilder().create())
+        
+        genson = new GensonBuilder()
+                .useIndentation(true)
+                .useClassMetadata(true)
+                .useRuntimeType(true)
+                .useFields(true, VisibilityFilter.PROTECTED)
+                .withDeserializers(new CustomDeserializer())
+                //.useConstructorWithArguments(true)
+                //.useFields(true)
+                //.useMethods(true)
                 .create();
 
         try {
@@ -86,16 +80,12 @@ public class FileManager {
         BufferedWriter bufferedWriter;
         try {
             bufferedWriter = new BufferedWriter(new FileWriter(savePath));
-            bufferedWriter.write(gson.toJson(object));
+            genson.serialize(object, bufferedWriter);
             bufferedWriter.close();
         }
         catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    public void updateObject(Object object) {
-
     }
 
     public <T> T readFromFile(Class<T> objectType) {
@@ -113,6 +103,6 @@ public class FileManager {
         }
         BufferedReader bufferedReader = new BufferedReader(fileReader);
 
-        return gson.fromJson(bufferedReader, objectType);
+        return genson.deserialize(bufferedReader, objectType);
     }
 }
