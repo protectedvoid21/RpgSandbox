@@ -26,7 +26,7 @@ public class StatisticsDeserializer implements JsonDeserializer<IStatistics> {
             attributes.put(enumKey, attributeValue);
         }
         
-        StatisticsWarhammer stats = new StatisticsWarhammer(attributes);
+        StatisticsWarhammer stats = new StatisticsWarhammer(attributes); //todo make it more flexible
         return stats;
     }
 }

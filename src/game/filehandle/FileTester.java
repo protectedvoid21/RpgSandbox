@@ -2,22 +2,15 @@ package game.filehandle;
 
 import game.creature.PlayerCharacter;
 import game.equipment.Inventory;
-import game.generals.AttributeValue;
-import game.generals.LimitedAttribute;
-import game.generals.UnlimitedAttribute;
-import game.interfaceWarhammer.AttributeEnum;
 import game.interfaceWarhammer.StatisticsWarhammer;
-import game.interfaceWarhammer.WarhammerStatisticsBuilder;
-import game.interfaces.IAttributeEnum;
-import game.interfaces.StatisticsBuilder;
 
 import java.util.*;
 
-public class FileMain {
+public class FileTester {
     private static FileManager fileManager;
     
     public static void main(String[] args) {
-        System.out.println("File tester");
+        System.out.println("Running file tester");
         
         fileManager = new FileManager("Warhammer");
         
@@ -42,12 +35,14 @@ public class FileMain {
     }
     
     static void write() {
+        System.out.println("Writing to file...");
         fileManager.writeToFile(createManyPlayers(), PlayerCharacter.class);
     }
     
     static void read() {
-        var playersList = fileManager.readFromFile(PlayerCharacter.class);
-
+        System.out.println("Reading from file...");
+        List<PlayerCharacter> playersList = fileManager.readFromFile(PlayerCharacter.class);
+        
         System.out.println(playersList);
     }
 }
