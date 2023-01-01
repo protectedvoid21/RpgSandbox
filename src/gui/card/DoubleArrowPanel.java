@@ -1,8 +1,6 @@
 package gui.card;
 
-import gui.customComponents.CustomButton;
-import gui.customComponents.CustomLabel;
-import gui.customComponents.iconComponents.StretchIcon;
+import gui.customComponents.AbstractCustomButton;
 import gui.factories.GuiFactory;
 import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;
@@ -11,11 +9,10 @@ import gui.menu.DefaultCustomMenuMenager;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.util.AbstractMap;
-import java.util.HashMap;
 import java.util.Map;
 
 public class DoubleArrowPanel {
-    private DefaultCustomMenuMenager<CustomButton> menager =
+    private DefaultCustomMenuMenager<AbstractCustomButton> menager =
             new DefaultCustomMenuMenager<>(ComponentsSeries.ComponentsDimension.VERTICAL,
                     ComponentsSeries.ComponentsDimension.HORIZONTAL);
 
@@ -43,7 +40,7 @@ public class DoubleArrowPanel {
         return menager.getCmp();
     }
 
-    private CustomButton getButton(Side side) {
+    private AbstractCustomButton getButton(Side side) {
         return menager.getMiddleComponent(0, side == Side.LEFT ? 0 : 1).getComponent();
     }
 

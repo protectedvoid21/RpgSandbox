@@ -154,6 +154,10 @@ public class StretchIcon extends ImageIcon implements IRequieredReactionOnMoveme
 //        }
     }
 
+    public boolean isProportionate() {
+        return proportionate;
+    }
+
     @Override
     public int getIconWidth() {
         return 0;

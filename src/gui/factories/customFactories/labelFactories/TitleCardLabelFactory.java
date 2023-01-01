@@ -1,5 +1,6 @@
 package gui.factories.customFactories.labelFactories;
 
+import gui.customComponents.AbstractCustomLabel;
 import gui.customComponents.CustomLabel;
 import gui.customComponents.iconComponents.IconLabel;
 import gui.customUI.componentsUIs.CustomLabelUI;
@@ -17,7 +18,7 @@ import java.awt.*;
 
 public class TitleCardLabelFactory extends LabelFactory {
 
-    private CustomLabel helpCreatedMethod(CustomLabel label, CustomUI uiHelper) {
+    private AbstractCustomLabel helpCreatedMethod(AbstractCustomLabel label, CustomUI uiHelper) {
         label.setFont(font);
         label.setForeground(new Color(0xFFFBFB));
         label.setHorizontalAlignment(SwingConstants.CENTER);
@@ -35,13 +36,13 @@ public class TitleCardLabelFactory extends LabelFactory {
     }
 
     @Override
-    public CustomLabel createNormalLabel(String text) {
+    public AbstractCustomLabel createNormalLabel(String text) {
         return helpCreatedMethod(new CustomLabel(text),
                 new RoundedBorderUI(strategy, (5 ), 10));
     }
 
     @Override
-    public CustomLabel createIconPropLabel(String path) {
+    public AbstractCustomLabel createIconPropLabel(String path) {
         var label = helpCreatedMethod(new IconLabel(path, true),
                 new DoubleRoundRectangleUI(strategy, 6 , 10));
         label.getCustomUI().setBackGroundTransparent(true);
@@ -49,7 +50,7 @@ public class TitleCardLabelFactory extends LabelFactory {
     }
 
     @Override
-    public CustomLabel createIconStretchLabel(String path) {
+    public AbstractCustomLabel createIconStretchLabel(String path) {
         var label = helpCreatedMethod(new IconLabel(path, false),
                 new DoubleRoundRectangleUI(strategy, (int)6 , 10));
         label.getCustomUI().setBackGroundTransparent(true);
