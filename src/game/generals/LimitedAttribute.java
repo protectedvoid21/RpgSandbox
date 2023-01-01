@@ -31,5 +31,4 @@ public class LimitedAttribute extends AttributeValue {
             value = leftRangeValue;
         }
     }
-
 }

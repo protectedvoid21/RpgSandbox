@@ -12,7 +12,7 @@ public class BleedingEffect extends Effect {
 
     @Override
     protected void affect() {
-        statistics.getAttribute(AttributeEnum.HEALTH_POINTS).decreaseValue(3);
+        statistics.getAttribute(AttributeEnum.HEALTH_POINTS_NOW).decreaseValue(3);
         
         decreaseLength();
     }
