@@ -3,18 +3,23 @@ package game.interfaces;
 import game.generals.AttributeValue;
 import game.generals.Effect;
 
-import java.util.function.Function;
-
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
 
 public abstract class Statistics implements IStatistics {
     protected Map<IAttributeEnum, AttributeValue> attributes = new HashMap<>();
     protected Map<IEffectEnum, Effect> effects = new HashMap<>();
     protected Map<IDependantEnum, Function<Statistics, Integer>> dependantAttributes = new HashMap<>();
-
+    
     public Statistics() {
         initializeAttributes();
+        initializeEffects();
+        initializeDependantAttributes();
+    }
+    
+    public Statistics(Map<IAttributeEnum, AttributeValue> attributes) {
+        this.attributes = attributes;
         initializeEffects();
         initializeDependantAttributes();
     }
@@ -24,7 +29,7 @@ public abstract class Statistics implements IStatistics {
     protected abstract void initializeEffects();
 
     protected abstract void initializeDependantAttributes();
-    
+
     @Override
     public AttributeValue getAttribute(IAttributeEnum attributeEnum) {
         return attributes.get(attributeEnum);
@@ -35,7 +40,7 @@ public abstract class Statistics implements IStatistics {
         return effects.get(effectEnum);
     }
 
-    public int getDependantAttrValue(IDependantEnum dependantAttributeEnum){
+    public int getDependantAttrValue(IDependantEnum dependantAttributeEnum) {
         return dependantAttributes.get(dependantAttributeEnum).apply(this);
     }
 }

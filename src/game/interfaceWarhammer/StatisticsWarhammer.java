@@ -1,14 +1,25 @@
 package game.interfaceWarhammer;
 
+import game.generals.AttributeValue;
 import game.generals.LimitedAttribute;
 import game.generals.UnlimitedAttribute;
 import game.generals.effects.BleedingEffect;
 import game.generals.effects.FreezingEffect;
+import game.interfaces.IAttributeEnum;
 import game.interfaces.Statistics;
 
 import java.util.EnumSet;
+import java.util.Map;
 
 public class StatisticsWarhammer extends Statistics {
+    public StatisticsWarhammer() { //todo as statistics are gonna be implemented by json import this need to change
+        super();
+    }
+    
+    public StatisticsWarhammer(Map<IAttributeEnum, AttributeValue> attributes) {
+        super(attributes);
+    }
+
     @Override
     public void initializeAttributes() {
         EnumSet.range(AttributeEnum.POWER, AttributeEnum.FELLOWSHIP).forEach(attr -> attributes.put(attr, new LimitedAttribute(30)));

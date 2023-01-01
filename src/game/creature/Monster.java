@@ -1,9 +1,9 @@
 package game.creature;
 
-import game.interfaces.Statistics;
+import game.interfaces.IStatistics;
 
 public class Monster extends Creature{
-    public Monster(Statistics creatureStats) {
+    public Monster(IStatistics creatureStats) {
         super(creatureStats);
     }
 }

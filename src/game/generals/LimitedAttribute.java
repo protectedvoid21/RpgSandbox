@@ -4,7 +4,7 @@ package game.generals;
  * User has to set it between two specified values (included to range). */
 public class LimitedAttribute extends AttributeValue {
 
-    private int rightRangeValue;
+    protected int rightRangeValue;
     public LimitedAttribute(int leftValue, int rightValue, int startValue){
         if (leftValue<rightValue){
             leftRangeValue = leftValue;
