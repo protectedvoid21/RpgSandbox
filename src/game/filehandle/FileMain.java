@@ -1,6 +1,7 @@
 package game.filehandle;
 
 import game.creature.PlayerCharacter;
+import game.equipment.Inventory;
 import game.generals.AttributeValue;
 import game.generals.LimitedAttribute;
 import game.generals.UnlimitedAttribute;
@@ -27,7 +28,7 @@ public class FileMain {
     }
     
     static PlayerCharacter createSeedPlayer(String name) {
-        PlayerCharacter playerCharacter = new PlayerCharacter(new StatisticsWarhammer());
+        PlayerCharacter playerCharacter = new PlayerCharacter(new StatisticsWarhammer(), new Inventory());
         playerCharacter.setName(name);
         
         return playerCharacter;
