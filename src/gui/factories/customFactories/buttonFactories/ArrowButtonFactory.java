@@ -1,15 +1,16 @@
 package gui.factories.customFactories.buttonFactories;
 
 import gui.customComponents.CustomButton;
+import gui.customComponents.CustomLabel;
 import gui.customComponents.iconComponents.IconButton;
+import gui.customComponents.iconComponents.IconLabel;
 import gui.customComponents.iconComponents.StretchIcon;
 import gui.customUI.componentsUIs.CustomButtonUI;
+import gui.customUI.componentsUIs.CustomLabelUI;
 import gui.customUI.customUIStyles.ClickedStyleUI;
-import gui.customUI.customUIStyles.RoundedBorderUI;
+import gui.customUI.customUIStyles.ThreeDUI;
 import gui.customUI.interfaces.ICustomUI;
 import gui.customUI.wrapers.ChangingBackgroundColorWraper;
-import gui.customUI.wrapers.ChangingBorderColorWraper;
-import gui.customUI.wrapers.GrowingBorderWraper;
 import gui.customUI.wrapers.ImageBorderWraper;
 import gui.factories.GuiFactory;
 
@@ -17,57 +18,43 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-/**
- * Implementation of button factory which cretes specific kind of winter button (only for testing and to show
- * possibilities of using factories for creating new objects). It is created based on implementation of
- * ClickedStyleUI. Also this button has stars on its sides, scaling values can be set by client.
- */
-public class WinterGrowingBorderButtonFactory extends ImageButtonFactory {
-    public WinterGrowingBorderButtonFactory(double scalingSizeValue, double scalingPositionValue) {
-        super(scalingSizeValue, scalingPositionValue);
-    }
+public class ArrowButtonFactory extends ImageButtonFactory{
 
-    public WinterGrowingBorderButtonFactory() {
-        super();
-    }
-
-
-    private CustomButton helpCreatedMethod(CustomButton button, ActionListener listener) {
-        button.setFont(font);
+    private CustomButton helpCreatedMethod(CustomButton button, ActionListener listener){
         button.addActionListener(listener);
-        button.setForeground(new Color(0xE8E5E1));
+        button.setForeground(new Color(0x000000));
         button.setHorizontalAlignment(SwingConstants.CENTER);
-        var ui = new RoundedBorderUI(strategy, (4), 10);
-        var uiHelper = new ImageBorderWraper(ui, "src/gui/star.png");
+        var ui = new ClickedStyleUI(strategy,4, 10);
+        var uiHelper = new ImageBorderWraper(ui, "src/gui/rightarrow.png","src/gui/leftarrow.png");
         if (isScaled) {
-            uiHelper.setScalingStatus(true);
             uiHelper.setScalingValue(scalingSizeValue, scalingPositionValue);
+            uiHelper.setScalingStatus(true);
         }
-        button.setBackground(new Color(0xBB3831));
-        uiHelper.setAdditionaldColor(new Color(0x0A4B1D), ICustomUI.Index.FIRST);
-        var ui2 = new CustomButtonUI(new GrowingBorderWraper(new ChangingBorderColorWraper(uiHelper)));
-        ui2.getCustomUI().setAdditionaldColor(new Color(0xDE9C0E), ICustomUI.Index.SECOND);
+        ui.addComponent(uiHelper);
+        if (button instanceof IconButton){
+            ui.addComponent(((IconButton) button).getIcon());
+        }
+        button.setBackground(new Color(0x52E13C));
+        uiHelper.setAdditionaldColor(button.getBackground().darker(), ICustomUI.Index.FIRST);
+        var ui2 = new CustomButtonUI(uiHelper);
+        ui2.getCustomUI().setFontMaximized(true);
         button.setUI(ui2);
+
         return button;
     }
-
     @Override
     public CustomButton createNormalButton(String text, ActionListener listener) {
-        return helpCreatedMethod(new CustomButton(text), listener);
+        return helpCreatedMethod(new CustomButton(text), listener );
     }
 
     @Override
     public CustomButton createIconPropButton(String text, ActionListener listener) {
-        var but = helpCreatedMethod(new IconButton(text, true), listener);
-        but.getCustomUI().setBackGroundTransparent(true);
-        return but;
+        return helpCreatedMethod(new IconButton(text, true), listener);
     }
 
     @Override
     public CustomButton createIconStretchButton(String text, ActionListener listener) {
-        var but = helpCreatedMethod(new IconButton(text), listener);
-        but.getCustomUI().setBackGroundTransparent(true);
-        return but;
+        return helpCreatedMethod(new IconButton(text), listener);
     }
 
     @Override
@@ -85,7 +72,9 @@ public class WinterGrowingBorderButtonFactory extends ImageButtonFactory {
         if (text2 != null) {
             but.setDisabledIcon(new StretchIcon(text2, proportionate));
         }
-        but.getCustomUI().setBackGroundTransparent(false);
+        but.getCustomUI().setBackGroundTransparent(true);
         return but;
     }
+
+
 }

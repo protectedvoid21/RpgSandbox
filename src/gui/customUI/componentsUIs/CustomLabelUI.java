@@ -9,37 +9,39 @@ import javax.swing.*;
 import javax.swing.plaf.basic.BasicLabelUI;
 import java.awt.*;
 
-/**Custom Label UI Adapter which, class has to be created because QLabel has to receive BasicLabelUI instance during setting UI. */
-public class CustomLabelUI extends BasicLabelUI implements  IComponentTextMargin {
+/**
+ * Custom Label UI Adapter which, class has to be created because QLabel has to receive BasicLabelUI instance during
+ * setting UI.
+ */
+public class CustomLabelUI extends BasicLabelUI implements IComponentTextMargin {
     private ICustomUI ui;
-    private ComponentTextMarginManager margin;
-    public CustomLabelUI(ICustomUI ui){
+
+    public CustomLabelUI(ICustomUI ui) {
         this.ui = ui;
 
     }
+
+
     @Override
-    public void installUI (JComponent c) {
-        margin = new ComponentTextMarginManager(c);
+    public void installUI(JComponent c) {
         super.installUI(c);
         ui.installUI(c);
+        c.repaint();
     }
 
     @Override
-    public void paint (Graphics g, JComponent c) {
+    public void paint(Graphics g, JComponent c) {
         ui.paint(g, c);
         super.paint(g, c);
     }
 
-    public void setAdditionaldColor(Color color, CustomUI.Index index) {
-        ui.setAdditionaldColor(color, index);
-    }
-
-    public Color getAdditionalColor(CustomUI.Index index) {
-        return ui.getAdditionalColor(index);
+    public ICustomUI getCustomUI() {
+        return ui;
     }
 
     @Override
     public ComponentTextMarginManager getMargin() {
-        return margin;
+        return ui.getMargin();
     }
+
 }

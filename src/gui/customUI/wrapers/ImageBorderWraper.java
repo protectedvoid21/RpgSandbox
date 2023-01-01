@@ -59,11 +59,12 @@ public class ImageBorderWraper extends BorderDecorator implements IRequieredReac
 //    }
 
     @Override//to refactor
-    public void paintBackground(Graphics g, JComponent c, int yOffset) {//zrefactoryzowac i dorzucic jakos zmiany
+    public void paintBackground(Graphics g, JComponent c, int Offset) {//zrefactoryzowac i dorzucic jakos zmiany
         // pozycji x na start
-        super.paintBackground(g, c, yOffset);
+        super.paintBackground(g, c, Offset);
         var w = c.getWidth();
         var h = c.getHeight();
+
 
         double scaleFirstImg = img.getWidth(null) / img.getHeight(null);
         double scaleSecondImg = secondImg.getWidth(null) / secondImg.getHeight(null);

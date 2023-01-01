@@ -1,6 +1,11 @@
 package gui.menu;
 
+import gui.customUI.customUIStyles.borderStrategies.DefaultBorderStrategy;
+import gui.customUI.customUIStyles.borderStrategies.IBorderStrategy;
+
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -8,12 +13,14 @@ import java.util.ArrayList;
 public class ComponentsSeries<T extends JComponent> extends JPanel {
 
     public enum ComponentsDimension {VERTICAL, HORIZONTAL}
+
     private GridBagConstraints mainCst = new GridBagConstraints();
     private ArrayList<T> componentsList = new ArrayList<>();
     private ComponentsDimension dimension;
 
     public ComponentsSeries(ComponentsDimension dimension) {
         super();
+        setOpaque(false);
 
         setLayout(new GridBagLayout());
         this.dimension = dimension;
@@ -42,6 +49,10 @@ public class ComponentsSeries<T extends JComponent> extends JPanel {
         return componentsList.get(index);
     }
 
+    public T getLastComponent() {
+        return componentsList.get(componentsList.size() - 1);
+    }
+
     @Override
     public void setBackground(Color bg) {
         super.setBackground(bg);
@@ -53,4 +64,11 @@ public class ComponentsSeries<T extends JComponent> extends JPanel {
             }
         }
     }
+
+    public ArrayList<T> getComponentsList() {
+        return componentsList;
+    }
+
+
+
 }

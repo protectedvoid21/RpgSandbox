@@ -1,5 +1,6 @@
 package gui.customUI.customUIStyles;
 
+import gui.customUI.customUIStyles.borderStrategies.IBorderStrategy;
 import gui.customUI.interfaces.IMovementComponent;
 import gui.customUI.interfaces.IRequieredReactionOnMovementComponent;
 
@@ -9,20 +10,23 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-/**Specific UI used buttons. */
-public class ClickedStyleUI extends CustomUI implements IMovementComponent {//to fix, text cant changing its place
+/**
+ * Specific UI used buttons.
+ */
+public class ClickedStyleUI extends CustomUI implements IMovementComponent {
 
-    final private int offSet;
+    //    final private int offSet;
     final private int arcWidth;
     private boolean isPressed = false;
     private ArrayList<IRequieredReactionOnMovementComponent> componentsList = new ArrayList<>();
 
-    public ClickedStyleUI() {
-        this(2, 10);
+    public ClickedStyleUI(IBorderStrategy strategy) {
+        this(strategy, 10, 10);
     }
 
-    public ClickedStyleUI(int offSet, int arcWidth) {
-        this.offSet = offSet;
+    public ClickedStyleUI(IBorderStrategy strategy, int offSet, int arcWidth) {
+        super(strategy, offSet);
+//        this.offSet = offSet;
         this.arcWidth = arcWidth;
     }
 
@@ -32,7 +36,8 @@ public class ClickedStyleUI extends CustomUI implements IMovementComponent {//to
             @Override
             public void mousePressed(MouseEvent e) {
                 super.mousePressed(e);
-                isPressed = true;
+                if (c.isEnabled())
+                    isPressed = true;
                 c.repaint();
                 c.revalidate();
             }
@@ -51,29 +56,40 @@ public class ClickedStyleUI extends CustomUI implements IMovementComponent {//to
     @Override
     public void paint(Graphics g, JComponent c) {
         paintBackground(g, c, getBorderSize());
+        super.paint(g, c);
     }
 
-    @Override
-    public int getBorderSize() {
-        return offSet;
-    }
+//    @Override
+//    public int getBorderSize() {
+//        return offSet;
+//    }
+
+//    @Override
+//    public double convertBorderSizeToValue(JComponent c, int offSetValue) {
+//        return (offSetValue*((c.getHeight()+c.getHeight())/2)/100);
+//    }
 
 
-    public void paintBackground(Graphics g, JComponent c, int yOffset) {
+    public void paintBackground(Graphics g, JComponent c, int Offset) {
+        var yOffset = (int) convertTopBorderSizeToValue(c, Offset) / 2;
+
+//        var xOffset = (int)convertSideBorderSizeToValue(c, yOffset);
         Dimension size = c.getSize();
         Graphics2D g2 = (Graphics2D) g;
         var xx = isPressed ? yOffset : 0;
         notifyComponents(xx);
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g.setColor(getAdditionalColor(Index.FIRST));
-        g.fillRoundRect(0, xx, size.width, size.height - xx, arcWidth, arcWidth);
-        g.setColor(getAdditionalColor(Index.BASE_BACKGROUND));
-        g.fillRoundRect(0, xx, size.width, size.height + xx - (2 * yOffset + 1), arcWidth, arcWidth);
+        if (!isBackgroundTransparent()) {
+            g.fillRoundRect(0, xx, size.width, size.height - xx, arcWidth, arcWidth);
+            g.setColor(getAdditionalColor(Index.BASE_BACKGROUND));
+            g.fillRoundRect(0, xx, size.width, size.height + xx - (2 * yOffset + 1), arcWidth, arcWidth);
+        }
     }
 
     @Override
     public void notifyComponents(int offSetValue) {
-        for (var component : componentsList){
+        for (var component : componentsList) {
             component.setComponentMovementValue(offSetValue);
         }
     }

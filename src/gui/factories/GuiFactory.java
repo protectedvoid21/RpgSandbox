@@ -1,57 +1,104 @@
 package gui.factories;
 
+import gui.customComponents.CustomButton;
+import gui.customComponents.CustomLabel;
 import gui.customComponents.customTextComponents.CustomTextComponent;
-import gui.factories.customFactories.buttonFactories.IButtonFactory;
-import gui.factories.customFactories.iconFactories.buttonIcon.IButtonIconFactory;
-import gui.factories.customFactories.iconFactories.buttonIcon.DefaultIconButtonFactory;
-import gui.factories.customFactories.iconFactories.labelIcon.DefaultIconLabelFactory;
-import gui.factories.customFactories.iconFactories.labelIcon.ILabelIconFactory;
-import gui.factories.customFactories.labelFactories.ILabelFactory;
-import gui.factories.customFactories.textComponentFactory.ITextFactory;
+import gui.customUI.customUIStyles.borderStrategies.AverageBorderStartegy;
+import gui.customUI.customUIStyles.borderStrategies.DefaultBorderStrategy;
+import gui.customUI.customUIStyles.borderStrategies.IBorderStrategy;
+import gui.factories.customFactories.buttonFactories.ButtonFactory;
+import gui.factories.customFactories.buttonFactories.CardDownPanelButtonFactory;
+import gui.factories.customFactories.labelFactories.GameGreenLabelFactory;
+import gui.factories.customFactories.labelFactories.LabelFactory;
+import gui.factories.customFactories.textComponentFactory.TextFactory;
+import gui.factories.customFactories.textComponentFactory.TextFieldFactory;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
 /**
  * Base GUI factory used for creating every object used in application. User has to used set method to define
  * specific component factory.
  */
 public class GuiFactory {
-    private IButtonFactory buttonFactory;
-    private ILabelFactory labelFactory;//dorzucic defaultowe typy
-    private ITextFactory textFactory;
-    private IButtonIconFactory buttonIconFactory = new DefaultIconButtonFactory();
-    private ILabelIconFactory labelIconFactory = new DefaultIconLabelFactory();
+    private Font currentFont = new Font("Helvetica", Font.PLAIN, 14);
+
+    public enum LabelType {NORMAL, ICON, STRETCH_ICON}
+    public enum ButtonType {NORMAL, ICON, STRETCH_ICON, DISABLED_STRETCH_ICON, DISABLED_ICON}
+
+    private LabelType labelType = LabelType.NORMAL;
+    private ButtonType buttonType = ButtonType.NORMAL;
+    private ButtonFactory buttonFactory = new CardDownPanelButtonFactory();
+    private LabelFactory labelFactory = new GameGreenLabelFactory();//dorzucic defaultowe typys
+    private TextFactory textFactory = new TextFieldFactory();
+    private IBorderStrategy borderStrategy;
+
+    public void setBorderStrategy(IBorderStrategy strategy) {
+        borderStrategy = strategy;
+        labelFactory.setStrategy(strategy);
+        buttonFactory.setStrategy(strategy);
+        textFactory.setStrategy(strategy);
+    }
 
     public GuiFactory() {
+        setBorderStrategy(new DefaultBorderStrategy());
     }
 
-    public JLabel createLabel(String text) {
-        return labelFactory.create(text);
+
+    public CustomLabel createLabel(String text) {
+        CustomLabel label = null;
+        switch (labelType) {
+            case ICON -> label = labelFactory.createIconPropLabel(text);
+            case NORMAL -> label = labelFactory.createNormalLabel(text);
+            case STRETCH_ICON -> label = labelFactory.createIconStretchLabel(text);
+        }
+        return label;
     }
 
-    public JButton createButton(String text, ActionListener listener) {
-        return buttonFactory.create(text, listener);
+    public CustomButton createButton(String text, ActionListener listener){
+        return createButton(text, null, listener);
     }
 
-    public void setButtonFactory(IButtonFactory buttonFactory) {
+    public CustomButton createButton(String text,String disabledPath, ActionListener listener) {
+        CustomButton button = null;
+        switch (buttonType) {
+            case ICON -> button = buttonFactory.createIconPropButton(text, listener);
+            case NORMAL -> button = buttonFactory.createNormalButton(text, listener);
+            case STRETCH_ICON -> button = buttonFactory.createIconStretchButton(text, listener);
+            case DISABLED_ICON -> button = buttonFactory.createDisabledIconPropButton(text, disabledPath,listener);
+            case DISABLED_STRETCH_ICON -> button = buttonFactory.createDisabledIconStretchButton(text, disabledPath,listener);
+        }
+        return button;
+    }
+
+    public void setButtonFactory(ButtonFactory buttonFactory) {
         this.buttonFactory = buttonFactory;
+        this.buttonFactory.setFont(currentFont);
+        this.buttonFactory.setStrategy(borderStrategy);
     }
 
-    public void setLabelFactory(ILabelFactory labelFactory) {
+    public void setLabelFactory(LabelFactory labelFactory) {
         this.labelFactory = labelFactory;
+        this.labelFactory.setFont(currentFont);
+        this.buttonFactory.setStrategy(borderStrategy);
+        this.textFactory.setStrategy(borderStrategy);
     }
 
-    public void setTextFactory(ITextFactory textFactory) {
+    public void setCurrentFont(Font newFont) {
+        currentFont = newFont;
+        labelFactory.setFont(currentFont);
+        labelFactory.setFont(currentFont);
+        labelFactory.setFont(currentFont);
+    }
+
+    public void setFontSize(int fontSize) {
+        setCurrentFont(new Font(currentFont.getFontName(), currentFont.getStyle(), fontSize));
+    }
+
+    public void setTextFactory(TextFactory textFactory) {
         this.textFactory = textFactory;
-    }
-
-    public void setButtonIconFactory(IButtonIconFactory buttonIconFactory) {
-        this.buttonIconFactory = buttonIconFactory;
-    }
-
-    public void setLabelIconFactory(ILabelIconFactory labelIconFactory) {
-        this.labelIconFactory = labelIconFactory;
     }
 
     public CustomTextComponent createTextField() {
@@ -62,11 +109,13 @@ public class GuiFactory {
         return textFactory.createTextArea();
     }
 
-    public JLabel createIconLabel(String path) {
-        return labelIconFactory.create(path);
+
+    public void setLabelType(LabelType type) {
+        this.labelType = type;
+    }
+    public void setButtonType(ButtonType type) {
+        this.buttonType = type;
     }
 
-    public JButton createIconButton(String path, ActionListener listener) {
-        return buttonIconFactory.create(path, listener);
-    }//dorzucic factory do icon components
+
 }
