@@ -11,9 +11,7 @@ import game.interfaceWarhammer.WarhammerStatisticsBuilder;
 import game.interfaces.IAttributeEnum;
 import game.interfaces.StatisticsBuilder;
 
-import java.util.EnumSet;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class FileMain {
     private static FileManager fileManager;
@@ -23,7 +21,7 @@ public class FileMain {
         
         fileManager = new FileManager("Warhammer");
         
-        //write();
+        write();
         read();
     }
     
@@ -34,8 +32,17 @@ public class FileMain {
         return playerCharacter;
     }
     
+    static List<PlayerCharacter> createManyPlayers() {
+        ArrayList<PlayerCharacter> players = new ArrayList<>();
+        players.add(createSeedPlayer("Kaspar Hauser"));
+        players.add(createSeedPlayer("Adam Tadam"));
+        players.add(createSeedPlayer("Cyka Blyat"));
+        
+        return players;
+    }
+    
     static void write() {
-        fileManager.writeToFile(createSeedPlayer("Kaspar Hauser"));
+        fileManager.writeToFile(createManyPlayers(), PlayerCharacter.class);
     }
     
     static void read() {

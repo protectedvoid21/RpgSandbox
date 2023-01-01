@@ -2,6 +2,7 @@ package game.filehandle;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import game.creature.Monster;
 import game.creature.NPC;
 import game.creature.PlayerCharacter;
@@ -11,6 +12,7 @@ import game.interfaces.IAttributeEnum;
 import game.interfaces.IStatistics;
 
 import java.io.*;
+import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -69,13 +71,13 @@ public class FileManager {
         }
     }
 
-    public void writeToFile(Object object) {
-        if (!directoryMap.containsKey(object.getClass())) {
-            System.out.println("The " + object.getClass() + " doesn't exist in directoryMap as a key");
+    public <T> void writeToFile(List<T> object, Class<T> objectType) {
+        if (!directoryMap.containsKey(objectType)) {
+            System.out.println("The " + objectType + " doesn't exist in directoryMap as a key");
             return;
         }
 
-        String savePath = "data/" + gameName + "/" + directoryMap.get(object.getClass());
+        String savePath = "data/" + gameName + "/" + directoryMap.get(objectType);
 
         BufferedWriter bufferedWriter;
         try {
@@ -88,7 +90,7 @@ public class FileManager {
         }
     }
 
-    public <T> T readFromFile(Class<T> objectType) {
+    public <T> List<T> readFromFile(Class<T> objectType) {
         if (!directoryMap.containsKey(objectType)) {
             System.out.println("The " + objectType.toString() + " doesn't exist in directoryMap as a key");
             return null;
@@ -102,7 +104,8 @@ public class FileManager {
             throw new RuntimeException(e);
         }
         BufferedReader bufferedReader = new BufferedReader(fileReader);
+        Type typeOfList = TypeToken.getParameterized(List.class, objectType).getType();
 
-        return gson.fromJson(bufferedReader, objectType);
+        return gson.fromJson(bufferedReader, typeOfList);
     }
 }
