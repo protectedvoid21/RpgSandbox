@@ -19,6 +19,7 @@ import java.io.IOException;
  */
 public class ImageBorderWraper extends BorderDecorator implements IRequieredReactionOnMovementComponent {
     private Image img;
+    private Image secondImg;
     private int componentMovement = 0;
     private IMovementComponent.Direction direction;
     private double scalingPositionValue = 0;
@@ -26,17 +27,24 @@ public class ImageBorderWraper extends BorderDecorator implements IRequieredReac
     private boolean scalingStatus = false;
 
 
-    public ImageBorderWraper(ICustomUI ui, String path) {
+    public ImageBorderWraper(ICustomUI ui, String pathFirstImage) {
+        this(ui, pathFirstImage, null);
+    }
+
+    public ImageBorderWraper(ICustomUI ui, String pathFirstImage, String pathSecondImage) {
         super(ui);
-        uploadImage(path);
+        img = createImage(pathFirstImage);
+        var result = createImage(pathSecondImage);
+        secondImg = result == null ? img : result;
     }
 
 
-    public void uploadImage(String path) {
+    public Image createImage(String path) {
         try {
-            img = ImageIO.read(new File(path));
-        } catch (IOException e) {
-            img = null;
+            var img = ImageIO.read(new File(path));
+            return img;
+        } catch (IOException | NullPointerException e) {
+            return null;
         }
     }
 
@@ -51,61 +59,76 @@ public class ImageBorderWraper extends BorderDecorator implements IRequieredReac
 //    }
 
     @Override//to refactor
-    public void paintBackground(Graphics g, JComponent c, int yOffset) {//zrefactoryzowac i dorzucic jakos zmiany
+    public void paintBackground(Graphics g, JComponent c, int Offset) {//zrefactoryzowac i dorzucic jakos zmiany
         // pozycji x na start
-        super.paintBackground(g, c, yOffset);
+        super.paintBackground(g, c, Offset);
         var w = c.getWidth();
         var h = c.getHeight();
 
-        double scale = img.getWidth(null) / img.getHeight(null);
+
+        double scaleFirstImg = img.getWidth(null) / img.getHeight(null);
+        double scaleSecondImg = secondImg.getWidth(null) / secondImg.getHeight(null);
+
         var horizontalMovement = direction == IMovementComponent.Direction.HORIZONTAL ? componentMovement : 0;
         var verticalMovement = direction == IMovementComponent.Direction.VERTICAL ? componentMovement : 0;
         if (!scalingStatus) {
             if (w > h) {
                 if (w > 3 * h) {
-                    g.drawImage(img.getScaledInstance((int) (scale * 0.8 * h), (int) (0.8 * h), Image.SCALE_SMOOTH),
+                    g.drawImage(img.getScaledInstance((int) (scaleFirstImg * 0.8 * h), (int) (0.8 * h),
+                                    Image.SCALE_SMOOTH),
                             (int) (0.2 * h) + horizontalMovement, (int) (0.1 * h) + verticalMovement, null);
-                    g.drawImage(img.getScaledInstance((int) (scale * 0.8 * h), (int) (0.8 * h), Image.SCALE_SMOOTH),
-                            (int) (w - (scale * 0.8 * h + 0.2 * h)) - horizontalMovement,
+                    g.drawImage(secondImg.getScaledInstance((int) (scaleSecondImg * 0.8 * h), (int) (0.8 * h),
+                                    Image.SCALE_SMOOTH),
+                            (int) (w - (scaleSecondImg * 0.8 * h + 0.2 * h)) - horizontalMovement,
                             (int) (0.1 * h) + verticalMovement, null);
                 } else {
-                    g.drawImage(img.getScaledInstance((int) (scale * 0.4 * h), (int) (0.4 * h), Image.SCALE_SMOOTH),
+                    g.drawImage(img.getScaledInstance((int) (scaleFirstImg * 0.4 * h), (int) (0.4 * h),
+                                    Image.SCALE_SMOOTH),
                             (int) (0.05 * h) + horizontalMovement, (int) (0.3 * h) + verticalMovement, null);
-                    g.drawImage(img.getScaledInstance((int) (scale * 0.4 * h), (int) (0.4 * h), Image.SCALE_SMOOTH),
-                            (int) (w - (0.4 * h * scale + 0.05 * h)) - horizontalMovement,
+                    g.drawImage(secondImg.getScaledInstance((int) (scaleSecondImg * 0.4 * h), (int) (0.4 * h),
+                                    Image.SCALE_SMOOTH),
+                            (int) (w - (0.4 * h * scaleSecondImg + 0.05 * h)) - horizontalMovement,
                             (int) (0.3 * h) + verticalMovement, null);
                 }
             } else {
                 if (h > 3 * w) {
-                    g.drawImage(img.getScaledInstance((int) (0.8 * w), (int) (0.8 * w / scale), Image.SCALE_SMOOTH),
+                    g.drawImage(img.getScaledInstance((int) (0.8 * w), (int) (0.8 * w / scaleFirstImg),
+                                    Image.SCALE_SMOOTH),
                             (int) (0.1 * w) + horizontalMovement, (int) (0.2 * w) + verticalMovement, null);
-                    g.drawImage(img.getScaledInstance((int) (0.8 * w), (int) (0.8 * w / scale), Image.SCALE_SMOOTH),
+                    g.drawImage(secondImg.getScaledInstance((int) (0.8 * w), (int) (0.8 * w / scaleSecondImg),
+                                    Image.SCALE_SMOOTH),
                             (int) (0.1 * w) + horizontalMovement,
-                            (int) (h - (0.8 / scale * w + 0.2 * w)) + verticalMovement, null);
+                            (int) (h - (0.8 / scaleSecondImg * w + 0.2 * w)) + verticalMovement, null);
                 } else {
-                    g.drawImage(img.getScaledInstance((int) (0.4 * w), (int) (0.4 * w / scale), Image.SCALE_SMOOTH),
+                    g.drawImage(img.getScaledInstance((int) (0.4 * w), (int) (0.4 * w / scaleFirstImg),
+                                    Image.SCALE_SMOOTH),
                             (int) (0.3 * w) + horizontalMovement, (int) (0.05 * w) + verticalMovement, null);
-                    g.drawImage(img.getScaledInstance((int) (0.4 * w), (int) (0.4 * w / scale), Image.SCALE_SMOOTH),
+                    g.drawImage(secondImg.getScaledInstance((int) (0.4 * w), (int) (0.4 * w / scaleSecondImg),
+                                    Image.SCALE_SMOOTH),
                             (int) (0.3 * w) + horizontalMovement,
-                            (int) (h - (0.4 * w / scale + 0.05 * w)) + verticalMovement, null);
+                            (int) (h - (0.4 * w / scaleSecondImg + 0.05 * w)) + verticalMovement, null);
                 }
             }
         } else {//to fix
             if (w > h) {
-                g.drawImage(img.getScaledInstance((int) (scalingSizeValue * h * scale), (int) (scalingSizeValue * h),
+                g.drawImage(img.getScaledInstance((int) (scalingSizeValue * h * scaleFirstImg),
+                                (int) (scalingSizeValue * h),
                                 Image.SCALE_SMOOTH), (int) (scalingPositionValue * h) + horizontalMovement,
                         (int) (0.5 * (1 - scalingSizeValue) * h) + verticalMovement, null);
-                g.drawImage(img.getScaledInstance((int) (scalingSizeValue * h * scale), (int) (scalingSizeValue * h),
+                g.drawImage(secondImg.getScaledInstance((int) (scalingSizeValue * h * scaleSecondImg),
+                                (int) (scalingSizeValue * h),
                                 Image.SCALE_SMOOTH),
-                        (int) (w - ((scalingPositionValue + scale * scalingSizeValue) * h)) - horizontalMovement,
+                        (int) (w - ((scalingPositionValue + scaleSecondImg * scalingSizeValue) * h)) - horizontalMovement,
                         (int) (0.5 * (1 - scalingSizeValue) * h) + verticalMovement, null);
             } else {
-                g.drawImage(img.getScaledInstance((int) (scalingSizeValue * w), (int) (scalingSizeValue * w / scale),
+                g.drawImage(img.getScaledInstance((int) (scalingSizeValue * w),
+                                (int) (scalingSizeValue * w / scaleFirstImg),
                                 Image.SCALE_SMOOTH), (int) (0.5 * (1 - scalingSizeValue) * w) + horizontalMovement,
                         (int) (scalingPositionValue * w) + verticalMovement, null);
-                g.drawImage(img.getScaledInstance((int) (scalingSizeValue * w), (int) (scalingSizeValue * w / scale),
+                g.drawImage(secondImg.getScaledInstance((int) (scalingSizeValue * w),
+                                (int) (scalingSizeValue * w / scaleSecondImg),
                                 Image.SCALE_SMOOTH), (int) (0.5 * (1 - scalingSizeValue) * w) + horizontalMovement,
-                        (int) (h - ((scalingPositionValue + scalingSizeValue / scale) * w)) + verticalMovement, null);
+                        (int) (h - ((scalingPositionValue + scalingSizeValue / scaleSecondImg) * w)) + verticalMovement, null);
             }
         }
 

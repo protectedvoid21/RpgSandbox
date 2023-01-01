@@ -22,6 +22,7 @@ public abstract class CustomTextComponent extends JPanel implements IComponentTe
 
     public CustomTextComponent() {
         setLayout(layout);
+        Object obj;
         setOpaque(false);
     }
 

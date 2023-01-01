@@ -1,15 +1,17 @@
 package gui.customUI.componentsUIs;
 
 import gui.customUI.customUIStyles.CustomUI;
+import gui.customUI.interfaces.ICustomFontSize;
 import gui.customUI.interfaces.ICustomUI;
+import gui.margin.ComponentTextMarginManager;
+import gui.margin.IComponentTextMargin;
 
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicButtonUI;
 import java.awt.*;
 
-/**Custom Button UI Adapter which, class has to be created because QButton has to receive BasicButtonUI instance during setting UI. */
-public class CustomButtonUI extends BasicButtonUI {
-
+/**Custom Button UI Adapter, class has to be created because QButton has to receive BasicButtonUI instance during setting UI. */
+public class CustomButtonUI extends BasicButtonUI implements IComponentTextMargin {
     private ICustomUI ui;
     public CustomButtonUI(ICustomUI ui){
         this.ui = ui;
@@ -27,12 +29,13 @@ public class CustomButtonUI extends BasicButtonUI {
         super.paint(g, c);
     }
 
-    public void setAdditionaldColor(Color color, CustomUI.Index index) {
-        ui.setAdditionaldColor(color, index);
+    public ICustomUI getCustomUI(){
+        return ui;
     }
 
-    public Color getAdditionalColor(CustomUI.Index index) {
-        return ui.getAdditionalColor(index);
+    @Override
+    public ComponentTextMarginManager getMargin() {
+        return ui.getMargin();
     }
 
 }
