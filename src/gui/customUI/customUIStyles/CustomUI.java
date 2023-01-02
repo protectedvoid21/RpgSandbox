@@ -1,6 +1,4 @@
 package gui.customUI.customUIStyles;
-
-import com.kitfox.svg.A;
 import gui.card.SharedCmpsFont;
 import gui.customComponents.CustomLabel;
 import gui.customUI.customUIStyles.borderStrategies.*;
