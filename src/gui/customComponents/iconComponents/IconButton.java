@@ -1,28 +1,36 @@
 package gui.customComponents.iconComponents;
 
-import gui.customComponents.CustomButton;
+import gui.customComponents.AbstractCustomButton;
 
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-
-public class IconButton extends CustomButton implements IIconComponent {
+public class IconButton extends AbstractCustomButton implements IIconComponent {
 
     private StretchIcon icon;
     public IconButton(String iconPath) {
         this(iconPath, false);
     }
 
-    public IconButton(String iconPath, boolean prop){
-        super();
-//        setContentAreaFilled(false);
-//        setFocusPainted(false);
-//        setBorder(new EmptyBorder(0, 0, 0, 0));
-        icon = new StretchIcon( iconPath, prop);
-        setIcon(icon);
-
+    @Override
+    public void setContent(String text) {
+        setContent(text, icon.isProportionate());
     }
 
-    public StretchIcon getIcon(){
+    private void setContent(String text, boolean prop){
+        icon = new StretchIcon( text, prop);
+        setIcon(icon);
+    }
+
+    public IconButton(String iconPath, boolean prop) {
+        super();
+//        setOpaque(false);
+//        setBorder(new LineBorder(Color.RED, 5, true));//to fix
+        setContent(iconPath, prop);
+    }
+
+    public StretchIcon getIcon() {
         return icon;
+    }
+    @Override
+    public String getContent() {
+        return icon.getPath();
     }
 }

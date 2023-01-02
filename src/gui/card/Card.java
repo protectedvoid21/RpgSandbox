@@ -1,10 +1,10 @@
 package gui.card;
 
-import gui.customComponents.CustomButton;
+import game.equipment.Item;
+import gui.customComponents.AbstractCustomLabel;
 import gui.customComponents.CustomLabel;
-import gui.customComponents.ITextCustomUICmp;
+import gui.customComponents.IContentCustomUICmp;
 import gui.customUI.customUIStyles.borderStrategies.AverageBorderStartegy;
-import gui.customUI.interfaces.ICustomUI;
 import gui.factories.GuiFactory;
 import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;
@@ -16,86 +16,66 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
-public class Card {
-    final private String EMPTY_DATA_CONTENT = "";
-    private DefaultCustomMenuMenager<CustomLabel> menager =
-            new DefaultCustomMenuMenager<>(ComponentsSeries.ComponentsDimension.HORIZONTAL,
-                    ComponentsSeries.ComponentsDimension.VERTICAL);
+public class Card implements SwitchableComponent {
+    static final public String EMPTY_DATA_CONTENT = "";
+    private AbstractCard activeCard = new EmptyCard();
+    private Map<CardTypes, AbstractCard> allCards = new HashMap<>();
+
+
+    public enum CardTypes {ATTRIBUTE, ARMOR, WEAPONS, EFFECTS, OVERALL}
+
+    private static Map<CardTypes, Integer> cardSideIndexes = Map.of(CardTypes.OVERALL, 0, CardTypes.ATTRIBUTE, 1,
+            CardTypes.WEAPONS, 4, CardTypes.EFFECTS, 3, CardTypes.ARMOR, 2);
+
+    private ComponentsSeries<ComponentPanelMenager<AbstractCustomLabel>> titleSeries =
+            new ComponentsSeries<>(ComponentsSeries.ComponentsDimension.HORIZONTAL);
 
     private DoubleArrowPanel leftArrows;
     private DoubleArrowPanel rightArrows;
 
-    private ComponentPanelMenager seriesPanel;
+    private DefaultCustomMenuMenager seriesPanel;
     private GuiFactory factory;
-    private int currentAttrSide = 0;
-    private AbstractMap.SimpleEntry<String, String> titleIconPathName;
-    private ArrayList<AbstractMap.SimpleEntry<String, String>> dataMap;
-    private int maximumElementNumber = 5;
+    private int currentAttrSide = 1;
 
-    public Card(AbstractMap.SimpleEntry<String, String> titleIconPathName, ArrayList<AbstractMap.SimpleEntry<String,
-            String>> dataMap, GuiFactory factory) {
+    public Card(AbstractMap.SimpleEntry<String, String> titleIconPathName, ArrayList<ArrayList<String>> dataMap, GuiFactory factory) {
         this.factory = factory;
-        this.titleIconPathName = titleIconPathName;
-        this.dataMap = dataMap;
-
-        var panel = new ComponentsSeries<>(ComponentsSeries.ComponentsDimension.VERTICAL);
-        panel.addOption(menager.getCmp(), 9);
-        panel.addOption(createArrowComponentSeries(), 2);
-        seriesPanel = new ComponentPanelMenager(panel);
-
-        menager.addMainComponent(10);
-        menager.addMainComponent(10);
-        seriesPanel.setBorderData(Color.RED, new AverageBorderStartegy(), 8);
+        allCards.put(CardTypes.ATTRIBUTE, new AttributesCard(titleIconPathName, dataMap, factory));
+        allCards.put(CardTypes.ARMOR, new DetailButtonsCard(titleIconPathName, dataMap, factory));
+        allCards.put(CardTypes.EFFECTS, new DetailButtonsCard(titleIconPathName, dataMap, factory));
+        allCards.put(CardTypes.WEAPONS, new DetailButtonsCard(titleIconPathName, dataMap, factory));
+        seriesPanel = new DefaultCustomMenuMenager(ComponentsSeries.ComponentsDimension.VERTICAL,
+                ComponentsSeries.ComponentsDimension.HORIZONTAL);
+        initSeriesPanel(titleSeries, 0, 3);
+        initSeriesPanel(ComponentPanelMenager.createEmptyInstance(), 1, 7);
+        initSeriesPanel(createArrowComponentSeries(), 2, 2);
+        initializeTitle();
+        updateContent();
+        rightArrows.setSwitchableComponent(this);
+        seriesPanel.getCmp().setBorderData(Color.RED, new AverageBorderStartegy(), 8);
     }
 
-    private ComponentsSeries createArrowComponentSeries() {
-        var arrowsManager = new ComponentsSeries<>(ComponentsSeries.ComponentsDimension.HORIZONTAL);
-        leftArrows = new DoubleArrowPanel(factory);
-        leftArrows.setSpace(5);
-        rightArrows = new DoubleArrowPanel(factory);
-        rightArrows.setSpace(5);
-        leftArrows.setListener(DoubleArrowPanel.Side.RIGHT, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                switchSide(DoubleArrowPanel.Side.RIGHT);
+    private CardTypes convertIntToType(int value){
+        for (var key : cardSideIndexes.keySet()){
+            if (cardSideIndexes.get(key)==value){
+                return key;
             }
-        });
-        leftArrows.setListener(DoubleArrowPanel.Side.LEFT, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                switchSide(DoubleArrowPanel.Side.LEFT);
-            }
-        });
-        arrowsManager.addOption(leftArrows.getPanel(), 5);
-        arrowsManager.addOption(rightArrows.getPanel(), 5);
-        return arrowsManager;
+        }
+        return CardTypes.OVERALL;
     }
 
-    private boolean isSwitchForwardSidePossible() {
-        return dataMap.size() > maximumElementNumber * currentAttrSide;
+    public void updateContent(){
+
+        activeCard.reset();
+        activeCard = allCards.get(convertIntToType(currentAttrSide));
+        seriesPanel.getMainComponent(1).changeContent(activeCard.getMenager());
+        leftArrows.setSwitchableComponent(activeCard);
+        updateTitle();
     }
 
-    private boolean isSwitchBackSidePossible() {
-        return currentAttrSide > 0;
-    }
 
-    public void initializeTitle() {
-        factory.setLabelType(GuiFactory.LabelType.ICON);
-        menager.addMiddleComponent(factory.createLabel(titleIconPathName.getKey()), 0, 30);
-        menager.getMiddleComponent(0, 0).addSpace(6, ComponentPanelMenager.Side.LEFT, ComponentPanelMenager.Side.TOP);
-
-        factory.setLabelType(GuiFactory.LabelType.NORMAL);
-        menager.getMiddleComponent(0, 0).addSpace(1, ComponentPanelMenager.Side.RIGHT);
-        menager.getMiddleComponent(0, 0).addSpace(2, ComponentPanelMenager.Side.BOTTOM);
-
-        menager.addMiddleComponent(factory.createLabel(titleIconPathName.getValue()), 1, 30);
-        menager.getMiddleComponent(1, 0).addSpace(6, ComponentPanelMenager.Side.RIGHT, ComponentPanelMenager.Side.TOP,
-                ComponentPanelMenager.Side.BOTTOM);
-        menager.getMiddleComponent(1, 0).addSpace(1, ComponentPanelMenager.Side.LEFT);
-
-    }
-
+    @Override
     public void switchSide(DoubleArrowPanel.Side side) {
         if (isSwitchingSidePossible(side)) {
             switch (side) {
@@ -103,97 +83,39 @@ public class Card {
                 case RIGHT -> currentAttrSide++;
             }
             updateContent();
-            setCorrectBlockStatus();
         }
     }
 
-    private void setCorrectBlockSideStatus(DoubleArrowPanel.Side side){
-        if (!isSwitchingSidePossible(side)) {
-            blockButton(side);
-        } else {
-            unblockButton(side);
-        }
-    }
-
-    private void setCorrectBlockStatus(){
-        setCorrectBlockSideStatus(DoubleArrowPanel.Side.LEFT);
-        setCorrectBlockSideStatus(DoubleArrowPanel.Side.RIGHT);
-    }
-
-    private void blockButton(DoubleArrowPanel.Side side) {
-        leftArrows.turnOffButton(side);
-    }
-
-    private void unblockButton(DoubleArrowPanel.Side side) {
-        leftArrows.turnOnButton(side);
-    }
-
-    private boolean isSwitchingSidePossible(DoubleArrowPanel.Side side) {
+    @Override
+    public boolean isSwitchingSidePossible(DoubleArrowPanel.Side side) {
         boolean status = false;
         switch (side) {
             case LEFT -> status = currentAttrSide > 0;
-            case RIGHT -> status = getSideMaximumElementsNumber() < dataMap.size();
+            case RIGHT -> status = currentAttrSide < cardSideIndexes.size()-1;
         }
         return status;
     }
 
-    private int getSideMaximumElementsNumber() {
-        return maximumElementNumber * (currentAttrSide + 1);
+
+    private void initSeriesPanel(JComponent content, int mainIndex, int weight) {
+        seriesPanel.addMainComponent(weight);
+        seriesPanel.addMiddleComponent(content, mainIndex, 10);
     }
 
-
-    private void updateContent() {
-        int maxSideIndex = getSideMaximumElementsNumber();
-        int dataSize = dataMap.size();
-
-        var sublist = dataMap.subList(currentAttrSide * maximumElementNumber, maxSideIndex > dataSize ? dataSize :
-                maxSideIndex);
-        while (sublist.size() < maximumElementNumber) {
-            sublist.add(new AbstractMap.SimpleEntry<>(EMPTY_DATA_CONTENT, EMPTY_DATA_CONTENT));
-        }
-        int currentIndex = 1;
-        setContentVisible(false);
-        for (var key : sublist) {
-            menager.getMiddleComponent(0, currentIndex).getComponent().setText(key.getKey());
-            menager.getMiddleComponent(1, currentIndex).getComponent().setText(key.getValue());
-            currentIndex++;
-        }
-         new java.util.Timer().schedule(new TimerTask() {
-            @Override
-            public void run() {
-                setContentVisible(true);
-            }
-        }, 200);
-
-//        int freeCmpsNumber = maxSideIndex - dataSize;
-//        for (int i = maximumElementNumber - freeCmpsNumber; i < maximumElementNumber; i++) {
-//            menager.getMiddleComponent(0, i + 1).getComponent().setVisible(false);
-//            menager.getMiddleComponent(1, i + 1).getComponent().setVisible(false);
-//        }
-    }
-
-    public void initializeContent() {
-        int maxSideIndex = (currentAttrSide + 1) * (maximumElementNumber);
-        int dataSize = dataMap.size();
-        var sublist = dataMap.subList(currentAttrSide * maximumElementNumber, maxSideIndex > dataSize ? dataSize :
-                maxSideIndex);
-
-        for (var key : sublist) {
-            menager.addMiddleComponent(factory.createLabel(key.getKey()), 0, 10);
-            menager.getMainComponent(0).getComponent().getLastComponent().addSpace(2, ComponentPanelMenager.Side.LEFT
-                    , ComponentPanelMenager.Side.BOTTOM, ComponentPanelMenager.Side.TOP);
-
-            menager.addMiddleComponent(factory.createLabel(key.getValue()), 1, 10);
-            menager.getMainComponent(1).getComponent().getLastComponent().addSpace(2,
-                    ComponentPanelMenager.Side.RIGHT, ComponentPanelMenager.Side.BOTTOM,
-                    ComponentPanelMenager.Side.TOP);
-        }
-        setCorrectBlockStatus();
+    private ComponentsSeries createArrowComponentSeries() {
+        var arrowsManager = new ComponentsSeries<>(ComponentsSeries.ComponentsDimension.HORIZONTAL);
+        leftArrows = new DoubleArrowPanel(factory, activeCard);///
+        leftArrows.setSpace(5);
+        rightArrows = new DoubleArrowPanel(factory, activeCard);
+        rightArrows.setSpace(5);
+        arrowsManager.addOption(leftArrows.getPanel(), 5);
+        arrowsManager.addOption(rightArrows.getPanel(), 5);
+        return arrowsManager;
     }
 
 
     public void setBackgroundImage(String path) throws IOException {
-        seriesPanel.setBackgroundImage(path);
+        seriesPanel.getCmp().setBackgroundImage(path);
     }
 
     public void setBackgroundColor(Color color) {
@@ -201,37 +123,49 @@ public class Card {
     }
 
     public JPanel getPanel() {
-        return seriesPanel;
+        return seriesPanel.getCmp();
     }
+
 
     public void setUniformFont() {
-        ArrayList<ITextCustomUICmp> cmpsUIs = new ArrayList<>();
-        var mngrLst = menager.getComponentsList();
-        var firstNo = menager.getMiddleComponent(0, 0).getComponent();
-        var secondNo = menager.getMiddleComponent(1, 0).getComponent();
-
-        for (var cmp : mngrLst) {
-            if (cmp != firstNo && cmp != secondNo) {
-                cmpsUIs.add(cmp);
-            }
-        }
-        var sharecmpfont = new SharedCmpsFont(cmpsUIs);
-        for (var cmpUI : cmpsUIs) {
-            cmpUI.getCustomUI().setSharedComponentSize(sharecmpfont);
-        }
-    }
-
-    public void setContentVisible(boolean status) {
-        var firstNo = menager.getMiddleComponent(0, 0).getComponent();
-        var secondNo = menager.getMiddleComponent(1, 0).getComponent();
-        for (var cmp : menager.getComponentsList()) {
-            if (cmp != firstNo && cmp != secondNo) {
-                if (status){
-                    cmp.getCustomUI().setRelevantFont(cmp.getText());//meh slabe
-                }
-                cmp.setVisible(cmp.getText() == "" ? false : status);//jesli border panela to pewnie problem ale niech bedzie
+        for (var type : CardTypes.values()) {
+            if (allCards.containsKey(type)) {
+                allCards.get(type).setUniformForm();
             }
         }
     }
 
+    public void setVisibility(boolean value) {
+        setAspectVisible(activeCard.getContentMenager().getComponentsList(), value);
+        setAspectVisible(new ArrayList<>(titleSeries.getComponentsList().stream().map(cmp -> cmp.getComponent()).toList()), value);
+
+    }
+
+    public static <T extends JComponent & IContentCustomUICmp> void setAspectVisible(ArrayList<T> container, boolean value) {
+        for (var cmp : container) {
+            cmp.setVisible(cmp.getContent().isEmpty() ? false : value);
+        }
+    }
+
+
+    public void initializeTitle() {//zmienia sie
+        factory.setLabelType(GuiFactory.LabelType.ICON);
+        titleSeries.addOption(new ComponentPanelMenager<>(factory.createLabel(EMPTY_DATA_CONTENT)), 30);
+        titleSeries.getOption(0).addSpace(6, ComponentPanelMenager.Side.LEFT, ComponentPanelMenager.Side.TOP);
+        titleSeries.getOption(0).addSpace(1, ComponentPanelMenager.Side.RIGHT);
+        titleSeries.getOption(0).addSpace(2, ComponentPanelMenager.Side.BOTTOM);
+
+        factory.setLabelType(GuiFactory.LabelType.NORMAL);
+        titleSeries.addOption(new ComponentPanelMenager<>(factory.createLabel(EMPTY_DATA_CONTENT)), 30);
+        titleSeries.getOption(1).addSpace(6, ComponentPanelMenager.Side.RIGHT, ComponentPanelMenager.Side.TOP);
+        titleSeries.getOption(1).addSpace(1, ComponentPanelMenager.Side.LEFT);
+        titleSeries.getOption(1).addSpace(2, ComponentPanelMenager.Side.BOTTOM);
+
+    }
+
+
+    protected void updateTitle() {//zmienia sie
+        titleSeries.getOption(0).getComponent().setContent(activeCard.getFirstTitleContent());
+        titleSeries.getOption(1).getComponent().setContent(activeCard.getSecondTitleContent());
+    }
 }

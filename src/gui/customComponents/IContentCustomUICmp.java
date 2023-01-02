@@ -2,9 +2,10 @@ package gui.customComponents;
 
 import gui.customUI.interfaces.ICustomUI;
 
-public interface ITextCustomUICmp {
+public interface IContentCustomUICmp {
     ICustomUI getCustomUI();
-    void setText(String newContent);
+    String getContent();
+    void setContent(String newContent);
     int getMaximumPossibleFontSize();
     void setFont(int newFontSize);
     boolean hasSharedSize();

@@ -1,17 +1,15 @@
 package gui.factories.customFactories.buttonFactories;
 
+import gui.customComponents.AbstractCustomButton;
 import gui.customComponents.CustomButton;
 import gui.customComponents.iconComponents.IconButton;
 import gui.customComponents.iconComponents.StretchIcon;
 import gui.customUI.componentsUIs.CustomButtonUI;
-import gui.customUI.customUIStyles.ClickedStyleUI;
 import gui.customUI.customUIStyles.RoundedBorderUI;
 import gui.customUI.interfaces.ICustomUI;
-import gui.customUI.wrapers.ChangingBackgroundColorWraper;
 import gui.customUI.wrapers.ChangingBorderColorWraper;
 import gui.customUI.wrapers.GrowingBorderWraper;
 import gui.customUI.wrapers.ImageBorderWraper;
-import gui.factories.GuiFactory;
 
 import javax.swing.*;
 import java.awt.*;
@@ -32,7 +30,7 @@ public class WinterGrowingBorderButtonFactory extends ImageButtonFactory {
     }
 
 
-    private CustomButton helpCreatedMethod(CustomButton button, ActionListener listener) {
+    private AbstractCustomButton helpCreatedMethod(AbstractCustomButton button, ActionListener listener) {
         button.setFont(font);
         button.addActionListener(listener);
         button.setForeground(new Color(0xE8E5E1));
@@ -52,35 +50,35 @@ public class WinterGrowingBorderButtonFactory extends ImageButtonFactory {
     }
 
     @Override
-    public CustomButton createNormalButton(String text, ActionListener listener) {
+    public AbstractCustomButton createNormalButton(String text, ActionListener listener) {
         return helpCreatedMethod(new CustomButton(text), listener);
     }
 
     @Override
-    public CustomButton createIconPropButton(String text, ActionListener listener) {
+    public AbstractCustomButton createIconPropButton(String text, ActionListener listener) {
         var but = helpCreatedMethod(new IconButton(text, true), listener);
         but.getCustomUI().setBackGroundTransparent(true);
         return but;
     }
 
     @Override
-    public CustomButton createIconStretchButton(String text, ActionListener listener) {
+    public AbstractCustomButton createIconStretchButton(String text, ActionListener listener) {
         var but = helpCreatedMethod(new IconButton(text), listener);
         but.getCustomUI().setBackGroundTransparent(true);
         return but;
     }
 
     @Override
-    public CustomButton createDisabledIconPropButton(String text1, String text2, ActionListener listener) {
+    public AbstractCustomButton createDisabledIconPropButton(String text1, String text2, ActionListener listener) {
         return createDisableIconButton(text1, text2, listener, true);
     }
 
     @Override
-    public CustomButton createDisabledIconStretchButton(String text, String text2, ActionListener listener) {
+    public AbstractCustomButton createDisabledIconStretchButton(String text, String text2, ActionListener listener) {
         return createDisableIconButton(text, text2, listener, false);
     }
 
-    private CustomButton createDisableIconButton(String text1, String text2, ActionListener listener, boolean proportionate){
+    private AbstractCustomButton createDisableIconButton(String text1, String text2, ActionListener listener, boolean proportionate){
         var but = helpCreatedMethod(new IconButton(text1, true), listener);
         if (text2 != null) {
             but.setDisabledIcon(new StretchIcon(text2, proportionate));

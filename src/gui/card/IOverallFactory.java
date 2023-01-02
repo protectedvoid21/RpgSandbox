@@ -10,5 +10,5 @@ public abstract class IOverallFactory {
     protected GuiFactory factory = new GuiFactory();
 
     public abstract Card createCard(AbstractMap.SimpleEntry<String, String> titleIconPathName,
-                                    ArrayList<AbstractMap.SimpleEntry<String, String>> dataMap);
+                                    ArrayList<ArrayList<String>> dataMap);
 }

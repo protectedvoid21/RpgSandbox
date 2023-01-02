@@ -1,5 +1,6 @@
 package gui.factories.customFactories.labelFactories;
 
+import gui.customComponents.AbstractCustomLabel;
 import gui.customComponents.CustomLabel;
 import gui.customComponents.iconComponents.IconLabel;
 import gui.customUI.componentsUIs.CustomLabelUI;
@@ -14,7 +15,7 @@ import java.awt.*;
 
 public class GameGreenLabelFactory extends LabelFactory {
 
-    private CustomLabel helpCreatedMethod(CustomLabel label){
+    private AbstractCustomLabel helpCreatedMethod(AbstractCustomLabel label){
         label.setForeground(new Color(0xFFFBFB));
         label.setHorizontalAlignment(SwingConstants.CENTER);
         label.setFont(font);
@@ -29,16 +30,16 @@ public class GameGreenLabelFactory extends LabelFactory {
         return label;
     }
 
-    public  CustomLabel createNormalLabel(String text){
+    public  AbstractCustomLabel createNormalLabel(String text){
         return helpCreatedMethod(new CustomLabel(text));
     }
-    public  CustomLabel createIconPropLabel(String path){
+    public  AbstractCustomLabel createIconPropLabel(String path){
         var label = helpCreatedMethod(new IconLabel(path, true));
         label.getCustomUI().setBackGroundTransparent(true);
 //        label.getLabelUI().getCustomUI().setRespectionBorder(false);
         return label;
     }
-    public  CustomLabel createIconStretchLabel(String path){
+    public  AbstractCustomLabel createIconStretchLabel(String path){
         var label = helpCreatedMethod(new IconLabel(path, false));
         label.getCustomUI().setRespectionBorder(false);
         return label;

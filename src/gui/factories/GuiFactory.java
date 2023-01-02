@@ -1,9 +1,9 @@
 package gui.factories;
 
-import gui.customComponents.CustomButton;
+import gui.customComponents.AbstractCustomButton;
+import gui.customComponents.AbstractCustomLabel;
 import gui.customComponents.CustomLabel;
 import gui.customComponents.customTextComponents.CustomTextComponent;
-import gui.customUI.customUIStyles.borderStrategies.AverageBorderStartegy;
 import gui.customUI.customUIStyles.borderStrategies.DefaultBorderStrategy;
 import gui.customUI.customUIStyles.borderStrategies.IBorderStrategy;
 import gui.factories.customFactories.buttonFactories.ButtonFactory;
@@ -13,10 +13,8 @@ import gui.factories.customFactories.labelFactories.LabelFactory;
 import gui.factories.customFactories.textComponentFactory.TextFactory;
 import gui.factories.customFactories.textComponentFactory.TextFieldFactory;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
 
 /**
  * Base GUI factory used for creating every object used in application. User has to used set method to define
@@ -47,8 +45,8 @@ public class GuiFactory {
     }
 
 
-    public CustomLabel createLabel(String text) {
-        CustomLabel label = null;
+    public AbstractCustomLabel createLabel(String text) {
+        AbstractCustomLabel label = null;
         switch (labelType) {
             case ICON -> label = labelFactory.createIconPropLabel(text);
             case NORMAL -> label = labelFactory.createNormalLabel(text);
@@ -57,12 +55,12 @@ public class GuiFactory {
         return label;
     }
 
-    public CustomButton createButton(String text, ActionListener listener){
+    public AbstractCustomButton createButton(String text, ActionListener listener){
         return createButton(text, null, listener);
     }
 
-    public CustomButton createButton(String text,String disabledPath, ActionListener listener) {
-        CustomButton button = null;
+    public AbstractCustomButton createButton(String text, String disabledPath, ActionListener listener) {
+        AbstractCustomButton button = null;
         switch (buttonType) {
             case ICON -> button = buttonFactory.createIconPropButton(text, listener);
             case NORMAL -> button = buttonFactory.createNormalButton(text, listener);

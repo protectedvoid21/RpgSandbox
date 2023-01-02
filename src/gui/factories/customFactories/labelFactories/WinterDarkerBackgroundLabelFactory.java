@@ -1,5 +1,6 @@
 package gui.factories.customFactories.labelFactories;
 
+import gui.customComponents.AbstractCustomLabel;
 import gui.customComponents.CustomLabel;
 import gui.customComponents.iconComponents.IconLabel;
 import gui.customUI.componentsUIs.CustomLabelUI;
@@ -20,7 +21,7 @@ import java.awt.*;
  */
 public class WinterDarkerBackgroundLabelFactory extends LabelFactory {
 
-    private CustomLabel helpCreatedMethod(CustomLabel label){
+    private AbstractCustomLabel helpCreatedMethod(AbstractCustomLabel label){
         label.setFont(font);
         label.setForeground(new Color(0xFFFBFB));
         label.setHorizontalAlignment(SwingConstants.CENTER);
@@ -37,7 +38,7 @@ public class WinterDarkerBackgroundLabelFactory extends LabelFactory {
         return label;
     }
     @Override
-    public CustomLabel createNormalLabel(String text) {
+    public AbstractCustomLabel createNormalLabel(String text) {
         var label =  helpCreatedMethod(new CustomLabel(text));
 //        label.getLabelUI().getCustomUI().setRespectionBorder(false);
         label.getMargin().set(0, 0, 0, 0);
@@ -45,14 +46,14 @@ public class WinterDarkerBackgroundLabelFactory extends LabelFactory {
     }
 
     @Override
-    public CustomLabel createIconPropLabel(String path) {
+    public AbstractCustomLabel createIconPropLabel(String path) {
         var label = helpCreatedMethod(new IconLabel(path, true));
         label.getMargin().set(0, 0, 0, 0);
         return label;
     }
 
     @Override
-    public CustomLabel createIconStretchLabel(String path) {
+    public AbstractCustomLabel createIconStretchLabel(String path) {
         var label = helpCreatedMethod(new IconLabel(path, false));
         return label;
     }
