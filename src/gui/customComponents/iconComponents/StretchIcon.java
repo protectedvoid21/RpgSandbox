@@ -19,6 +19,7 @@ public class StretchIcon extends ImageIcon implements IRequieredReactionOnMoveme
     protected boolean proportionate;
     private int componentMovement = 0;
     private IMovementComponent.Direction direction;
+    private String path;
 
 //    protected AttributedString text;
 //    private JComponent parent;
@@ -84,11 +85,13 @@ public class StretchIcon extends ImageIcon implements IRequieredReactionOnMoveme
 
     public StretchIcon( String filename, boolean proportionate) {
         super(filename);
-//        this.parent = parent;
-//        addBasicAttributes();
-//        setText(textContent);
+        this.path = filename;
         this.proportionate = proportionate;
 
+    }
+
+    public String getPath(){
+        return path;
     }
 
 

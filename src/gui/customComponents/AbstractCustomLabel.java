@@ -6,11 +6,13 @@ import gui.margin.ComponentTextMarginManager;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 /**
  * Custom Label instance used in whole app, has methods which can menage the customLabelUI instance.
  */
-public abstract class AbstractCustomLabel extends JLabel implements ITextCustomUICmp {
+public abstract class AbstractCustomLabel extends JLabel implements IContentCustomUICmp {
     private CustomLabelUI labelUI;
 
     public AbstractCustomLabel() {
@@ -23,13 +25,16 @@ public abstract class AbstractCustomLabel extends JLabel implements ITextCustomU
     }
 
     public void setUI(CustomLabelUI labelUI) {
-//        labelUI.getCustomUI()
         this.labelUI = labelUI;//kolejnosc mega wazna
         setBackground(getBackground());
         super.setUI(labelUI);
-        repaint();
-        revalidate();
-//        this.labelUI = labelUI;
+        addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                super.componentResized(e);
+                labelUI.getCustomUI().setRelevantFont(getText());
+            }
+        });
     }
 
     public void setBackground(Color color) {
@@ -39,21 +44,12 @@ public abstract class AbstractCustomLabel extends JLabel implements ITextCustomU
         super.setBackground(color);
     }
 
-    @Override
-    protected void paintComponent(Graphics g) {
-//        super.paintComponent(g);
-        if (labelUI != null) {
-            labelUI.getCustomUI().setRelevantFont(getText());
-        }
-        super.paintComponent(g);
-    }
-
     public ComponentTextMarginManager getMargin() {
 
         return labelUI == null ? null : labelUI.getMargin();
     }
 
-    public void setMaximumFontSizeStatus(boolean status){
+    public void setMaximumFontSizeStatus(boolean status) {
         labelUI.getCustomUI().setFontMaximized(status);
         labelUI.getCustomUI().setRelevantFont(getText());
     }
@@ -80,4 +76,13 @@ public abstract class AbstractCustomLabel extends JLabel implements ITextCustomU
     }
 
     public abstract void setContent(String text);
+
+    public abstract String getContent();
+
+    @Override
+    public void setText(String text) {
+        super.setText(text);
+        if (labelUI != null)
+            labelUI.getCustomUI().setRelevantFont(getText());
+    }
 }

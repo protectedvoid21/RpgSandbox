@@ -21,13 +21,11 @@ import java.util.HashMap;
 public class WarHammerFactory extends IOverallFactory {
 
     @Override
-    public Card createCard(AbstractMap.SimpleEntry<String, String> titleIconPathName, ArrayList<AbstractMap.SimpleEntry<String, String>> dataMap
+    public Card createCard(AbstractMap.SimpleEntry<String, String> titleIconPathName, ArrayList<ArrayList<String>> dataMap
         ) {
         factory.setButtonFactory(new WinterClickedButtonFactory());
         factory.setBorderStrategy(new AverageBorderStartegy());
         var card = new Card(titleIconPathName, dataMap, factory);
-//        card.initializeTitle();
-//        card.initializeContent();
         card.setUniformFont();
         try {
             card.setBackgroundImage("src/gui/aaa.png");

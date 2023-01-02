@@ -1,5 +1,6 @@
 package gui.menu;
 
+import gui.customComponents.CustomButton;
 import gui.customUI.customUIStyles.borderStrategies.DefaultBorderStrategy;
 import gui.customUI.customUIStyles.borderStrategies.IBorderStrategy;
 
@@ -34,6 +35,12 @@ public class ComponentPanelMenager<T extends JComponent> extends JPanel {
         setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
     }
 
+    public static ComponentPanelMenager createEmptyInstance(){
+        var p = new JPanel();
+        p.setOpaque(false);
+        return new ComponentPanelMenager(p);
+    }
+
     private void addMainComponent(T cmp) {
         cst.gridx = 1;
         cst.weightx = 10;
@@ -62,6 +69,7 @@ public class ComponentPanelMenager<T extends JComponent> extends JPanel {
             case LEFT, RIGHT -> initCstForVerticalBox(weight, side);
         }
         var box = Box.createVerticalBox();
+        removeAddedSpace(side);
         add(box, cst);
         freeSpaces.put(side, box);
     }
@@ -81,6 +89,7 @@ public class ComponentPanelMenager<T extends JComponent> extends JPanel {
             var space = freeSpaces.get(side);
             if (space != null) {
                 remove(space);
+                freeSpaces.put(side, null);
             }
         }
     }

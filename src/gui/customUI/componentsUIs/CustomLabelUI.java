@@ -18,7 +18,6 @@ public class CustomLabelUI extends BasicLabelUI implements IComponentTextMargin 
 
     public CustomLabelUI(ICustomUI ui) {
         this.ui = ui;
-
     }
 
 

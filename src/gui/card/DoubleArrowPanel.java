@@ -7,11 +7,15 @@ import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.AbstractMap;
 import java.util.Map;
+import java.util.function.Function;
 
 public class DoubleArrowPanel {
+
+    private SwitchableComponent switchableComponent;
     private DefaultCustomMenuMenager<AbstractCustomButton> menager =
             new DefaultCustomMenuMenager<>(ComponentsSeries.ComponentsDimension.VERTICAL,
                     ComponentsSeries.ComponentsDimension.HORIZONTAL);
@@ -20,16 +24,44 @@ public class DoubleArrowPanel {
 
     public enum Side {LEFT, RIGHT}
 
-    public DoubleArrowPanel(GuiFactory factory, Map<Side, AbstractMap.SimpleEntry<String, String>> arrowPaths) {
+    public DoubleArrowPanel(GuiFactory factory, SwitchableComponent cmp, Map<Side,
+            AbstractMap.SimpleEntry<String, String>> arrowPaths) {
         this.factory = factory;
+        this.switchableComponent = cmp;
         menager.addMainComponent(10);
         createArrowPanel(arrowPaths);
 
+        getButton(Side.RIGHT).addActionListener(e -> arrowMethod(Side.RIGHT));
+        getButton(Side.LEFT).addActionListener(e -> arrowMethod(Side.LEFT));
+
     }
 
-    public DoubleArrowPanel(GuiFactory factory) {
+    private void arrowMethod(Side side ){
+        if (switchableComponent.isSwitchingSidePossible(side)) {
+            switchableComponent.switchSide(side);
+            checkTurningButton(Side.LEFT);
+            checkTurningButton(Side.RIGHT);
+        }
+    }
 
-        this(factory, Map.of(Side.LEFT, new AbstractMap.SimpleEntry<>("src/gui/leftarrowactive.png", "src/gui" +
+    private void checkTurningButton(Side side){
+        if (!switchableComponent.isSwitchingSidePossible(side)) {
+            getButton(side).setEnabled(false);
+        } else {
+            getButton(side).setEnabled(true);
+        }
+    }
+
+    public void setSwitchableComponent(SwitchableComponent cmp){
+        switchableComponent = cmp;
+        checkTurningButton(Side.LEFT);
+        checkTurningButton(Side.RIGHT);
+    }
+
+    public DoubleArrowPanel(GuiFactory factory, SwitchableComponent switchableComponent) {
+
+        this(factory, switchableComponent, Map.of(Side.LEFT, new AbstractMap.SimpleEntry<>("src/gui/leftarrowactive" +
+                ".png", "src/gui" +
                 "/leftarrowdisabled.png"), Side.RIGHT, new AbstractMap.SimpleEntry<>("src/gui/rightarrowactive.png",
                 "src/gui/rightarrowdisabled.png")));
 
@@ -49,7 +81,7 @@ public class DoubleArrowPanel {
         menager.addMiddleComponent(factory.createButton(pathEnabled, pathDisabled, null), 0, 10);
     }
 
-    public void setListener(Side side, ActionListener listener) {
+    public void addListener(Side side, ActionListener listener) {
         getButton(side).addActionListener(listener);
     }
 
@@ -59,8 +91,6 @@ public class DoubleArrowPanel {
         addCmp(arrowPaths.get(Side.RIGHT).getKey(), arrowPaths.get(Side.RIGHT).getValue());
         menager.getMiddleComponent(0, 1).addSpace(3, ComponentPanelMenager.Side.LEFT);
 
-        System.out.println(getButton(Side.LEFT).getDisabledIcon() + "   heeee");
-        System.out.println(getButton(Side.RIGHT).getDisabledIcon() + "   heeee");
     }
 
     public void setSpace(int value, ComponentPanelMenager.Side... sides) {
@@ -71,12 +101,5 @@ public class DoubleArrowPanel {
         menager.getCmp().addSpace(value);
     }
 
-    public void turnOffButton(Side side) {
-        getButton(side).setEnabled(false);
-    }
-
-    public void turnOnButton(Side side) {
-        getButton(side).setEnabled(true);
-    }
 
 }

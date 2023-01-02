@@ -37,6 +37,11 @@ public class IconLabel extends AbstractCustomLabel implements IIconComponent {
         return icon;
     }
 
+    @Override
+    public String getContent() {
+        return icon.getPath();
+    }
+
 
     //    @Override
 //    public void setText(String text) {

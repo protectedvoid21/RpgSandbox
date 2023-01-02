@@ -63,7 +63,7 @@ public class ArrowButtonFactory extends ImageButtonFactory{
     }
 
     private AbstractCustomButton createDisableIconButton(String text1, String text2, ActionListener listener, boolean proportionate){
-        var but = helpCreatedMethod(new IconButton(text1, true), listener);
+        var but = helpCreatedMethod(new IconButton(text1, proportionate), listener);
         if (text2 != null) {
             but.setDisabledIcon(new StretchIcon(text2, proportionate));
         }

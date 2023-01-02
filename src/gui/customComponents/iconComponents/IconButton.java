@@ -29,4 +29,8 @@ public class IconButton extends AbstractCustomButton implements IIconComponent {
     public StretchIcon getIcon() {
         return icon;
     }
+    @Override
+    public String getContent() {
+        return icon.getPath();
+    }
 }

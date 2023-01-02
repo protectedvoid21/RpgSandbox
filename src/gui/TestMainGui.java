@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.AbstractMap;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class TestMainGui {
@@ -35,33 +36,43 @@ public class TestMainGui {
         ramka.setSize(800, 800);
 
 
-        var mapa = new ArrayList<AbstractMap.SimpleEntry<String, String>>();
-        mapa.add(new AbstractMap.SimpleEntry<>("SOMETHINGgffgfgfgfgfgfgfgfgfghh", "10"));
-        mapa.add(new AbstractMap.SimpleEntry<>("AGILITY", "1"));
-        mapa.add(new AbstractMap.SimpleEntry<>("POWER", "4"));
-        mapa.add(new AbstractMap.SimpleEntry<>("ARMOR", "8"));
-        mapa.add(new AbstractMap.SimpleEntry<>("DEFEND", "4"));
-        mapa.add(new AbstractMap.SimpleEntry<>("helldfo", "world"));
-        mapa.add(new AbstractMap.SimpleEntry<>("helldfo", "world"));
-        mapa.add(new  AbstractMap.SimpleEntry<>("helldfo", "world"));
-        mapa.add(new AbstractMap.SimpleEntry<>("SOMETHINGgffgfgfgfgfgfgfgfgfghh", "10"));
-        mapa.add(new AbstractMap.SimpleEntry<>("AGILITY", "1"));
-        mapa.add(new AbstractMap.SimpleEntry<>("POWER", "4"));
-        mapa.add(new AbstractMap.SimpleEntry<>("ARMOR", "8"));
-        mapa.add(new AbstractMap.SimpleEntry<>("DEFEND", "4"));
-        mapa.add(new AbstractMap.SimpleEntry<>("helldfo", "world"));
-        mapa.add(new AbstractMap.SimpleEntry<>("helldfo", "world"));
-        mapa.add(new  AbstractMap.SimpleEntry<>("helldfo", "world"));
-        mapa.add(new AbstractMap.SimpleEntry<>("DEFEND", "4"));
-        mapa.add(new AbstractMap.SimpleEntry<>("helldfo", "world"));
-        mapa.add(new AbstractMap.SimpleEntry<>("helldfo", "world"));
-        mapa.add(new  AbstractMap.SimpleEntry<>("helldfo", "world"));
+        var mapa = new ArrayList<ArrayList<String>>();
+        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
+        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"XDDD", "1fd0"})));
+        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
+        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
+        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
+        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
+        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
+        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
+        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
+        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"XDDD", "1fd0"})));
+
+
+        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
+        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
+        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
+        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
+        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
+
+        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
+        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
+        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
+        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"XDDD", "1fd0"})));
+        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
+
+        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
+        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
+        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
+        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
+        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
 
 
 //        System.out.println(mapa.size());
 
         IOverallFactory f = new WarHammerFactory();
-        var card = f.createCard(new AbstractMap.SimpleEntry<>("src/gui/witch.png", "WITCH"), mapa);//metoda change size do gotowej karty i zmiana calosci danych
+        var card = f.createCard(new AbstractMap.SimpleEntry<>("src/gui/witch.png", "WITCH"), mapa);//metoda change
+        // size do gotowej karty i zmiana calosci danych
 
 //        var menu = new CustomMenuMenager(ComponentsSeries.ComponentsDimension.HORIZONTAL,
 //                ComponentsSeries.ComponentsDimension.VERTICAL);
@@ -140,7 +151,7 @@ public class TestMainGui {
 //        card.getPanel().getCmp().addSpace(10);
 
         var cmp = new ComponentPanelMenager<>(card.getPanel());
-        cmp.addSpace(10);
+//        cmp.addSpace(10);
         ramka.add(cmp);
         ramka.setVisible(true);
     }

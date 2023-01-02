@@ -11,5 +11,12 @@ public class CustomButton extends AbstractCustomButton {
     @Override
     public void setContent(String  text) {
         setText(text);
+        if (getCustomUI() != null)
+            getCustomUI().setRelevantFont(getText());
+    }
+
+    @Override
+    public String getContent() {
+        return getText();
     }
 }

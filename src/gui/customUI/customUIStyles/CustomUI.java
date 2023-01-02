@@ -12,6 +12,9 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.desktop.SystemSleepEvent;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.awt.geom.Area;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -65,6 +68,19 @@ public abstract class CustomUI implements ICustomUI {
         margin = new ComponentTextMarginManager(c);
         activeMargin = new ComponentTextMarginManager(c);
 //        borderStrategy = new DefaultBorderStrategy();
+
+        parent.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                super.componentResized(e);
+                if (isBorderedRespected && activeMargin != null) {
+                    activeMargin.checkValidation();
+                }
+                if (margin != null) {
+                    margin.checkValidation();
+                }
+            }
+        });
         c.setOpaque(false);
         c.setBorder(new EmptyBorder(0, 0, 0, 0));//to fix na 1111
     }
@@ -80,16 +96,16 @@ public abstract class CustomUI implements ICustomUI {
 
     @Override
     public void paint(Graphics g, JComponent c) {
-        if (borderStrategy != null) {
+//        if (borderStrategy != null) {
             paintBackground(g, c, offSet);
-        }
-        if (isBorderedRespected && activeMargin != null) {
-            activeMargin.checkValidation();
-        }
-        if (margin != null) {
-            margin.checkValidation();
-        }
-        setFontMaximized(isFontMaximized);
+//        }
+//        if (isBorderedRespected && activeMargin != null) {
+//            activeMargin.checkValidation();
+//        }
+//        if (margin != null) {
+//            margin.checkValidation();
+//        }
+//        setFontMaximized(isFontMaximized);//nwm po co
     }
 
     @Override
@@ -175,15 +191,16 @@ public abstract class CustomUI implements ICustomUI {
         }
     }
 
-    public void removeSharingSize() {
-//        cmpsShared.removeComponentFromList(parent);
-    }
+//    public void removeSharingSize() {
+////        cmpsShared.removeComponentFromList(parent);
+//    }
 
-    public void setSharedComponentSize(SharedCmpsFont cmp) {
-        if (cmp == null) {
+    /**Set cmp on null if you want to remove sharing component size*/
+    public void setSharedComponentSize(SharedCmpsFont cmpShared) {
+        if (cmpShared == null) {
             this.cmpsShared.removeComponentFromList(parent);
         }
-        this.cmpsShared = cmp;
+        this.cmpsShared = cmpShared;
     }
 
     public boolean hasSharedSize() {
