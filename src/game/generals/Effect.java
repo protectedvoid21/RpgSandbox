@@ -23,7 +23,7 @@ public abstract class Effect {
         remainingRounds = roundsLength;
     }
     
-    protected void decreaseLength() {
+    public void decreaseLength() {
         if(!isActive()) {
             return;
         }
