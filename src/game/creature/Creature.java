@@ -8,9 +8,13 @@ import game.interfaces.IStatistics;
 public abstract class Creature {
     protected IStatistics statistics;
     protected String name = "Adam";
+    protected Position position;
+    protected Experience experience;
     
-    public Creature(IStatistics statistics) {
+    public Creature(IStatistics statistics, Position position, Experience experience) {
         this.statistics = statistics;//this can be also removed, what about creating new builder which creates required creature for given RPG game, then stats will be created by this builder class.
+        this.position = position;
+        this.experience = experience;
     }
     
     public void setStatistics(IStatistics statistics) {
@@ -28,4 +32,32 @@ public abstract class Creature {
     public String getName() {
         return name;
     }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    //    public void setPosition(Position position) {
+//        this.position = position;
+//    }
+
+        public Experience getExperience() {
+            return experience;
+        }
+
+        public void setExperience(Experience experience) {
+            this.experience = experience;
+        }
+
+
+        // cos takiego????
+        public void setPosition(int[][] matrix, int x, int y) {
+            if ((x >= 0 && x < matrix.length) && (y >= 0 && y > matrix[0].length) && matrix[x][y] == 0 && canOccupy(matrix, x, y)) {
+                setPosition(matrix, x, y);
+            }
+        }
+
+        private boolean canOccupy(int[][] matrix, int x, int y) {
+            return true;
+        }
 }

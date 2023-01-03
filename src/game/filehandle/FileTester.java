@@ -1,6 +1,8 @@
 package game.filehandle;
 
+import game.creature.Experience;
 import game.creature.PlayerCharacter;
+import game.creature.Position;
 import game.equipment.Inventory;
 import game.interfaceWarhammer.StatisticsWarhammer;
 
@@ -19,7 +21,7 @@ public class FileTester {
     }
     
     static PlayerCharacter createSeedPlayer(String name) {
-        PlayerCharacter playerCharacter = new PlayerCharacter(new StatisticsWarhammer(), new Inventory());
+        PlayerCharacter playerCharacter = new PlayerCharacter(new StatisticsWarhammer(), new Inventory(), new Position(0,0), new Experience(0));
         playerCharacter.setName(name);
         
         return playerCharacter;
