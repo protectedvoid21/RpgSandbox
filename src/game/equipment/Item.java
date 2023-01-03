@@ -9,8 +9,6 @@ public abstract class Item {
       public Item(IStatistics statistics) {
             this.statistics = statistics;
       }
-      
-      public abstract void use();
-      
+
       public abstract boolean isValid();
 }
