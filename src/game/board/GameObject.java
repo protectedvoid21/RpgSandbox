@@ -1,5 +1,5 @@
 package game.board;
 
-public class Transform {
+public class GameObject {
     
 }

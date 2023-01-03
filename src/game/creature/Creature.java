@@ -1,6 +1,5 @@
 package game.creature;
 
-import game.board.Transform;
 import game.interfaces.IStatistics;
 
 /**So far it doesn't look really nice but in the future we will have some kind of director whose task will be creation of new Creature instance.
@@ -9,7 +8,6 @@ import game.interfaces.IStatistics;
 public abstract class Creature {
     protected IStatistics statistics;
     protected String name = "Adam";
-    protected Transform transform;
     
     public Creature(IStatistics statistics) {
         this.statistics = statistics;//this can be also removed, what about creating new builder which creates required creature for given RPG game, then stats will be created by this builder class.

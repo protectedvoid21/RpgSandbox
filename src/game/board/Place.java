@@ -1,31 +1,31 @@
 package game.board;
 
 public class Place {
-    private Transform transform;
+    private GameObject gameObject;
     
     public final int x;
     public final int y;
     
     public Place(int x, int y) {
-        transform = null;
+        gameObject = null;
         this.x = x;
         this.y = y;
     }
     
-    public Place(int x, int y, Transform transform) {
+    public Place(int x, int y, GameObject gameObject) {
         this(x, y);
-        this.transform = transform;
+        this.gameObject = gameObject;
     }
     
     public boolean isEmpty() {
-        return transform == null;
+        return gameObject == null;
     }
     
-    public Transform getTransform() {
-        return transform;
+    public GameObject getGameObject() {
+        return gameObject;
     }
     
-    public void setTransform(Transform transform) {
-        this.transform = transform;
+    public void setGameObject(GameObject gameObject) {
+        this.gameObject = gameObject;
     }
 }

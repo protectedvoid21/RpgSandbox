@@ -16,7 +16,7 @@ public class Board {
             return;
         }
 
-        placeDest.setTransform(place.getTransform());
-        place.setTransform(null);
+        placeDest.setGameObject(place.getGameObject());
+        place.setGameObject(null);
     }
 }
