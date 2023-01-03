@@ -39,9 +39,13 @@ public class DoubleArrowPanel {
     private void arrowMethod(Side side ){
         if (switchableComponent.isSwitchingSidePossible(side)) {
             switchableComponent.switchSide(side);
-            checkTurningButton(Side.LEFT);
-            checkTurningButton(Side.RIGHT);
+            updateSwitchingButtons();
         }
+    }
+
+    public void updateSwitchingButtons(){
+        checkTurningButton(Side.LEFT);
+        checkTurningButton(Side.RIGHT);
     }
 
     private void checkTurningButton(Side side){
@@ -54,8 +58,7 @@ public class DoubleArrowPanel {
 
     public void setSwitchableComponent(SwitchableComponent cmp){
         switchableComponent = cmp;
-        checkTurningButton(Side.LEFT);
-        checkTurningButton(Side.RIGHT);
+        updateSwitchingButtons();
     }
 
     public DoubleArrowPanel(GuiFactory factory, SwitchableComponent switchableComponent) {

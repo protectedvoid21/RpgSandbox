@@ -36,42 +36,15 @@ public class TestMainGui {
         ramka.setSize(800, 800);
 
 
-        var mapa = new ArrayList<ArrayList<String>>();
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"XDDD", "1fd0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"XDDD", "1fd0"})));
-
-
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
-
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"XDDD", "1fd0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
-
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
 
 
 //        System.out.println(mapa.size());
 
         IOverallFactory f = new WarHammerFactory();
-        var card = f.createCard(new AbstractMap.SimpleEntry<>("src/gui/witch.png", "WITCH"), mapa);//metoda change
+//        var card = f.createCard(new AbstractMap.SimpleEntry<>("src/gui/witch.png", "WITCH"), mapa);//metoda change
+
+        var c = f.createFullCard(
+        );
         // size do gotowej karty i zmiana calosci danych
 
 //        var menu = new CustomMenuMenager(ComponentsSeries.ComponentsDimension.HORIZONTAL,
@@ -150,7 +123,7 @@ public class TestMainGui {
 //        menu.getCmp().setBackgroundImage("src/gui/warback.jpg");
 //        card.getPanel().getCmp().addSpace(10);
 
-        var cmp = new ComponentPanelMenager<>(card.getPanel());
+        var cmp = new ComponentPanelMenager<>(c.getPanel());
 //        cmp.addSpace(10);
         ramka.add(cmp);
         ramka.setVisible(true);

@@ -11,4 +11,6 @@ public abstract class IOverallFactory {
 
     public abstract Card createCard(AbstractMap.SimpleEntry<String, String> titleIconPathName,
                                     ArrayList<ArrayList<String>> dataMap);
+
+    public abstract Card createFullCard();
 }

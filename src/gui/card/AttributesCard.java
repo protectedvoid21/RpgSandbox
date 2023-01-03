@@ -22,9 +22,8 @@ public final class AttributesCard extends AbstractCard<AbstractCustomLabel> {
             new DefaultCustomMenuMenager<AbstractCustomLabel>(ComponentsSeries.ComponentsDimension.HORIZONTAL,
                     ComponentsSeries.ComponentsDimension.VERTICAL);
 
-    public AttributesCard(AbstractMap.SimpleEntry<String, String> titleIconPathName,
-                          ArrayList<ArrayList<String>> dataMap, GuiFactory factory) {
-        super(titleIconPathName, dataMap, factory);
+    public AttributesCard( GuiFactory factory) {
+        super(factory);
         initializeCard(5);
     }
 
@@ -43,8 +42,8 @@ public final class AttributesCard extends AbstractCard<AbstractCustomLabel> {
     }
     protected void updateContent() {//zmienia sie
         int maxSideIndex = getSideMaximumElementsNumber();
-        int dataSize = dataMap.size();
-        var sublist = dataMap.subList(currentAttrSide * maximumElementNumber, maxSideIndex > dataSize ? dataSize :
+        int dataSize = data.content.size();
+        var sublist = data.content.subList(currentAttrSide * maximumElementNumber, maxSideIndex > dataSize ? dataSize :
                 maxSideIndex);
 
         int currentIndex = 0;
@@ -67,7 +66,6 @@ public final class AttributesCard extends AbstractCard<AbstractCustomLabel> {
     }
 
     public void initializeContent() {//zmienia sie
-        System.out.println("hahahahaah");
         for (int i = 0; i < maximumElementNumber ; i++) {
             menager.addMiddleComponent(factory.createLabel(Card.EMPTY_DATA_CONTENT), 0, 10);
             menager.getMainComponent(0).getComponent().getLastComponent().addSpace(2, ComponentPanelMenager.Side.LEFT
@@ -79,7 +77,7 @@ public final class AttributesCard extends AbstractCard<AbstractCustomLabel> {
                     ComponentPanelMenager.Side.TOP);
         }
 
-        updateContent();
+//        updateContent();
     }
 
     @Override

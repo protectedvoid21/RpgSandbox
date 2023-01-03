@@ -27,11 +27,10 @@ public class DetailButtonsCard extends AbstractCard<JComponent> {
 
 
     /**
-     * dataMap should be in format [path1, path2, path3...]
+     * dataMap should be in format [[path1, text1], [path2, text2], [path3, text3]...]
      */
-    public DetailButtonsCard(AbstractMap.SimpleEntry titleIconPathName, ArrayList<ArrayList<String>> dataMap,
-                             GuiFactory factory) {
-        super(titleIconPathName, dataMap, factory);
+    public DetailButtonsCard(GuiFactory factory) {
+        super(factory);
         initializeCard(3);
     }
 
@@ -44,60 +43,72 @@ public class DetailButtonsCard extends AbstractCard<JComponent> {
     @Override
     protected void updateContent() {
         int maxSideIndex = getSideMaximumElementsNumber();
-        int dataSize = dataMap.size();
-        var sublist = dataMap.subList(currentAttrSide * maximumElementNumber, maxSideIndex > dataSize ? dataSize :
-                maxSideIndex);//cos sie piperzy
-//        System.out.println(dataMap.size()+"mapasize");
-//        var needsToAdded = maximumElementNumber-sublist.size();
-//        while (sublist.size() < maximumElementNumber) {
-//            System.out.println("hejka jestem tutaj");
-//            sublist.add(new ArrayList<>(Arrays.asList(Card.EMPTY_DATA_CONTENT, Card.EMPTY_DATA_CONTENT)));
-//        }
+        int dataSize = data.content.size();
+        var sublist = data.content.subList(currentAttrSide * maximumElementNumber, maxSideIndex > dataSize ? dataSize :
+                maxSideIndex);
         int currentIndex = 0;
-//        System.out.println(dataMap.size()+"mapasize");
         for (var key : sublist) {
-            labelList.get(currentIndex).setText(key.get(0));
+            for (int i = 0; i < 2; i++) {
+                labelList.get(2 * currentIndex + i).setContent(key.get(i));
+            }
+            detailList.get(currentIndex).setContent("DETAILS");
+            selectList.get(currentIndex).setContent("SELECT");
             currentIndex++;
         }
-        System.out.println(sublist);
         if (sublist.size() < maximumElementNumber) {
             for (int i = dataSize % maximumElementNumber; i < maximumElementNumber; i++) {
-                labelList.get(i).setText(Card.EMPTY_DATA_CONTENT);
+                for (int j = 0; j < 2; j++) {
+                    labelList.get(2 * i + j).setContent(Card.EMPTY_DATA_CONTENT);
+                }
+                detailList.get(i).setContent(Card.EMPTY_DATA_CONTENT);
+                selectList.get(i).setContent(Card.EMPTY_DATA_CONTENT);
             }
         }
-        Card.setAspectVisible(labelList, true);
-//        System.out.println(dataMap.size()+"mapasize");
+        for (var list : Arrays.asList(labelList, detailList, selectList)) {
+            Card.setAspectVisible(list, true);
+        }
     }
 
     @Override
     protected void initializeContent() {
-        factory.setButtonType(GuiFactory.ButtonType.NORMAL);
         for (int i = 0; i < maximumElementNumber; i++) {
-            var label = factory.createLabel(Card.EMPTY_DATA_CONTENT);
-            labelList.add(label);
-            menager.addMiddleComponent(label, 0, 10);
-            var cmp = menager.getMainComponent(0).getComponent().getLastComponent();
-            cmp.addSpace(2, ComponentPanelMenager.Side.LEFT, ComponentPanelMenager.Side.BOTTOM,
-                    ComponentPanelMenager.Side.TOP);
-            cmp.addSpace(3, ComponentPanelMenager.Side.RIGHT);
+//            var label = factory.createLabel(Card.EMPTY_DATA_CONTENT);
+//            labelList.add(label);
+//            menager.addMiddleComponent(label, 0, 20);
+//            var cmp = menager.getMainComponent(0).getComponent().getLastComponent();
+//            cmp.addSpace(2, ComponentPanelMenager.Side.LEFT, ComponentPanelMenager.Side.BOTTOM,
+//                    ComponentPanelMenager.Side.TOP);
+//            cmp.addSpace(3, ComponentPanelMenager.Side.RIGHT);
+            initLabel(GuiFactory.LabelType.ICON);
+            initLabel(GuiFactory.LabelType.NORMAL);
             initButton(detailList, "DETAIL");
             initButton(selectList, "SELECT");
         }
-        updateContent();
+//        updateContent();
 
+    }
+
+    private void initLabel(GuiFactory.LabelType type) {
+        factory.setLabelType(type);
+        var label = factory.createLabel(Card.EMPTY_DATA_CONTENT);
+        int index = type == GuiFactory.LabelType.NORMAL ? 1 : 0;
+        menager.addMiddleComponent(label, index, 20);
+        menager.getMainComponent(index).getComponent().getLastComponent().addSpace(2);
+        labelList.add(label);
     }
 
     private void initButton(ArrayList list, String text) {
         var button = factory.createButton(text, null);
-        int index = list == detailList ? 1 : 2;
-        menager.addMiddleComponent(button, index, 10);
-        menager.getMainComponent(index).getComponent().getLastComponent().addSpace(2);
+        int index = list == detailList ? 2 : 3;
+        menager.addMiddleComponent(button, index, 20);
+        menager.getMainComponent(index).getComponent().getLastComponent().addSpace(4);
         list.add(button);
     }
 
     @Override
     protected void initializeCard(int maximumElementNumber) {
-        menager.addMainComponent(20);
+        menager.addMainComponent(15);
+        menager.addMainComponent(15);
         menager.addMainComponent(10);
         menager.addMainComponent(10);
 

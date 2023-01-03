@@ -17,7 +17,7 @@ public class EmptyCard extends AbstractCard<AbstractCustomLabel> {
                     ComponentsSeries.ComponentsDimension.VERTICAL);
 
     public EmptyCard() {
-        super(new AbstractMap.SimpleEntry<>(Card.EMPTY_DATA_CONTENT, Card.EMPTY_DATA_CONTENT), new ArrayList<>(), null);
+        super( null);
     }
 
     @Override

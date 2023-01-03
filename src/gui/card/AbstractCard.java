@@ -16,18 +16,30 @@ import java.util.TimerTask;
 public abstract class AbstractCard<T extends JComponent> implements SwitchableComponent {
     protected GuiFactory factory;
     protected int currentAttrSide = 0;
-    protected AbstractMap.SimpleEntry<String, String> titleIconPathName;
-    protected ArrayList<ArrayList<String>> dataMap;
+//    protected AbstractMap.SimpleEntry<String, String> titleIconPathName= new AbstractMap.SimpleEntry<>("", "");
+//    protected ArrayList<ArrayList<String>> dataMap = new ArrayList<>();
+    protected CardContentDataSet data;
     private ComponentsSeries<JComponent> mainSeries =
             new ComponentsSeries<>(ComponentsSeries.ComponentsDimension.VERTICAL);
     protected int maximumElementNumber;
 
-    public AbstractCard(AbstractMap.SimpleEntry<String, String> titleIconPathName,
-                        ArrayList<ArrayList<String>> dataMap, GuiFactory factory) {
+    public AbstractCard(GuiFactory factory) {
         this.factory = factory;
-        this.titleIconPathName = titleIconPathName;
-        this.dataMap = dataMap;
     }
+
+    public void initializeCardData(CardContentDataSet data) {
+        this.data = data;
+        reset();
+    }
+//    public void initializeCardData(AbstractMap.SimpleEntry<String, String> titleIconPathName) {
+//        this.titleIconPathName = titleIconPathName;
+//        reset();
+//    }
+//
+//    public void initializeCardData( ArrayList<ArrayList<String>> dataMap) {
+//        this.dataMap = dataMap;
+//        reset();
+//    }
 
     protected void initializeCard(int maximumElementNumber) {
         this.maximumElementNumber = maximumElementNumber;
@@ -46,18 +58,18 @@ public abstract class AbstractCard<T extends JComponent> implements SwitchableCo
 
     public abstract DefaultCustomMenuMenager<T> getContentMenager();
 
-    public void setDataMap(ArrayList<ArrayList<String>> dataMap) {
-        this.dataMap = dataMap;
-        updateContent();
-    }
+//    public void setDataMap(ArrayList<ArrayList<String>> dataMap) {
+//        this.dataMap = dataMap;
+//        updateContent();
+//    }
 
 
     public String getFirstTitleContent() {
-        return titleIconPathName.getKey();
+        return data.titlePath;
     }
 
     public String getSecondTitleContent() {
-        return titleIconPathName.getValue();
+        return data.titleContent;
     }
 
 
@@ -80,7 +92,7 @@ public abstract class AbstractCard<T extends JComponent> implements SwitchableCo
         boolean status = false;
         switch (side) {
             case LEFT -> status = currentAttrSide > 0;
-            case RIGHT -> status = getSideMaximumElementsNumber() < dataMap.size();
+            case RIGHT -> status = getSideMaximumElementsNumber() < data.content.size();
         }
         return status;
     }
