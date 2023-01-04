@@ -115,4 +115,16 @@ public class Inventory {
             activeMount = mount;
         }
     }
+
+    public Weapon getActiveWeapon() {
+        return activeWeapon;
+    }
+
+    public Armor getActiveArmor() {
+        return activeArmor;
+    }
+
+    public Mount getActiveMount() {
+        return activeMount;
+    }
 }
