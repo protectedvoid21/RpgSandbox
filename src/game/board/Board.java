@@ -4,6 +4,7 @@ import game.utils.MathHelper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 public class Board {
     private final Place[][] places;
@@ -18,51 +19,49 @@ public class Board {
         }
     }
     
-    public boolean canMoveTo(Place placeDestination) {
-        return placeDestination.isEmpty();
+    private Place getPlace(Vector2 vector) {
+        return places[vector.y][vector.x];        
+    }
+    
+    public boolean canMoveTo(Vector2 position) {
+        return getPlace(position).isEmpty();
     }
 
-    public void move(Place place, Place placeDest) {
-        if(!canMoveTo(placeDest)) {
+    public void move(Vector2 currentPos, Vector2 destPos) {
+        if(!canMoveTo(destPos)) {
             return;
         }
 
-        placeDest.setGameObject(place.getGameObject());
-        place.setGameObject(null);
+        getPlace(destPos).setGameObject(getPlace(destPos).getGameObject());
+        getPlace(currentPos).setGameObject(null);
     }
     
-    public void removeGameObject(Place place) {
-        place.setGameObject(null);
+    public void removeGameObject(Vector2 position) {
+        getPlace(position).setGameObject(null);
     }
     
-    public List<Place> getNeighborPlaces(Place place, int range) {
-        int xStart = place.x;
-        int yStart = place.y;
-        
+    public List<Vector2> getNeighborPlaces(Vector2 position, int range) {
         int width = places[0].length;
         int height = places.length;
 
-        List<Integer[]> gridCircle = MathHelper.getGridCircle(range);
-        for(var element : gridCircle) {
-            element[0] += xStart;
-            element[1] += yStart;
-        }
+        List<Vector2> gridCircle = MathHelper.getGridCircle(range);
+        List<Vector2> movedCircle = new ArrayList<>();
         
-        gridCircle = gridCircle.stream()
-                .filter(g -> g[0] >= 0 && g[0] < width && g[1] >= 0 && g[1] < height)
+        for(var vector : gridCircle) {
+            movedCircle.add(new Vector2(vector.x + position.x, vector.y + position.y));
+        }
+
+        movedCircle = movedCircle.stream()
+                .filter(v -> v.x >= 0 && v.x < width && v.y >= 0 && v.y < height)
                 .toList();
         
-        List<Place> neighborPlaces = new ArrayList<>();
-        
-        for(var element : gridCircle) {
-            neighborPlaces.add(places[element[1]][element[0]]);
-        }
-        
-        return neighborPlaces;
+        return gridCircle;
     }
     
-    public List<Place> getEmptyPlaces(Place place, int range) {
-        return getNeighborPlaces(place, range)
-                .stream().filter(p -> p.isEmpty()).toList();
+    public List<Vector2> getEmptyPlaces(Vector2 position, int range) {
+        return getNeighborPlaces(position, range)
+                .stream()
+                .filter(n -> getPlace(n).isEmpty())
+                .toList();
     }
 }
