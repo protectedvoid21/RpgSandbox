@@ -6,10 +6,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Board {
-    private Place[][] places;
+    private final Place[][] places;
     
     public Board(int width, int height) {
         places = new Place[height][width];
+        
+        for(int x = 0; x < width; x++) {
+            for(int y = 0; y < height; y++) {
+                places[y][x] = new Place(x, y);
+            }
+        }
     }
     
     public boolean canMoveTo(Place placeDestination) {
@@ -25,19 +31,17 @@ public class Board {
         place.setGameObject(null);
     }
     
-    public List<Place> getEmptyPlaces(Place place, int range) {
-        List<Place> emptyPlaces = new ArrayList<>();
-        
+    public void removeGameObject(Place place) {
+        place.setGameObject(null);
+    }
+    
+    public List<Place> getNeighborPlaces(Place place, int range) {
         int xStart = place.x;
         int yStart = place.y;
         
-        if(place.isEmpty()) {
-            emptyPlaces.add(place);
-        }
-        
         int width = places[0].length;
         int height = places.length;
-        
+
         List<Integer[]> gridCircle = MathHelper.getGridCircle(range);
         for(var element : gridCircle) {
             element[0] += xStart;
@@ -48,10 +52,17 @@ public class Board {
                 .filter(g -> g[0] >= 0 && g[0] < width && g[1] >= 0 && g[1] < height)
                 .toList();
         
+        List<Place> neighborPlaces = new ArrayList<>();
+        
         for(var element : gridCircle) {
-            emptyPlaces.add(places[element[1]][element[0]]);
+            neighborPlaces.add(places[element[1]][element[0]]);
         }
         
-        return emptyPlaces;
+        return neighborPlaces;
+    }
+    
+    public List<Place> getEmptyPlaces(Place place, int range) {
+        return getNeighborPlaces(place, range)
+                .stream().filter(p -> p.isEmpty()).toList();
     }
 }
