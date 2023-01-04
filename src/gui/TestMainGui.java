@@ -114,7 +114,7 @@ public class TestMainGui {
 //        var ui = new RoundedBorderUI();
 //        ui.setAdditionaldColor(Color.RED, ICustomUI.Index.FIRST);
 //        menu.getCmp().setUI(new CustomPanelUI(new RoundedBorderUI()));
-//        var x = new TransparentPanel(menu.getCmp());
+//        var x = new TransparentPanel(menu.getCmp());A
 //        ramka.setVisible(true);
 //        var x = new ComponentPanelMenager<>(new JButton());
 //        x.addSpace(10);
@@ -123,7 +123,7 @@ public class TestMainGui {
 //        menu.getCmp().setBackgroundImage("src/gui/warback.jpg");
 //        card.getPanel().getCmp().addSpace(10);
 
-        var cmp = new ComponentPanelMenager<>(c.getPanel());
+        var cmp = new ComponentPanelMenager<>(f.createFullCard().getPanel());
 //        cmp.addSpace(10);
         ramka.add(cmp);
         ramka.setVisible(true);

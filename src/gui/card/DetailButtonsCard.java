@@ -22,7 +22,7 @@ public class DetailButtonsCard extends AbstractCard<JComponent> {
                     ComponentsSeries.ComponentsDimension.VERTICAL);
 
     protected ArrayList<AbstractCustomLabel> labelList = new ArrayList<>();
-    protected ArrayList<AbstractCustomButton> selectList = new ArrayList<>();
+//    protected ArrayList<AbstractCustomButton> selectList = new ArrayList<>();
     protected ArrayList<AbstractCustomButton> detailList = new ArrayList<>();
 
 
@@ -32,6 +32,11 @@ public class DetailButtonsCard extends AbstractCard<JComponent> {
     public DetailButtonsCard(GuiFactory factory) {
         super(factory);
         initializeCard(3);
+        initializeContent();
+    }
+
+    public AbstractCustomButton getDetailButton(int index){
+        return detailList.get(index);
     }
 
 
@@ -52,7 +57,7 @@ public class DetailButtonsCard extends AbstractCard<JComponent> {
                 labelList.get(2 * currentIndex + i).setContent(key.get(i));
             }
             detailList.get(currentIndex).setContent("DETAILS");
-            selectList.get(currentIndex).setContent("SELECT");
+//            selectList.get(currentIndex).setContent("SELECT");
             currentIndex++;
         }
         if (sublist.size() < maximumElementNumber) {
@@ -61,34 +66,27 @@ public class DetailButtonsCard extends AbstractCard<JComponent> {
                     labelList.get(2 * i + j).setContent(Card.EMPTY_DATA_CONTENT);
                 }
                 detailList.get(i).setContent(Card.EMPTY_DATA_CONTENT);
-                selectList.get(i).setContent(Card.EMPTY_DATA_CONTENT);
+//                selectList.get(i).setContent(Card.EMPTY_DATA_CONTENT);
             }
         }
-        for (var list : Arrays.asList(labelList, detailList, selectList)) {
+        for (var list : Arrays.asList(labelList, detailList)) {
             Card.setAspectVisible(list, true);
         }
     }
 
     @Override
     protected void initializeContent() {
+        factory.setButtonType(GuiFactory.ButtonType.NORMAL);
         for (int i = 0; i < maximumElementNumber; i++) {
-//            var label = factory.createLabel(Card.EMPTY_DATA_CONTENT);
-//            labelList.add(label);
-//            menager.addMiddleComponent(label, 0, 20);
-//            var cmp = menager.getMainComponent(0).getComponent().getLastComponent();
-//            cmp.addSpace(2, ComponentPanelMenager.Side.LEFT, ComponentPanelMenager.Side.BOTTOM,
-//                    ComponentPanelMenager.Side.TOP);
-//            cmp.addSpace(3, ComponentPanelMenager.Side.RIGHT);
             initLabel(GuiFactory.LabelType.ICON);
             initLabel(GuiFactory.LabelType.NORMAL);
             initButton(detailList, "DETAIL");
-            initButton(selectList, "SELECT");
+//            initButton(selectList, "SELECT");
         }
-//        updateContent();
 
     }
 
-    private void initLabel(GuiFactory.LabelType type) {
+    protected void initLabel(GuiFactory.LabelType type) {
         factory.setLabelType(type);
         var label = factory.createLabel(Card.EMPTY_DATA_CONTENT);
         int index = type == GuiFactory.LabelType.NORMAL ? 1 : 0;
@@ -97,7 +95,7 @@ public class DetailButtonsCard extends AbstractCard<JComponent> {
         labelList.add(label);
     }
 
-    private void initButton(ArrayList list, String text) {
+    protected void initButton(ArrayList list, String text) {
         var button = factory.createButton(text, null);
         int index = list == detailList ? 2 : 3;
         menager.addMiddleComponent(button, index, 20);
@@ -110,14 +108,15 @@ public class DetailButtonsCard extends AbstractCard<JComponent> {
         menager.addMainComponent(15);
         menager.addMainComponent(15);
         menager.addMainComponent(10);
-        menager.addMainComponent(10);
+//        menager.addMainComponent(10);
 
         super.initializeCard(maximumElementNumber);
     }
 
     @Override
     public void setUniformForm() {
-        SharedCmpsFont.setUniformFont(detailList, selectList);
+        SharedCmpsFont.setUniformFont(detailList);
         SharedCmpsFont.setUniformFont(labelList);
     }
+
 }

@@ -90,5 +90,39 @@ public class WarHammerFactory extends IOverallFactory {
         return c;
     }
 
+    @Override
+    public OnlyVisibleCard createSmallCard() {
+        factory.setButtonFactory(new WinterClickedButtonFactory());
+        factory.setBorderStrategy(new AverageBorderStartegy());
+        var card = new OnlyVisibleCard(factory, 5);
+        var mapa = new ArrayList<ArrayList<String>>();
+        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
+        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"XDDD", "1fd0"})));
+        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
+        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
+        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
 
+        mapa.get(0).set(0, "src/gui/stats.png");
+        mapa.get(3).set(0, "src/gui/armor.png");
+        mapa.get(2).set(0, "src/gui/weapon.png");
+        mapa.get(1).set(0, "src/gui/effect.png");
+        mapa.get(4).set(0, "src/gui/horse.png");
+        CardContentDataSet data = new CardContentDataSet();
+        data.content = mapa;
+        data.titleContent = "WITCH";
+        data.titlePath = "src/gui/witch.png";
+
+        card.uploadNewData(data);
+        card.setUniformFont();
+        try {
+            card.setBackgroundImage("src/gui/aaa.png");
+        } catch (IOException e) {
+            card.setBackgroundColor(new Color(0x935D3A));
+        }
+
+        return card;
+
+
+
+    }
 }

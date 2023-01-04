@@ -31,6 +31,10 @@ public abstract class AbstractCard<T extends JComponent> implements SwitchableCo
         this.data = data;
         reset();
     }
+
+    public CardContentDataSet getData(){
+        return data;
+    }
 //    public void initializeCardData(AbstractMap.SimpleEntry<String, String> titleIconPathName) {
 //        this.titleIconPathName = titleIconPathName;
 //        reset();
@@ -44,7 +48,7 @@ public abstract class AbstractCard<T extends JComponent> implements SwitchableCo
     protected void initializeCard(int maximumElementNumber) {
         this.maximumElementNumber = maximumElementNumber;
         mainSeries.addOption(getContentMenager().getCmp(), 7);
-        initializeContent();
+//        initializeContent();
     }
 
     public void reset() {

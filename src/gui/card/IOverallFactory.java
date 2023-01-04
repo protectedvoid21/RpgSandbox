@@ -13,4 +13,6 @@ public abstract class IOverallFactory {
                                     ArrayList<ArrayList<String>> dataMap);
 
     public abstract Card createFullCard();
+
+    public abstract OnlyVisibleCard createSmallCard();
 }

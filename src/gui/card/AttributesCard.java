@@ -25,6 +25,7 @@ public final class AttributesCard extends AbstractCard<AbstractCustomLabel> {
     public AttributesCard( GuiFactory factory) {
         super(factory);
         initializeCard(5);
+        initializeContent();
     }
 
 

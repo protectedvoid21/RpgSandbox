@@ -30,6 +30,7 @@ public class OverallCard extends AbstractCard<JComponent> {
         super(factory);
         cardActions = cardListeners;
         initializeCard(cardActions.size());
+        initializeContent();
     }
 
 
