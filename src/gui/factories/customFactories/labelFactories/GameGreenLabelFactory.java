@@ -25,8 +25,10 @@ public class GameGreenLabelFactory extends LabelFactory {
         var ui2 = new CustomLabelUI(uiHelper);
         label.setUI(ui2);
         label.setMaximumFontSizeStatus(true);
+//        label.getCustomUI().setFontRelevantToHeight(true);
+//        label.getCustomUI().setFontRelevantToHeightValue(0.5);
         ui2.getCustomUI().setRespectionBorder(true);
-        ui2.getMargin().set(0, 30, 10, 0);
+        ui2.getMargin().set(0, 30, 0, 0);
         return label;
     }
 

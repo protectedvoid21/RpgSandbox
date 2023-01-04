@@ -59,7 +59,7 @@ public class TestMainGui {
 //        menu.setBackground(Color.ORANGE);
 //        menu.addMiddleComponent(factory.createButton("WINTER TIME", null), 0, 20);
 //        menu.addMiddleComponent(factory.createTextArea(), 0, 20);
-//        menu.addMiddleComponent(factory.createTextField(), 0, 20);
+//        menu.addMiddleComponent(factory.createTextField(), 0, 20);s
 //        var m = new ComponentsSeries<>(ComponentsSeries.ComponentsDimension.HORIZONTAL);
 //        menu.addMiddleComponent(m, 0, 40);
 //        menu.addMainComponent(5);

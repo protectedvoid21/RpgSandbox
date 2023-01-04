@@ -1,5 +1,6 @@
 package gui.customComponents.customTextComponents;
 
+import gui.customComponents.AbstractCustomLabel;
 import gui.customComponents.CustomLabel;
 
 import javax.swing.*;
@@ -9,13 +10,16 @@ import javax.swing.text.JTextComponent;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 /**
  * Some kind of decorator for customTextComponent. Offers possibility of changing color when something is being
  * entered to text component.
  */
 public class CustomDocumentListener implements DocumentListener {
-    private CustomLabel label;
+    private AbstractCustomLabel label;
+    private boolean pressed = false;
     private JTextComponent textComponent;
     private Color previousColor;
     private Timer t = null;
@@ -25,14 +29,29 @@ public class CustomDocumentListener implements DocumentListener {
         updatedColor = color;
     }
 
-    public void setLabel(CustomLabel label) {
+    public void setLabel(AbstractCustomLabel label) {
         this.label = label;
-
     }
 
 
     public void setTextComponent(JTextComponent textComponent) {
         this.textComponent = textComponent;
+        textComponent.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                pressed = true;
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                pressed = true;
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                pressed = false;
+            }
+        });
     }
 
     //to fix when some other background filters are used
@@ -51,23 +70,26 @@ public class CustomDocumentListener implements DocumentListener {
     }
 
     private void changedAction(DocumentEvent e) {
-        if (t == null) {
-            t = new Timer(1000, new ActionListener() {
-                int textSize = textComponent.getText().length();
+        System.out.println(pressed);
+        if (pressed) {
+            if (t == null) {
+                t = new Timer(1000, new ActionListener() {
+                    int textSize = textComponent.getText().length();
 
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    if (textSize == textComponent.getText().length()) {
-                        label.setBackground(previousColor);
-                        ((Timer) e.getSource()).stop();
-                        t = null;
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if (textSize == textComponent.getText().length()) {
+                            label.setBackground(previousColor);
+                            ((Timer) e.getSource()).stop();
+                            t = null;
+                        }
+                        textSize = textComponent.getText().length();
                     }
-                    textSize = textComponent.getText().length();
-                }
-            });
-            t.start();
-            previousColor = label.getBackground();
+                });
+                t.start();
+                previousColor = label.getBackground();
+            }
+            label.setBackground(updatedColor);
         }
-        label.setBackground(updatedColor);
     }
 }

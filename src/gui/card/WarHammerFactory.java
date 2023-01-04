@@ -26,7 +26,8 @@ public class WarHammerFactory extends IOverallFactory {
         ) {
         factory.setButtonFactory(new WinterClickedButtonFactory());
         factory.setBorderStrategy(new AverageBorderStartegy());
-        var card = new Card( factory);
+        var card = new GameCard( factory);
+        card.initialize();
         card.setUniformFont();
         try {
             card.setBackgroundImage("src/gui/aaa.png");

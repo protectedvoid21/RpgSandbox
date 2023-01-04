@@ -19,17 +19,27 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Card extends BaseCard implements SwitchableComponent, ICancelCard {
+public abstract class Card extends BaseCard implements SwitchableComponent, ICancelCard {
     static final public String EMPTY_DATA_CONTENT = "";
 
     private boolean hasCancelButton = false;
     private AbstractCustomButton cancelButton = null;
 
     private AbstractCard activeCard = new EmptyCard();
-
-
     protected Map<CardTypes, AbstractCard> allCards = new HashMap<>();
     private AttributesCard equipmentCard = new AttributesCard(factory);
+
+    public enum CardTypes {ATTRIBUTE, ARMOR, WEAPONS, EFFECTS, OVERALL, MOUNT}
+
+    protected static ArrayList<CardTypes> cardSideIndexes = new ArrayList<>(Arrays.asList(CardTypes.OVERALL,
+            CardTypes.ATTRIBUTE,
+            CardTypes.WEAPONS, CardTypes.EFFECTS, CardTypes.ARMOR, CardTypes.MOUNT));
+    private ComponentsSeries<ComponentPanelMenager<JComponent>> arrowMenager;
+    private ComponentPanelMenager<AbstractCustomButton> exitButton;
+    private DoubleArrowPanel leftArrows;
+    private DoubleArrowPanel rightArrows;
+    private int currentAttrSide = 0;
+//    private int currentEqSide = 0;
 
     @Override
     public AbstractCustomButton getCancelButton() {
@@ -55,60 +65,53 @@ public class Card extends BaseCard implements SwitchableComponent, ICancelCard {
     }
 
 
-    public enum CardTypes {ATTRIBUTE, ARMOR, WEAPONS, EFFECTS, OVERALL, MOUNT}
-
-    protected static ArrayList<CardTypes> cardSideIndexes = new ArrayList<>(Arrays.asList(CardTypes.OVERALL,
-            CardTypes.ATTRIBUTE,
-            CardTypes.WEAPONS, CardTypes.EFFECTS, CardTypes.ARMOR, CardTypes.MOUNT));
-
-//    private ComponentsSeries<ComponentPanelMenager<AbstractCustomLabel>> titleSeries =
-//            new ComponentsSeries<>(ComponentsSeries.ComponentsDimension.HORIZONTAL);
-
-    private ComponentsSeries<ComponentPanelMenager<JComponent>> arrowMenager;
-    private ComponentPanelMenager<AbstractCustomButton> exitButton;
-    private DoubleArrowPanel leftArrows;
-    private DoubleArrowPanel rightArrows;
-
-    //    protected DefaultCustomMenuMenager seriesPanel;
-//    protected GuiFactory factory;
-    private int currentAttrSide = 0;
-
     public Card(GuiFactory factory) {
         super(factory);
 
-//        seriesPanel = new DefaultCustomMenuMenager(ComponentsSeries.ComponentsDimension.VERTICAL,
-//                ComponentsSeries.ComponentsDimension.HORIZONTAL);
-//        initSeriesPanel(titleSeries, 0, 6);
-//        initSeriesPanel(ComponentPanelMenager.createEmptyInstance(), 1, 14);
+//        createArrowComponentSeries();
+//        initSeriesPanel(arrowMenager, 2, 4);
+//
+//        initializeWholeCard();
+//        createCancelButton();
+//        setCancelButtonStatus(false);
+//        rightArrows.setSwitchableComponent(this);
+    }
+
+    public void initialize() {
         createArrowComponentSeries();
         initSeriesPanel(arrowMenager, 2, 4);
 
         initializeWholeCard();
         createCancelButton();
         setCancelButtonStatus(false);
-//        initializeTitle();
         rightArrows.setSwitchableComponent(this);
-//        seriesPanel.getCmp().setBorderData(Color.RED, new AverageBorderStartegy(), 8);
     }
+
+    protected void detailButtonMethod(DetailButtonsCard card) {
+        equipmentCard.initializeCardData(card.getData().eqData.get(0));
+        updateContent(equipmentCard);
+        arrowMenager.getOption(1).changeContent(exitButton);//yyyyto fix
+        showCancelButton(false);
+    }
+
+    protected abstract DetailButtonsCard createDetailButton();
 
 
     protected void initializeDetailButtonsCardPart(CardTypes type) {
-        var but = new DetailButtonsCard(factory);
+        var but = createDetailButton();
+        but.initializeCard();
         but.getDetailButton(0).addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 //                eqaCard = activeCard;
-                equipmentCard.initializeCardData(but.getData().eqData.get(0));
-                updateContent(equipmentCard);
-                arrowMenager.getOption(1).changeContent(exitButton);//yyyyto fix
-                showCancelButton(false);
+                detailButtonMethod(but);
             }
         });
         allCards.put(type, but);//tutaj trzeba buttonom nadac komendy, CardContent bedzie mogl zawierac CardContentn
         // np z armorami
     }
 
-    public void initializeWholeCard() {
+    private void initializeWholeCard() {
         allCards.put(CardTypes.ATTRIBUTE, new AttributesCard(factory));
         for (var type : Arrays.asList(CardTypes.ARMOR, CardTypes.MOUNT, CardTypes.EFFECTS, CardTypes.WEAPONS)) {
             initializeDetailButtonsCardPart(type);
@@ -129,9 +132,8 @@ public class Card extends BaseCard implements SwitchableComponent, ICancelCard {
     }
 
     public void updateContent(AbstractCard newActiveCard) {
-        if (newActiveCard != equipmentCard) {
-            activeCard.reset();
-        }
+
+        activeCard.reset();//pierdziele zawsze niech resetuje jest prosciej
         activeCard = newActiveCard;
         seriesPanel.getMainComponent(1).changeContent(activeCard.getMenager());
         leftArrows.setSwitchableComponent(activeCard);
@@ -202,18 +204,6 @@ public class Card extends BaseCard implements SwitchableComponent, ICancelCard {
     }
 
 
-//    public void setBackgroundImage(String path) throws IOException {
-//        seriesPanel.getCmp().setBackgroundImage(path);
-//    }
-//
-//    public void setBackgroundColor(Color color) {
-//        seriesPanel.setBackground(color);
-//    }
-//
-//    public JPanel getPanel() {
-//        return seriesPanel.getCmp();
-//    }
-
     @Override
     public void setUniformFont() {
         for (var type : CardTypes.values()) {
@@ -228,29 +218,6 @@ public class Card extends BaseCard implements SwitchableComponent, ICancelCard {
         setAspectVisible(new ArrayList<>(titleSeries.getComponentsList().stream().map(cmp -> cmp.getComponent()).toList()), value);
 
     }
-
-//    public static <T extends JComponent & IContentCustomUICmp> void setAspectVisible(ArrayList<T> container,
-//                                                                                     boolean value) {
-//        for (var cmp : container) {
-//            cmp.setVisible(cmp.getContent().isEmpty() ? false : value);
-//        }
-//    }
-
-
-//    public void initializeTitle() {//zmienia sie
-//        factory.setLabelType(GuiFactory.LabelType.ICON);
-//        titleSeries.addOption(new ComponentPanelMenager<>(factory.createLabel(EMPTY_DATA_CONTENT)), 30);
-//        titleSeries.getOption(0).addSpace(6, ComponentPanelMenager.Side.LEFT, ComponentPanelMenager.Side.TOP);
-//        titleSeries.getOption(0).addSpace(1, ComponentPanelMenager.Side.RIGHT);
-//        titleSeries.getOption(0).addSpace(2, ComponentPanelMenager.Side.BOTTOM);
-//
-//        factory.setLabelType(GuiFactory.LabelType.NORMAL);
-//        titleSeries.addOption(new ComponentPanelMenager<>(factory.createLabel(EMPTY_DATA_CONTENT)), 30);
-//        titleSeries.getOption(1).addSpace(6, ComponentPanelMenager.Side.RIGHT, ComponentPanelMenager.Side.TOP);
-//        titleSeries.getOption(1).addSpace(1, ComponentPanelMenager.Side.LEFT);
-//        titleSeries.getOption(1).addSpace(2, ComponentPanelMenager.Side.BOTTOM);
-//
-//    }
 
 
     protected void updateTitle() {//zmienia sie

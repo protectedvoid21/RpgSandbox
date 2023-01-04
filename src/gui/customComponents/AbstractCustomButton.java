@@ -33,6 +33,12 @@ public abstract class AbstractCustomButton extends JButton implements IContentCu
                 super.componentResized(e);
                 buttonUI.getCustomUI().setRelevantFont(getText());
             }
+
+            @Override
+            public void componentShown(ComponentEvent e) {
+                super.componentShown(e);
+                buttonUI.getCustomUI().setRelevantFont(getText());
+            }
         });
     }
 
@@ -56,7 +62,7 @@ public abstract class AbstractCustomButton extends JButton implements IContentCu
 
     @Override
     public int getMaximumPossibleFontSize() {
-        return getCustomUI().getMaximumPossibleFont(getText()).getSize();
+        return getCustomUI().getRelevantFont(getText()).getSize();
     }
 
     @Override

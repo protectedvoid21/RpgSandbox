@@ -19,7 +19,7 @@ public class CustomTextArea extends CustomTextComponent {///to fix
 //        textComponent.setAutoscrolls(true);
         textComponent.setWrapStyleWord(true);
 //        textComponent.setLineWrap(true);
-        textField = textComponent;
+//        textField = textComponent;
 //        add(textField);
         addComponentsToPanel();
         initializeTextField();

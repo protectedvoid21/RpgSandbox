@@ -42,4 +42,9 @@ public class ChangingBackgroundColorWraper extends BorderDecorator {
             }
         });
     }
+
+    @Override
+    public boolean isFontMaximized() {
+        return customUI.isFontMaximized();
+    }
 }

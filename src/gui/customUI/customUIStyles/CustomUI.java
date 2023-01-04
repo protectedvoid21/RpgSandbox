@@ -1,4 +1,5 @@
 package gui.customUI.customUIStyles;
+
 import gui.card.SharedCmpsFont;
 import gui.customComponents.CustomLabel;
 import gui.customUI.customUIStyles.borderStrategies.*;
@@ -14,6 +15,7 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.geom.Area;
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -26,7 +28,10 @@ public abstract class CustomUI implements ICustomUI {
     private HashMap<ComponentTextMarginManager.Side, Double> previousCmpMarginValues;
     private boolean isBorderedRespected = false;
     final private int offSet;
+
     private boolean isFontMaximized = false;
+    private boolean isFontRelevantToHeight = false;
+
     private JComponent parent;
     private HashMap<ICustomUI.Index, Color> additionalColors = new HashMap<>();
     private boolean transparentStatus = false;
@@ -45,6 +50,9 @@ public abstract class CustomUI implements ICustomUI {
         this(borderStrategy, 6);
     }
 
+    public boolean isFontMaximized() {
+        return isFontMaximized;
+    }
 
     @Override
     public int getBorderSize() {
@@ -94,16 +102,7 @@ public abstract class CustomUI implements ICustomUI {
 
     @Override
     public void paint(Graphics g, JComponent c) {
-//        if (borderStrategy != null) {
-            paintBackground(g, c, offSet);
-//        }
-//        if (isBorderedRespected && activeMargin != null) {
-//            activeMargin.checkValidation();
-//        }
-//        if (margin != null) {
-//            margin.checkValidation();
-//        }
-//        setFontMaximized(isFontMaximized);//nwm po co
+        paintBackground(g, c, offSet);
     }
 
     @Override
@@ -151,10 +150,94 @@ public abstract class CustomUI implements ICustomUI {
         return diff;
     }
 
-    public Font getMaximumPossibleFont(String labelText) {
-        if (!isFontMaximized) {
-            return parent.getFont();
+//    public int getMaximumPossibleFontSizeRelevantToHeight(String labelText) {
+//        return (int) (fontRelevantValue * getMaximumPossibleFont(labelText, Measure.HEIGHT).getSize());
+//    }
+
+    @Override
+    public void setFontRelevantToHeight(boolean val) {
+        isFontRelevantToHeight = val;
+        if (parent != null) {
+            parent.repaint();
+            parent.revalidate();
         }
+    }
+
+    @Override
+    public boolean isFontRelevantToHeight() {
+        return isFontRelevantToHeight;
+    }
+
+//    private AbstractMap.SimpleEntry<Double, Double> getDeltaWidthAndHeight() {
+//        double cmph = 0;
+//        double cmpw = 0;
+//        cmph += (initActiveMarginAndGetSizeDiff(ComponentTextMarginManager.Side.BOTTOM) +
+//        initActiveMarginAndGetSizeDiff(ComponentTextMarginManager.Side.TOP));
+//        cmpw += (initActiveMarginAndGetSizeDiff(ComponentTextMarginManager.Side.LEFT) +
+//        initActiveMarginAndGetSizeDiff(ComponentTextMarginManager.Side.RIGHT));
+//        return new AbstractMap.SimpleEntry<>(cmph, cmph);
+//    }
+
+//    @Override
+//    public Font getMaximumPossibleFontRelevantToHeight(String labelText) {
+//        int componentHeight = parent.getHeight();
+//
+//        if (margin != null) {
+//            if (isBorderedRespected) {
+//                var abs = getDeltaWidthAndHeight();
+//                componentHeight -= abs.getKey();
+//
+//            } else {
+//                componentHeight -= (margin.get(ComponentTextMarginManager.Side.BOTTOM) + margin.get
+//                        (ComponentTextMarginManager.Side.TOP));
+//            }
+//        }
+//        var oldFont = parent.getFont();
+//        Font savedFont = parent.getFont();
+//        Function<Integer, Font> getCurrentFont = (var size) -> new Font(oldFont.getFontName(), oldFont.getStyle(),
+//                size);
+//        Function<Font, Dimension> getCurrentDimension = (var font) -> getFontSize(parent.getFontMetrics(font), font,
+//                labelText);
+//        for (int i = 0; i < 300; i += 1) {
+//            var newFont = getCurrentFont.apply(i);
+//            Dimension d = getCurrentDimension.apply(newFont);
+//            if (componentHeight < d.height) {
+//                break;
+//            }
+//            savedFont = newFont;
+//        }
+//
+//
+//        var size = (int) (fontRelevantValue * savedFont.getSize());
+//        return new Font(parent.getFont().getFontName(), parent.getFont().getStyle(), size);
+//    }
+
+
+//    @Override
+//    public Font getMaximumPossibleFontByComponent(String labelText) {
+//        return getMaximumPossibleFont(labelText, Measure.BOTH);
+//    }
+
+    //    @Override
+//    public Font getMaximumFont(String labelText) {
+////        if (isFontMaximized()) {
+////            return getMaximumFont(labelText);
+////        }
+//////        if (isFontRelevantToHeight()) {
+//////            return getMaximumPossibleFontRelevantToHeight(labelText);
+//////        }
+////        return parent.getFont();
+//        return getMaximumPossibleFont(labelText);
+//    }
+//
+////    public Font getM(String labelText) {
+////        return getMaximumPossibleFont(labelText, Measure.BOTH);
+////    }
+    @Override
+    public Font getRelevantFont(String labelText) {
+//        if (!isFontMaximized) {
+//            return parent.getFont();
+//        }//dzialajaca wersja
 
         if (margin != null && borderStrategy != null) {
             Font labelFont = parent.getFont();
@@ -165,6 +248,9 @@ public abstract class CustomUI implements ICustomUI {
             int componentHeight = parent.getHeight();
             if (margin != null) {
                 if (isBorderedRespected) {
+//                    var abs = getDeltaWidthAndHeight();
+//                    componentHeight -= abs.getKey();
+//                    componentWidth -= abs.getValue();
                     componentWidth -= initActiveMarginAndGetSizeDiff(ComponentTextMarginManager.Side.LEFT);
                     componentWidth -= initActiveMarginAndGetSizeDiff(ComponentTextMarginManager.Side.RIGHT);
                     componentHeight -= initActiveMarginAndGetSizeDiff(ComponentTextMarginManager.Side.BOTTOM);
@@ -177,23 +263,33 @@ public abstract class CustomUI implements ICustomUI {
                 }
             }
 
-            if (stringWidth > componentWidth || parent.getFontMetrics(parent.getFont()).getAscent() > componentHeight) {
-                return findFont(parent, new Dimension(componentWidth, componentHeight), parent.getFont(),
+
+            if (isFontRelevantToHeight) {
+                return findFont2(parent, new Dimension(componentWidth, componentHeight), parent.getFont(),
                         labelText, false);
-            } else {
-                return findFont(parent, new Dimension(componentWidth, componentHeight), parent.getFont(),
-                        labelText, true);
             }
-        } else {
-            return new Font(parent.getFont().getName(), parent.getFont().getStyle(), 1);
+            if (isFontMaximized) {
+                if (stringWidth > componentWidth || parent.getFontMetrics(parent.getFont()).getAscent() > componentHeight) {
+                    return findFont(parent, new Dimension(componentWidth, componentHeight), parent.getFont(),
+                            labelText, false);
+                } else {
+                    return findFont(parent, new Dimension(componentWidth, componentHeight), parent.getFont(),
+                            labelText, true);
+                }
+            }
+            return parent.getFont();
+
         }
+        return new Font(parent.getFont().getName(), parent.getFont().getStyle(), 1);
     }
 
 //    public void removeSharingSize() {
 ////        cmpsShared.removeComponentFromList(parent);
 //    }
 
-    /**Set cmp on null if you want to remove sharing component size*/
+    /**
+     * Set cmp on null if you want to remove sharing component size
+     */
     public void setSharedComponentSize(SharedCmpsFont cmpShared) {
         if (cmpShared == null) {
             this.cmpsShared.removeComponentFromList(parent);
@@ -206,12 +302,27 @@ public abstract class CustomUI implements ICustomUI {
     }
 
     public void setRelevantFont(String labelText) {
+//        boolean condition = isFontMaximized || isFontRelevantToHeight || hasSharedSize();
         if (margin != null && borderStrategy != null) {
+            if (isFontMaximized || isFontRelevantToHeight) {
+                parent.setFont(getRelevantFont(labelText));
+//                return;
+            }//w dzialajacej nie ma napewno tego slope'a
+//            if (isFontRelevantToHeight) {
+//                parent.setFont(getMaximumPossibleFontRelevantToHeight(labelText));
+//            }
             if (hasSharedSize()) {
                 cmpsShared.setSharedFontSize(parent, labelText);
-                return;
             }
-            parent.setFont(getMaximumPossibleFont(labelText));
+//            if (!condition) {
+//                if (isBorderedRespected) {
+//                    initActiveMarginAndGetSizeDiff(ComponentTextMarginManager.Side.LEFT);
+//                    initActiveMarginAndGetSizeDiff(ComponentTextMarginManager.Side.RIGHT);
+//                    initActiveMarginAndGetSizeDiff(ComponentTextMarginManager.Side.BOTTOM);
+//                    initActiveMarginAndGetSizeDiff(ComponentTextMarginManager.Side.TOP);
+//                }
+//            }
+//            parent.setFont(getMaximumPossibleFont(labelText));
         }
     }
 
@@ -222,10 +333,39 @@ public abstract class CustomUI implements ICustomUI {
         return size;
     }
 
-    private Font findFont(Component component, Dimension componentSize, Font oldFont, String text, boolean increased) {
+//    private enum Measure {HEIGHT, WIDTH, BOTH}
+
+//    private boolean helpFindFontMet(boolean increased, Measure measure, int cmpheight, int height, int cmpwidth,
+//                                    int width) {
+//        boolean val = false;
+//        if (increased) {
+//            boolean h = cmpheight < height;
+//            boolean w = cmpwidth < width;
+//            switch (measure) {
+//                case BOTH -> val = h || w;
+//                case WIDTH -> val = w;
+//                case HEIGHT -> val = h || w;
+//            }
+//            return val;
+//        } else {
+//            boolean h = cmpheight > height;
+//            boolean w = cmpwidth > width;
+//            switch (measure) {
+//                case BOTH -> val = h && w;
+//                case WIDTH -> val = w;
+//                case HEIGHT -> val = h && w;
+//            }
+//            return val;
+//        }
+//    }
+
+    private Font findFont(Component component, Dimension componentSize, Font oldFont, String text, boolean increased
+    ) {
         Font savedFont = oldFont;
-        Function<Integer, Font> getCurrentFont = (var size) -> new Font(oldFont.getFontName(), oldFont.getStyle(), size);
-        Function<Font, Dimension> getCurrentDimension = (var font) -> getFontSize(component.getFontMetrics(font), font, text);
+        Function<Integer, Font> getCurrentFont = (var size) -> new Font(oldFont.getFontName(), oldFont.getStyle(),
+                size);
+        Function<Font, Dimension> getCurrentDimension = (var font) -> getFontSize(component.getFontMetrics(font),
+                font, text);
         if (increased) {
             for (int i = oldFont.getSize(); i < 300; i += 1) {
                 var newFont = getCurrentFont.apply(i);
@@ -244,6 +384,29 @@ public abstract class CustomUI implements ICustomUI {
                     return savedFont;
                 }
             }
+        }
+        return oldFont;
+    }
+
+    @Override
+    public ComponentTextMarginManager getCurrentActivatedMargin() {
+        return activeMargin;
+    }
+
+    private Font findFont2(Component component, Dimension componentSize, Font oldFont, String text, boolean increased
+    ) {
+        Font savedFont = oldFont;
+        Function<Integer, Font> getCurrentFont = (var size) -> new Font(oldFont.getFontName(), oldFont.getStyle(),
+                size);
+        Function<Font, Dimension> getCurrentDimension = (var font) -> getFontSize(component.getFontMetrics(font),
+                font, text);
+        for (int i = 0; i < 300; i += 1) {
+            var newFont = getCurrentFont.apply(i);
+            Dimension d = getCurrentDimension.apply(newFont);
+            if (componentSize.height < d.height) {
+                return savedFont;
+            }
+            savedFont = newFont;
         }
         return oldFont;
     }

@@ -87,8 +87,8 @@ public class GuiFactory {
     public void setCurrentFont(Font newFont) {
         currentFont = newFont;
         labelFactory.setFont(currentFont);
-        labelFactory.setFont(currentFont);
-        labelFactory.setFont(currentFont);
+        buttonFactory.setFont(currentFont);
+        textFactory.setFont(currentFont);
     }
 
     public void setFontSize(int fontSize) {

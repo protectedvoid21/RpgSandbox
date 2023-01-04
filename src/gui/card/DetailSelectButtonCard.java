@@ -18,14 +18,30 @@ import java.util.stream.Stream;
 
 public class DetailSelectButtonCard extends DetailButtonsCard {
     protected ArrayList<AbstractCustomButton> selectList;
+    private int selectedIndex = -1;
 
 
     public DetailSelectButtonCard(GuiFactory factory) {
         super(factory);
+        selectedIndex = 6;
+    }
+
+    @Override
+    protected ArrayList<? extends IContentCustomUICmp> getContentList() {
+        return selectList;
+    }
+
+    @Override
+    protected void initContentSegment() {
+//to repair przyslonic nowa klasa po normaldetailbuttons
     }
 
     public AbstractCustomButton getSelectButton(int index) {
         return selectList.get(index);
+    }
+
+    public void setSelectedIndex(int value){
+        selectedIndex = value;
     }
 
 
@@ -38,7 +54,17 @@ public class DetailSelectButtonCard extends DetailButtonsCard {
                 maxSideIndex);
         int currentIndex = 0;
         for (var key : sublist) {
-            selectList.get(currentIndex).setContent("SELECT");
+            String content = "SELECT";
+            var but =  selectList.get(currentIndex);
+            if (currentAttrSide*maximumElementNumber+currentIndex==selectedIndex){
+                content = "SELECTED";
+                but.setEnabled(false);
+            }else{
+                if (!but.isEnabled()){
+                    but.setEnabled(true);
+                }
+            }
+            selectList.get(currentIndex).setContent(content);
         }
         if (sublist.size() < maximumElementNumber) {
             for (int i = dataSize % maximumElementNumber; i < maximumElementNumber; i++) {
@@ -59,22 +85,6 @@ public class DetailSelectButtonCard extends DetailButtonsCard {
 
     }
 
-//    protected void initLabel(GuiFactory.LabelType type) {
-//        factory.setLabelType(type);
-//        var label = factory.createLabel(Card.EMPTY_DATA_CONTENT);
-//        int index = type == GuiFactory.LabelType.NORMAL ? 1 : 0;
-//        menager.addMiddleComponent(label, index, 20);
-//        menager.getMainComponent(index).getComponent().getLastComponent().addSpace(2);
-//        labelList.add(label);
-//    }
-//
-//    protected void initButton(ArrayList list, String text) {
-//        var button = factory.createButton(text, null);
-//        int index = list == detailList ? 2 : 3;
-//        menager.addMiddleComponent(button, index, 20);
-//        menager.getMainComponent(index).getComponent().getLastComponent().addSpace(4);
-//        list.add(button);
-//    }
 
     @Override
     protected void initializeCard(int maximumElementNumber) {

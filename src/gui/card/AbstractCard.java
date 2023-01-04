@@ -16,8 +16,6 @@ import java.util.TimerTask;
 public abstract class AbstractCard<T extends JComponent> implements SwitchableComponent {
     protected GuiFactory factory;
     protected int currentAttrSide = 0;
-//    protected AbstractMap.SimpleEntry<String, String> titleIconPathName= new AbstractMap.SimpleEntry<>("", "");
-//    protected ArrayList<ArrayList<String>> dataMap = new ArrayList<>();
     protected CardContentDataSet data;
     private ComponentsSeries<JComponent> mainSeries =
             new ComponentsSeries<>(ComponentsSeries.ComponentsDimension.VERTICAL);
@@ -35,15 +33,6 @@ public abstract class AbstractCard<T extends JComponent> implements SwitchableCo
     public CardContentDataSet getData(){
         return data;
     }
-//    public void initializeCardData(AbstractMap.SimpleEntry<String, String> titleIconPathName) {
-//        this.titleIconPathName = titleIconPathName;
-//        reset();
-//    }
-//
-//    public void initializeCardData( ArrayList<ArrayList<String>> dataMap) {
-//        this.dataMap = dataMap;
-//        reset();
-//    }
 
     protected void initializeCard(int maximumElementNumber) {
         this.maximumElementNumber = maximumElementNumber;
@@ -62,10 +51,6 @@ public abstract class AbstractCard<T extends JComponent> implements SwitchableCo
 
     public abstract DefaultCustomMenuMenager<T> getContentMenager();
 
-//    public void setDataMap(ArrayList<ArrayList<String>> dataMap) {
-//        this.dataMap = dataMap;
-//        updateContent();
-//    }
 
 
     public String getFirstTitleContent() {
@@ -107,6 +92,8 @@ public abstract class AbstractCard<T extends JComponent> implements SwitchableCo
     protected abstract void initializeContent();
 
     public abstract void setUniformForm();
+
+//    public abstract void makeFullContentTransparent();
 
 
 }

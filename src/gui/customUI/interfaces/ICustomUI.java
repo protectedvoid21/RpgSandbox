@@ -29,12 +29,17 @@ public interface ICustomUI {
     void paintBackground(Graphics g, JComponent c, int borderSize);
 
     void setRelevantFont(String text);
+
     boolean hasSharedSize();
 
     void setSharedComponentSize(SharedCmpsFont cmp);
 
-    Font getMaximumPossibleFont(String labelText);
+    //    Font getMaximumPossibleFontByComponent(String labelText);
+    Font getRelevantFont(String labelText);
 
+    ComponentTextMarginManager getCurrentActivatedMargin();
+
+    boolean isFontMaximized();
 
     boolean isBackgroundTransparent();
 
@@ -48,4 +53,9 @@ public interface ICustomUI {
 
     boolean getMarginRespection();
 
+    public void setFontRelevantToHeight(boolean val);
+//    public void setFontRelevantToHeightValue(double value);
+//    public Font getMaximumPossibleFontRelevantToHeight(String text);
+
+    public boolean isFontRelevantToHeight();
 }

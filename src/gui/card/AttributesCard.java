@@ -10,10 +10,8 @@ import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
 
 import javax.swing.*;
-import java.util.AbstractMap;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.TimerTask;
+import java.awt.*;
+import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
@@ -66,6 +64,11 @@ public final class AttributesCard extends AbstractCard<AbstractCustomLabel> {
 
     }
 
+    protected JComponent baseComponentCreator(){
+        return  factory.createLabel(Card.EMPTY_DATA_CONTENT);
+    }
+
+
     public void initializeContent() {//zmienia sie
         for (int i = 0; i < maximumElementNumber ; i++) {
             menager.addMiddleComponent(factory.createLabel(Card.EMPTY_DATA_CONTENT), 0, 10);
@@ -85,4 +88,23 @@ public final class AttributesCard extends AbstractCard<AbstractCustomLabel> {
     public void setUniformForm() {
         SharedCmpsFont.setUniformFont(menager.getComponentsList());
     }
+
+//    public void makeFullContentTransparent() {
+//        HashMap<Object, Color> previous = new HashMap<>();
+//        for (var cmp : menager.getComponentsList()){
+//            previous.put(cmp, cmp.getForeground());
+//            cmp.setForeground(new Color(0,0,0,0));
+//        }
+//        new java.util.Timer().schedule(
+//            new java.util.TimerTask() {
+//                @Override
+//                public void run() {
+//                    for (var cmp : menager.getComponentsList()){
+//                        cmp.setForeground(previous.get(cmp));
+//                    }
+//                }
+//            },
+//            1000
+//    );
+//    }
 }
