@@ -39,6 +39,9 @@ public class StatisticsWarhammer extends Statistics {
     @Override
     public void initializeEffects() {
         effects.put(EffectEnum.BLEEDING, new BleedingEffect(this, 3));
+        effects.put(EffectEnum.SHOCKED, new BleedingEffect(this, 3));
+        effects.put(EffectEnum.POISON, new BleedingEffect(this, 3));
+        effects.put(EffectEnum.IN_FIRE, new BleedingEffect(this, 3));
         effects.put(EffectEnum.FREEZING, new FreezingEffect(this, 3));
     }
 
