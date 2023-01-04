@@ -1,5 +1,7 @@
 package game.board;
 
+import java.util.List;
+
 public class Place {
     private GameObject gameObject;
     
@@ -10,11 +12,6 @@ public class Place {
         gameObject = null;
         this.x = x;
         this.y = y;
-    }
-    
-    public Place(int x, int y, GameObject gameObject) {
-        this(x, y);
-        this.gameObject = gameObject;
     }
     
     public boolean isEmpty() {
