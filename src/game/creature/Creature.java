@@ -28,4 +28,8 @@ public abstract class Creature {
     public String getName() {
         return name;
     }
+
+    public abstract int getDamage();
+    public abstract int getDefense();
+    public abstract int getSpeed();
 }
