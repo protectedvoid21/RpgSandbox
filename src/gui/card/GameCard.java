@@ -20,7 +20,9 @@ public class GameCard extends Card {
 
     @Override
     protected void initializeDetailButtonsCardPart(CardTypes type) {
+//        super.initializeDetailButtonsCardPart(type);
         var but = new DetailSelectButtonCard(factory);
+        but.initializeCard();
         allCards.put(type, but);
         gameCards.add(but);
         but.getDetailButton(0).addActionListener(e->detailButtonMethod(but));

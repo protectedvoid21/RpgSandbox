@@ -16,7 +16,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class DetailSelectButtonCard extends DetailButtonsCard {
+public class DetailSelectButtonCard extends NormalDetailButtonsCard {
     protected ArrayList<AbstractCustomButton> selectList;
     private int selectedIndex = -1;
 
@@ -26,15 +26,11 @@ public class DetailSelectButtonCard extends DetailButtonsCard {
         selectedIndex = 6;
     }
 
-    @Override
-    protected ArrayList<? extends IContentCustomUICmp> getContentList() {
-        return selectList;
-    }
+//    @Override
+//    protected ArrayList<? extends IContentCustomUICmp> getContentList() {
+//        return selectList;
+//    }
 
-    @Override
-    protected void initContentSegment() {
-//to repair przyslonic nowa klasa po normaldetailbuttons
-    }
 
     public AbstractCustomButton getSelectButton(int index) {
         return selectList.get(index);
@@ -65,13 +61,16 @@ public class DetailSelectButtonCard extends DetailButtonsCard {
                 }
             }
             selectList.get(currentIndex).setContent(content);
+            currentIndex++;
         }
         if (sublist.size() < maximumElementNumber) {
             for (int i = dataSize % maximumElementNumber; i < maximumElementNumber; i++) {
+                System.out.println("ustatwiam pusge");
                 selectList.get(i).setContent(Card.EMPTY_DATA_CONTENT);
             }
         }
         Card.setAspectVisible(selectList, true);
+        System.out.println(selectList);
     }
 
     @Override

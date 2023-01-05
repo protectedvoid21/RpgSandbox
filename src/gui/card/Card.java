@@ -27,7 +27,7 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
 
     private AbstractCard activeCard = new EmptyCard();
     protected Map<CardTypes, AbstractCard> allCards = new HashMap<>();
-    private AttributesCard equipmentCard = new AttributesCard(factory);
+    private AttributesCard equipmentCard = new EntriesAttributesCard(factory);
 
     public enum CardTypes {ATTRIBUTE, ARMOR, WEAPONS, EFFECTS, OVERALL, MOUNT}
 
@@ -98,6 +98,7 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
 
 
     protected void initializeDetailButtonsCardPart(CardTypes type) {
+        System.out.println("cokolwiek");
         var but = createDetailButton();
         but.initializeCard();
         but.getDetailButton(0).addActionListener(new ActionListener() {
@@ -112,7 +113,10 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
     }
 
     private void initializeWholeCard() {
-        allCards.put(CardTypes.ATTRIBUTE, new AttributesCard(factory));
+        equipmentCard.initializeCard();
+        var attrCard =  new EntriesAttributesCard(factory);
+        attrCard.initializeCard();
+        allCards.put(CardTypes.ATTRIBUTE,attrCard);
         for (var type : Arrays.asList(CardTypes.ARMOR, CardTypes.MOUNT, CardTypes.EFFECTS, CardTypes.WEAPONS)) {
             initializeDetailButtonsCardPart(type);
         }

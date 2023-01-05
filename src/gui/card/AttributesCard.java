@@ -15,21 +15,28 @@ import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-public final class AttributesCard extends AbstractCard<AbstractCustomLabel> {
-    protected DefaultCustomMenuMenager<AbstractCustomLabel> menager =
-            new DefaultCustomMenuMenager<AbstractCustomLabel>(ComponentsSeries.ComponentsDimension.HORIZONTAL,
+public abstract class AttributesCard extends AbstractCard {
+    protected DefaultCustomMenuMenager<JComponent> menager =
+            new DefaultCustomMenuMenager<JComponent>(ComponentsSeries.ComponentsDimension.HORIZONTAL,
                     ComponentsSeries.ComponentsDimension.VERTICAL);
+
+    protected ArrayList<AbstractCustomLabel> labelList = new ArrayList<>();
 
     public AttributesCard( GuiFactory factory) {
         super(factory);
-        initializeCard(5);
-        initializeContent();
+//        initializeCard(5);
+//        initializeContent();
     }
 
 
     @Override
-    public DefaultCustomMenuMenager<AbstractCustomLabel> getContentMenager() {
+    public DefaultCustomMenuMenager<JComponent> getContentMenager() {
         return menager;
+    }
+
+    public void initializeCard() {
+        initializeCard(5);
+        initializeContent();
     }
 
     @Override
@@ -46,39 +53,56 @@ public final class AttributesCard extends AbstractCard<AbstractCustomLabel> {
                 maxSideIndex);
 
         int currentIndex = 0;
+        System.out.println(labelList);
 
         for (var key : sublist) {
-            menager.getMiddleComponent(0, currentIndex).getComponent().setText(key.get(0));
-            menager.getMiddleComponent(1, currentIndex).getComponent().setText(key.get(1));
+            System.out.println(key.get(0));
+            labelList.get(currentIndex).setContent(key.get(0));
+            System.out.println("czy ja tu cos robie222"+labelList.get(currentIndex).getContent());
+            getSecondContentList().get(currentIndex).setContent(key.get(1));
+//            menager.getMiddleComponent(0, currentIndex).getComponent().setText(key.get(0));
+//            menager.getMiddleComponent(1, currentIndex).getComponent().setText(key.get(1));
             currentIndex++;
         }
 
         if (sublist.size() < maximumElementNumber) {
             for (int i = dataSize % maximumElementNumber; i < maximumElementNumber; i++) {
-                menager.getMiddleComponent(0, i).getComponent().setText(Card.EMPTY_DATA_CONTENT);
-                menager.getMiddleComponent(1, i).getComponent().setText(Card.EMPTY_DATA_CONTENT);
+                System.out.println("czy ja tu cos robie");
+                labelList.get(currentIndex).setContent(Card.EMPTY_DATA_CONTENT);
+                getSecondContentList().get(currentIndex).setContent(Card.EMPTY_DATA_CONTENT);
+//                menager.getMiddleComponent(0, i).getComponent().setText(Card.EMPTY_DATA_CONTENT);
+//                menager.getMiddleComponent(1, i).getComponent().setText(Card.EMPTY_DATA_CONTENT);
             }
         }
 
-        Card.setAspectVisible(menager.getComponentsList(), true);
+//        Card.setAspectVisible(labelList, true);
 
     }
 
-    protected JComponent baseComponentCreator(){
-        return  factory.createLabel(Card.EMPTY_DATA_CONTENT);
-    }
+//    protected JComponent baseComponentCreator(){
+//        return  factory.createLabel(Card.EMPTY_DATA_CONTENT);
+//    }
 
+
+    protected abstract JComponent createSecondContentComponent();
+
+    protected abstract ArrayList<? extends IContentCustomUICmp> getSecondContentList();
 
     public void initializeContent() {//zmienia sie
+        factory.setLabelType(GuiFactory.LabelType.NORMAL);
         for (int i = 0; i < maximumElementNumber ; i++) {
-            menager.addMiddleComponent(factory.createLabel(Card.EMPTY_DATA_CONTENT), 0, 10);
+            var label  = factory.createLabel(Card.EMPTY_DATA_CONTENT);
+            menager.addMiddleComponent(label, 0, 10);
             menager.getMainComponent(0).getComponent().getLastComponent().addSpace(2, ComponentPanelMenager.Side.LEFT
                     , ComponentPanelMenager.Side.BOTTOM, ComponentPanelMenager.Side.TOP);
+            labelList.add(label);
 
-            menager.addMiddleComponent(factory.createLabel(Card.EMPTY_DATA_CONTENT), 1, 10);
+//            initSecondContentComponent();
+            menager.addMiddleComponent(createSecondContentComponent(), 1, 10);
             menager.getMainComponent(1).getComponent().getLastComponent().addSpace(2,
                     ComponentPanelMenager.Side.RIGHT, ComponentPanelMenager.Side.BOTTOM,
                     ComponentPanelMenager.Side.TOP);
+
         }
 
 //        updateContent();
@@ -86,7 +110,7 @@ public final class AttributesCard extends AbstractCard<AbstractCustomLabel> {
 
     @Override
     public void setUniformForm() {
-        SharedCmpsFont.setUniformFont(menager.getComponentsList());
+        SharedCmpsFont.setUniformFont(labelList);
     }
 
 //    public void makeFullContentTransparent() {

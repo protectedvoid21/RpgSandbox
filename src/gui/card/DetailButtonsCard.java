@@ -17,7 +17,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public abstract class DetailButtonsCard extends AbstractCard<JComponent> {
+public abstract class DetailButtonsCard extends AbstractCard {
     protected DefaultCustomMenuMenager<JComponent> menager =
             new DefaultCustomMenuMenager<>(ComponentsSeries.ComponentsDimension.HORIZONTAL,
                     ComponentsSeries.ComponentsDimension.VERTICAL);
@@ -84,6 +84,7 @@ public void initializeCard(){
                 detailList.get(i).setContent(Card.EMPTY_DATA_CONTENT);
             }
         }
+        Card.setAspectVisible(labelList, true);
         Card.setAspectVisible(detailList, true);
 
     }
