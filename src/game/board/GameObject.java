@@ -1,16 +1,25 @@
 package game.board;
 
-public class GameObject {
+import game.creature.Creature;
+import game.interfaces.RoundListener;
+
+public class GameObject implements RoundListener {
     protected String name;
-    
-    protected GameObject() {
-        
+    protected final Creature creature;
+
+    public GameObject(Creature creature) {
+        this.name = creature.getName();
+        this.creature = creature;
     }
     
-    public GameObject(String name) {
-        this.name = name;
+    public void applyNewRound() {
+        creature.applyNewRound();
     }
-    
+
+    public Creature getCreature() {
+        return creature;
+    }
+
     public String getName() {
         return name;
     }

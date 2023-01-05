@@ -1,6 +1,6 @@
 package game.utils;
 
-import game.board.Vector2;
+import game.generals.Vector2;
 
 import java.util.ArrayList;
 import java.util.List;

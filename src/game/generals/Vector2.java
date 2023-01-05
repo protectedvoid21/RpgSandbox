@@ -1,4 +1,4 @@
-package game.board;
+package game.generals;
 
 public class Vector2 {
     public final int x;

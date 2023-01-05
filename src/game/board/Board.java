@@ -1,26 +1,33 @@
 package game.board;
 
+import game.generals.Vector2;
 import game.utils.MathHelper;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 
 public class Board {
     private final Place[][] places;
     
-    public Board(int width, int height) {
-        places = new Place[height][width];
-        
-        for(int x = 0; x < width; x++) {
-            for(int y = 0; y < height; y++) {
-                places[y][x] = new Place(x, y);
+    public Board(Scenario scenario) {
+        places = new Place[scenario.height][scenario.width];
+
+        for(int x = 0; x < scenario.width; x++) {
+            for(int y = 0; y < scenario.height; y++) {
+                places[y][x] = new Place();
             }
+        }
+        
+        for(var scenarioData : scenario.scenarioDataList) {
+            getPlace(scenarioData.position).setGameObject(new GameObject(scenarioData.creature));
         }
     }
     
     private Place getPlace(Vector2 vector) {
-        return places[vector.y][vector.x];        
+        if(vector.x < 0 || vector.x >= places[0].length || vector.y < 0 || vector.y >= places.length) {
+            throw new IllegalArgumentException();
+        }
+        return places[vector.y][vector.x];
     }
     
     public boolean canMoveTo(Vector2 position) {
@@ -33,11 +40,25 @@ public class Board {
         }
 
         getPlace(destPos).setGameObject(getPlace(destPos).getGameObject());
-        getPlace(currentPos).setGameObject(null);
+        removeGameObject(currentPos);
     }
     
     public void removeGameObject(Vector2 position) {
         getPlace(position).setGameObject(null);
+    }
+    
+    public List<GameObject> getAllGameObjects() {
+        List<GameObject> gameObjects = new ArrayList<>();
+        
+        for(int i = 0; i < places.length; i++) {
+            for(int j = 0; j < places[i].length; j++) {
+                if(!places[i][j].isEmpty()) {
+                    gameObjects.add(places[i][j].getGameObject());
+                }
+            }
+        }
+        
+        return gameObjects;
     }
     
     public List<Vector2> getNeighborPlaces(Vector2 position, int range) {

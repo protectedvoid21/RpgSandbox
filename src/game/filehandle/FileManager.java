@@ -3,6 +3,7 @@ package game.filehandle;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import game.board.Scenario;
 import game.creature.Monster;
 import game.creature.NPC;
 import game.creature.PlayerCharacter;
@@ -32,6 +33,7 @@ public class FileManager {
         directoryMap.put(NPC.class, "npcs.txt");
         directoryMap.put(PlayerCharacter.class, "players.txt");
         directoryMap.put(Item.class, "items.txt");
+        directoryMap.put(Scenario.class, "scenarios.txt");
         
         gson = new GsonBuilder()
                 .setPrettyPrinting()
