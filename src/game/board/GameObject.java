@@ -1,15 +1,13 @@
 package game.board;
 
 public class GameObject {
-    protected Board board;
     protected String name;
     
-    protected GameObject(Board board) {
-        this.board = board;
+    protected GameObject() {
+        
     }
     
-    public GameObject(Board board, String name) {
-        this(board);
+    public GameObject(String name) {
         this.name = name;
     }
     

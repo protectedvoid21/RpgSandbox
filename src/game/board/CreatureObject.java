@@ -5,8 +5,7 @@ import game.creature.Creature;
 public class CreatureObject extends GameObject {
     private final Creature creature;
     
-    public CreatureObject(Board board, Creature creature) {
-        super(board);
+    public CreatureObject(Creature creature) {
         this.name = creature.getName();
         this.creature = creature;
     }
