@@ -14,6 +14,7 @@ public class Experience {
     public void setExperience(int experience) {
         this.experience = experience;
     }
+    
     public int getLevel() {
         return experience / 1000;
     }
