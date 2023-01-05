@@ -5,7 +5,7 @@ import game.interfaces.IStatistics;
 import game.interfaces.Statistics;
 
 public class NPC extends Character {
-    public NPC(IStatistics creatureStats, Inventory inventory) {
-        super(creatureStats, inventory);
+    public NPC(IStatistics creatureStats, Inventory inventory, Experience experience) {
+        super(creatureStats, inventory, experience);
     }
 }

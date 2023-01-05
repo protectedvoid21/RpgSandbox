@@ -6,8 +6,8 @@ import game.interfaces.IStatistics;
 public abstract class Character extends Creature {
     protected Inventory inventory;
     
-    public Character(IStatistics statistics, Inventory inventory) {
-        super(statistics);
+    public Character(IStatistics statistics, Inventory inventory, Experience experience) {
+        super(statistics, experience);
         this.inventory = inventory;
     }
 
