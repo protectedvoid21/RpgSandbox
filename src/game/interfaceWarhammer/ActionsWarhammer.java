@@ -1,5 +1,6 @@
 package game.interfaceWarhammer;
 
+import game.creature.Creature;
 import game.interfaceWarhammer.struggleWarhammer.*;
 import game.interfaces.Actions;
 
@@ -18,3 +19,4 @@ public class ActionsWarhammer extends Actions {
         actions.put(ActionsEnum.THROW_SPELL, new DefenseStand());
     }
 }
+

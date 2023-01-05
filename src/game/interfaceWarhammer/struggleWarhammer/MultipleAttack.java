@@ -3,6 +3,7 @@ package game.interfaceWarhammer.struggleWarhammer;
 import game.creature.Creature;
 import game.struggle.Action;
 import static game.interfaceWarhammer.AttributeEnum.*;
+import static game.interfaceWarhammer.StruggleAtributeEnum.*;
 
 public class MultipleAttack extends Attack {
 
@@ -12,6 +13,6 @@ public class MultipleAttack extends Attack {
             super.doAction(you, enemy);
         }
 
-        you.getStatistics().getAttribute(ACTIONS_TO_DO).setValue(0);
+        you.getStruggleStatistics().getAttribute(ACTIONS_TO_DO).setValue(0);
     }
 }
