@@ -50,12 +50,10 @@ public class Board {
         for(var vector : gridCircle) {
             movedCircle.add(new Vector2(vector.x + position.x, vector.y + position.y));
         }
-
-        movedCircle = movedCircle.stream()
+        
+        return movedCircle.stream()
                 .filter(v -> v.x >= 0 && v.x < width && v.y >= 0 && v.y < height)
                 .toList();
-        
-        return gridCircle;
     }
     
     public List<Vector2> getEmptyPlaces(Vector2 position, int range) {
