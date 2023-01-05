@@ -1,15 +1,18 @@
 package game.creature;
 
 import game.interfaces.IStatistics;
+import game.interfaces.IStruggleStatistics;
 
 public abstract class Creature {
     protected IStatistics statistics;
+    protected IStruggleStatistics struggleStatistics;
     protected String name;
     protected Experience experience;
     
-    public Creature(IStatistics statistics, Experience experience) {
+    public Creature(IStatistics statistics, Experience experience, IStruggleStatistics struggleStatistics) {
         this.statistics = statistics;
         this.experience = experience;
+        this.struggleStatistics = struggleStatistics;
     }
     
     public IStatistics getStatistics() {
@@ -19,7 +22,9 @@ public abstract class Creature {
     public String getName() {
         return name;
     }
-    
+    public IStruggleStatistics getStruggleStatistics() {
+        return struggleStatistics;
+    }
     public void setName(String name) {
         this.name = name;
     }
