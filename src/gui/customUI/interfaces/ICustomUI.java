@@ -1,6 +1,7 @@
 package gui.customUI.interfaces;
 
 import gui.card.SharedCmpsFont;
+import gui.customUI.customUIStyles.borderStrategies.IBorderStrategy;
 import gui.margin.ComponentTextMarginManager;
 import gui.margin.IComponentTextMargin;
 
@@ -21,6 +22,8 @@ public interface ICustomUI {
     Color getAdditionalColor(Index index);
 
     int getBorderSize();
+
+    void changeBorderStrategy (IBorderStrategy newStrategy);
 
     double convertTopBorderSizeToValue(JComponent c, int offSetValue);
 

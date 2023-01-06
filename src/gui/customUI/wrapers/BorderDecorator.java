@@ -1,6 +1,7 @@
 package gui.customUI.wrapers;
 
 import gui.card.SharedCmpsFont;
+import gui.customUI.customUIStyles.borderStrategies.IBorderStrategy;
 import gui.customUI.interfaces.ICustomUI;
 import gui.margin.ComponentTextMarginManager;
 
@@ -28,6 +29,11 @@ public abstract class BorderDecorator implements ICustomUI {
         customUI = ui;
     }
 
+
+    @Override
+    public void changeBorderStrategy(IBorderStrategy newStrategy) {
+        customUI.changeBorderStrategy(newStrategy);
+    }
 
     @Override
     public void installUI(JComponent c) {

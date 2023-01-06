@@ -1,9 +1,13 @@
-package gui.card;
+package gui.card.fullCards.specificCards;
 
+import gui.card.contentCards.attributesCards.AttributesCard;
+import gui.card.contentCards.attributesCards.LabelAttributeCard;
+import gui.card.contentCards.detailCards.DetailButtonsCard;
+import gui.card.contentCards.detailCards.DetailSelectButtonCard;
+import gui.card.contentCards.detailCards.NormalDetailButtonsCard;
+import gui.card.fullCards.abstractCards.Card;
 import gui.factories.GuiFactory;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class GameCard extends Card {
@@ -14,7 +18,7 @@ public class GameCard extends Card {
     }
 
     @Override
-    protected DetailButtonsCard createDetailButton() {
+    protected DetailButtonsCard createDetailButtonCard() {
         return new NormalDetailButtonsCard(factory);
     }
 
@@ -31,5 +35,14 @@ public class GameCard extends Card {
 
     public DetailSelectButtonCard getGameSelectedCard(int index) {
         return gameCards.get(index);
+    }
+    @Override
+    protected AttributesCard createAttributeCard() {
+        return new LabelAttributeCard(factory);
+    }
+
+    @Override
+    protected AttributesCard createDetailItemCard() {
+        return createAttributeCard();
     }
 }

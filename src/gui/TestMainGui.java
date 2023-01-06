@@ -1,33 +1,14 @@
 package gui;
 
-import gui.card.Card;
 import gui.card.IOverallFactory;
 import gui.card.WarHammerFactory;
-import gui.customUI.customUIStyles.RoundedBorderUI;
-import gui.customUI.interfaces.ICustomUI;
-import gui.factories.*;
-import gui.factories.customFactories.buttonFactories.ArrowButtonFactory;
-import gui.factories.customFactories.buttonFactories.WinterClickedButtonFactory;
-import gui.factories.customFactories.buttonFactories.WinterGrowingBorderButtonFactory;
-import gui.factories.customFactories.labelFactories.GameGreenLabelFactory;
-import gui.factories.customFactories.labelFactories.TitleCardLabelFactory;
-import gui.factories.customFactories.labelFactories.WinterDarkerBackgroundLabelFactory;
-import gui.factories.customFactories.textComponentFactory.TextFieldFactory;
 import gui.menu.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.util.AbstractMap;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 
 public class TestMainGui {
     public static void main(String[] args) throws IOException {
@@ -54,11 +35,11 @@ public class TestMainGui {
 //        factory.setButtonFactory(new ArrowButtonFactory());
 //        factory.setLabelFactory(new WinterDarkerBackgroundLabelFactory());
 //        factory.setTextFactory(new TextFieldFactory());
-//        menu.addMainComponent(10);
+//        menu.addMainComponent(10);2
 //        menu.addSpace(5, ComponentPanelMenager.Side.LEFT);
 //        menu.setBackground(Color.ORANGE);
 //        menu.addMiddleComponent(factory.createButton("WINTER TIME", null), 0, 20);
-//        menu.addMiddleComponent(factory.createTextArea(), 0, 20);
+//        menu.addMiddleComponent(factory.createTextArea(), 0, 20);d
 //        menu.addMiddleComponent(factory.createTextField(), 0, 20);s
 //        var m = new ComponentsSeries<>(ComponentsSeries.ComponentsDimension.HORIZONTAL);
 //        menu.addMiddleComponent(m, 0, 40);
@@ -90,18 +71,14 @@ public class TestMainGui {
                 back = ImageIO.read(new File("src/gui/warback.jpg"));
                 repaint();
                 revalidate();
-                System.out.println("hellll????");
             }
 
             private Image back;
 
             @Override
             protected void paintComponent(Graphics g) {
-                System.out.println("hellll");
                 super.paintComponent(g);
                 if (back != null) {
-                    System.out.println("jjjfdssdfsdfsdfsdfjj");
-                    System.out.println(this.getWidth());
                     g.drawImage(back, 0, 0, this.getWidth(), this.getHeight(), this);
                 }
             }
@@ -119,7 +96,7 @@ public class TestMainGui {
 //        var x = new ComponentPanelMenager<>(new JButton());
 //        x.addSpace(10);
 //        x.setBackgroundImage("src/gui/warback.jpg");
-//        ramka.add(menu.getCmp());
+//        ramka.add(menu.getCmp());s
 //        menu.getCmp().setBackgroundImage("src/gui/warback.jpg");
 //        card.getPanel().getCmp().addSpace(10);
 

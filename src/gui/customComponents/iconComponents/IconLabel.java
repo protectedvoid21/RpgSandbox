@@ -33,7 +33,7 @@ public class IconLabel extends AbstractCustomLabel implements IIconComponent {
         setContent(iconPath, prop);
     }
 
-    public StretchIcon getIcon() {
+    public StretchIcon getCustomIcon() {
         return icon;
     }
 

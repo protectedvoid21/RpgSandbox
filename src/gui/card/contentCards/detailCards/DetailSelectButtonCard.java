@@ -1,20 +1,11 @@
-package gui.card;
+package gui.card.contentCards.detailCards;
 
+import gui.card.fullCards.abstractCards.Card;
+import gui.card.SharedCmpsFont;
 import gui.customComponents.AbstractCustomButton;
-import gui.customComponents.AbstractCustomLabel;
-import gui.customComponents.CustomLabel;
-import gui.customComponents.IContentCustomUICmp;
 import gui.factories.GuiFactory;
-import gui.menu.ComponentPanelMenager;
-import gui.menu.ComponentsSeries;
-import gui.menu.DefaultCustomMenuMenager;
 
-import javax.swing.*;
 import java.util.*;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class DetailSelectButtonCard extends NormalDetailButtonsCard {
     protected ArrayList<AbstractCustomButton> selectList;

@@ -4,7 +4,7 @@ import gui.customComponents.AbstractCustomButton;
 
 public class IconButton extends AbstractCustomButton implements IIconComponent {
 
-    private StretchIcon icon;
+    protected StretchIcon icon;
     public IconButton(String iconPath) {
         this(iconPath, false);
     }
@@ -26,7 +26,7 @@ public class IconButton extends AbstractCustomButton implements IIconComponent {
         setContent(iconPath, prop);
     }
 
-    public StretchIcon getIcon() {
+    public StretchIcon getCustomIcon() {
         return icon;
     }
     @Override

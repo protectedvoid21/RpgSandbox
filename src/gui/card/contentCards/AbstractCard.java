@@ -1,22 +1,21 @@
-package gui.card;
+package gui.card.contentCards;
 
-import gui.customComponents.AbstractCustomLabel;
-import gui.customComponents.CustomLabel;
-import gui.customComponents.IContentCustomUICmp;
+import gui.card.CardContentDataSet;
+import gui.card.DoubleArrowPanel;
+import gui.card.SwitchableComponent;
 import gui.factories.GuiFactory;
-import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
 
 import javax.swing.*;
-import java.util.AbstractMap;
 import java.util.ArrayList;
-import java.util.TimerTask;
 
 public abstract class AbstractCard<T extends JComponent> implements SwitchableComponent {
     protected GuiFactory factory;
     protected int currentAttrSide = 0;
     protected CardContentDataSet data;
+    protected ArrayList<CardContentDataSet> detailData = new ArrayList<>();
+
     private ComponentsSeries<JComponent> mainSeries =
             new ComponentsSeries<>(ComponentsSeries.ComponentsDimension.VERTICAL);
     protected int maximumElementNumber;
@@ -29,6 +28,15 @@ public abstract class AbstractCard<T extends JComponent> implements SwitchableCo
         this.data = data;
         reset();
     }
+    public void initializeCardData(CardContentDataSet data, ArrayList<CardContentDataSet> detailData) {
+        this.data = data;
+        this.detailData = detailData;
+        reset();
+    }
+
+    public int getMaximumElementNumber(){
+        return maximumElementNumber;
+    }
 
     public CardContentDataSet getData(){
         return data;
@@ -39,6 +47,11 @@ public abstract class AbstractCard<T extends JComponent> implements SwitchableCo
         mainSeries.addOption(getContentMenager().getCmp(), 7);
 //        initializeContent();
     }
+
+//    public void setDetailData(ArrayList<CardContentDataSet> detailData){
+//        this.detailData = detailData;
+//
+//    }
 
     public void reset() {
         currentAttrSide = 0;
@@ -62,7 +75,7 @@ public abstract class AbstractCard<T extends JComponent> implements SwitchableCo
     }
 
 
-    protected int getSideMaximumElementsNumber() {
+    public int getSideMaximumElementsNumber() {
         return maximumElementNumber * (currentAttrSide + 1);
     }
 
@@ -92,6 +105,8 @@ public abstract class AbstractCard<T extends JComponent> implements SwitchableCo
     protected abstract void initializeContent();
 
     public abstract void setUniformForm();
+
+    public abstract void initializeCard();
 
 //    public abstract void makeFullContentTransparent();
 

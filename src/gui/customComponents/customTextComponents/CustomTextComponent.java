@@ -42,43 +42,67 @@ public class CustomTextComponent extends JPanel implements IComponentTextMargin,
         @Override
         public void componentResized(ComponentEvent e) {
             setRelevantFont();
-            for (var side : ComponentTextMarginManager.Side.values()) {
-                margin.set(side, label.getCustomUI().getCurrentActivatedMargin().getPercentValue(side));
-            }
+//            for (var side : ComponentTextMarginManager.Side.values()) {
+//                margin.set(side, label.getCustomUI().getCurrentActivatedMargin().getPercentValue(side));
+//            }
+//            setFont(1);
+//            for (var side : ComponentTextMarginManager.Side.values()) {
+//                margin.set(side, label.getCustomUI().getCurrentActivatedMargin().getPercentValue(side));
+//            }
 //            setFont(label.getCustomUI().getRelevantFont(getContent()).getSize());
-            counter = 0;
+//            setRelevantFont();
+////            setFont(label.getCustomUI().getRelevantFont(getContent()).getSize());
+//            counter = 0;
             super.componentResized(e);
+//            setFont(1);
+//            for (var side : ComponentTextMarginManager.Side.values()) {
+//                margin.set(side, label.getCustomUI().getCurrentActivatedMargin().getPercentValue(side));
+//            }
+//            setFont(label.getCustomUI().getRelevantFont(getContent()).getSize());
+            setRelevantFont();
         }
 
         @Override
         public void componentMoved(ComponentEvent e) {
             super.componentMoved(e);
             setRelevantFont();
-            for (var side : ComponentTextMarginManager.Side.values()) {
-                margin.set(side, label.getCustomUI().getCurrentActivatedMargin().getPercentValue(side));
-            }
+//            for (var side : ComponentTextMarginManager.Side.values()) {
+//                margin.set(side, label.getCustomUI().getCurrentActivatedMargin().getPercentValue(side));
+//            }
 //            setFont(label.getCustomUI().getRelevantFont(getContent()).getSize());
-            counter = 0;
+//            counter = 0;
         }
 
         @Override
         public void componentShown(ComponentEvent e) {
             super.componentShown(e);
             setRelevantFont();
-            for (var side : ComponentTextMarginManager.Side.values()) {
-                margin.set(side, label.getCustomUI().getCurrentActivatedMargin().getPercentValue(side));
-            }
+//            setFont(1);
+//            for (var side : ComponentTextMarginManager.Side.values()) {
+//                margin.set(side, label.getCustomUI().getCurrentActivatedMargin().getPercentValue(side));
+//            }
 //            setFont(label.getCustomUI().getRelevantFont(getContent()).getSize());
-            counter = 0;
+//            setRelevantFont();
+//            counter = 0;
+//            for (var side : ComponentTextMarginManager.Side.values()) {
+//                margin.set(side, label.getCustomUI().getCurrentActivatedMargin().getPercentValue(side));
+//            }
+//            setRelevantFont();
+//            setFont(1);
+//            for (var side : ComponentTextMarginManager.Side.values()) {
+//                margin.set(side, label.getCustomUI().getCurrentActivatedMargin().getPercentValue(side));
+//            }
+//            setFont(label.getCustomUI().getRelevantFont(getContent()).getSize());
+//            setRelevantFont();
         }
 
         @Override
         public void componentHidden(ComponentEvent e) {
             super.componentHidden(e);
-            setRelevantFont();
-            for (var side : ComponentTextMarginManager.Side.values()) {
-                margin.set(side, label.getCustomUI().getCurrentActivatedMargin().getPercentValue(side));
-            }
+//            setRelevantFont();
+//            for (var side : ComponentTextMarginManager.Side.values()) {
+//                margin.set(side, label.getCustomUI().getCurrentActivatedMargin().getPercentValue(side));
+//            }
 //            setFont(label.getCustomUI().getRelevantFont(getContent()).getSize());
             counter = 0;
         }
@@ -99,12 +123,34 @@ public class CustomTextComponent extends JPanel implements IComponentTextMargin,
 
     }
 
+    @Override
+    public void setVisible(boolean aFlag) {
+//        setRelevantFont();
+        counter = 0;
+//        label.setVisible(aFlag);
+//        textField.setVisible(aFlag);
+        super.setVisible(aFlag);
+//        setRelevantFont();setRelevantFont();
+//        for (var side : ComponentTextMarginManager.Side.values()) {
+//            margin.set(side, label.getCustomUI().getCurrentActivatedMargin().getPercentValue(side));
+//        }
+    }
+
     protected void initializeTextField() {
         textField.setFont(new Font(textField.getFont().getName(), Font.PLAIN, textField.getFont().getSize()));
         label.setFont(new Font(textField.getFont().getName(), Font.PLAIN, textField.getFont().getSize()));
         margin = new ComponentTextMarginManager(textField);
         textField.addComponentListener(adapter);
         label.addComponentListener(adapter);
+        label.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                System.out.println("klikieto label2");
+                super.mouseClicked(e);
+//                textField.requestFocus();
+//                textField.setCaretPosition(textField.getText().length());
+            }
+        });
         addComponentListener(adapter);
 
 
@@ -112,36 +158,35 @@ public class CustomTextComponent extends JPanel implements IComponentTextMargin,
             @Override
             public void insertUpdate(DocumentEvent e) {
                 setRelevantFont();
-                for (var side : ComponentTextMarginManager.Side.values()) {
-                    margin.set(side, label.getCustomUI().getCurrentActivatedMargin().getPercentValue(side));
-                }
-                System.out.println(label.getCustomUI().getCurrentActivatedMargin().getPercentValue(ComponentTextMarginManager.Side.BOTTOM) + "   " + label.getCustomUI().getCurrentActivatedMargin().get(ComponentTextMarginManager.Side.TOP));
+//                for (var side : ComponentTextMarginManager.Side.values()) {
+//                    margin.set(side, label.getCustomUI().getCurrentActivatedMargin().getPercentValue(side));
+//                }
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
                 setRelevantFont();
-                for (var side : ComponentTextMarginManager.Side.values()) {
-                    margin.set(side, label.getCustomUI().getCurrentActivatedMargin().getPercentValue(side));
-                }
+//                for (var side : ComponentTextMarginManager.Side.values()) {
+//                    margin.set(side, label.getCustomUI().getCurrentActivatedMargin().getPercentValue(side));
+//                }
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
                 setRelevantFont();
-                for (var side : ComponentTextMarginManager.Side.values()) {
-                    margin.set(side, label.getCustomUI().getCurrentActivatedMargin().getPercentValue(side));
-                }
-                System.out.println(label.getCustomUI().getCurrentActivatedMargin().getPercentValue(ComponentTextMarginManager.Side.BOTTOM) + "   " + label.getCustomUI().getCurrentActivatedMargin().get(ComponentTextMarginManager.Side.TOP));
+//                for (var side : ComponentTextMarginManager.Side.values()) {
+//                    margin.set(side, label.getCustomUI().getCurrentActivatedMargin().getPercentValue(side));
+//                }
             }
         });
         textField.setOpaque(false);
         textField.setPreferredSize(new Dimension(1, 1));
-        textField.setBorder(new EmptyBorder(1, 1, 1, 1));
+        textField.setBorder(new EmptyBorder(0, 0, 0, 0));
         textField.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+                System.out.println("klikieto label");
                 for (var listener : label.getMouseListeners()) {
                     listener.mouseClicked(e);
                 }
@@ -183,14 +228,31 @@ public class CustomTextComponent extends JPanel implements IComponentTextMargin,
 
     @Override
     protected void paintComponent(Graphics g) {
-        counter++;
-        if (counter < 5) {
-            for (var side : ComponentTextMarginManager.Side.values()) {
-                margin.set(side, label.getCustomUI().getCurrentActivatedMargin().getPercentValue(side));
-            }
-            setRelevantFont();
-        }
-        super.paintComponent(g);
+//        counter++;
+//        if (counter < 5 ) {
+//            for (var side : ComponentTextMarginManager.Side.values()) {
+//                margin.set(side, label.getCustomUI().getCurrentActivatedMargin().getPercentValue(side));
+//            }
+//            setRelevantFont();
+//            setFont(1);
+//            for (var side : ComponentTextMarginManager.Side.values()) {
+//                margin.set(side, label.getCustomUI().getCurrentActivatedMargin().getPercentValue(side));
+//            }
+//            setFont(label.getCustomUI().getRelevantFont(getContent()).getSize());
+//            setRelevantFont();
+//        }
+        setRelevantFont();
+//        if (textField.getFont().getSize()==0){
+//            setFont(1);
+//        }
+        super.paintComponent(g); var f = label.getCustomUI().getRelevantFont(label.getText());
+//        textField.setFont(new Font(label.getFont().getName(), label.getFont().getStyle(),
+//                f.getSize()));
+//        label.setFont(new Font(label.getFont().getName(), label.getFont().getStyle(),
+//                f.getSize()));
+//        System.out.println(label.getFont());
+//        System.out.println(textField.getFont());
+//        System.out.println("po ustawieniuuustawieniuuustawieniuuustawieniuuustawieniuuustawieniuuustawieniuuustawieniuu");
     }
 
     @Override
@@ -237,7 +299,6 @@ public class CustomTextComponent extends JPanel implements IComponentTextMargin,
 
     @Override
     public void setContent(String newContent) {
-        System.out.println("hello");
         textField.setText(newContent);
         label.setContent(newContent);
 
@@ -251,9 +312,12 @@ public class CustomTextComponent extends JPanel implements IComponentTextMargin,
 
     @Override
     public void setFont(Font font) {
+//        System.out.println(font+"jedbany font");
         if (label != null && textField != null) {
-            label.setFont(font);
-            textField.setFont(font);
+            label.setFont(new Font(font.getName(), font.getStyle(),
+                    font.getSize()));
+            textField.setFont(new Font(font.getName(), font.getStyle(),
+                    font.getSize()));
         }
         super.setFont(font);
     }
@@ -280,8 +344,22 @@ public class CustomTextComponent extends JPanel implements IComponentTextMargin,
     }
 
     protected void setRelevantFont() {
-        label.setContent(textField.getText());
-        textField.setFont(new Font(label.getFont().getName(), label.getFont().getStyle(), label.getFont().getSize()));
+        for (var side : ComponentTextMarginManager.Side.values()) {
+            margin.set(side, label.getCustomUI().getCurrentActivatedMargin().getPercentValue(side));
+        }
+//        if (isVisible()) {
+            label.setContent(textField.getText());
+//            textField.setFont(new Font(label.getFont().getName(), label.getFont().getStyle(),
+//                    label.getFont().getSize()));
+//        }
+        var f = label.getCustomUI().getRelevantFont(label.getText());
+        textField.setFont(new Font(label.getFont().getName(), label.getFont().getStyle(),
+                f.getSize()));
+        label.setFont(new Font(label.getFont().getName(), label.getFont().getStyle(),
+                f.getSize()));
+//        System.out.println(label.getFont());
+//        System.out.println(textField.getFont());
+//        System.out.println("po ustawieniuuustawieniuuustawieniuuustawieniuuustawieniuuustawieniuuustawieniuuustawieniuu");
     }
 
     public void setMaximumFontRelevantToHeight(boolean value) {

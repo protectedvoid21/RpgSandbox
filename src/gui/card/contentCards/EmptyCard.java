@@ -1,15 +1,9 @@
-package gui.card;
+package gui.card.contentCards;
 
-import gui.customComponents.AbstractCustomButton;
+import gui.card.contentCards.AbstractCard;
 import gui.customComponents.AbstractCustomLabel;
-import gui.customComponents.CustomLabel;
-import gui.factories.GuiFactory;
-import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
-
-import java.util.AbstractMap;
-import java.util.ArrayList;
 
 public class EmptyCard extends AbstractCard<AbstractCustomLabel> {
     protected DefaultCustomMenuMenager<AbstractCustomLabel> menager =
@@ -38,6 +32,11 @@ public class EmptyCard extends AbstractCard<AbstractCustomLabel> {
 
     @Override
     public void setUniformForm() {
+
+    }
+
+    @Override
+    public void initializeCard() {
 
     }
 }

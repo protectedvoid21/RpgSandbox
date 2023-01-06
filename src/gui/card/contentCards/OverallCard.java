@@ -1,5 +1,7 @@
-package gui.card;
+package gui.card.contentCards;
 
+import gui.card.SharedCmpsFont;
+import gui.card.fullCards.abstractCards.Card;
 import gui.customComponents.AbstractCustomButton;
 import gui.customComponents.AbstractCustomLabel;
 import gui.factories.GuiFactory;
@@ -8,7 +10,6 @@ import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 
@@ -29,8 +30,6 @@ public class OverallCard extends AbstractCard<JComponent> {
             GuiFactory factory, ArrayList<ActionListener> cardListeners) {
         super(factory);
         cardActions = cardListeners;
-        initializeCard(cardActions.size());
-        initializeContent();
     }
 
 
@@ -124,6 +123,12 @@ public class OverallCard extends AbstractCard<JComponent> {
     public void setUniformForm() {
         SharedCmpsFont.setUniformFont(goList);
         SharedCmpsFont.setUniformFont(labelList);
+    }
+
+    @Override
+    public void initializeCard() {
+        initializeCard(cardActions.size());
+        initializeContent();
     }
 
 }

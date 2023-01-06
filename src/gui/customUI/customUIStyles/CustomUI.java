@@ -91,6 +91,11 @@ public abstract class CustomUI implements ICustomUI {
         c.setBorder(new EmptyBorder(0, 0, 0, 0));//to fix na 1111
     }
 
+    @Override
+    public void changeBorderStrategy(IBorderStrategy newStrategy) {
+        borderStrategy = newStrategy;
+    }
+
     public void setAdditionaldColor(Color color, ICustomUI.Index index) {
         additionalColors.put(index, color);
     }
@@ -292,7 +297,9 @@ public abstract class CustomUI implements ICustomUI {
      */
     public void setSharedComponentSize(SharedCmpsFont cmpShared) {
         if (cmpShared == null) {
-            this.cmpsShared.removeComponentFromList(parent);
+            if (this.cmpsShared != null) {
+                this.cmpsShared.removeComponentFromList(parent);
+            }
         }
         this.cmpsShared = cmpShared;
     }

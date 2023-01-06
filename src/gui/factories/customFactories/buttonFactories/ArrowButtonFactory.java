@@ -1,7 +1,9 @@
 package gui.factories.customFactories.buttonFactories;
 
 import gui.customComponents.AbstractCustomButton;
+import gui.customComponents.CustomBooleanButton;
 import gui.customComponents.CustomButton;
+import gui.customComponents.CustomIconBooleanButton;
 import gui.customComponents.iconComponents.IconButton;
 import gui.customComponents.iconComponents.StretchIcon;
 import gui.customUI.componentsUIs.CustomButtonUI;
@@ -13,21 +15,21 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class ArrowButtonFactory extends ImageButtonFactory{
+public class ArrowButtonFactory extends ImageButtonFactory {
 
-    private AbstractCustomButton helpCreatedMethod(AbstractCustomButton button, ActionListener listener){
+    private AbstractCustomButton helpCreatedMethod(AbstractCustomButton button, ActionListener listener) {
         button.addActionListener(listener);
         button.setForeground(new Color(0x000000));
         button.setHorizontalAlignment(SwingConstants.CENTER);
-        var ui = new ClickedStyleUI(strategy,4, 10);
-        var uiHelper = new ImageBorderWraper(ui, "src/gui/rightarrow.png","src/gui/leftarrow.png");
+        var ui = new ClickedStyleUI(strategy, 4, 10);
+        var uiHelper = new ImageBorderWraper(ui, "src/gui/rightarrow.png", "src/gui/leftarrow.png");
         if (isScaled) {
             uiHelper.setScalingValue(scalingSizeValue, scalingPositionValue);
             uiHelper.setScalingStatus(true);
         }
         ui.addComponent(uiHelper);
-        if (button instanceof IconButton){
-            ui.addComponent(((IconButton) button).getIcon());
+        if (button instanceof IconButton) {
+            ui.addComponent(((IconButton) button).getCustomIcon());
         }
         button.setBackground(new Color(0x52E13C));
         uiHelper.setAdditionaldColor(button.getBackground().darker(), ICustomUI.Index.FIRST);
@@ -37,9 +39,10 @@ public class ArrowButtonFactory extends ImageButtonFactory{
 
         return button;
     }
+
     @Override
     public AbstractCustomButton createNormalButton(String text, ActionListener listener) {
-        return helpCreatedMethod(new CustomButton(text), listener );
+        return helpCreatedMethod(new CustomButton(text), listener);
     }
 
     @Override
@@ -62,7 +65,20 @@ public class ArrowButtonFactory extends ImageButtonFactory{
         return createDisableIconButton(text, text2, listener, false);
     }
 
-    private AbstractCustomButton createDisableIconButton(String text1, String text2, ActionListener listener, boolean proportionate){
+    @Override
+    public CustomBooleanButton createBooleanButton(String text1, String text2, boolean initialValue) {
+        var but = helpCreatedMethod(new CustomBooleanButton(initialValue), null);
+        ((CustomBooleanButton) but).setDoubleTextContent(text1, text2);
+        return (CustomBooleanButton) but;
+    }
+
+    @Override
+    public CustomIconBooleanButton createBooleanButtonWithIcons(String path1, String path2, boolean initialValue, boolean proportionate) {
+        return null;
+    }
+
+    private AbstractCustomButton createDisableIconButton(String text1, String text2, ActionListener listener,
+                                                         boolean proportionate) {
         var but = helpCreatedMethod(new IconButton(text1, proportionate), listener);
         if (text2 != null) {
             but.setDisabledIcon(new StretchIcon(text2, proportionate));

@@ -1,7 +1,9 @@
 package gui.factories.customFactories.buttonFactories;
 
 import gui.customComponents.AbstractCustomButton;
+import gui.customComponents.CustomBooleanButton;
 import gui.customComponents.CustomButton;
+import gui.customComponents.CustomIconBooleanButton;
 import gui.customComponents.iconComponents.IconButton;
 import gui.customComponents.iconComponents.StretchIcon;
 import gui.customUI.componentsUIs.CustomButtonUI;
@@ -85,5 +87,16 @@ public class WinterGrowingBorderButtonFactory extends ImageButtonFactory {
         }
         but.getCustomUI().setBackGroundTransparent(false);
         return but;
+    }
+    @Override
+    public CustomBooleanButton createBooleanButton(String text1, String text2, boolean initialValue) {
+        var but = helpCreatedMethod(new CustomBooleanButton(initialValue), null);
+        ((CustomBooleanButton) but).setDoubleTextContent(text1, text2);
+        return (CustomBooleanButton) but;
+    }
+
+    @Override
+    public CustomIconBooleanButton createBooleanButtonWithIcons(String path1, String path2, boolean initialValue, boolean proportionate) {
+        return null;
     }
 }

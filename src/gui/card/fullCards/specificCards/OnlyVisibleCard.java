@@ -1,5 +1,9 @@
-package gui.card;
+package gui.card.fullCards.specificCards;
 
+import gui.card.CardContentDataSet;
+import gui.card.SharedCmpsFont;
+import gui.card.fullCards.abstractCards.BaseCard;
+import gui.card.fullCards.abstractCards.Card;
 import gui.customComponents.AbstractCustomButton;
 import gui.customComponents.AbstractCustomLabel;
 import gui.factories.GuiFactory;
@@ -24,13 +28,11 @@ public class OnlyVisibleCard extends BaseCard {
     public OnlyVisibleCard(GuiFactory factory, int elementsSize) {
         super(factory);
         maximumElementSize = elementsSize;
-        initializeCard();
-        initializeContent();
     }
 
     public void uploadNewData(CardContentDataSet data) {
-        titleSeries.getOption(0).getComponent().setContent(data.titlePath);
-        titleSeries.getOption(1).getComponent().setContent(data.titleContent);
+        leftTitleComponent.getComponent().setContent(data.titlePath);
+        leftTitleComponent.getComponent().setContent(data.titleContent);
         for (int i = 0; i < labelList.size(); i++) {
             var cnt = data.content.get(i / 2).get(i % 2);
             var lbl = labelList.get(i);
@@ -52,7 +54,14 @@ public class OnlyVisibleCard extends BaseCard {
 
     @Override
     public void setVisibility(boolean value) {
-        setAspectVisible(new ArrayList<>(titleSeries.getComponentsList().stream().map(cmp -> cmp.getComponent()).toList()), value);
+//        setAspectVisible(new ArrayList<>(Arrays.asList(leftTitleComponent, rightTitleComponent)), value);
+        setAspectVisible(new ArrayList<>(Arrays.asList(leftTitleComponent.getComponent(), rightTitleComponent.getComponent())), value);
+    }
+
+    @Override
+    public void initialize() {
+        initializeCard();
+        initializeContent();
     }
 
     protected void initializeContent() {

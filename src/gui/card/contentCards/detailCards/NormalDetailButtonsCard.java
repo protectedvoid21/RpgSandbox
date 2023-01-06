@@ -1,13 +1,14 @@
-package gui.card;
+package gui.card.contentCards.detailCards;
 
+import gui.card.fullCards.abstractCards.Card;
 import gui.customComponents.AbstractCustomLabel;
 import gui.customComponents.IContentCustomUICmp;
-import gui.customComponents.customTextComponents.CustomTextComponent;
 import gui.factories.GuiFactory;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
-public class NormalDetailButtonsCard extends DetailButtonsCard{
+public class NormalDetailButtonsCard extends DetailButtonsCard {
 
     private ArrayList<AbstractCustomLabel> list = new ArrayList<>();
     public NormalDetailButtonsCard(GuiFactory factory) {
@@ -20,17 +21,17 @@ public class NormalDetailButtonsCard extends DetailButtonsCard{
     }
 
     @Override
-    protected void initContentSegment() {
-        factory.setLabelType(GuiFactory.LabelType.NORMAL);
-        var label = factory.createLabel(Card.EMPTY_DATA_CONTENT);
-        menager.addMiddleComponent(label, 1, 20);
-        menager.getMainComponent(1).getComponent().getLastComponent().addSpace(2);
-        list.add(label);
-    }
-
-    @Override
     protected void updateContent() {
         super.updateContent();
         Card.setAspectVisible(list, true);
+    }
+
+    @Override
+    protected JComponent createContentSegment() {
+
+        factory.setLabelType(GuiFactory.LabelType.NORMAL);
+        var label = factory.createLabel(Card.EMPTY_DATA_CONTENT);
+        list.add(label);
+        return label;
     }
 }

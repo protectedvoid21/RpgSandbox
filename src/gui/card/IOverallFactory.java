@@ -1,10 +1,11 @@
 package gui.card;
 
+import gui.card.fullCards.abstractCards.Card;
+import gui.card.fullCards.specificCards.OnlyVisibleCard;
 import gui.factories.GuiFactory;
 
 import java.util.AbstractMap;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public abstract class IOverallFactory {
     protected GuiFactory factory = new GuiFactory();

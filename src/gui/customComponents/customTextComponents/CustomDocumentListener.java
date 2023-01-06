@@ -40,6 +40,19 @@ public class CustomDocumentListener implements DocumentListener {
             @Override
             public void keyTyped(KeyEvent e) {
                 pressed = true;
+//                var f = label.getCustomUI().getRelevantFont(label.getText());
+//                textComponent.setFont(new Font(label.getFont().getName(), label.getFont().getStyle(),
+//                        f.getSize()));
+//                label.setFont(new Font(label.getFont().getName(), label.getFont().getStyle(),
+//                        f.getSize()));
+//                System.out.println(label.getFont());
+//                System.out.println(textComponent.getFont());
+//                System.out.println("kurwaaaaaaaaaaaaaaaaaaaaaaaa");
+//                System.out.println(textComponent.getForeground());
+//                System.out.println(textComponent.getFont());
+//                System.out.println(label.getFont());
+//                System.out.println(textComponent.getBackground());
+//                System.out.println(label.getBackground()+"keeeeeeeeeeeeeeeeekeeeeeeeeeeeeeeeeeeeeeeeeeeeeveeeeeeeeeee");
             }
 
             @Override

@@ -1,8 +1,6 @@
 package gui.factories;
 
-import gui.customComponents.AbstractCustomButton;
-import gui.customComponents.AbstractCustomLabel;
-import gui.customComponents.CustomLabel;
+import gui.customComponents.*;
 import gui.customComponents.customTextComponents.CustomTextComponent;
 import gui.customUI.customUIStyles.borderStrategies.DefaultBorderStrategy;
 import gui.customUI.customUIStyles.borderStrategies.IBorderStrategy;
@@ -24,7 +22,7 @@ public class GuiFactory {
     private Font currentFont = new Font("Helvetica", Font.PLAIN, 14);
 
     public enum LabelType {NORMAL, ICON, STRETCH_ICON}
-    public enum ButtonType {NORMAL, ICON, STRETCH_ICON, DISABLED_STRETCH_ICON, DISABLED_ICON}
+    public enum ButtonType {NORMAL, ICON, STRETCH_ICON, DISABLED_STRETCH_ICON, DISABLED_ICON, DOUBLE, DOUBLE_WITH_ICONS}
 
     private LabelType labelType = LabelType.NORMAL;
     private ButtonType buttonType = ButtonType.NORMAL;
@@ -67,8 +65,17 @@ public class GuiFactory {
             case STRETCH_ICON -> button = buttonFactory.createIconStretchButton(text, listener);
             case DISABLED_ICON -> button = buttonFactory.createDisabledIconPropButton(text, disabledPath,listener);
             case DISABLED_STRETCH_ICON -> button = buttonFactory.createDisabledIconStretchButton(text, disabledPath,listener);
+            case DOUBLE -> button = buttonFactory.createBooleanButton(text, disabledPath, true);
+            case DOUBLE_WITH_ICONS -> button = buttonFactory.createBooleanButtonWithIcons(text, disabledPath, true, true);
         }
         return button;
+    }
+
+    public CustomBooleanButton createButton(String firstText, String secondText, boolean initialValue){
+        return buttonFactory.createBooleanButton(firstText, secondText, initialValue);
+    }
+    public CustomIconBooleanButton createButton(String firstText, String secondText, boolean initialValue, boolean proportionate){
+        return buttonFactory.createBooleanButtonWithIcons(firstText, secondText, initialValue, proportionate);
     }
 
     public void setButtonFactory(ButtonFactory buttonFactory) {

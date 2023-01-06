@@ -1,30 +1,28 @@
-package gui.card;
+package gui.card.contentCards.detailCards;
 
+import gui.card.CardContentDataSet;
+import gui.card.contentCards.AbstractCard;
+import gui.card.fullCards.abstractCards.Card;
+import gui.card.SharedCmpsFont;
 import gui.customComponents.AbstractCustomButton;
 import gui.customComponents.AbstractCustomLabel;
-import gui.customComponents.CustomLabel;
 import gui.customComponents.IContentCustomUICmp;
-import gui.customComponents.customTextComponents.CustomTextComponent;
 import gui.factories.GuiFactory;
-import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
 
 import javax.swing.*;
 import java.util.*;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public abstract class DetailButtonsCard extends AbstractCard {
     protected DefaultCustomMenuMenager<JComponent> menager =
             new DefaultCustomMenuMenager<>(ComponentsSeries.ComponentsDimension.HORIZONTAL,
                     ComponentsSeries.ComponentsDimension.VERTICAL);
 
-        protected ArrayList<AbstractCustomLabel> labelList = new ArrayList<>();
-//    protected ArrayList<AbstractCustomButton> selectList = new ArrayList<>();
+    protected ArrayList<AbstractCustomLabel> labelList = new ArrayList<>();
+    //    protected ArrayList<AbstractCustomButton> selectList = new ArrayList<>();
     protected ArrayList<AbstractCustomButton> detailList = new ArrayList<>();
+
 
 
     /**
@@ -32,23 +30,26 @@ public abstract class DetailButtonsCard extends AbstractCard {
      */
     public DetailButtonsCard(GuiFactory factory) {
         super(factory);
-//        initializeCard(3);
-//        initializeContent();
     }
 
-    protected abstract ArrayList<? extends IContentCustomUICmp > getContentList();
+    protected abstract ArrayList<? extends IContentCustomUICmp> getContentList();
 
-public void initializeCard(){
-    initializeCard(3);
-    initializeContent();
-}
+    @Override
+    public void initializeCard() {
+        initializeCard(3);
+        initializeContent();
+    }
 
 
-    protected abstract void initContentSegment();
+
+
+//    protected abstract void initContentSegment();
 
     public AbstractCustomButton getDetailButton(int index) {
         return detailList.get(index);
     }
+
+
 
 
     @Override
@@ -99,6 +100,13 @@ public void initializeCard(){
 //            initButton(selectList, "SELECT");
         }
 
+    }
+
+    protected abstract JComponent createContentSegment();
+
+    private void initContentSegment(){
+        menager.addMiddleComponent(createContentSegment(), 1, 20);
+        menager.getMainComponent(1).getComponent().getLastComponent().addSpace(2);
     }
 
     protected void initLabel() {
