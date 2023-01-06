@@ -27,12 +27,7 @@ public class StatisticsWarhammer extends Statistics {
         attributes.put(AttributeEnum.HEALTH_POINTS_MAX, new UnlimitedAttribute(15));
         attributes.put(AttributeEnum.HEALTH_POINTS_NOW, new UnlimitedAttribute(15));
         attributes.put(AttributeEnum.MOVEMENT, new UnlimitedAttribute(5));
-        attributes.put(AttributeEnum.MAGIC, new UnlimitedAttribute(1));
-        
-        attributes.put(AttributeEnum.ACTIONS_TO_DO, new LimitedAttribute(0, 2, 2));
-        attributes.put(AttributeEnum.IS_BLOKING, new LimitedAttribute(0, 1, 0));
-        attributes.put(AttributeEnum.IS_AIMING, new LimitedAttribute(0, 1, 0));
-        attributes.put(AttributeEnum.IS_IN_DEFENSE_STAND, new LimitedAttribute(0, 1, 0));
+
     }
 
     @Override
