@@ -1,9 +1,10 @@
 package game.creature;
 
 import game.interfaces.IStatistics;
+import game.interfaces.RoundListener;
 import game.interfaces.IStruggleStatistics;
 
-public abstract class Creature {
+public abstract class Creature implements RoundListener {
     protected IStatistics statistics;
     protected IStruggleStatistics struggleStatistics;
     protected String name;
@@ -13,6 +14,10 @@ public abstract class Creature {
         this.statistics = statistics;
         this.experience = experience;
         this.struggleStatistics = struggleStatistics;
+    }
+    
+    public void applyNewRound() {
+        statistics.applyNewRound();
     }
     
     public IStatistics getStatistics() {
