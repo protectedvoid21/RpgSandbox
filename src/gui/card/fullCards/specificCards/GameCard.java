@@ -29,7 +29,11 @@ public class GameCard extends Card {
         but.initializeCard();
         allCards.put(type, but);
         gameCards.add(but);
-        but.getDetailButton(0).addActionListener(e->detailButtonMethod(but));
+//        but.getDetailButton(0).addActionListener(e->detailButtonMethod(but));
+        for (int i = 0; i<but.getMaximumElementNumber(); i++){
+            int finalI = i;
+            but.getDetailButton(0).addActionListener(e->detailButtonMethod(but, type, finalI));
+        }
 
     }
 

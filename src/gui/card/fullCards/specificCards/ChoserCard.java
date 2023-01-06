@@ -13,6 +13,8 @@ import gui.factories.GuiFactory;
 import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class ChoserCard extends Card {
@@ -49,7 +51,11 @@ public class ChoserCard extends Card {
         but.initializeCard();
         allCards.put(type, but);
         cards.add(but);
-        but.getDetailButton(0).addActionListener(e->detailButtonMethod(but));
+//        but.getDetailButton(0).addActionListener(e->detailButtonMethod(but, ));
+        for (int i = 0; i<but.getMaximumElementNumber(); i++){
+            int finalI = i;
+            but.getDetailButton(0).addActionListener(e->detailButtonMethod(but, type, finalI));
+        }
 
     }
 

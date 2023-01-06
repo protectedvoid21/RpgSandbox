@@ -37,10 +37,10 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
     private HashMap<CreatorTypes, CardContentDataSet> creatorData = new HashMap<>();
 
     public enum CreatorTypes {ARMOR, WEAPONS, MOUNT}
-    public enum DetailTypes {ARMOR, WEAPONS, MOUNT, ITEMS}
+//    public enum DetailTypes {ARMOR, WEAPONS, MOUNT, ITEMS}
     public enum CardTypes {ATTRIBUTE, ARMOR, WEAPONS, EFFECTS, OVERALL, MOUNT, ITEMS}
 
-    private HashMap<DetailTypes, ArrayList<CardContentDataSet>> detailTypesData = new HashMap<>();
+    private HashMap<CardTypes, ArrayList<CardContentDataSet>> detailTypesData = new HashMap<>();
 
     protected static ArrayList<CardTypes> cardSideIndexes = new ArrayList<>(Arrays.asList(CardTypes.OVERALL,
             CardTypes.ATTRIBUTE,
@@ -101,13 +101,16 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
         rightArrows.setSwitchableComponent(this);
     }
 
-    public void uploadDetailData(HashMap<DetailTypes, ArrayList<CardContentDataSet>> detailData){
-        detailTypesData = detailData;
-    }
+//    public void uploadDetailData(HashMap<DetailTypes, ArrayList<CardContentDataSet>> detailData){
+//        detailTypesData = detailData;
+//    }
 
     protected void detailButtonMethod(DetailButtonsCard card, CardTypes type, int index) {
 //        equipmentCard.initializeCardData(card.getData().eqData.get(0));
-        equipmentCard.initializeCardData(detailTypesData.get(type).get(activeCard.getSideMaximumElementsNumber()- activeCard.getMaximumElementNumber()+index));
+        System.out.println(detailTypesData.get(type).get(allCards.get(type).getSideMaximumElementsNumber()- allCards.get(type).getMaximumElementNumber()+index).content);
+        System.out.println("oto te kurewskie dne");
+        equipmentCard.initializeCardData(detailTypesData.get(type).get(allCards.get(type).getSideMaximumElementsNumber()- allCards.get(type).getMaximumElementNumber()+index));
+//        equipmentCard.initializeCardData(allCards.get(type).getData(), allCards.get());
         updateContent(equipmentCard);
         arrowMenager.getOption(1).changeContent(exitButton);//yyyyto fix
         showCancelButton(false);
@@ -121,11 +124,12 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
         var but = createDetailButtonCard();
         but.initializeCard();
         for (int i = 0; i<but.getMaximumElementNumber(); i++){
+            int finalI = i;
             but.getDetailButton(i).addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
 //                eqaCard = activeCard;
-                    detailButtonMethod(but, type);
+                    detailButtonMethod(but, type, finalI);
                 }
             });
         }
@@ -208,7 +212,11 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
     }
 
 
-    public void uploadNewData(HashMap<CardTypes, CardContentDataSet> newData) {
+    public void uploadNewData(HashMap<CardTypes, CardContentDataSet> newData, HashMap<CardTypes, ArrayList<CardContentDataSet>> detailData) {
+        this.detailTypesData = detailData;
+        System.out.println(detailData.get(CardTypes.MOUNT).get(allCards.get(CardTypes.MOUNT).getSideMaximumElementsNumber()- allCards.get(CardTypes.MOUNT).getMaximumElementNumber()+0).content);
+        System.out.println(detailTypesData.get(CardTypes.MOUNT).get(allCards.get(CardTypes.MOUNT).getSideMaximumElementsNumber()- allCards.get(CardTypes.MOUNT).getMaximumElementNumber()+0).content);
+        System.out.println(newData.get(CardTypes.MOUNT)==detailData.get(CardTypes.MOUNT).get(0));
         for (var type : newData.keySet()) {
             allCards.get(type).initializeCardData(newData.get(type));
         }

@@ -28,11 +28,11 @@ public abstract class AbstractCard<T extends JComponent> implements SwitchableCo
         this.data = data;
         reset();
     }
-    public void initializeCardData(CardContentDataSet data, ArrayList<CardContentDataSet> detailData) {
-        this.data = data;
-        this.detailData = detailData;
-        reset();
-    }
+//    public void initializeCardData(CardContentDataSet data) {
+//        this.data = data;
+//        this.detailData = detailData;
+//        reset();
+//    }
 
     public int getMaximumElementNumber(){
         return maximumElementNumber;
@@ -48,10 +48,10 @@ public abstract class AbstractCard<T extends JComponent> implements SwitchableCo
 //        initializeContent();
     }
 
-//    public void setDetailData(ArrayList<CardContentDataSet> detailData){
-//        this.detailData = detailData;
-//
-//    }
+    public void setDetailData(ArrayList<CardContentDataSet> detailData){
+        this.detailData = detailData;
+
+    }
 
     public void reset() {
         currentAttrSide = 0;
