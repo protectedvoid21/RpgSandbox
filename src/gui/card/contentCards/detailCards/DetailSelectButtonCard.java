@@ -3,12 +3,13 @@ package gui.card.contentCards.detailCards;
 import gui.card.fullCards.abstractCards.Card;
 import gui.card.SharedCmpsFont;
 import gui.customComponents.AbstractCustomButton;
+import gui.customComponents.AbstractCustomLabel;
 import gui.factories.GuiFactory;
 
 import java.util.*;
 
 public class DetailSelectButtonCard extends NormalDetailButtonsCard {
-    protected ArrayList<AbstractCustomButton> selectList;
+    protected ArrayList<AbstractCustomLabel> selectList;
     private int selectedIndex = -1;
 
 
@@ -23,11 +24,11 @@ public class DetailSelectButtonCard extends NormalDetailButtonsCard {
 //    }
 
 
-    public AbstractCustomButton getSelectButton(int index) {
+    public AbstractCustomLabel getSelectButton(int index) {
         return selectList.get(index);
     }
 
-    public void setSelectedIndex(int value){
+    public void setSelectedIndex(int value) {
         selectedIndex = value;
     }
 
@@ -41,27 +42,29 @@ public class DetailSelectButtonCard extends NormalDetailButtonsCard {
                 maxSideIndex);
         int currentIndex = 0;
         for (var key : sublist) {
-            String content = "SELECT";
-            var but =  selectList.get(currentIndex);
-            if (currentAttrSide*maximumElementNumber+currentIndex==selectedIndex){
+            String content = " ";
+            var but = selectList.get(currentIndex);
+//            System.out.println(but.getFont());
+            if (currentAttrSide * maximumElementNumber + currentIndex == selectedIndex) {
                 content = "SELECTED";
-                but.setEnabled(false);
-            }else{
-                if (!but.isEnabled()){
-                    but.setEnabled(true);
-                }
             }
+//                but.setEnabled(false);
+//            }else{
+//                if (!but.isEnabled()){
+//                    but.setEnabled(true);
+//                }
+//            }
             selectList.get(currentIndex).setContent(content);
             currentIndex++;
         }
         if (sublist.size() < maximumElementNumber) {
             for (int i = dataSize % maximumElementNumber; i < maximumElementNumber; i++) {
-                System.out.println("ustatwiam pusge");
+//                System.out.println("ustatwiam pusge");
                 selectList.get(i).setContent(Card.EMPTY_DATA_CONTENT);
             }
         }
         Card.setAspectVisible(selectList, true);
-        System.out.println(selectList);
+//        System.out.println(selectList);
     }
 
     @Override
@@ -69,8 +72,9 @@ public class DetailSelectButtonCard extends NormalDetailButtonsCard {
 
         super.initializeContent();
         selectList = new ArrayList<>();
+        factory.setLabelType(GuiFactory.LabelType.NORMAL);
         for (int i = 0; i < maximumElementNumber; i++) {
-            initButton(selectList, "SELECT");
+            initLabel(selectList, " ");
         }
 
     }

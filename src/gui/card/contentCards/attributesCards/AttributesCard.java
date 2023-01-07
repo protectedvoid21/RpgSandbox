@@ -1,5 +1,6 @@
 package gui.card.contentCards.attributesCards;
 
+import gui.card.CardContentDataSet;
 import gui.card.contentCards.AbstractCard;
 import gui.card.fullCards.abstractCards.Card;
 import gui.card.SharedCmpsFont;
@@ -14,6 +15,7 @@ import javax.swing.*;
 import java.util.*;
 
 public abstract class AttributesCard extends AbstractCard {
+
     protected DefaultCustomMenuMenager<JComponent> menager =
             new DefaultCustomMenuMenager<JComponent>(ComponentsSeries.ComponentsDimension.HORIZONTAL,
                     ComponentsSeries.ComponentsDimension.VERTICAL);
@@ -50,12 +52,12 @@ public abstract class AttributesCard extends AbstractCard {
                 maxSideIndex);
 
         int currentIndex = 0;
-        System.out.println(labelList);
+//        System.out.println(labelList);
 
         for (var key : sublist) {
-            System.out.println(key.get(0));
+//            System.out.println(key.get(0));
             labelList.get(currentIndex).setContent(key.get(0));
-            System.out.println("czy ja tu cos robie222" + labelList.get(currentIndex).getContent());
+//            System.out.println("czy ja tu cos robie222" + labelList.get(currentIndex).getContent());
             getSecondContentList().get(currentIndex).setContent(key.get(1));
 //            menager.getMiddleComponent(0, currentIndex).getComponent().setText(key.get(0));
 //            menager.getMiddleComponent(1, currentIndex).getComponent().setText(key.get(1));
@@ -63,10 +65,10 @@ public abstract class AttributesCard extends AbstractCard {
         }
 
 
-        System.out.println();
+//        System.out.println();
         if (sublist.size() < maximumElementNumber) {
             for (int i = dataSize % maximumElementNumber; i < maximumElementNumber; i++) {
-                System.out.println("czy ja tu cos robie");
+//                System.out.println("czy ja tu cos robie");
                 labelList.get(i).setContent(Card.EMPTY_DATA_CONTENT);
                 getSecondContentList().get(i).setContent(Card.EMPTY_DATA_CONTENT);
 //                menager.getMiddleComponent(0, i).getComponent().setText(Card.EMPTY_DATA_CONTENT);
@@ -98,7 +100,7 @@ public abstract class AttributesCard extends AbstractCard {
             labelList.add(label);
 
             var x = createSecondContentComponent();
-            System.out.println(x + "kurwa");
+//            System.out.println(x + "kurwa");
             menager.addMiddleComponent(x, 1, 10);
             menager.getMainComponent(1).getComponent().getLastComponent().addSpace(2,
                     ComponentPanelMenager.Side.RIGHT, ComponentPanelMenager.Side.BOTTOM,

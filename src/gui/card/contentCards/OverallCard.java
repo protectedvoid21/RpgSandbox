@@ -21,13 +21,13 @@ public class OverallCard extends AbstractCard<JComponent> {
     protected ArrayList<AbstractCustomLabel> labelList = new ArrayList<>();
     protected ArrayList<AbstractCustomButton> goList = new ArrayList<>();
     //    private Card parent;
-    private ArrayList<ActionListener> cardActions = new ArrayList<>();
+    private LinkedHashMap<Card.CardTypes, ActionListener> cardActions = new LinkedHashMap<>();
 
     /**
      * dataMap should be in format [[path1, text1], [path2, text2], [path3, text3]...]
      */
     public OverallCard(
-            GuiFactory factory, ArrayList<ActionListener> cardListeners) {
+            GuiFactory factory, LinkedHashMap<Card.CardTypes, ActionListener> cardListeners) {
         super(factory);
         cardActions = cardListeners;
     }
@@ -54,7 +54,7 @@ public class OverallCard extends AbstractCard<JComponent> {
         }
         if (sublist.size() < maximumElementNumber) {
             for (int i = dataSize % maximumElementNumber; i < maximumElementNumber; i++) {
-                System.out.println("czy ja cos tu robie");
+//                System.out.println("czy ja cos tu robie");
                 for (int j = 0; j < 2; j++) {
                     labelList.get(2 * i + j).setContent(Card.EMPTY_DATA_CONTENT);
                 }
@@ -71,14 +71,14 @@ public class OverallCard extends AbstractCard<JComponent> {
     @Override
     protected void initializeContent() {
         int i = 0;
-        for (var key : cardActions) {
+        for (var key : cardActions.keySet()) {
             factory.setLabelType(GuiFactory.LabelType.ICON);
             var label = factory.createLabel(Card.EMPTY_DATA_CONTENT);
             factory.setLabelType(GuiFactory.LabelType.NORMAL);
             var label2 = factory.createLabel(Card.EMPTY_DATA_CONTENT);
             factory.setButtonType(GuiFactory.ButtonType.NORMAL);
             var button = factory.createButton(Card.EMPTY_DATA_CONTENT, null);
-            button.addActionListener(key);//dodac pewnie zmiane listenera
+            button.addActionListener(cardActions.get(key));//dodac pewnie zmiane listenera
 
             var newPanel =
                     new ComponentsSeries<ComponentPanelMenager<JComponent>>(ComponentsSeries.ComponentsDimension.HORIZONTAL);

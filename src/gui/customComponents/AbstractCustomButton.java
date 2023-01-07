@@ -86,4 +86,11 @@ public abstract class AbstractCustomButton extends JButton implements IContentCu
         if (buttonUI != null)
             buttonUI.getCustomUI().setRelevantFont(getText());
     }
+
+    @Override
+    public void setVisible(boolean aFlag) {
+        super.setVisible(aFlag);
+
+        getCustomUI().setRelevantFont(getText());
+    }
 }

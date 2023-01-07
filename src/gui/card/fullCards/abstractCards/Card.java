@@ -6,6 +6,7 @@ import gui.card.contentCards.OverallCard;
 import gui.card.contentCards.attributesCards.AttributesCard;
 import gui.card.contentCards.EmptyCard;
 import gui.card.contentCards.attributesCards.EntriesAttributesCard;
+import gui.card.contentCards.detailCards.AddingButtonCard;
 import gui.card.contentCards.detailCards.DetailButtonsCard;
 import gui.customComponents.*;
 import gui.factories.GuiFactory;
@@ -24,12 +25,12 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
     private AbstractCustomButton cancelButton = null;
 
     protected AbstractCard activeCard = new EmptyCard();
-    protected Map<CardTypes, AbstractCard> allCards = new HashMap<>();
+    protected LinkedHashMap<CardTypes, AbstractCard<? extends JComponent>> allCards = new LinkedHashMap<>();
     private AttributesCard equipmentCard;
 
-    private AttributesCard amwGeneratorCard;
+    private EntriesAttributesCard amwGeneratorCard;
 
-    private AttributesCard choserEqCard = null;
+    private AddingButtonCard choserEqCard = null;
 
 
     //    private AttributesCard lefteqChoserPanel;
@@ -37,10 +38,14 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
     private HashMap<CreatorTypes, CardContentDataSet> creatorData = new HashMap<>();
 
     public enum CreatorTypes {ARMOR, WEAPONS, MOUNT}
-//    public enum DetailTypes {ARMOR, WEAPONS, MOUNT, ITEMS}
-    public enum CardTypes {ATTRIBUTE, ARMOR, WEAPONS, EFFECTS, OVERALL, MOUNT, ITEMS}
 
-    private HashMap<CardTypes, ArrayList<CardContentDataSet>> detailTypesData = new HashMap<>();
+    //    public enum DetailTypes {ARMOR, WEAPONS, MOUNT, ITEMS}
+    public enum CardTypes {OVERALL,ATTRIBUTE, ARMOR, WEAPONS, EFFECTS, MOUNT, ITEMS}
+
+//    protected HashMap<CardTypes, CardContentDataSet> baseAddingTypesData = new HashMap<>();
+//    private HashMap<CardTypes, ArrayList<CardContentDataSet>> addingTypesData = new HashMap<>();
+//protected HashMap<CardTypes, ArrayList<CardContentDataSet>> detailTypesData = new HashMap<>();
+//    protected HashMap<CardTypes, CardContentDataSet> detailTypesData2 = new HashMap<>();
 
     protected static ArrayList<CardTypes> cardSideIndexes = new ArrayList<>(Arrays.asList(CardTypes.OVERALL,
             CardTypes.ATTRIBUTE,
@@ -48,6 +53,7 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
     protected ComponentsSeries<ComponentPanelMenager<JComponent>> arrowMenager;
     private ComponentPanelMenager<AbstractCustomButton> exitButton;
     private ComponentPanelMenager<AbstractCustomButton> exitCreatorCard;
+    //    private ComponentPanelMenager<AbstractCustomButton>  addButton;
     protected DoubleArrowPanel leftArrows;
     private DoubleArrowPanel rightArrows;
     private int currentAttrSide = 0;
@@ -65,7 +71,7 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
         showCancelButton(hasCancelButton);
     }
 
-    private void showCancelButton(boolean status) {
+    protected void showCancelButton(boolean status) {
         seriesPanel.getMainComponent(3).setVisible(hasCancelButton == false ? false : status);
     }
 
@@ -107,9 +113,9 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
 
     protected void detailButtonMethod(DetailButtonsCard card, CardTypes type, int index) {
 //        equipmentCard.initializeCardData(card.getData().eqData.get(0));
-        System.out.println(detailTypesData.get(type).get(allCards.get(type).getSideMaximumElementsNumber()- allCards.get(type).getMaximumElementNumber()+index).content);
-        System.out.println("oto te kurewskie dne");
-        equipmentCard.initializeCardData(detailTypesData.get(type).get(allCards.get(type).getSideMaximumElementsNumber()- allCards.get(type).getMaximumElementNumber()+index));
+        var d = allCards.get(type).getDetailData();
+
+        equipmentCard.initializeCardData(allCards.get(type).getDetailData().get(allCards.get(type).getSideMaximumElementsNumber() - allCards.get(type).getMaximumElementNumber() + index), null);
 //        equipmentCard.initializeCardData(allCards.get(type).getData(), allCards.get());
         updateContent(equipmentCard);
         arrowMenager.getOption(1).changeContent(exitButton);//yyyyto fix
@@ -117,17 +123,19 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
     }
 
 
-    protected abstract DetailButtonsCard createDetailButtonCard();
+    protected abstract DetailButtonsCard createDetailButtonCard(CardTypes type);
 
 
     protected void initializeDetailButtonsCardPart(CardTypes type) {
-        var but = createDetailButtonCard();
+        var but = createDetailButtonCard(type);
+
         but.initializeCard();
-        for (int i = 0; i<but.getMaximumElementNumber(); i++){
+        for (int i = 0; i < but.getMaximumElementNumber(); i++) {
             int finalI = i;
             but.getDetailButton(i).addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
+//                eqaCard = activeCard;
 //                eqaCard = activeCard;
                     detailButtonMethod(but, type, finalI);
                 }
@@ -150,6 +158,11 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
     protected abstract AttributesCard createDetailItemCard();
 
     private void initializeWholeCard() {
+
+        choserEqCard = new AddingButtonCard(factory);
+        choserEqCard.initializeCard();
+
+
         amwGeneratorCard = new EntriesAttributesCard(factory);
         amwGeneratorCard.initializeCard();
 
@@ -163,10 +176,12 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
                 CardTypes.ITEMS)) {
             initializeDetailButtonsCardPart(type);
         }
-        var map = new ArrayList<ActionListener>();
+        var map = new LinkedHashMap<CardTypes, ActionListener>();
 
-        for (var key : cardSideIndexes.subList(1, cardSideIndexes.size())) {
-            map.add(e -> switchSide(key));
+        for (var key : cardSideIndexes) {
+            if (key != CardTypes.OVERALL) {
+                map.put(key, e -> switchSide(key));
+            }
         }
         var overall = new OverallCard(factory, map);
         overall.initializeCard();
@@ -184,7 +199,7 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
     public void setCreatorCard(boolean value, CreatorTypes type) {
 
         if (value) {
-            amwGeneratorCard.initializeCardData(creatorData.get(type));
+            amwGeneratorCard.initializeCardData(creatorData.get(type), null);
             updateContent(amwGeneratorCard);
             arrowMenager.getOption(1).changeContent(exitCreatorCard);//yyyyto fix
 //            for (var action :exitButton.getComponent().getActionListeners() ){
@@ -210,15 +225,22 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
             updateContent();
         }
     }
+//
+//    public void uploadAddingTypesData(HashMap<CardTypes, CardContentDataSet> newBaseAddingTypesData,
+//                                      HashMap<CardTypes, ArrayList<CardContentDataSet>> newaddingTypesData) {
+//        baseAddingTypesData = newBaseAddingTypesData;
+//        addingTypesData = newaddingTypesData;
+//    }
 
 
-    public void uploadNewData(HashMap<CardTypes, CardContentDataSet> newData, HashMap<CardTypes, ArrayList<CardContentDataSet>> detailData) {
-        this.detailTypesData = detailData;
-        System.out.println(detailData.get(CardTypes.MOUNT).get(allCards.get(CardTypes.MOUNT).getSideMaximumElementsNumber()- allCards.get(CardTypes.MOUNT).getMaximumElementNumber()+0).content);
-        System.out.println(detailTypesData.get(CardTypes.MOUNT).get(allCards.get(CardTypes.MOUNT).getSideMaximumElementsNumber()- allCards.get(CardTypes.MOUNT).getMaximumElementNumber()+0).content);
-        System.out.println(newData.get(CardTypes.MOUNT)==detailData.get(CardTypes.MOUNT).get(0));
+    public void uploadNewData(LinkedHashMap<CardTypes, CardContentDataSet> newData, HashMap<CardTypes,
+            ArrayList<CardContentDataSet>> detailData) {
+//        System.out.println(newData+"oto new data");
+//        this.detailTypesData = detailData;
+//        this.detailTypesData2 = newData;
         for (var type : newData.keySet()) {
-            allCards.get(type).initializeCardData(newData.get(type));
+            allCards.get(type).initializeCardData(newData.get(type), detailData.get(type));
+//            allCards.get(type).initializeCardData(detailData.get(type));
         }
         var a = new ArrayList<CardTypes>();
         for (var key : newData.keySet()) {
@@ -237,6 +259,7 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
         activeCard = newActiveCard;
         seriesPanel.getMainComponent(1).changeContent(activeCard.getMenager());
         leftArrows.setSwitchableComponent(activeCard);
+//        System.out.println("czy ja ti jestemmmmm");
         updateTitle();
     }
 
@@ -301,6 +324,22 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
         rightArrows = new DoubleArrowPanel(factory, activeCard);
         rightArrows.setSpace(5);
 
+        factory.setButtonType(GuiFactory.ButtonType.NORMAL);
+//        addButton = new ComponentPanelMenager<>(factory.createButton("ADD", null));
+//        addButton.addSpace(5);
+
+//        addButton.getComponent().addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                choserEqCard.initializeCardData(detailTypesData.get(type).get(allCards.get(type)
+//                .getSideMaximumElementsNumber() - allCards.get(type).getMaximumElementNumber() + index));
+////        equipmentCard.initializeCardData(allCards.get(type).getData(), allCards.get());
+//                updateContent(equipmentCard);
+//                arrowMenager.getOption(1).changeContent(exitButton);//yyyyto fix
+//                showCancelButton(false);
+//            }
+//        });
+
         arrowMenager.addOption(new ComponentPanelMenager<>(leftArrows.getPanel()), 5);
         arrowMenager.addOption(new ComponentPanelMenager<>(rightArrows.getPanel()), 5);
     }
@@ -315,6 +354,7 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
         }
         equipmentCard.setUniformForm();
         amwGeneratorCard.setUniformForm();
+        choserEqCard.setUniformForm();
     }
 
     public void setVisibility(boolean value) {

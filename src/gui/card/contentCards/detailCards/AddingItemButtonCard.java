@@ -17,7 +17,7 @@ public class AddingItemButtonCard extends NormalDetailButtonsCard {
     private DefaultCustomMenuMenager secondCustomMenager = new CustomMenuMenager(ComponentsSeries.ComponentsDimension.VERTICAL, ComponentsSeries.ComponentsDimension.HORIZONTAL);
 
 //    private ComponentsSeries<ComponentPanelMenager<JComponent>> plusButtonPanel;
-    private AbstractCustomButton button;
+    private AbstractCustomButton button= createCustomButton();
 //    private ComponentsSeries usedCmp = null;
 
     public AbstractCustomButton getPlusButton() {
@@ -66,7 +66,7 @@ public class AddingItemButtonCard extends NormalDetailButtonsCard {
         super.initializeContent();
         secondCustomMenager.addMainComponent(8);
         secondCustomMenager.addMainComponent(2);
-        button = createCustomButton();
+//        button = createCustomButton();
         var panel = new ComponentPanelMenager<JComponent>(button);
         panel.addSpace(6, ComponentPanelMenager.Side.RIGHT, ComponentPanelMenager.Side.LEFT);
         panel.addSpace(1, ComponentPanelMenager.Side.TOP, ComponentPanelMenager.Side.BOTTOM);

@@ -3,15 +3,11 @@ package gui.card.contentCards.detailCards;
 import gui.card.CardContentDataSet;
 import gui.card.fullCards.abstractCards.Card;
 import gui.card.SharedCmpsFont;
-import gui.customComponents.AbstractCustomButton;
-import gui.customComponents.CustomBooleanButton;
 import gui.customComponents.CustomIconBooleanButton;
-import gui.customComponents.IBooleanComponent;
 import gui.factories.GuiFactory;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.TileObserver;
 import java.util.*;
 
 public class AddingButtonCard extends NormalDetailButtonsCard {
@@ -38,6 +34,31 @@ public class AddingButtonCard extends NormalDetailButtonsCard {
 //        selectedIndex = value;
 //    }
 
+    public ArrayList<CardContentDataSet> getDetailOnlyAddedIndexesData(){
+        var newData = new ArrayList<CardContentDataSet>();
+//        System.out.println(detailData);
+        for (var index : addedIndexes){
+            newData.add(detailData.get(index));
+        }
+        return newData;
+    }
+
+    public CardContentDataSet getOnlyAddedIndexesData(){
+        var newData = new CardContentDataSet();
+        newData.titleContent = data.titleContent;
+        newData.titlePath = data.titlePath;
+        newData.content = new ArrayList<>();
+        for (var index : addedIndexes){
+            newData.content.add(data.content.get(index));
+
+        }
+        return newData;
+    }
+
+    public ArrayList<Integer> getAddedIndexes(){
+        return addedIndexes;
+    }
+
     public void setAddedIndexes(ArrayList<Integer> addedIndexes){
         this.addedIndexes = addedIndexes;
     }
@@ -51,6 +72,7 @@ public class AddingButtonCard extends NormalDetailButtonsCard {
         var sublist = data.content.subList(currentAttrSide * maximumElementNumber, maxSideIndex > dataSize ? dataSize :
                 maxSideIndex);
         int currentIndex = 0;
+
 //        for (var key : sublist) {
 //            String content = "SELECT";
 //            var but =  selectList.get(currentIndex);
@@ -108,7 +130,7 @@ public class AddingButtonCard extends NormalDetailButtonsCard {
             factory.setButtonType(GuiFactory.ButtonType.ICON);
 //            var but = factory.createButton("src/gui/plus.png", "src/gui/remove.png", true, true);
             var but = factory.createButton("src/gui/plus.png", "src/gui/remove.png",true, true);
-            System.out.println(but);
+//            System.out.println(but);
 //            but.getCustomUI().setFontMaximized(true);
 //            but.getCustomUI().getMargin().set(20, 0, 20, 0);
 //            but.getCustomUI().setRespectionBorder(true);

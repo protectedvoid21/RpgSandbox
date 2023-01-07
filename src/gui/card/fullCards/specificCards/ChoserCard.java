@@ -1,6 +1,6 @@
 package gui.card.fullCards.specificCards;
 
-import gui.card.DoubleArrowPanel;
+import gui.card.CardContentDataSet;
 import gui.card.contentCards.attributesCards.AttributesCard;
 import gui.card.contentCards.attributesCards.LabelAttributeCard;
 import gui.card.contentCards.detailCards.AddingButtonCard;
@@ -8,18 +8,17 @@ import gui.card.contentCards.detailCards.DetailButtonsCard;
 import gui.card.contentCards.detailCards.NormalDetailButtonsCard;
 import gui.card.fullCards.abstractCards.Card;
 import gui.customComponents.AbstractCustomButton;
-import gui.customComponents.CustomBooleanButton;
 import gui.factories.GuiFactory;
 import gui.menu.ComponentPanelMenager;
-import gui.menu.ComponentsSeries;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 
 public class ChoserCard extends Card {
-    private ComponentPanelMenager<AbstractCustomButton>  button;
-    private ArrayList<AddingButtonCard> cards = new ArrayList<>();
+    private ComponentPanelMenager<AbstractCustomButton> button;
+    private HashMap<CardTypes, AddingButtonCard> cards = new HashMap<>();
+    private CardTypes currentCardType;
 
 
     public ChoserCard(GuiFactory factory) {
@@ -29,39 +28,68 @@ public class ChoserCard extends Card {
     @Override
     public void initialize() {
         super.initialize();
+        seriesPanel.getCmp().removeBorderData();
 //        switchTo(CardTypes.ARMOR);
     }
 
-    public void switchTo(CardTypes type){
-        switchSide(type);
+//    @Override
+//    public void uploadNewData(HashMap<CardTypes, CardContentDataSet> newData, HashMap<CardTypes,
+//            ArrayList<CardContentDataSet>> detailData) {
+//        super.uploadNewData(newData, detailData);
+//    }
+
+    public void setCurrentType(CardTypes type) {
+        currentCardType = type;
+    }
+
+    public CardTypes getCurrentCardType() {
+        return currentCardType;
+    }
+
+//    public void switchTo(CardTypes type) {
+//        switchSide(type);
+//    }
+
+    @Override
+    public void switchSide(CardTypes cardType) {
+        super.switchSide(cardType);
+        currentCardType = cardType;
     }
 
     @Override
-    protected DetailButtonsCard createDetailButtonCard() {
+    protected DetailButtonsCard createDetailButtonCard(CardTypes type) {
         return new NormalDetailButtonsCard(factory);
     }
 
 
+    public AbstractCustomButton getAddButton() {
+        return button.getComponent();
+    }
 
 
     @Override
     protected void initializeDetailButtonsCardPart(CardTypes type) {
 //        super.initializeDetailButtonsCardPart(type);
         var but = new AddingButtonCard(factory);
+        var array =new ArrayList<>();
+//        cards.get()
+//        for (int i = 0; i<cards.get(currentCardType))
+//        but.setAddedIndexes(new ArrayList<>());
         but.initializeCard();
         allCards.put(type, but);
-        cards.add(but);
+        cards.put(type, but);
 //        but.getDetailButton(0).addActionListener(e->detailButtonMethod(but, ));
-        for (int i = 0; i<but.getMaximumElementNumber(); i++){
+        for (int i = 0; i < but.getMaximumElementNumber(); i++) {
             int finalI = i;
-            but.getDetailButton(0).addActionListener(e->detailButtonMethod(but, type, finalI));
+            but.getDetailButton(i).addActionListener(e -> detailButtonMethod(but, type, finalI));
         }
 
     }
 
-    public AddingButtonCard getGameSelectedCard(int index) {
+    public AddingButtonCard getGameSelectedCard(CardTypes index) {
         return cards.get(index);
     }
+
     @Override
     protected AttributesCard createAttributeCard() {
         return new LabelAttributeCard(factory);
@@ -80,10 +108,21 @@ public class ChoserCard extends Card {
         button.addSpace(5);
         arrowMenager.getOption(1).changeContent(new ComponentPanelMenager<>(button));
     }
+
+    public ArrayList<CardContentDataSet> getCurrentDetailData() {
+        return cards.get(currentCardType).getDetailOnlyAddedIndexesData();
+    }
+
+    public CardContentDataSet getCurrentData() {
+//        System.out.println(currentCardType);
+        return cards.get(currentCardType).getOnlyAddedIndexesData();
+    }
+
     @Override
-    protected   void methodOfRightDownPanelComponent() {
+    protected void methodOfRightDownPanelComponent() {
         super.methodOfRightDownPanelComponent();
         arrowMenager.getOption(1).changeContent(button);//to fix
     }
+
 
 }

@@ -9,12 +9,13 @@ import gui.menu.DefaultCustomMenuMenager;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public abstract class AbstractCard<T extends JComponent> implements SwitchableComponent {
     protected GuiFactory factory;
     protected int currentAttrSide = 0;
     protected CardContentDataSet data;
-    protected ArrayList<CardContentDataSet> detailData = new ArrayList<>();
+    protected ArrayList<CardContentDataSet> detailData = new ArrayList<CardContentDataSet>();
 
     private ComponentsSeries<JComponent> mainSeries =
             new ComponentsSeries<>(ComponentsSeries.ComponentsDimension.VERTICAL);
@@ -24,15 +25,23 @@ public abstract class AbstractCard<T extends JComponent> implements SwitchableCo
         this.factory = factory;
     }
 
-    public void initializeCardData(CardContentDataSet data) {
+    public void initializeCardData(CardContentDataSet data, ArrayList<CardContentDataSet> detailData) {
         this.data = data;
+        this.detailData = detailData;
         reset();
     }
+
+//    public void initializeCardData(ArrayList<CardContentDataSet> data){
+//        this.detailData = data;
+//        reset();
+//    }
 //    public void initializeCardData(CardContentDataSet data) {
 //        this.data = data;
 //        this.detailData = detailData;
 //        reset();
 //    }
+//    public abstract CardContentDataSet generateContentData();
+//    public abstract CardContentDataSet generateDetailContentData();
 
     public int getMaximumElementNumber(){
         return maximumElementNumber;
@@ -40,6 +49,10 @@ public abstract class AbstractCard<T extends JComponent> implements SwitchableCo
 
     public CardContentDataSet getData(){
         return data;
+    }
+
+    public ArrayList<CardContentDataSet> getDetailData() {
+        return detailData;
     }
 
     protected void initializeCard(int maximumElementNumber) {

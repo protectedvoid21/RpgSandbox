@@ -32,7 +32,7 @@ public class TestMainGui {
 //                ComponentsSeries.ComponentsDimension.VERTICAL);
 //
 //        var factory = new GuiFactory();
-//        factory.setButtonFactory(new ArrowButtonFactory());
+//        factory.setButtonFactory(new ArrowButtonFactory());d
 //        factory.setLabelFactory(new WinterDarkerBackgroundLabelFactory());
 //        factory.setTextFactory(new TextFieldFactory());
 //        menu.addMainComponent(10);2

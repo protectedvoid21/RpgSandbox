@@ -18,7 +18,7 @@ public class GameCard extends Card {
     }
 
     @Override
-    protected DetailButtonsCard createDetailButtonCard() {
+    protected DetailButtonsCard createDetailButtonCard(CardTypes type) {
         return new NormalDetailButtonsCard(factory);
     }
 
@@ -32,7 +32,7 @@ public class GameCard extends Card {
 //        but.getDetailButton(0).addActionListener(e->detailButtonMethod(but));
         for (int i = 0; i<but.getMaximumElementNumber(); i++){
             int finalI = i;
-            but.getDetailButton(0).addActionListener(e->detailButtonMethod(but, type, finalI));
+            but.getDetailButton(i).addActionListener(e->detailButtonMethod(but, type, finalI));
         }
 
     }

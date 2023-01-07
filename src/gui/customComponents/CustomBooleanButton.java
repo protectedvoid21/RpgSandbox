@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 public class CustomBooleanButton extends CustomButton implements IBooleanComponent {
     private String firstString = "";
     private String secondString = "";
-//    private StretchIcon icon1;
+    //    private StretchIcon icon1;
 //    private StretchIcon icon2;
     private boolean value;
 
@@ -42,6 +42,13 @@ public class CustomBooleanButton extends CustomButton implements IBooleanCompone
 
     @Override
     public void setContent(String text) {
+        System.out.println(text + "yyyyyyyyyyyyyyyyy");
         setValue(!text.isEmpty());
     }
+
+    @Override
+    public String getContent() {
+        return value ? "1" : "";
+    }
+
 }

@@ -62,6 +62,18 @@ public abstract class BaseCard {
         return seriesPanel.getCmp();
     }
 
+//    public JPanel getSecondContentPanel() {
+//        return getContentPanel(1);
+//    }
+//
+//    public JPanel getThirdContentPanel() {
+//        return getContentPanel(2);
+//    }
+//
+//    protected JPanel getContentPanel(int index){
+//        return seriesPanel.getMiddleComponent(index, 0);
+//    }
+
 
     public abstract void setUniformFont();
 
@@ -70,7 +82,7 @@ public abstract class BaseCard {
     public static <T extends JComponent & IContentCustomUICmp> void setAspectVisible(ArrayList<T> container,
                                                                                      boolean value) {
         for (var cmp : container) {
-            System.out.println(cmp.getContent() + "oto content");
+//            System.out.println(cmp.getContent() + "oto content");
 //            cmp.setVisible(false);
             cmp.setVisible(cmp.getContent().isEmpty() ? false : value);
         }
@@ -92,12 +104,12 @@ public abstract class BaseCard {
         rightEntryTitleComponent = new ComponentPanelMenager<>(factory.createTextField());
 
         int index = 1;
-        for (var title : Arrays.asList(rightTitleComponent, rightEntryTitleComponent)){
+        for (var title : Arrays.asList(rightTitleComponent, rightEntryTitleComponent)) {
             titleSeries.addOption(title, 30);
             titleSeries.getOption(index).addSpace(6, ComponentPanelMenager.Side.RIGHT, ComponentPanelMenager.Side.TOP);
             titleSeries.getOption(index).addSpace(1, ComponentPanelMenager.Side.LEFT);
             titleSeries.getOption(index).addSpace(2, ComponentPanelMenager.Side.BOTTOM);
-            index =2;
+            index = 2;
         }
 //        titleSeries.addOption(rightTitleComponent, 30);
 //        titleSeries.getOption(1).addSpace(6, ComponentPanelMenager.Side.RIGHT, ComponentPanelMenager.Side.TOP);

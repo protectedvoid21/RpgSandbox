@@ -86,7 +86,7 @@ public class CustomDocumentListener implements DocumentListener {
         System.out.println(pressed);
         if (pressed) {
             if (t == null) {
-                t = new Timer(1000, new ActionListener() {
+                t = new Timer(350, new ActionListener() {
                     int textSize = textComponent.getText().length();
 
                     @Override

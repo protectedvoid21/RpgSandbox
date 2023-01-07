@@ -40,7 +40,7 @@ public class TextFieldFactory extends TextFactory {
         textField.setListener(new CustomDocumentListener(new Color(0xD08888)));
 //        textField.getMargin().set(35, 0, 35, 0);
         textField.setMaximumFontSize(true);
-//        textField.setMaximumFontRelevantToHeight(true);
+        textField.setMaximumFontRelevantToHeight(true);
 //        textField.setMaximumFontRelevangValue(0.5);
         return textField;
     }

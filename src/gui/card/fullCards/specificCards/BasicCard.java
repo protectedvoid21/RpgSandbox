@@ -14,7 +14,7 @@ public class BasicCard extends Card {
     }
 
     @Override
-    protected DetailButtonsCard createDetailButtonCard() {
+    protected DetailButtonsCard createDetailButtonCard(CardTypes type) {
         return new NormalDetailButtonsCard(factory);
     }
 

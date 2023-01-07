@@ -14,7 +14,7 @@ import gui.menu.DefaultCustomMenuMenager;
 import javax.swing.*;
 import java.util.*;
 
-public abstract class DetailButtonsCard extends AbstractCard {
+public abstract class DetailButtonsCard extends AbstractCard<JComponent> {
     protected DefaultCustomMenuMenager<JComponent> menager =
             new DefaultCustomMenuMenager<>(ComponentsSeries.ComponentsDimension.HORIZONTAL,
                     ComponentsSeries.ComponentsDimension.VERTICAL);
@@ -94,7 +94,8 @@ public abstract class DetailButtonsCard extends AbstractCard {
     protected void initializeContent() {
         factory.setButtonType(GuiFactory.ButtonType.NORMAL);
         for (int i = 0; i < maximumElementNumber; i++) {
-            initLabel();
+            factory.setLabelType(GuiFactory.LabelType.ICON);
+            initLabel(labelList, Card.EMPTY_DATA_CONTENT);
             initContentSegment();
             initButton(detailList, "DETAIL");
 //            initButton(selectList, "SELECT");
@@ -109,13 +110,14 @@ public abstract class DetailButtonsCard extends AbstractCard {
         menager.getMainComponent(1).getComponent().getLastComponent().addSpace(2);
     }
 
-    protected void initLabel() {
-        factory.setLabelType(GuiFactory.LabelType.ICON);
-        var label = factory.createLabel(Card.EMPTY_DATA_CONTENT);
+    protected void initLabel(ArrayList list, String text) {
+//        factory.setLabelType(GuiFactory.LabelType.ICON);
+        var label = factory.createLabel(text);
+        int index = list == labelList ? 0 : 3;
 //        int index = type == GuiFactory.LabelType.NORMAL ? 1 : 0;
-        menager.addMiddleComponent(label, 0, 20);
-        menager.getMainComponent(0).getComponent().getLastComponent().addSpace(2);
-        labelList.add(label);
+        menager.addMiddleComponent(label, index, 20);
+        menager.getMainComponent(index).getComponent().getLastComponent().addSpace(2);
+        list.add(label);
     }
 
     protected void initButton(ArrayList list, String text) {

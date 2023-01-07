@@ -12,7 +12,7 @@ import java.util.stream.Stream;
 /**
  * Components have to be written using same font style, only can differ in font size(which will be optimized)
  */
-public class SharedCmpsFont<T extends IContentCustomUICmp> {//cos ogarnac z metoda maksymalna font i array lista
+public class SharedCmpsFont<T extends JComponent &IContentCustomUICmp> {//cos ogarnac z metoda maksymalna font i array lista
     private ArrayList<T> cmps = new ArrayList<>();
 
 
@@ -32,13 +32,15 @@ public class SharedCmpsFont<T extends IContentCustomUICmp> {//cos ogarnac z meto
     }
 
     private int getMinFont() {
-        var min = cmps.get(0).getMaximumPossibleFontSize();
+        var min = 10000;
         for (var cmp : cmps) {
             var newFontSize = cmp.getMaximumPossibleFontSize();
-            if (newFontSize < min) {
+//            System.out.println(newFontSize+ " "+cmp.isVisible());
+            if (newFontSize < min && cmp.isVisible()) {
                 min = newFontSize;
             }
         }
+//        System.out.println("koniec"+min);
         return min;
     }
 
@@ -48,6 +50,9 @@ public class SharedCmpsFont<T extends IContentCustomUICmp> {//cos ogarnac z meto
             if (cmp.hasSharedSize()) {
                 cmp.setFont(size);
             }
+        }
+        for (var cmp : cmps) {
+//            System.out.println(component.getFont()+"   "+component);
         }
     }
 

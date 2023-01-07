@@ -275,13 +275,18 @@ public abstract class CustomUI implements ICustomUI {
             }
             if (isFontMaximized) {
                 if (stringWidth > componentWidth || parent.getFontMetrics(parent.getFont()).getAscent() > componentHeight) {
+//                    System.out.println( findFont(parent, new Dimension(componentWidth, componentHeight), parent.getFont(),
+//                            labelText, false)+"  "+parent+"xxxxx");
                     return findFont(parent, new Dimension(componentWidth, componentHeight), parent.getFont(),
                             labelText, false);
                 } else {
+//                    System.out.println( findFont(parent, new Dimension(componentWidth, componentHeight), parent.getFont(),
+//                            labelText, true)+"  "+parent+"xxx");
                     return findFont(parent, new Dimension(componentWidth, componentHeight), parent.getFont(),
                             labelText, true);
                 }
             }
+//            System.out.println("kto tu dochodzi"+parent);
             return parent.getFont();
 
         }
@@ -320,6 +325,7 @@ public abstract class CustomUI implements ICustomUI {
 //            }
             if (hasSharedSize()) {
                 cmpsShared.setSharedFontSize(parent, labelText);
+//                System.out.println(parent.getFont());
             }
 //            if (!condition) {
 //                if (isBorderedRespected) {

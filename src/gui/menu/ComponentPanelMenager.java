@@ -134,6 +134,11 @@ public class ComponentPanelMenager<T extends JComponent> extends JPanel {
         this.borderColor = color;
         this.borderValue = ((double)borderValue)/10;
     }
+    public void removeBorderData(){
+        strategy = new DefaultBorderStrategy();
+        this.borderColor = null;
+        this.borderValue =0;
+    }
 
     @Override
     protected void paintBorder(Graphics g) {

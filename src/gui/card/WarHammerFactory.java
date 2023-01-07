@@ -1,5 +1,7 @@
 package gui.card;
 
+import gui.card.contentCards.detailCards.AddingButtonCard;
+import gui.card.contentCards.detailCards.AddingItemButtonCard;
 import gui.card.fullCards.abstractCards.Card;
 import gui.card.fullCards.specificCards.*;
 import gui.customUI.customUIStyles.borderStrategies.AverageBorderStartegy;
@@ -7,10 +9,7 @@ import gui.factories.customFactories.buttonFactories.WinterClickedButtonFactory;
 
 import java.awt.*;
 import java.io.IOException;
-import java.util.AbstractMap;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.*;
 
 public class WarHammerFactory extends IOverallFactory {
 
@@ -20,8 +19,10 @@ public class WarHammerFactory extends IOverallFactory {
     ) {
         factory.setButtonFactory(new WinterClickedButtonFactory());
         factory.setBorderStrategy(new AverageBorderStartegy());
-        var card = new BasicCard(factory);
+        var card = new EntriesCard(factory);
         card.initialize();
+//        card.setCreatorCard(true, Card.CreatorTypes.ARMOR);
+//        card.setCancelButtonStatus(true);
         card.setUniformFont();
         try {
             card.setBackgroundImage("src/gui/aaa.png");
@@ -93,9 +94,9 @@ public class WarHammerFactory extends IOverallFactory {
 //        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
 
         mapa.get(0).set(0, "src/gui/stats.png");
-        mapa.get(3).set(0, "src/gui/armor.png");
+        mapa.get(1).set(0, "src/gui/armor.png");
         mapa.get(2).set(0, "src/gui/weapon.png");
-        mapa.get(1).set(0, "src/gui/effect.png");
+        mapa.get(3).set(0, "src/gui/effect.png");
         mapa.get(4).set(0, "src/gui/horse.png");
 
 //        mapa2.get(0).set(0, "src/gui/stats.png");
@@ -107,7 +108,7 @@ public class WarHammerFactory extends IOverallFactory {
         data.content = mapa;
         data.titleContent = "WITCH";
         data.titlePath = "src/gui/witch.png";
-        data.dataType = new ArrayList<>(Arrays.asList(CardContentDataSet.DataType.BOOLEAN,
+        data.dataType = new ArrayList<>(Arrays.asList(CardContentDataSet.DataType.STRING,
                 CardContentDataSet.DataType.STRING, CardContentDataSet.DataType.STRING,
                 CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
                 CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
@@ -173,12 +174,14 @@ public class WarHammerFactory extends IOverallFactory {
 
 
         var c = createCard(new AbstractMap.SimpleEntry<>("src/gui/witch.png", "WITCH"), mapa);//metoda change
-        var x = new HashMap<Card.CardTypes, CardContentDataSet>();
+
+        var x = new LinkedHashMap<Card.CardTypes, CardContentDataSet>();
         for (var key : Card.CardTypes.values()) {
 //            if (key == Card.CardTypes.MOUNT)
                 x.put(key, data);
         }
-        var hash = new HashMap<Card.CardTypes, ArrayList<CardContentDataSet>>();
+//        System.out.println(x+"xd");
+        var hash = new LinkedHashMap<Card.CardTypes, ArrayList<CardContentDataSet>>();
         for (var type : Arrays.asList(Card.CardTypes.MOUNT, Card.CardTypes.WEAPONS, Card.CardTypes.EFFECTS,
                 Card.CardTypes.ARMOR, Card.CardTypes.ITEMS)) {
             hash.put(type, new ArrayList<>(Arrays.asList(data2, data, data, data2, data2, data2, data2, data2, data2, data2,
@@ -189,6 +192,7 @@ public class WarHammerFactory extends IOverallFactory {
 
         c.uploadNewData(x, hash);
         c.uploadCreatorItemsData(data, data, data);
+//        c.setCreatorCard(true, Card.CreatorTypes.ARMOR);
 //        c.setCreatorCard(true, Card.CreatorTypes.MOUNT);
 
         return c;
