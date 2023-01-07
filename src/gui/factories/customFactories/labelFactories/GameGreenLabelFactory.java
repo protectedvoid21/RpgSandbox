@@ -6,9 +6,6 @@ import gui.customComponents.iconComponents.IconLabel;
 import gui.customUI.componentsUIs.CustomLabelUI;
 import gui.customUI.customUIStyles.RoundedBorderUI;
 import gui.customUI.interfaces.ICustomUI;
-import gui.customUI.wrapers.EnteredChangingBorderColorWraper;
-import gui.factories.GuiFactory;
-import gui.margin.ComponentTextMarginManager;
 
 import javax.swing.*;
 import java.awt.*;

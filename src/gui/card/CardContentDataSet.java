@@ -10,8 +10,6 @@ public class CardContentDataSet {
     public String titleContent;
     public ArrayList<ArrayList<String>> content;
 
-//    public ArrayList<CardContentDataSet> eqData = new ArrayList<>(Arrays.asList(this));
-
     public ArrayList<DataType> dataType = new ArrayList<>();
 
     public boolean equals(CardContentDataSet secondData) {
@@ -25,20 +23,6 @@ public class CardContentDataSet {
         if (!content.equals(secondData.content)){
             return false;
         }
-//        for (var list : content) {
-//            var helpCondition = false;
-//            for (var secondList : secondData.content) {
-//                if (list.size() == secondList.size()) {
-//                    for (int i = 0; i < list.size(); i++) {
-//                        if (!list.get(i).equals(secondList.get(i))) {
-//                            break;
-//                        }
-//                    }
-//
-//                }
-//
-//            }
-//        }
         return true;
     }
 

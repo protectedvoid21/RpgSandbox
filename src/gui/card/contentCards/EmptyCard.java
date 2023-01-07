@@ -25,16 +25,13 @@ public class EmptyCard extends AbstractCard<AbstractCustomLabel> {
     }
     protected void updateContent() {
     }
-
     public void initializeContent() {//zmienia sie
         updateContent();
     }
 
     @Override
     public void setUniformForm() {
-
     }
-
     @Override
     public void initializeCard() {
 

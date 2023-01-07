@@ -1,5 +1,6 @@
 package gui.customComponents;
 
+import gui.customComponents.IContentCustomUICmp;
 import gui.customUI.componentsUIs.CustomButtonUI;
 import gui.customUI.interfaces.ICustomUI;
 

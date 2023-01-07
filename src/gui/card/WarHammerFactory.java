@@ -193,7 +193,7 @@ public class WarHammerFactory extends IOverallFactory {
         c.uploadNewData(x, hash);
         c.uploadCreatorItemsData(data, data, data);
 //        c.setCreatorCard(true, Card.CreatorTypes.ARMOR);
-//        c.setCreatorCard(true, Card.CreatorTypes.MOUNT);
+        c.setCreatorCard(true, Card.CreatorTypes.MOUNT);
 
         return c;
     }

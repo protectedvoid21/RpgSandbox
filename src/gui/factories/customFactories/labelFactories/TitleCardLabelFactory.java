@@ -7,11 +7,7 @@ import gui.customUI.componentsUIs.CustomLabelUI;
 import gui.customUI.customUIStyles.CustomUI;
 import gui.customUI.customUIStyles.DoubleRoundRectangleUI;
 import gui.customUI.customUIStyles.RoundedBorderUI;
-import gui.customUI.customUIStyles.ThreeDUI;
 import gui.customUI.interfaces.ICustomUI;
-import gui.customUI.wrapers.DarkerHoverComponentWraper;
-import gui.factories.GuiFactory;
-import gui.margin.ComponentTextMarginManager;
 
 import javax.swing.*;
 import java.awt.*;

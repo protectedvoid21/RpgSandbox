@@ -1,4 +1,4 @@
-package gui.customComponents;
+package gui.customComponents.booleanComponents;
 
 public interface IBooleanComponent {
 

@@ -15,8 +15,6 @@ public class CustomLabel extends AbstractCustomLabel{
     @Override
     public void setContent(String  text) {
         setText(text);
-//        if (getCustomUI() != null)
-//            getCustomUI().setRelevantFont(getText());
     }
 
     @Override

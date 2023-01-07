@@ -52,37 +52,22 @@ public abstract class AttributesCard extends AbstractCard {
                 maxSideIndex);
 
         int currentIndex = 0;
-//        System.out.println(labelList);
-
         for (var key : sublist) {
-//            System.out.println(key.get(0));
             labelList.get(currentIndex).setContent(key.get(0));
-//            System.out.println("czy ja tu cos robie222" + labelList.get(currentIndex).getContent());
             getSecondContentList().get(currentIndex).setContent(key.get(1));
-//            menager.getMiddleComponent(0, currentIndex).getComponent().setText(key.get(0));
-//            menager.getMiddleComponent(1, currentIndex).getComponent().setText(key.get(1));
             currentIndex++;
         }
 
-
-//        System.out.println();
         if (sublist.size() < maximumElementNumber) {
             for (int i = dataSize % maximumElementNumber; i < maximumElementNumber; i++) {
-//                System.out.println("czy ja tu cos robie");
                 labelList.get(i).setContent(Card.EMPTY_DATA_CONTENT);
                 getSecondContentList().get(i).setContent(Card.EMPTY_DATA_CONTENT);
-//                menager.getMiddleComponent(0, i).getComponent().setText(Card.EMPTY_DATA_CONTENT);
-//                menager.getMiddleComponent(1, i).getComponent().setText(Card.EMPTY_DATA_CONTENT);
             }
         }
 
         Card.setAspectVisible(labelList, true);
 
     }
-
-//    protected JComponent baseComponentCreator(){
-//        return  factory.createLabel(Card.EMPTY_DATA_CONTENT);
-//    }
 
 
     protected abstract JComponent createSecondContentComponent();
@@ -100,15 +85,12 @@ public abstract class AttributesCard extends AbstractCard {
             labelList.add(label);
 
             var x = createSecondContentComponent();
-//            System.out.println(x + "kurwa");
             menager.addMiddleComponent(x, 1, 10);
             menager.getMainComponent(1).getComponent().getLastComponent().addSpace(2,
                     ComponentPanelMenager.Side.RIGHT, ComponentPanelMenager.Side.BOTTOM,
                     ComponentPanelMenager.Side.TOP);
 
         }
-
-//        updateContent();
     }
 
     @Override
@@ -116,22 +98,4 @@ public abstract class AttributesCard extends AbstractCard {
         SharedCmpsFont.setUniformFont(labelList);
     }
 
-//    public void makeFullContentTransparent() {
-//        HashMap<Object, Color> previous = new HashMap<>();
-//        for (var cmp : menager.getComponentsList()){
-//            previous.put(cmp, cmp.getForeground());
-//            cmp.setForeground(new Color(0,0,0,0));
-//        }
-//        new java.util.Timer().schedule(
-//            new java.util.TimerTask() {
-//                @Override
-//                public void run() {
-//                    for (var cmp : menager.getComponentsList()){
-//                        cmp.setForeground(previous.get(cmp));
-//                    }
-//                }
-//            },
-//            1000
-//    );
-//    }
 }

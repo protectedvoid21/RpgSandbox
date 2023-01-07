@@ -1,8 +1,8 @@
 package gui.factories.customFactories.buttonFactories;
 
 import gui.customComponents.AbstractCustomButton;
-import gui.customComponents.CustomBooleanButton;
-import gui.customComponents.CustomIconBooleanButton;
+import gui.customComponents.booleanComponents.CustomBooleanButton;
+import gui.customComponents.booleanComponents.CustomIconBooleanButton;
 import gui.factories.customFactories.ComponentFactory;
 
 import java.awt.event.ActionListener;

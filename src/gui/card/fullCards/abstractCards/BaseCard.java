@@ -23,8 +23,6 @@ public abstract class BaseCard {
     protected ComponentPanelMenager<AbstractCustomLabel> rightTitleComponent;
     protected ComponentPanelMenager<CustomTextComponent> rightEntryTitleComponent;
 
-//    protected ArrayList<IContentCustomUICmp> titleComponents = new ArrayList<>(;)
-
     protected DefaultCustomMenuMenager seriesPanel;
     protected GuiFactory factory;
 
@@ -45,11 +43,6 @@ public abstract class BaseCard {
         seriesPanel.addMiddleComponent(content, mainIndex, 10);
     }
 
-//    public ComponentPanelMenager<? extends IContentCustomUICmp> getRightTitleComponent(){
-//        return rightTitleComponent;
-//    }
-
-
     public void setBackgroundImage(String path) throws IOException {
         seriesPanel.getCmp().setBackgroundImage(path);
     }
@@ -62,19 +55,6 @@ public abstract class BaseCard {
         return seriesPanel.getCmp();
     }
 
-//    public JPanel getSecondContentPanel() {
-//        return getContentPanel(1);
-//    }
-//
-//    public JPanel getThirdContentPanel() {
-//        return getContentPanel(2);
-//    }
-//
-//    protected JPanel getContentPanel(int index){
-//        return seriesPanel.getMiddleComponent(index, 0);
-//    }
-
-
     public abstract void setUniformFont();
 
     public abstract void setVisibility(boolean value);
@@ -82,14 +62,9 @@ public abstract class BaseCard {
     public static <T extends JComponent & IContentCustomUICmp> void setAspectVisible(ArrayList<T> container,
                                                                                      boolean value) {
         for (var cmp : container) {
-//            System.out.println(cmp.getContent() + "oto content");
-//            cmp.setVisible(false);
             cmp.setVisible(cmp.getContent().isEmpty() ? false : value);
         }
     }
-
-//    public abstract JComponent createTitleComponent();
-
 
     public void initializeTitle() {//zmienia sie
         factory.setLabelType(GuiFactory.LabelType.ICON);
@@ -111,15 +86,6 @@ public abstract class BaseCard {
             titleSeries.getOption(index).addSpace(2, ComponentPanelMenager.Side.BOTTOM);
             index = 2;
         }
-//        titleSeries.addOption(rightTitleComponent, 30);
-//        titleSeries.getOption(1).addSpace(6, ComponentPanelMenager.Side.RIGHT, ComponentPanelMenager.Side.TOP);
-//        titleSeries.getOption(1).addSpace(1, ComponentPanelMenager.Side.LEFT);
-//        titleSeries.getOption(1).addSpace(2, ComponentPanelMenager.Side.BOTTOM);
-//        titleSeries.addOption(rightEntryTitleComponent, 30);
-//        titleSeries.getOption(2).addSpace(6, ComponentPanelMenager.Side.RIGHT, ComponentPanelMenager.Side.TOP);
-//        titleSeries.getOption(2).addSpace(1, ComponentPanelMenager.Side.LEFT);
-//        titleSeries.getOption(2).addSpace(2, ComponentPanelMenager.Side.BOTTOM);
-
         rightEntryTitleComponent.setVisible(false);
 
     }

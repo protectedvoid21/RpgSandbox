@@ -1,6 +1,8 @@
 package gui.customComponents.iconComponents;
 
 import gui.customComponents.AbstractCustomButton;
+import gui.customComponents.iconComponents.IIconComponent;
+import gui.customComponents.iconComponents.StretchIcon;
 
 public class IconButton extends AbstractCustomButton implements IIconComponent {
 
@@ -21,8 +23,6 @@ public class IconButton extends AbstractCustomButton implements IIconComponent {
 
     public IconButton(String iconPath, boolean prop) {
         super();
-//        setOpaque(false);
-//        setBorder(new LineBorder(Color.RED, 5, true));//to fix
         setContent(iconPath, prop);
     }
 

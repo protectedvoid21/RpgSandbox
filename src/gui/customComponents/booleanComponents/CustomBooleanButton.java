@@ -1,6 +1,6 @@
-package gui.customComponents;
+package gui.customComponents.booleanComponents;
 
-import gui.customComponents.iconComponents.StretchIcon;
+import gui.customComponents.CustomButton;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

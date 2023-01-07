@@ -86,11 +86,6 @@ public abstract class BorderDecorator implements ICustomUI {
         return customUI.isBackgroundTransparent();
     }
 
-//    @Override
-//    public double conv(JComponent c, int offSetValue) {
-//        return customUI.convertBorderSizeToValue(c, offSetValue);
-//    }
-
 
     @Override
     public double convertSideBorderSizeToValue(JComponent c, int offSetValue) {
@@ -106,10 +101,7 @@ public abstract class BorderDecorator implements ICustomUI {
     public ComponentTextMarginManager getCurrentActivatedMargin() {
         return customUI.getCurrentActivatedMargin();
     }
-//    @Override
-//    public Font getMaximumPossibleFontByComponent(String labelText) {
-//        return customUI.getMaximumPossibleFontByComponent(labelText);
-//    }
+
 
     @Override
     public Font getRelevantFont(String labelText) {
@@ -120,16 +112,6 @@ public abstract class BorderDecorator implements ICustomUI {
     public void setFontRelevantToHeight(boolean val) {
         customUI.setFontRelevantToHeight(val);
     }
-
-//    @Override
-//    public void setFontRelevantToHeightValue(double value) {
-//        customUI.setFontRelevantToHeightValue(value);
-//    }
-
-//    @Override
-//    public Font getMaximumPossibleFontRelevantToHeight(String text) {
-//        return customUI.getMaximumPossibleFontRelevantToHeight(text);
-//    }
 
     @Override
     public boolean isFontRelevantToHeight() {

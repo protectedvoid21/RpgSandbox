@@ -54,7 +54,6 @@ public class OnlyVisibleCard extends BaseCard {
 
     @Override
     public void setVisibility(boolean value) {
-//        setAspectVisible(new ArrayList<>(Arrays.asList(leftTitleComponent, rightTitleComponent)), value);
         setAspectVisible(new ArrayList<>(Arrays.asList(leftTitleComponent.getComponent(), rightTitleComponent.getComponent())), value);
     }
 

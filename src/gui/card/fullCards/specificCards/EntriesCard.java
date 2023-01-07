@@ -23,9 +23,6 @@ import java.util.LinkedHashMap;
 
 public class EntriesCard extends Card {
     public enum EntryType {SPINNER, ENTRY}
-
-    //    private HashMap<CardTypes, CardContentDataSet> baseAddingTypesData = new HashMap<>();
-//    private HashMap<CardTypes, ArrayList<CardContentDataSet>> addingTypesData = new HashMap<>();
     private CustomTextComponent textComponentTitle;
     private AddingButtonCard choserEqCard2 = null;
     private ChoserCard choserCard;
@@ -38,18 +35,10 @@ public class EntriesCard extends Card {
 
     public HashMap<CardTypes, CardContentDataSet> generateContentData() {
         var newMapa = new HashMap<CardTypes, CardContentDataSet>();
-//        var attr= new CardContentDataSet();
-//        attr.titlePath = allCards.get(CardTypes.ATTRIBUTE).getData().titlePath;
-//        attr.titlePath = allCards.get(CardTypes.ATTRIBUTE).getData().titlePath;
         newMapa.put(CardTypes.ATTRIBUTE, allCards.get(CardTypes.ATTRIBUTE).getData());
         for (var type : allCards.keySet()){
             newMapa.put(type, allCards.get(type).getData());
         }
-
-//        for (var key : allCards.keySet()) {
-//            var database = new Content
-////            database.get
-//        }
         return newMapa;
     }
     public HashMap<CardTypes, CardContentDataSet> getIndexesData(){
@@ -77,22 +66,8 @@ public class EntriesCard extends Card {
         card.getPlusButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-////                choserEqCard2.initializeCardData(baseAddingTypesData.get(type));
-////        equipmentCard.initializeCardData(allCards.get(type).getData(), allCards.get());
-//                updateContent(choserEqCard2);
-//                arrowMenager.getOption(1).changeContent(addButton);//yyyyto fix
-//                showCancelButton(false);
                 choserCard.switchSide(type);
-                System.out.println(allCards.get(type).getData());
-                System.out.println(allCards.get(type).getDetailData());
-                System.out.println(type);
-                System.out.println(getIndexesData());
-                System.out.println(generateContentData());
-//                helpPanelVariable= getPanel();
-
                 seriesPanel.getCmp().changeContent(choserCard.getPanel());
-//               seriesPanel.getMiddleComponent(1, 0).changeContent(choserCard.getSecondContentPanel());
-//                seriesPanel.getMiddleComponent(2, 0).changeContent(choserCard.getThirdContentPanel());}
             }
         });
         return card;
@@ -115,10 +90,8 @@ public class EntriesCard extends Card {
                 allCards.get(choserCard.getCurrentCardType()).initializeCardData(choserCard.getCurrentData(),
                         choserCard.getCurrentDetailData());
                 updateContent();
-//                detailTypesData.replace(choserCard.getCurrentCardType(),choserCard.getCurrentDetailData() );
             }
         });
-//        choserCard.uploadNewData(detailTypesData2,detailTypesData );
     }
 
 
@@ -126,28 +99,11 @@ public class EntriesCard extends Card {
     public void uploadNewData(LinkedHashMap<CardTypes, CardContentDataSet> newData, HashMap<CardTypes,
             ArrayList<CardContentDataSet>> detailData) {
         super.uploadNewData(newData, detailData);
-
-//        for (var key : detailData.keySet()){
-//            var array = new ArrayList<Integer>();
-//
-//            for (var data : detailData.get(key)){
-//                if (newData.get(key).equals(data)){
-//                    array.add(detailData.get(key).indexOf(data));
-//                }
-//            }
-//            System.out.println(array+"lista indeksow");
-//            choserCard.getGameSelectedCard(key).setAddedIndexes(array);
-//        }
-
-//        for (var content : )
-//        System.out.println(detailData+"hahahah");
         uploadNewChoserCardData(newData, detailData);
     }
 
     public void uploadNewChoserCardData(LinkedHashMap<CardTypes, CardContentDataSet> newData, HashMap<CardTypes,
             ArrayList<CardContentDataSet>> detailData) {
-//        System.out.println(newData+"  "+detailData);
-//        System.out.println(detailData+"  "+newData+"uaasdjasjdjasdjasjda");
         choserCard.uploadNewData(newData, detailData);
         for (var key : detailData.keySet()) {
             choserCard.setCurrentType(key);
@@ -160,12 +116,8 @@ public class EntriesCard extends Card {
                     }
                 }
             }
-//            System.out.println(array + "lista indeksow");
-//            choserCard.setCurrentType(key);
             choserCard.getGameSelectedCard(key).setAddedIndexes(array);
             choserCard.getGameSelectedCard(key).reset();
-//            System.out.println(choserCard.getCurrentData()
-//            +"hahahahhahahahhahahahhahahahhahahahhahahahhahahahhahahahhahahahhahahahhahahahhahahahhahahahhahahahhahahahhahahahhahahahhahahahhahahahhahahahhahahahs");
             allCards.get(key).initializeCardData(choserCard.getCurrentData(),
                     choserCard.getCurrentDetailData());
         }
@@ -188,15 +140,13 @@ public class EntriesCard extends Card {
     protected void updateTitle() {
         super.updateTitle();
 
-        if (activeCard == allCards.get(CardTypes.OVERALL)) {
-            rightTitleComponent.setVisible(false);
-            rightEntryTitleComponent.setVisible(true);
-        } else {
-            rightEntryTitleComponent.setVisible(false);
-            rightTitleComponent.setVisible(true);
-        }
-//        System.out.println("foreground " + rightEntryTitleComponent.getForeground() + "  " +
-//        rightEntryTitleComponent.getBackground());
+//        if (activeCard == allCards.get(CardTypes.OVERALL)) {
+            rightTitleComponent.setVisible(!(activeCard == allCards.get(CardTypes.OVERALL)));
+            rightEntryTitleComponent.setVisible((activeCard == allCards.get(CardTypes.OVERALL)));
+//        } else {
+//            rightEntryTitleComponent.setVisible(false);
+//            rightTitleComponent.setVisible(true);
+//        }
     }
 
     @Override
@@ -205,9 +155,5 @@ public class EntriesCard extends Card {
         textComponentTitle = factory.createTextField();
     }
 
-//    @Override
-//    public ComponentPanelMenager<? extends IContentCustomUICmp> getRightTitleComponent() {
-//        return rightEntryTitleComponent;
-//    }
 
 }

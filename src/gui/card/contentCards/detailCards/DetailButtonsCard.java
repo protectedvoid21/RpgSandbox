@@ -1,6 +1,5 @@
 package gui.card.contentCards.detailCards;
 
-import gui.card.CardContentDataSet;
 import gui.card.contentCards.AbstractCard;
 import gui.card.fullCards.abstractCards.Card;
 import gui.card.SharedCmpsFont;
@@ -20,10 +19,7 @@ public abstract class DetailButtonsCard extends AbstractCard<JComponent> {
                     ComponentsSeries.ComponentsDimension.VERTICAL);
 
     protected ArrayList<AbstractCustomLabel> labelList = new ArrayList<>();
-    //    protected ArrayList<AbstractCustomButton> selectList = new ArrayList<>();
     protected ArrayList<AbstractCustomButton> detailList = new ArrayList<>();
-
-
 
     /**
      * dataMap should be in format [[path1, text1], [path2, text2], [path3, text3]...]
@@ -39,18 +35,9 @@ public abstract class DetailButtonsCard extends AbstractCard<JComponent> {
         initializeCard(3);
         initializeContent();
     }
-
-
-
-
-//    protected abstract void initContentSegment();
-
     public AbstractCustomButton getDetailButton(int index) {
         return detailList.get(index);
     }
-
-
-
 
     @Override
     public DefaultCustomMenuMenager<JComponent> getContentMenager() {
@@ -67,18 +54,11 @@ public abstract class DetailButtonsCard extends AbstractCard<JComponent> {
         for (var key : sublist) {
             labelList.get(currentIndex).setContent(key.get(0));
             getContentList().get(currentIndex).setContent(key.get(1));
-
-//            for (int i = 0; i < 2; i++) {
-//                getContentList().get(2 * currentIndex + i).setContent(key.get(i));
-//            }
             detailList.get(currentIndex).setContent("DETAILS");
             currentIndex++;
         }
         if (sublist.size() < maximumElementNumber) {
             for (int i = dataSize % maximumElementNumber; i < maximumElementNumber; i++) {
-//                for (int j = 0; j < 2; j++) {
-//                    getContentList().get(2 * i + j).setContent(Card.EMPTY_DATA_CONTENT);
-//                }
                 labelList.get(i).setContent(Card.EMPTY_DATA_CONTENT);
                 getContentList().get(i).setContent(Card.EMPTY_DATA_CONTENT);
 

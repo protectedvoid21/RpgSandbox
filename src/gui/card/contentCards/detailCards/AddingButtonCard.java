@@ -3,7 +3,7 @@ package gui.card.contentCards.detailCards;
 import gui.card.CardContentDataSet;
 import gui.card.fullCards.abstractCards.Card;
 import gui.card.SharedCmpsFont;
-import gui.customComponents.CustomIconBooleanButton;
+import gui.customComponents.booleanComponents.CustomIconBooleanButton;
 import gui.factories.GuiFactory;
 
 import java.awt.event.ActionEvent;
@@ -34,32 +34,32 @@ public class AddingButtonCard extends NormalDetailButtonsCard {
 //        selectedIndex = value;
 //    }
 
-    public ArrayList<CardContentDataSet> getDetailOnlyAddedIndexesData(){
+    public ArrayList<CardContentDataSet> getDetailOnlyAddedIndexesData() {
         var newData = new ArrayList<CardContentDataSet>();
 //        System.out.println(detailData);
-        for (var index : addedIndexes){
+        for (var index : addedIndexes) {
             newData.add(detailData.get(index));
         }
         return newData;
     }
 
-    public CardContentDataSet getOnlyAddedIndexesData(){
+    public CardContentDataSet getOnlyAddedIndexesData() {
         var newData = new CardContentDataSet();
         newData.titleContent = data.titleContent;
         newData.titlePath = data.titlePath;
         newData.content = new ArrayList<>();
-        for (var index : addedIndexes){
+        for (var index : addedIndexes) {
             newData.content.add(data.content.get(index));
 
         }
         return newData;
     }
 
-    public ArrayList<Integer> getAddedIndexes(){
+    public ArrayList<Integer> getAddedIndexes() {
         return addedIndexes;
     }
 
-    public void setAddedIndexes(ArrayList<Integer> addedIndexes){
+    public void setAddedIndexes(ArrayList<Integer> addedIndexes) {
         this.addedIndexes = addedIndexes;
     }
 
@@ -73,52 +73,19 @@ public class AddingButtonCard extends NormalDetailButtonsCard {
                 maxSideIndex);
         int currentIndex = 0;
 
-//        for (var key : sublist) {
-//            String content = "SELECT";
-//            var but =  selectList.get(currentIndex);
-//            if (currentAttrSide*maximumElementNumber+currentIndex==selectedIndex){
-//                content = "SELECTED";
-//                but.setEnabled(false);
-//            }else{
-//                if (!but.isEnabled()){
-//                    but.setEnabled(true);
-//                }
-//            }
-//            selectList.get(currentIndex).setContent(content);
-//            currentIndex++;
-//        }
-//        if (sublist.size() < maximumElementNumber) {
-//            for (int i = dataSize % maximumElementNumber; i < maximumElementNumber; i++) {
-//                System.out.println("ustatwiam pusge");
-//                selectList.get(i).setContent(Card.EMPTY_DATA_CONTENT);
-//            }
-//        }
 
-
-        for (int i = currentAttrSide*maximumElementNumber; i<getSideMaximumElementsNumber(); i++){
-            if (addedIndexes.contains(i)){
-                selectList.get(i%maximumElementNumber).setContent("");
-            }else{
-                selectList.get(i%maximumElementNumber).setContent("es");
+        for (int i = currentAttrSide * maximumElementNumber; i < getSideMaximumElementsNumber(); i++) {
+            if (addedIndexes.contains(i)) {
+                selectList.get(i % maximumElementNumber).setContent("");
+            } else {
+                selectList.get(i % maximumElementNumber).setContent("es");
             }
 
-
-//            if (data.dataType.get(i)== CardContentDataSet.DataType.STRING){
-////                array.add(entriesList.get(i%5));
-//                entriesList.get(i%maximumElementNumber).setVisible(true);
-//                buttonBooleanList.get(i%maximumElementNumber).setVisible(false);
-//            }else{
-////                array.add(buttonBooleanList.get(i%5));
-//                entriesList.get(i%maximumElementNumber).setVisible(false);
-//                buttonBooleanList.get(i%maximumElementNumber).setVisible(true);
-//            }
         }
         Card.setAspectVisible(selectList, true);
-        for (int i = data.content.size();i< getSideMaximumElementsNumber(); i++){
-//            entriesList.get(i%maximumElementNumber).setVisible(false);
-            selectList.get(i%maximumElementNumber).setVisible(false);
+        for (int i = data.content.size(); i < getSideMaximumElementsNumber(); i++) {
+            selectList.get(i % maximumElementNumber).setVisible(false);
         }
-//        Card.setAspectVisible(selectList, true);
     }
 
     @Override
@@ -128,21 +95,16 @@ public class AddingButtonCard extends NormalDetailButtonsCard {
         selectList = new ArrayList<>();
         for (int i = 0; i < maximumElementNumber; i++) {
             factory.setButtonType(GuiFactory.ButtonType.ICON);
-//            var but = factory.createButton("src/gui/plus.png", "src/gui/remove.png", true, true);
-            var but = factory.createButton("src/gui/plus.png", "src/gui/remove.png",true, true);
-//            System.out.println(but);
-//            but.getCustomUI().setFontMaximized(true);
-//            but.getCustomUI().getMargin().set(20, 0, 20, 0);
-//            but.getCustomUI().setRespectionBorder(true);
+            var but = factory.createButton("src/gui/plus.png", "src/gui/remove.png", true, true);
             selectList.add(but);
             but.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    var ind = currentAttrSide*maximumElementNumber+selectList.indexOf(but);
-                    if (addedIndexes.contains(ind)){
+                    var ind = currentAttrSide * maximumElementNumber + selectList.indexOf(but);
+                    if (addedIndexes.contains(ind)) {
 
                         addedIndexes.remove(addedIndexes.indexOf(ind));
-                    }else{
+                    } else {
                         addedIndexes.add(ind);
                     }
                 }

@@ -1,4 +1,4 @@
-package gui.customComponents;
+package gui.customComponents.booleanComponents;
 
 import gui.customComponents.iconComponents.IconButton;
 import gui.customComponents.iconComponents.StretchIcon;

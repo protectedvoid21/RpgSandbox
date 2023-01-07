@@ -35,12 +35,10 @@ public class SharedCmpsFont<T extends JComponent &IContentCustomUICmp> {//cos og
         var min = 10000;
         for (var cmp : cmps) {
             var newFontSize = cmp.getMaximumPossibleFontSize();
-//            System.out.println(newFontSize+ " "+cmp.isVisible());
             if (newFontSize < min && cmp.isVisible()) {
                 min = newFontSize;
             }
         }
-//        System.out.println("koniec"+min);
         return min;
     }
 
@@ -52,7 +50,6 @@ public class SharedCmpsFont<T extends JComponent &IContentCustomUICmp> {//cos og
             }
         }
         for (var cmp : cmps) {
-//            System.out.println(component.getFont()+"   "+component);
         }
     }
 

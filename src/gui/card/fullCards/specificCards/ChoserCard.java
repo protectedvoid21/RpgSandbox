@@ -12,7 +12,6 @@ import gui.factories.GuiFactory;
 import gui.menu.ComponentPanelMenager;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
 public class ChoserCard extends Card {
@@ -29,14 +28,8 @@ public class ChoserCard extends Card {
     public void initialize() {
         super.initialize();
         seriesPanel.getCmp().removeBorderData();
-//        switchTo(CardTypes.ARMOR);
     }
 
-//    @Override
-//    public void uploadNewData(HashMap<CardTypes, CardContentDataSet> newData, HashMap<CardTypes,
-//            ArrayList<CardContentDataSet>> detailData) {
-//        super.uploadNewData(newData, detailData);
-//    }
 
     public void setCurrentType(CardTypes type) {
         currentCardType = type;
@@ -46,9 +39,6 @@ public class ChoserCard extends Card {
         return currentCardType;
     }
 
-//    public void switchTo(CardTypes type) {
-//        switchSide(type);
-//    }
 
     @Override
     public void switchSide(CardTypes cardType) {
@@ -69,16 +59,11 @@ public class ChoserCard extends Card {
 
     @Override
     protected void initializeDetailButtonsCardPart(CardTypes type) {
-//        super.initializeDetailButtonsCardPart(type);
         var but = new AddingButtonCard(factory);
         var array =new ArrayList<>();
-//        cards.get()
-//        for (int i = 0; i<cards.get(currentCardType))
-//        but.setAddedIndexes(new ArrayList<>());
         but.initializeCard();
         allCards.put(type, but);
         cards.put(type, but);
-//        but.getDetailButton(0).addActionListener(e->detailButtonMethod(but, ));
         for (int i = 0; i < but.getMaximumElementNumber(); i++) {
             int finalI = i;
             but.getDetailButton(i).addActionListener(e -> detailButtonMethod(but, type, finalI));
