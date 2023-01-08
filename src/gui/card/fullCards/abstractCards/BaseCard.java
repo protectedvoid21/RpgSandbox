@@ -8,13 +8,14 @@ import gui.factories.GuiFactory;
 import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
+import gui.menu.ICustomBackgorund;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.util.*;
 
-public abstract class BaseCard {
+public abstract class BaseCard implements ICustomBackgorund {
 
     protected ComponentsSeries<ComponentPanelMenager<? extends JComponent>> titleSeries =
             new ComponentsSeries<>(ComponentsSeries.ComponentsDimension.HORIZONTAL);
@@ -43,11 +44,17 @@ public abstract class BaseCard {
         seriesPanel.addMiddleComponent(content, mainIndex, 10);
     }
 
-    public void setBackgroundImage(String path) throws IOException {
-        seriesPanel.getCmp().setBackgroundImage(path);
+    @Override
+    public void setBackgroundImage(String path) {
+        try {
+            seriesPanel.getCmp().setBackgroundImage(path);
+        } catch (IOException e) {
+            setBackground(new Color(0x935D3A));
+        }
     }
 
-    public void setBackgroundColor(Color color) {
+    @Override
+    public void setBackground(Color color) {
         seriesPanel.setBackground(color);
     }
 

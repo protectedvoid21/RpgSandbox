@@ -6,10 +6,16 @@ import gui.card.fullCards.abstractCards.BaseCard;
 import gui.card.fullCards.abstractCards.Card;
 import gui.card.fullCards.specificCards.*;
 import gui.customUI.customUIStyles.borderStrategies.AverageBorderStartegy;
+import gui.customUI.customUIStyles.borderStrategies.DependantHeightBorderStrategy;
 import gui.factories.customFactories.buttonFactories.ButtonFactory;
+import gui.factories.customFactories.buttonFactories.MenuButtonsFactory;
 import gui.factories.customFactories.buttonFactories.WinterClickedButtonFactory;
 import gui.factories.customFactories.labelFactories.GameGreenLabelFactory;
 import gui.factories.customFactories.labelFactories.LabelFactory;
+import gui.factories.customFactories.labelFactories.MenuLabelFactory;
+import gui.menu.ComponentPanelMenager;
+import gui.menu.ICustomBackgorund;
+import gui.menuViews.MenuView;
 
 import java.awt.*;
 import java.io.IOException;
@@ -26,12 +32,18 @@ public class WarHammerFactory extends IOverallFactory {
         factory.setLabelFactory(labelFactory);
     }
 
-    private void uploadBackgroundImage(BaseCard card, String path) {
-        try {
-            card.setBackgroundImage(path);
-        } catch (IOException e) {
-            card.setBackgroundColor(new Color(0x935D3A));
-        }
+    private void uploadBackgroundImage(ICustomBackgorund object, String path) {
+        object.setBackgroundImage(path);
+    }
+
+    @Override
+    public MenuView createMenuView() {
+        factory.setBorderStrategy(new DependantHeightBorderStrategy());
+        factory.setLabelFactory(new MenuLabelFactory(0.7, 0.2));
+        factory.setButtonFactory(new MenuButtonsFactory(0.6, 0.2));
+        var menu = new MenuView(factory);
+        uploadBackgroundImage(menu,"src/gui/aveeee.jpg");
+        return menu;
     }
 
     public EntriesCard createEntriesCard() {
@@ -62,19 +74,18 @@ public class WarHammerFactory extends IOverallFactory {
         return card;
     }
 
-    public EntriesCard createCreatorCard(Card.CreatorTypes type){
+    public EntriesCard createCreatorCard(Card.CreatorTypes type) {
         var card = new EntriesCard(factory);
         card.initialize();
         card.setUniformFont();
         uploadBackgroundImage(card, "src/gui/bob.jpg");
-        card.uploadCreatorItemsData(generateData1(),generateData2(), generateData1());
+        card.uploadCreatorItemsData(generateData1(), generateData2(), generateData1());
         card.setCreatorCard(true, type);
         return card;
     }
 
 
-
-    private CardContentDataSet generateData2(){
+    private CardContentDataSet generateData2() {
         var mapa = new ArrayList<ArrayList<String>>();
         mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
         mapa.add(new ArrayList<>(Arrays.asList(new String[]{"XDDD", "1fd0"})));
@@ -227,7 +238,7 @@ public class WarHammerFactory extends IOverallFactory {
         return data2;
     }
 
-    private CardContentDataSet generateData1(){
+    private CardContentDataSet generateData1() {
         var mapa = new ArrayList<ArrayList<String>>();
         mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
         mapa.add(new ArrayList<>(Arrays.asList(new String[]{"XDDD", "1fd0"})));
@@ -533,7 +544,7 @@ public class WarHammerFactory extends IOverallFactory {
         return hash;
     }
 
-    public LinkedHashMap<Card.CardTypes, CardContentDataSet> generateSecondMap(){
+    public LinkedHashMap<Card.CardTypes, CardContentDataSet> generateSecondMap() {
         var mapa = new ArrayList<ArrayList<String>>();
         mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
         mapa.add(new ArrayList<>(Arrays.asList(new String[]{"XDDD", "1fd0"})));

@@ -5,7 +5,10 @@ import gui.card.fullCards.specificCards.BasicCard;
 import gui.card.fullCards.specificCards.EntriesCard;
 import gui.card.fullCards.specificCards.GameCard;
 import gui.card.fullCards.specificCards.OnlyVisibleCard;
+import gui.customUI.customUIStyles.borderStrategies.DependantHeightBorderStrategy;
 import gui.factories.GuiFactory;
+import gui.factories.customFactories.buttonFactories.MenuButtonsFactory;
+import gui.menuViews.MenuView;
 
 import java.util.AbstractMap;
 import java.util.ArrayList;
@@ -25,4 +28,9 @@ public abstract class IOverallFactory {
 
     public abstract OnlyVisibleCard createSmallCard();
     public abstract EntriesCard createCreatorCard(Card.CreatorTypes type);
+
+    public abstract MenuView createMenuView();
+    public GuiFactory getFactory(){
+        return factory;
+    }
 }

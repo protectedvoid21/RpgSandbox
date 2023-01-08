@@ -5,6 +5,6 @@ import game.interfaces.IStatistics;
 
 public class PlayerCharacter extends Character {
     public PlayerCharacter(IStatistics statistics, Inventory inventory, Experience experience) {
-        super(statistics, inventory, experience);
+        super(statistics, inventory, experience, null);
     }
 }
