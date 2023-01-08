@@ -19,7 +19,6 @@ public abstract class BaseCard implements ICustomBackgorund {
 
     protected ComponentsSeries<ComponentPanelMenager<? extends JComponent>> titleSeries =
             new ComponentsSeries<>(ComponentsSeries.ComponentsDimension.HORIZONTAL);
-
     protected ComponentPanelMenager<AbstractCustomLabel> leftTitleComponent;
     protected ComponentPanelMenager<AbstractCustomLabel> rightTitleComponent;
     protected ComponentPanelMenager<CustomTextComponent> rightEntryTitleComponent;
@@ -32,7 +31,7 @@ public abstract class BaseCard implements ICustomBackgorund {
         seriesPanel = new DefaultCustomMenuMenager(ComponentsSeries.ComponentsDimension.VERTICAL,
                 ComponentsSeries.ComponentsDimension.HORIZONTAL);
         initSeriesPanel(titleSeries, 0, 6);
-        initSeriesPanel(ComponentPanelMenager.createEmptyInstance(), 1, 14);
+//        initSeriesPanel(ComponentPanelMenager.createEmptyInstance(), 1, 14);
 
         initializeTitle();
         seriesPanel.getCmp().setBorderData(Color.RED, new AverageBorderStartegy(), 8);
@@ -96,6 +95,7 @@ public abstract class BaseCard implements ICustomBackgorund {
         rightEntryTitleComponent.setVisible(false);
 
     }
+
 
     public abstract void initialize();
 

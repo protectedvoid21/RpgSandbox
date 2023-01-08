@@ -15,4 +15,16 @@ public abstract class ImageLabelFactory extends LabelFactory {
 
     public ImageLabelFactory() {
     }
+
+    public void setScalingSizeValue(double scalingSizeValue) {
+        this.scalingSizeValue = scalingSizeValue;
+    }
+
+    public void setScalingPositionValue(double scalingPositionValue) {
+        this.scalingPositionValue = scalingPositionValue;
+    }
+
+    public void setScaled(boolean scaled) {
+        isScaled = scaled;
+    }
 }

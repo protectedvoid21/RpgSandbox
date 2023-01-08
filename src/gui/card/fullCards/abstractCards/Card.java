@@ -37,7 +37,7 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
     public enum CreatorTypes {ARMOR, WEAPONS, MOUNT}
 
 
-    public enum CardTypes {OVERALL,ATTRIBUTE, ARMOR, WEAPONS, EFFECTS, MOUNT, ITEMS}
+    public enum CardTypes {OVERALL, ATTRIBUTE, ARMOR, WEAPONS, EFFECTS, MOUNT, ITEMS}
 
     protected static ArrayList<CardTypes> cardSideIndexes = new ArrayList<>(Arrays.asList(CardTypes.OVERALL,
             CardTypes.ATTRIBUTE,
@@ -77,6 +77,7 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
 
     public Card(GuiFactory factory) {
         super(factory);
+        initSeriesPanel(ComponentPanelMenager.createEmptyInstance(), 1, 14);
 
     }
 
@@ -89,7 +90,6 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
         setCancelButtonStatus(false);
         rightArrows.setSwitchableComponent(this);
     }
-
 
 
     protected void detailButtonMethod(DetailButtonsCard card, CardTypes type, int index) {
@@ -198,17 +198,29 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
     }
 
 
-
     public void uploadNewData(LinkedHashMap<CardTypes, CardContentDataSet> newData, HashMap<CardTypes,
             ArrayList<CardContentDataSet>> detailData) {
         for (var type : newData.keySet()) {
-            allCards.get(type).initializeCardData(newData.get(type), detailData.get(type));
+            if (type != CardTypes.OVERALL)
+                allCards.get(type).initializeCardData(newData.get(type), detailData.get(type));
         }
         var a = new ArrayList<CardTypes>();
         for (var key : newData.keySet()) {
             a.add(key);
         }
         cardSideIndexes = a;
+        var map = new LinkedHashMap<CardTypes, ActionListener>();
+
+        for (var key : cardSideIndexes) {
+            if (key != CardTypes.OVERALL) {
+                map.put(key, e -> switchSide(key));
+            }
+        }
+        var overall = new OverallCard(factory, map);
+        overall.initializeCard();
+        allCards.put(CardTypes.OVERALL, overall);
+        allCards.get(CardTypes.OVERALL).initializeCardData(newData.get(CardTypes.OVERALL),
+                detailData.get(CardTypes.OVERALL));
 
         switchSide(cardSideIndexes.get(0));
     }

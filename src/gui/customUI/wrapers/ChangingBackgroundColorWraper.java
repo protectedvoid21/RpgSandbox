@@ -25,20 +25,24 @@ public class ChangingBackgroundColorWraper extends BorderDecorator {
         c.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                currentBaseBackgroundHelper = getAdditionalColor(Index.BASE_BACKGROUND);
-                setAdditionaldColor(getAdditionalColor(Index.THIRD), Index.BASE_BACKGROUND);
-                super.mousePressed(e);
-                c.repaint();
-                c.revalidate();
+                if (c.isEnabled()) {
+                    currentBaseBackgroundHelper = getAdditionalColor(Index.BASE_BACKGROUND);
+                    setAdditionaldColor(getAdditionalColor(Index.THIRD), Index.BASE_BACKGROUND);
+                    super.mousePressed(e);
+                    c.repaint();
+                    c.revalidate();
+                }
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
-                setAdditionaldColor(currentBaseBackgroundHelper, Index.BASE_BACKGROUND);
-                currentBaseBackgroundHelper = null;
-                super.mousePressed(e);
-                c.repaint();
-                c.revalidate();
+//                if (c.isEnabled()) {
+                    setAdditionaldColor(currentBaseBackgroundHelper, Index.BASE_BACKGROUND);
+//                    currentBaseBackgroundHelper = null;
+                    super.mousePressed(e);
+                    c.repaint();
+                    c.revalidate();
+//                }
             }
         });
     }

@@ -7,6 +7,7 @@ import gui.customComponents.booleanComponents.CustomIconBooleanButton;
 import gui.customComponents.iconComponents.IconButton;
 import gui.customComponents.iconComponents.StretchIcon;
 import gui.customUI.componentsUIs.CustomButtonUI;
+import gui.customUI.componentsUIs.CustomLabelUI;
 import gui.customUI.customUIStyles.ClickedStyleUI;
 import gui.customUI.customUIStyles.RoundedBorderUI;
 import gui.customUI.interfaces.ICustomUI;
@@ -19,6 +20,9 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class MenuButtonsFactory extends ImageButtonFactory {
+    private String pathLeft = "";
+    private String pathRight ="";
+
     public MenuButtonsFactory(double scalingSizeValue, double scalingPositionValue) {
         super(scalingSizeValue, scalingPositionValue);
     }
@@ -39,18 +43,34 @@ public class MenuButtonsFactory extends ImageButtonFactory {
         button.setForeground(new Color(0x1C1515));
         button.setHorizontalAlignment(SwingConstants.CENTER);
         button.setBackground(new Color(0x51813D));
-        var ui = new RoundedBorderUI(strategy, 10, 10);
-        var uiHelper = new ImageBorderWraper(ui, "src/gui/swo.png", "src/gui/swo.png");
-        if (isScaled) {
-            uiHelper.setScalingValue(scalingSizeValue, scalingPositionValue);
-            uiHelper.setScalingStatus(true);
+        var ui = new RoundedBorderUI(strategy, 7, 10);
+        ui.setAdditionaldColor(new Color(0x4D0202), ICustomUI.Index.FIRST);
+        ui.setAdditionaldColor(new Color(0xFF3333), ICustomUI.Index.SECOND);
+        var x = new ChangingBorderColorWraper(new DarkerHoverComponentWraper(ui));
+//        var uiHelper = new ImageBorderWraper(ui, "src/gui/swo.png", "src/gui/swo.png");
+        CustomButtonUI ui2 = null;
+        if (!pathLeft.isEmpty() && !pathRight.isEmpty()) {
+            var uiHelper = new ImageBorderWraper(x, pathLeft, pathRight);
+            if (isScaled) {
+                uiHelper.setScalingValue(scalingSizeValue, scalingPositionValue);
+                uiHelper.setScalingStatus(true);
+            }
+            ui2 = new CustomButtonUI(uiHelper);
+        } else {
+            ui2 = new CustomButtonUI(x);
         }
-        uiHelper.setAdditionaldColor(new Color(0x4D0202), ICustomUI.Index.FIRST);
-        uiHelper.setAdditionaldColor(new Color(0xFF3333), ICustomUI.Index.SECOND);
-//        ui.setAdditionaldColor(new Color(0x0A4B1D), ICustomUI.Index.THIRD);
-        var x = new ChangingBorderColorWraper(new DarkerHoverComponentWraper(uiHelper));
 
-        var ui2 = new CustomButtonUI(x);
+//        var uiHelper = new ImageBorderWraper(ui, "src/gui/swo.png", "src/gui/swo.png");
+//        if (isScaled) {
+//            uiHelper.setScalingValue(scalingSizeValue, scalingPositionValue);
+//            uiHelper.setScalingStatus(true);
+//        }
+//        uiHelper.setAdditionaldColor(new Color(0x4D0202), ICustomUI.Index.FIRST);
+//        uiHelper.setAdditionaldColor(new Color(0xFF3333), ICustomUI.Index.SECOND);
+//        ui.setAdditionaldColor(new Color(0x0A4B1D), ICustomUI.Index.THIRD);
+//        var x = new ChangingBorderColorWraper(new DarkerHoverComponentWraper(ui));
+
+//        var ui2 = new CustomButtonUI(x);
         button.setUI(ui2);
         button.setMaximumFontSizeStatus(true);
         button.getCustomUI().getMargin().set(10, 30, 10, 30);
@@ -66,6 +86,8 @@ public class MenuButtonsFactory extends ImageButtonFactory {
     @Override
     public AbstractCustomButton createIconPropButton(String text, ActionListener listener) {
         var but = helpCreatedMethod(new IconButton(text, true), listener);
+        but.getCustomUI().getMargin().set(10,10,10,10);
+//        but.getCustomUI().setRespectionBorder(false);
 //        but.getCustomUI().setBackGroundTransparent(true);
         return but;
     }
@@ -108,5 +130,9 @@ public class MenuButtonsFactory extends ImageButtonFactory {
         var but = helpCreatedMethod(new CustomIconBooleanButton(path1, path2, initialValue, proportionate), null);
 //        ((CustomIconBooleanButton) but).setDoubleTextContent(path1, path2);
         return (CustomIconBooleanButton) but;
+    }
+    public void setPaths(String pathLeft, String pathRight) {
+        this.pathLeft = pathLeft;
+        this.pathRight = pathRight;
     }
 }

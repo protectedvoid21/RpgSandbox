@@ -15,8 +15,16 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MenuLabelFactory extends ImageLabelFactory {
+    private String pathLeft = "";
+    private String pathRight = "src/gui/rightsword.png";
+
     public MenuLabelFactory(double scalingSizeValue, double scalingPositionValue) {
         super(scalingSizeValue, scalingPositionValue);
+    }
+
+    public MenuLabelFactory() {
+        super();
+
     }
 
     private AbstractCustomLabel helpCreatedMethod(AbstractCustomLabel label) {
@@ -24,14 +32,20 @@ public class MenuLabelFactory extends ImageLabelFactory {
         label.setForeground(new Color(0x1C1515));
         label.setHorizontalAlignment(SwingConstants.CENTER);
         label.setBackground(new Color(0x51813D));
-        var ui = new RoundedBorderUI(strategy, 10, 10);
-        var uiHelper = new ImageBorderWraper(ui, "src/gui/leftsword.png", "src/gui/rightsword.png");
-        if (isScaled) {
-            uiHelper.setScalingValue(scalingSizeValue, scalingPositionValue);
-            uiHelper.setScalingStatus(true);
+        var ui = new RoundedBorderUI(strategy, 7, 10);
+        CustomLabelUI ui2 = null;
+        if (!pathLeft.isEmpty() && !pathRight.isEmpty()) {
+            var uiHelper = new ImageBorderWraper(ui, pathLeft, pathRight);
+            if (isScaled) {
+                uiHelper.setScalingValue(scalingSizeValue, scalingPositionValue);
+                uiHelper.setScalingStatus(true);
+            }
+            ui2 = new CustomLabelUI(uiHelper);
+        } else {
+            ui2 = new CustomLabelUI(ui);
         }
-        uiHelper.setAdditionaldColor(new Color(0x4D0202), ICustomUI.Index.FIRST);
-        var ui2 = new CustomLabelUI(uiHelper);
+        ui.setAdditionaldColor(new Color(0x4D0202), ICustomUI.Index.FIRST);
+//        var ui2 = new CustomLabelUI(uiHelper);
         label.setUI(ui2);
         label.setMaximumFontSizeStatus(true);
         label.getCustomUI().getMargin().set(10, 20, 10, 20);
@@ -55,4 +69,10 @@ public class MenuLabelFactory extends ImageLabelFactory {
         label.getCustomUI().setRespectionBorder(false);
         return label;
     }
+
+    public void setPaths(String pathLeft, String pathRight) {
+        this.pathLeft = pathLeft;
+        this.pathRight = pathRight;
+    }
+
 }

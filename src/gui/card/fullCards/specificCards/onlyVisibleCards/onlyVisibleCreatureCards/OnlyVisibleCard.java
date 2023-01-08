@@ -1,4 +1,4 @@
-package gui.card.fullCards.specificCards;
+package gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleCreatureCards;
 
 import gui.card.CardContentDataSet;
 import gui.card.SharedCmpsFont;
@@ -6,33 +6,37 @@ import gui.card.fullCards.abstractCards.BaseCard;
 import gui.card.fullCards.abstractCards.Card;
 import gui.customComponents.AbstractCustomButton;
 import gui.customComponents.AbstractCustomLabel;
+import gui.customUI.customUIStyles.borderStrategies.AverageBorderStartegy;
 import gui.factories.GuiFactory;
 import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class OnlyVisibleCard extends BaseCard {
+public abstract class OnlyVisibleCard extends BaseCard {
     private DefaultCustomMenuMenager<JComponent> menager =
             new DefaultCustomMenuMenager<>(ComponentsSeries.ComponentsDimension.VERTICAL,
                     ComponentsSeries.ComponentsDimension.HORIZONTAL);
     protected ArrayList<AbstractCustomLabel> labelList = new ArrayList<>();
     private int maximumElementSize;
     private CardContentDataSet currentData = new CardContentDataSet();
-    private AbstractCustomButton button;
+//    protected AbstractCustomButton button;
 
 
     public OnlyVisibleCard(GuiFactory factory, int elementsSize) {
         super(factory);
         maximumElementSize = elementsSize;
+        initSeriesPanel(ComponentPanelMenager.createEmptyInstance(), 1, 14);
+        seriesPanel.getCmp().setBorderData(Color.RED, new AverageBorderStartegy(), 16);
     }
 
     public void uploadNewData(CardContentDataSet data) {
         leftTitleComponent.getComponent().setContent(data.titlePath);
-        leftTitleComponent.getComponent().setContent(data.titleContent);
+        rightTitleComponent.getComponent().setContent(data.titleContent);
         for (int i = 0; i < labelList.size(); i++) {
             var cnt = data.content.get(i / 2).get(i % 2);
             var lbl = labelList.get(i);
@@ -100,15 +104,11 @@ public class OnlyVisibleCard extends BaseCard {
                     ComponentPanelMenager.Side.RIGHT);
         }
         seriesPanel.getMiddleComponent(1, 0).changeContent(menager.getCmp());
-        factory.setButtonType(GuiFactory.ButtonType.NORMAL);
-        button = factory.createButton("SHOW", null);
-        initSeriesPanel(button, 2, 2);
+        initializeDownPanel();
 
-        seriesPanel.getMiddleComponent(2, 0).addSpace(10, ComponentPanelMenager.Side.RIGHT, ComponentPanelMenager.Side.LEFT);
-        seriesPanel.getMiddleComponent(2, 0).addSpace(3, ComponentPanelMenager.Side.BOTTOM, ComponentPanelMenager.Side.TOP);
     }
 
-    public AbstractCustomButton getButton(){
-        return button;
-    }
+    protected abstract void initializeDownPanel();
+    public abstract boolean containsButton(JButton button);
+
 }

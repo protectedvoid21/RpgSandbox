@@ -1,29 +1,37 @@
 package gui.card;
 
-import gui.card.contentCards.detailCards.AddingButtonCard;
-import gui.card.contentCards.detailCards.AddingItemButtonCard;
-import gui.card.fullCards.abstractCards.BaseCard;
+import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleCreatureCards.OnlyVisibleEditCard;
+import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleCreatureCards.OnlyVisibleShowCard;
+import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleItemsCards.OnlyVisibleItemsEditCard;
+import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleItemsCards.OnlyVisibleItemsShowCard;
+import gui.views.objectViews.creatureViews.AllCreaturesEditView;
+import gui.views.objectViews.creatureViews.AllCreaturesShowView;
+import gui.views.objectViews.itemsViews.AllItemsEditView;
+import gui.views.objectViews.itemsViews.AllItemsShowView;
+import gui.views.selectingCreatureViews.SelectingView;
 import gui.card.fullCards.abstractCards.Card;
 import gui.card.fullCards.specificCards.*;
+import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleCreatureCards.OnlyVisibleCard;
+import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleItemsCards.OnlyVisibleItemCard;
 import gui.customUI.customUIStyles.borderStrategies.AverageBorderStartegy;
 import gui.customUI.customUIStyles.borderStrategies.DependantHeightBorderStrategy;
+import gui.customUI.customUIStyles.borderStrategies.DependantWidthBorderStrategy;
 import gui.factories.customFactories.buttonFactories.ButtonFactory;
 import gui.factories.customFactories.buttonFactories.MenuButtonsFactory;
 import gui.factories.customFactories.buttonFactories.WinterClickedButtonFactory;
 import gui.factories.customFactories.labelFactories.GameGreenLabelFactory;
 import gui.factories.customFactories.labelFactories.LabelFactory;
 import gui.factories.customFactories.labelFactories.MenuLabelFactory;
-import gui.menu.ComponentPanelMenager;
 import gui.menu.ICustomBackgorund;
-import gui.menuViews.MenuView;
+import gui.views.menuViews.MenuView;
 
-import java.awt.*;
-import java.io.IOException;
 import java.util.*;
 
 public class WarHammerFactory extends IOverallFactory {
     private ButtonFactory winterFactory = new WinterClickedButtonFactory();
     private LabelFactory labelFactory = new GameGreenLabelFactory();
+    private MenuLabelFactory menuLabelFactory = new MenuLabelFactory(0.7, 0.2);
+    private MenuButtonsFactory menuButtonsFactory = new MenuButtonsFactory(0.6, 0.2);
 
 
     public WarHammerFactory() {
@@ -39,12 +47,78 @@ public class WarHammerFactory extends IOverallFactory {
     @Override
     public MenuView createMenuView() {
         factory.setBorderStrategy(new DependantHeightBorderStrategy());
-        factory.setLabelFactory(new MenuLabelFactory(0.7, 0.2));
-        factory.setButtonFactory(new MenuButtonsFactory(0.6, 0.2));
+
+        menuButtonsFactory.setPaths("src/gui/swo.png", "src/gui/swo.png");
+        menuLabelFactory.setPaths("src/gui/leftsword.png", "src/gui/rightsword.png");
+        factory.setLabelFactory(menuLabelFactory);
+        factory.setButtonFactory(menuButtonsFactory);
         var menu = new MenuView(factory);
-        uploadBackgroundImage(menu,"src/gui/aveeee.jpg");
+        uploadBackgroundImage(menu, "src/gui/aveeee.jpg");
         return menu;
     }
+
+    private SelectingView createView(ArrayList<AbstractMap.SimpleEntry<String, String>> content) {
+        factory.setBorderStrategy(new DependantWidthBorderStrategy());
+        menuButtonsFactory.setPaths("", "");
+        factory.setLabelFactory(menuLabelFactory);
+        menuLabelFactory.setPaths("", "");
+        factory.setButtonFactory(menuButtonsFactory);
+//        var menu = new SelectingView(factory,new ArrayList<>(Arrays.asList(new AbstractMap.SimpleEntry<>
+//        ("src/gui/monsterimage" +
+//                        ".png", "MONSTER"), new AbstractMap.SimpleEntry<>("src/gui/playerimage.png", "PLAYER"),
+//                new AbstractMap.SimpleEntry<>("src/gui/npcimage.png", "NPC"))));
+        var menu = new SelectingView(factory, content);
+        uploadBackgroundImage(menu, "src/gui/aveeee.jpg");
+        factory.setBorderStrategy(new AverageBorderStartegy());
+        return menu;
+    }
+
+//    @Override
+//    public SelectingView createSelectingView() {
+//        factory.setBorderStrategy(new DependantHeightBorderStrategy());
+//        menuButtonsFactory.setPaths("", "");
+//        factory.setLabelFactory(menuLabelFactory);
+//        menuLabelFactory.setPaths("", "");
+//        factory.setButtonFactory(menuButtonsFactory);
+//        var menu = new SelectingView(factory,new ArrayList<>(Arrays.asList(new AbstractMap.SimpleEntry<>
+//        ("src/gui/monsterimage" +
+//                        ".png", "MONSTER"), new AbstractMap.SimpleEntry<>("src/gui/playerimage.png", "PLAYER"),
+//                new AbstractMap.SimpleEntry<>("src/gui/npcimage.png", "NPC"))));
+////        menuButtonsFactory.setPaths("src/gui/undoleft.png", "src/gui/undoright.png");
+////        menu.createReturnButton();
+//        uploadBackgroundImage(menu,"src/gui/aveeee.jpg");
+//        return menu;
+//    }
+
+    @Override
+    public SelectingView createOverallPanel() {
+        return createView(new ArrayList<>(Arrays.asList(new AbstractMap.SimpleEntry<>("src/gui/edit" +
+                        ".png", "EDIT"), new AbstractMap.SimpleEntry<>("src/gui/create.png", "CREATE"),
+                new AbstractMap.SimpleEntry<>("src/gui/view.png", "VIEW"))));
+    }
+
+    @Override
+    public SelectingView createCreatingEditingItemsPanel() {
+        return createView(new ArrayList<>(Arrays.asList(new AbstractMap.SimpleEntry<>("src/gui/horse" +
+                        ".png", "MOUNT"), new AbstractMap.SimpleEntry<>("src/gui/effect.png", "EFFECTS"),
+                new AbstractMap.SimpleEntry<>("src/gui/armor.png", "ARMOR"))));
+    }
+
+    @Override
+    public SelectingView createViewingItemsPanel() {
+        return createView(new ArrayList<>(Arrays.asList(new AbstractMap.SimpleEntry<>("src/gui/horse" +
+                        ".png", "MOUNT"), new AbstractMap.SimpleEntry<>("src/gui/effect.png", "EFFECTS"),
+                new AbstractMap.SimpleEntry<>("src/gui/armor.png", "ARMOR"), new AbstractMap.SimpleEntry<>("src/gui" +
+                        "/weapon.png", "WEAPON"), new AbstractMap.SimpleEntry<>("src/gui/trolley.png", "ITEM"))));
+    }
+
+    @Override
+    public SelectingView createCreaturesPanel() {
+        return createView(new ArrayList<>(Arrays.asList(new AbstractMap.SimpleEntry<>("src/gui/monsterimage" +
+                        ".png", "MONSTER"), new AbstractMap.SimpleEntry<>("src/gui/playerimage.png", "PLAYER"),
+                new AbstractMap.SimpleEntry<>("src/gui/npcimage.png", "NPC"))));
+    }
+
 
     public EntriesCard createEntriesCard() {
         var card = new EntriesCard(factory);
@@ -56,6 +130,7 @@ public class WarHammerFactory extends IOverallFactory {
     }
 
     public BasicCard createBasicCard() {
+        factory.setLabelFactory(labelFactory);
         var card = new BasicCard(factory);
         card.initialize();
         card.setUniformFont();
@@ -697,12 +772,81 @@ public class WarHammerFactory extends IOverallFactory {
         return x;
     }
 
-    @Override
-    public OnlyVisibleCard createSmallCard() {
+
+    private OnlyVisibleItemCard createSmallItemCard(OnlyVisibleItemCard card) {
         factory.setButtonFactory(new WinterClickedButtonFactory());
         factory.setBorderStrategy(new AverageBorderStartegy());
-        var card = new OnlyVisibleCard(factory, 6);
+//        var card = new OnlyVisibleItemCard(factory);
         card.initialize();
+        card.setUniformFont();
+        uploadBackgroundImage(card, "src/gui/aaa.png");
+        return card;
+    }
+
+    @Override
+    public OnlyVisibleEditCard createSmallEditCard() {
+        var card = new OnlyVisibleEditCard(factory, 6);
+        createSmallCard(card);
+        return card;
+    }
+
+    @Override
+    public OnlyVisibleShowCard createSmallShowCard() {
+        var card = new OnlyVisibleShowCard(factory, 6);
+        createSmallCard(card);
+        System.out.println("czy ja tu jestemmmmsfsdfsdmmmxxxx");
+        return card;
+    }
+
+    @Override
+    public AllCreaturesEditView createAllCreatureEditView() {
+        var obj = new AllCreaturesEditView(this);
+        obj.setBackgroundImage("src/gui/ave.jpg");
+        return obj;
+    }
+
+    @Override
+    public AllCreaturesShowView createAllCreatureShowView() {
+        var obj = new AllCreaturesShowView(this);
+        obj.setBackgroundImage("src/gui/ave.jpg");
+        return obj;
+    }
+
+    @Override
+    public AllItemsShowView createAllItemsShowView() {
+        var obj = new AllItemsShowView(this);
+        obj.setBackgroundImage("src/gui/ave.jpg");
+        return obj;
+    }
+
+    @Override
+    public AllItemsEditView createAllItemsEditView() {
+        var obj = new AllItemsEditView(this);
+        obj.setBackgroundImage("src/gui/ave.jpg");
+        return obj;
+    }
+
+    @Override
+    public OnlyVisibleItemsEditCard createSmallEditItemCard() {
+        var card = new OnlyVisibleItemsEditCard(factory);
+        System.out.println("czy ja tu jestemmmmsfsdfsdmmm");
+        createSmallItemCard(card);
+        return card;
+    }
+
+    @Override
+    public OnlyVisibleItemsShowCard createSmallShowItemCard() {
+        var card = new OnlyVisibleItemsShowCard(factory);
+        createSmallItemCard(card);
+        return card;
+    }
+
+    private void createSmallCard(OnlyVisibleCard card) {
+        factory.setButtonFactory(new WinterClickedButtonFactory());
+        factory.setBorderStrategy(new AverageBorderStartegy());
+//        var card = new OnlyVisibleCard(factory, 6);
+        card.initialize();
+//        card.uploadNewData("src/gui/stats.png", "bandage", "src/gui/stats.png");
         var mapa = new ArrayList<ArrayList<String>>();
         mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
         mapa.add(new ArrayList<>(Arrays.asList(new String[]{"XDDD", "1fd0"})));
@@ -725,9 +869,6 @@ public class WarHammerFactory extends IOverallFactory {
         card.uploadNewData(data);
         card.setUniformFont();
         uploadBackgroundImage(card, "src/gui/aaa.png");
-
-        return card;
-
 
     }
 }

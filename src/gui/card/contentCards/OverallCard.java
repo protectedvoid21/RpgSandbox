@@ -17,7 +17,6 @@ public class OverallCard extends AbstractCard<JComponent> {
     private DefaultCustomMenuMenager<JComponent> menager =
             new DefaultCustomMenuMenager<>(ComponentsSeries.ComponentsDimension.VERTICAL,
                     ComponentsSeries.ComponentsDimension.HORIZONTAL);
-
     protected ArrayList<AbstractCustomLabel> labelList = new ArrayList<>();
     protected ArrayList<AbstractCustomButton> goList = new ArrayList<>();
     //    private Card parent;
@@ -46,18 +45,13 @@ public class OverallCard extends AbstractCard<JComponent> {
                 maxSideIndex);
         int currentIndex = 0;
         for (var key : sublist) {
-            for (int i = 0; i < 2; i++) {
-                labelList.get(2 * currentIndex + i).setContent(key.get(i));
-            }
+            labelList.get( currentIndex).setContent(key.get(0));
             goList.get(currentIndex).setContent("GO");
             currentIndex++;
         }
         if (sublist.size() < maximumElementNumber) {
             for (int i = dataSize % maximumElementNumber; i < maximumElementNumber; i++) {
-//                System.out.println("czy ja cos tu robie");
-                for (int j = 0; j < 2; j++) {
-                    labelList.get(2 * i + j).setContent(Card.EMPTY_DATA_CONTENT);
-                }
+                labelList.get(i).setContent(Card.EMPTY_DATA_CONTENT);
                 goList.get(i).setContent(Card.EMPTY_DATA_CONTENT);
             }
         }
@@ -74,8 +68,6 @@ public class OverallCard extends AbstractCard<JComponent> {
         for (var key : cardActions.keySet()) {
             factory.setLabelType(GuiFactory.LabelType.ICON);
             var label = factory.createLabel(Card.EMPTY_DATA_CONTENT);
-            factory.setLabelType(GuiFactory.LabelType.NORMAL);
-            var label2 = factory.createLabel(Card.EMPTY_DATA_CONTENT);
             factory.setButtonType(GuiFactory.ButtonType.NORMAL);
             var button = factory.createButton(Card.EMPTY_DATA_CONTENT, null);
             button.addActionListener(cardActions.get(key));//dodac pewnie zmiane listenera
@@ -83,18 +75,15 @@ public class OverallCard extends AbstractCard<JComponent> {
             var newPanel =
                     new ComponentsSeries<ComponentPanelMenager<JComponent>>(ComponentsSeries.ComponentsDimension.HORIZONTAL);
 
-            for (var panel : Arrays.asList(label, label2, button)) {
+            for (var panel : Arrays.asList(label, button)) {
                 newPanel.addOption(new ComponentPanelMenager<>(panel), 2);
             }
             menager.addMiddleComponent(newPanel, i / 2, 20);
             newPanel.getOption(1).addSpace(1, ComponentPanelMenager.Side.LEFT, ComponentPanelMenager.Side.RIGHT);
-            newPanel.getOption(2).addSpace(1, ComponentPanelMenager.Side.LEFT);
             newPanel.getOption(1).addSpace(2, ComponentPanelMenager.Side.BOTTOM, ComponentPanelMenager.Side.TOP);
-            newPanel.getOption(2).addSpace(2, ComponentPanelMenager.Side.BOTTOM, ComponentPanelMenager.Side.TOP);
 
             menager.getMiddleComponent(i / 2, i % 2).addSpace(1);
             labelList.add(label);
-            labelList.add(label2);
             goList.add(button);
             i++;
         }

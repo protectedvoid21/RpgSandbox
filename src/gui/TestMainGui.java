@@ -4,12 +4,10 @@ import gui.card.IOverallFactory;
 import gui.card.WarHammerFactory;
 import gui.card.fullCards.abstractCards.Card;
 import gui.menu.*;
-import gui.menuViews.MenuView;
+import gui.views.objectViews.AllObjectsView;
+import gui.views.objectViews.itemsViews.AllItemsEditView;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.*;
-import java.io.File;
 import java.io.IOException;
 
 public class TestMainGui {
@@ -22,8 +20,10 @@ public class TestMainGui {
 
         var cmp = new ComponentPanelMenager<>(f.createCreatorCard(Card.CreatorTypes.WEAPONS).getPanel());
         var main = f.createMenuView();
+        var v= f.createAllItemsShowView();
+        v.addButtonActionListener(AllObjectsView.ButtonType.SHOW, 5, e->System.out.println(v.getClickedIndex()));
 //        cmp.addSpace(10);
-        ramka.add(main.getPanel());
+        ramka.add(v.getPanel());
         ramka.setVisible(true);
     }
 }
