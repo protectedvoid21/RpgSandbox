@@ -2,12 +2,13 @@ package game.filehandle;
 
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
+import game.creature.Creature;
 
 public class CustomExcludeStrategy implements ExclusionStrategy {
 
     @Override
     public boolean shouldSkipField(FieldAttributes field) {
-        if(field.getName().equals("effects")) {
+        if(field.getName().equals("effects") || field.getName().equals("struggleStatistics")) {
             return true;
         }
         

@@ -1,13 +1,13 @@
 package game.cardManager;
 
-import game.cardManager.Warhammer.MonsterFactoryWarhammer;
+import game.cardManager.Warhammer.MonsterCreatureFactoryWarhammer;
 import game.creature.Monster;
-import game.interfaces.IFactory;
+import game.interfaces.ICreatureFactory;
 
 public class MonsterFactory {
 
-    public Monster creat(String[] stats){
-        IFactory factory = new MonsterFactoryWarhammer();
-        return (Monster) factory.creat(stats);
+    public Monster create(String[] stats){
+        ICreatureFactory factory = new MonsterCreatureFactoryWarhammer();
+        return (Monster) factory.create(stats);
     }
 }
