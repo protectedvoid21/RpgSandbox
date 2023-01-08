@@ -1,22 +1,18 @@
 package game.equipment;
 
+import game.creature.Creature;
 import game.interfaceWarhammer.EffectEnum;
-import game.interfaces.IEffectEnum;
-import game.interfaces.Statistics;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Random;
-import java.util.Map;
 
 public class Weapon extends ManyUsageItem {
     private int damage;
     private int range;
-    private double chanceForBleeding;
-    private double chanceForShocked;
-    private double chanceForPoison;
-    private double chanceForFire;
-    private double chanceForFreezing;
+    private int chanceForBleeding;
+    private int chanceForShocked;
+    private int chanceForPoison;
+    private int chanceForFire;
+    private int chanceForFreezing;
 
     public Weapon(String name, int damage, int range) {
         super(name);
@@ -24,14 +20,14 @@ public class Weapon extends ManyUsageItem {
 
         this.range=range;
         this.damage = damage;
-        chanceForBleeding = random.nextDouble();
-        chanceForShocked = random.nextDouble();
-        chanceForPoison = random.nextDouble();
-        chanceForFire = random.nextDouble();
-        chanceForFreezing = random.nextDouble();
+        chanceForBleeding = random.nextInt(101);
+        chanceForShocked = random.nextInt(101);
+        chanceForPoison = random.nextInt(101);
+        chanceForFire = random.nextInt(101);
+        chanceForFreezing = random.nextInt(101);
     }
 
-    public Weapon(String name, int damage, int range, double bleeding, double shocked, double poison, double fire, double freezing) {
+    public Weapon(String name, int damage, int range, int bleeding, int shocked, int poison, int fire, int freezing) {
         super(name);
         this.damage = damage;
         this.range=range;
@@ -42,36 +38,37 @@ public class Weapon extends ManyUsageItem {
         chanceForFreezing = freezing;
     }
 
-    public ArrayList<IEffectEnum> effected()
+    public void effected(Creature creature)
     {
-        ArrayList<IEffectEnum> temp = new ArrayList<>();
         Random random = new Random();
 
-        if(random.nextDouble()<chanceForBleeding)
+        if(random.nextInt(100)<chanceForBleeding)
         {
-            temp.add(EffectEnum.BLEEDING);
+            creature.getStatistics().getEffect(EffectEnum.BLEEDING).apply();
         }
-        if(random.nextDouble()<chanceForShocked)
+        if(random.nextInt(100)<chanceForShocked)
         {
-            temp.add(EffectEnum.SHOCKED);
+            creature.getStatistics().getEffect(EffectEnum.SHOCKED).apply();
         }
-        if(random.nextDouble()<chanceForPoison)
+        if(random.nextInt(100)<chanceForPoison)
         {
-            temp.add(EffectEnum.POISON);
+            creature.getStatistics().getEffect(EffectEnum.POISON).apply();
         }
-        if(random.nextDouble()<chanceForFire)
+        if(random.nextInt(100)<chanceForFire)
         {
-            temp.add(EffectEnum.IN_FIRE);
+            creature.getStatistics().getEffect(EffectEnum.IN_FIRE).apply();
         }
-        if(random.nextDouble()<chanceForFreezing)
+        if(random.nextInt(100)<chanceForFreezing)
         {
-            temp.add(EffectEnum.FREEZING);
+            creature.getStatistics().getEffect(EffectEnum.FREEZING).apply();
         }
-
-        return temp;
     }
 
     public int getDamage() {
         return damage;
+    }
+
+    public int getRange() {
+        return range;
     }
 }
