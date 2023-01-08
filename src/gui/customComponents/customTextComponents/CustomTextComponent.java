@@ -95,7 +95,6 @@ public class CustomTextComponent extends JPanel implements IComponentTextMargin,
         label.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.out.println("klikieto label2");
                 super.mouseClicked(e);
             }
         });
@@ -125,7 +124,6 @@ public class CustomTextComponent extends JPanel implements IComponentTextMargin,
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                System.out.println("klikieto label");
                 for (var listener : label.getMouseListeners()) {
                     listener.mouseClicked(e);
                 }

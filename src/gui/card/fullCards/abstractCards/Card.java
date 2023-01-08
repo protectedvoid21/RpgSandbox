@@ -158,6 +158,8 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
         var overall = new OverallCard(factory, map);
         overall.initializeCard();
         allCards.put(CardTypes.OVERALL, overall);
+        cardSideIndexes = new ArrayList<>();
+        leftArrows.updateSwitchingButtons();
     }
 
     public void uploadCreatorItemsData(CardContentDataSet weapon, CardContentDataSet mount, CardContentDataSet armor) {
@@ -217,7 +219,6 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
         activeCard = newActiveCard;
         seriesPanel.getMainComponent(1).changeContent(activeCard.getMenager());
         leftArrows.setSwitchableComponent(activeCard);
-//        System.out.println("czy ja ti jestemmmmm");
         updateTitle();
     }
 

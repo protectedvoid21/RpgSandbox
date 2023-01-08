@@ -14,7 +14,7 @@ import java.util.Arrays;
 public abstract class AbstractCard<T extends JComponent> implements SwitchableComponent {
     protected GuiFactory factory;
     protected int currentAttrSide = 0;
-    protected CardContentDataSet data;
+    protected CardContentDataSet data = new CardContentDataSet();
     protected ArrayList<CardContentDataSet> detailData = new ArrayList<CardContentDataSet>();
 
     private ComponentsSeries<JComponent> mainSeries =

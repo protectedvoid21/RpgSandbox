@@ -2,6 +2,7 @@ package gui;
 
 import gui.card.IOverallFactory;
 import gui.card.WarHammerFactory;
+import gui.card.fullCards.abstractCards.Card;
 import gui.menu.*;
 
 import javax.imageio.ImageIO;
@@ -17,10 +18,9 @@ public class TestMainGui {
         ramka.setSize(800, 800);
         IOverallFactory f = new WarHammerFactory();
 
-        var c = f.createFullCard();
 
-        var cmp = new ComponentPanelMenager<>(f.createFullCard().getPanel());
-        cmp.addSpace(10);
+        var cmp = new ComponentPanelMenager<>(f.createCreatorCard(Card.CreatorTypes.WEAPONS).getPanel());
+//        cmp.addSpace(10);
         ramka.add(cmp);
         ramka.setVisible(true);
     }

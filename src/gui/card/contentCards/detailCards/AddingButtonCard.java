@@ -36,7 +36,6 @@ public class AddingButtonCard extends NormalDetailButtonsCard {
 
     public ArrayList<CardContentDataSet> getDetailOnlyAddedIndexesData() {
         var newData = new ArrayList<CardContentDataSet>();
-//        System.out.println(detailData);
         for (var index : addedIndexes) {
             newData.add(detailData.get(index));
         }

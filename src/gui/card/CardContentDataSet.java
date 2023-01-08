@@ -6,9 +6,9 @@ import java.util.Arrays;
 public class CardContentDataSet {
     public enum DataType {BOOLEAN, STRING, INTEGER}
 
-    public String titlePath;
-    public String titleContent;
-    public ArrayList<ArrayList<String>> content;
+    public String titlePath = "";
+    public String titleContent= "";
+    public ArrayList<ArrayList<String>> content = new ArrayList<>();
 
     public ArrayList<DataType> dataType = new ArrayList<>();
 

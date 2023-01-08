@@ -42,7 +42,6 @@ public class CustomBooleanButton extends CustomButton implements IBooleanCompone
 
     @Override
     public void setContent(String text) {
-        System.out.println(text + "yyyyyyyyyyyyyyyyy");
         setValue(!text.isEmpty());
     }
 

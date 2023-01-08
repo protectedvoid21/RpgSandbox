@@ -47,10 +47,6 @@ public class CustomIconBooleanButton extends IconButton implements IBooleanCompo
     private void setValue(boolean value) {
         this.value = value;
         setIcon(value ? icon : secondIcon);
-        System.out.println(icon);
-        System.out.println(secondIcon);
-        System.out.println(value);
-        System.out.println(getIcon());
     }
 
     public boolean getStatus() {

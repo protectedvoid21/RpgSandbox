@@ -70,7 +70,6 @@ public class CustomDocumentListener implements DocumentListener {
     }
 
     private void changedAction(DocumentEvent e) {
-        System.out.println(pressed);
         if (pressed) {
             if (t == null) {
                 t = new Timer(350, new ActionListener() {

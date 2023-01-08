@@ -90,8 +90,7 @@ public class GuiFactory {
     public void setLabelFactory(LabelFactory labelFactory) {
         this.labelFactory = labelFactory;
         this.labelFactory.setFont(currentFont);
-        this.buttonFactory.setStrategy(borderStrategy);
-        this.textFactory.setStrategy(borderStrategy);
+        this.labelFactory.setStrategy(borderStrategy);
     }
 
     public void setCurrentFont(Font newFont) {
