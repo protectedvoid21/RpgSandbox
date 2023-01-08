@@ -13,4 +13,8 @@ public abstract class ManyUsageItem extends Item{
     public boolean isValid() {
         return true;
     }
+
+    public String getName() {
+        return name;
+    }
 }
