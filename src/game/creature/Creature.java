@@ -1,31 +1,42 @@
 package game.creature;
 
 import game.interfaces.IStatistics;
+import game.interfaces.RoundListener;
+import game.interfaces.IStruggleStatistics;
 
-/**So far it doesn't look really nice but in the future we will have some kind of director whose task will be creation of new Creature instance.
- * He creates stats and apply them to this class instance
- * (probably this director will be also able to create equipment so using one factory (builder) class there will be possibility of creating whole object.)*/
-public abstract class Creature {
+public abstract class Creature implements RoundListener {
     protected IStatistics statistics;
-    protected String name = "Adam";
+    protected IStruggleStatistics struggleStatistics;
+    protected String name;
+    protected Experience experience;
     
-    public Creature(IStatistics statistics) {
-        this.statistics = statistics;//this can be also removed, what about creating new builder which creates required creature for given RPG game, then stats will be created by this builder class.
+    public Creature(IStatistics statistics, Experience experience, IStruggleStatistics struggleStatistics) {
+        this.statistics = statistics;
+        this.experience = experience;
+        this.struggleStatistics = struggleStatistics;
     }
     
-    public void setStatistics(IStatistics statistics) {
-        this.statistics = statistics;
+    public void applyNewRound() {
+        statistics.applyNewRound();
     }
     
     public IStatistics getStatistics() {
         return statistics;
     }
     
+    public String getName() {
+        return name;
+    }
+    
+    public IStruggleStatistics getStruggleStatistics() {
+        return struggleStatistics;
+    }
+    
     public void setName(String name) {
         this.name = name;
     }
     
-    public String getName() {
-        return name;
+    public Experience getExperience() {
+        return experience;
     }
 }

@@ -15,7 +15,7 @@ public class StatisticsWarhammer extends Statistics {
     public StatisticsWarhammer() { //todo as statistics are gonna be implemented by json import this need to change
         super();
     }
-    
+
     public StatisticsWarhammer(Map<IAttributeEnum, AttributeValue> attributes) {
         super(attributes);
     }
@@ -28,12 +28,6 @@ public class StatisticsWarhammer extends Statistics {
         attributes.put(AttributeEnum.HEALTH_POINTS_NOW, new UnlimitedAttribute(15));
         attributes.put(AttributeEnum.MOVEMENT, new UnlimitedAttribute(5));
         attributes.put(AttributeEnum.MAGIC, new UnlimitedAttribute(1));
-
-
-        attributes.put(AttributeEnum.ACTIONS_TO_DO, new LimitedAttribute(0,2,2));
-        attributes.put(AttributeEnum.IS_BLOKING, new LimitedAttribute(0,1,0));
-        attributes.put(AttributeEnum.IS_AIMING, new LimitedAttribute(0,1,0));
-        attributes.put(AttributeEnum.IS_IN_DEFENSE_STAND, new LimitedAttribute(0,1,0));
     }
 
     @Override
@@ -46,5 +40,22 @@ public class StatisticsWarhammer extends Statistics {
     protected void initializeDependantAttributes() {
         dependantAttributes.put(DependantEnum.STRENGTH_BONUS, (var stats) -> stats.getAttribute(AttributeEnum.STRENGTH).getValue() % 10);
         dependantAttributes.put(DependantEnum.TOUGHNESS_BONUS, (var stats) -> stats.getAttribute(AttributeEnum.TOUGHNESS).getValue() % 10);
+    }
+
+    @Override
+    public void applyNewRound() {
+        for (var effect : effects.values()) {
+            effect.decreaseLength();
+        }
+    }
+
+    @Override
+    public boolean isAlive() {
+        return attributes.get(AttributeEnum.HEALTH_POINTS_NOW).getValue() > 0;
+    }
+
+    @Override
+    public boolean isAbleToPlay() { //todo implement crowd control mechanics and more enchanced return
+        return isAlive();
     }
 }
