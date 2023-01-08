@@ -794,7 +794,6 @@ public class WarHammerFactory extends IOverallFactory {
     public OnlyVisibleShowCard createSmallShowCard() {
         var card = new OnlyVisibleShowCard(factory, 6);
         createSmallCard(card);
-        System.out.println("czy ja tu jestemmmmsfsdfsdmmmxxxx");
         return card;
     }
 
@@ -829,7 +828,6 @@ public class WarHammerFactory extends IOverallFactory {
     @Override
     public OnlyVisibleItemsEditCard createSmallEditItemCard() {
         var card = new OnlyVisibleItemsEditCard(factory);
-        System.out.println("czy ja tu jestemmmmsfsdfsdmmm");
         createSmallItemCard(card);
         return card;
     }

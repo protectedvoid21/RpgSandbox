@@ -99,7 +99,6 @@ public class ChoserCard extends Card {
     }
 
     public CardContentDataSet getCurrentData() {
-//        System.out.println(currentCardType);
         return cards.get(currentCardType).getOnlyAddedIndexesData();
     }
 

@@ -27,8 +27,6 @@ public class OnlyVisibleEditCard extends OnlyVisibleCard {
     protected void initializeDownPanel() {
         factory.setButtonType(GuiFactory.ButtonType.NORMAL);
         deleteButton = factory.createButton("DELETE", null);
-        deleteButton.addActionListener(e->System.out.println("hejka"));
-        deleteButton.addActionListener(e->System.out.println("naklejka"));
         initSeriesPanel(deleteButton, 2, 2);
         seriesPanel.getMiddleComponent(2, 0).addSpace(3, ComponentPanelMenager.Side.RIGHT, ComponentPanelMenager.Side.LEFT);
         seriesPanel.getMiddleComponent(2, 0).addSpace(3, ComponentPanelMenager.Side.BOTTOM, ComponentPanelMenager.Side.TOP);

@@ -52,7 +52,6 @@ public abstract class AllObjectsView extends BackgroundView implements Switchabl
         this.maximumumElements = maximumumElements;
 
         int maxindex = (maximumumElements+ 1) / 2;
-        System.out.println(maxindex+"jaajaj");
         for (int i = 0; i < maxindex; i++) {
             manager.addMainComponent(24);
         }
@@ -67,7 +66,6 @@ public abstract class AllObjectsView extends BackgroundView implements Switchabl
     }
 
     public int getClickedIndex(){
-        System.out.println("yyy co jest"+clickedIndex);
         return clickedIndex;
     }
     @Override
