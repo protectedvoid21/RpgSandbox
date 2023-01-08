@@ -9,7 +9,7 @@ public class Bandage extends DisposableItem {
     private Character user;
 
     public Bandage(Statistics stats, int usageCount, Character user) {
-        super(stats, usageCount);
+        super(usageCount);
         this.user=user;
     }
 
