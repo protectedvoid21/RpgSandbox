@@ -1,8 +1,8 @@
 package game.cardManager.Warhammer;
 
-import game.creature.Creature;
 import game.creature.Experience;
 import game.creature.Monster;
+import game.equipment.Weapon;
 import game.generals.AttributeValue;
 import game.generals.LimitedAttribute;
 import game.generals.UnlimitedAttribute;
