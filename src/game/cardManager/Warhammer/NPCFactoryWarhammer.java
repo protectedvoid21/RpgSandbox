@@ -4,6 +4,8 @@ import game.cardManager.DecodeArrayStatistics;
 import game.creature.Creature;
 import game.creature.Experience;
 import game.creature.Monster;
+import game.creature.NPC;
+import game.equipment.Inventory;
 import game.generals.AttributeValue;
 import game.generals.LimitedAttribute;
 import game.generals.UnlimitedAttribute;
@@ -18,13 +20,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MonsterFactoryWarhammer implements IFactory {
-
-
-    public MonsterFactoryWarhammer(){};
+public class NPCFactoryWarhammer implements IFactory {
 
     @Override
-    public Monster creat(ArrayList<String> stats) {
+    public NPC creat(ArrayList<String> stats) {
         String name = stats.get(0);
         int exp = 0;
 
@@ -32,8 +31,8 @@ public class MonsterFactoryWarhammer implements IFactory {
         StruggleStatistics struggleStatistics = new StruggleStatistics();
         Experience experience = new Experience(exp);
 
-        Monster monster = new Monster(statistics,experience,struggleStatistics);
-        monster.setName(name);
-        return monster;
+        NPC npc = new NPC(statistics,new Inventory(),experience,struggleStatistics);
+        npc.setName(name);
+        return npc;
     }
 }
