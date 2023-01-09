@@ -8,7 +8,7 @@ import game.interfaces.Statistics;
 public abstract class Effect {
     protected final Statistics statistics;
     protected int remainingRounds;
-    private final int roundsLength;
+    protected final int roundsLength;
     
     public Effect(Statistics statistics, int roundsLength) {
         this.statistics = statistics;

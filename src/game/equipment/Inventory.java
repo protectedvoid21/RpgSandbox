@@ -8,12 +8,12 @@ public class Inventory {
     private Weapon activeWeapon;
     private Armor activeArmor;
     private Mount activeMount;
-    
+
     public Inventory() {
         itemList = new ArrayList<>();
-        activeWeapon = null;
-        activeArmor = null;
-        activeMount = null;
+        activeWeapon = noWeapon();
+        activeArmor = noArmor();
+        activeMount = noMount();
     }
 
     public ArrayList<Item> getItems() {
@@ -23,13 +23,13 @@ public class Inventory {
     public void addItem(Item item) {
         itemList.add(item);
 
-        if (item instanceof Weapon && activeWeapon == null) {
+        if (item instanceof Weapon && activeWeapon.getName().equals("none")) {
             activeWeapon = (Weapon) item;
         }
-        else if (item instanceof Armor && activeArmor == null) {
+        else if (item instanceof Armor && activeArmor.getName().equals("none")) {
             activeArmor = (Armor) item;
         }
-        else if (item instanceof Mount && activeMount == null) {
+        else if (item instanceof Mount && activeMount.getName().equals("none")) {
             activeMount = (Mount) item;
         }
     }
@@ -58,15 +58,15 @@ public class Inventory {
 
     private void inventoryCheck(Item item) {
         if (item.equals(activeWeapon)) {
-            activeWeapon = null;
+            activeWeapon = noWeapon();
             setActiveWeapon();
         }
         else if (item.equals(activeArmor)) {
-            activeArmor = null;
+            activeArmor = noArmor();
             setActiveArmor();
         }
         else if (item.equals(activeMount)) {
-            activeMount = null;
+            activeMount = noMount();
             setActiveMount();
         }
     }
@@ -114,5 +114,29 @@ public class Inventory {
         if (itemList.contains(mount)) {
             activeMount = mount;
         }
+    }
+
+    public Weapon getActiveWeapon() {
+        return activeWeapon;
+    }
+
+    public Armor getActiveArmor() {
+        return activeArmor;
+    }
+
+    public Mount getActiveMount() {
+        return activeMount;
+    }
+
+    private Weapon noWeapon() {
+        return new Weapon("none", 0, 0, 0, 0, 0, 0, 0);
+    }
+
+    private Armor noArmor() {
+        return new Armor("none", 0);
+    }
+
+    private Mount noMount() {
+        return new Mount("none", 0);
     }
 }

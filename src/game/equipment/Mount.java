@@ -1,9 +1,14 @@
 package game.equipment;
 
-import game.interfaces.Statistics;
-
 public class Mount extends ManyUsageItem{
-    public Mount(Statistics statistics) {
-        super(statistics);
+    private int speed;
+
+    public Mount(String name, int speed) {
+        super(name);
+        this.speed =speed;
+    }
+
+    public int getSpeed() {
+        return speed;
     }
 }
