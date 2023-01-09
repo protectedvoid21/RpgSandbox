@@ -129,7 +129,7 @@ public class Inventory {
     }
 
     private Weapon noWeapon() {
-        return new Weapon("none", 0, 0, 0, 0, 0, 0, 0);
+        return new Weapon("none", 0, 0, 0, 0, 0, 0);
     }
 
     private Armor noArmor() {

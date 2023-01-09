@@ -9,7 +9,6 @@ public class Weapon extends ManyUsageItem {
     private int damage;
     private int range;
     private int chanceForBleeding;
-    private int chanceForShocked;
     private int chanceForPoison;
     private int chanceForFire;
     private int chanceForFreezing;
@@ -21,18 +20,16 @@ public class Weapon extends ManyUsageItem {
         this.range = range;
         this.damage = damage;
         chanceForBleeding = random.nextInt(101);
-        chanceForShocked = random.nextInt(101);
         chanceForPoison = random.nextInt(101);
         chanceForFire = random.nextInt(101);
         chanceForFreezing = random.nextInt(101);
     }
 
-    public Weapon(String name, int damage, int range, int bleeding, int shocked, int poison, int fire, int freezing) {
+    public Weapon(String name, int damage, int range, int bleeding, int poison, int fire, int freezing) {
         super(name);
         this.damage = damage;
         this.range = range;
         chanceForBleeding = bleeding;
-        chanceForShocked = shocked;
         chanceForPoison = poison;
         chanceForFire = fire;
         chanceForFreezing = freezing;
