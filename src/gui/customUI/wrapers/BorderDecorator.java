@@ -1,13 +1,16 @@
 package gui.customUI.wrapers;
 
 import gui.card.SharedCmpsFont;
+import gui.customUI.customUIStyles.borderStrategies.IBorderStrategy;
 import gui.customUI.interfaces.ICustomUI;
 import gui.margin.ComponentTextMarginManager;
 
 import javax.swing.*;
 import java.awt.*;
 
-/**Abstract class used for creating new Wrappers.*/
+/**
+ * Abstract class used for creating new Wrappers.
+ */
 public abstract class BorderDecorator implements ICustomUI {
     protected ICustomUI customUI;
 
@@ -21,15 +24,16 @@ public abstract class BorderDecorator implements ICustomUI {
         customUI.setSharedComponentSize(cmp);
     }
 
-    @Override
-    public Font getMaximumPossibleFont(String labelText) {
-        return customUI.getMaximumPossibleFont(labelText);
-    }
 
-    public BorderDecorator(ICustomUI ui){
+    public BorderDecorator(ICustomUI ui) {
         customUI = ui;
     }
 
+
+    @Override
+    public void changeBorderStrategy(IBorderStrategy newStrategy) {
+        customUI.changeBorderStrategy(newStrategy);
+    }
 
     @Override
     public void installUI(JComponent c) {
@@ -37,7 +41,7 @@ public abstract class BorderDecorator implements ICustomUI {
     }
 
     @Override
-    public void paint(Graphics g, JComponent c){
+    public void paint(Graphics g, JComponent c) {
         customUI.paint(g, c);
     }
 
@@ -82,19 +86,36 @@ public abstract class BorderDecorator implements ICustomUI {
         return customUI.isBackgroundTransparent();
     }
 
-//    @Override
-//    public double conv(JComponent c, int offSetValue) {
-//        return customUI.convertBorderSizeToValue(c, offSetValue);
-//    }
-
 
     @Override
     public double convertSideBorderSizeToValue(JComponent c, int offSetValue) {
         return customUI.convertSideBorderSizeToValue(c, offSetValue);
     }
+
     @Override
     public double convertTopBorderSizeToValue(JComponent c, int offSetValue) {
         return customUI.convertTopBorderSizeToValue(c, offSetValue);
+    }
+
+    @Override
+    public ComponentTextMarginManager getCurrentActivatedMargin() {
+        return customUI.getCurrentActivatedMargin();
+    }
+
+
+    @Override
+    public Font getRelevantFont(String labelText) {
+        return customUI.getRelevantFont(labelText);
+    }
+
+    @Override
+    public void setFontRelevantToHeight(boolean val) {
+        customUI.setFontRelevantToHeight(val);
+    }
+
+    @Override
+    public boolean isFontRelevantToHeight() {
+        return customUI.isFontRelevantToHeight();
     }
 
     @Override
@@ -110,5 +131,10 @@ public abstract class BorderDecorator implements ICustomUI {
     @Override
     public ComponentTextMarginManager getMargin() {
         return customUI.getMargin();
+    }
+
+    @Override
+    public boolean isFontMaximized() {
+        return customUI.isFontMaximized();
     }
 }

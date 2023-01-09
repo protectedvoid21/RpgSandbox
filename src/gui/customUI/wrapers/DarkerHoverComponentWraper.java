@@ -4,6 +4,8 @@ import gui.customUI.interfaces.ICustomUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -23,6 +25,16 @@ public class DarkerHoverComponentWraper extends BorderDecorator {
         super.installUI(c);
         c.addMouseListener(new MouseAdapter() {
             @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                setAdditionaldColor(currentBaseBackgroundHelper, Index.BASE_BACKGROUND);
+                c.repaint();
+                c.revalidate();
+            }
+        });
+
+        c.addMouseListener(new MouseAdapter() {
+            @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
                 currentBaseBackgroundHelper = getAdditionalColor(Index.BASE_BACKGROUND);
@@ -35,7 +47,7 @@ public class DarkerHoverComponentWraper extends BorderDecorator {
             public void mouseExited(MouseEvent e) {
                 super.mouseExited(e);
                 setAdditionaldColor(currentBaseBackgroundHelper, Index.BASE_BACKGROUND);
-                currentBaseBackgroundHelper = null;
+//                currentBaseBackgroundHelper = null;
                 c.repaint();
                 c.revalidate();
             }

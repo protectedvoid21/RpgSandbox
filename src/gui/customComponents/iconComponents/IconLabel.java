@@ -2,6 +2,8 @@ package gui.customComponents.iconComponents;
 
 import gui.customComponents.AbstractCustomLabel;
 import gui.customComponents.CustomLabel;
+import gui.customComponents.iconComponents.IIconComponent;
+import gui.customComponents.iconComponents.StretchIcon;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -33,7 +35,7 @@ public class IconLabel extends AbstractCustomLabel implements IIconComponent {
         setContent(iconPath, prop);
     }
 
-    public StretchIcon getIcon() {
+    public StretchIcon getCustomIcon() {
         return icon;
     }
 

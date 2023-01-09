@@ -1,7 +1,9 @@
 package gui.factories.customFactories.buttonFactories;
 
 import gui.customComponents.AbstractCustomButton;
+import gui.customComponents.booleanComponents.CustomBooleanButton;
 import gui.customComponents.CustomButton;
+import gui.customComponents.booleanComponents.CustomIconBooleanButton;
 import gui.customComponents.iconComponents.IconButton;
 import gui.customUI.componentsUIs.CustomButtonUI;
 import gui.customUI.customUIStyles.ClickedStyleUI;
@@ -19,7 +21,7 @@ public class CardDownPanelButtonFactory extends ButtonFactory{
         button.setHorizontalAlignment(SwingConstants.CENTER);
         var ui = new ClickedStyleUI(strategy, 3, 10);
         if (button instanceof IconButton){
-            ui.addComponent(((IconButton) button).getIcon());
+            ui.addComponent(((IconButton) button).getCustomIcon());
         }
         button.setBackground(new Color(0x682691));
         ui.setAdditionaldColor(button.getBackground().darker(), ICustomUI.Index.FIRST);
@@ -52,6 +54,17 @@ public class CardDownPanelButtonFactory extends ButtonFactory{
 
     @Override
     public AbstractCustomButton createDisabledIconStretchButton(String text, String text2, ActionListener listener) {
+        return null;
+    }
+    @Override
+    public CustomBooleanButton createBooleanButton(String text1, String text2, boolean initialValue) {
+        var but = helpCreatedMethod(new CustomBooleanButton(initialValue), null);
+        ((CustomBooleanButton) but).setDoubleTextContent(text1, text2);
+        return (CustomBooleanButton) but;
+    }
+
+    @Override
+    public CustomIconBooleanButton createBooleanButtonWithIcons(String path1, String path2, boolean initialValue, boolean proportionate) {
         return null;
     }
 }

@@ -1,5 +1,6 @@
 package gui.customComponents;
 
+import gui.customComponents.IContentCustomUICmp;
 import gui.customUI.componentsUIs.CustomButtonUI;
 import gui.customUI.interfaces.ICustomUI;
 
@@ -33,6 +34,12 @@ public abstract class AbstractCustomButton extends JButton implements IContentCu
                 super.componentResized(e);
                 buttonUI.getCustomUI().setRelevantFont(getText());
             }
+
+            @Override
+            public void componentShown(ComponentEvent e) {
+                super.componentShown(e);
+                buttonUI.getCustomUI().setRelevantFont(getText());
+            }
         });
     }
 
@@ -56,7 +63,7 @@ public abstract class AbstractCustomButton extends JButton implements IContentCu
 
     @Override
     public int getMaximumPossibleFontSize() {
-        return getCustomUI().getMaximumPossibleFont(getText()).getSize();
+        return getCustomUI().getRelevantFont(getText()).getSize();
     }
 
     @Override
@@ -79,5 +86,12 @@ public abstract class AbstractCustomButton extends JButton implements IContentCu
         super.setText(text);
         if (buttonUI != null)
             buttonUI.getCustomUI().setRelevantFont(getText());
+    }
+
+    @Override
+    public void setVisible(boolean aFlag) {
+        super.setVisible(aFlag);
+
+        getCustomUI().setRelevantFont(getText());
     }
 }

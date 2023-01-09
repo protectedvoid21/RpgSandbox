@@ -1,6 +1,7 @@
 package gui.customComponents.customTextComponents;
 
 import gui.customComponents.customTextComponents.CustomTextComponent;
+import gui.margin.ComponentTextMarginManager;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -17,7 +18,13 @@ public class CustomTextField extends CustomTextComponent {
 
     public CustomTextField() {
         super();
-        textField = new JTextField();
+        textField = new JTextField() {
+            @Override
+            public void setText(String t) {
+                super.setText(t);
+                setRelevantFont();
+            }
+        };
         addComponentsToPanel();
         initializeTextField();
     }

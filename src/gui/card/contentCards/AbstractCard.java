@@ -1,38 +1,56 @@
-package gui.card;
+package gui.card.contentCards;
 
-import gui.customComponents.AbstractCustomLabel;
-import gui.customComponents.CustomLabel;
-import gui.customComponents.IContentCustomUICmp;
+import gui.card.CardContentDataSet;
+import gui.card.DoubleArrowPanel;
+import gui.card.SwitchableComponent;
 import gui.factories.GuiFactory;
-import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
 
 import javax.swing.*;
-import java.util.AbstractMap;
 import java.util.ArrayList;
-import java.util.TimerTask;
+import java.util.Arrays;
 
 public abstract class AbstractCard<T extends JComponent> implements SwitchableComponent {
     protected GuiFactory factory;
     protected int currentAttrSide = 0;
-    protected AbstractMap.SimpleEntry<String, String> titleIconPathName;
-    protected ArrayList<ArrayList<String>> dataMap;
+    protected CardContentDataSet data = new CardContentDataSet();
+    protected ArrayList<CardContentDataSet> detailData = new ArrayList<CardContentDataSet>();
+
     private ComponentsSeries<JComponent> mainSeries =
             new ComponentsSeries<>(ComponentsSeries.ComponentsDimension.VERTICAL);
     protected int maximumElementNumber;
 
-    public AbstractCard(AbstractMap.SimpleEntry<String, String> titleIconPathName,
-                        ArrayList<ArrayList<String>> dataMap, GuiFactory factory) {
+    public AbstractCard(GuiFactory factory) {
         this.factory = factory;
-        this.titleIconPathName = titleIconPathName;
-        this.dataMap = dataMap;
+    }
+
+    public void initializeCardData(CardContentDataSet data, ArrayList<CardContentDataSet> detailData) {
+        this.data = data;
+        this.detailData = detailData;
+        reset();
+    }
+    public int getMaximumElementNumber(){
+        return maximumElementNumber;
+    }
+
+    public CardContentDataSet getData(){
+        return data;
+    }
+
+    public ArrayList<CardContentDataSet> getDetailData() {
+        return detailData;
     }
 
     protected void initializeCard(int maximumElementNumber) {
         this.maximumElementNumber = maximumElementNumber;
         mainSeries.addOption(getContentMenager().getCmp(), 7);
-        initializeContent();
+//        initializeContent();
+    }
+
+    public void setDetailData(ArrayList<CardContentDataSet> detailData){
+        this.detailData = detailData;
+
     }
 
     public void reset() {
@@ -46,22 +64,18 @@ public abstract class AbstractCard<T extends JComponent> implements SwitchableCo
 
     public abstract DefaultCustomMenuMenager<T> getContentMenager();
 
-    public void setDataMap(ArrayList<ArrayList<String>> dataMap) {
-        this.dataMap = dataMap;
-        updateContent();
-    }
 
 
     public String getFirstTitleContent() {
-        return titleIconPathName.getKey();
+        return data.titlePath;
     }
 
     public String getSecondTitleContent() {
-        return titleIconPathName.getValue();
+        return data.titleContent;
     }
 
 
-    protected int getSideMaximumElementsNumber() {
+    public int getSideMaximumElementsNumber() {
         return maximumElementNumber * (currentAttrSide + 1);
     }
 
@@ -80,7 +94,7 @@ public abstract class AbstractCard<T extends JComponent> implements SwitchableCo
         boolean status = false;
         switch (side) {
             case LEFT -> status = currentAttrSide > 0;
-            case RIGHT -> status = getSideMaximumElementsNumber() < dataMap.size();
+            case RIGHT -> status = getSideMaximumElementsNumber() < data.content.size();
         }
         return status;
     }
@@ -92,5 +106,6 @@ public abstract class AbstractCard<T extends JComponent> implements SwitchableCo
 
     public abstract void setUniformForm();
 
+    public abstract void initializeCard();
 
 }

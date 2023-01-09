@@ -12,7 +12,7 @@ import java.util.stream.Stream;
 /**
  * Components have to be written using same font style, only can differ in font size(which will be optimized)
  */
-public class SharedCmpsFont<T extends IContentCustomUICmp> {//cos ogarnac z metoda maksymalna font i array lista
+public class SharedCmpsFont<T extends JComponent &IContentCustomUICmp> {//cos ogarnac z metoda maksymalna font i array lista
     private ArrayList<T> cmps = new ArrayList<>();
 
 
@@ -26,34 +26,31 @@ public class SharedCmpsFont<T extends IContentCustomUICmp> {//cos ogarnac z meto
         this.cmps = cmps;
     }
 
-//    private IContentCustomUICmp getLeader(){
-//        return cmps.size()>0?cmps.get(0):null;
-//    }
 
     public void removeComponentFromList(JComponent component) {
         cmps.remove(component);
     }
 
     private int getMinFont() {
-        var min = cmps.get(0).getMaximumPossibleFontSize();
+        var min = 10000;
         for (var cmp : cmps) {
             var newFontSize = cmp.getMaximumPossibleFontSize();
-            if (newFontSize < min) {
+            if (newFontSize < min && cmp.isVisible()) {
                 min = newFontSize;
             }
         }
         return min;
     }
 
-    public void setSharedFontSize(JComponent component, String text) {//zrobic cos co aby ostatnia instancje sprawdzi
-//        if (getLeader() == component) {
+    public void setSharedFontSize(JComponent component, String text) {
         var size = getMinFont();
         for (var cmp : cmps) {
             if (cmp.hasSharedSize()) {
                 cmp.setFont(size);
             }
         }
-//        }
+        for (var cmp : cmps) {
+        }
     }
 
     public static void setUniformFont(ArrayList<? extends IContentCustomUICmp>... elements) {
@@ -61,18 +58,6 @@ public class SharedCmpsFont<T extends IContentCustomUICmp> {//cos ogarnac z meto
     }
 
     public static void setUniformFont(ArrayList<? extends IContentCustomUICmp> elements) {
-//        ArrayList<IContentCustomUICmp> cmpsUIs = new ArrayList<>();
-//        var mngrLst = getContentMenager().getComponentsList();
-//
-//        for (var cmp : mngrLst) {
-//            cmpsUIs.add((IContentCustomUICmp) cmp);
-//        }
-//        var sharecmpfont = new SharedCmpsFont(cmpsUIs);
-//        for (var cmpUI : cmpsUIs) {
-//            cmpUI.getCustomUI().setSharedComponentSize(sharecmpfont);
-//        }
-
-
         var sharecmpfont = new SharedCmpsFont(elements);
         for (var cmpUI : elements) {
             cmpUI.getCustomUI().setSharedComponentSize(sharecmpfont);

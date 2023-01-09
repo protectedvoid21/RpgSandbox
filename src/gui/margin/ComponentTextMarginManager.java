@@ -4,8 +4,11 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.util.AbstractMap;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.function.Function;
 
 /**
  * Class used for setting margin of text. Actually it is empty border but class contain some methods which make it
@@ -13,6 +16,8 @@ import java.util.HashMap;
  */
 public class ComponentTextMarginManager {
     private JComponent component;
+
+    private ArrayList<MarginAction> onMarginCheckedActions = new ArrayList<>();
 
     public enum Side {LEFT, TOP, RIGHT, BOTTOM}
 
@@ -28,13 +33,16 @@ public class ComponentTextMarginManager {
                 getPercentValue(Side.RIGHT));
     }
 
+    public void addActionOnMarginChecked(MarginAction runnable){
+        onMarginCheckedActions.add(runnable);
+    }
+
 
     public void checkValidation() {
         var top = getPercentValue(Side.TOP);
         var left = getPercentValue(Side.LEFT);
         var bottom = getPercentValue(Side.BOTTOM);
         var right = getPercentValue(Side.RIGHT);
-
         var newBorder = new HashMap<Side, Double>();
         newBorder.put(Side.LEFT, left * component.getWidth() / 100);
         newBorder.put(Side.RIGHT, right * component.getWidth() / 100);
@@ -43,6 +51,9 @@ public class ComponentTextMarginManager {
         for (var k : newBorder.keySet()) {
             if (newBorder.get(k) != get(k)) {
                 set(top, left, bottom, right);
+                for (var action : onMarginCheckedActions){
+                    action.run();
+                }
                 return;
             }
         }

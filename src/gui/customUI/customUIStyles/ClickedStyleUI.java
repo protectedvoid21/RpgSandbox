@@ -14,8 +14,6 @@ import java.util.ArrayList;
  * Specific UI used buttons.
  */
 public class ClickedStyleUI extends CustomUI implements IMovementComponent {
-
-    //    final private int offSet;
     final private int arcWidth;
     private boolean isPressed = false;
     private ArrayList<IRequieredReactionOnMovementComponent> componentsList = new ArrayList<>();
@@ -26,7 +24,6 @@ public class ClickedStyleUI extends CustomUI implements IMovementComponent {
 
     public ClickedStyleUI(IBorderStrategy strategy, int offSet, int arcWidth) {
         super(strategy, offSet);
-//        this.offSet = offSet;
         this.arcWidth = arcWidth;
     }
 
@@ -59,21 +56,8 @@ public class ClickedStyleUI extends CustomUI implements IMovementComponent {
         super.paint(g, c);
     }
 
-//    @Override
-//    public int getBorderSize() {
-//        return offSet;
-//    }
-
-//    @Override
-//    public double convertBorderSizeToValue(JComponent c, int offSetValue) {
-//        return (offSetValue*((c.getHeight()+c.getHeight())/2)/100);
-//    }
-
-
     public void paintBackground(Graphics g, JComponent c, int Offset) {
         var yOffset = (int) convertTopBorderSizeToValue(c, Offset) / 2;
-
-//        var xOffset = (int)convertSideBorderSizeToValue(c, yOffset);
         Dimension size = c.getSize();
         Graphics2D g2 = (Graphics2D) g;
         var xx = isPressed ? yOffset : 0;

@@ -61,7 +61,7 @@ public abstract class AbstractCustomLabel extends JLabel implements IContentCust
 
     @Override
     public int getMaximumPossibleFontSize() {
-        return getCustomUI().getMaximumPossibleFont(getText()).getSize();
+        return getCustomUI().getRelevantFont(getText()).getSize();
     }
 
     @Override

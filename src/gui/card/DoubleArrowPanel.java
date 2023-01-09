@@ -7,11 +7,9 @@ import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.AbstractMap;
 import java.util.Map;
-import java.util.function.Function;
 
 public class DoubleArrowPanel {
 
@@ -39,9 +37,13 @@ public class DoubleArrowPanel {
     private void arrowMethod(Side side ){
         if (switchableComponent.isSwitchingSidePossible(side)) {
             switchableComponent.switchSide(side);
-            checkTurningButton(Side.LEFT);
-            checkTurningButton(Side.RIGHT);
+            updateSwitchingButtons();
         }
+    }
+
+    public void updateSwitchingButtons(){
+        checkTurningButton(Side.LEFT);
+        checkTurningButton(Side.RIGHT);
     }
 
     private void checkTurningButton(Side side){
@@ -54,8 +56,7 @@ public class DoubleArrowPanel {
 
     public void setSwitchableComponent(SwitchableComponent cmp){
         switchableComponent = cmp;
-        checkTurningButton(Side.LEFT);
-        checkTurningButton(Side.RIGHT);
+        updateSwitchingButtons();
     }
 
     public DoubleArrowPanel(GuiFactory factory, SwitchableComponent switchableComponent) {
@@ -68,7 +69,7 @@ public class DoubleArrowPanel {
     }
 
 
-    public JPanel getPanel() {
+    public ComponentPanelMenager<JComponent> getPanel() {
         return menager.getCmp();
     }
 
