@@ -9,15 +9,7 @@ public class Monster extends Creature{
         super(creatureStats, experience, struggleStatistics);
     }
 
-    @Override
-    public int getDamage() {
-        return statistics.getAttribute(AttributeEnum.STRENGTH).getValue();
-    }
 
-    @Override
-    public int getDefense() {
-        return statistics.getAttribute(AttributeEnum.STRENGTH).getValue();
-    }
 
     @Override
     public int getSpeed() {
