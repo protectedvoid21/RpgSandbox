@@ -7,18 +7,18 @@ import java.util.ArrayList;
 public class InventoryFactory {
     public InventoryFactory() {};
 
-    public Item create(String[] stats) throws Exception
+    public Item create(ArrayList<String> stats) throws Exception
     {
-        String type = stats[0], name = stats[1];
+        String type = stats.get(0), name = stats.get(1);
 
         if(type.equals("Armor"))
         {
-            String sdamage = stats[2];
-            String srange = stats[3];
-            String sbleeding = stats[4];
-            String spoison = stats[5];
-            String sfire = stats[6];
-            String sfreezing = stats[7];
+            String sdamage = stats.get(2);
+            String srange = stats.get(3);
+            String sbleeding = stats.get(4);
+            String spoison = stats.get(5);
+            String sfire = stats.get(6);
+            String sfreezing = stats.get(7);
 
             int damage, range, bleeding, poison, fire, freezing;
 
@@ -33,14 +33,14 @@ public class InventoryFactory {
         }
         else if(type.equals("Weapon"))
         {
-            String sdefence =stats[2];
+            String sdefence = stats.get(2);
             int defence = Integer.parseInt(sdefence);
 
             return new Armor(name,defence);
         }
         else if(type.equals("Mount"))
         {
-            String sspeed = stats[2];
+            String sspeed = stats.get(2);
             int speed = Integer.parseInt(sspeed);
 
             return new Mount(name,speed);
