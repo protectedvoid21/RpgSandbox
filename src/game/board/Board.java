@@ -10,15 +10,15 @@ public class Board {
     private final Place[][] places;
     
     public Board(Scenario scenario) {
-        places = new Place[scenario.getHeight()][scenario.getWidth()];
+        places = new Place[scenario.height][scenario.width];
 
-        for(int x = 0; x < scenario.getWidth(); x++) {
-            for(int y = 0; y < scenario.getHeight(); y++) {
+        for(int x = 0; x < scenario.width; x++) {
+            for(int y = 0; y < scenario.height; y++) {
                 places[y][x] = new Place();
             }
         }
         
-        for(var scenarioData : scenario.getScenarioDataList()) {
+        for(var scenarioData : scenario.scenarioDataList) {
             getPlace(scenarioData.position).setGameObject(new GameObject(scenarioData.creature));
         }
     }
