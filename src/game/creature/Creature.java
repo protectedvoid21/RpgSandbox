@@ -27,9 +27,11 @@ public abstract class Creature implements RoundListener {
     public String getName() {
         return name;
     }
+    
     public IStruggleStatistics getStruggleStatistics() {
         return struggleStatistics;
     }
+    
     public void setName(String name) {
         this.name = name;
     }
