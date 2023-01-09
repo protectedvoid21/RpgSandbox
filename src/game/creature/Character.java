@@ -18,16 +18,6 @@ public abstract class Character extends Creature {
     }
 
     @Override
-    public int getDamage() {
-        return inventory.getActiveWeapon().getDamage()+statistics.getAttribute(AttributeEnum.STRENGTH).getValue();
-    }
-
-    @Override
-    public int getDefense() {
-        return inventory.getActiveArmor().getDefence()+statistics.getAttribute(AttributeEnum.STRENGTH).getValue();
-    }
-
-    @Override
     public int getSpeed() {
         return inventory.getActiveMount().getSpeed()+statistics.getAttribute(AttributeEnum.MOVEMENT).getValue();
     }

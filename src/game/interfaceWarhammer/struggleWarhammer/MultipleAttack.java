@@ -7,6 +7,9 @@ import static game.interfaceWarhammer.StruggleAtributeEnum.*;
 
 public class MultipleAttack extends Attack {
 
+    private  int actionCost = 2;
+    private boolean effectOnEnemy = true;
+    private boolean needBeCharacter = false;
     @Override
     public void doAction(Creature you, Creature enemy) {
         for (int i = 0; i < you.getStatistics().getAttribute(ATTACKS).getValue(); i++){
@@ -14,5 +17,20 @@ public class MultipleAttack extends Attack {
         }
 
         you.getStruggleStatistics().getAttribute(ACTIONS_TO_DO).setValue(0);
+    }
+
+    @Override
+    public int getActionCost() {
+        return actionCost;
+    }
+
+    @Override
+    public boolean isEffectOnEnemy() {
+        return effectOnEnemy;
+    }
+
+    @Override
+    public boolean isNeedBeCharacter() {
+        return needBeCharacter;
     }
 }
