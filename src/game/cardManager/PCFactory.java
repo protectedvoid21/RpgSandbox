@@ -2,14 +2,14 @@ package game.cardManager;
 
 import game.cardManager.Warhammer.MonsterFactoryWarhammer;
 import game.creature.Monster;
+import game.creature.PlayerCharacter;
 import game.interfaces.IFactory;
 
 import java.util.ArrayList;
 
-public class MonsterFactory {
-
-    public Monster creat(ArrayList<String> stats){
+public class PCFactory {
+    public PlayerCharacter creat(ArrayList<String> stats){
         IFactory factory = new MonsterFactoryWarhammer();
-        return (Monster) factory.creat(stats);
+        return (PlayerCharacter) factory.creat(stats);
     }
 }
