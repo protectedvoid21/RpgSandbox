@@ -1,6 +1,5 @@
 package gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleItemsCards;
 
-import com.kitfox.svg.A;
 import gui.card.SharedCmpsFont;
 import gui.card.fullCards.abstractCards.Card;
 import gui.customComponents.AbstractCustomButton;

@@ -44,9 +44,6 @@ public class Weapon extends ManyUsageItem {
         if (random.nextInt(100) < chanceForBleeding) {
             creature.getStatistics().getEffect(EffectEnum.BLEEDING).apply();
         }
-        if (random.nextInt(100) < chanceForShocked) {
-            creature.getStatistics().getEffect(EffectEnum.SHOCKED).apply();
-        }
         if (random.nextInt(100) < chanceForPoison) {
             creature.getStatistics().getEffect(EffectEnum.POISON).apply();
         }
