@@ -28,6 +28,6 @@ public abstract class Character extends Creature {
 
     @Override
     public int getSpeed() {
-        return inventory.getActiveMount().getSpeeeeed()+statistics.getAttribute(AttributeEnum.MOVEMENT).getValue();
+        return inventory.getActiveMount().getSpeed()+statistics.getAttribute(AttributeEnum.MOVEMENT).getValue();
     }
 }

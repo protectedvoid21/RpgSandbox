@@ -18,7 +18,7 @@ public class Weapon extends ManyUsageItem {
         super(name);
         Random random = new Random();
 
-        this.range=range;
+        this.range = range;
         this.damage = damage;
         chanceForBleeding = random.nextInt(101);
         chanceForShocked = random.nextInt(101);
@@ -30,7 +30,7 @@ public class Weapon extends ManyUsageItem {
     public Weapon(String name, int damage, int range, int bleeding, int shocked, int poison, int fire, int freezing) {
         super(name);
         this.damage = damage;
-        this.range=range;
+        this.range = range;
         chanceForBleeding = bleeding;
         chanceForShocked = shocked;
         chanceForPoison = poison;
@@ -38,28 +38,22 @@ public class Weapon extends ManyUsageItem {
         chanceForFreezing = freezing;
     }
 
-    public void effected(Creature creature)
-    {
+    public void effected(Creature creature) {
         Random random = new Random();
 
-        if(random.nextInt(100)<chanceForBleeding)
-        {
+        if (random.nextInt(100) < chanceForBleeding) {
             creature.getStatistics().getEffect(EffectEnum.BLEEDING).apply();
         }
-        if(random.nextInt(100)<chanceForShocked)
-        {
+        if (random.nextInt(100) < chanceForShocked) {
             creature.getStatistics().getEffect(EffectEnum.SHOCKED).apply();
         }
-        if(random.nextInt(100)<chanceForPoison)
-        {
+        if (random.nextInt(100) < chanceForPoison) {
             creature.getStatistics().getEffect(EffectEnum.POISON).apply();
         }
-        if(random.nextInt(100)<chanceForFire)
-        {
+        if (random.nextInt(100) < chanceForFire) {
             creature.getStatistics().getEffect(EffectEnum.IN_FIRE).apply();
         }
-        if(random.nextInt(100)<chanceForFreezing)
-        {
+        if (random.nextInt(100) < chanceForFreezing) {
             creature.getStatistics().getEffect(EffectEnum.FREEZING).apply();
         }
     }

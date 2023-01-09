@@ -8,7 +8,7 @@ public class Inventory {
     private Weapon activeWeapon;
     private Armor activeArmor;
     private Mount activeMount;
-    
+
     public Inventory() {
         itemList = new ArrayList<>();
         activeWeapon = noWeapon();
@@ -128,18 +128,15 @@ public class Inventory {
         return activeMount;
     }
 
-    private Weapon noWeapon()
-    {
-        return new Weapon("none",0,0,0,0,0,0,0);
+    private Weapon noWeapon() {
+        return new Weapon("none", 0, 0, 0, 0, 0, 0, 0);
     }
 
-    private Armor noArmor()
-    {
-        return new Armor("none",0);
+    private Armor noArmor() {
+        return new Armor("none", 0);
     }
 
-    private Mount noMount()
-    {
+    private Mount noMount() {
         return new Mount("none", 0);
     }
 }
