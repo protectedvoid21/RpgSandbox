@@ -4,11 +4,17 @@ import gui.card.IOverallFactory;
 import gui.card.WarHammerFactory;
 import gui.card.fullCards.abstractCards.Card;
 import gui.menu.*;
+import gui.views.gamePanel.MainGamePanel;
+import gui.views.gamePanel.OptionsPanel;
 import gui.views.objectViews.AllObjectsView;
 import gui.views.objectViews.itemsViews.AllItemsEditView;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
+import java.util.AbstractMap;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class TestMainGui {
     public static void main(String[] args) throws IOException {
@@ -18,12 +24,38 @@ public class TestMainGui {
         IOverallFactory f = new WarHammerFactory();
 
 
-        var cmp = new ComponentPanelMenager<>(f.createCreatorCard(Card.CreatorTypes.WEAPONS).getPanel());
-        var main = f.createMenuView();
-        var v= f.createAllItemsShowView();
-        v.addButtonActionListener(AllObjectsView.ButtonType.SHOW, 5, e->System.out.println(v.getClickedIndex()));
-//        cmp.addSpace(10);
-        ramka.add(v.getPanel());
+//        var cmp = new ComponentPanelMenager<>(f.createCreatorCard(Card.CreatorTypes.WEAPONS).getPanel());
+//        var main = f.createMenuView();
+        var v = f.createBasicCard();
+////        v.addButtonActionListener(AllObjectsView.ButtonType.SHOW, 5, e->System.out.println(v.getClickedIndex()));
+////        cmp.addSpace(10);
+//        var panel = new MainGamePanel(f.getFactory(), 10, 10);
+//        DefaultCustomMenuMenager customPanelAttackChoser =
+//                new DefaultCustomMenuMenager(ComponentsSeries.ComponentsDimension.HORIZONTAL,
+//                        ComponentsSeries.ComponentsDimension.VERTICAL, 10);
+//        customPanelAttackChoser.addMainComponent(10);
+////        customPanelAttackChoser.setBackground(Color.RED);
+//        customPanelAttackChoser.addMiddleComponent(new JButton("sdf"), 0, 10);
+//        customPanelAttackChoser.getCmp().addSpace(40);
+//        var cmp2 = new ComponentPanelMenager<>(new JButton("dfafa"));
+//        cmp2.addSpace(10);
+//        cmp2.addSpace(40);
+//        panel.colorButtons(new ArrayList<>(Arrays.asList(new AbstractMap.SimpleEntry<Integer, Integer>(4, 3),
+//                new AbstractMap.SimpleEntry<Integer, Integer>(5, 3), new AbstractMap.SimpleEntry<Integer, Integer>(1,
+//                        1))));
+        var pan = new OptionsPanel(f.getFactory(), 10);
+//        var pan = new MainGamePanel(f.getFactory(), 10, 10);
+        pan.initialize(new ArrayList<>(Arrays.asList("src/gui/rightarrowdisabled.png", "src/gui/snowman.png", "src" +
+                "/gui/playerimage.png", "src/gui/playerimage.png", "src/gui/monsterimage.png")));
+
+        var x = new ComponentPanelMenager<>(v.getPanel());
+        x.setHasUniqueColor(true);
+        x.setBackgroundImage("src/gui/monsterimage.png");
+//        x.setBackground(Color.RED);
+        x.addSpace(10);
+//        x.setBackground(Color.RED);
+
+        ramka.add(new MainGamePanel(f.getFactory(), 10,10).getPanel());
         ramka.setVisible(true);
     }
 }

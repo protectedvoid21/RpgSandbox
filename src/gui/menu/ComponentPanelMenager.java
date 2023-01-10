@@ -18,24 +18,37 @@ public class ComponentPanelMenager<T extends JComponent> extends JPanel {
     private GridBagConstraints cst = new GridBagConstraints();
     protected T component;
     private Image backgroundImage;
-    private HashMap<Side, JComponent> freeSpaces = new HashMap<>();
+    private HashMap<Side, Component> freeSpaces = new HashMap<>();
     private double borderValue = 0;
     private Color borderColor;
     private IBorderStrategy strategy = new DefaultBorderStrategy();
+    private boolean hasUniqueColor = false;
+
+    public void setHasUniqueColor(boolean hasUniqueColor) {
+        this.hasUniqueColor = hasUniqueColor;
+    }
+
+    private int intiialWeight;
 
 
-    public ComponentPanelMenager(T component) {
+    public ComponentPanelMenager(T component, int intiialWeight) {
         this.component = component;
+        this.intiialWeight = intiialWeight;
         setOpaque(false);
         component.setPreferredSize(new Dimension(1, 1));
         setLayout(new GridBagLayout());
         cst.fill = GridBagConstraints.BOTH;
         addMainComponent(component);
+
         Arrays.asList(Side.values()).forEach(side -> freeSpaces.put(side, null));
         setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
     }
 
-    public static ComponentPanelMenager createEmptyInstance(){
+    public ComponentPanelMenager(T component) {
+        this(component, 10);
+    }
+
+    public static ComponentPanelMenager createEmptyInstance() {
         var p = new JPanel();
         p.setOpaque(false);
         return new ComponentPanelMenager(p);
@@ -43,20 +56,22 @@ public class ComponentPanelMenager<T extends JComponent> extends JPanel {
 
     private void addMainComponent(T cmp) {
         cst.gridx = 1;
-        cst.weightx = 10;
-        cst.weighty = 10;
+        cst.weightx = intiialWeight;
+        cst.weighty = intiialWeight;
         cst.gridy = 1;
         add(component, cst);
     }
 
 
     private void initCstForVerticalBox(int weight, Side side) {
+        cst.weighty = 1;
         cst.weightx = weight;
         cst.gridy = 1;
         cst.gridx = side == Side.LEFT ? 0 : 2;
     }
 
     private void initCstForHorizontalBox(int weight, Side side) {
+        cst.weightx = 1;
         cst.weighty = weight;
         cst.gridx = 1;
         cst.gridy = side == Side.TOP ? 0 : 2;
@@ -68,7 +83,9 @@ public class ComponentPanelMenager<T extends JComponent> extends JPanel {
             case TOP, BOTTOM -> initCstForHorizontalBox(weight, side);
             case LEFT, RIGHT -> initCstForVerticalBox(weight, side);
         }
-        var box = Box.createVerticalBox();
+        var box = Box.createGlue();
+//        box.setBackground(new Color(0,0,0,0));
+//box.setOpaque(false);//niebezpieccznie zmienione tylko pierdolilo background
         removeAddedSpace(side);
         add(box, cst);
         freeSpaces.put(side, box);
@@ -109,35 +126,61 @@ public class ComponentPanelMenager<T extends JComponent> extends JPanel {
     @Override//it really smells, i know
     public void setBackground(Color bg) {
         super.setBackground(bg);
-        if (component instanceof JPanel) {
-            component.setBackground(bg);
-        }
+//        if(bg.getRed()==238&&bg.getBlue()==238))
+        System.out.println(bg);
+//        if (component instanceof JPanel) {
+//            component.setBackground(bg);
+//        }
+//        if (component instanceof DefaultCustomMenuMenager<? extends JComponent>>) {
+//            component.setBackground(bg);
+//        }to opaque pamietac moze cos z tym wspolnym interfejsem
     }
 
     public void setBackgroundImage(String fileName) throws IOException {
+//        try{
         backgroundImage = ImageIO.read(new File(fileName));
+//        }finally {
+//            if(backgroundImage==null){
+//                setOpaque(true);
+//            }else{
+//                setOpaque(false);
+//            }
+//        }
         repaint();
         revalidate();
+
     }
 
     @Override
     public void paintComponent(Graphics g) {
+        System.out.println(backgroundImage);
+//        setOpaque(backgroundImage==null?false:true);
         super.paintComponent(g);
+
         if (backgroundImage != null) {
             g.drawImage(backgroundImage, 0, 0, this.getWidth(), this.getHeight(), this);
+        } else {
+            if (hasUniqueColor) {
+                g.setColor(getBackground());
+                g.fillRect(0, 0, this.getWidth(), this.getHeight());
+            }
+
         }
     }
 
-    /**Border value is given in per mille*/
+    /**
+     * Border value is given in per mille
+     */
     public void setBorderData(Color color, IBorderStrategy strategy, int borderValue) {
         this.strategy = strategy;
         this.borderColor = color;
-        this.borderValue = ((double)borderValue)/10;
+        this.borderValue = ((double) borderValue) / 10;
     }
-    public void removeBorderData(){
+
+    public void removeBorderData() {
         strategy = new DefaultBorderStrategy();
         this.borderColor = null;
-        this.borderValue =0;
+        this.borderValue = 0;
     }
 
     @Override

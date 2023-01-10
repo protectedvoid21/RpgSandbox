@@ -80,6 +80,7 @@ public class OverallCard extends AbstractCard<JComponent> {
             }
             menager.addMiddleComponent(newPanel, i / 2, 20);
             newPanel.getOption(1).addSpace(1, ComponentPanelMenager.Side.LEFT, ComponentPanelMenager.Side.RIGHT);
+            newPanel.getOption(0).addSpace(1, ComponentPanelMenager.Side.LEFT);
             newPanel.getOption(1).addSpace(2, ComponentPanelMenager.Side.BOTTOM, ComponentPanelMenager.Side.TOP);
 
             menager.getMiddleComponent(i / 2, i % 2).addSpace(1);

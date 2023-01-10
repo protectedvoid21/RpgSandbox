@@ -4,6 +4,9 @@ import gui.customComponents.AbstractCustomButton;
 import gui.customComponents.iconComponents.IIconComponent;
 import gui.customComponents.iconComponents.StretchIcon;
 
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+
 public class IconButton extends AbstractCustomButton implements IIconComponent {
 
     protected StretchIcon icon;

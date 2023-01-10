@@ -173,8 +173,17 @@ public abstract class CustomUI implements ICustomUI {
         return isFontRelevantToHeight;
     }
 
+
+    public void calculateMargins() {
+        initActiveMarginAndGetSizeDiff(ComponentTextMarginManager.Side.LEFT);
+        initActiveMarginAndGetSizeDiff(ComponentTextMarginManager.Side.RIGHT);
+        initActiveMarginAndGetSizeDiff(ComponentTextMarginManager.Side.BOTTOM);
+        initActiveMarginAndGetSizeDiff(ComponentTextMarginManager.Side.TOP);
+    }
+
     @Override
     public Font getRelevantFont(String labelText) {
+        System.out.println("czy ja tu kurwa wchodze");
 //        if (!isFontMaximized) {
 //            return parent.getFont();
 //        }//dzialajaca wersja
@@ -238,10 +247,10 @@ public abstract class CustomUI implements ICustomUI {
 
     public void setRelevantFont(String labelText) {
         if (margin != null && borderStrategy != null) {
-            if (isFontMaximized || isFontRelevantToHeight) {
-                parent.setFont(getRelevantFont(labelText));
+//            if (isFontMaximized || isFontRelevantToHeight) {//wazne
+            parent.setFont(getRelevantFont(labelText));
 //                return;
-            }//w dzialajacej nie ma napewno tego slope'a
+//            }//w dzialajacej nie ma napewno tego slope'a
             if (hasSharedSize()) {
                 cmpsShared.setSharedFontSize(parent, labelText);
             }

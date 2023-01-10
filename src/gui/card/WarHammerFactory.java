@@ -124,7 +124,7 @@ public class WarHammerFactory extends IOverallFactory {
         var card = new EntriesCard(factory);
         card.initialize();
         card.setUniformFont();
-        uploadBackgroundImage(card, "src/gui/aaa.png");
+        uploadBackgroundImage(card, "src/gui/aaa.png");//jbc moze byc zle
         card.uploadNewData(generateSecondMap(), generateHashMap());
         return card;
     }

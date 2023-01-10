@@ -16,6 +16,7 @@ public class ChangingBorderColorWraper extends BorderDecorator {
 
     public ChangingBorderColorWraper(ICustomUI ui) {
         super(ui);
+        currentBaseBackgroundHelper = getAdditionalColor(Index.FIRST);
     }
 
     @Override
@@ -26,8 +27,8 @@ public class ChangingBorderColorWraper extends BorderDecorator {
             public void mousePressed(MouseEvent e) {
                 super.mousePressed(e);
                 if (c.isEnabled()) {
-                    currentBaseBackgroundHelper = getAdditionalColor(Index.FIRST);
-                    setAdditionaldColor(getAdditionalColor(Index.SECOND), Index.FIRST);
+//                    currentBaseBackgroundHelper = getCurrentBackHelper();
+                    onlySuperAdditionalFirstSetter(getAdditionalColor(Index.SECOND), Index.FIRST);
                     c.repaint();
                     c.revalidate();
                 }
@@ -37,12 +38,24 @@ public class ChangingBorderColorWraper extends BorderDecorator {
             public void mouseReleased(MouseEvent e) {
                 super.mousePressed(e);
 //                if (c.isEnabled()) {
-                    setAdditionaldColor(currentBaseBackgroundHelper, Index.FIRST);
+                setAdditionaldColor(currentBaseBackgroundHelper, Index.FIRST);
 //                    currentBaseBackgroundHelper = null;
-                    c.repaint();
-                    c.revalidate();
+                c.repaint();
+                c.revalidate();
 //                }
             }
         });
+    }
+
+    @Override
+    public void setAdditionaldColor(Color color, Index index) {
+        super.setAdditionaldColor(color, index);
+        if (index == Index.FIRST) {
+            currentBaseBackgroundHelper = color;
+        }
+    }
+
+    private void onlySuperAdditionalFirstSetter(Color color, Index index) {
+        super.setAdditionaldColor(color, index);
     }
 }

@@ -15,6 +15,7 @@ public interface ICustomUI {
 
     void installUI(JComponent c);
 
+    void calculateMargins();
     void paint(Graphics g, JComponent c);
 
     void setAdditionaldColor(Color color, Index index);

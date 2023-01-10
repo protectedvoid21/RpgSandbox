@@ -4,16 +4,24 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class DefaultCustomMenuMenager<T extends JComponent> {
+public class DefaultCustomMenuMenager<T extends JComponent>  {
     private ComponentPanelMenager<ComponentsSeries<ComponentPanelMenager<ComponentsSeries<ComponentPanelMenager<T>>>>> cmp;///also smells.. 'using' where are you..
     private ComponentsSeries.ComponentsDimension mainSide;
     private ComponentsSeries.ComponentsDimension middleSide;
 
+
+    public void setHasUniqueColor(boolean value){
+        cmp.setHasUniqueColor(value);
+    }
     public DefaultCustomMenuMenager(ComponentsSeries.ComponentsDimension mainSide,
                                     ComponentsSeries.ComponentsDimension middleSide) {
+        this(mainSide, middleSide, 10);
+    }
+    public DefaultCustomMenuMenager(ComponentsSeries.ComponentsDimension mainSide,
+                                    ComponentsSeries.ComponentsDimension middleSide, int initCmpWeight) {
         this.mainSide = mainSide;
         this.middleSide = middleSide;
-        cmp = new ComponentPanelMenager<>(new ComponentsSeries<>(mainSide));
+        cmp = new ComponentPanelMenager<>(new ComponentsSeries<>(mainSide), initCmpWeight);
     }
 
     public DefaultCustomMenuMenager(JPanel parent, ComponentsSeries.ComponentsDimension mainSide,
@@ -44,6 +52,7 @@ public class DefaultCustomMenuMenager<T extends JComponent> {
     }
 
     public void setBackground(Color color) {
+//        cmp.addSpace();
         cmp.setBackground(color);
     }
 
