@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public abstract class AllItemsView extends AllObjectsView {
-    private ArrayList<ArrayList<String>> data = new ArrayList<>();
+    protected ArrayList<ArrayList<String>> data = new ArrayList<>();
 
     public AllItemsView(IOverallFactory factory) {
         super(factory);

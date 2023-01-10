@@ -50,7 +50,6 @@ public class BasicButton extends ButtonFactory {
 //                return isEnabled()?super.getBackground():Color.CYAN;
 //            }
 //        };
-        System.out.println("czy ja tu jestem");
 
 //        var but = helpCreatedMethod( new ChanginBackDisabledButton(text, true, Color.YELLOW), listener);
 //        but.getCustomUI().getMargin().set(7,7,7,7);
@@ -80,7 +79,6 @@ public class BasicButton extends ButtonFactory {
         if (text2 != null) {
             but.setDisabledIcon(new StretchIcon(text2, proportionate));
         }
-        System.out.println("co jest kurwa");
         but.getCustomUI().setBackGroundTransparent(false);
         return but;
     }

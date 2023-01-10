@@ -1,5 +1,6 @@
 package gui.views.gamePanel;
 
+import gui.card.IOverallFactory;
 import gui.card.fullCards.abstractCards.Card;
 import gui.customComponents.AbstractCustomButton;
 import gui.factories.GuiFactory;
@@ -24,60 +25,89 @@ public class MainGamePanel extends BackgroundView {
     private ComponentPanelMenager generalManager;
     private JPanel panel = new JPanel();
     private OptionsPanel optionsPanel;
-//    private DefaultCustomMenuMenager customPanelAttackChoser =
+    //    private DefaultCustomMenuMenager customPanelAttackChoser =
 //            new DefaultCustomMenuMenager(ComponentsSeries.ComponentsDimension.HORIZONTAL,
 //                    ComponentsSeries.ComponentsDimension.VERTICAL, 30);
-    private GuiFactory factory;
+    private IOverallFactory factory;
     private OverlayLayout layout;
-    private int maxx;
-    private int maxyy;
+    //    private int maxxs;
+//    private int maxyy;
+    private int maxIndex;
+    final private int weight;
     public DefaultCustomMenuMenager<AbstractCustomButton> manager =
             new DefaultCustomMenuMenager<AbstractCustomButton>(ComponentsSeries.ComponentsDimension.HORIZONTAL,
                     ComponentsSeries.ComponentsDimension.VERTICAL);
 
-    public MainGamePanel(GuiFactory factory, int x, int y) {
+    public MainGamePanel(IOverallFactory factory, int size) {
         layout = new OverlayLayout(panel);
+        this.weight = 400 / size;
         panel.setLayout(layout);
-        this.maxx = x;
-        this.maxyy = y;
+        this.maxIndex = size;
         this.factory = factory;
-        optionsPanel = new OptionsPanel(factory, 30);
-//        customPanelAttackChoser.addMainComponent(30);
-//        customPanelAttackChoser.addMiddleComponent(optionsPanel.getPanel(), 0, 10);
-//        customPanelAttackChoser.getCmp().addSpace(10);
+        optionsPanel = factory.createOptionsPanel();
+        optionsPanel.initialize(weight);
+        optionsPanel.setBorderColor(Color.RED);
         generalManager = new ComponentPanelMenager(panel);
-        optionsPanel.initialize(new ArrayList<>(Arrays.asList("src/gui/rightarrowdisabled.png", "src/gui/snowman.png", "src" +
-                "/gui/playerimage.png", "src/gui/playerimage.png", "src/gui/monsterimage.png")));
-        factory.setButtonFactory(new BasicButton());
-        factory.setButtonType(GuiFactory.ButtonType.ICON);
-        for (int i = 0; i < x; i++) {
+        intiializeOptionsPanelData(new ArrayList<>(Arrays.asList(new AbstractMap.SimpleEntry<>("src/gui/rightarrowdisabled.png",
+                        "2"), new AbstractMap.SimpleEntry<>("src/gui/snowman.png", "0"),
+                new AbstractMap.SimpleEntry<>("/gui/playerimage.png", "1"), new AbstractMap.SimpleEntry<>(
+                        "src/gui/playerimage.png", "2"), new AbstractMap.SimpleEntry<>(
+                        "src/gui/playerimage.png", "3"))));
+//        optionsPanel.setNonVisibleButtons(1,3);
+        factory.getFactory().setButtonFactory(new BasicButton());
+        factory.getFactory().setButtonType(GuiFactory.ButtonType.ICON);
+        for (int i = 0; i < maxIndex; i++) {
             manager.addMainComponent(5);
-            for (int j = 0; j < y; j++) {
-                var but = factory.createButton("src/gui/witch.png", null);
+            for (int j = 0; j < maxIndex; j++) {
+                var but = factory.getFactory().createButton("src/gui/witch.png", null);
+                but.setHasDisabledColor(true);
+                but.setSecondDisabledColor(Color.YELLOW);
                 manager.addMiddleComponent(but, i, 5);
                 int finalI = i;
                 int finalJ = j;
                 but.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        addButton(finalI, finalJ);
+                        if (optionsPanel.getCurrentX() != finalI || optionsPanel.getCurrentY() != finalJ) {
+                            addButton(finalI, finalJ);
+                            optionsPanel.setCurrentIndexes(finalI, finalJ);
+                        }else{
+                            optionsPanel.setVisible(false);
+                        }
                     }
                 });
             }
         }
-        baseBackColor = manager.getMiddleComponent(0,0).getComponent().getBackground();
+        baseBackColor = manager.getMiddleComponent(0, 0).getComponent().getBackground();
         panel.add(optionsPanel.getPanel());
         panel.add(manager.getCmp());
+    }
+
+    public void intiializeOptionsPanelData(ArrayList<AbstractMap.SimpleEntry<String, String>> optionsPanelData){
+        optionsPanel.initializeData(optionsPanelData);
+    }
 
 
-//        pane.add(new JButton("Dfdsfs"), 2);
 
 
+    public void addOptionsListener(int index, ActionListener listener){
+        optionsPanel.addOptionsPanelCommand(index, listener);
+    }
+    public AbstractMap.SimpleEntry<Integer, Integer> getCurrentClickedIndexes(){
+        return new AbstractMap.SimpleEntry<>(optionsPanel.getCurrentX(), optionsPanel.getCurrentY());
+    }
+
+    public void setOptionsDisabledIndexes(ArrayList<Integer> indexes) {
+        optionsPanel.setDisabledIndexes(indexes);
+    }
+
+    public void setOptionsDisabledIndexes(Integer... indexes) {
+        optionsPanel.setDisabledIndexes(indexes);
     }
 
     public void setDisabledIndexes(ArrayList<AbstractMap.SimpleEntry<Integer, Integer>> indexes) {
-        for (int i = 0; i < maxx; i++) {
-            for (int j = 0; j < maxyy; j++) {
+        for (int i = 0; i < maxIndex; i++) {
+            for (int j = 0; j < maxIndex; j++) {
                 manager.getMiddleComponent(i, j).getComponent().setEnabled(true);
             }
         }
@@ -91,14 +121,15 @@ public class MainGamePanel extends BackgroundView {
         setDisabledIndexes(new ArrayList<>(Arrays.asList(indexes)));
 
     }
+
     public void colorButtons(AbstractMap.SimpleEntry<Integer, Integer>... indexes) {
         colorButtons(new ArrayList<>(Arrays.asList(indexes)));
 
     }
 
-    public void colorButtons(ArrayList<AbstractMap.SimpleEntry<Integer, Integer>> indexes){
-        for (int i = 0; i < maxx; i++) {
-            for (int j = 0; j < maxyy; j++) {
+    public void colorButtons(ArrayList<AbstractMap.SimpleEntry<Integer, Integer>> indexes) {
+        for (int i = 0; i < maxIndex; i++) {
+            for (int j = 0; j < maxIndex; j++) {
                 manager.getMiddleComponent(i, j).getComponent().setBackground(baseBackColor);
             }
         }
@@ -117,20 +148,22 @@ public class MainGamePanel extends BackgroundView {
         return manager;
     }
 
-    private void addButton(int xindex, int yindex){
-        int leftpercent = (int)(((double)(xindex+0.5)/maxx)*100);
-        int rightpercent = 100-30-leftpercent;//30 to waga
+    private void addButton(int xindex, int yindex) {
+        optionsPanel.getPanel().setVisible(true);
+        var index = optionsPanel.getPercentFilledSize();
+        int leftpercent = (int) (((double) (xindex + 0.5) / maxIndex) * 100/index);
+        int rightpercent = (int)(100/index) - weight - leftpercent;//30 to waga
 
-        int upprocent = (int)(((double)(yindex+0.5)/maxx)*300);
-        int bottomprocent = 300-30-upprocent;
+        int upprocent = (int) (((double) (yindex + 0.5) / maxIndex) * 300);
+        int bottomprocent = (int)(300) - weight - upprocent;
 
-        if (rightpercent<0){
-            rightpercent+=30;
-            leftpercent-=30;
+        if (rightpercent < 0) {
+            rightpercent += weight;
+            leftpercent -= weight;
         }
-        if (bottomprocent<0){
-             bottomprocent+=30;
-             upprocent-=30;
+        if (bottomprocent < 0) {
+            bottomprocent += weight;
+            upprocent -= weight;
         }
         optionsPanel.getPanel().addSpace(leftpercent, ComponentPanelMenager.Side.LEFT);
         optionsPanel.getPanel().addSpace(rightpercent, ComponentPanelMenager.Side.RIGHT);

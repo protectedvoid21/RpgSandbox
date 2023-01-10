@@ -11,6 +11,8 @@ import gui.views.objectViews.itemsViews.AllItemsEditView;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.AbstractMap;
 import java.util.ArrayList;
@@ -43,10 +45,15 @@ public class TestMainGui {
 //        panel.colorButtons(new ArrayList<>(Arrays.asList(new AbstractMap.SimpleEntry<Integer, Integer>(4, 3),
 //                new AbstractMap.SimpleEntry<Integer, Integer>(5, 3), new AbstractMap.SimpleEntry<Integer, Integer>(1,
 //                        1))));
-        var pan = new OptionsPanel(f.getFactory(), 10);
+        var pan = new OptionsPanel(f.getFactory());
 //        var pan = new MainGamePanel(f.getFactory(), 10, 10);
-        pan.initialize(new ArrayList<>(Arrays.asList("src/gui/rightarrowdisabled.png", "src/gui/snowman.png", "src" +
-                "/gui/playerimage.png", "src/gui/playerimage.png", "src/gui/monsterimage.png")));
+//        pan.initialize(new ArrayList<>(Arrays.asList("src/gui/rightarrowdisabled.png", "src/gui/snowman.png", "src" +
+//                "/gui/playerimage.png", "src/gui/playerimage.png", "src/gui/monsterimage.png")));
+//        pan.initialize(new ArrayList<>(Arrays.asList(new AbstractMap.SimpleEntry<>("src/gui/rightarrowdisabled.png",
+//                        "2"), new AbstractMap.SimpleEntry<>("src/gui/snowman.png", "0"),
+//                new AbstractMap.SimpleEntry<>("/gui/playerimage.png", "1"), new AbstractMap.SimpleEntry<>(
+//                        "src/gui/playerimage.png", "2"), new AbstractMap.SimpleEntry<>(
+//                        "src/gui/playerimage.png", "3"))));
 
         var x = new ComponentPanelMenager<>(v.getPanel());
         x.setHasUniqueColor(true);
@@ -54,8 +61,20 @@ public class TestMainGui {
 //        x.setBackground(Color.RED);
         x.addSpace(10);
 //        x.setBackground(Color.RED);
-
-        ramka.add(new MainGamePanel(f.getFactory(), 10,10).getPanel());
+        var xxx = new MainGamePanel(f, 10);
+        xxx.setOptionsDisabledIndexes(1, 4);
+        xxx.setDisabledIndexes(new AbstractMap.SimpleEntry<>(3, 4));
+        xxx.addOptionsListener(0, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println(xxx.getCurrentClickedIndexes());
+            }
+        });
+        var ppp = new DefaultCustomMenuMenager<JComponent>(ComponentsSeries.ComponentsDimension.VERTICAL, ComponentsSeries.ComponentsDimension.HORIZONTAL);
+//        ppp.addMainComponent(20, 20);
+//        ppp.addMiddleComponent(new JButton(), 0,10);
+//        ppp.getMainComponent(0).addSpace(10);
+        ramka.add(f.createAllCreatureEditView().getPanel());
         ramka.setVisible(true);
     }
 }

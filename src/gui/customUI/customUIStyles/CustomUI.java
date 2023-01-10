@@ -183,7 +183,6 @@ public abstract class CustomUI implements ICustomUI {
 
     @Override
     public Font getRelevantFont(String labelText) {
-        System.out.println("czy ja tu kurwa wchodze");
 //        if (!isFontMaximized) {
 //            return parent.getFont();
 //        }//dzialajaca wersja

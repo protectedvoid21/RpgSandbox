@@ -33,6 +33,9 @@ public class DefaultCustomMenuMenager<T extends JComponent>  {
     public void addMainComponent(double weight) {
         cmp.getComponent().addOption(new ComponentPanelMenager<>(new ComponentsSeries<>(middleSide)), weight);
     }
+    public void addMainComponent(double weight, int initialComponentWeight) {
+        cmp.getComponent().addOption(new ComponentPanelMenager<>(new ComponentsSeries<>(middleSide), initialComponentWeight), weight);
+    }
 
     public void addMiddleComponent(T newComponent, int mainIndex, double weight) {
         cmp.getComponent().getOption(mainIndex).getComponent().addOption(new ComponentPanelMenager(newComponent),

@@ -37,7 +37,6 @@ public abstract class AbstractCustomButton extends JButton implements IContentCu
             @Override
             public void componentResized(ComponentEvent e) {
                 super.componentResized(e);
-                System.out.println("wykonuje");
                 buttonUI.getCustomUI().setRelevantFont(getText());
             }
 
@@ -60,7 +59,6 @@ public abstract class AbstractCustomButton extends JButton implements IContentCu
     @Override
     public void setEnabled(boolean b) {
 //        super.setEnabled(b);
-        System.out.println(getBackground() + "  " + secondColor + "  " + backgroundColor);
         if (hasDisabledColor) {
             if (!b) {
                 setOnlySuperBackground(secondColor);

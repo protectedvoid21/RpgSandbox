@@ -18,18 +18,24 @@ public class ComponentsSeries<T extends JComponent> extends JPanel {
     private ArrayList<T> componentsList = new ArrayList<>();
     private ComponentsDimension dimension;
 
-    public ComponentsSeries(ComponentsDimension dimension, int initialHeight) {
+//    public ComponentsSeries(ComponentsDimension dimension, int initialHeight) {
+//        super();
+//        setOpaque(false);
+//
+//        setLayout(new GridBagLayout());
+//        this.dimension = dimension;
+//        mainCst.fill = GridBagConstraints.BOTH;
+//        initializeCst(0, 0, initialHeight, initialHeight);
+//    }
+
+    public ComponentsSeries(ComponentsDimension dimension){
         super();
         setOpaque(false);
 
         setLayout(new GridBagLayout());
         this.dimension = dimension;
         mainCst.fill = GridBagConstraints.BOTH;
-        initializeCst(0, 0, initialHeight, initialHeight);
-    }
-
-    public ComponentsSeries(ComponentsDimension dimension){
-        this(dimension, 10);
+        initializeCst(0, 0, 10, 10);
     }
 
     private void initializeCst(int gridx, int gridy, double weightx, double weighty) {

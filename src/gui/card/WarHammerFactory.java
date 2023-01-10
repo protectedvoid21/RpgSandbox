@@ -4,6 +4,7 @@ import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleCreatureCard
 import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleCreatureCards.OnlyVisibleShowCard;
 import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleItemsCards.OnlyVisibleItemsEditCard;
 import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleItemsCards.OnlyVisibleItemsShowCard;
+import gui.views.gamePanel.OptionsPanel;
 import gui.views.objectViews.creatureViews.AllCreaturesEditView;
 import gui.views.objectViews.creatureViews.AllCreaturesShowView;
 import gui.views.objectViews.itemsViews.AllItemsEditView;
@@ -25,6 +26,7 @@ import gui.factories.customFactories.labelFactories.MenuLabelFactory;
 import gui.menu.ICustomBackgorund;
 import gui.views.menuViews.MenuView;
 
+import java.awt.*;
 import java.util.*;
 
 public class WarHammerFactory extends IOverallFactory {
@@ -837,6 +839,9 @@ public class WarHammerFactory extends IOverallFactory {
         var card = new OnlyVisibleItemsShowCard(factory);
         createSmallItemCard(card);
         return card;
+    }
+    public  OptionsPanel createOptionsPanel(){
+        return new OptionsPanel(factory);
     }
 
     private void createSmallCard(OnlyVisibleCard card) {

@@ -127,7 +127,6 @@ public class ComponentPanelMenager<T extends JComponent> extends JPanel {
     public void setBackground(Color bg) {
         super.setBackground(bg);
 //        if(bg.getRed()==238&&bg.getBlue()==238))
-        System.out.println(bg);
 //        if (component instanceof JPanel) {
 //            component.setBackground(bg);
 //        }
@@ -153,7 +152,6 @@ public class ComponentPanelMenager<T extends JComponent> extends JPanel {
 
     @Override
     public void paintComponent(Graphics g) {
-        System.out.println(backgroundImage);
 //        setOpaque(backgroundImage==null?false:true);
         super.paintComponent(g);
 
