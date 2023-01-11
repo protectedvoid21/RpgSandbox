@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class CardContentDataSet {
-    public enum DataType {BOOLEAN, STRING, INTEGER}
+    public enum DataType {BOOLEAN, STRING}
 
     public String titlePath = "";
     public String titleContent= "";

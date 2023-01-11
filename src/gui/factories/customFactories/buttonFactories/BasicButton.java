@@ -74,7 +74,9 @@ public class BasicButton extends ButtonFactory {
 
     private AbstractCustomButton createDisableIconButton(String text1, String text2, ActionListener listener,
                                                          boolean proportionate) {
-        var but = helpCreatedMethod( new IconButton(text1, true), listener);
+        var but2 = new IconButton(text1, proportionate);
+        but2.setHasSameDisabledIcon(true);
+        var but = helpCreatedMethod( but2, listener);
         but.getCustomUI().getMargin().set(7,7,7,7);
         if (text2 != null) {
             but.setDisabledIcon(new StretchIcon(text2, proportionate));

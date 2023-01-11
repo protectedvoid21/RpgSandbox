@@ -3,8 +3,6 @@ package gui.views.gamePanel;
 import gui.card.IOverallFactory;
 import gui.card.fullCards.abstractCards.Card;
 import gui.customComponents.AbstractCustomButton;
-import gui.customComponents.AbstractCustomLabel;
-import gui.customComponents.iconComponents.IconLabel;
 import gui.factories.GuiFactory;
 import gui.factories.customFactories.buttonFactories.BasicButton;
 import gui.menu.ComponentPanelMenager;
@@ -20,16 +18,15 @@ import java.awt.event.ActionListener;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 
-public class MainGamePanel extends BackgroundView {
+public class CreatorGamePanel extends BackgroundView {
     private Color baseBackColor;
     public enum ActionsLabelsType {ATACK, DEFEND}
-    private HashMap<ActionsLabelsType, IconLabel> actionsMap = new HashMap<>();
+//    private HashMap<ActionsLabelsType, IconLabel> actionsMap = new HashMap<>();
     private Color secondBackColor = Color.YELLOW;
     private ComponentPanelMenager generalManager;
     private JPanel panel = new JPanel();
-    private OptionsPanel optionsPanel;
+    private OptionsPanel optionsPanel;//ale inny
     private IOverallFactory factory;//
     private OverlayLayout layout;//
     private int maxIndex;
@@ -37,11 +34,11 @@ public class MainGamePanel extends BackgroundView {
     public DefaultCustomMenuMenager<AbstractCustomButton> manager =
             new DefaultCustomMenuMenager<AbstractCustomButton>(ComponentsSeries.ComponentsDimension.HORIZONTAL,
                     ComponentsSeries.ComponentsDimension.VERTICAL);//
-    public DefaultCustomMenuMenager<AbstractCustomLabel> managerActions =
-            new DefaultCustomMenuMenager<AbstractCustomLabel>(ComponentsSeries.ComponentsDimension.HORIZONTAL,
-                    ComponentsSeries.ComponentsDimension.VERTICAL);
+//    public DefaultCustomMenuMenager<AbstractCustomLabel> managerActions =
+//            new DefaultCustomMenuMenager<AbstractCustomLabel>(ComponentsSeries.ComponentsDimension.HORIZONTAL,
+//                    ComponentsSeries.ComponentsDimension.VERTICAL);
 
-    public MainGamePanel(IOverallFactory factory, int size) {
+    public CreatorGamePanel(IOverallFactory factory, int size) {
         layout = new OverlayLayout(panel);
         this.weight = 400 / size;
         panel.setLayout(layout);
@@ -50,7 +47,6 @@ public class MainGamePanel extends BackgroundView {
 //        optionsPanel = factory.createOptionsPanel();
         optionsPanel.initialize(weight);
         optionsPanel.setBorderColor(Color.RED);
-        setAttackArmorPathContent("src/gui/undoleft.png", "src/armor.png");
         generalManager = new ComponentPanelMenager(panel, 60);
         generalManager.addSpace(1);
         panel.setOpaque(false);
@@ -95,22 +91,26 @@ public class MainGamePanel extends BackgroundView {
                 removeContent();
             }
         });
-        for (int i = 0; i < maxIndex; i++) {
-            managerActions.addMainComponent(5);
-            for (int j = 0; j < maxIndex; j++) {
-                managerActions.addMiddleComponent(new IconLabel(Card.EMPTY_DATA_CONTENT), i, 5);
-                managerActions.getMiddleComponent(i, j).addSpace(5);
-            }
-        }
+//        for (int i = 0; i < maxIndex; i++) {
+//            managerActions.addMainComponent(5);
+//            for (int j = 0; j < maxIndex; j++) {
+//                managerActions.addMiddleComponent(new IconLabel(Card.EMPTY_DATA_CONTENT), i, 5);
+//                managerActions.getMiddleComponent(i, j).addSpace(5);
+//            }
+//        }
         baseBackColor = manager.getMiddleComponent(0, 0).getComponent().getBackground();
-        panel.add(managerActions.getCmp());
-        panel.add(optionsPanel.getPanel());
-        panel.add(manager.getCmp());
+//        panel.add(managerActions.getCmp());
+        addPanels();
     }
 
-    public void setAttackArmorPathContent(String armorPath, String attackPath) {
-        actionsMap.put(ActionsLabelsType.DEFEND, new IconLabel(armorPath));
-        actionsMap.put(ActionsLabelsType.ATACK, new IconLabel(attackPath));
+//    public void setAttackArmorPathContent(String armorPath, String attackPath) {
+//        actionsMap.put(ActionsLabelsType.DEFEND, new IconLabel(armorPath));
+//        actionsMap.put(ActionsLabelsType.ATACK, new IconLabel(attackPath));
+//    }
+
+    protected void addPanels(){
+        panel.add(optionsPanel.getPanel());
+        panel.add(manager.getCmp());
     }
 
     public void removeContent() {
@@ -134,24 +134,24 @@ public class MainGamePanel extends BackgroundView {
 //        }
 //    }
 
-    public void applyDefendActionsContent(Point position) {
-        helpMethodActionsChangeContent(position, ActionsLabelsType.DEFEND);
-    }
-
-    public void applyAttackActionsContent(Point position) {
-        helpMethodActionsChangeContent(position, ActionsLabelsType.ATACK);
-    }
-
-    private void helpMethodActionsChangeContent(Point position, ActionsLabelsType type) {
-        if (!position.isOutOfRange(maxIndex, maxIndex)) {
-            var pos = managerActions.getMiddleComponent(position.x, position.y);
-            var label = pos.getComponent();
-            pos.changeContent(actionsMap.get(type));
-            var t = new javax.swing.Timer(1500, e -> pos.changeContent(label));
-            t.start();
-        }
-
-    }
+//    public void applyDefendActionsContent(Point position) {
+//        helpMethodActionsChangeContent(position, ActionsLabelsType.DEFEND);
+//    }
+//
+//    public void applyAttackActionsContent(Point position) {
+//        helpMethodActionsChangeContent(position, ActionsLabelsType.ATACK);
+//    }
+//
+//    private void helpMethodActionsChangeContent(Point position, ActionsLabelsType type) {
+//        if (!position.isOutOfRange(maxIndex, maxIndex)) {
+//            var pos = managerActions.getMiddleComponent(position.x, position.y);
+//            var label = pos.getComponent();
+//            pos.changeContent(actionsMap.get(type));
+//            var t = new javax.swing.Timer(1500, e -> pos.changeContent(label));
+//            t.start();
+//        }
+//
+//    }
 
 
     public void applyContent(ArrayList<AbstractMap.SimpleEntry<Point, String>> content) {
@@ -161,7 +161,7 @@ public class MainGamePanel extends BackgroundView {
     }
 
     public void intiializeOptionsPanelData(ArrayList<AbstractMap.SimpleEntry<String, String>> optionsPanelData) {
-//        optionsPanel.initializeData(optionsPanelData);
+//        optionsPanel.ini(optionsPanelData);
     }
 
 

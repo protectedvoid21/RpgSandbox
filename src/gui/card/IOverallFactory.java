@@ -4,7 +4,7 @@ import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleCreatureCard
 import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleCreatureCards.OnlyVisibleShowCard;
 import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleItemsCards.OnlyVisibleItemsEditCard;
 import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleItemsCards.OnlyVisibleItemsShowCard;
-import gui.views.gamePanel.OptionsPanel;
+import gui.views.gamePanel.optionsPanels.OptionsPanel;
 import gui.views.objectViews.creatureViews.AllCreaturesEditView;
 import gui.views.objectViews.creatureViews.AllCreaturesShowView;
 import gui.views.objectViews.itemsViews.AllItemsEditView;
@@ -12,7 +12,6 @@ import gui.views.objectViews.itemsViews.AllItemsShowView;
 import gui.views.selectingCreatureViews.SelectingView;
 import gui.card.fullCards.abstractCards.Card;
 import gui.card.fullCards.specificCards.*;
-import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleItemsCards.OnlyVisibleItemCard;
 import gui.factories.GuiFactory;
 import gui.views.menuViews.MenuView;
 
@@ -49,5 +48,5 @@ public abstract class IOverallFactory {
     public abstract SelectingView createCreatingEditingItemsPanel();
     public abstract SelectingView createViewingItemsPanel();
     public abstract SelectingView createCreaturesPanel();
-    public abstract OptionsPanel createOptionsPanel();
+//    public abstract OptionsPanel createOptionsPanel();
 }

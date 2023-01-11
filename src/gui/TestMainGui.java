@@ -2,21 +2,19 @@ package gui;
 
 import gui.card.IOverallFactory;
 import gui.card.WarHammerFactory;
-import gui.card.fullCards.abstractCards.Card;
 import gui.menu.*;
-import gui.views.gamePanel.MainGamePanel;
-import gui.views.gamePanel.OptionsPanel;
+import gui.views.gamePanel.BaseGamePanel;
+import gui.views.gamePanel.CreatorPanel;
+import gui.views.gamePanel.GamePanel;
+import gui.views.gamePanel.Point;
 import gui.views.objectViews.AllObjectsView;
-import gui.views.objectViews.itemsViews.AllItemsEditView;
+import gui.views.objectViews.CreatorGameView;
+import gui.views.objectViews.creatureViews.CHoosingCreationGameView;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.AbstractMap;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class TestMainGui {
     public static void main(String[] args) throws IOException {
@@ -45,7 +43,7 @@ public class TestMainGui {
 //        panel.colorButtons(new ArrayList<>(Arrays.asList(new AbstractMap.SimpleEntry<Integer, Integer>(4, 3),
 //                new AbstractMap.SimpleEntry<Integer, Integer>(5, 3), new AbstractMap.SimpleEntry<Integer, Integer>(1,
 //                        1))));
-        var pan = new OptionsPanel(f.getFactory());
+//        var pan = new OptionsPanel(f.getFactory());
 //        var pan = new MainGamePanel(f.getFactory(), 10, 10);
 //        pan.initialize(new ArrayList<>(Arrays.asList("src/gui/rightarrowdisabled.png", "src/gui/snowman.png", "src" +
 //                "/gui/playerimage.png", "src/gui/playerimage.png", "src/gui/monsterimage.png")));
@@ -61,20 +59,35 @@ public class TestMainGui {
 //        x.setBackground(Color.RED);
         x.addSpace(10);
 //        x.setBackground(Color.RED);
-        var xxx = new MainGamePanel(f, 10);
+        var xxx = new CreatorPanel(f, 10);
+        xxx.initialize();
         xxx.setOptionsDisabledIndexes(1, 4);
-        xxx.setDisabledIndexes(new AbstractMap.SimpleEntry<>(3, 4));
+        xxx.applyNewCreatureOnPosition("src/gui/monsterimage.png", new Point(5, 7));
         xxx.addOptionsListener(0, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println(xxx.getCurrentClickedIndexes());
             }
         });
-        var ppp = new DefaultCustomMenuMenager<JComponent>(ComponentsSeries.ComponentsDimension.VERTICAL, ComponentsSeries.ComponentsDimension.HORIZONTAL);
+        var pann = new CreatorGameView(f, 10);
+        pann.getCreatorPanel().applyNewCreatureOnPosition("src/gui/monsterimage.png", new Point(4, 5));
+        pann.getCreatorPanel().setWholePanelDisabled();
+//        xxx.applyDefendActionsContent(new Point(5, 6));
+//        xxx.applyAttackActionsContent(new Point(6, 6));
+        var ppp = new DefaultCustomMenuMenager<JComponent>(ComponentsSeries.ComponentsDimension.VERTICAL,
+                ComponentsSeries.ComponentsDimension.HORIZONTAL);
+        var z = new CHoosingCreationGameView(f);
+        z.initialize();
+        z.addButtonActionListener(AllObjectsView.ButtonType.APPLY, 5, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println(z.getClickedIndex());
+            }
+        });
 //        ppp.addMainComponent(20, 20);
 //        ppp.addMiddleComponent(new JButton(), 0,10);
 //        ppp.getMainComponent(0).addSpace(10);
-        ramka.add(f.createAllCreatureEditView().getPanel());
+        ramka.add(z.getPanel());
         ramka.setVisible(true);
     }
 }
