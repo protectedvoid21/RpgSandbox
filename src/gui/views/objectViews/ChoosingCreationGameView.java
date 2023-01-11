@@ -1,29 +1,24 @@
 package gui.views.objectViews.creatureViews;
 
-import gui.card.CardContentDataSet;
 import gui.card.IOverallFactory;
-import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleCreatureCards.OnlyVisibleCard;
 import gui.customComponents.AbstractCustomButton;
 import gui.factories.GuiFactory;
 import gui.menu.ComponentPanelMenager;
-import gui.views.gamePanel.CreatorPanel;
+import gui.views.gamePanel.gamePanels.CreatorPanel;
 import gui.views.objectViews.AllObjectsView;
-import gui.views.objectViews.CreatorGameView;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 
-public class CHoosingCreationGameView extends AllObjectsView {
+public class ChoosingCreationGameView extends AllObjectsView {
     protected ArrayList<CreatorPanel> data = new ArrayList<>();
     private ArrayList<AbstractCustomButton> applyButtons = new ArrayList<>();
 
 
-    public CHoosingCreationGameView(IOverallFactory factory) {
+    public ChoosingCreationGameView(IOverallFactory factory) {
         super(factory);
 
     }

@@ -1,9 +1,10 @@
-package gui.views.gamePanel;
+package gui.views.gamePanel.gamePanels;
 
 import gui.card.IOverallFactory;
 import gui.card.fullCards.abstractCards.Card;
+import gui.views.gamePanel.Point;
+import gui.views.gamePanel.gamePanels.BaseGamePanel;
 import gui.views.gamePanel.optionsPanels.CreatorOptionsPanel;
-import gui.views.gamePanel.optionsPanels.GameOptionsPanel;
 
 import java.awt.*;
 import java.util.AbstractMap;
@@ -19,17 +20,17 @@ public class CreatorPanel extends BaseGamePanel {
     @Override
     public void initialize() {
         super.initialize();
-        var array = new ArrayList<AbstractMap.SimpleEntry<Point, String>>();
+        var array = new ArrayList<AbstractMap.SimpleEntry<gui.views.gamePanel.Point, String>>();
 
         for (int i = 0; i < maxIndex; i++) {
             for (int j = 0; j < maxIndex; j++) {
-                array.add(new AbstractMap.SimpleEntry<>(new Point(i, j), basePath));
+                array.add(new AbstractMap.SimpleEntry<>(new gui.views.gamePanel.Point(i, j), basePath));
             }
         }
         applyContent(array);
     }
 
-    public void applyNewCreatureOnPosition(String path, Point position) {
+    public void applyNewCreatureOnPosition(String path, gui.views.gamePanel.Point position) {
         applyContent(new AbstractMap.SimpleEntry<>(position, path));
         setDisabledIndexes(position);
     }
@@ -42,7 +43,7 @@ public class CreatorPanel extends BaseGamePanel {
     }
 
     public void setWholePanelDisabled() {
-        var array = new ArrayList<AbstractMap.SimpleEntry<Point, String>>();
+        var array = new ArrayList<AbstractMap.SimpleEntry<gui.views.gamePanel.Point, String>>();
         for (int i = 0; i < maxIndex; i++) {
             for (int j = 0; j < maxIndex; j++) {
                 if (manager.getMiddleComponent(i, j).getComponent().getContent().equals(basePath)){

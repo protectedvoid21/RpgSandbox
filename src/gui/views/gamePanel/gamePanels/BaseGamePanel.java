@@ -1,4 +1,4 @@
-package gui.views.gamePanel;
+package gui.views.gamePanel.gamePanels;
 
 import gui.card.IOverallFactory;
 import gui.card.fullCards.abstractCards.Card;
@@ -10,6 +10,7 @@ import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
 import gui.views.BackgroundView;
+import gui.views.gamePanel.Point;
 import gui.views.gamePanel.optionsPanels.OptionsPanel;
 
 import javax.swing.*;
@@ -48,6 +49,7 @@ public abstract class BaseGamePanel extends BackgroundView {
         this.maxIndex = size;
         this.factory = factory;
         createOptionsPanel();
+        optionsPanel.applyUnivibilityAfterClicked();
 ////        optionsPanel = factory.createOptionsPanel();
 ////        optionsPanel.initialize(weight);
 ////        optionsPanel.setBorderColor(Color.RED);
@@ -120,7 +122,7 @@ public abstract class BaseGamePanel extends BackgroundView {
         generalManager = new ComponentPanelMenager(panel, 60);
         generalManager.addSpace(1);
         panel.setOpaque(false);
-        generalManager.setBackground(new Color(0x5FA292));
+        generalManager.setBackground(new Color(0x2F5B51));
         generalManager.setHasUniqueColor(true);
         generalManager.setBorderData(Color.RED, new AverageBorderStartegy(), 10);
 //        generalManager.setHasUniqueColor(true);
@@ -232,13 +234,13 @@ protected void addPanels(){
 //    }
 
 
-    public void applyContent(ArrayList<AbstractMap.SimpleEntry<Point, String>> content) {
+    public void applyContent(ArrayList<AbstractMap.SimpleEntry<gui.views.gamePanel.Point, String>> content) {
         for (var pair : content) {
             manager.getMiddleComponent(pair.getKey().x, pair.getKey().y).getComponent().setContent(pair.getValue());
         }
     }
 
-    public void applyContent(AbstractMap.SimpleEntry<Point, String>... content){
+    public void applyContent(AbstractMap.SimpleEntry<gui.views.gamePanel.Point, String>... content){
         applyContent(new ArrayList<>(Arrays.asList(content)));
     }
 
@@ -251,7 +253,7 @@ protected void addPanels(){
         optionsPanel.addOptionsPanelCommand(index, listener);
     }
 
-    public Point getCurrentClickedIndexes() {
+    public gui.views.gamePanel.Point getCurrentClickedIndexes() {
         return optionsPanel.getCurrentPoint();
     }
 
@@ -263,7 +265,7 @@ protected void addPanels(){
         optionsPanel.setDisabledIndexes(indexes);
     }
 
-    public void setDisabledIndexes(ArrayList<Point> indexes) {
+    public void setDisabledIndexes(ArrayList<gui.views.gamePanel.Point> indexes) {
         for (int i = 0; i < maxIndex; i++) {
             for (int j = 0; j < maxIndex; j++) {
                 manager.getMiddleComponent(i, j).getComponent().setEnabled(true);
@@ -282,12 +284,12 @@ protected void addPanels(){
 
     }
 
-    public void setDisabledIndexes(Point... indexes) {
+    public void setDisabledIndexes(gui.views.gamePanel.Point... indexes) {
         setDisabledIndexes(new ArrayList<>(Arrays.asList(indexes)));
 
     }
 
-    public void colorButtons(Point... indexes) {
+    public void colorButtons(gui.views.gamePanel.Point... indexes) {
         colorButtons(new ArrayList<>(Arrays.asList(indexes)));
 
     }

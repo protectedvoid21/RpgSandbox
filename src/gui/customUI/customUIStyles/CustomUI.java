@@ -27,7 +27,7 @@ public abstract class CustomUI implements ICustomUI {
     private ComponentTextMarginManager activeMargin;
     private HashMap<ComponentTextMarginManager.Side, Double> previousCmpMarginValues;
     private boolean isBorderedRespected = false;
-    final private int offSet;
+    private int offSet;
 
     private boolean isFontMaximized = false;
     private boolean isFontRelevantToHeight = false;
@@ -53,6 +53,11 @@ public abstract class CustomUI implements ICustomUI {
     public boolean isFontMaximized() {
         return isFontMaximized;
     }
+
+    public void setOffSet(int value){
+        this.offSet = value;
+    }
+
 
     @Override
     public int getBorderSize() {

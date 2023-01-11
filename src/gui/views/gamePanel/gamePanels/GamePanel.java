@@ -1,4 +1,4 @@
-package gui.views.gamePanel;
+package gui.views.gamePanel.gamePanels;
 
 import gui.card.IOverallFactory;
 import gui.card.fullCards.abstractCards.Card;
@@ -6,10 +6,10 @@ import gui.customComponents.AbstractCustomLabel;
 import gui.customComponents.iconComponents.IconLabel;
 import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
+import gui.views.gamePanel.Point;
 import gui.views.gamePanel.optionsPanels.GameOptionsPanel;
 
 import java.awt.*;
-import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -81,11 +81,11 @@ public class GamePanel extends BaseGamePanel {
         }
     }
 
-    public void applyDefendActionsContent(Point position) {
+    public void applyDefendActionsContent(gui.views.gamePanel.Point position) {
         helpMethodActionsChangeContent(position, ActionsLabelsType.DEFEND);
     }
 
-    public void applyAttackActionsContent(Point position) {
+    public void applyAttackActionsContent(gui.views.gamePanel.Point position) {
         helpMethodActionsChangeContent(position, ActionsLabelsType.ATACK);
     }
 

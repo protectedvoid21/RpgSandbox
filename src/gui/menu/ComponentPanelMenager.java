@@ -26,6 +26,7 @@ public class ComponentPanelMenager<T extends JComponent> extends JPanel {
 
     public void setHasUniqueColor(boolean hasUniqueColor) {
         this.hasUniqueColor = hasUniqueColor;
+        repaint();
     }
 
     private int intiialWeight;

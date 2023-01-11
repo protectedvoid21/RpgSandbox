@@ -157,16 +157,27 @@ public abstract class OptionsPanel {
                 buttons.add(button);
                 button.setHasDisabledColor(true);
                 button.setSecondDisabledColor(Color.BLACK);
-                button.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        cmp.setVisible(false);
-                        setCurrentIndexes(-1, -1);
-                    }
-                });
+//                button.addActionListener(new ActionListener() {
+//                    @Override
+//                    public void actionPerformed(ActionEvent e) {
+//                        cmp.setVisible(false);
+//                        setCurrentIndexes(-1, -1);
+//                    }
+//                });
                 customPanelAttackChoser.addMiddleComponent(button, i, 10);
             }
             i++;
+        }
+    }
+    public void applyUnivibilityAfterClicked(){
+        for (var button : buttons){
+            button.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    cmp.setVisible(false);
+                    setCurrentIndexes(-1, -1);
+                }
+            });
         }
     }
 
@@ -197,5 +208,9 @@ public abstract class OptionsPanel {
         if (!visibleStatus) {
             setCurrentIndexes(-1, -1);
         }
+    }
+
+    public void setUniqueColor(boolean value){
+        customPanelAttackChoser.setHasUniqueColor(value);
     }
 }

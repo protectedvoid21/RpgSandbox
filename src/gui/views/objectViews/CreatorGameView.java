@@ -7,8 +7,7 @@ import gui.factories.customFactories.buttonFactories.BasicButton;
 import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
-import gui.views.gamePanel.CreatorGamePanel;
-import gui.views.gamePanel.CreatorPanel;
+import gui.views.gamePanel.gamePanels.CreatorPanel;
 
 import javax.swing.*;
 import java.awt.*;
