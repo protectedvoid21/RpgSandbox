@@ -15,7 +15,8 @@ public class ActionsWarhammer extends Actions {
         actions.put(ActionsEnum.USE_ITEM, new UseItem());
         actions.put(ActionsEnum.CHANGE_EQUIPMENT, new ChangeEquipment());
         actions.put(ActionsEnum.DEFENSE_STAND, new DefenseStand());
-        actions.put(ActionsEnum.THROW_SPELL, new DefenseStand());
+        actions.put(ActionsEnum.BLOCK, new Block());
+
     }
 }
 

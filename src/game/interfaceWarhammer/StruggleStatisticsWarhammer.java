@@ -1,6 +1,7 @@
 package game.interfaceWarhammer;
 
 import game.generals.LimitedAttribute;
+import game.generals.UnlimitedAttribute;
 import game.interfaces.StruggleStatistics;
 
 public class StruggleStatisticsWarhammer extends StruggleStatistics {

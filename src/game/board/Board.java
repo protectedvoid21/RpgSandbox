@@ -23,7 +23,7 @@ public class Board {
         }
     }
     
-    private Place getPlace(Vector2 vector) {
+    public Place getPlace(Vector2 vector) {
         if(vector.x < 0 || vector.x >= places[0].length || vector.y < 0 || vector.y >= places.length) {
             throw new IllegalArgumentException();
         }
@@ -82,5 +82,9 @@ public class Board {
                 .stream()
                 .filter(n -> getPlace(n).isEmpty())
                 .toList();
+    }
+
+    private void sort(){
+
     }
 }
