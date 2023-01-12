@@ -3,6 +3,7 @@ package gui.views.gamePanel;
 import com.kitfox.svg.A;
 import game.equipment.Item;
 import gui.card.IOverallFactory;
+import gui.card.SharedCmpsFont;
 import gui.customComponents.AbstractCustomButton;
 import gui.customComponents.AbstractCustomLabel;
 import gui.factories.GuiFactory;
@@ -12,19 +13,21 @@ import gui.menu.DefaultCustomMenuMenager;
 import gui.views.gamePanel.gamePanels.GamePanel;
 import gui.views.gamePanel.optionsPanels.GameOptionsPanel;
 import gui.views.gamePanel.optionsPanels.OptionsPanel;
+import gui.views.objectViews.FullItemPicker;
 import gui.views.objectViews.ItemPicker;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class MainPanelGame {
     private DefaultCustomMenuMenager menager =
             new DefaultCustomMenuMenager(ComponentsSeries.ComponentsDimension.VERTICAL,
                     ComponentsSeries.ComponentsDimension.HORIZONTAL);
     private GamePanel gamePanel;
-    private ArrayList<ItemPicker> pickers = new ArrayList<>();
+    private FullItemPicker picker;
     private AbstractCustomButton exitButton;
     private AbstractCustomButton nextPlayerButton;
     private GameOptionsPanel activityOptionsPanel;
@@ -33,8 +36,6 @@ public class MainPanelGame {
     private AbstractCustomLabel remainingMoves;
     private ComponentsSeries<ComponentPanelMenager> seriesPanel =
             new ComponentsSeries(ComponentsSeries.ComponentsDimension.VERTICAL);
-    private ComponentsSeries<JComponent> pickersSeriesPanel =
-            new ComponentsSeries(ComponentsSeries.ComponentsDimension.VERTICAL);
     private IOverallFactory factory;
 
     public MainPanelGame(IOverallFactory factory) {
@@ -42,6 +43,7 @@ public class MainPanelGame {
         gamePanel = new GamePanel(factory, 10);
         dice = new Dice(factory.getFactory());
         gamePanel.initialize();
+        picker = new FullItemPicker(factory.getFactory());
         factory.getFactory().setButtonType(GuiFactory.ButtonType.NORMAL);
         factory.getFactory().setLabelType(GuiFactory.LabelType.NORMAL);
         remainingMoves = factory.getFactory().createLabel("0");
@@ -54,8 +56,7 @@ public class MainPanelGame {
         initialize();
         menager.getCmp().setHasUniqueColor(true);
         menager.getCmp().setBackground(new Color(0x56A6A6));
-
-
+        SharedCmpsFont.setUniformFont(new ArrayList<>(Arrays.asList(nextPlayerButton, exitButton)));
     }
 
     public GamePanel getGamePanel() {
@@ -66,8 +67,8 @@ public class MainPanelGame {
         return menager.getCmp();
     }
 
-    public ItemPicker getPicker(int index) {
-        return pickers.get(index);
+    public ItemPicker getPicker(FullItemPicker.LabelType type) {
+        return picker.getPicker(type);
     }
 
     public AbstractCustomButton getExitButton() {
@@ -85,13 +86,13 @@ public class MainPanelGame {
     public void initialize() {
         menager.addMainComponent(15);
         menager.addMainComponent(2);
-        menager.addMiddleComponent(gamePanel.getPanel(), 0, 10);
-        menager.addMiddleComponent(seriesPanel, 0, 1);
+        menager.addMiddleComponent(gamePanel.getPanel(), 0, 8);
+        menager.addMiddleComponent(seriesPanel, 0, 1, 20);
         menager.getMiddleComponent(0, 1).addSpace(1);
-        var pickerseries = new ComponentPanelMenager<>(pickersSeriesPanel);
-        pickerseries.addSpace(10, ComponentPanelMenager.Side.TOP, ComponentPanelMenager.Side.BOTTOM);
-        seriesPanel.addOption(pickerseries, 10);
-        createPicker();
+//        var pickerseries = new ComponentPanelMenager<>(pickersSeriesPanel);
+//        picker.addSpace(10, ComponentPanelMenager.Side.TOP, ComponentPanelMenager.Side.BOTTOM);
+        seriesPanel.addOption(new ComponentPanelMenager(picker.getPanel()), 10);
+//        createPicker();
 //        var movesLabel = factory.getFactory().createLabel("MOVES");
         for (var component : Arrays.asList(remainingMoves, nextPlayerButton, exitButton, dice.getDice())) {
             var cmp = new ComponentPanelMenager<>(component);
@@ -100,17 +101,27 @@ public class MainPanelGame {
         }
         menager.addMiddleComponent(activityOptionsPanel.getPanel(), 1, 10);
         activityOptionsPanel.getPanel().addSpace(2);
+        var map = new HashMap<FullItemPicker.LabelType, String>();
+        map.put(FullItemPicker.LabelType.WEAPON, "src/gui/weapon.png");
+        map.put(FullItemPicker.LabelType.MOUNT, "src/gui/effect.png");
+        map.put(FullItemPicker.LabelType.ARMOR, "src/gui/remove.png");
+        var secondMap = new HashMap<FullItemPicker.LabelType, ArrayList<String >>();
+        secondMap.put(FullItemPicker.LabelType.WEAPON, new ArrayList<>(Arrays.asList("src/gui/weapon.png","src/gui/weapon.png","src/gui/weapon.png","src/gui/warback.png")));
+        secondMap.put(FullItemPicker.LabelType.MOUNT, new ArrayList<>(Arrays.asList("src/gui/weapon.png","src/gui/rightsword.png","src/gui/weapon.png","src/gui/warback.jpg")));
+        secondMap.put(FullItemPicker.LabelType.ARMOR, new ArrayList<>(Arrays.asList("src/gui/weapon.png")));
+        picker.uploadItemPaths(secondMap);
+        picker.uploadMainPaths(map);
         activityOptionsPanel.initializeButtonsData(new ArrayList<>(Arrays.asList("xx", "dd", "ffff", "Fsd", "FDsf",
                 "Fsf")));
         activityOptionsPanel.initializeLabelsData(new ArrayList<>(Arrays.asList("1", "2", "3", "1", "1", "1")));
     }
 
-    public void createPicker() {
-        var picker = new ItemPicker(factory.getFactory());
-        pickersSeriesPanel.addOption(picker.getPanel(), 10);
-        picker.uploadData(new ArrayList<>(Arrays.asList("src/gui/ave.jpg", "src/gui/ave22.png", "src/gui/aveeee.jpg")));
-
-    }
+//    public void createPicker() {
+//        var picker = new ItemPicker(factory.getFactory());
+//        pickersSeriesPanel.addOption(picker.getPanel(), 10);
+//        picker.uploadData(new ArrayList<>(Arrays.asList("src/gui/ave.jpg", "src/gui/ave22.png", "src/gui/aveeee.jpg")));
+//
+//    }
 
     public void setMovesNumber(int val) {
         remainingMoves.setContent(Integer.toString(val));

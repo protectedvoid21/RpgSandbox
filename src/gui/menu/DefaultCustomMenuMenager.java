@@ -4,19 +4,21 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class DefaultCustomMenuMenager<T extends JComponent>  {
+public class DefaultCustomMenuMenager<T extends JComponent> {
     private ComponentPanelMenager<ComponentsSeries<ComponentPanelMenager<ComponentsSeries<ComponentPanelMenager<T>>>>> cmp;///also smells.. 'using' where are you..
     private ComponentsSeries.ComponentsDimension mainSide;
     private ComponentsSeries.ComponentsDimension middleSide;
 
 
-    public void setHasUniqueColor(boolean value){
+    public void setHasUniqueColor(boolean value) {
         cmp.setHasUniqueColor(value);
     }
+
     public DefaultCustomMenuMenager(ComponentsSeries.ComponentsDimension mainSide,
                                     ComponentsSeries.ComponentsDimension middleSide) {
         this(mainSide, middleSide, 10);
     }
+
     public DefaultCustomMenuMenager(ComponentsSeries.ComponentsDimension mainSide,
                                     ComponentsSeries.ComponentsDimension middleSide, int initCmpWeight) {
         this.mainSide = mainSide;
@@ -33,12 +35,20 @@ public class DefaultCustomMenuMenager<T extends JComponent>  {
     public void addMainComponent(double weight) {
         cmp.getComponent().addOption(new ComponentPanelMenager<>(new ComponentsSeries<>(middleSide)), weight);
     }
+
     public void addMainComponent(double weight, int initialComponentWeight) {
-        cmp.getComponent().addOption(new ComponentPanelMenager<>(new ComponentsSeries<>(middleSide), initialComponentWeight), weight);
+        cmp.getComponent().addOption(new ComponentPanelMenager<>(new ComponentsSeries<>(middleSide),
+                initialComponentWeight), weight);
     }
 
     public void addMiddleComponent(T newComponent, int mainIndex, double weight) {
         cmp.getComponent().getOption(mainIndex).getComponent().addOption(new ComponentPanelMenager(newComponent),
+                weight);
+    }
+
+    public void addMiddleComponent(T newComponent, int mainIndex, double weight, int initialWeight) {
+        cmp.getComponent().getOption(mainIndex).getComponent().addOption(new ComponentPanelMenager(newComponent,
+                        initialWeight),
                 weight);
     }
 

@@ -32,7 +32,7 @@ public class BasicButton extends ButtonFactory {
         CustomButtonUI ui2 =  new CustomButtonUI(x);
         button.setUI(ui2);
         ui2.getCustomUI().setRespectionBorder(true);
-//        button.setMaximumFontSizeStatus(true);
+        button.setMaximumFontSizeStatus(true);
         return button;
     }
 

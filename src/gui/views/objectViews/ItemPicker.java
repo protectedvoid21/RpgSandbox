@@ -26,7 +26,7 @@ public class ItemPicker implements SwitchableComponent {
 
     public ItemPicker(GuiFactory factory) {
         arrows = new DoubleArrowPanel(factory, this);
-        menager.addMainComponent(5);
+        menager.addMainComponent(10);
         menager.addMainComponent(5);
         menager.addMiddleComponent(arrows.getPanel(), 1, 10);
         menager.getMiddleComponent(1, 0).addSpace(1);
@@ -34,8 +34,11 @@ public class ItemPicker implements SwitchableComponent {
         label = factory.createLabel(Card.EMPTY_DATA_CONTENT);
         menager.addMiddleComponent(label, 0, 10);
         menager.getMiddleComponent(0, 0).addSpace(1);
-        menager.getCmp().setBorderData(Color.RED, new AverageBorderStartegy(), 10);
+//        menager.getCmp().setBorderData(Color.RED, new AverageBorderStartegy(), 20);
+        menager.getCmp().setHasUniqueColor(true);
+        menager.getCmp().setBackground(new Color(0x830F2972, true));
         arrows.updateSwitchingButtons();
+
 
     }
 

@@ -4,10 +4,14 @@ import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleCreatureCard
 import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleCreatureCards.OnlyVisibleShowCard;
 import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleItemsCards.OnlyVisibleItemsEditCard;
 import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleItemsCards.OnlyVisibleItemsShowCard;
+import gui.views.gamePanel.MainPanelGame;
 import gui.views.gamePanel.optionsPanels.GameOptionsPanel;
 import gui.views.gamePanel.optionsPanels.OptionsPanel;
+import gui.views.objectViews.CardCancelView;
+import gui.views.objectViews.CreatorGameView;
 import gui.views.objectViews.creatureViews.AllCreaturesEditView;
 import gui.views.objectViews.creatureViews.AllCreaturesShowView;
+import gui.views.objectViews.creatureViews.ChoosingCreationGameView;
 import gui.views.objectViews.itemsViews.AllItemsEditView;
 import gui.views.objectViews.itemsViews.AllItemsShowView;
 import gui.views.selectingCreatureViews.SelectingView;
@@ -119,6 +123,30 @@ public class WarHammerFactory extends IOverallFactory {
         return createView(new ArrayList<>(Arrays.asList(new AbstractMap.SimpleEntry<>("src/gui/monsterimage" +
                         ".png", "MONSTER"), new AbstractMap.SimpleEntry<>("src/gui/playerimage.png", "PLAYER"),
                 new AbstractMap.SimpleEntry<>("src/gui/npcimage.png", "NPC"))));
+    }
+
+    @Override
+    public MainPanelGame createMainPanelGame() {
+        var panel = new MainPanelGame(this);
+        panel.initialize();
+        return panel;
+    }
+
+    @Override
+    public ChoosingCreationGameView createchoosingCreationGameView() {
+        var panel = new ChoosingCreationGameView(this);
+        panel.initialize();
+        return panel;
+    }
+
+    @Override
+    public CardCancelView createCardCancelView(Card card) {
+        return new CardCancelView(factory, card);
+    }
+
+    @Override
+    public CreatorGameView creatorCreatorGameView() {
+        return new CreatorGameView(this, 10);
     }
 
 
