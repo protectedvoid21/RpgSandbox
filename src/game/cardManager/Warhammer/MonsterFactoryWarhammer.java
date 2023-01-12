@@ -34,6 +34,7 @@ public class MonsterFactoryWarhammer implements IFactory {
 
         Monster monster = new Monster(statistics,experience,struggleStatistics);
         monster.setName(name);
+        monster.setObjectPathPicture(stats.get(14));
         return monster;
     }
 }
