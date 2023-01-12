@@ -8,9 +8,13 @@ import java.util.List;
 
 public class Board {
     private final Place[][] places;
-    
+    private final int height;
+    private final int width;
+
     public Board(Scenario scenario) {
         places = new Place[scenario.getHeight()][scenario.getWidth()];
+        height = scenario.getHeight();
+        width = scenario.getWidth();
 
         for(int x = 0; x < scenario.getWidth(); x++) {
             for(int y = 0; y < scenario.getHeight(); y++) {
@@ -82,6 +86,14 @@ public class Board {
                 .stream()
                 .filter(n -> getPlace(n).isEmpty())
                 .toList();
+    }
+
+    public int getHeigt() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
     }
 
     private void sort(){
