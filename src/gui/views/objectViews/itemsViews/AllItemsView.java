@@ -1,12 +1,9 @@
 package gui.views.objectViews.itemsViews;
 
-import gui.card.IOverallFactory;
+import gui.factories.IOverallFactory;
 import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleItemsCards.OnlyVisibleItemCard;
 import gui.views.objectViews.AllObjectsView;
 
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 

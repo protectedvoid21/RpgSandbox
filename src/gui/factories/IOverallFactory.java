@@ -1,4 +1,4 @@
-package gui.card;
+package gui.factories;
 
 import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleCreatureCards.OnlyVisibleEditCard;
 import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleCreatureCards.OnlyVisibleShowCard;
@@ -6,18 +6,16 @@ import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleItemsCards.O
 import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleItemsCards.OnlyVisibleItemsShowCard;
 import gui.views.gamePanel.MainPanelGame;
 import gui.views.gamePanel.gamePanels.CreatorPanel;
-import gui.views.gamePanel.optionsPanels.OptionsPanel;
-import gui.views.objectViews.CardCancelView;
-import gui.views.objectViews.CreatorGameView;
+import gui.views.CardCancelView;
+import gui.views.objectViews.creationViews.CreatorGameView;
 import gui.views.objectViews.creatureViews.AllCreaturesEditView;
 import gui.views.objectViews.creatureViews.AllCreaturesShowView;
-import gui.views.objectViews.creatureViews.ChoosingCreationGameView;
+import gui.views.objectViews.creationViews.ChoosingCreationGameView;
 import gui.views.objectViews.itemsViews.AllItemsEditView;
 import gui.views.objectViews.itemsViews.AllItemsShowView;
-import gui.views.selectingCreatureViews.SelectingView;
+import gui.views.menuViews.SelectingView;
 import gui.card.fullCards.abstractCards.Card;
 import gui.card.fullCards.specificCards.*;
-import gui.factories.GuiFactory;
 import gui.views.menuViews.MenuView;
 
 public abstract class IOverallFactory {

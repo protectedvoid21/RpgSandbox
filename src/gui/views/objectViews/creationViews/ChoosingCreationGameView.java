@@ -1,6 +1,6 @@
-package gui.views.objectViews.creatureViews;
+package gui.views.objectViews.creationViews;
 
-import gui.card.IOverallFactory;
+import gui.factories.IOverallFactory;
 import gui.customComponents.AbstractCustomButton;
 import gui.factories.GuiFactory;
 import gui.menu.ComponentPanelMenager;

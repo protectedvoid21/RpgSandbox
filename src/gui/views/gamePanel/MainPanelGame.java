@@ -1,8 +1,6 @@
 package gui.views.gamePanel;
 
-import com.kitfox.svg.A;
-import game.equipment.Item;
-import gui.card.IOverallFactory;
+import gui.factories.IOverallFactory;
 import gui.card.SharedCmpsFont;
 import gui.customComponents.AbstractCustomButton;
 import gui.customComponents.AbstractCustomLabel;
@@ -12,9 +10,8 @@ import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
 import gui.views.gamePanel.gamePanels.GamePanel;
 import gui.views.gamePanel.optionsPanels.GameOptionsPanel;
-import gui.views.gamePanel.optionsPanels.OptionsPanel;
-import gui.views.objectViews.FullItemPicker;
-import gui.views.objectViews.ItemPicker;
+import gui.views.pickers.FullItemPicker;
+import gui.views.pickers.ItemPicker;
 
 import javax.swing.*;
 import java.awt.*;

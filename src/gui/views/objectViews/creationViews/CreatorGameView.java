@@ -1,6 +1,6 @@
-package gui.views.objectViews;
+package gui.views.objectViews.creationViews;
 
-import gui.card.IOverallFactory;
+import gui.factories.IOverallFactory;
 import gui.customComponents.AbstractCustomButton;
 import gui.factories.GuiFactory;
 import gui.factories.customFactories.buttonFactories.BasicButton;
@@ -38,8 +38,6 @@ public class CreatorGameView {
         manager.getMiddleComponent(1, 1).addSpace(3, ComponentPanelMenager.Side.LEFT);
         manager.setBackground(new Color(0xA25F5F));
         manager.setHasUniqueColor(true);
-
-
 
     }
 

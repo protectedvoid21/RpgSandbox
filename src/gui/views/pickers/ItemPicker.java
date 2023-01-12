@@ -1,4 +1,4 @@
-package gui.views.objectViews;
+package gui.views.pickers;
 
 import gui.card.DoubleArrowPanel;
 import gui.card.SwitchableComponent;

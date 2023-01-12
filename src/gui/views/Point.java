@@ -1,4 +1,4 @@
-package gui.views.gamePanel;
+package gui.views;
 
 public class Point {
 

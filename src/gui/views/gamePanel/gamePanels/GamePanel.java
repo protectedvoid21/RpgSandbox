@@ -1,17 +1,16 @@
 package gui.views.gamePanel.gamePanels;
 
-import gui.card.IOverallFactory;
+import gui.factories.IOverallFactory;
 import gui.card.fullCards.abstractCards.Card;
 import gui.customComponents.AbstractCustomLabel;
 import gui.customComponents.iconComponents.IconLabel;
 import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
-import gui.views.gamePanel.Point;
+import gui.views.Point;
 import gui.views.gamePanel.optionsPanels.GameOptionsPanel;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
 public class GamePanel extends BaseGamePanel {
@@ -27,20 +26,13 @@ public class GamePanel extends BaseGamePanel {
 
     public GamePanel(IOverallFactory factory, int size) {
         super(factory, size);
-//        for (int i = 0; i < maxIndex; i++) {
-//            managerActions.addMainComponent(5);
-//            for (int j = 0; j < maxIndex; j++) {
-//                managerActions.addMiddleComponent(new IconLabel(Card.EMPTY_DATA_CONTENT), i, 5);
-//                managerActions.getMiddleComponent(i, j).addSpace(5);
-//            }
-//        }
     }
     public void setAttackArmorPathContent(String armorPath, String attackPath) {
         actionsMap.put(GamePanel.ActionsLabelsType.DEFEND, new IconLabel(armorPath));
         actionsMap.put(GamePanel.ActionsLabelsType.ATACK, new IconLabel(attackPath));
     }
 
-    public void setOptionsPanelLabelData( ArrayList<String> optionsPanelLabelData){
+    public void initializeOptionsPanelLabelData( ArrayList<String> optionsPanelLabelData){
         gameOptionsPanel.initializeLabelsData(optionsPanelLabelData);
     }
     @Override
@@ -54,7 +46,7 @@ public class GamePanel extends BaseGamePanel {
                 managerActions.getMiddleComponent(i, j).addSpace(5);
             }
         }
-        gameOptionsPanel.initializeLabelsData((new ArrayList<>(Arrays.asList("1", "2", "1", "0", "1"))));
+//        gameOptionsPanel.initializeLabelsData((new ArrayList<>(Arrays.asList("1", "2", "1", "0", "1"))));
     }
 
     @Override
@@ -81,11 +73,11 @@ public class GamePanel extends BaseGamePanel {
         }
     }
 
-    public void applyDefendActionsContent(gui.views.gamePanel.Point position) {
+    public void applyDefendActionsContent(Point position) {
         helpMethodActionsChangeContent(position, ActionsLabelsType.DEFEND);
     }
 
-    public void applyAttackActionsContent(gui.views.gamePanel.Point position) {
+    public void applyAttackActionsContent(Point position) {
         helpMethodActionsChangeContent(position, ActionsLabelsType.ATACK);
     }
 

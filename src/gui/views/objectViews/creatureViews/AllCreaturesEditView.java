@@ -1,17 +1,13 @@
 package gui.views.objectViews.creatureViews;
 
 import gui.card.DoubleArrowPanel;
-import gui.card.IOverallFactory;
+import gui.factories.IOverallFactory;
 import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleCreatureCards.OnlyVisibleCard;
 import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleCreatureCards.OnlyVisibleEditCard;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.AbstractMap;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 
 public class AllCreaturesEditView extends AllCreaturesView {
     private ArrayList<OnlyVisibleEditCard> cards = new ArrayList<>();

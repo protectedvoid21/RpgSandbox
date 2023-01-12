@@ -1,4 +1,4 @@
-package gui.views.objectViews;
+package gui.views;
 
 import gui.card.fullCards.abstractCards.BaseCard;
 import gui.customComponents.AbstractCustomButton;

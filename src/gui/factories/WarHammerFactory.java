@@ -1,21 +1,20 @@
-package gui.card;
+package gui.factories;
 
+import gui.card.CardContentDataSet;
 import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleCreatureCards.OnlyVisibleEditCard;
 import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleCreatureCards.OnlyVisibleShowCard;
 import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleItemsCards.OnlyVisibleItemsEditCard;
 import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleItemsCards.OnlyVisibleItemsShowCard;
 import gui.views.gamePanel.MainPanelGame;
 import gui.views.gamePanel.gamePanels.CreatorPanel;
-import gui.views.gamePanel.optionsPanels.GameOptionsPanel;
-import gui.views.gamePanel.optionsPanels.OptionsPanel;
-import gui.views.objectViews.CardCancelView;
-import gui.views.objectViews.CreatorGameView;
+import gui.views.CardCancelView;
+import gui.views.objectViews.creationViews.CreatorGameView;
 import gui.views.objectViews.creatureViews.AllCreaturesEditView;
 import gui.views.objectViews.creatureViews.AllCreaturesShowView;
-import gui.views.objectViews.creatureViews.ChoosingCreationGameView;
+import gui.views.objectViews.creationViews.ChoosingCreationGameView;
 import gui.views.objectViews.itemsViews.AllItemsEditView;
 import gui.views.objectViews.itemsViews.AllItemsShowView;
-import gui.views.selectingCreatureViews.SelectingView;
+import gui.views.menuViews.SelectingView;
 import gui.card.fullCards.abstractCards.Card;
 import gui.card.fullCards.specificCards.*;
 import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleCreatureCards.OnlyVisibleCard;
@@ -128,14 +127,19 @@ public class WarHammerFactory extends IOverallFactory {
 
     @Override
     public MainPanelGame createMainPanelGame() {
-        return new MainPanelGame(this);
+        var mainPanel = new MainPanelGame(this);
+        mainPanel.getGamePanel().initializeOptionsButtonPanelData(new ArrayList<>(Arrays.asList("src/gui" +
+                "/monsterimage.png", "src/gui/playerimage.png", "src/gui/npcimage.png")));
+        mainPanel.getGamePanel().initializeOptionsPanelLabelData(new ArrayList<>(Arrays.asList("1", "3", "0")));
+        return mainPanel;
     }
 
     @Override
     public ChoosingCreationGameView createchoosingCreationGameView() {
         var panel = new ChoosingCreationGameView(this);
         panel.initialize();
-//        panel.uploadData(new ArrayList<>(Arrays.asList(createCreatorPanel(), createCreatorPanel(), createCreatorPanel())));
+//        panel.uploadData(new ArrayList<>(Arrays.asList(createCreatorPanel(), createCreatorPanel(),
+//        createCreatorPanel())));
         return panel;
     }
 
@@ -154,7 +158,11 @@ public class WarHammerFactory extends IOverallFactory {
 
     @Override
     public CreatorGameView creatorCreatorGameView() {
-        return new CreatorGameView(this, 10);
+        var creator = new CreatorGameView(this, 10);
+        creator.getCreatorPanel().setBasePath("src/gui/plus.png");
+        creator.getCreatorPanel().initializeOptionsButtonPanelData(new ArrayList<>(Arrays.asList("src/gui" +
+                "/monsterimage.png", "src/gui/playerimage.png", "src/gui/npcimage.png")));
+        return creator;
     }
 
 

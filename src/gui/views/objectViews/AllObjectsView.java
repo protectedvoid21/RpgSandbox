@@ -1,7 +1,7 @@
 package gui.views.objectViews;
 
 import gui.card.DoubleArrowPanel;
-import gui.card.IOverallFactory;
+import gui.factories.IOverallFactory;
 import gui.card.SwitchableComponent;
 import gui.customComponents.AbstractCustomButton;
 import gui.factories.GuiFactory;
@@ -10,10 +10,7 @@ import gui.menu.DefaultCustomMenuMenager;
 import gui.views.BackgroundView;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.HashMap;
 

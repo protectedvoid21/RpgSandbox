@@ -1,27 +1,21 @@
 package gui.views.gamePanel.optionsPanels;
 
-import gui.card.SharedCmpsFont;
-import gui.card.fullCards.abstractCards.Card;
 import gui.customComponents.AbstractCustomButton;
-import gui.customComponents.AbstractCustomLabel;
 import gui.customUI.customUIStyles.borderStrategies.AverageBorderStartegy;
 import gui.factories.GuiFactory;
 import gui.factories.customFactories.buttonFactories.BasicButton;
 import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
-import gui.views.gamePanel.Point;
+import gui.views.Point;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 
 public abstract class OptionsPanel {
     protected GuiFactory factory;
@@ -30,7 +24,7 @@ public abstract class OptionsPanel {
     private ArrayList<AbstractCustomButton> buttons = new ArrayList<>();
 //    private ArrayList<AbstractCustomLabel> labels = new ArrayList<>();
     protected int size = 0;
-    private gui.views.gamePanel.Point currentPoint = new gui.views.gamePanel.Point(-1, -1);
+    private Point currentPoint = new Point(-1, -1);
 
     public OptionsPanel(GuiFactory factory, int size) {
         this.size = size;
@@ -48,7 +42,7 @@ public abstract class OptionsPanel {
     }
 
     public void setCurrentIndexes(int x, int y) {
-        currentPoint = new gui.views.gamePanel.Point(x, y);
+        currentPoint = new Point(x, y);
     }
 
     public Point getCurrentPoint() {
@@ -168,6 +162,7 @@ public abstract class OptionsPanel {
             }
             i++;
         }
+        System.out.println(buttons+"  "+size);
     }
     public void applyUnivibilityAfterClicked(){
         for (var button : buttons){
