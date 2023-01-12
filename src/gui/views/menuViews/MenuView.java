@@ -29,7 +29,7 @@ public class MenuView extends BackgroundView {
         createButton("NEW GAME", 1);
         createButton("ITEMS", 2);
         createButton("CREATURES", 3);
-        createButton("SETTINGS", 4);
+        createButton("SCENARIO", 4);
         createButton("EXIT", 5);
         SharedCmpsFont.setUniformFont(buttons);
         manager.getCmp().setBorderData(new Color(0x4D0202), new DefaultBorderStrategy(), 10);

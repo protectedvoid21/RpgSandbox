@@ -5,6 +5,7 @@ import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleCreatureCard
 import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleCreatureCards.OnlyVisibleShowCard;
 import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleItemsCards.OnlyVisibleItemsEditCard;
 import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleItemsCards.OnlyVisibleItemsShowCard;
+import gui.views.Point;
 import gui.views.gamePanel.MainPanelGame;
 import gui.views.gamePanel.gamePanels.CreatorPanel;
 import gui.views.CardCancelView;
@@ -12,6 +13,7 @@ import gui.views.objectViews.creationViews.CreatorGameView;
 import gui.views.objectViews.creatureViews.AllCreaturesEditView;
 import gui.views.objectViews.creatureViews.AllCreaturesShowView;
 import gui.views.objectViews.creationViews.ChoosingCreationGameView;
+import gui.views.objectViews.creatureViews.ShowApplyCreatureView;
 import gui.views.objectViews.itemsViews.AllItemsEditView;
 import gui.views.objectViews.itemsViews.AllItemsShowView;
 import gui.views.menuViews.SelectingView;
@@ -129,8 +131,11 @@ public class WarHammerFactory extends IOverallFactory {
     public MainPanelGame createMainPanelGame() {
         var mainPanel = new MainPanelGame(this);
         mainPanel.getGamePanel().initializeOptionsButtonPanelData(new ArrayList<>(Arrays.asList("src/gui" +
-                "/monsterimage.png", "src/gui/playerimage.png", "src/gui/npcimage.png")));
-        mainPanel.getGamePanel().initializeOptionsPanelLabelData(new ArrayList<>(Arrays.asList("1", "3", "0")));
+                        "/monsterimage.png", "src/gui/playerimage.png", "src/gui/npcimage.png", "src/gui/playerimage" +
+                        ".png",
+                "src/gui/npcimage.png")));
+        mainPanel.getGamePanel().initializeOptionsPanelLabelData(new ArrayList<>(Arrays.asList("1", "3", "0", "1", "2"
+        )));
         return mainPanel;
     }
 
@@ -138,13 +143,22 @@ public class WarHammerFactory extends IOverallFactory {
     public ChoosingCreationGameView createchoosingCreationGameView() {
         var panel = new ChoosingCreationGameView(this);
         panel.initialize();
-//        panel.uploadData(new ArrayList<>(Arrays.asList(createCreatorPanel(), createCreatorPanel(),
-//        createCreatorPanel())));
+        var p1 = createCreatorPanel();
+        var p2 = createCreatorPanel();
+        var p3 = createCreatorPanel();
+        p1.setWholePanelDisabled();
+        p2.setWholePanelDisabled();
+        p3.setWholePanelDisabled();
+        p1.applyContent(new AbstractMap.SimpleEntry<>(new Point(9, 7), "src/gui/playerimage.png"),
+                new AbstractMap.SimpleEntry<>(new Point(3, 4),
+                "src/gui/npcimage.png"), new AbstractMap.SimpleEntry<>(new Point(4, 4), "src/gui/npcimage.png"))
+        ;
+        panel.uploadData(new ArrayList<>(Arrays.asList(p1,p2,p3)));
+
         return panel;
     }
 
-    @Override
-    public CreatorPanel createCreatorPanel() {
+    private CreatorPanel createCreatorPanel() {
         var panel = new CreatorPanel(this, 10);
         panel.initialize();
         panel.setBasePath("src/gui/plus.png");
@@ -154,10 +168,11 @@ public class WarHammerFactory extends IOverallFactory {
     @Override
     public CardCancelView createCardCancelView(Card card) {
         return new CardCancelView(factory, card);
+
     }
 
     @Override
-    public CreatorGameView creatorCreatorGameView() {
+    public CreatorGameView createCreatorGameView() {
         var creator = new CreatorGameView(this, 10);
         creator.getCreatorPanel().setBasePath("src/gui/plus.png");
         creator.getCreatorPanel().initializeOptionsButtonPanelData(new ArrayList<>(Arrays.asList("src/gui" +
@@ -846,27 +861,28 @@ public class WarHammerFactory extends IOverallFactory {
     @Override
     public AllCreaturesEditView createAllCreatureEditView() {
         var obj = new AllCreaturesEditView(this);
+        obj.initialize();
         obj.setBackgroundImage("src/gui/ave.jpg");
         return obj;
     }
 
     @Override
     public AllCreaturesShowView createAllCreatureShowView() {
-        var obj = new AllCreaturesShowView(this);
+        var obj = new ShowApplyCreatureView(this);obj.initialize();
         obj.setBackgroundImage("src/gui/ave.jpg");
         return obj;
     }
 
     @Override
     public AllItemsShowView createAllItemsShowView() {
-        var obj = new AllItemsShowView(this);
+        var obj = new AllItemsShowView(this);obj.initialize();
         obj.setBackgroundImage("src/gui/ave.jpg");
         return obj;
     }
 
     @Override
     public AllItemsEditView createAllItemsEditView() {
-        var obj = new AllItemsEditView(this);
+        var obj = new AllItemsEditView(this);obj.initialize();
         obj.setBackgroundImage("src/gui/ave.jpg");
         return obj;
     }

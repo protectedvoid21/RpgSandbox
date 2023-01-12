@@ -14,7 +14,7 @@ public class AllItemsShowView extends AllItemsView {
 
     public AllItemsShowView(IOverallFactory factory) {
         super(factory);
-        initialize();
+//        initialize();
     }
 
     @Override

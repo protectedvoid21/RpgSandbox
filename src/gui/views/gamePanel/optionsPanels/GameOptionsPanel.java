@@ -31,9 +31,4 @@ public class GameOptionsPanel extends OptionsPanel {
         SharedCmpsFont.setUniformFont(labels);
     }
 
-//    @Override
-//    public void initialize(int weight) {
-//        super.initialize(weight);
-//
-//    }
 }

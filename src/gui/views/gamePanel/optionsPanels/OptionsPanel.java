@@ -22,7 +22,6 @@ public abstract class OptionsPanel {
     private ComponentPanelMenager cmp;
     protected DefaultCustomMenuMenager customPanelAttackChoser;
     private ArrayList<AbstractCustomButton> buttons = new ArrayList<>();
-//    private ArrayList<AbstractCustomLabel> labels = new ArrayList<>();
     protected int size = 0;
     private Point currentPoint = new Point(-1, -1);
 
@@ -55,7 +54,6 @@ public abstract class OptionsPanel {
                         ComponentsSeries.ComponentsDimension.VERTICAL, weight);
         initializeCustomPanel();
         cmp = new ComponentPanelMenager(customPanelAttackChoser.getCmp(), weight);
-//        customPanelAttackChoser.getCmp().setBorderData(Color.RED, new AverageBorderStartegy(), 8);
         customPanelAttackChoser.getCmp().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -88,10 +86,6 @@ public abstract class OptionsPanel {
     public abstract double getPercentFilledSizeY();
 
     private void initializeCustomPanel() {
-//        size = dataMap.size();
-//        factory.setButtonFactory(new BasicButton());
-//        factory.setButtonType(GuiFactory.ButtonType.ICON);
-//        factory.setLabelType(GuiFactory.LabelType.NORMAL);
         for (int i = 0; i < size; i++) {
             customPanelAttackChoser.addMainComponent(10, 50);//cos sie pieprzy
             customPanelAttackChoser.getMainComponent(i).addSpace(1);
@@ -99,47 +93,8 @@ public abstract class OptionsPanel {
         }
         customPanelAttackChoser.setHasUniqueColor(true);
         customPanelAttackChoser.setBackground(Color.BLUE);
-//        for (var data : dataMap) {
-//            customPanelAttackChoser.addMainComponent(10, 50);//cos sie pieprzy
-//            var button = factory.createButton(data.getKey(), null);
-//            buttons.add(button);
-//            button.setHasDisabledColor(true);
-//            button.setSecondDisabledColor(Color.BLACK);
-//            button.addActionListener(new ActionListener() {
-//                @Override
-//                public void actionPerformed(ActionEvent e) {
-//                    cmp.setVisible(false);
-//                    setCurrentIndexes(-1, -1);
-//                }
-//            });
-////            button.setEnabled(false);
-//            var label = factory.createLabel(data.getValue());
-//            labels.add(label);
-//            customPanelAttackChoser.addMiddleComponent(button, i, 10);
-//            customPanelAttackChoser.addMiddleComponent(label, i, 10);
-//            customPanelAttackChoser.getMainComponent(i).addSpace(1);
-//            i++;
-//        }
-//        customPanelAttackChoser.setHasUniqueColor(true);
-//        customPanelAttackChoser.setBackground(Color.BLUE);
-//        SharedCmpsFont.setUniformFont(labels);
-//        customPanelAttackChoser.getCmp().setOpaque(true);
     }
 
-//    public void initializeLabelsData(ArrayList<String> dataMap) {
-////        var newSize = dataMap.size();
-//        factory.setLabelType(GuiFactory.LabelType.NORMAL);
-//        int i = 0;
-//        for (var data : dataMap) {
-//            if (i < size) {
-//                var label = factory.createLabel(data);
-//                labels.add(label);
-//                customPanelAttackChoser.addMiddleComponent(label, i, 10);
-//            }
-//            i++;
-//        }
-//        SharedCmpsFont.setUniformFont(labels);
-//    }
 
     public void initializeButtonsData(ArrayList<String> dataMap) {
         factory.setButtonFactory(new BasicButton());
@@ -151,13 +106,6 @@ public abstract class OptionsPanel {
                 buttons.add(button);
                 button.setHasDisabledColor(true);
                 button.setSecondDisabledColor(Color.BLACK);
-//                button.addActionListener(new ActionListener() {
-//                    @Override
-//                    public void actionPerformed(ActionEvent e) {
-//                        cmp.setVisible(false);
-//                        setCurrentIndexes(-1, -1);
-//                    }
-//                });
                 customPanelAttackChoser.addMiddleComponent(button, i, 10);
             }
             i++;

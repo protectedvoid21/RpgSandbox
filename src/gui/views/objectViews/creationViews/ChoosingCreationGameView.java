@@ -29,11 +29,6 @@ public class ChoosingCreationGameView extends AllObjectsView {
         var cmp = manager.getMainComponent(1).getComponent();
         var cmp2 = manager.getMainComponent(2).getComponent();
         initializeContent();
-//        for (int i =0; i<10; i++){
-//            var x = new CreatorPanel(factory, 10);
-//            x.initialize();
-//            data.add(x);
-//        }
         this.manager.setBackground(new Color(0x367045));
         this.manager.setHasUniqueColor(true);
         updateContent();
@@ -120,7 +115,7 @@ public class ChoosingCreationGameView extends AllObjectsView {
 
     }
 
-    private void setAllowButtonVisibility(boolean left,boolean right){
+    protected void setAllowButtonVisibility(boolean left, boolean right){
         applyButtons.get(0).setVisible(left);
         applyButtons.get(1).setVisible(right);
     }

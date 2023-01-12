@@ -17,8 +17,6 @@ public class GamePanel extends BaseGamePanel {
 
     private GameOptionsPanel gameOptionsPanel;
     public enum ActionsLabelsType {ATACK, DEFEND}
-//    private ArrayList<String> optionsPanelLabelData;
-
     private HashMap<ActionsLabelsType, IconLabel> actionsMap = new HashMap<>();
     public DefaultCustomMenuMenager<AbstractCustomLabel> managerActions =
             new DefaultCustomMenuMenager<AbstractCustomLabel>(ComponentsSeries.ComponentsDimension.HORIZONTAL,
@@ -46,7 +44,6 @@ public class GamePanel extends BaseGamePanel {
                 managerActions.getMiddleComponent(i, j).addSpace(5);
             }
         }
-//        gameOptionsPanel.initializeLabelsData((new ArrayList<>(Arrays.asList("1", "2", "1", "0", "1"))));
     }
 
     @Override

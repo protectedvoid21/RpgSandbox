@@ -22,7 +22,6 @@ public class FullItemPicker implements SwitchableComponent {
             new DefaultCustomMenuMenager<JComponent>(ComponentsSeries.ComponentsDimension.VERTICAL,
                     ComponentsSeries.ComponentsDimension.HORIZONTAL);
     private HashMap<LabelType, ItemPicker> items = new HashMap<>();
-//    private ComponentPanelMenager<JComponent> panel;
     private HashMap<LabelType, String> labelPaths = new HashMap<>();
     private AbstractCustomLabel label;
     private int currentSide = 0;
@@ -46,15 +45,10 @@ public class FullItemPicker implements SwitchableComponent {
         menager.addMiddleComponent(label, 0, 10,30);
         menager.addMiddleComponent(arrows.getPanel(), 2, 10,30);
         menager.addMiddleComponent(items.get(LabelType.WEAPON).getPanel(), 1, 10);
-//        menager.addMiddleComponent(new JPanel(), 0, 10);
         menager.getMiddleComponent(0, 0).addSpace(1);
         menager.getMiddleComponent(2, 0).addSpace(1);
         menager.getMiddleComponent(1, 0).addSpace(1, ComponentPanelMenager.Side.TOP, ComponentPanelMenager.Side.BOTTOM);
         factory.setLabelType(GuiFactory.LabelType.ICON);
-//        menager.getMiddleComponent(0, 0).addSpace(1);
-//        menager.getCmp().setBorderData(Color.RED, new AverageBorderStartegy(), 10);
-//        menager.getCmp().setHasUniqueColor(true);
-//        menager.getCmp().setBackground(new Color(0x4359B4));
         arrows.updateSwitchingButtons();
 
     }

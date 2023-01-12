@@ -10,7 +10,6 @@ import java.util.AbstractMap;
 import java.util.ArrayList;
 
 public class CreatorPanel extends BaseGamePanel {
-//    private String basePath = "src/gui/plus.png";
 private String basePath = Card.EMPTY_DATA_CONTENT;
 
     public CreatorPanel(IOverallFactory factory, int size) {

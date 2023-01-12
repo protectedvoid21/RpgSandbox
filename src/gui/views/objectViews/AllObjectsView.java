@@ -21,7 +21,7 @@ public abstract class AllObjectsView extends BackgroundView implements Switchabl
             new DefaultCustomMenuMenager(ComponentsSeries.ComponentsDimension.VERTICAL,
                     ComponentsSeries.ComponentsDimension.HORIZONTAL);
     protected DoubleArrowPanel arrowPanel;
-    private AbstractCustomButton cancelButton;
+    protected AbstractCustomButton cancelButton;
     protected int currentSide = 0;
     protected int maximumumElements = 4;
     protected int clickedIndex = -1;

@@ -34,7 +34,6 @@ public class ItemPicker implements SwitchableComponent {
         label = factory.createLabel(Card.EMPTY_DATA_CONTENT);
         menager.addMiddleComponent(label, 0, 10);
         menager.getMiddleComponent(0, 0).addSpace(1);
-//        menager.getCmp().setBorderData(Color.RED, new AverageBorderStartegy(), 20);
         menager.getCmp().setHasUniqueColor(true);
         menager.getCmp().setBackground(new Color(0x830F2972, true));
         arrows.updateSwitchingButtons();

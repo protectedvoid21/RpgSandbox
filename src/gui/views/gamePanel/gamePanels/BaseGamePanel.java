@@ -24,9 +24,6 @@ import java.util.Arrays;
 public abstract class BaseGamePanel extends BackgroundView {
     private Color baseBackColor;
 
-    //    public enum ActionsLabelsType {ATACK, DEFEND}
-//
-//    //    private HashMap<ActionsLabelsType, IconLabel> actionsMap = new HashMap<>();
     private Color secondBackColor = Color.YELLOW;
     private ComponentPanelMenager generalManager;
     protected JPanel panel = new JPanel();
@@ -38,9 +35,6 @@ public abstract class BaseGamePanel extends BackgroundView {
     public DefaultCustomMenuMenager<AbstractCustomButton> manager =
             new DefaultCustomMenuMenager<AbstractCustomButton>(ComponentsSeries.ComponentsDimension.HORIZONTAL,
                     ComponentsSeries.ComponentsDimension.VERTICAL);//
-//    public DefaultCustomMenuMenager<AbstractCustomLabel> managerActions =
-//            new DefaultCustomMenuMenager<AbstractCustomLabel>(ComponentsSeries.ComponentsDimension.HORIZONTAL,
-//                    ComponentsSeries.ComponentsDimension.VERTICAL);
 
     public BaseGamePanel(IOverallFactory factory, int size) {
         layout = new OverlayLayout(panel);
@@ -59,16 +53,9 @@ public abstract class BaseGamePanel extends BackgroundView {
         generalManager.setBackground(new Color(0x2F5B51));
         generalManager.setHasUniqueColor(true);
         generalManager.setBorderData(Color.RED, new AverageBorderStartegy(), 10);
-
-//        optionsPanel.setNonVisibleButtons(1,3);
         factory.getFactory().setButtonFactory(new BasicButton());
         factory.getFactory().setButtonType(GuiFactory.ButtonType.ICON);
         factory.getFactory().setLabelType(GuiFactory.LabelType.ICON);
-//        initializeOptionsButtonPanelData(new ArrayList<>(Arrays.asList("src/gui" +
-//                        "/rightarrowdisabled.png", "src/gui/snowman.png",
-//                "/gui/playerimage.png",
-//                "src/gui/playerimage.png",
-//                "src/gui/playerimage.png")));
         for (int i = 0; i < maxIndex; i++) {
             manager.addMainComponent(5);
             for (int j = 0; j < maxIndex; j++) {
@@ -91,25 +78,8 @@ public abstract class BaseGamePanel extends BackgroundView {
                 });
             }
         }
-//        initializeOptionsButtonPanelData(new ArrayList<>(Arrays.asList("src/gui" +
-//                        "/rightarrowdisabled.png", "src/gui/snowman.png",
-//                "/gui/playerimage.png",
-//                "src/gui/playerimage.png",
-//                "src/gui/playerimage.png")));
-
-//        manager.getMiddleComponent(maxIndex - 1, maxIndex - 1).getComponent().addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                removeContent();
-//            }
-//        });
         baseBackColor = manager.getMiddleComponent(0, 0).getComponent().getBackground();
         addPanels();
-//        initializeOptionsButtonPanelData(new ArrayList<>(Arrays.asList("src/gui" +
-//                        "/rightarrowdisabled.png", "src/gui/snowman.png",
-//                "/gui/playerimage.png",
-//                "src/gui/playerimage.png",
-//                "src/gui/playerimage.png")));
     }
     protected void addPanels() {
         panel.add(optionsPanel.getPanel());
@@ -130,33 +100,6 @@ public abstract class BaseGamePanel extends BackgroundView {
         }
     }
 
-//    public void removeActionsContent() {
-//        for (int i = 0; i < maxIndex; i++) {
-//            for (int j = 0; j < maxIndex; j++) {
-//                managerActions.getMiddleComponent(i, j).getComponent().setContent(Card.EMPTY_DATA_CONTENT);
-//
-//            }
-//        }
-//    }
-
-//    public void applyDefendActionsContent(Point position) {
-//        helpMethodActionsChangeContent(position, ActionsLabelsType.DEFEND);
-//    }
-//
-//    public void applyAttackActionsContent(Point position) {
-//        helpMethodActionsChangeContent(position, ActionsLabelsType.ATACK);
-//    }
-//
-//    private void helpMethodActionsChangeContent(Point position, ActionsLabelsType type) {
-//        if (!position.isOutOfRange(maxIndex, maxIndex)) {
-//            var pos = managerActions.getMiddleComponent(position.x, position.y);
-//            var label = pos.getComponent();
-//            pos.changeContent(actionsMap.get(type));
-//            var t = new javax.swing.Timer(1500, e -> pos.changeContent(label));
-//            t.start();
-//        }
-//
-//    }
 
 
     public void applyContent(ArrayList<AbstractMap.SimpleEntry<Point, String>> content) {
@@ -199,11 +142,6 @@ public abstract class BaseGamePanel extends BackgroundView {
         for (var index : indexes) {
             if (!index.isOutOfRange(maxIndex, maxIndex)) {
                 manager.getMiddleComponent(index.x, index.y).getComponent().setEnabled(false);
-            }
-        }
-        for (int i = 0; i < maxIndex; i++) {
-            for (int j = 0; j < maxIndex; j++) {
-                System.out.println(manager.getMiddleComponent(i, j).getComponent().getContent() + "   " + manager.getMiddleComponent(i, j).getComponent().isEnabled() + "  " + i + "  " + j);
             }
         }
 

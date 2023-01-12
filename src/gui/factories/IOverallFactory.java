@@ -69,8 +69,8 @@ public abstract class IOverallFactory {
 
     public abstract CardCancelView createCardCancelView(Card card);
 
-    public abstract CreatorGameView creatorCreatorGameView();
+    public abstract CreatorGameView createCreatorGameView();
 
-    public abstract CreatorPanel createCreatorPanel();
+//    public abstract CreatorPanel createCreatorPanel();
 //    public abstract OptionsPanel createOptionsPanel();
 }

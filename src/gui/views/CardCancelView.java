@@ -8,6 +8,7 @@ import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class CardCancelView {
     private AbstractCustomButton button;
@@ -17,6 +18,8 @@ public class CardCancelView {
 
     public CardCancelView(GuiFactory factory, BaseCard card) {
         factory.setButtonType(GuiFactory.ButtonType.NORMAL);
+        menager.setBackground(new Color(0x346572));
+        menager.setHasUniqueColor(true);
         button = factory.createButton("CANCEL", null);
         menager.addMainComponent(10);
         menager.addMainComponent(1);

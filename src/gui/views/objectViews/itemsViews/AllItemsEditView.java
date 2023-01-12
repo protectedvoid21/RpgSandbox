@@ -14,7 +14,7 @@ public class AllItemsEditView extends AllItemsView {
 
     public AllItemsEditView(IOverallFactory factory) {
         super(factory);
-        initialize();
+//        initialize();
     }
 
     @Override
@@ -45,21 +45,6 @@ public class AllItemsEditView extends AllItemsView {
             }
         });
 
-
-
-
-//        for (var but : Arrays.asList(card.getEditButton(), card.getDeleteButton())) {
-//            but.addActionListener(new ActionListener() {
-//                @Override
-//                public void actionPerformed(ActionEvent e) {
-//                    clickedIndex = maximumumElements * currentSide + index;
-//                    if (listenerHashMap.containsKey(clickedIndex) && listenerHashMap.get(clickedIndex).containsKey(but == card.getEditButton() ? ButtonType.EDIT : ButtonType.DELETE)) {
-//                        listenerHashMap.get(clickedIndex).get(but == card.getEditButton() ? ButtonType.EDIT :
-//                                ButtonType.DELETE).actionPerformed(e);
-//                    }
-//                }
-//            });
-//        }
         cards.add(card);
         return card;
     }

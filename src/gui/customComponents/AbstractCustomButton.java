@@ -130,9 +130,4 @@ public abstract class AbstractCustomButton extends JButton implements IContentCu
         helpBackgroundSetter(color);
     }
 
-//    @Override
-//    public void setBackground(Color color) {
-//        super.setBackground(color);
-//        backgroundColor = color;
-//    }
 }

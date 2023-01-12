@@ -32,10 +32,6 @@ public class IconButton extends AbstractCustomButton implements IIconComponent {
         this.hasSameDisabledIcon = value;
     }
 
-//    private void setDisabledIconContent(String text){
-//        var disabledIcon = new StretchIcon(text, icon.isProportionate());
-//        setDisabledIcon(disabledIcon);
-//    }
 
     public IconButton(String iconPath, boolean prop) {
         super();
