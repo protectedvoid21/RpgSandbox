@@ -32,6 +32,7 @@ public class PCFactoryWarhammer implements IFactory {
 
         PlayerCharacter playerCharacter = new PlayerCharacter(statistics,new Inventory(),experience,struggleStatistics);
         playerCharacter.setName(name);
+        playerCharacter.setObjectPathPicture(stats.get(14));
         return playerCharacter;
     }
 }

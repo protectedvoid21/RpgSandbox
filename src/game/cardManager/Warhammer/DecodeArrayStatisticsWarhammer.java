@@ -27,6 +27,7 @@ public class DecodeArrayStatisticsWarhammer implements IDecodeArrayStatistics {
         attributes.put(AttributeEnum.MOVEMENT, new UnlimitedAttribute(Integer.parseInt(stats.get(13))));
 
         StatisticsWarhammer statistics = new StatisticsWarhammer(attributes);
+
         return  statistics;
     }
 }
