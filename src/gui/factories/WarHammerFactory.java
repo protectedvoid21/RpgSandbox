@@ -1,14 +1,22 @@
-package gui.card;
+package gui.factories;
 
+import gui.card.CardContentDataSet;
 import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleCreatureCards.OnlyVisibleEditCard;
 import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleCreatureCards.OnlyVisibleShowCard;
 import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleItemsCards.OnlyVisibleItemsEditCard;
 import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleItemsCards.OnlyVisibleItemsShowCard;
+import gui.views.Point;
+import gui.views.gamePanel.MainPanelGame;
+import gui.views.gamePanel.gamePanels.CreatorPanel;
+import gui.views.CardCancelView;
+import gui.views.objectViews.creationViews.CreatorGameView;
 import gui.views.objectViews.creatureViews.AllCreaturesEditView;
 import gui.views.objectViews.creatureViews.AllCreaturesShowView;
+import gui.views.objectViews.creationViews.ChoosingCreationGameView;
+import gui.views.objectViews.creatureViews.ShowApplyCreatureView;
 import gui.views.objectViews.itemsViews.AllItemsEditView;
 import gui.views.objectViews.itemsViews.AllItemsShowView;
-import gui.views.selectingCreatureViews.SelectingView;
+import gui.views.menuViews.SelectingView;
 import gui.card.fullCards.abstractCards.Card;
 import gui.card.fullCards.specificCards.*;
 import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleCreatureCards.OnlyVisibleCard;
@@ -119,12 +127,65 @@ public class WarHammerFactory extends IOverallFactory {
                 new AbstractMap.SimpleEntry<>("src/gui/npcimage.png", "NPC"))));
     }
 
+    @Override
+    public MainPanelGame createMainPanelGame() {
+        var mainPanel = new MainPanelGame(this);
+        mainPanel.getGamePanel().initializeOptionsButtonPanelData(new ArrayList<>(Arrays.asList("src/gui" +
+                        "/monsterimage.png", "src/gui/playerimage.png", "src/gui/npcimage.png", "src/gui/playerimage" +
+                        ".png",
+                "src/gui/npcimage.png")));
+        mainPanel.getGamePanel().initializeOptionsPanelLabelData(new ArrayList<>(Arrays.asList("1", "3", "0", "1", "2"
+        )));
+        return mainPanel;
+    }
+
+    @Override
+    public ChoosingCreationGameView createchoosingCreationGameView() {
+        var panel = new ChoosingCreationGameView(this);
+        panel.initialize();
+        var p1 = createCreatorPanel();
+        var p2 = createCreatorPanel();
+        var p3 = createCreatorPanel();
+        p1.setWholePanelDisabled();
+        p2.setWholePanelDisabled();
+        p3.setWholePanelDisabled();
+        p1.applyContent(new AbstractMap.SimpleEntry<>(new Point(9, 7), "src/gui/playerimage.png"),
+                new AbstractMap.SimpleEntry<>(new Point(3, 4),
+                "src/gui/npcimage.png"), new AbstractMap.SimpleEntry<>(new Point(4, 4), "src/gui/npcimage.png"))
+        ;
+        panel.uploadData(new ArrayList<>(Arrays.asList(p1,p2,p3)));
+
+        return panel;
+    }
+
+    private CreatorPanel createCreatorPanel() {
+        var panel = new CreatorPanel(this, 10);
+        panel.initialize();
+        panel.setBasePath("src/gui/plus.png");
+        return panel;
+    }
+
+    @Override
+    public CardCancelView createCardCancelView(Card card) {
+        return new CardCancelView(factory, card);
+
+    }
+
+    @Override
+    public CreatorGameView createCreatorGameView() {
+        var creator = new CreatorGameView(this, 10);
+        creator.getCreatorPanel().setBasePath("src/gui/plus.png");
+        creator.getCreatorPanel().initializeOptionsButtonPanelData(new ArrayList<>(Arrays.asList("src/gui" +
+                "/monsterimage.png", "src/gui/playerimage.png", "src/gui/npcimage.png")));
+        return creator;
+    }
+
 
     public EntriesCard createEntriesCard() {
         var card = new EntriesCard(factory);
         card.initialize();
         card.setUniformFont();
-        uploadBackgroundImage(card, "src/gui/aaa.png");
+        uploadBackgroundImage(card, "src/gui/aaa.png");//jbc moze byc zle
         card.uploadNewData(generateSecondMap(), generateHashMap());
         return card;
     }
@@ -800,27 +861,28 @@ public class WarHammerFactory extends IOverallFactory {
     @Override
     public AllCreaturesEditView createAllCreatureEditView() {
         var obj = new AllCreaturesEditView(this);
+        obj.initialize();
         obj.setBackgroundImage("src/gui/ave.jpg");
         return obj;
     }
 
     @Override
     public AllCreaturesShowView createAllCreatureShowView() {
-        var obj = new AllCreaturesShowView(this);
+        var obj = new ShowApplyCreatureView(this);obj.initialize();
         obj.setBackgroundImage("src/gui/ave.jpg");
         return obj;
     }
 
     @Override
     public AllItemsShowView createAllItemsShowView() {
-        var obj = new AllItemsShowView(this);
+        var obj = new AllItemsShowView(this);obj.initialize();
         obj.setBackgroundImage("src/gui/ave.jpg");
         return obj;
     }
 
     @Override
     public AllItemsEditView createAllItemsEditView() {
-        var obj = new AllItemsEditView(this);
+        var obj = new AllItemsEditView(this);obj.initialize();
         obj.setBackgroundImage("src/gui/ave.jpg");
         return obj;
     }
@@ -838,6 +900,9 @@ public class WarHammerFactory extends IOverallFactory {
         createSmallItemCard(card);
         return card;
     }
+//    public  OptionsPanel createOptionsPanel(){
+//        return new GameOptionsPanel(factory, 5);
+//    }
 
     private void createSmallCard(OnlyVisibleCard card) {
         factory.setButtonFactory(new WinterClickedButtonFactory());

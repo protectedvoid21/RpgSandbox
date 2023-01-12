@@ -14,14 +14,19 @@ import java.awt.event.ComponentEvent;
  */
 public abstract class AbstractCustomButton extends JButton implements IContentCustomUICmp {
     private CustomButtonUI buttonUI;
+    private Color backgroundColor;
+    private Color secondColor;
+    private boolean hasDisabledColor = false;
 
     public AbstractCustomButton() {
-        super("");
+        this("");
     }
 
     public AbstractCustomButton(String s) {
         super(s);
         setPreferredSize(new Dimension(20, 20));
+        backgroundColor = getBackground();
+
     }
 
     public void setUI(CustomButtonUI buttonUI) {
@@ -43,12 +48,38 @@ public abstract class AbstractCustomButton extends JButton implements IContentCu
         });
     }
 
-    public void setBackground(Color color) {
+    public void setSecondDisabledColor(Color secondColor) {
+        this.secondColor = secondColor;
+    }
+
+    public void setHasDisabledColor(boolean hasDisabledColor) {
+        this.hasDisabledColor = hasDisabledColor;
+    }
+
+    @Override
+    public void setEnabled(boolean b) {
+//        super.setEnabled(b);
+        if (hasDisabledColor) {
+            if (!b) {
+                setOnlySuperBackground(secondColor);
+            } else {
+                setOnlySuperBackground(backgroundColor);
+            }
+        }
+        super.setEnabled(b);
+    }
+
+    private void helpBackgroundSetter(Color color) {
         if (buttonUI != null) {
             buttonUI.getCustomUI().setAdditionaldColor(color, ICustomUI.Index.BASE_BACKGROUND);
         }
 
         super.setBackground(color);
+    }
+
+    public void setBackground(Color color) {
+        backgroundColor = color;
+        helpBackgroundSetter(color);
     }
 
     public void setMaximumFontSizeStatus(boolean status) {
@@ -94,4 +125,9 @@ public abstract class AbstractCustomButton extends JButton implements IContentCu
 
         getCustomUI().setRelevantFont(getText());
     }
+
+    private void setOnlySuperBackground(Color color) {
+        helpBackgroundSetter(color);
+    }
+
 }

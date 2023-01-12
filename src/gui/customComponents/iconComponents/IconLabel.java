@@ -9,6 +9,8 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.font.TextAttribute;
 
 public class IconLabel extends AbstractCustomLabel implements IIconComponent {
@@ -31,7 +33,6 @@ public class IconLabel extends AbstractCustomLabel implements IIconComponent {
     public IconLabel(String iconPath, boolean prop) {
         super();
         setOpaque(false);
-//        setBorder(new LineBorder(Color.RED, 5, true));//to fix
         setContent(iconPath, prop);
     }
 
@@ -45,17 +46,4 @@ public class IconLabel extends AbstractCustomLabel implements IIconComponent {
     }
 
 
-    //    @Override
-//    public void setText(String text) {
-//        if (icon != null) {
-//            icon.setText(text);
-//        }
-//    }
-//
-//    @Override
-//    public void setFont(Font font) {
-//        if (icon!=null){
-//            icon.addAttribute(TextAttribute.FONT, font);
-//        }
-//    }
 }

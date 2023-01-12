@@ -15,6 +15,16 @@ public abstract class BorderDecorator implements ICustomUI {
     protected ICustomUI customUI;
 
     @Override
+    public void setOffSet(int value) {
+        customUI.setOffSet(value);
+    }
+
+    @Override
+    public void calculateMargins() {
+        customUI.calculateMargins();
+    }
+
+    @Override
     public boolean hasSharedSize() {
         return customUI.hasSharedSize();
     }

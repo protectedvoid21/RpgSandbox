@@ -1,19 +1,16 @@
 package gui.views.objectViews.creatureViews;
 
 import gui.card.CardContentDataSet;
-import gui.card.IOverallFactory;
+import gui.factories.IOverallFactory;
 import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleCreatureCards.OnlyVisibleCard;
 import gui.menu.ComponentPanelMenager;
 import gui.views.objectViews.AllObjectsView;
 
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public abstract class AllCreaturesView extends AllObjectsView {
-    private ArrayList<CardContentDataSet> data = new ArrayList<>();
+    protected ArrayList<CardContentDataSet> data = new ArrayList<>();
 
 
     public AllCreaturesView(IOverallFactory factory) {
@@ -51,6 +48,36 @@ public abstract class AllCreaturesView extends AllObjectsView {
         mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
         mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
 
+        var mapa3 = new ArrayList<ArrayList<String>>();
+
+        mapa3.add(new ArrayList<>(Arrays.asList(new String[]{"ATRdfgdfgYBUT1", "10"})));
+        mapa3.add(new ArrayList<>(Arrays.asList(new String[]{"XDdfgdfgDD", "1fd0"})));
+        mapa3.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAdfsdfM", "10f"})));
+        mapa3.add(new ArrayList<>(Arrays.asList(new String[]{"MOfdgfC", "1fd0"})));
+        mapa3.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
+        mapa3.add(new ArrayList<>(Arrays.asList(new String[]{"POWdfgdfgER", "1dfdgdf0"})));
+        mapa3.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
+        mapa3.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
+        mapa3.add(new ArrayList<>(Arrays.asList(new String[]{"ATRgdfgYBUT1", "10"})));
+        mapa3.add(new ArrayList<>(Arrays.asList(new String[]{"XDfgfggDD", "1fgdfgdfgf0"})));
+
+
+        mapa3.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
+        mapa3.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
+        mapa3.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
+        mapa3.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
+        mapa3.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
+
+        mapa3.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
+        mapa3.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
+        mapa3.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
+        mapa3.add(new ArrayList<>(Arrays.asList(new String[]{"XDDD", "1fd0"})));
+        mapa3.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
+
+        mapa3.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
+        mapa3.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
+        mapa3.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
+
         CardContentDataSet data = new CardContentDataSet();
         data.content = mapa2;
         data.titleContent = "WITCH";
@@ -85,8 +112,44 @@ public abstract class AllCreaturesView extends AllObjectsView {
                 CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
                 CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING));
 
-        this.data = new ArrayList<>(Arrays.asList(data, data, data, data, data, data, data, data, data, data, data,
+        var data2 = new CardContentDataSet();
+
+        data2.content = mapa3;
+        data2.titleContent = "WITCH";
+        data2.titlePath = "src/gui/witch.png";
+        data2.dataType = new ArrayList<>(Arrays.asList(CardContentDataSet.DataType.STRING,
+                CardContentDataSet.DataType.STRING, CardContentDataSet.DataType.STRING,
+                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING));
+
+        this.data = new ArrayList<>(Arrays.asList(data, data, data2, data2, data, data, data, data, data, data, data,
                 data, data));
+        this.data.get(3).content.get(2).set(1, "fsd");
         initializeContent();
         updateContent();
         arrowPanel.updateSwitchingButtons();

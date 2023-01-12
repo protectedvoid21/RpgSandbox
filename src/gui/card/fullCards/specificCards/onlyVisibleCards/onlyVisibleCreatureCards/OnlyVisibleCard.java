@@ -23,8 +23,7 @@ public abstract class OnlyVisibleCard extends BaseCard {
                     ComponentsSeries.ComponentsDimension.HORIZONTAL);
     protected ArrayList<AbstractCustomLabel> labelList = new ArrayList<>();
     private int maximumElementSize;
-    private CardContentDataSet currentData = new CardContentDataSet();
-//    protected AbstractCustomButton button;
+    protected CardContentDataSet currentData = new CardContentDataSet();
 
 
     public OnlyVisibleCard(GuiFactory factory, int elementsSize) {

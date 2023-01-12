@@ -30,6 +30,8 @@ public abstract class BaseCard implements ICustomBackgorund {
         this.factory = factory;
         seriesPanel = new DefaultCustomMenuMenager(ComponentsSeries.ComponentsDimension.VERTICAL,
                 ComponentsSeries.ComponentsDimension.HORIZONTAL);
+//        seriesPanel.getCmp().addSpace(10);
+        seriesPanel.getCmp().setHasUniqueColor(true);
         initSeriesPanel(titleSeries, 0, 6);
 //        initSeriesPanel(ComponentPanelMenager.createEmptyInstance(), 1, 14);
 

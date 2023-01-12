@@ -20,19 +20,6 @@ public class AddingButtonCard extends NormalDetailButtonsCard {
         super(factory);
     }
 
-//    @Override
-//    protected ArrayList<? extends IContentCustomUICmp> getContentList() {
-//        return selectList;
-//    }
-
-
-//    public AbstractCustomButton getSelectButton(int index) {
-//        return selectList.get(index);
-//    }
-//
-//    public void setSelectedIndex(int value){
-//        selectedIndex = value;
-//    }
 
     public ArrayList<CardContentDataSet> getDetailOnlyAddedIndexesData() {
         var newData = new ArrayList<CardContentDataSet>();

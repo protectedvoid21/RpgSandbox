@@ -9,11 +9,21 @@ public class DefaultCustomMenuMenager<T extends JComponent> {
     private ComponentsSeries.ComponentsDimension mainSide;
     private ComponentsSeries.ComponentsDimension middleSide;
 
+
+    public void setHasUniqueColor(boolean value) {
+        cmp.setHasUniqueColor(value);
+    }
+
     public DefaultCustomMenuMenager(ComponentsSeries.ComponentsDimension mainSide,
                                     ComponentsSeries.ComponentsDimension middleSide) {
+        this(mainSide, middleSide, 10);
+    }
+
+    public DefaultCustomMenuMenager(ComponentsSeries.ComponentsDimension mainSide,
+                                    ComponentsSeries.ComponentsDimension middleSide, int initCmpWeight) {
         this.mainSide = mainSide;
         this.middleSide = middleSide;
-        cmp = new ComponentPanelMenager<>(new ComponentsSeries<>(mainSide));
+        cmp = new ComponentPanelMenager<>(new ComponentsSeries<>(mainSide), initCmpWeight);
     }
 
     public DefaultCustomMenuMenager(JPanel parent, ComponentsSeries.ComponentsDimension mainSide,
@@ -26,8 +36,19 @@ public class DefaultCustomMenuMenager<T extends JComponent> {
         cmp.getComponent().addOption(new ComponentPanelMenager<>(new ComponentsSeries<>(middleSide)), weight);
     }
 
+    public void addMainComponent(double weight, int initialComponentWeight) {
+        cmp.getComponent().addOption(new ComponentPanelMenager<>(new ComponentsSeries<>(middleSide),
+                initialComponentWeight), weight);
+    }
+
     public void addMiddleComponent(T newComponent, int mainIndex, double weight) {
         cmp.getComponent().getOption(mainIndex).getComponent().addOption(new ComponentPanelMenager(newComponent),
+                weight);
+    }
+
+    public void addMiddleComponent(T newComponent, int mainIndex, double weight, int initialWeight) {
+        cmp.getComponent().getOption(mainIndex).getComponent().addOption(new ComponentPanelMenager(newComponent,
+                        initialWeight),
                 weight);
     }
 
@@ -44,6 +65,7 @@ public class DefaultCustomMenuMenager<T extends JComponent> {
     }
 
     public void setBackground(Color color) {
+//        cmp.addSpace();
         cmp.setBackground(color);
     }
 

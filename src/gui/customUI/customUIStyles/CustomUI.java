@@ -27,7 +27,7 @@ public abstract class CustomUI implements ICustomUI {
     private ComponentTextMarginManager activeMargin;
     private HashMap<ComponentTextMarginManager.Side, Double> previousCmpMarginValues;
     private boolean isBorderedRespected = false;
-    final private int offSet;
+    private int offSet;
 
     private boolean isFontMaximized = false;
     private boolean isFontRelevantToHeight = false;
@@ -53,6 +53,11 @@ public abstract class CustomUI implements ICustomUI {
     public boolean isFontMaximized() {
         return isFontMaximized;
     }
+
+    public void setOffSet(int value){
+        this.offSet = value;
+    }
+
 
     @Override
     public int getBorderSize() {
@@ -173,6 +178,14 @@ public abstract class CustomUI implements ICustomUI {
         return isFontRelevantToHeight;
     }
 
+
+    public void calculateMargins() {
+        initActiveMarginAndGetSizeDiff(ComponentTextMarginManager.Side.LEFT);
+        initActiveMarginAndGetSizeDiff(ComponentTextMarginManager.Side.RIGHT);
+        initActiveMarginAndGetSizeDiff(ComponentTextMarginManager.Side.BOTTOM);
+        initActiveMarginAndGetSizeDiff(ComponentTextMarginManager.Side.TOP);
+    }
+
     @Override
     public Font getRelevantFont(String labelText) {
 //        if (!isFontMaximized) {
@@ -238,10 +251,10 @@ public abstract class CustomUI implements ICustomUI {
 
     public void setRelevantFont(String labelText) {
         if (margin != null && borderStrategy != null) {
-            if (isFontMaximized || isFontRelevantToHeight) {
-                parent.setFont(getRelevantFont(labelText));
+//            if (isFontMaximized || isFontRelevantToHeight) {//wazne
+            parent.setFont(getRelevantFont(labelText));
 //                return;
-            }//w dzialajacej nie ma napewno tego slope'a
+//            }//w dzialajacej nie ma napewno tego slope'a
             if (hasSharedSize()) {
                 cmpsShared.setSharedFontSize(parent, labelText);
             }

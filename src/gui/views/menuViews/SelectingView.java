@@ -1,4 +1,4 @@
-package gui.views.selectingCreatureViews;
+package gui.views.menuViews;
 
 import gui.views.BackgroundView;
 import gui.card.SharedCmpsFont;

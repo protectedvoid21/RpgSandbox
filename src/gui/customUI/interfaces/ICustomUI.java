@@ -15,6 +15,8 @@ public interface ICustomUI {
 
     void installUI(JComponent c);
 
+    void calculateMargins();
+
     void paint(Graphics g, JComponent c);
 
     void setAdditionaldColor(Color color, Index index);
@@ -23,7 +25,9 @@ public interface ICustomUI {
 
     int getBorderSize();
 
-    void changeBorderStrategy (IBorderStrategy newStrategy);
+    void setOffSet(int value);
+
+    void changeBorderStrategy(IBorderStrategy newStrategy);
 
     double convertTopBorderSizeToValue(JComponent c, int offSetValue);
 
