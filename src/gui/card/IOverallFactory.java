@@ -5,6 +5,7 @@ import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleCreatureCard
 import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleItemsCards.OnlyVisibleItemsEditCard;
 import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleItemsCards.OnlyVisibleItemsShowCard;
 import gui.views.gamePanel.MainPanelGame;
+import gui.views.gamePanel.gamePanels.CreatorPanel;
 import gui.views.gamePanel.optionsPanels.OptionsPanel;
 import gui.views.objectViews.CardCancelView;
 import gui.views.objectViews.CreatorGameView;
@@ -71,5 +72,7 @@ public abstract class IOverallFactory {
     public abstract CardCancelView createCardCancelView(Card card);
 
     public abstract CreatorGameView creatorCreatorGameView();
+
+    public abstract CreatorPanel createCreatorPanel();
 //    public abstract OptionsPanel createOptionsPanel();
 }

@@ -89,11 +89,7 @@ public class MainPanelGame {
         menager.addMiddleComponent(gamePanel.getPanel(), 0, 8);
         menager.addMiddleComponent(seriesPanel, 0, 1, 20);
         menager.getMiddleComponent(0, 1).addSpace(1);
-//        var pickerseries = new ComponentPanelMenager<>(pickersSeriesPanel);
-//        picker.addSpace(10, ComponentPanelMenager.Side.TOP, ComponentPanelMenager.Side.BOTTOM);
         seriesPanel.addOption(new ComponentPanelMenager(picker.getPanel()), 10);
-//        createPicker();
-//        var movesLabel = factory.getFactory().createLabel("MOVES");
         for (var component : Arrays.asList(remainingMoves, nextPlayerButton, exitButton, dice.getDice())) {
             var cmp = new ComponentPanelMenager<>(component);
             cmp.addSpace(component == dice.getDice() ? 0 : 1);
@@ -115,13 +111,6 @@ public class MainPanelGame {
                 "Fsf")));
         activityOptionsPanel.initializeLabelsData(new ArrayList<>(Arrays.asList("1", "2", "3", "1", "1", "1")));
     }
-
-//    public void createPicker() {
-//        var picker = new ItemPicker(factory.getFactory());
-//        pickersSeriesPanel.addOption(picker.getPanel(), 10);
-//        picker.uploadData(new ArrayList<>(Arrays.asList("src/gui/ave.jpg", "src/gui/ave22.png", "src/gui/aveeee.jpg")));
-//
-//    }
 
     public void setMovesNumber(int val) {
         remainingMoves.setContent(Integer.toString(val));

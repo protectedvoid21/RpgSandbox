@@ -100,7 +100,7 @@ public class TestMainGui {
 //        var panel = new MainGamePanel(f, 10);
         picker.uploadData(new ArrayList<>(Arrays.asList("src/gui/ave.jpg", "src/gui/ave22.png", "src/gui/aveeee.jpg")));
         var xxxxx = f.createGameCard();
-        ramka.add(t.getPanel());
+        ramka.add(f.createchoosingCreationGameView().getPanel());
         ramka.setVisible(true);
     }
 }

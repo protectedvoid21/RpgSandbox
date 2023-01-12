@@ -22,30 +22,18 @@ public class ChoosingCreationGameView extends AllObjectsView {
         super(factory);
 
     }
-//
-//    @Override
-//    protected void initialize(int maximumumElements) {
-//        int maxindex = (maximumumElements + 1) / 2;
-//        for (int i = 0; i < maxindex; i++) {
-//            manager.addMainComponent(24);
-//        }
-//    }
 
     public void initialize() {
         initialize(2);
         initializeSetPanel(2);
         var cmp = manager.getMainComponent(1).getComponent();
         var cmp2 = manager.getMainComponent(2).getComponent();
-
-//        createDownPanel(2);
         initializeContent();
-        for (int i =0; i<11; i++){
-            var x = new CreatorPanel(factory, 10);
-            x.initialize();
-
-            x.setWholePanelDisabled();
-            data.add(x);
-        }
+//        for (int i =0; i<10; i++){
+//            var x = new CreatorPanel(factory, 10);
+//            x.initialize();
+//            data.add(x);
+//        }
         this.manager.setBackground(new Color(0x367045));
         this.manager.setHasUniqueColor(true);
         updateContent();
@@ -53,21 +41,6 @@ public class ChoosingCreationGameView extends AllObjectsView {
         manager.getMainComponent(1).changeContent(cmp2);
         manager.getMainComponent(2).changeContent(cmp);
 
-    }
-
-    public void uploadCards(ArrayList<CreatorPanel> panels){
-        this.data = data;
-//        for (var d : data){
-//            card.getShowButton().addActionListener(new ActionListener() {
-//                @Override
-//                public void actionPerformed(ActionEvent e) {
-//                    clickedIndex = maximumumElements * currentSide + index;
-//                    if (listenerHashMap.containsKey(clickedIndex) && listenerHashMap.get(clickedIndex).containsKey(ButtonType.SHOW)) {
-//                        listenerHashMap.get(clickedIndex).get(ButtonType.SHOW).actionPerformed(e);
-//                    }
-//                }
-//            });
-//        }
     }
 
     public void initializeSetPanel(int number){
@@ -82,19 +55,13 @@ public class ChoosingCreationGameView extends AllObjectsView {
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    System.out.println("hah");
                     clickedIndex = maximumumElements * currentSide + finalI;
-                    System.out.println(clickedIndex);
-//                    System.out.println(listenerHashMap.containsKey(clickedIndex)+"  "+);
                     if (listenerHashMap.containsKey(clickedIndex) && listenerHashMap.get(clickedIndex).containsKey(ButtonType.APPLY)) {
                         listenerHashMap.get(clickedIndex).get(ButtonType.APPLY).actionPerformed(e);
                     }
                 }
             });
-//            manager.getMiddleComponent(2, 0)
         }
-//        manager.addMiddleComponent(factory.getFactory().createButton("APPLY", null), 0, 10);
-//        manager.addMiddleComponent(factory.getFactory().createButton("APPLY", null), 0, 10);
     }
 
 
@@ -118,6 +85,7 @@ public class ChoosingCreationGameView extends AllObjectsView {
     public void uploadData(ArrayList<CreatorPanel> data) {
         this.data = data;
         currentSide = 0;
+        arrowPanel.updateSwitchingButtons();
         updateContent();
     }
 
@@ -136,20 +104,25 @@ public class ChoosingCreationGameView extends AllObjectsView {
         int dataSize = data.size();
         var sublist = data.subList(currentSide * maximumumElements, maxSideIndex > dataSize ? dataSize :
                 maxSideIndex);
-
         int currentIndex = 0;
-        System.out.println(data);
         for (var key : sublist) {
             manager.getMiddleComponent(0, currentIndex).changeContent(key.getPanel());
             key.getPanel().setVisible(true);
             currentIndex++;
         }
+        setAllowButtonVisibility(true, true);
         if (sublist.size() < maximumumElements) {
             for (int i = dataSize % maximumumElements; i < maximumumElements; i++) {
                 manager.getMiddleComponent(0, i).getComponent().setVisible(false);
             }
         }
+        setAllowButtonVisibility(dataSize!=0, sublist.size()%maximumumElements==0 && dataSize!=0);
 
+    }
+
+    private void setAllowButtonVisibility(boolean left,boolean right){
+        applyButtons.get(0).setVisible(left);
+        applyButtons.get(1).setVisible(right);
     }
 
 }

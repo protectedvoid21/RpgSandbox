@@ -5,6 +5,7 @@ import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleCreatureCard
 import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleItemsCards.OnlyVisibleItemsEditCard;
 import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleItemsCards.OnlyVisibleItemsShowCard;
 import gui.views.gamePanel.MainPanelGame;
+import gui.views.gamePanel.gamePanels.CreatorPanel;
 import gui.views.gamePanel.optionsPanels.GameOptionsPanel;
 import gui.views.gamePanel.optionsPanels.OptionsPanel;
 import gui.views.objectViews.CardCancelView;
@@ -127,15 +128,22 @@ public class WarHammerFactory extends IOverallFactory {
 
     @Override
     public MainPanelGame createMainPanelGame() {
-        var panel = new MainPanelGame(this);
-        panel.initialize();
-        return panel;
+        return new MainPanelGame(this);
     }
 
     @Override
     public ChoosingCreationGameView createchoosingCreationGameView() {
         var panel = new ChoosingCreationGameView(this);
         panel.initialize();
+//        panel.uploadData(new ArrayList<>(Arrays.asList(createCreatorPanel(), createCreatorPanel(), createCreatorPanel())));
+        return panel;
+    }
+
+    @Override
+    public CreatorPanel createCreatorPanel() {
+        var panel = new CreatorPanel(this, 10);
+        panel.initialize();
+        panel.setBasePath("src/gui/plus.png");
         return panel;
     }
 
