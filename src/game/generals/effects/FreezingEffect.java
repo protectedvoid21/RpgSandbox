@@ -11,9 +11,12 @@ public class FreezingEffect extends Effect {
 
     @Override
     protected void affect() {
-        statistics.getAttribute(AttributeEnum.AGILITY).decreaseValue(5);
-        statistics.getAttribute(AttributeEnum.MOVEMENT).decreaseValue(5);
-        
+        if(remainingRounds==roundsLength)
+        {
+            statistics.getAttribute(AttributeEnum.AGILITY).decreaseValue(5);
+            statistics.getAttribute(AttributeEnum.MOVEMENT).decreaseValue(5);
+        }
+
         decreaseLength();
     }
 

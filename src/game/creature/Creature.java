@@ -39,4 +39,7 @@ public abstract class Creature implements RoundListener {
     public Experience getExperience() {
         return experience;
     }
+
+
+    public abstract int getSpeed();
 }

@@ -27,12 +27,13 @@ public class StatisticsWarhammer extends Statistics {
         attributes.put(AttributeEnum.HEALTH_POINTS_MAX, new UnlimitedAttribute(15));
         attributes.put(AttributeEnum.HEALTH_POINTS_NOW, new UnlimitedAttribute(15));
         attributes.put(AttributeEnum.MOVEMENT, new UnlimitedAttribute(5));
-        attributes.put(AttributeEnum.MAGIC, new UnlimitedAttribute(1));
     }
 
     @Override
     public void initializeEffects() {
         effects.put(EffectEnum.BLEEDING, new BleedingEffect(this, 3));
+        effects.put(EffectEnum.POISON, new BleedingEffect(this, 3));
+        effects.put(EffectEnum.IN_FIRE, new BleedingEffect(this, 3));
         effects.put(EffectEnum.FREEZING, new FreezingEffect(this, 3));
     }
 
