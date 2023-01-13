@@ -36,8 +36,12 @@ public abstract class BaseCard implements ICustomBackgorund {
 //        initSeriesPanel(ComponentPanelMenager.createEmptyInstance(), 1, 14);
 
         initializeTitle();
-        seriesPanel.getCmp().setBorderData(Color.RED, new AverageBorderStartegy(), 8);
+//        seriesPanel.getCmp().setBorderData(Color.RED, new AverageBorderStartegy(), 8);
     }
+
+public void setBorder(Color color, int size){
+    seriesPanel.getCmp().setBorderData(color, new AverageBorderStartegy(), size);
+}
 
 
     protected void initSeriesPanel(JComponent content, int mainIndex, int weight) {

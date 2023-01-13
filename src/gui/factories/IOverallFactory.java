@@ -11,6 +11,7 @@ import gui.views.objectViews.creationViews.CreatorGameView;
 import gui.views.objectViews.creatureViews.AllCreaturesEditView;
 import gui.views.objectViews.creatureViews.AllCreaturesShowView;
 import gui.views.objectViews.creationViews.ChoosingCreationGameView;
+import gui.views.objectViews.creatureViews.ShowApplyCreatureView;
 import gui.views.objectViews.itemsViews.AllItemsEditView;
 import gui.views.objectViews.itemsViews.AllItemsShowView;
 import gui.views.menuViews.SelectingView;
@@ -48,6 +49,8 @@ public abstract class IOverallFactory {
     public abstract AllItemsEditView createAllItemsEditView();
 
     public abstract EntriesCard createCreatorCard(Card.CreatorTypes type);
+
+    public abstract ShowApplyCreatureView createCreatorApplyingCharacterView();
 
     public abstract MenuView createMenuView();
 

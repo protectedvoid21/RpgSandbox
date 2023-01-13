@@ -16,6 +16,7 @@ private String basePath = Card.EMPTY_DATA_CONTENT;
         super(factory, size);
     }
 
+
     @Override
     public void initialize() {
         super.initialize();
@@ -51,7 +52,7 @@ private String basePath = Card.EMPTY_DATA_CONTENT;
     public void createOptionsPanel() {
         optionsPanel = new CreatorOptionsPanel(factory.getFactory(), 3);
         optionsPanel.initialize(weight);
-        optionsPanel.setBorderColor(Color.RED);
+//        optionsPanel.setBorderColor(Color.RED);
     }
 
     public void setWholePanelDisabled() {
@@ -66,5 +67,6 @@ private String basePath = Card.EMPTY_DATA_CONTENT;
         }
         applyContent(array);
     }
+
 
 }

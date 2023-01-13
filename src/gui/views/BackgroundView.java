@@ -1,5 +1,6 @@
 package gui.views;
 
+import gui.customUI.customUIStyles.borderStrategies.AverageBorderStartegy;
 import gui.menu.DefaultCustomMenuMenager;
 import gui.menu.ICustomBackgorund;
 
@@ -22,5 +23,9 @@ public abstract class BackgroundView implements ICustomBackgorund {
     @Override
     public void setBackground(Color color) {
         getMenager().setBackground(color);
+    }
+
+    public void setBorder(Color color, int value){
+        getMenager().getCmp().setBorderData(color, new AverageBorderStartegy(), value);
     }
 }

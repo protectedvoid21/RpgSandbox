@@ -21,7 +21,7 @@ public class OnlyVisibleShowCard extends OnlyVisibleCard {
     @Override
     protected void initializeDownPanel() {
         factory.setButtonType(GuiFactory.ButtonType.NORMAL);
-        showButton = factory.createButton("DELETE", null);
+        showButton = factory.createButton("SHOW", null);
         initSeriesPanel(showButton, 2, 2);
         seriesPanel.getMiddleComponent(2, 0).addSpace(3, ComponentPanelMenager.Side.RIGHT, ComponentPanelMenager.Side.LEFT);
         seriesPanel.getMiddleComponent(2, 0).addSpace(3, ComponentPanelMenager.Side.BOTTOM, ComponentPanelMenager.Side.TOP);

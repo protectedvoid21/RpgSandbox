@@ -15,7 +15,6 @@ public class AllCreaturesShowView extends AllCreaturesView {
 
     public AllCreaturesShowView(IOverallFactory factory) {
         super(factory);
-//        initialize();
     }
 
     @Override

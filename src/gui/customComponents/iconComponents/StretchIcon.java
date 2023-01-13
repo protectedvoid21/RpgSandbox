@@ -39,7 +39,6 @@ public class StretchIcon extends ImageIcon implements IRequieredReactionOnMoveme
     }
 
 
-
     @Override
     public synchronized void paintIcon(Component c, Graphics g, int x, int y) {
         var horizontalMovement = direction == IMovementComponent.Direction.HORIZONTAL ? componentMovement : 0;

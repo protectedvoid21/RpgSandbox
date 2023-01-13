@@ -46,20 +46,17 @@ public class OverallCard extends AbstractCard<JComponent> {
         int currentIndex = 0;
         for (var key : sublist) {
             labelList.get( currentIndex).setContent(key.get(0));
-            goList.get(currentIndex).setContent("GO");
+            goList.get(currentIndex).setVisible(true);
             currentIndex++;
         }
         if (sublist.size() < maximumElementNumber) {
             for (int i = dataSize % maximumElementNumber; i < maximumElementNumber; i++) {
                 labelList.get(i).setContent(Card.EMPTY_DATA_CONTENT);
-                goList.get(i).setContent(Card.EMPTY_DATA_CONTENT);
+                goList.get(i).setVisible(false);
             }
         }
 
-
-        for (var list : Arrays.asList(labelList, goList)) {
-            Card.setAspectVisible(new ArrayList<>(list), true);
-        }
+        Card.setAspectVisible(labelList, true);
     }
 
     @Override
@@ -68,8 +65,8 @@ public class OverallCard extends AbstractCard<JComponent> {
         for (var key : cardActions.keySet()) {
             factory.setLabelType(GuiFactory.LabelType.ICON);
             var label = factory.createLabel(Card.EMPTY_DATA_CONTENT);
-            factory.setButtonType(GuiFactory.ButtonType.NORMAL);
-            var button = factory.createButton(Card.EMPTY_DATA_CONTENT, null);
+            factory.setButtonType(GuiFactory.ButtonType.ICON);
+            var button = factory.createButton("src/gui/go2.png", null);
             button.addActionListener(cardActions.get(key));//dodac pewnie zmiane listenera
 
             var newPanel =

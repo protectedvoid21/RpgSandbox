@@ -36,6 +36,8 @@ public abstract class BaseGamePanel extends BackgroundView {
             new DefaultCustomMenuMenager<AbstractCustomButton>(ComponentsSeries.ComponentsDimension.HORIZONTAL,
                     ComponentsSeries.ComponentsDimension.VERTICAL);//
 
+
+
     public BaseGamePanel(IOverallFactory factory, int size) {
         layout = new OverlayLayout(panel);
         this.weight = 400 / size;
@@ -45,6 +47,10 @@ public abstract class BaseGamePanel extends BackgroundView {
         createOptionsPanel();
         optionsPanel.applyUnivibilityAfterClicked();
     }
+    public void setBorder(Color color, int value){
+        generalManager.setBorderData(color, new AverageBorderStartegy(), value);
+        optionsPanel.setBorder(color, value);
+    }
 
     public void initialize() {
         generalManager = new ComponentPanelMenager(panel, 60);
@@ -52,8 +58,8 @@ public abstract class BaseGamePanel extends BackgroundView {
         panel.setOpaque(false);
         generalManager.setBackground(new Color(0x2F5B51));
         generalManager.setHasUniqueColor(true);
-        generalManager.setBorderData(Color.RED, new AverageBorderStartegy(), 10);
-        factory.getFactory().setButtonFactory(new BasicButton());
+//        generalManager.setBorderData(Color.RED, new AverageBorderStartegy(), 10);
+//        factory.getFactory().setButtonFactory(new BasicButton());
         factory.getFactory().setButtonType(GuiFactory.ButtonType.ICON);
         factory.getFactory().setLabelType(GuiFactory.LabelType.ICON);
         for (int i = 0; i < maxIndex; i++) {
@@ -61,6 +67,7 @@ public abstract class BaseGamePanel extends BackgroundView {
             for (int j = 0; j < maxIndex; j++) {
                 var but = factory.getFactory().createButton(Card.EMPTY_DATA_CONTENT, null);
                 but.setHasDisabledColor(true);
+                but.setBackground(new Color(0xffca7a));
                 but.setSecondDisabledColor(Color.YELLOW);
                 manager.addMiddleComponent(but, i, 5);
                 int finalI = i;
@@ -103,12 +110,14 @@ public abstract class BaseGamePanel extends BackgroundView {
 
 
     public void applyContent(ArrayList<AbstractMap.SimpleEntry<Point, String>> content) {
+        removeContent();
         for (var pair : content) {
             manager.getMiddleComponent(pair.getKey().x, pair.getKey().y).getComponent().setContent(pair.getValue());
         }
     }
 
     public void applyContent(AbstractMap.SimpleEntry<Point, String>... content) {
+        removeContent();
         applyContent(new ArrayList<>(Arrays.asList(content)));
     }
 

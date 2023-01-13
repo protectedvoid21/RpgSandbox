@@ -7,6 +7,7 @@ import gui.factories.customFactories.buttonFactories.BasicButton;
 import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
+import gui.views.BackgroundView;
 import gui.views.Point;
 
 import java.awt.*;
@@ -17,7 +18,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public abstract class OptionsPanel {
+public abstract class OptionsPanel extends BackgroundView {
     protected GuiFactory factory;
     private ComponentPanelMenager cmp;
     protected DefaultCustomMenuMenager customPanelAttackChoser;
@@ -30,9 +31,9 @@ public abstract class OptionsPanel {
         this.factory = factory;
     }
 
-    public void setBorderColor(Color color) {
-        customPanelAttackChoser.getCmp().setBorderData(color, new AverageBorderStartegy(), 15);
-    }
+//    public void setBorderColor(Color color) {
+//        customPanelAttackChoser.getCmp().setBorderData(color, new AverageBorderStartegy(), 15);
+//    }
 
     public void addOptionsPanelCommand(int index, ActionListener listener) {
         if (index < size) {
@@ -97,7 +98,7 @@ public abstract class OptionsPanel {
 
 
     public void initializeButtonsData(ArrayList<String> dataMap) {
-        factory.setButtonFactory(new BasicButton());
+//        factory.setButtonFactory(new BasicButton());
         factory.setButtonType(GuiFactory.ButtonType.ICON);
         int i = 0;
         for (var data : dataMap) {
@@ -110,7 +111,6 @@ public abstract class OptionsPanel {
             }
             i++;
         }
-        System.out.println(buttons+"  "+size);
     }
     public void applyUnivibilityAfterClicked(){
         for (var button : buttons){
@@ -125,9 +125,8 @@ public abstract class OptionsPanel {
     }
 
     public void setDisabledIndexes(ArrayList<Integer> indexes) {
-        System.out.println(size);
-        for (int i = 0; i < size; i++) {
-            buttons.get(i).setEnabled(true);
+        for (var button: buttons) {
+            button.setEnabled(true);
         }
         for (var index : indexes) {
             if (index < size) {
@@ -155,5 +154,10 @@ public abstract class OptionsPanel {
 
     public void setUniqueColor(boolean value){
         customPanelAttackChoser.setHasUniqueColor(value);
+    }
+
+    @Override
+    protected DefaultCustomMenuMenager getMenager() {
+        return customPanelAttackChoser;
     }
 }

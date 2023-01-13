@@ -17,15 +17,10 @@ public class ShowApplyCreatureView extends AllCreaturesShowView{
     }
 
     public void initialize() {
-        initialize(2);
+        super.initialize();
         initializeSetPanel(2);
         var cmp = manager.getMainComponent(1).getComponent();
         var cmp2 = manager.getMainComponent(2).getComponent();
-        initializeContent();
-        this.manager.setBackground(new Color(0x367045));
-        this.manager.setHasUniqueColor(true);
-        updateContent();
-        arrowPanel.updateSwitchingButtons();
         manager.getMainComponent(1).changeContent(cmp2);
         manager.getMainComponent(2).changeContent(cmp);
 

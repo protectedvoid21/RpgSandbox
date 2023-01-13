@@ -41,7 +41,7 @@ public class SelectingView extends BackgroundView {
         }
         createReturnButton();
         SharedCmpsFont.setUniformFont(labels);
-        manager.getCmp().setBorderData(new Color(0x4D0202), new DefaultBorderStrategy(), 10);
+//        manager.getCmp().setBorderData(new Color(0x4D0202), new DefaultBorderStrategy(), 10);
     }
 
     public JPanel getPanel() {
