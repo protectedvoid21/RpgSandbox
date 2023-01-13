@@ -104,9 +104,9 @@ public class MainPanelGame {
         secondMap.put(FullItemPicker.LabelType.ARMOR, new ArrayList<>(Arrays.asList("src/gui/weapon.png")));
         picker.uploadItemPaths(secondMap);
         picker.uploadMainPaths(map);
-        activityOptionsPanel.initializeButtonsData(new ArrayList<>(Arrays.asList("xx", "dd", "ffff", "Fsd", "FDsf",
-                "Fsf")));
-        activityOptionsPanel.initializeLabelsData(new ArrayList<>(Arrays.asList("1", "2", "3", "1", "1", "1")));
+//        activityOptionsPanel.initializeButtonsData(new ArrayList<>(Arrays.asList("xx", "dd", "ffff", "Fsd", "FDsf",
+//                "Fsf")));
+//        activityOptionsPanel.initializeLabelsData(new ArrayList<>(Arrays.asList("1", "2", "3", "1", "1", "1")));
     }
 
     public void setMovesNumber(int val) {

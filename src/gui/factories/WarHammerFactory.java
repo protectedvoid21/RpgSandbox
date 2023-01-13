@@ -141,10 +141,15 @@ public class WarHammerFactory extends IOverallFactory {
         factory.setLabelFactory(labelFactory);
         var mainPanel = new MainPanelGame(this);
         mainPanel.getGamePanel().setBorder(new Color(0x4D0202), 10);
+        mainPanel.getActivityOptionsPanel().initializeButtonsData(new ArrayList<>(Arrays.asList("src/gui" +
+                        "/monsterimage.png", "src/gui/playerimage.png", "src/gui/npcimage.png", "src/gui/playerimage" +
+                        ".png",
+                "src/gui/npcimage.png","src/gui/npcimage.png")));
+        mainPanel.getActivityOptionsPanel().initializeLabelsData(new ArrayList<>(Arrays.asList("1", "2", "3", "1", "1", "1")));
         mainPanel.getGamePanel().initializeOptionsButtonPanelData(new ArrayList<>(Arrays.asList("src/gui" +
                         "/monsterimage.png", "src/gui/playerimage.png", "src/gui/npcimage.png", "src/gui/playerimage" +
                         ".png",
-                "src/gui/npcimage.png")));
+                "src/gui/npcimage.png","src/gui/npcimage.png")));
         mainPanel.getGamePanel().initializeOptionsPanelLabelData(new ArrayList<>(Arrays.asList("1", "3", "0", "1", "2"
         )));
         return mainPanel;

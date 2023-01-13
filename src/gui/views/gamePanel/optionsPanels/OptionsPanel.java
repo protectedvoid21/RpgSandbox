@@ -125,8 +125,8 @@ public abstract class OptionsPanel extends BackgroundView {
     }
 
     public void setDisabledIndexes(ArrayList<Integer> indexes) {
-        for (int i = 0; i < size; i++) {
-            buttons.get(i).setEnabled(true);
+        for (var button: buttons) {
+            button.setEnabled(true);
         }
         for (var index : indexes) {
             if (index < size) {
