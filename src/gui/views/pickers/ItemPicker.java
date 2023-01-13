@@ -37,8 +37,6 @@ public class ItemPicker implements SwitchableComponent {
         menager.getCmp().setHasUniqueColor(true);
         menager.getCmp().setBackground(new Color(0x830F2972, true));
         arrows.updateSwitchingButtons();
-
-
     }
 
     @Override
@@ -79,5 +77,11 @@ public class ItemPicker implements SwitchableComponent {
     }
     public int getCurrentIndex(){
         return currentSide;
+    }
+
+    public void setCurrentIndex(int value){
+        currentSide = value;
+        arrows.updateSwitchingButtons();
+        updateContent();
     }
 }

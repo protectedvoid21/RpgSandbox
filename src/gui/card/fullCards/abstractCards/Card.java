@@ -9,6 +9,7 @@ import gui.card.contentCards.attributesCards.EntriesAttributesCard;
 import gui.card.contentCards.detailCards.AddingButtonCard;
 import gui.card.contentCards.detailCards.DetailButtonsCard;
 import gui.customComponents.AbstractCustomButton;
+import gui.customUI.customUIStyles.borderStrategies.DependantHeightBorderStrategy;
 import gui.factories.GuiFactory;
 import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;
@@ -69,6 +70,8 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
         seriesPanel.addMainComponent(1);
         factory.setButtonType(GuiFactory.ButtonType.NORMAL);
         cancelButton = factory.createButton("CANCEL", e -> seriesPanel.getCmp().setVisible(false));
+        cancelButton.getCustomUI().setOffSet(12);
+        cancelButton.getCustomUI().changeBorderStrategy(new DependantHeightBorderStrategy());
         seriesPanel.addMiddleComponent(cancelButton, 3, 10);
         seriesPanel.getMiddleComponent(3, 0).addSpace(10, ComponentPanelMenager.Side.LEFT,
                 ComponentPanelMenager.Side.RIGHT);

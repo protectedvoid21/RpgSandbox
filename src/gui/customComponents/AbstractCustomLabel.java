@@ -37,6 +37,12 @@ public abstract class AbstractCustomLabel extends JLabel implements IContentCust
         });
     }
 
+    @Override
+    protected void paintComponent(Graphics g) {
+        g.setFont(getFont());
+        super.paintComponent(g);
+    }
+
     public void setBackground(Color color) {
         if (labelUI != null) {
             labelUI.getCustomUI().setAdditionaldColor(color, ICustomUI.Index.BASE_BACKGROUND);

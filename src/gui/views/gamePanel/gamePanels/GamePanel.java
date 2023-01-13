@@ -58,7 +58,7 @@ public class GamePanel extends BaseGamePanel {
         gameOptionsPanel=opt;
         optionsPanel = opt;
         optionsPanel.initialize(weight);
-        optionsPanel.setBorderColor(Color.RED);
+//        optionsPanel.setBorderColor(Color.RED);
     }
 
     public void removeActionsContent() {

@@ -5,6 +5,11 @@ import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleCreatureCard
 import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleCreatureCards.OnlyVisibleShowCard;
 import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleItemsCards.OnlyVisibleItemsEditCard;
 import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleItemsCards.OnlyVisibleItemsShowCard;
+import gui.customUI.customUIStyles.borderStrategies.DefaultBorderStrategy;
+import gui.factories.customFactories.buttonFactories.*;
+import gui.factories.customFactories.labelFactories.*;
+import gui.factories.customFactories.textComponentFactory.TextFactory;
+import gui.factories.customFactories.textComponentFactory.TextFieldFactory;
 import gui.views.Point;
 import gui.views.gamePanel.MainPanelGame;
 import gui.views.gamePanel.gamePanels.CreatorPanel;
@@ -24,28 +29,28 @@ import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleItemsCards.O
 import gui.customUI.customUIStyles.borderStrategies.AverageBorderStartegy;
 import gui.customUI.customUIStyles.borderStrategies.DependantHeightBorderStrategy;
 import gui.customUI.customUIStyles.borderStrategies.DependantWidthBorderStrategy;
-import gui.factories.customFactories.buttonFactories.ButtonFactory;
-import gui.factories.customFactories.buttonFactories.MenuButtonsFactory;
-import gui.factories.customFactories.buttonFactories.WinterClickedButtonFactory;
-import gui.factories.customFactories.labelFactories.GameGreenLabelFactory;
-import gui.factories.customFactories.labelFactories.LabelFactory;
-import gui.factories.customFactories.labelFactories.MenuLabelFactory;
 import gui.menu.ICustomBackgorund;
 import gui.views.menuViews.MenuView;
 
+import java.awt.*;
 import java.util.*;
 
 public class WarHammerFactory extends IOverallFactory {
-    private ButtonFactory winterFactory = new WinterClickedButtonFactory();
-    private LabelFactory labelFactory = new GameGreenLabelFactory();
+    private ButtonFactory basicButtonFactory = new BasicButton();
+    private LabelFactory labelFactory = new BasicLabelFactory();
+    private LabelFactory clickedLabelFactory = new ClickedLabelFactory();
+    private ClickedWarhammerBasicFactory clickedFactoryButton = new ClickedWarhammerBasicFactory();
     private MenuLabelFactory menuLabelFactory = new MenuLabelFactory(0.7, 0.2);
     private MenuButtonsFactory menuButtonsFactory = new MenuButtonsFactory(0.6, 0.2);
+    private TextFactory textFactory = new TextFieldFactory();
 
 
     public WarHammerFactory() {
-        factory.setButtonFactory(winterFactory);
+        factory.setSpecificFont("src/gui/Sabatica-regular.ttf", 14);
+        factory.setButtonFactory(basicButtonFactory);
         factory.setBorderStrategy(new AverageBorderStartegy());
         factory.setLabelFactory(labelFactory);
+        factory.setTextFactory(textFactory);
     }
 
     private void uploadBackgroundImage(ICustomBackgorund object, String path) {
@@ -61,6 +66,8 @@ public class WarHammerFactory extends IOverallFactory {
         factory.setLabelFactory(menuLabelFactory);
         factory.setButtonFactory(menuButtonsFactory);
         var menu = new MenuView(factory);
+//        new Color(0x4D0202)
+        menu.setBorder(new Color(0x4D0202), 10);
         uploadBackgroundImage(menu, "src/gui/aveeee.jpg");
         return menu;
     }
@@ -76,6 +83,7 @@ public class WarHammerFactory extends IOverallFactory {
 //                        ".png", "MONSTER"), new AbstractMap.SimpleEntry<>("src/gui/playerimage.png", "PLAYER"),
 //                new AbstractMap.SimpleEntry<>("src/gui/npcimage.png", "NPC"))));
         var menu = new SelectingView(factory, content);
+        menu.setBorder(new Color(0x4D0202), 10);
         uploadBackgroundImage(menu, "src/gui/aveeee.jpg");
         factory.setBorderStrategy(new AverageBorderStartegy());
         return menu;
@@ -129,7 +137,10 @@ public class WarHammerFactory extends IOverallFactory {
 
     @Override
     public MainPanelGame createMainPanelGame() {
+        factory.setButtonFactory(basicButtonFactory);
+        factory.setLabelFactory(labelFactory);
         var mainPanel = new MainPanelGame(this);
+        mainPanel.getGamePanel().setBorder(new Color(0x4D0202), 10);
         mainPanel.getGamePanel().initializeOptionsButtonPanelData(new ArrayList<>(Arrays.asList("src/gui" +
                         "/monsterimage.png", "src/gui/playerimage.png", "src/gui/npcimage.png", "src/gui/playerimage" +
                         ".png",
@@ -151,9 +162,9 @@ public class WarHammerFactory extends IOverallFactory {
         p3.setWholePanelDisabled();
         p1.applyContent(new AbstractMap.SimpleEntry<>(new Point(9, 7), "src/gui/playerimage.png"),
                 new AbstractMap.SimpleEntry<>(new Point(3, 4),
-                "src/gui/npcimage.png"), new AbstractMap.SimpleEntry<>(new Point(4, 4), "src/gui/npcimage.png"))
+                        "src/gui/npcimage.png"), new AbstractMap.SimpleEntry<>(new Point(4, 4), "src/gui/npcimage.png"))
         ;
-        panel.uploadData(new ArrayList<>(Arrays.asList(p1,p2,p3)));
+        panel.uploadData(new ArrayList<>(Arrays.asList(p1, p2, p3)));
 
         return panel;
     }
@@ -161,6 +172,7 @@ public class WarHammerFactory extends IOverallFactory {
     private CreatorPanel createCreatorPanel() {
         var panel = new CreatorPanel(this, 10);
         panel.initialize();
+        panel.setBorder(new Color(0x4D0202), 10);
         panel.setBasePath("src/gui/plus.png");
         return panel;
     }
@@ -182,39 +194,53 @@ public class WarHammerFactory extends IOverallFactory {
 
 
     public EntriesCard createEntriesCard() {
+        factory.setLabelFactory(clickedLabelFactory);
+        factory.setButtonFactory(clickedFactoryButton);
         var card = new EntriesCard(factory);
+        card.setBackgroundImage("src/gui/cardbackground.jpg");
+        card.setBorder(new Color(0x4D0202), 10);
         card.initialize();
         card.setUniformFont();
-        uploadBackgroundImage(card, "src/gui/aaa.png");//jbc moze byc zle
         card.uploadNewData(generateSecondMap(), generateHashMap());
         return card;
     }
 
     public BasicCard createBasicCard() {
-        factory.setLabelFactory(labelFactory);
+        factory.setLabelFactory(clickedLabelFactory);
+        factory.setButtonFactory(clickedFactoryButton);
         var card = new BasicCard(factory);
+        card.setBorder(new Color(0x4D0202), 10);
+//        card.setBackground(new Color(0x9A76F5));
+        card.setBackgroundImage("src/gui/cardbackground.jpg");
         card.initialize();
         card.setUniformFont();
-        uploadBackgroundImage(card, "src/gui/ave.jpg");
+        card.setCancelButtonStatus(true);
         card.uploadNewData(generateSecondMap(), generateHashMap());
         return card;
     }
 
     @Override
     public GameCard createGameCard() {
+        factory.setLabelFactory(clickedLabelFactory);
+        factory.setButtonFactory(clickedFactoryButton);
         var card = new GameCard(factory);
+        card.setBorder(new Color(0x4D0202), 10);
+        card.setBackgroundImage("src/gui/cardbackground.jpg");
         card.initialize();
         card.setUniformFont();
-        uploadBackgroundImage(card, "src/gui/ave22.png");
+        card.setCancelButtonStatus(true);
         card.uploadNewData(generateSecondMap(), generateHashMap());
         return card;
     }
 
     public EntriesCard createCreatorCard(Card.CreatorTypes type) {
+        factory.setLabelFactory(clickedLabelFactory);
+        factory.setButtonFactory(clickedFactoryButton);
         var card = new EntriesCard(factory);
+        card.setBorder(new Color(0x4D0202), 10);
+        card.setBackgroundImage("src/gui/cardbackground.jpg");
         card.initialize();
         card.setUniformFont();
-        uploadBackgroundImage(card, "src/gui/bob.jpg");
         card.uploadCreatorItemsData(generateData1(), generateData2(), generateData1());
         card.setCreatorCard(true, type);
         return card;
@@ -222,7 +248,8 @@ public class WarHammerFactory extends IOverallFactory {
 
     @Override
     public ShowApplyCreatureView createCreatorApplyingCharacterView() {
-        var obj = new ShowApplyCreatureView(this);obj.initialize();
+        var obj = new ShowApplyCreatureView(this);
+        obj.initialize();
         obj.setBackgroundImage("src/gui/ave.jpg");
         return obj;
     }
@@ -842,25 +869,31 @@ public class WarHammerFactory extends IOverallFactory {
 
 
     private OnlyVisibleItemCard createSmallItemCard(OnlyVisibleItemCard card) {
-        factory.setButtonFactory(new WinterClickedButtonFactory());
-        factory.setBorderStrategy(new AverageBorderStartegy());
-//        var card = new OnlyVisibleItemCard(factory);
+        factory.setButtonFactory(clickedFactoryButton);
+        factory.setLabelFactory(clickedLabelFactory);
         card.initialize();
+        card.setBorder(new Color(0x4D0202), 10);
         card.setUniformFont();
-        uploadBackgroundImage(card, "src/gui/aaa.png");
+        uploadBackgroundImage(card, "src/gui/cardbackground.jpg");
         return card;
     }
 
     @Override
     public OnlyVisibleEditCard createSmallEditCard() {
+        factory.setButtonFactory(clickedFactoryButton);
+        factory.setLabelFactory(clickedLabelFactory);
         var card = new OnlyVisibleEditCard(factory, 6);
+        card.setBorder(new Color(0x4D0202), 10);
         createSmallCard(card);
         return card;
     }
 
     @Override
     public OnlyVisibleShowCard createSmallShowCard() {
+        factory.setButtonFactory(clickedFactoryButton);
+        factory.setLabelFactory(clickedLabelFactory);
         var card = new OnlyVisibleShowCard(factory, 6);
+        card.setBorder(new Color(0x4D0202), 10);
         createSmallCard(card);
         return card;
     }
@@ -875,21 +908,28 @@ public class WarHammerFactory extends IOverallFactory {
 
     @Override
     public AllCreaturesShowView createAllCreatureShowView() {
-        var obj = new AllCreaturesShowView(this);obj.initialize();
+        var obj = new AllCreaturesShowView(this);
+        obj.initialize();
         obj.setBackgroundImage("src/gui/ave.jpg");
         return obj;
     }
 
     @Override
     public AllItemsShowView createAllItemsShowView() {
-        var obj = new AllItemsShowView(this);obj.initialize();
+        factory.setButtonFactory(clickedFactoryButton);
+        factory.setLabelFactory(clickedLabelFactory);
+        var obj = new AllItemsShowView(this);
+        obj.initialize();
         obj.setBackgroundImage("src/gui/ave.jpg");
         return obj;
     }
 
     @Override
     public AllItemsEditView createAllItemsEditView() {
-        var obj = new AllItemsEditView(this);obj.initialize();
+        factory.setButtonFactory(clickedFactoryButton);
+        factory.setLabelFactory(clickedLabelFactory);
+        var obj = new AllItemsEditView(this);
+        obj.initialize();
         obj.setBackgroundImage("src/gui/ave.jpg");
         return obj;
     }
@@ -898,6 +938,7 @@ public class WarHammerFactory extends IOverallFactory {
     public OnlyVisibleItemsEditCard createSmallEditItemCard() {
         var card = new OnlyVisibleItemsEditCard(factory);
         createSmallItemCard(card);
+        card.setBorder(new Color(0x4D0202), 10);
         return card;
     }
 
@@ -905,6 +946,7 @@ public class WarHammerFactory extends IOverallFactory {
     public OnlyVisibleItemsShowCard createSmallShowItemCard() {
         var card = new OnlyVisibleItemsShowCard(factory);
         createSmallItemCard(card);
+        card.setBorder(new Color(0x4D0202), 10);
         return card;
     }
 //    public  OptionsPanel createOptionsPanel(){
@@ -912,10 +954,10 @@ public class WarHammerFactory extends IOverallFactory {
 //    }
 
     private void createSmallCard(OnlyVisibleCard card) {
-        factory.setButtonFactory(new WinterClickedButtonFactory());
         factory.setBorderStrategy(new AverageBorderStartegy());
 //        var card = new OnlyVisibleCard(factory, 6);
         card.initialize();
+        card.setBorder(new Color(0x4D0202), 10);
 //        card.uploadNewData("src/gui/stats.png", "bandage", "src/gui/stats.png");
         var mapa = new ArrayList<ArrayList<String>>();
         mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
@@ -938,7 +980,7 @@ public class WarHammerFactory extends IOverallFactory {
 
         card.uploadNewData(data);
         card.setUniformFont();
-        uploadBackgroundImage(card, "src/gui/aaa.png");
+        uploadBackgroundImage(card, "src/gui/cardbackground.jpg");
 
     }
 }

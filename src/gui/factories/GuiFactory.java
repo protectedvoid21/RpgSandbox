@@ -7,6 +7,7 @@ import gui.customComponents.customTextComponents.CustomTextComponent;
 import gui.customComponents.booleanComponents.CustomIconBooleanButton;
 import gui.customUI.customUIStyles.borderStrategies.DefaultBorderStrategy;
 import gui.customUI.customUIStyles.borderStrategies.IBorderStrategy;
+import gui.factories.customFactories.ComponentFactory;
 import gui.factories.customFactories.buttonFactories.ButtonFactory;
 import gui.factories.customFactories.buttonFactories.CardDownPanelButtonFactory;
 import gui.factories.customFactories.labelFactories.GameGreenLabelFactory;
@@ -16,6 +17,8 @@ import gui.factories.customFactories.textComponentFactory.TextFieldFactory;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Base GUI factory used for creating every object used in application. User has to used set method to define
@@ -25,6 +28,7 @@ public class GuiFactory {
     private Font currentFont = new Font("Helvetica", Font.PLAIN, 14);
 
     public enum LabelType {NORMAL, ICON, STRETCH_ICON}
+
     public enum ButtonType {NORMAL, ICON, STRETCH_ICON, DISABLED_STRETCH_ICON, DISABLED_ICON, DOUBLE, DOUBLE_WITH_ICONS}
 
     private LabelType labelType = LabelType.NORMAL;
@@ -34,15 +38,24 @@ public class GuiFactory {
     private TextFactory textFactory = new TextFieldFactory();
     private IBorderStrategy borderStrategy;
 
+    public GuiFactory() {
+        setBorderStrategy(new DefaultBorderStrategy());
+    }
+
+    public void setSpecificFont(String name, int size){
+        try {
+            currentFont = Font.createFont(Font.TRUETYPE_FONT, new File(name)).deriveFont(size);
+            var ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(currentFont);
+        } catch (FontFormatException | IOException e) {
+        }
+    }
+
     public void setBorderStrategy(IBorderStrategy strategy) {
         borderStrategy = strategy;
         labelFactory.setStrategy(strategy);
         buttonFactory.setStrategy(strategy);
         textFactory.setStrategy(strategy);
-    }
-
-    public GuiFactory() {
-        setBorderStrategy(new DefaultBorderStrategy());
     }
 
 
@@ -56,7 +69,7 @@ public class GuiFactory {
         return label;
     }
 
-    public AbstractCustomButton createButton(String text, ActionListener listener){
+    public AbstractCustomButton createButton(String text, ActionListener listener) {
         return createButton(text, null, listener);
     }
 
@@ -66,31 +79,33 @@ public class GuiFactory {
             case ICON -> button = buttonFactory.createIconPropButton(text, listener);
             case NORMAL -> button = buttonFactory.createNormalButton(text, listener);
             case STRETCH_ICON -> button = buttonFactory.createIconStretchButton(text, listener);
-            case DISABLED_ICON -> button = buttonFactory.createDisabledIconPropButton(text, disabledPath,listener);
-            case DISABLED_STRETCH_ICON -> button = buttonFactory.createDisabledIconStretchButton(text, disabledPath,listener);
+            case DISABLED_ICON -> button = buttonFactory.createDisabledIconPropButton(text, disabledPath, listener);
+            case DISABLED_STRETCH_ICON ->
+                    button = buttonFactory.createDisabledIconStretchButton(text, disabledPath, listener);
             case DOUBLE -> button = buttonFactory.createBooleanButton(text, disabledPath, true);
-            case DOUBLE_WITH_ICONS -> button = buttonFactory.createBooleanButtonWithIcons(text, disabledPath, true, true);
+            case DOUBLE_WITH_ICONS ->
+                    button = buttonFactory.createBooleanButtonWithIcons(text, disabledPath, true, true);
         }
         return button;
     }
 
-    public CustomBooleanButton createButton(String firstText, String secondText, boolean initialValue){
+    public CustomBooleanButton createButton(String firstText, String secondText, boolean initialValue) {
         return buttonFactory.createBooleanButton(firstText, secondText, initialValue);
     }
-    public CustomIconBooleanButton createButton(String firstText, String secondText, boolean initialValue, boolean proportionate){
+
+    public CustomIconBooleanButton createButton(String firstText, String secondText, boolean initialValue,
+                                                boolean proportionate) {
         return buttonFactory.createBooleanButtonWithIcons(firstText, secondText, initialValue, proportionate);
     }
 
     public void setButtonFactory(ButtonFactory buttonFactory) {
         this.buttonFactory = buttonFactory;
-        this.buttonFactory.setFont(currentFont);
-        this.buttonFactory.setStrategy(borderStrategy);
+        initializeFactory(buttonFactory);
     }
 
     public void setLabelFactory(LabelFactory labelFactory) {
         this.labelFactory = labelFactory;
-        this.labelFactory.setFont(currentFont);
-        this.labelFactory.setStrategy(borderStrategy);
+        initializeFactory(labelFactory);
     }
 
     public void setCurrentFont(Font newFont) {
@@ -103,9 +118,14 @@ public class GuiFactory {
     public void setFontSize(int fontSize) {
         setCurrentFont(new Font(currentFont.getFontName(), currentFont.getStyle(), fontSize));
     }
+    private void initializeFactory(ComponentFactory factory){
+        factory.setFont(currentFont);
+        factory.setStrategy(borderStrategy);
+    }
 
     public void setTextFactory(TextFactory textFactory) {
         this.textFactory = textFactory;
+        initializeFactory(textFactory);
     }
 
     public CustomTextComponent createTextField() {
@@ -120,6 +140,7 @@ public class GuiFactory {
     public void setLabelType(LabelType type) {
         this.labelType = type;
     }
+
     public void setButtonType(ButtonType type) {
         this.buttonType = type;
     }
