@@ -110,7 +110,6 @@ public abstract class OptionsPanel {
             }
             i++;
         }
-        System.out.println(buttons+"  "+size);
     }
     public void applyUnivibilityAfterClicked(){
         for (var button : buttons){
@@ -125,7 +124,6 @@ public abstract class OptionsPanel {
     }
 
     public void setDisabledIndexes(ArrayList<Integer> indexes) {
-        System.out.println(size);
         for (int i = 0; i < size; i++) {
             buttons.get(i).setEnabled(true);
         }

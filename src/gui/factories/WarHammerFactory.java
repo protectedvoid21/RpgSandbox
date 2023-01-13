@@ -220,6 +220,13 @@ public class WarHammerFactory extends IOverallFactory {
         return card;
     }
 
+    @Override
+    public ShowApplyCreatureView createCreatorApplyingCharacterView() {
+        var obj = new ShowApplyCreatureView(this);obj.initialize();
+        obj.setBackgroundImage("src/gui/ave.jpg");
+        return obj;
+    }
+
 
     private CardContentDataSet generateData2() {
         var mapa = new ArrayList<ArrayList<String>>();
@@ -868,7 +875,7 @@ public class WarHammerFactory extends IOverallFactory {
 
     @Override
     public AllCreaturesShowView createAllCreatureShowView() {
-        var obj = new ShowApplyCreatureView(this);obj.initialize();
+        var obj = new AllCreaturesShowView(this);obj.initialize();
         obj.setBackgroundImage("src/gui/ave.jpg");
         return obj;
     }
