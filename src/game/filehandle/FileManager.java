@@ -39,7 +39,6 @@ public class FileManager {
                 .setPrettyPrinting()
                 .setExclusionStrategies(new CustomExcludeStrategy())
                 .registerTypeAdapter(IStatistics.class, new StatisticsDeserializer())
-                //.registerTypeAdapter(IStatistics.class, new CustomAdapter<IStatistics>())
                 .registerTypeAdapter(IAttributeEnum.class, new CustomAdapter<IAttributeEnum>())
                 .registerTypeAdapter(AttributeValue.class, new CustomAdapter<AttributeValue>())
                 .create();

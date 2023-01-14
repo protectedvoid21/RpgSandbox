@@ -59,4 +59,9 @@ public class StatisticsWarhammer extends Statistics {
     public boolean isAbleToPlay() { //todo implement crowd control mechanics and more enchanced return
         return isAlive();
     }
+
+    @Override
+    public int getMovePriority() {
+        return attributes.get(AttributeEnum.AGILITY).getValue();
+    }
 }
