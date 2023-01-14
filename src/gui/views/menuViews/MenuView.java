@@ -24,6 +24,7 @@ public class MenuView extends BackgroundView {
         manager.getCmp().addSpace(2, ComponentPanelMenager.Side.BOTTOM, ComponentPanelMenager.Side.TOP);
         manager.getCmp().addSpace(2, ComponentPanelMenager.Side.RIGHT, ComponentPanelMenager.Side.LEFT);
         manager.addMainComponent(14);
+        factory.setLabelType(GuiFactory.LabelType.NORMAL);
         manager.addMiddleComponent( factory.createLabel("RPG ENGINE"), 0, 1);
         manager.getMiddleComponent(0,0).addSpace(3, ComponentPanelMenager.Side.BOTTOM);
         createButton("NEW GAME", 1);
@@ -32,7 +33,7 @@ public class MenuView extends BackgroundView {
         createButton("SCENARIO", 4);
         createButton("EXIT", 5);
         SharedCmpsFont.setUniformFont(buttons);
-        manager.getCmp().setBorderData(new Color(0x4D0202), new DefaultBorderStrategy(), 10);
+//        manager.getCmp().setBorderData(new Color(0x4D0202), new DefaultBorderStrategy(), 10);
 
     }
 

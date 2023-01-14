@@ -1,6 +1,7 @@
 package gui.card.fullCards.specificCards;
 
 import gui.card.CardContentDataSet;
+import gui.card.DoubleArrowPanel;
 import gui.card.contentCards.attributesCards.AttributesCard;
 import gui.card.contentCards.attributesCards.EntriesAttributesCard;
 import gui.card.contentCards.attributesCards.LabelAttributeCard;
@@ -10,24 +11,24 @@ import gui.card.contentCards.detailCards.DetailButtonsCard;
 import gui.card.fullCards.abstractCards.Card;
 import gui.customComponents.AbstractCustomButton;
 import gui.customComponents.customTextComponents.CustomTextComponent;
+import gui.customUI.customUIStyles.borderStrategies.DependantHeightBorderStrategy;
 import gui.factories.GuiFactory;
 import gui.menu.ComponentPanelMenager;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
+import java.util.*;
 
 public class EntriesCard extends Card {
     public enum EntryType {SPINNER, ENTRY}
+
     private CustomTextComponent textComponentTitle;
     private AddingButtonCard choserEqCard2 = null;
     private ChoserCard choserCard;
     protected ComponentPanelMenager<AbstractCustomButton> addButton;
     private JComponent helpPanelVariable;
+    private AbstractCustomButton saveButton;
 
     public EntriesCard(GuiFactory factory) {
         super(factory);
@@ -36,23 +37,24 @@ public class EntriesCard extends Card {
     public HashMap<CardTypes, CardContentDataSet> generateContentData() {
         var newMapa = new HashMap<CardTypes, CardContentDataSet>();
         newMapa.put(CardTypes.ATTRIBUTE, allCards.get(CardTypes.ATTRIBUTE).getData());
-        for (var type : allCards.keySet()){
+        for (var type : allCards.keySet()) {
             newMapa.put(type, allCards.get(type).getData());
         }
         return newMapa;
     }
-    public HashMap<CardTypes, CardContentDataSet> getIndexesData(){
+
+    public HashMap<CardTypes, CardContentDataSet> getIndexesData() {
         var newMapa = new HashMap<CardTypes, CardContentDataSet>();
-        for (var type : Arrays.asList(CardTypes.ARMOR, CardTypes.WEAPONS, CardTypes.MOUNT, CardTypes.ITEMS)){
+        for (var type : Arrays.asList(CardTypes.ARMOR, CardTypes.WEAPONS, CardTypes.MOUNT, CardTypes.ITEMS)) {
             newMapa.put(type, choserCard.getGameSelectedCard(type).getOnlyAddedIndexesData());
         }//niepotrzebn ale kto wie...
         return newMapa;
 
     }
 
-    public HashMap<CardTypes, ArrayList<Integer>> generateIndexesNumberData(){
+    public HashMap<CardTypes, ArrayList<Integer>> generateIndexesNumberData() {
         var newMapa = new HashMap<CardTypes, ArrayList<Integer>>();
-        for (var type : Arrays.asList(CardTypes.ARMOR, CardTypes.WEAPONS, CardTypes.MOUNT, CardTypes.ITEMS)){
+        for (var type : Arrays.asList(CardTypes.ARMOR, CardTypes.WEAPONS, CardTypes.MOUNT, CardTypes.ITEMS)) {
             newMapa.put(type, choserCard.getGameSelectedCard(type).getAddedIndexes());
         }
         return newMapa;
@@ -141,8 +143,8 @@ public class EntriesCard extends Card {
         super.updateTitle();
 
 //        if (activeCard == allCards.get(CardTypes.OVERALL)) {
-            rightTitleComponent.setVisible(!(activeCard == allCards.get(CardTypes.OVERALL)));
-            rightEntryTitleComponent.setVisible((activeCard == allCards.get(CardTypes.OVERALL)));
+        rightTitleComponent.setVisible(!(activeCard == allCards.get(CardTypes.OVERALL)));
+        rightEntryTitleComponent.setVisible((activeCard == allCards.get(CardTypes.OVERALL)));
 //        } else {
 //            rightEntryTitleComponent.setVisible(false);
 //            rightTitleComponent.setVisible(true);
@@ -153,6 +155,41 @@ public class EntriesCard extends Card {
     public void initializeTitle() {
         super.initializeTitle();
         textComponentTitle = factory.createTextField();
+    }
+
+    public AbstractCustomButton getSaveButton() {
+        return saveButton;
+    }
+
+    @Override
+    protected void createCancelPanel() {
+        super.createCancelPanel();
+        factory.setButtonType(GuiFactory.ButtonType.NORMAL);
+        saveButton = factory.createButton("SAVE", null);
+        initializeCancelPanelObject(saveButton, 1);
+    }
+
+    public void setEntriesIncorrect(ArrayList<Integer> values, int periodTime) {
+        if (values.size() > 0) {
+            if (!(activeCard == amwGeneratorCard)) {
+                switchSide(CardTypes.ATTRIBUTE);
+            }
+            activeCard.reset();
+            for (int j = 0; j < values.get(0) / activeCard.getMaximumElementNumber(); j++) {
+                activeCard.switchSide(DoubleArrowPanel.Side.RIGHT);
+                leftArrows.updateSwitchingButtons();
+            }
+        }
+
+        for (int i = 0; i < values.size(); i++) {
+            if (!(activeCard == amwGeneratorCard)) {
+                ((EntriesAttributesCard) this.allCards.get(CardTypes.ATTRIBUTE)).setEntryIncorrect(values.get(i),
+                        periodTime);
+            } else {
+                amwGeneratorCard.setEntryIncorrect(values.get(i), periodTime);
+            }
+        }
+
     }
 
 

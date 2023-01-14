@@ -1,5 +1,7 @@
 package gui.customComponents;
 
+import java.awt.*;
+
 public class CustomButton extends AbstractCustomButton {
     public CustomButton() {
         super("");
@@ -19,4 +21,5 @@ public class CustomButton extends AbstractCustomButton {
     public String getContent() {
         return getText();
     }
+
 }

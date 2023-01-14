@@ -27,21 +27,19 @@ public class TextFieldFactory extends TextFactory {
     }
 
     private CustomTextComponent initializeTextComponent(CustomTextComponent textField) {
-//        textField.setFont(new Font("Helvetica", Font.ITALIC, 14));
-        textField.getTextComponent().setForeground(Color.GRAY);
-        textField.setBackground(Color.BLUE);
+        textField.setFont(font);
+        textField.getTextComponent().setForeground(new Color(0000000));
+        textField.setBackground(new Color(0x9BEC82));
         var ui = new RoundedBorderUI(strategy, 5, 10);
-        ui.setAdditionaldColor(new Color(0x670613), ICustomUI.Index.FIRST);
-        ui.setAdditionaldColor(new Color(0xEE3B51), ICustomUI.Index.SECOND);
+        ui.setAdditionaldColor(new Color(0x1A3D10), ICustomUI.Index.FIRST);
+        ui.setAdditionaldColor(new Color(0x206E0A), ICustomUI.Index.SECOND);
         textField.setUI(new ChangingBorderColorWraper(ui));
         textField.setUI(ui);
-//        ui.getMargin().set(ComponentTextMarginManager.Side.LEFT, 10);
         ui.setRespectionBorder(true);
-        textField.setListener(new CustomDocumentListener(new Color(0xD08888)));
-//        textField.getMargin().set(35, 0, 35, 0);
+        textField.setListener(new CustomDocumentListener(new Color(0x697A69)));
+        textField.getMargin().set(30, 7, 30, 7);
         textField.setMaximumFontSize(true);
         textField.setMaximumFontRelevantToHeight(true);
-//        textField.setMaximumFontRelevangValue(0.5);
         return textField;
     }
 }

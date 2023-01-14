@@ -86,7 +86,6 @@ public abstract class AbstractCard<T extends JComponent> implements SwitchableCo
                 case RIGHT -> currentAttrSide++;
             }
             updateContent();
-
         }
     }
 

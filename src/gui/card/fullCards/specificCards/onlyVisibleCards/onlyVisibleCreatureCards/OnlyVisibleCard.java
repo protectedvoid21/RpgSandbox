@@ -30,7 +30,7 @@ public abstract class OnlyVisibleCard extends BaseCard {
         super(factory);
         maximumElementSize = elementsSize;
         initSeriesPanel(ComponentPanelMenager.createEmptyInstance(), 1, 14);
-        seriesPanel.getCmp().setBorderData(Color.RED, new AverageBorderStartegy(), 16);
+//        seriesPanel.getCmp().setBorderData(Color.RED, new AverageBorderStartegy(), 16);
     }
 
     public void uploadNewData(CardContentDataSet data) {

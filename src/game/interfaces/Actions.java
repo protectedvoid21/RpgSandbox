@@ -22,4 +22,7 @@ public abstract class Actions {
         actions.get(iActionsEnum).doAction(you);
     };
 
+    public Map<IActionsEnum, Action> getActions() {
+        return actions;
+    }
 }

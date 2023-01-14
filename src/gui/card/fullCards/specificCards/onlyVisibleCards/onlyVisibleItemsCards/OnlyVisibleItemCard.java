@@ -34,7 +34,7 @@ public abstract class OnlyVisibleItemCard extends BaseCard {
             rightTitleComponent.getComponent().setContent(path);
         }
         nameLabel.setContent(name);
-        seriesPanel.getCmp().setBorderData(Color.RED, new AverageBorderStartegy(), 16);
+//        seriesPanel.getCmp().setBorderData(Color.RED, new AverageBorderStartegy(), 16);
     }
 
 

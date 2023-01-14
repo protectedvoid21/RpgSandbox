@@ -71,6 +71,10 @@ public class ComponentTextMarginManager {
     }
 
 
+    public void remove(){
+        set(0,0,0,0);
+    }
+
     public void set(double top, double left, double bottom, double right) {
         var h = component.getHeight();
         var w = component.getWidth();

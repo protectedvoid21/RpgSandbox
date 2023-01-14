@@ -88,6 +88,12 @@ public abstract class AbstractCustomButton extends JButton implements IContentCu
     }
 
     @Override
+    protected void paintComponent(Graphics g) {
+        g.setFont(getFont());
+        super.paintComponent(g);
+    }
+
+    @Override
     public ICustomUI getCustomUI() {
         return buttonUI != null ? buttonUI.getCustomUI() : null;
     }
