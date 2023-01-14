@@ -1,8 +1,9 @@
 package game.board;
 
+import java.util.Collections;
+import java.util.Comparator;
 import game.interfaceWarhammer.ActionsWarhammer;
 import game.interfaces.Actions;
-
 import java.util.List;
 
 public class RoundManager {
@@ -20,25 +21,20 @@ public class RoundManager {
     }
     
     public GameObject getGameObjectWithTurn() {
-        GameObject currentObject = activeGameObjects.get(currentIndex);
-        currentObject.applyNewRound();
-        
-        while(!currentObject.creature.getStatistics().isAbleToPlay()) {
-            moveToNextObject();
-            currentObject = activeGameObjects.get(currentIndex);
-        }
-        return currentObject;
+        return activeGameObjects.get(currentIndex);
     }
     
-    private void moveToNextObject() {
-        currentIndex++;
+    public void moveToNextObject() {
+        while(!getGameObjectWithTurn().creature.getStatistics().isAbleToPlay()) {
+            currentIndex++;
+        }
+        getGameObjectWithTurn().applyNewRound();
         
         if(currentIndex >= activeGameObjects.size()) {
             currentIndex = 0;
             startNewTurn();
         }
     }
-
 
     private Actions initializeActions(){
         Actions actions = new ActionsWarhammer();
@@ -48,6 +44,12 @@ public class RoundManager {
     public void startNewTurn() {
         currentTurn++;
         activeGameObjects = board.getAllGameObjects();
+        sortByMovePriority(activeGameObjects);
+    }
+    
+    private void sortByMovePriority(List<GameObject> gameObjects) {
+        gameObjects.sort(Comparator.comparingInt(g -> g.creature.getStatistics().getMovePriority()));
+        Collections.reverse(gameObjects);
     }
     
     public int getCurrentTurn() {

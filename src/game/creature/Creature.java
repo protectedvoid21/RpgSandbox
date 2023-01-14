@@ -41,7 +41,6 @@ public abstract class Creature implements RoundListener {
         return experience;
     }
 
-
     public abstract int getSpeed();
 
     public String getObjectPathPicture() {

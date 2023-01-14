@@ -14,4 +14,6 @@ public interface IStatistics extends RoundListener {
     boolean isAlive();
     
     boolean isAbleToPlay();
+    
+    int getMovePriority();
 }
