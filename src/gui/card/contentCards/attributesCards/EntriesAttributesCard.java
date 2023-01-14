@@ -11,10 +11,12 @@ import gui.factories.GuiFactory;
 import gui.menu.ComponentsSeries;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.sql.Time;
 import java.util.ArrayList;
 
 public class EntriesAttributesCard extends AttributesCard {
@@ -73,9 +75,9 @@ public class EntriesAttributesCard extends AttributesCard {
     @Override
     public void initializeCardData(CardContentDataSet data, ArrayList detailData) {
         super.initializeCardData(data, detailData);
-        for (int i = 0; i<data.content.size() && i<data.dataType.size(); i++){
-            if (data.dataType.get(i)== CardContentDataSet.DataType.BOOLEAN){
-                if (!data.content.get(i).get(1).isEmpty()){
+        for (int i = 0; i < data.content.size() && i < data.dataType.size(); i++) {
+            if (data.dataType.get(i) == CardContentDataSet.DataType.BOOLEAN) {
+                if (!data.content.get(i).get(1).isEmpty()) {
                     data.content.get(i).set(1, "1");
                 }
             }
@@ -101,6 +103,7 @@ public class EntriesAttributesCard extends AttributesCard {
         SharedCmpsFont.setUniformFont(entriesList);
         SharedCmpsFont.setUniformFont(buttonBooleanList);
     }
+
     @Override
     protected void updateContent() {
         super.updateContent();
@@ -116,6 +119,17 @@ public class EntriesAttributesCard extends AttributesCard {
         for (int i = data.content.size(); i < getSideMaximumElementsNumber(); i++) {
             entriesList.get(i % maximumElementNumber).setVisible(false);
             buttonBooleanList.get(i % maximumElementNumber).setVisible(false);
+        }
+    }
+
+    public void setEntryIncorrect(int index, int timePeriod) {
+        var i = index % getMaximumElementNumber();
+        if (data.dataType.get(index) == CardContentDataSet.DataType.STRING) {
+            var previousBG = entriesList.get(i).getBackground();
+            entriesList.get(i).setBackground(new Color(0x570606));
+            var timer = new Timer(timePeriod, e -> entriesList.get(i).setBackground(previousBG));
+            timer.setRepeats(false);
+            timer.start();
         }
     }
 }

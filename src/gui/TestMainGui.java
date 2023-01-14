@@ -21,9 +21,11 @@ public class TestMainGui {
         ramka.setSize(800, 800);
         IOverallFactory f = new WarHammerFactory();
         var x = f.createMainPanelGame();
+
         x.getActivityOptionsPanel().setDisabledIndexes(1,4);
-//        x.getActivityOptionsPanel().setDisabledIndexes(1, 2);
-//        x.getGamePanel().applyContent(new AbstractMap.SimpleEntry<>(new Point(3, 4), "src/gui/go.png"));
+        x.getGamePanel().setOptionsDisabledIndexes(1,2);
+        x.getActivityOptionsPanel().setDisabledIndexes(1, 2);
+        x.getGamePanel().applyContent(new AbstractMap.SimpleEntry<>(new Point(3, 4), "src/gui/go.png"));
         ramka.add(x.getPanel());
 //        ramka.add(f.createBasicCard().getPanel());
 //        ramka.add(f.createEntriesCard().getPanel());
@@ -43,6 +45,7 @@ public class TestMainGui {
 //        ramka.add(f.createAllCreatureShowView().getPanel());
 //        ramka.add(f.createCreaturesPanel().getPanel());
 //        ramka.add(f.createCreatorApplyingCharacterView().getPanel());
+//        ramka.add(f.createCreatorCard(Card.CreatorTypes.ARMOR).getPanel());
 
 
         ramka.setVisible(true);

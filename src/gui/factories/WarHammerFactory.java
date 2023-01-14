@@ -35,7 +35,7 @@ import gui.views.menuViews.MenuView;
 import java.awt.*;
 import java.util.*;
 
-public class WarHammerFactory extends IOverallFactory {
+public class WarHammerFactory extends IOverallFactory implements WarhammerData {
     private ButtonFactory basicButtonFactory = new BasicButton();
     private LabelFactory labelFactory = new BasicLabelFactory();
     private LabelFactory clickedLabelFactory = new ClickedLabelFactory();
@@ -46,7 +46,7 @@ public class WarHammerFactory extends IOverallFactory {
 
 
     public WarHammerFactory() {
-        factory.setSpecificFont("src/gui/Sabatica-regular.ttf", 14);
+        factory.setSpecificFont(fontPath, 14);
         factory.setButtonFactory(basicButtonFactory);
         factory.setBorderStrategy(new AverageBorderStartegy());
         factory.setLabelFactory(labelFactory);
@@ -66,9 +66,8 @@ public class WarHammerFactory extends IOverallFactory {
         factory.setLabelFactory(menuLabelFactory);
         factory.setButtonFactory(menuButtonsFactory);
         var menu = new MenuView(factory);
-//        new Color(0x4D0202)
-        menu.setBorder(new Color(0x4D0202), 10);
-        uploadBackgroundImage(menu, "src/gui/aveeee.jpg");
+        menu.setBorder(basicBorderColor, basicBorderSize);
+        uploadBackgroundImage(menu, background1);
         return menu;
     }
 
@@ -83,8 +82,8 @@ public class WarHammerFactory extends IOverallFactory {
 //                        ".png", "MONSTER"), new AbstractMap.SimpleEntry<>("src/gui/playerimage.png", "PLAYER"),
 //                new AbstractMap.SimpleEntry<>("src/gui/npcimage.png", "NPC"))));
         var menu = new SelectingView(factory, content);
-        menu.setBorder(new Color(0x4D0202), 10);
-        uploadBackgroundImage(menu, "src/gui/aveeee.jpg");
+        menu.setBorder(basicBorderColor, basicBorderSize);
+        uploadBackgroundImage(menu, background1);
         factory.setBorderStrategy(new AverageBorderStartegy());
         return menu;
     }
@@ -108,31 +107,31 @@ public class WarHammerFactory extends IOverallFactory {
 
     @Override
     public SelectingView createOverallPanel() {
-        return createView(new ArrayList<>(Arrays.asList(new AbstractMap.SimpleEntry<>("src/gui/edit" +
-                        ".png", "EDIT"), new AbstractMap.SimpleEntry<>("src/gui/create.png", "CREATE"),
-                new AbstractMap.SimpleEntry<>("src/gui/view.png", "VIEW"))));
+        return createView(new ArrayList<>(Arrays.asList(new AbstractMap.SimpleEntry<>(editPath, "EDIT"),
+                new AbstractMap.SimpleEntry<>(createPath, "CREATE"),
+                new AbstractMap.SimpleEntry<>(viewPath, "VIEW"))));
     }
 
     @Override
     public SelectingView createCreatingEditingItemsPanel() {
-        return createView(new ArrayList<>(Arrays.asList(new AbstractMap.SimpleEntry<>("src/gui/horse" +
-                        ".png", "MOUNT"), new AbstractMap.SimpleEntry<>("src/gui/effect.png", "EFFECTS"),
-                new AbstractMap.SimpleEntry<>("src/gui/armor.png", "ARMOR"))));
+        return createView(new ArrayList<>(Arrays.asList(new AbstractMap.SimpleEntry<>(horsePath +
+                        ".png", "MOUNT"), new AbstractMap.SimpleEntry<>(efectPath, "EFFECTS"),
+                new AbstractMap.SimpleEntry<>(armorPath, "ARMOR"))));
     }
 
     @Override
     public SelectingView createViewingItemsPanel() {
-        return createView(new ArrayList<>(Arrays.asList(new AbstractMap.SimpleEntry<>("src/gui/horse" +
-                        ".png", "MOUNT"), new AbstractMap.SimpleEntry<>("src/gui/effect.png", "EFFECTS"),
-                new AbstractMap.SimpleEntry<>("src/gui/armor.png", "ARMOR"), new AbstractMap.SimpleEntry<>("src/gui" +
-                        "/weapon.png", "WEAPON"), new AbstractMap.SimpleEntry<>("src/gui/trolley.png", "ITEM"))));
+        return createView(new ArrayList<>(Arrays.asList(new AbstractMap.SimpleEntry<>(horsePath, "MOUNT"),
+                new AbstractMap.SimpleEntry<>(efectPath, "EFFECTS"),
+                new AbstractMap.SimpleEntry<>(armorPath, "ARMOR"), new AbstractMap.SimpleEntry<>(weaponPath,
+                        "WEAPON"), new AbstractMap.SimpleEntry<>(trolleyPath, "ITEM"))));
     }
 
     @Override
     public SelectingView createCreaturesPanel() {
-        return createView(new ArrayList<>(Arrays.asList(new AbstractMap.SimpleEntry<>("src/gui/monsterimage" +
-                        ".png", "MONSTER"), new AbstractMap.SimpleEntry<>("src/gui/playerimage.png", "PLAYER"),
-                new AbstractMap.SimpleEntry<>("src/gui/npcimage.png", "NPC"))));
+        return createView(new ArrayList<>(Arrays.asList(new AbstractMap.SimpleEntry<>(monsterPath, "MONSTER"),
+                new AbstractMap.SimpleEntry<>(playerImagePath, "PLAYER"),
+                new AbstractMap.SimpleEntry<>(npcImage, "NPC"))));
     }
 
     @Override
@@ -140,16 +139,15 @@ public class WarHammerFactory extends IOverallFactory {
         factory.setButtonFactory(basicButtonFactory);
         factory.setLabelFactory(labelFactory);
         var mainPanel = new MainPanelGame(this);
-        mainPanel.getGamePanel().setBorder(new Color(0x4D0202), 10);
-        mainPanel.getActivityOptionsPanel().initializeButtonsData(new ArrayList<>(Arrays.asList("src/gui" +
-                        "/monsterimage.png", "src/gui/playerimage.png", "src/gui/npcimage.png", "src/gui/playerimage" +
-                        ".png",
-                "src/gui/npcimage.png","src/gui/npcimage.png")));
-        mainPanel.getActivityOptionsPanel().initializeLabelsData(new ArrayList<>(Arrays.asList("1", "2", "3", "1", "1", "1")));
-        mainPanel.getGamePanel().initializeOptionsButtonPanelData(new ArrayList<>(Arrays.asList("src/gui" +
-                        "/monsterimage.png", "src/gui/playerimage.png", "src/gui/npcimage.png", "src/gui/playerimage" +
-                        ".png",
-                "src/gui/npcimage.png","src/gui/npcimage.png")));
+        mainPanel.getGamePanel().setBorder(basicBorderColor, basicBorderSize);
+        mainPanel.getActivityOptionsPanel().initializeButtonsData(new ArrayList<>(Arrays.asList(monsterPath,
+                playerImagePath, npcImage, playerImagePath,
+                npcImage, npcImage)));
+        mainPanel.getActivityOptionsPanel().initializeLabelsData(new ArrayList<>(Arrays.asList("1", "2", "3", "1", "1"
+                , "1")));
+        mainPanel.getGamePanel().initializeOptionsButtonPanelData(new ArrayList<>(Arrays.asList(monsterPath,
+                playerImagePath, npcImage, playerImagePath,
+                npcImage, npcImage)));
         mainPanel.getGamePanel().initializeOptionsPanelLabelData(new ArrayList<>(Arrays.asList("1", "3", "0", "1", "2"
         )));
         return mainPanel;
@@ -165,9 +163,9 @@ public class WarHammerFactory extends IOverallFactory {
         p1.setWholePanelDisabled();
         p2.setWholePanelDisabled();
         p3.setWholePanelDisabled();
-        p1.applyContent(new AbstractMap.SimpleEntry<>(new Point(9, 7), "src/gui/playerimage.png"),
+        p1.applyContent(new AbstractMap.SimpleEntry<>(new Point(9, 7),playerImagePath),
                 new AbstractMap.SimpleEntry<>(new Point(3, 4),
-                        "src/gui/npcimage.png"), new AbstractMap.SimpleEntry<>(new Point(4, 4), "src/gui/npcimage.png"))
+                        npcImage), new AbstractMap.SimpleEntry<>(new Point(4, 4), npcImage))
         ;
         panel.uploadData(new ArrayList<>(Arrays.asList(p1, p2, p3)));
 
@@ -177,8 +175,8 @@ public class WarHammerFactory extends IOverallFactory {
     private CreatorPanel createCreatorPanel() {
         var panel = new CreatorPanel(this, 10);
         panel.initialize();
-        panel.setBorder(new Color(0x4D0202), 10);
-        panel.setBasePath("src/gui/plus.png");
+        panel.setBorder(basicBorderColor, basicBorderSize);
+        panel.setBasePath(plusImage);
         return panel;
     }
 
@@ -191,9 +189,8 @@ public class WarHammerFactory extends IOverallFactory {
     @Override
     public CreatorGameView createCreatorGameView() {
         var creator = new CreatorGameView(this, 10);
-        creator.getCreatorPanel().setBasePath("src/gui/plus.png");
-        creator.getCreatorPanel().initializeOptionsButtonPanelData(new ArrayList<>(Arrays.asList("src/gui" +
-                "/monsterimage.png", "src/gui/playerimage.png", "src/gui/npcimage.png")));
+        creator.getCreatorPanel().setBasePath(plusImage);
+        creator.getCreatorPanel().initializeOptionsButtonPanelData(new ArrayList<>(Arrays.asList(monsterPath, playerImagePath, npcImage)));
         return creator;
     }
 
@@ -202,9 +199,10 @@ public class WarHammerFactory extends IOverallFactory {
         factory.setLabelFactory(clickedLabelFactory);
         factory.setButtonFactory(clickedFactoryButton);
         var card = new EntriesCard(factory);
-        card.setBackgroundImage("src/gui/cardbackground.jpg");
-        card.setBorder(new Color(0x4D0202), 10);
+        card.setBackgroundImage(cardBackground);
+        card.setBorder(basicBorderColor, basicBorderSize);
         card.initialize();
+        card.setCancelButtonStatus(true);
         card.setUniformFont();
         card.uploadNewData(generateSecondMap(), generateHashMap());
         return card;
@@ -214,9 +212,9 @@ public class WarHammerFactory extends IOverallFactory {
         factory.setLabelFactory(clickedLabelFactory);
         factory.setButtonFactory(clickedFactoryButton);
         var card = new BasicCard(factory);
-        card.setBorder(new Color(0x4D0202), 10);
+        card.setBorder(basicBorderColor, basicBorderSize);
 //        card.setBackground(new Color(0x9A76F5));
-        card.setBackgroundImage("src/gui/cardbackground.jpg");
+        card.setBackgroundImage(cardBackground);
         card.initialize();
         card.setUniformFont();
         card.setCancelButtonStatus(true);
@@ -229,8 +227,8 @@ public class WarHammerFactory extends IOverallFactory {
         factory.setLabelFactory(clickedLabelFactory);
         factory.setButtonFactory(clickedFactoryButton);
         var card = new GameCard(factory);
-        card.setBorder(new Color(0x4D0202), 10);
-        card.setBackgroundImage("src/gui/cardbackground.jpg");
+        card.setBorder(basicBorderColor, basicBorderSize);
+        card.setBackgroundImage(cardBackground);
         card.initialize();
         card.setUniformFont();
         card.setCancelButtonStatus(true);
@@ -242,10 +240,11 @@ public class WarHammerFactory extends IOverallFactory {
         factory.setLabelFactory(clickedLabelFactory);
         factory.setButtonFactory(clickedFactoryButton);
         var card = new EntriesCard(factory);
-        card.setBorder(new Color(0x4D0202), 10);
-        card.setBackgroundImage("src/gui/cardbackground.jpg");
+        card.setBorder(basicBorderColor, basicBorderSize);
+        card.setBackgroundImage(cardBackground);
         card.initialize();
         card.setUniformFont();
+        card.setCancelButtonStatus(true);
         card.uploadCreatorItemsData(generateData1(), generateData2(), generateData1());
         card.setCreatorCard(true, type);
         return card;
@@ -255,7 +254,7 @@ public class WarHammerFactory extends IOverallFactory {
     public ShowApplyCreatureView createCreatorApplyingCharacterView() {
         var obj = new ShowApplyCreatureView(this);
         obj.initialize();
-        obj.setBackgroundImage("src/gui/ave.jpg");
+        obj.setBackgroundImage(avePath);
         return obj;
     }
 
@@ -877,9 +876,9 @@ public class WarHammerFactory extends IOverallFactory {
         factory.setButtonFactory(clickedFactoryButton);
         factory.setLabelFactory(clickedLabelFactory);
         card.initialize();
-        card.setBorder(new Color(0x4D0202), 10);
+        card.setBorder(basicBorderColor, basicBorderSize);
         card.setUniformFont();
-        uploadBackgroundImage(card, "src/gui/cardbackground.jpg");
+        uploadBackgroundImage(card, cardBackground);
         return card;
     }
 
@@ -888,7 +887,7 @@ public class WarHammerFactory extends IOverallFactory {
         factory.setButtonFactory(clickedFactoryButton);
         factory.setLabelFactory(clickedLabelFactory);
         var card = new OnlyVisibleEditCard(factory, 6);
-        card.setBorder(new Color(0x4D0202), 10);
+        card.setBorder(basicBorderColor, basicBorderSize);
         createSmallCard(card);
         return card;
     }
@@ -898,7 +897,7 @@ public class WarHammerFactory extends IOverallFactory {
         factory.setButtonFactory(clickedFactoryButton);
         factory.setLabelFactory(clickedLabelFactory);
         var card = new OnlyVisibleShowCard(factory, 6);
-        card.setBorder(new Color(0x4D0202), 10);
+        card.setBorder(basicBorderColor, basicBorderSize);
         createSmallCard(card);
         return card;
     }
@@ -907,7 +906,7 @@ public class WarHammerFactory extends IOverallFactory {
     public AllCreaturesEditView createAllCreatureEditView() {
         var obj = new AllCreaturesEditView(this);
         obj.initialize();
-        obj.setBackgroundImage("src/gui/ave.jpg");
+        obj.setBackgroundImage(avePath);
         return obj;
     }
 
@@ -915,7 +914,7 @@ public class WarHammerFactory extends IOverallFactory {
     public AllCreaturesShowView createAllCreatureShowView() {
         var obj = new AllCreaturesShowView(this);
         obj.initialize();
-        obj.setBackgroundImage("src/gui/ave.jpg");
+        obj.setBackgroundImage(avePath);
         return obj;
     }
 
@@ -925,7 +924,7 @@ public class WarHammerFactory extends IOverallFactory {
         factory.setLabelFactory(clickedLabelFactory);
         var obj = new AllItemsShowView(this);
         obj.initialize();
-        obj.setBackgroundImage("src/gui/ave.jpg");
+        obj.setBackgroundImage(avePath);
         return obj;
     }
 
@@ -935,7 +934,7 @@ public class WarHammerFactory extends IOverallFactory {
         factory.setLabelFactory(clickedLabelFactory);
         var obj = new AllItemsEditView(this);
         obj.initialize();
-        obj.setBackgroundImage("src/gui/ave.jpg");
+        obj.setBackgroundImage(avePath);
         return obj;
     }
 
@@ -943,7 +942,7 @@ public class WarHammerFactory extends IOverallFactory {
     public OnlyVisibleItemsEditCard createSmallEditItemCard() {
         var card = new OnlyVisibleItemsEditCard(factory);
         createSmallItemCard(card);
-        card.setBorder(new Color(0x4D0202), 10);
+        card.setBorder(basicBorderColor, basicBorderSize);
         return card;
     }
 
@@ -951,7 +950,7 @@ public class WarHammerFactory extends IOverallFactory {
     public OnlyVisibleItemsShowCard createSmallShowItemCard() {
         var card = new OnlyVisibleItemsShowCard(factory);
         createSmallItemCard(card);
-        card.setBorder(new Color(0x4D0202), 10);
+        card.setBorder(basicBorderColor, basicBorderSize);
         return card;
     }
 //    public  OptionsPanel createOptionsPanel(){
@@ -962,7 +961,7 @@ public class WarHammerFactory extends IOverallFactory {
         factory.setBorderStrategy(new AverageBorderStartegy());
 //        var card = new OnlyVisibleCard(factory, 6);
         card.initialize();
-        card.setBorder(new Color(0x4D0202), 10);
+        card.setBorder(basicBorderColor, basicBorderSize);
 //        card.uploadNewData("src/gui/stats.png", "bandage", "src/gui/stats.png");
         var mapa = new ArrayList<ArrayList<String>>();
         mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
@@ -985,7 +984,7 @@ public class WarHammerFactory extends IOverallFactory {
 
         card.uploadNewData(data);
         card.setUniformFont();
-        uploadBackgroundImage(card, "src/gui/cardbackground.jpg");
+        uploadBackgroundImage(card, cardBackground);
 
     }
 }
