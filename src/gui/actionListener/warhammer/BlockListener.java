@@ -2,7 +2,9 @@ package gui.actionListener.warhammer;
 
 import game.board.RoundManager;
 import game.creature.Creature;
+import gui.actionListener.turnOffButtons;
 import gui.views.Point;
+import gui.views.gamePanel.MainPanelGame;
 import gui.views.gamePanel.gamePanels.BaseGamePanel;
 import gui.views.gamePanel.gamePanels.GamePanel;
 
@@ -14,22 +16,23 @@ import static game.interfaceWarhammer.AttributeEnum.ATTACKS;
 public class BlockListener implements ActionListener {
 
     RoundManager roundManager;
-    BaseGamePanel baseGamePanel;
+    MainPanelGame mainPanelGame;
 
-    public BlockListener(RoundManager roundManager, BaseGamePanel baseGamePanel) {
+    public BlockListener(RoundManager roundManager, MainPanelGame mainPanelGame) {
         this.roundManager = roundManager;
-        this.baseGamePanel = baseGamePanel;
+        this.mainPanelGame = mainPanelGame;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        Point point = baseGamePanel.getCurrentClickedIndexes();
+        Point point = mainPanelGame.getGamePanel().getCurrentClickedIndexes();
         Creature you = roundManager.getGameObjectWithTurn().getCreature();
         roundManager.getActions().doAction(BLOCK, you);
-        if (baseGamePanel instanceof GamePanel) {
-                ((GamePanel) baseGamePanel).applyDefendActionsContent(point);
 
-        }
+
+        mainPanelGame.getGamePanel().applyDefendActionsContent(point);
+
+        turnOffButtons.turnOff(roundManager,mainPanelGame,1,3);
     }
 }

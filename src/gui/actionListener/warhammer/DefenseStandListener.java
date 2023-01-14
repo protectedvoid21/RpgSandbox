@@ -2,7 +2,10 @@ package gui.actionListener.warhammer;
 
 import game.board.RoundManager;
 import game.creature.Creature;
+import game.interfaces.ITurnOffButtons;
+import gui.actionListener.turnOffButtons;
 import gui.views.Point;
+import gui.views.gamePanel.MainPanelGame;
 import gui.views.gamePanel.gamePanels.BaseGamePanel;
 import gui.views.gamePanel.gamePanels.GamePanel;
 
@@ -15,21 +18,22 @@ import static game.interfaceWarhammer.ActionsEnum.DEFENSE_STAND;
 public class DefenseStandListener implements ActionListener {
 
     RoundManager roundManager;
-    BaseGamePanel baseGamePanel;
+    MainPanelGame mainPanelGame;
 
-    public DefenseStandListener(RoundManager roundManager, BaseGamePanel baseGamePanel) {
+    public DefenseStandListener(RoundManager roundManager, MainPanelGame mainPanelGame) {
         this.roundManager = roundManager;
-        this.baseGamePanel = baseGamePanel;
+        this.mainPanelGame = mainPanelGame;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        Point point = baseGamePanel.getCurrentClickedIndexes();
+        Point point = mainPanelGame.getGamePanel().getCurrentClickedIndexes();
         Creature you = roundManager.getGameObjectWithTurn().getCreature();
         roundManager.getActions().doAction(DEFENSE_STAND, you);
-        if (baseGamePanel instanceof GamePanel) {
-            ((GamePanel) baseGamePanel).applyDefendActionsContent(point);
-        }
+        mainPanelGame.getGamePanel().applyDefendActionsContent(point);
+
+        turnOffButtons.turnOff(roundManager,mainPanelGame,1,1);
+
     }
 }

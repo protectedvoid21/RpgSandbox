@@ -4,6 +4,7 @@ import game.board.RoundManager;
 import game.creature.Creature;
 import game.interfaceWarhammer.struggleWarhammer.ChangeEquipment;
 import gui.views.Point;
+import gui.views.gamePanel.MainPanelGame;
 import gui.views.gamePanel.gamePanels.BaseGamePanel;
 
 import java.awt.event.ActionEvent;
@@ -12,17 +13,17 @@ import static game.interfaceWarhammer.ActionsEnum.*;
 public class ChangeEquipmentListener implements ActionListener {
 
     RoundManager roundManager;
-    BaseGamePanel baseGamePanel;
+    MainPanelGame mainPanelGame;
 
-    public ChangeEquipmentListener(RoundManager roundManager, BaseGamePanel baseGamePanel) {
+    public ChangeEquipmentListener(RoundManager roundManager, MainPanelGame mainPanelGame) {
         this.roundManager = roundManager;
-        this.baseGamePanel = baseGamePanel;
+        this.mainPanelGame = mainPanelGame;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        Point point = baseGamePanel.getCurrentClickedIndexes();
+        Point point = mainPanelGame.getGamePanel().getCurrentClickedIndexes();
         Creature you = roundManager.getGameObjectWithTurn().getCreature();
 
     }
