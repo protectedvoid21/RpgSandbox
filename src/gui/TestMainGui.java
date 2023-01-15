@@ -26,13 +26,15 @@ public class TestMainGui {
         x.getGamePanel().setOptionsDisabledIndexes(1,2);
         x.getActivityOptionsPanel().setDisabledIndexes(1, 2);
         x.getGamePanel().applyContent(new AbstractMap.SimpleEntry<>(new Point(3, 4), "src/gui/go.png"));
-        ramka.add(x.getPanel());
+
+//        ramka.add(f.createCreatingEditingItemsPanel().getPanel());
+//        ramka.add(x.getPanel());
 //        ramka.add(f.createBasicCard().getPanel());
 //        ramka.add(f.createEntriesCard().getPanel());
 //        ramka.add(f.createAllCreatureShowView().getPanel());
 //        ramka.add(f.createCreatorApplyingCharacterView().getPanel());
 //        ramka.add(f.createAllCreatureEditView().getPanel());
-//        ramka.add(f.createAllItemsEditView().getPanel());
+        ramka.add(f.createAllItemsShowView().getPanel());
 //        ramka.add(f.createAllItemsShowView().getPanel());
 //        ramka.add(f.createCardCancelView(f.createBasicCard()).getPanel());
 //        ramka.add(f.createchoosingCreationGameView().getPanel());

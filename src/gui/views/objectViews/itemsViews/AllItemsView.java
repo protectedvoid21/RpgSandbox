@@ -1,14 +1,18 @@
 package gui.views.objectViews.itemsViews;
 
+import gui.card.DoubleArrowPanel;
 import gui.factories.IOverallFactory;
 import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleItemsCards.OnlyVisibleItemCard;
 import gui.views.objectViews.AllObjectsView;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public abstract class AllItemsView extends AllObjectsView {
+public class AllItemsView extends AllObjectsView {
     protected ArrayList<ArrayList<String>> data = new ArrayList<>();
+    private ArrayList<OnlyVisibleItemCard> cards = new ArrayList<>();
 
     public AllItemsView(IOverallFactory factory) {
         super(factory);
@@ -63,23 +67,62 @@ public abstract class AllItemsView extends AllObjectsView {
 
         int currentIndex = 0;
         for (var key : sublist) {
-            getCards().get(currentIndex).uploadNewData(key.get(0), key.get(1), key.get(2));
+            cards.get(currentIndex).uploadNewData(key.get(0), key.get(1), key.get(2));
             currentIndex++;
         }
-        for (var card : getCards()) {
+        for (var card : cards) {
             card.getPanel().setVisible(true);
         }
         if (sublist.size() < maximumumElements) {
             for (int i = dataSize % maximumumElements; i < maximumumElements; i++) {
-                getCards().get(i).getPanel().setVisible(false);
+                cards.get(i).getPanel().setVisible(false);
             }
         }
 
     }
 
 
-    protected abstract OnlyVisibleItemCard createOnlyVisibleCard(int index);
+    protected OnlyVisibleItemCard createOnlyVisibleCard(int index){
+        var card = factory.createSmallItemCard();
+        card.getShowbutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                clickedIndex = maximumumElements * currentSide + index;
+                if (listenerHashMap.containsKey(clickedIndex) && listenerHashMap.get(clickedIndex).containsKey(ButtonType.SHOW)) {
+                    listenerHashMap.get(clickedIndex).get(ButtonType.SHOW).actionPerformed(e);
+                }
+            }
+        });
+        card.getEditButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                clickedIndex = maximumumElements * currentSide + index;
+                if (listenerHashMap.containsKey(clickedIndex) && listenerHashMap.get(clickedIndex).containsKey(ButtonType.EDIT)) {
+                    listenerHashMap.get(clickedIndex).get(ButtonType.EDIT).actionPerformed(e);
+                }
+            }
+        });
+        card.getDeleteButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                clickedIndex = maximumumElements * currentSide + index;
+                if (listenerHashMap.containsKey(clickedIndex) && listenerHashMap.get(clickedIndex).containsKey(ButtonType.DELETE)) {
+                    listenerHashMap.get(clickedIndex).get(ButtonType.DELETE).actionPerformed(e);
+                }
+                data.remove(data.get(clickedIndex));
+                updateContent();
+                if (maximumumElements * currentSide >= data.size()) {
+                    switchSide(DoubleArrowPanel.Side.LEFT);
+                    arrowPanel.updateSwitchingButtons();
+                }
+            }
+        });
+        cards.add(card);
+        return card;
+    }
 
 
-    protected abstract ArrayList<? extends OnlyVisibleItemCard> getCards();
+//    protected ArrayList<? extends OnlyVisibleItemCard> getCards(){
+//        return cards;
+//    }
 }

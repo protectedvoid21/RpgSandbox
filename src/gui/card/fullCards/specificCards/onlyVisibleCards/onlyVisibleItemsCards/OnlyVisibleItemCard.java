@@ -17,9 +17,12 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public abstract class OnlyVisibleItemCard extends BaseCard {
+public class OnlyVisibleItemCard extends BaseCard {
 //    private AbstractCustomButton showbutton;
     private AbstractCustomLabel nameLabel;
+    private AbstractCustomButton editButton;
+    private AbstractCustomButton deleteButton;
+    private AbstractCustomButton showbutton;
 
 
     public OnlyVisibleItemCard(GuiFactory factory) {
@@ -40,9 +43,20 @@ public abstract class OnlyVisibleItemCard extends BaseCard {
 
     @Override
     public void setUniformFont() {
+        SharedCmpsFont.setUniformFont(new ArrayList<>(Arrays.asList(editButton, deleteButton, showbutton)));
     }
 
-    protected abstract void initializeDownPanel();
+    protected void initializeDownPanel(){
+        showbutton = factory.createButton("SHOW", null);
+        editButton = factory.createButton("EDIT", null);
+        deleteButton = factory.createButton("DELETE", null);
+        var list = Arrays.asList(editButton, deleteButton, showbutton);
+        for (var but : list){
+            int i = 0;
+            seriesPanel.addMiddleComponent(but, 2, 10);
+            seriesPanel.getMiddleComponent(2, list.indexOf(but)).addSpace(4);
+        }
+    }
 
     @Override
     public void setVisibility(boolean value) {
@@ -83,5 +97,17 @@ public abstract class OnlyVisibleItemCard extends BaseCard {
 
     }
 
-    public abstract boolean containsButton(JButton button);
+    public boolean containsButton(JButton button){
+        return button==deleteButton || button==editButton || button==showbutton;
+    }
+    public AbstractCustomButton getEditButton() {
+        return editButton;
+    }
+    public AbstractCustomButton getDeleteButton() {
+        return deleteButton;
+    }
+
+    public AbstractCustomButton getShowbutton(){
+        return showbutton;
+    }
 }

@@ -102,7 +102,8 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
 
         var d = allCards.get(type).getDetailData();
 
-        equipmentCard.initializeCardData(allCards.get(type).getDetailData().get(allCards.get(type).getSideMaximumElementsNumber() - allCards.get(type).getMaximumElementNumber() + index), null);
+        equipmentCard.initializeCardData(allCards.get(type).getDetailData().get(allCards.get(type).getSideMaximumElementsNumber()
+                - allCards.get(type).getMaximumElementNumber() + index), null);
 
         updateContent(equipmentCard);
         arrowMenager.getOption(1).changeContent(exitButton);//yyyyto fix

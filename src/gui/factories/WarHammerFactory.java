@@ -3,8 +3,6 @@ package gui.factories;
 import gui.card.CardContentDataSet;
 import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleCreatureCards.OnlyVisibleEditCard;
 import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleCreatureCards.OnlyVisibleShowCard;
-import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleItemsCards.OnlyVisibleItemsEditCard;
-import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleItemsCards.OnlyVisibleItemsShowCard;
 import gui.customUI.customUIStyles.borderStrategies.DefaultBorderStrategy;
 import gui.factories.customFactories.buttonFactories.*;
 import gui.factories.customFactories.labelFactories.*;
@@ -19,8 +17,6 @@ import gui.views.objectViews.creatureViews.AllCreaturesEditView;
 import gui.views.objectViews.creatureViews.AllCreaturesShowView;
 import gui.views.objectViews.creationViews.ChoosingCreationGameView;
 import gui.views.objectViews.creatureViews.ShowApplyCreatureView;
-import gui.views.objectViews.itemsViews.AllItemsEditView;
-import gui.views.objectViews.itemsViews.AllItemsShowView;
 import gui.views.menuViews.SelectingView;
 import gui.card.fullCards.abstractCards.Card;
 import gui.card.fullCards.specificCards.*;
@@ -31,6 +27,7 @@ import gui.customUI.customUIStyles.borderStrategies.DependantHeightBorderStrateg
 import gui.customUI.customUIStyles.borderStrategies.DependantWidthBorderStrategy;
 import gui.menu.ICustomBackgorund;
 import gui.views.menuViews.MenuView;
+import gui.views.objectViews.itemsViews.AllItemsView;
 
 import java.awt.*;
 import java.util.*;
@@ -219,6 +216,13 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
         card.setUniformFont();
         card.setCancelButtonStatus(true);
         card.uploadNewData(generateSecondMap(), generateHashMap());
+//        card.setBorder(basicBorderColor, basicBorderSize);
+//        card.setBackgroundImage(cardBackground);
+//        card.initialize();
+//        card.setUniformFont();
+//        card.setCancelButtonStatus(true);
+//        card.uploadCreatorItemsData(generateData1(), generateData2(), generateData1());
+//        card.setCreatorCard(true, Card.CreatorTypes.ARMOR);
         return card;
     }
 
@@ -919,36 +923,18 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
     }
 
     @Override
-    public AllItemsShowView createAllItemsShowView() {
+    public AllItemsView createAllItemsShowView() {
         factory.setButtonFactory(clickedFactoryButton);
         factory.setLabelFactory(clickedLabelFactory);
-        var obj = new AllItemsShowView(this);
+        var obj = new AllItemsView(this);
         obj.initialize();
         obj.setBackgroundImage(avePath);
         return obj;
     }
 
     @Override
-    public AllItemsEditView createAllItemsEditView() {
-        factory.setButtonFactory(clickedFactoryButton);
-        factory.setLabelFactory(clickedLabelFactory);
-        var obj = new AllItemsEditView(this);
-        obj.initialize();
-        obj.setBackgroundImage(avePath);
-        return obj;
-    }
-
-    @Override
-    public OnlyVisibleItemsEditCard createSmallEditItemCard() {
-        var card = new OnlyVisibleItemsEditCard(factory);
-        createSmallItemCard(card);
-        card.setBorder(basicBorderColor, basicBorderSize);
-        return card;
-    }
-
-    @Override
-    public OnlyVisibleItemsShowCard createSmallShowItemCard() {
-        var card = new OnlyVisibleItemsShowCard(factory);
+    public OnlyVisibleItemCard createSmallItemCard() {
+        var card = new OnlyVisibleItemCard(factory);
         createSmallItemCard(card);
         card.setBorder(basicBorderColor, basicBorderSize);
         return card;
