@@ -16,6 +16,11 @@ public class MenuController extends Controller {
     public void initialize(IOverallFactory overallFactory) {
         MenuView menuView = overallFactory.createMenuView();
         menuView.getExitButton().addActionListener(new ExitListener());
+        menuView.getCreaturesButton().addActionListener(
+                new RedirectListener(controllerManager, new CreatureCreatorController(controllerManager, mainFrame)));
+        menuView.getItemsButton().addActionListener(
+                new RedirectListener(controllerManager, new ItemTypeMenuController(controllerManager, mainFrame))
+        );
         mainFrame.add(menuView.getPanel());
     }
     
