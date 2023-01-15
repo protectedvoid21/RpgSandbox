@@ -50,8 +50,24 @@ public class MenuView extends BackgroundView {
         return manager.getCmp();
     }
 
-    public JButton getButton(int index){
-        return buttons.get(index);
+    public JButton getNewGameButton() {
+        return buttons.get(0);
+    }
+
+    public JButton getItemsButton() {
+        return buttons.get(1);
+    }
+
+    public JButton getCreaturesButton() {
+        return buttons.get(2);
+    }
+
+    public JButton getScenarioButton() {
+        return buttons.get(3);
+    }
+
+    public JButton getExitButton() {
+        return buttons.get(4);
     }
 
     @Override
