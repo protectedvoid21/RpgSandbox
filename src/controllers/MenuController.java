@@ -21,6 +21,9 @@ public class MenuController extends Controller {
         menuView.getItemsButton().addActionListener(
                 new RedirectListener(controllerManager, new ItemTypeMenuController(controllerManager, mainFrame))
         );
+        menuView.getNewGameButton().addActionListener(
+                new RedirectListener(controllerManager, new NewGameController(controllerManager, mainFrame))
+        );
         mainFrame.add(menuView.getPanel());
     }
     

@@ -39,7 +39,7 @@ public class TestMainGui {
 //        ramka.add(f.createCreaturesPanel().getPanel());
 //        ramka.add(f.createSmallEditItemCard().getPanel());
 //        ramka.add(f.createGameCard().getPanel());
-//        ramka.add(f.createCreatorGameView().getPanel());
+//       ramka.add(f.createCreatorGameView().getPanel());
 //        ramka.add(f.createAllCreatureShowView().getPanel());
 //        ramka.add(f.createCreatorApplyingCharacterView().getPanel());
 //        ramka.add(f.createCreatorCard(Card.CreatorTypes.ARMOR).getPanel());
