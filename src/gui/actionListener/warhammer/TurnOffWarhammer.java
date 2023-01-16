@@ -90,7 +90,7 @@ public class TurnOffWarhammer implements ITurnOffButtons {
         }
 
 
-        //mainPanelGame.getGamePanel().setOptionsDisabledIndexes(indexesBoard);
+
         mainPanelGame.getActivityOptionsPanel().setDisabledIndexes(indexesOption);
     }
 }
