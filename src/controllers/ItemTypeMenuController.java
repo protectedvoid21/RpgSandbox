@@ -16,7 +16,7 @@ public class ItemTypeMenuController extends Controller {
         selectingView.getReturnButton().addActionListener(
                 new RedirectListener(controllerManager, new MenuController(controllerManager, mainFrame))
         );
-        
+
         //todo get item type and pass it to ItemListController
         selectingView.getButton(0).addActionListener(
                 new RedirectListener(controllerManager, new ItemListController(controllerManager, mainFrame))
@@ -33,7 +33,7 @@ public class ItemTypeMenuController extends Controller {
         selectingView.getButton(4).addActionListener(
                 new RedirectListener(controllerManager, new ItemListController(controllerManager, mainFrame))
         );
-        
+
         mainFrame.add(selectingView.getPanel());
     }
 }

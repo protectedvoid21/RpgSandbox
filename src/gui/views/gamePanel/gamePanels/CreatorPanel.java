@@ -4,6 +4,7 @@ import gui.factories.IOverallFactory;
 import gui.card.fullCards.abstractCards.Card;
 import gui.views.Point;
 import gui.views.gamePanel.optionsPanels.CreatorOptionsPanel;
+import gui.views.gamePanel.optionsPanels.OneDataOptionsPanel;
 
 import java.awt.*;
 import java.util.AbstractMap;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 
 public class CreatorPanel extends BaseGamePanel {
 private String basePath = Card.EMPTY_DATA_CONTENT;
+private OneDataOptionsPanel panel;
 
     public CreatorPanel(IOverallFactory factory, int size) {
         super(factory, size);
@@ -28,6 +30,13 @@ private String basePath = Card.EMPTY_DATA_CONTENT;
             }
         }
         applyContent(array);
+    }
+    public void setOptionsDisabledIndexes(ArrayList<Integer> indexes) {
+        panel.setDisabledIndexes(indexes);
+    }
+
+    public void setOptionsDisabledIndexes(Integer... indexes) {
+        panel.setDisabledIndexes(indexes);
     }
 
     public void setBasePath(String basePath) {
@@ -50,7 +59,9 @@ private String basePath = Card.EMPTY_DATA_CONTENT;
 
     @Override
     public void createOptionsPanel() {
-        optionsPanel = new CreatorOptionsPanel(factory.getFactory(), 3);
+
+        panel = new CreatorOptionsPanel(factory.getFactory(), 3);
+        optionsPanel = panel;
         optionsPanel.initialize(weight);
 //        optionsPanel.setBorderColor(Color.RED);
     }

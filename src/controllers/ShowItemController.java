@@ -11,6 +11,6 @@ public class ShowItemController extends Controller {
 
     @Override
     public void initialize(IOverallFactory overallFactory) {
-        var f = overallFactory.createViewingItemsPanel();    
+        var f = overallFactory.createViewingItemsPanel();
     }
 }

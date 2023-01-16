@@ -17,7 +17,7 @@ public class CreatureCreatorController extends Controller {
                 new RedirectListener(controllerManager, new MenuController(controllerManager, mainFrame))
         );
         //selectingView.getButton(0).addActionListener();
-        
+
         mainFrame.add(selectingView.getPanel());
     }
 }

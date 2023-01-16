@@ -11,6 +11,7 @@ import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
 import gui.views.BackgroundView;
 import gui.views.Point;
+import gui.views.gamePanel.optionsPanels.OneDataOptionsPanel;
 import gui.views.gamePanel.optionsPanels.OptionsPanel;
 
 import javax.swing.*;
@@ -134,13 +135,6 @@ public abstract class BaseGamePanel extends BackgroundView {
         return optionsPanel.getCurrentPoint();
     }
 
-    public void setOptionsDisabledIndexes(ArrayList<Integer> indexes) {
-        optionsPanel.setDisabledIndexes(indexes);
-    }
-
-    public void setOptionsDisabledIndexes(Integer... indexes) {
-        optionsPanel.setDisabledIndexes(indexes);
-    }
 
     public void setDisabledIndexes(ArrayList<Point> indexes) {
         for (int i = 0; i < maxIndex; i++) {

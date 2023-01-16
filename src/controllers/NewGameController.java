@@ -16,7 +16,7 @@ public class NewGameController extends Controller {
         creatorGameView.getExitButton().addActionListener(
                 new RedirectListener(controllerManager, new MenuController(controllerManager, mainFrame))
         );
-        
+
         mainFrame.add(creatorGameView.getPanel());
     }
 }
