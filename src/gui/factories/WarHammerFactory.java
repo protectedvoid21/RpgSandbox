@@ -8,6 +8,7 @@ import gui.factories.customFactories.buttonFactories.*;
 import gui.factories.customFactories.labelFactories.*;
 import gui.factories.customFactories.textComponentFactory.TextFactory;
 import gui.factories.customFactories.textComponentFactory.TextFieldFactory;
+import gui.utils.StringAdapter;
 import gui.views.Point;
 import gui.views.gamePanel.MainPanelGame;
 import gui.views.gamePanel.gamePanels.CreatorPanel;
@@ -76,8 +77,8 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
     public MenuView createMenuView() {
         factory.setBorderStrategy(new DependantHeightBorderStrategy());
 
-        menuButtonsFactory.setPaths("src/gui/swo.png", "src/gui/swo.png");
-        menuLabelFactory.setPaths("src/gui/leftsword.png", "src/gui/rightsword.png");
+        menuButtonsFactory.setPaths(StringAdapter.getRelativePath("swo.png"), StringAdapter.getRelativePath("swo.png"));
+        menuLabelFactory.setPaths(StringAdapter.getRelativePath("leftsword.png"), StringAdapter.getRelativePath("rightsword.png"));
         setFactoriesMode(Mode.MENU);
         var menu = new MenuView(factory);
         menu.setBorder(basicBorderColor, basicBorderSize);
@@ -116,7 +117,7 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
     public SelectingView createCreatingEditingItemsPanel() {
         setFactoriesMode(Mode.MENU);
         return createView(new ArrayList<>(Arrays.asList(
-                new AbstractMap.SimpleEntry<>(horsePath + ".png", "MOUNT"),
+                new AbstractMap.SimpleEntry<>(horsePath , "MOUNT"),
                 new AbstractMap.SimpleEntry<>(efectPath, "EFFECTS"),
                 new AbstractMap.SimpleEntry<>(armorPath, "ARMOR"))));
     }
@@ -213,9 +214,9 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
         setFactoriesMode(Mode.CLICKED);
 
         var card = new EntriesCard(factory);
+        card.initialize();
         card.setBackgroundImage(cardBackground);
         card.setBorder(basicBorderColor, basicBorderSize);
-        card.initialize();
         card.setCancelButtonStatus(true);
         card.setUniformFont();
         card.uploadNewData(generateSecondMap(), generateHashMap());
@@ -980,16 +981,16 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
         mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
         mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
 
-        mapa.get(0).set(0, "src/gui/stats.png");
-        mapa.get(3).set(0, "src/gui/armor.png");
-        mapa.get(2).set(0, "src/gui/weapon.png");
-        mapa.get(1).set(0, "src/gui/effect.png");
-        mapa.get(4).set(0, "src/gui/horse.png");
-        mapa.get(5).set(0, "src/gui/horse.png");
+        mapa.get(0).set(0, StringAdapter.getRelativePath("stats.png"));
+        mapa.get(3).set(0, StringAdapter.getRelativePath("armor.png"));
+        mapa.get(2).set(0, StringAdapter.getRelativePath("weapon.png"));
+        mapa.get(1).set(0, StringAdapter.getRelativePath("effect.png"));
+        mapa.get(4).set(0, StringAdapter.getRelativePath("horse.png"));
+        mapa.get(5).set(0,StringAdapter.getRelativePath("horse.png"));
         CardContentDataSet data = new CardContentDataSet();
         data.content = mapa;
         data.titleContent = "WITCH";
-        data.titlePath = "src/gui/witch.png";
+        data.titlePath = StringAdapter.getRelativePath("witch.png");
 
         card.uploadNewData(data);
         card.setUniformFont();

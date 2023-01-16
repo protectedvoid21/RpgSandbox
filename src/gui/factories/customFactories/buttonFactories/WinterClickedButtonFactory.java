@@ -10,6 +10,7 @@ import gui.customUI.componentsUIs.CustomButtonUI;
 import gui.customUI.customUIStyles.ClickedStyleUI;
 import gui.customUI.interfaces.ICustomUI;
 import gui.customUI.wrapers.ImageBorderWraper;
+import gui.utils.StringAdapter;
 
 import javax.swing.*;
 import java.awt.*;
@@ -42,7 +43,7 @@ public class WinterClickedButtonFactory extends ImageButtonFactory {
         button.setHorizontalAlignment(SwingConstants.CENTER);
         button.setBackground(new Color(0xBB3831));
         var ui = new ClickedStyleUI(strategy, 10, 10);
-        var uiHelper = new ImageBorderWraper(ui, "src/gui/snowman.png", "src/gui/star.png");
+        var uiHelper = new ImageBorderWraper(ui, StringAdapter.getRelativePath("snowman.png"), StringAdapter.getRelativePath("star.png"));
         if (isScaled) {
             uiHelper.setScalingValue(scalingSizeValue, scalingPositionValue);
             uiHelper.setScalingStatus(true);

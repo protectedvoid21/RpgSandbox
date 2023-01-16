@@ -1,24 +1,26 @@
 package gui.factories;
 
+import gui.utils.StringAdapter;
+
 import java.awt.*;
 
 public interface WarhammerData {
-    String fontPath = "src/gui/Sabatica-regular.ttf";
-    String background1 = "src/gui/aveeee.jpg";
-    String editPath = "src/gui/edit.png";
-    String createPath = "src/gui/create.png";
-    String viewPath = "src/gui/view.png";
-    String horsePath = "src/gui/horse";
-    String efectPath = "src/gui/effect.png";
-    String armorPath = "src/gui/armor.png";
-    String weaponPath = "src/gui/weapon.png";
-    String trolleyPath = "src/gui/trolley.png";
-    String monsterPath = "src/gui/monsterimage.png";
-    String playerImagePath = "src/gui/playerimage.png";
-    String npcImage = "src/gui/npcimage.png";
-    String plusImage = "src/gui/plus.png";
-    String cardBackground = "src/gui/cardbackground.jpg";
-    String avePath = "src/gui/ave.jpg";
+    String fontPath = StringAdapter.getRelativePath("Sabatica-regular.ttf");
+    String background1 = StringAdapter.getRelativePath("aveeee.jpg");
+    String editPath = StringAdapter.getRelativePath("edit.png");
+    String createPath = StringAdapter.getRelativePath("create.png");
+    String viewPath = StringAdapter.getRelativePath("view.png");
+    String horsePath =StringAdapter.getRelativePath("horse");
+    String efectPath = StringAdapter.getRelativePath("effect.png");
+    String armorPath = StringAdapter.getRelativePath("armor.png");
+    String weaponPath = StringAdapter.getRelativePath("weapon.png");
+    String trolleyPath =StringAdapter.getRelativePath("trolley.png");
+    String monsterPath = StringAdapter.getRelativePath("monsterimage.png");
+    String playerImagePath =StringAdapter.getRelativePath("playerimage.png");
+    String npcImage = StringAdapter.getRelativePath("npcimage.png");
+    String plusImage = StringAdapter.getRelativePath("plus.png");
+    String cardBackground = StringAdapter.getRelativePath("cardbackground.jpg");
+    String avePath =StringAdapter.getRelativePath("ave.jpg");
     Color basicBorderColor = new Color(0x4D0202);//jako ze wszedzie ten sam to moze sie popsuc gdy gdzies sie
     // przypadkiem zmieni, brak czasu na testy, sie w miedzyczasie to ogarnie
     int basicBorderSize = 10;

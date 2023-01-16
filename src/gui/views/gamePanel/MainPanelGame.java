@@ -8,6 +8,7 @@ import gui.factories.GuiFactory;
 import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
+import gui.utils.StringAdapter;
 import gui.views.gamePanel.gamePanels.GamePanel;
 import gui.views.gamePanel.optionsPanels.GameOptionsPanel;
 import gui.views.pickers.FullItemPicker;
@@ -93,7 +94,7 @@ public class MainPanelGame {
         menager.addMiddleComponent(activityOptionsPanel.getPanel(), 1, 10);
         activityOptionsPanel.getPanel().addSpace(2);
         var map = new HashMap<FullItemPicker.LabelType, String>();
-        map.put(FullItemPicker.LabelType.WEAPON, "src/gui/weapon.png");
+        map.put(FullItemPicker.LabelType.WEAPON, StringAdapter.getRelativePath("weapon.png"));
         map.put(FullItemPicker.LabelType.MOUNT, "src/gui/effect.png");
         map.put(FullItemPicker.LabelType.ARMOR, "src/gui/remove.png");
         var secondMap = new HashMap<FullItemPicker.LabelType, ArrayList<String >>();

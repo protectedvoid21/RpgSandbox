@@ -5,6 +5,7 @@ import gui.card.fullCards.abstractCards.Card;
 import gui.card.SharedCmpsFont;
 import gui.customComponents.booleanComponents.CustomIconBooleanButton;
 import gui.factories.GuiFactory;
+import gui.utils.StringAdapter;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -81,7 +82,8 @@ public class AddingButtonCard extends NormalDetailButtonsCard {
         selectList = new ArrayList<>();
         for (int i = 0; i < maximumElementNumber; i++) {
             factory.setButtonType(GuiFactory.ButtonType.ICON);
-            var but = factory.createButton("src/gui/plus.png", "src/gui/remove.png", true, true);
+            var but = factory.createButton(StringAdapter.getRelativePath("plus.png"), StringAdapter.getRelativePath(
+                    "remove.png"), true, true);
             selectList.add(but);
             but.addActionListener(new ActionListener() {
                 @Override

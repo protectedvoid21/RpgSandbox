@@ -10,6 +10,7 @@ import gui.customUI.componentsUIs.CustomButtonUI;
 import gui.customUI.customUIStyles.ClickedStyleUI;
 import gui.customUI.interfaces.ICustomUI;
 import gui.customUI.wrapers.ImageBorderWraper;
+import gui.utils.StringAdapter;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,7 +23,7 @@ public class ArrowButtonFactory extends ImageButtonFactory {
         button.setForeground(new Color(0x000000));
         button.setHorizontalAlignment(SwingConstants.CENTER);
         var ui = new ClickedStyleUI(strategy, 4, 10);
-        var uiHelper = new ImageBorderWraper(ui, "src/gui/rightarrow.png", "src/gui/leftarrow.png");
+        var uiHelper = new ImageBorderWraper(ui, StringAdapter.getRelativePath("rightarrow.png"), StringAdapter.getRelativePath("leftarrow.png"));
         if (isScaled) {
             uiHelper.setScalingValue(scalingSizeValue, scalingPositionValue);
             uiHelper.setScalingStatus(true);

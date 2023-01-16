@@ -5,6 +5,7 @@ import gui.factories.GuiFactory;
 import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
+import gui.utils.StringAdapter;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
@@ -61,10 +62,9 @@ public class DoubleArrowPanel {
 
     public DoubleArrowPanel(GuiFactory factory, SwitchableComponent switchableComponent) {
 
-        this(factory, switchableComponent, Map.of(Side.LEFT, new AbstractMap.SimpleEntry<>("src/gui/leftarrowactive" +
-                ".png", "src/gui" +
-                "/leftarrowdisabled.png"), Side.RIGHT, new AbstractMap.SimpleEntry<>("src/gui/rightarrowactive.png",
-                "src/gui/rightarrowdisabled.png")));
+        this(factory, switchableComponent, Map.of(Side.LEFT, new AbstractMap.SimpleEntry<>(StringAdapter.getRelativePath("leftarrowactive" +
+                ".png"), StringAdapter.getRelativePath("leftarrowdisabled.png")), Side.RIGHT, new AbstractMap.SimpleEntry<>(StringAdapter.getRelativePath("rightarrowactive.png"),
+                StringAdapter.getRelativePath("rightarrowdisabled.png"))));
 
     }
 

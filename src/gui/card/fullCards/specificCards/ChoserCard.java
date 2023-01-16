@@ -57,6 +57,12 @@ public class ChoserCard extends Card {
     }
 
 
+//    @Override
+//    public void setBackgroundImage(String path) {
+//        super.setBackgroundImage(path);
+//        for (var card : ad)
+//    }
+
     @Override
     protected void initializeDetailButtonsCardPart(CardTypes type) {
         var but = new AddingButtonCard(factory);
