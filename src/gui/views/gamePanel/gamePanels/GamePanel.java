@@ -8,23 +8,33 @@ import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
 import gui.views.Point;
 import gui.views.gamePanel.optionsPanels.GameOptionsPanel;
+import gui.views.gamePanel.optionsPanels.MultipleGameOptionsPanel;
+import gui.views.gamePanel.optionsPanels.OptionsPanelData;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class GamePanel extends BaseGamePanel {
 
-    private GameOptionsPanel gameOptionsPanel;
+    private MultipleGameOptionsPanel gameOptionsPanel;
     public enum ActionsLabelsType {ATACK, DEFEND}
     private HashMap<ActionsLabelsType, IconLabel> actionsMap = new HashMap<>();
     public DefaultCustomMenuMenager<AbstractCustomLabel> managerActions =
             new DefaultCustomMenuMenager<AbstractCustomLabel>(ComponentsSeries.ComponentsDimension.HORIZONTAL,
                     ComponentsSeries.ComponentsDimension.VERTICAL);
 
+
     public GamePanel(IOverallFactory factory, int size) {
         super(factory, size);
     }
+    public void setOptionsDisabledIndexes(Point point,ArrayList<Integer> indexes) {
+        gameOptionsPanel.setDisabledIndexes(point, indexes);
+    }
+
+    public void setOptionsDisabledIndexes(Point point,Integer... indexes) {
+        gameOptionsPanel.setDisabledIndexes(point, indexes);
+    }
+
     public void setAttackArmorPathContent(String armorPath, String attackPath) {
         actionsMap.put(GamePanel.ActionsLabelsType.DEFEND, new IconLabel(armorPath));
         actionsMap.put(GamePanel.ActionsLabelsType.ATACK, new IconLabel(attackPath));
@@ -54,7 +64,7 @@ public class GamePanel extends BaseGamePanel {
 
     @Override
     public void createOptionsPanel() {
-        var opt = new GameOptionsPanel(factory.getFactory(), 5);
+        var opt = new MultipleGameOptionsPanel(factory.getFactory(), 5);
         gameOptionsPanel=opt;
         optionsPanel = opt;
         optionsPanel.initialize(weight);

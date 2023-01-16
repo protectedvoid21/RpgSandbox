@@ -11,6 +11,6 @@ public class MonsterCreatorController extends Controller {
 
     @Override
     public void initialize(IOverallFactory overallFactory) {
-        
+
     }
 }

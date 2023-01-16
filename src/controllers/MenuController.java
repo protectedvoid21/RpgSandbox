@@ -26,7 +26,7 @@ public class MenuController extends Controller {
         );
         mainFrame.add(menuView.getPanel());
     }
-    
+
     private class ExitListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {

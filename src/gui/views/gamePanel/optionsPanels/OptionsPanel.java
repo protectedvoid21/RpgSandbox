@@ -22,7 +22,7 @@ public abstract class OptionsPanel extends BackgroundView {
     protected GuiFactory factory;
     private ComponentPanelMenager cmp;
     protected DefaultCustomMenuMenager customPanelAttackChoser;
-    private ArrayList<AbstractCustomButton> buttons = new ArrayList<>();
+    protected ArrayList<AbstractCustomButton> buttons = new ArrayList<>();
     protected int size = 0;
     private Point currentPoint = new Point(-1, -1);
 
@@ -124,22 +124,6 @@ public abstract class OptionsPanel extends BackgroundView {
         }
     }
 
-    public void setDisabledIndexes(ArrayList<Integer> indexes) {
-        for (var button: buttons) {
-            button.setEnabled(true);
-        }
-        for (var index : indexes) {
-            if (index < size) {
-                buttons.get(index).setEnabled(false);
-            }
-        }
-
-    }
-
-    public void setDisabledIndexes(Integer... indexes) {
-        setDisabledIndexes(new ArrayList<>(Arrays.asList(indexes)));
-
-    }
 
     public ComponentPanelMenager getPanel() {
         return cmp;

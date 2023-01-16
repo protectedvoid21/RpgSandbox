@@ -6,7 +6,7 @@ import gui.factories.GuiFactory;
 
 import java.util.ArrayList;
 
-public class GameOptionsPanel extends OptionsPanel {
+public class GameOptionsPanel extends OneDataOptionsPanel {
     private ArrayList<AbstractCustomLabel> labels = new ArrayList<>();
     public GameOptionsPanel(GuiFactory factory, int size) {
         super(factory, size);
@@ -30,5 +30,7 @@ public class GameOptionsPanel extends OptionsPanel {
         }
         SharedCmpsFont.setUniformFont(labels);
     }
+
+
 
 }

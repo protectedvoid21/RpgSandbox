@@ -2,7 +2,7 @@ package gui.views.gamePanel.optionsPanels;
 
 import gui.factories.GuiFactory;
 
-public class CreatorOptionsPanel extends OptionsPanel {
+public class CreatorOptionsPanel extends OneDataOptionsPanel {
     public CreatorOptionsPanel(GuiFactory factory, int size) {
         super(factory, size);
     }
@@ -11,4 +11,5 @@ public class CreatorOptionsPanel extends OptionsPanel {
     public double getPercentFilledSizeY() {
         return 0.5;
     }
+
 }

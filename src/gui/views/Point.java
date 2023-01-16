@@ -13,4 +13,8 @@ public class Point {
     public boolean isOutOfRange(int sizeX, int sizeY) {
         return x < 0 || x >= sizeX || y < 0 || y >= sizeY;
     }
+
+    public boolean equals(Point point){
+        return point.x==x && point.y==y;
+    }
 }

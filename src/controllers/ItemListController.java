@@ -1,7 +1,7 @@
 package controllers;
 
 import gui.factories.IOverallFactory;
-import gui.views.objectViews.itemsViews.AllItemsShowView;
+import gui.views.objectViews.itemsViews.AllItemsView;
 
 import javax.swing.*;
 
@@ -12,11 +12,11 @@ public class ItemListController extends Controller {
 
     @Override
     public void initialize(IOverallFactory overallFactory) {
-        AllItemsShowView allItemsView = overallFactory.createAllItemsShowView();
+        AllItemsView allItemsView = overallFactory.createAllItemsShowView();
         allItemsView.getCancelButton().addActionListener(
                 new RedirectListener(controllerManager, new ItemTypeMenuController(controllerManager, mainFrame))
         );
-        
+
         mainFrame.add(allItemsView.getPanel());
     }
 }
