@@ -30,4 +30,19 @@ public class MathHelper {
         }
         return coordinatesList;
     }
+
+    public static List<Vector2> getNextCels(Vector2 position){
+        List<Vector2> cels = new ArrayList<Vector2>();
+
+        cels.add(new Vector2(position.x -1, position.y -1 ));
+        cels.add(new Vector2(position.x -1, position.y  ));
+        cels.add(new Vector2(position.x -1, position.y +1 ));
+        cels.add(new Vector2(position.x , position.y -1 ));
+        cels.add(new Vector2(position.x , position.y +1 ));
+        cels.add(new Vector2(position.x +1, position.y -1 ));
+        cels.add(new Vector2(position.x +1, position.y ));
+        cels.add(new Vector2(position.x +1, position.y +1 ));
+
+        return cels;
+    }
 }
