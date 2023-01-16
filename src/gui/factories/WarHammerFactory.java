@@ -190,6 +190,8 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
 
     @Override
     public CreatorGameView createCreatorGameView() {
+        factory.setButtonFactory(basicButtonFactory);
+        factory.setLabelFactory(labelFactory);
         var creator = new CreatorGameView(this, 10);
         creator.getCreatorPanel().setBasePath(plusImage);
         creator.getCreatorPanel().initializeOptionsButtonPanelData(new ArrayList<>(Arrays.asList(monsterPath, playerImagePath, npcImage)));
