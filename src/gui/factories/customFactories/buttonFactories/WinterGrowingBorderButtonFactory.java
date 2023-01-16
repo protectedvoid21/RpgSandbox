@@ -12,6 +12,7 @@ import gui.customUI.interfaces.ICustomUI;
 import gui.customUI.wrapers.ChangingBorderColorWraper;
 import gui.customUI.wrapers.GrowingBorderWraper;
 import gui.customUI.wrapers.ImageBorderWraper;
+import gui.utils.StringAdapter;
 
 import javax.swing.*;
 import java.awt.*;
@@ -38,7 +39,7 @@ public class WinterGrowingBorderButtonFactory extends ImageButtonFactory {
         button.setForeground(new Color(0xE8E5E1));
         button.setHorizontalAlignment(SwingConstants.CENTER);
         var ui = new RoundedBorderUI(strategy, (4), 10);
-        var uiHelper = new ImageBorderWraper(ui, "src/gui/star.png");
+        var uiHelper = new ImageBorderWraper(ui, StringAdapter.getRelativePath("star.png"));
         if (isScaled) {
             uiHelper.setScalingStatus(true);
             uiHelper.setScalingValue(scalingSizeValue, scalingPositionValue);

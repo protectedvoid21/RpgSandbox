@@ -43,6 +43,12 @@ public class EntriesCard extends Card {
         return newMapa;
     }
 
+    @Override
+    public void setBackgroundImage(String path) {
+        super.setBackgroundImage(path);
+        choserCard.setBackgroundImage(path);
+    }
+
     public HashMap<CardTypes, CardContentDataSet> getIndexesData() {
         var newMapa = new HashMap<CardTypes, CardContentDataSet>();
         for (var type : Arrays.asList(CardTypes.ARMOR, CardTypes.WEAPONS, CardTypes.MOUNT, CardTypes.ITEMS)) {

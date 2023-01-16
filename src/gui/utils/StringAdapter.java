@@ -1,7 +1,7 @@
 package gui.utils;
 
 public class StringAdapter {
-    public String getRelativePath(String path){
+    public static String getRelativePath(String path){
         return "src/gui/"+path;
     }
 }

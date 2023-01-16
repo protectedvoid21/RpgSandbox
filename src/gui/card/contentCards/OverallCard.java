@@ -8,6 +8,7 @@ import gui.factories.GuiFactory;
 import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
+import gui.utils.StringAdapter;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
@@ -66,7 +67,7 @@ public class OverallCard extends AbstractCard<JComponent> {
             factory.setLabelType(GuiFactory.LabelType.ICON);
             var label = factory.createLabel(Card.EMPTY_DATA_CONTENT);
             factory.setButtonType(GuiFactory.ButtonType.ICON);
-            var button = factory.createButton("src/gui/go2.png", null);
+            var button = factory.createButton(StringAdapter.getRelativePath("go2.png"), null);
             button.addActionListener(cardActions.get(key));//dodac pewnie zmiane listenera
 
             var newPanel =
