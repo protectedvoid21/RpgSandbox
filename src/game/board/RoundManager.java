@@ -18,6 +18,7 @@ public class RoundManager {
     public RoundManager(Board board) {
         this.board = board;
         this.actions = initializeActions();
+
     }
     
     public GameObject getGameObjectWithTurn() {
