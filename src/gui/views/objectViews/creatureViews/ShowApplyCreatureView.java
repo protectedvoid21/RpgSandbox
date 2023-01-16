@@ -31,6 +31,7 @@ public class ShowApplyCreatureView extends AllCreaturesShowView{
         manager.addMainComponent(3);
         for (int i = 0; i<number; i++){
             var button = factory.getFactory().createButton("APPLY", null);
+//            button.getCustomUI().setOffSet(4);
             applyButtons.add(button);
             manager.addMiddleComponent(button, 2,10);
             manager.getMiddleComponent(2, i).addSpace(5);

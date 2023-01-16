@@ -20,10 +20,6 @@ import gui.views.objectViews.itemsViews.AllItemsView;
 public abstract class IOverallFactory {
     protected GuiFactory factory = new GuiFactory();
 
-//    public abstract Card createCard();
-
-//    public abstract Card createFullCard();
-
     public abstract EntriesCard createEntriesCard();
 
     public abstract BasicCard createBasicCard();
@@ -41,8 +37,7 @@ public abstract class IOverallFactory {
     public abstract AllCreaturesShowView createAllCreatureShowView();
 
     public abstract AllItemsView createAllItemsShowView();
-
-
+    public abstract GodCard createGodCard();
     public abstract EntriesCard createCreatorCard(Card.CreatorTypes type);
 
     public abstract ShowApplyCreatureView createCreatorApplyingCharacterView();
