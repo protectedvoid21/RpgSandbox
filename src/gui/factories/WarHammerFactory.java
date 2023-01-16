@@ -104,29 +104,34 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
 
     @Override
     public SelectingView createOverallPanel() {
-        return createView(new ArrayList<>(Arrays.asList(new AbstractMap.SimpleEntry<>(editPath, "EDIT"),
+        return createView(new ArrayList<>(Arrays.asList(
+                new AbstractMap.SimpleEntry<>(editPath, "EDIT"),
                 new AbstractMap.SimpleEntry<>(createPath, "CREATE"),
                 new AbstractMap.SimpleEntry<>(viewPath, "VIEW"))));
     }
 
     @Override
     public SelectingView createCreatingEditingItemsPanel() {
-        return createView(new ArrayList<>(Arrays.asList(new AbstractMap.SimpleEntry<>(horsePath +
-                        ".png", "MOUNT"), new AbstractMap.SimpleEntry<>(efectPath, "EFFECTS"),
+        return createView(new ArrayList<>(Arrays.asList(
+                new AbstractMap.SimpleEntry<>(horsePath + ".png", "MOUNT"),
+                new AbstractMap.SimpleEntry<>(efectPath, "EFFECTS"),
                 new AbstractMap.SimpleEntry<>(armorPath, "ARMOR"))));
     }
 
     @Override
     public SelectingView createViewingItemsPanel() {
-        return createView(new ArrayList<>(Arrays.asList(new AbstractMap.SimpleEntry<>(horsePath, "MOUNT"),
+        return createView(new ArrayList<>(Arrays.asList(
+                new AbstractMap.SimpleEntry<>(horsePath, "MOUNT"),
                 new AbstractMap.SimpleEntry<>(efectPath, "EFFECTS"),
-                new AbstractMap.SimpleEntry<>(armorPath, "ARMOR"), new AbstractMap.SimpleEntry<>(weaponPath,
-                        "WEAPON"), new AbstractMap.SimpleEntry<>(trolleyPath, "ITEM"))));
+                new AbstractMap.SimpleEntry<>(armorPath, "ARMOR"),
+                new AbstractMap.SimpleEntry<>(weaponPath, "WEAPON"), 
+                new AbstractMap.SimpleEntry<>(trolleyPath, "ITEM"))));
     }
 
     @Override
     public SelectingView createCreaturesPanel() {
-        return createView(new ArrayList<>(Arrays.asList(new AbstractMap.SimpleEntry<>(monsterPath, "MONSTER"),
+        return createView(new ArrayList<>(Arrays.asList(
+                new AbstractMap.SimpleEntry<>(monsterPath, "MONSTER"),
                 new AbstractMap.SimpleEntry<>(playerImagePath, "PLAYER"),
                 new AbstractMap.SimpleEntry<>(npcImage, "NPC"))));
     }
