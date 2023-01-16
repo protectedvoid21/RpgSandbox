@@ -88,7 +88,7 @@ public class Board {
                 .toList();
     }
 
-    public int getHeigt() {
+    public int getHeight() {
         return height;
     }
 
