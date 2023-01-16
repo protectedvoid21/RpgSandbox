@@ -28,7 +28,7 @@ public class TurnOffWarhammer implements ITurnOffButtons {
         List<Vector2> attackRange = MathHelper.getNextCels(roundManager.getGameObjectWithTurnPosition());
 
 
-        for (i = 0; i < roundManager.getBoard().getHeigt(); i++) {
+        for (i = 0; i < roundManager.getBoard().getHeight(); i++) {
             for (j = 0; j < roundManager.getBoard().getWidth(); i++) {
                 if (range.contains(new Vector2(j, i))) { // Sprawdza zasięg chodzenia
                     if (indexesCell.contains(0)) {
