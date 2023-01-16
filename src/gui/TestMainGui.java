@@ -43,7 +43,7 @@ public class TestMainGui {
         });
 //        ((GodCard)z).setItemViewStatus(Card.CardTypes.MOUNT, 2);
 //        ((GodCard)z).removeItemViewStatus();
-//        ramka.add(z.getPanel());
+        ramka.add(x.getPanel());
 //        ramka.add(f.createEntriesCard().getPanel());
 //        ramka.add(f.createAllCreatureShowView().getPanel());
 //        ramka.add(f.createCreatorApplyingCharacterView().getPanel());

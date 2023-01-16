@@ -28,8 +28,6 @@ public class MainPanelGame {
     private AbstractCustomButton exitButton;
     private AbstractCustomButton nextPlayerButton;
     private GameOptionsPanel activityOptionsPanel;
-    private Dice dice;
-
     private AbstractCustomLabel remainingMoves;
     private ComponentsSeries<ComponentPanelMenager> seriesPanel =
             new ComponentsSeries(ComponentsSeries.ComponentsDimension.VERTICAL);
@@ -38,7 +36,7 @@ public class MainPanelGame {
     public MainPanelGame(IOverallFactory factory) {
         this.factory = factory;
         gamePanel = new GamePanel(factory, 10);
-        dice = new Dice(factory.getFactory());
+//        dice = new Dice(factory.getFactory());
         gamePanel.initialize();
         picker = new FullItemPicker(factory.getFactory());
         factory.getFactory().setButtonType(GuiFactory.ButtonType.NORMAL);
@@ -87,9 +85,9 @@ public class MainPanelGame {
         menager.addMiddleComponent(seriesPanel, 0, 1, 20);
         menager.getMiddleComponent(0, 1).addSpace(1);
         seriesPanel.addOption(new ComponentPanelMenager(picker.getPanel()), 10);
-        for (var component : Arrays.asList(remainingMoves, nextPlayerButton, exitButton, dice.getDice())) {
+        for (var component : Arrays.asList(remainingMoves, nextPlayerButton, exitButton)) {
             var cmp = new ComponentPanelMenager<>(component);
-            cmp.addSpace(component == dice.getDice() ? 0 : 1);
+            cmp.addSpace(1);
             seriesPanel.addOption(cmp, 2);
         }
         menager.addMiddleComponent(activityOptionsPanel.getPanel(), 1, 10);
