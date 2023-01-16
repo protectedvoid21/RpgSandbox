@@ -6,6 +6,10 @@ import java.util.Comparator;
 import game.generals.Vector2;
 import game.interfaceWarhammer.ActionsWarhammer;
 import game.interfaces.Actions;
+import game.interfaces.ITurnOffButtons;
+import gui.actionListener.turnOffButtons;
+import gui.actionListener.warhammer.TurnOffWarhammer;
+
 import java.util.List;
 
 public class RoundManager {
