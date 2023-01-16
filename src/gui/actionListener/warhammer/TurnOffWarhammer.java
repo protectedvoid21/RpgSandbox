@@ -5,6 +5,7 @@ import game.generals.Vector2;
 import game.interfaceWarhammer.ActionsEnum;
 import game.interfaces.ITurnOffButtons;
 import game.utils.MathHelper;
+import gui.views.Point;
 import gui.views.gamePanel.MainPanelGame;
 
 import java.util.List;
@@ -16,7 +17,6 @@ public class TurnOffWarhammer implements ITurnOffButtons {
     @Override
     public void turnOff(RoundManager roundManager, MainPanelGame mainPanelGame, Integer parametr, Integer usedIndex) {
         ArrayList<Integer> indexesCell = new ArrayList<Integer>();
-        ArrayList<ArrayList<Integer>> indexesBoard = new ArrayList<>();
         ArrayList<Integer> indexesOption = new ArrayList<Integer>();
         int i = 0;
         int j = 0;
@@ -25,7 +25,9 @@ public class TurnOffWarhammer implements ITurnOffButtons {
 
 
         List<Vector2> range = MathHelper.getGridCircle(roundManager.getGameObjectWithTurn().getCreature().getSpeed());
-        List<Vector2> atackRange = MathHelper.getNextCels(roundManager.getGameObjectWithTurnPosition());
+        List<Vector2> attackRange = MathHelper.getNextCels(roundManager.getGameObjectWithTurnPosition());
+
+
         for (i = 0; i < roundManager.getBoard().getHeigt(); i++) {
             for (j = 0; j < roundManager.getBoard().getWidth(); i++) {
                 if (range.contains(new Vector2(j, i))) { // Sprawdza zasięg chodzenia
@@ -36,7 +38,7 @@ public class TurnOffWarhammer implements ITurnOffButtons {
                     indexesCell.add(0);
                 }
 
-                if (atackRange.contains(new Vector2(j, i))) {  // Sprawdza zasieg ataku
+                if (attackRange.contains(new Vector2(j, i))) {  // Sprawdza zasieg ataku
                     if (indexesCell.contains(2)) {
                         indexesCell.remove(2);
                         indexesCell.remove(3);
@@ -74,19 +76,19 @@ public class TurnOffWarhammer implements ITurnOffButtons {
 
                 }
 
-                indexesBoard.add(indexesCell);
+                mainPanelGame.getGamePanel().setOptionsDisabledIndexes(new Point(j,i), indexesCell);
+
             }
 
 
             if (parametr == 0) {
-                if (!indexesBoard.contains(usedIndex))
+                if (!indexesCell.contains(usedIndex))
                     indexesCell.add(usedIndex);
             } else if (parametr == 1) {
                 if (!indexesOption.contains(usedIndex))
                     indexesOption.add(usedIndex);
             }
 
-//            mainPanelGame.getGamePanel().setOptionsDisabledIndexes(indexesBoard);//dodatkowy drugi argument w postaci punkta
             mainPanelGame.getActivityOptionsPanel().setDisabledIndexes(indexesOption);
         }
     }
