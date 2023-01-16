@@ -22,6 +22,8 @@ public class EndTurnListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        roundManager.startNewTurn();
+        roundManager.moveToNextObject();
+        mainPanelGame.getGamePanel().setDisabledIndexes();
+        mainPanelGame.getActivityOptionsPanel().setDisabledIndexes();
     }
 }

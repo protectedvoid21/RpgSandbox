@@ -17,4 +17,12 @@ public class StruggleStatisticsWarhammer extends StruggleStatistics {
         struggleAttributes.put(StruggleAtributeEnum.IS_AIMING, new LimitedAttribute(0,1,0));
         struggleAttributes.put(StruggleAtributeEnum.IS_IN_DEFENSE_STAND, new LimitedAttribute(0,1,0));
     };
+
+    @Override
+    public void applyNewRound() {
+        struggleAttributes.get(StruggleAtributeEnum.ACTIONS_TO_DO).setValue(2);
+        struggleAttributes.get(StruggleAtributeEnum.IS_BLOKING).setValue(0);
+        struggleAttributes.get(StruggleAtributeEnum.IS_AIMING).setValue(0);
+        struggleAttributes.get(StruggleAtributeEnum.IS_IN_DEFENSE_STAND).setValue(0);
+    }
 }

@@ -10,7 +10,7 @@ public class PoisonEffect extends Effect {
     }
 
     @Override
-    protected void affect() {
+    public void affect() {
         statistics.getAttribute(AttributeEnum.HEALTH_POINTS_NOW).decreaseValue(4);
 
         decreaseLength();
