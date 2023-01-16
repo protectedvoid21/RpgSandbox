@@ -19,6 +19,7 @@ public abstract class Creature implements RoundListener {
     
     public void applyNewRound() {
         statistics.applyNewRound();
+        struggleStatistics.applyNewRound();
     }
     
     public IStatistics getStatistics() {

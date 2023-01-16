@@ -10,7 +10,7 @@ public class InFireEffect extends Effect {
     }
 
     @Override
-    protected void affect() {
+    public void affect() {
         statistics.getAttribute(AttributeEnum.HEALTH_POINTS_NOW).decreaseValue(6);
 
         decreaseLength();
