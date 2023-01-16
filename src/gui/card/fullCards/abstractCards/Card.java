@@ -44,7 +44,7 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
             CardTypes.ATTRIBUTE,
             CardTypes.WEAPONS, CardTypes.EFFECTS, CardTypes.ARMOR, CardTypes.MOUNT, CardTypes.ITEMS));
     protected ComponentsSeries<ComponentPanelMenager<JComponent>> arrowMenager;
-    private ComponentPanelMenager<AbstractCustomButton> exitButton;
+    protected ComponentPanelMenager<AbstractCustomButton> exitButton;
 //    private ComponentPanelMenager<AbstractCustomButton> exitCreatorCard;
 
     protected DoubleArrowPanel leftArrows;
@@ -70,9 +70,10 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
         seriesPanel.addMainComponent(1);
         factory.setButtonType(GuiFactory.ButtonType.NORMAL);
         cancelButton = factory.createButton("CANCEL", e -> seriesPanel.getCmp().setVisible(false));
-       initializeCancelPanelObject(cancelButton, 0);
+        initializeCancelPanelObject(cancelButton, 0);
     }
-    protected void initializeCancelPanelObject(AbstractCustomButton button, int index){
+
+    protected void initializeCancelPanelObject(AbstractCustomButton button, int index) {
         button.getCustomUI().setOffSet(12);
         button.getCustomUI().changeBorderStrategy(new DependantHeightBorderStrategy());
         seriesPanel.addMiddleComponent(button, 3, 10);
@@ -130,6 +131,7 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
 
         allCards.put(type, but);
     }
+
 
 
     protected abstract AttributesCard createAttributeCard();

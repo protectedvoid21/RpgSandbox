@@ -50,13 +50,13 @@ public abstract class AllObjectsView extends BackgroundView implements Switchabl
 
         int maxindex = (maximumumElements + 1) / 2;
         for (int i = 0; i < maxindex; i++) {
-            manager.addMainComponent(24);
+            manager.addMainComponent(20);
         }
         createDownPanel(maxindex);
     }
 
     public void createDownPanel(int maxindex) {
-        manager.addMainComponent(5);
+        manager.addMainComponent(4);
         arrowPanel = new DoubleArrowPanel(factory.getFactory(), this);
         arrowPanel.setSpace(2);
         factory.getFactory().setButtonType(GuiFactory.ButtonType.NORMAL);
