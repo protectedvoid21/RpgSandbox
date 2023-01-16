@@ -78,20 +78,17 @@ public class TurnOffWarhammer implements ITurnOffButtons {
             }
 
 
+            if (parametr == 0) {
+                if (!indexesBoard.contains(usedIndex))
+                    indexesCell.add(usedIndex);
+            } else if (parametr == 1) {
+                if (!indexesOption.contains(usedIndex))
+                    indexesOption.add(usedIndex);
+            }
+
+
+            mainPanelGame.getActivityOptionsPanel().setDisabledIndexes(indexesOption);
         }
-
-
-        if (parametr == 0) {
-            if (!indexesBoard.contains(usedIndex))
-                indexesCell.add(usedIndex);
-        } else if (parametr == 1) {
-            if (!indexesOption.contains(usedIndex))
-                indexesOption.add(usedIndex);
-        }
-
-
-
-        mainPanelGame.getActivityOptionsPanel().setDisabledIndexes(indexesOption);
     }
 }
 
