@@ -23,7 +23,7 @@ public class EndTurnListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         roundManager.moveToNextObject();
-
+        mainPanelGame.getGamePanel().colorButtons(new Point(roundManager.getGameObjectWithTurnPosition().x,roundManager.getGameObjectWithTurnPosition().y));
         turnOffButtons.turnOff(roundManager,mainPanelGame,2,0);
     }
 }
