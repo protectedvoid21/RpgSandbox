@@ -4,7 +4,6 @@ import game.board.RoundManager;
 import game.creature.Creature;
 import game.generals.Vector2;
 import gui.actionListener.turnOffButtons;
-import gui.views.Point;
 import gui.views.gamePanel.MainPanelGame;
 import gui.views.gamePanel.gamePanels.BaseGamePanel;
 
@@ -25,15 +24,15 @@ public class MoveListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        Point point = mainPanelGame.getGamePanel().getCurrentClickedIndexes();
+        Vector2 point = mainPanelGame.getGamePanel().getCurrentClickedIndexes();
         Creature you = roundManager.getGameObjectWithTurn().getCreature();
         Vector2 vector2 = roundManager.getGameObjectWithTurnPosition();
 
         
-        roundManager.getBoard().move(vector2,new Vector2(point.x, point.y));
+        roundManager.getBoard().move(vector2,point);
         roundManager.getGameObjectWithTurn().getCreature().getStruggleStatistics().getAttribute(ACTIONS_TO_DO).decreaseValue(1);
         mainPanelGame.getGamePanel().applyContent(roundManager.boardToList());
-        mainPanelGame.getGamePanel().colorButtons(new Point(roundManager.getGameObjectWithTurnPosition().x,roundManager.getGameObjectWithTurnPosition().y));
+        mainPanelGame.getGamePanel().colorButtons(roundManager.getGameObjectWithTurnPosition());
         turnOffButtons.turnOff(roundManager,mainPanelGame,0,0);
     }
 }

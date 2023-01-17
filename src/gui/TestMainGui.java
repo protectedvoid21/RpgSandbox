@@ -1,11 +1,11 @@
 package gui;
 
+import game.generals.Vector2;
 import gui.card.fullCards.abstractCards.Card;
 import gui.card.fullCards.specificCards.GodCard;
 import gui.factories.IOverallFactory;
 import gui.factories.WarHammerFactory;
 import gui.menu.*;
-import gui.views.Point;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,12 +25,12 @@ public class TestMainGui {
         IOverallFactory f = new WarHammerFactory();
         var x = f.createMainPanelGame();
         x.getActivityOptionsPanel().setDisabledIndexes(1,4);
-        x.getGamePanel().setOptionsDisabledIndexes(new Point(2, 3),2,4);
-        x.getGamePanel().setOptionsDisabledIndexes(new Point(2, 5),1);
-        x.getGamePanel().setOptionsDisabledIndexes(new Point(1, 3),3, 4);
-        x.getGamePanel().setOptionsDisabledIndexes(new Point(1, 3));
+        x.getGamePanel().setOptionsDisabledIndexes(new Vector2(2, 3),2,4);
+        x.getGamePanel().setOptionsDisabledIndexes(new Vector2(2, 5),1);
+        x.getGamePanel().setOptionsDisabledIndexes(new Vector2(1, 3),3, 4);
+        x.getGamePanel().setOptionsDisabledIndexes(new Vector2(1, 3));
         x.getActivityOptionsPanel().setDisabledIndexes(1, 2);
-        x.getGamePanel().applyContent(new AbstractMap.SimpleEntry<>(new Point(3, 4), "src/gui/go.png"));
+        x.getGamePanel().applyContent(new AbstractMap.SimpleEntry<>(new Vector2(3, 4), "src/gui/go.png"));
 
 //        ramka.add(f.createCreatingEditingItemsPanel().getPanel());
 //        ramka.add(x.getPanel());
@@ -44,7 +44,7 @@ public class TestMainGui {
 //        ((GodCard)z).setItemViewStatus(Card.CardTypes.MOUNT, 2);
 //        ((GodCard)z).removeItemViewStatus();
         ramka.add(x.getPanel());
-        ramka.add(f.createEntriesCard().getPanel());
+//        ramka.add(f.createEntriesCard().getPanel());
 //        ramka.add(f.createAllCreatureShowView().getPanel());
 //        ramka.add(f.createCreatorApplyingCharacterView().getPanel());
 //        ramka.add(f.createAllCreatureEditView().getPanel());

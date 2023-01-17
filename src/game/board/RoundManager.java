@@ -5,7 +5,6 @@ import java.util.*;
 import game.generals.Vector2;
 import game.interfaceWarhammer.ActionsWarhammer;
 import game.interfaces.Actions;
-import gui.views.Point;
 
 public class RoundManager {
     private final Board board;
@@ -86,11 +85,13 @@ public class RoundManager {
         return actions;
     }
 
-    public ArrayList<AbstractMap.SimpleEntry<Point,String>> boardToList(){
-        ArrayList<AbstractMap.SimpleEntry<Point,String>> result = new ArrayList<AbstractMap.SimpleEntry<Point,String>>();
+    public ArrayList<AbstractMap.SimpleEntry<Vector2, String>> boardToList() {
+        ArrayList<AbstractMap.SimpleEntry<Vector2, String>> result = new ArrayList<AbstractMap.SimpleEntry<Vector2,
+                String>>();
 
-        for(int i = 0; i < activeGameObjects.size(); i++){
-            result.add(new AbstractMap.SimpleEntry<>(new Point(getGameObjectPosition(activeGameObjects.get(i)).x,getGameObjectPosition(activeGameObjects.get(i)).y), activeGameObjects.get(i).getCreature().getObjectPathPicture()));
+        for (int i = 0; i < activeGameObjects.size(); i++) {
+            result.add(new AbstractMap.SimpleEntry<>(getGameObjectPosition(activeGameObjects.get(i)),
+                    activeGameObjects.get(i).getCreature().getObjectPathPicture()));
         }
 
         return result;
