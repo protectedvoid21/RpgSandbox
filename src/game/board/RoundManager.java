@@ -1,13 +1,11 @@
 package game.board;
 
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.*;
 
 import game.generals.Vector2;
 import game.interfaceWarhammer.ActionsWarhammer;
 import game.interfaces.Actions;
-
-import java.util.List;
+import gui.views.Point;
 
 public class RoundManager {
     private final Board board;
@@ -31,6 +29,18 @@ public class RoundManager {
         for (int i = 0; i < getBoard().getHeight(); i++) {
             for (int j = 0; j < getBoard().getWidth(); j++) {
                 if (getBoard().getPlace(new Vector2(j, i)).getGameObject() == getGameObjectWithTurn()) {
+                    return new Vector2(j, i);
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public Vector2 getGameObjectPosition(GameObject gameObject) {
+        for (int i = 0; i < getBoard().getHeight(); i++) {
+            for (int j = 0; j < getBoard().getWidth(); j++) {
+                if (getBoard().getPlace(new Vector2(j, i)).getGameObject() == gameObject) {
                     return new Vector2(j, i);
                 }
             }
@@ -74,6 +84,18 @@ public class RoundManager {
 
     public Actions getActions() {
         return actions;
+    }
+
+    public ArrayList<AbstractMap.SimpleEntry<Point,String>> boardToList(){
+        ArrayList<AbstractMap.SimpleEntry<Point,String>> result = new ArrayList<AbstractMap.SimpleEntry<Point,String>>();
+
+        for(int i = 0; i < activeGameObjects.size(); i++){
+            result.add(new AbstractMap.SimpleEntry<>(new Point(getGameObjectPosition(activeGameObjects.get(i)).x,getGameObjectPosition(activeGameObjects.get(i)).y), activeGameObjects.get(i).getCreature().getObjectPathPicture()));
+        }
+
+        return result;
+
+
     }
 
     public Board getBoard() {
