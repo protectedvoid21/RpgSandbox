@@ -5,7 +5,6 @@ import game.generals.Vector2;
 import game.interfaceWarhammer.ActionsEnum;
 import game.interfaces.ITurnOffButtons;
 import game.utils.MathHelper;
-import gui.views.Point;
 import gui.views.gamePanel.MainPanelGame;
 
 import java.util.List;
@@ -76,7 +75,7 @@ public class TurnOffWarhammer implements ITurnOffButtons {
 
                 }
 
-                mainPanelGame.getGamePanel().setOptionsDisabledIndexes(new Point(j,i), indexesCell);
+                mainPanelGame.getGamePanel().setOptionsDisabledIndexes(new Vector2(j,i), indexesCell);
 
             }
 

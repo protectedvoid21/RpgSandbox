@@ -1,5 +1,6 @@
 package gui.views.gamePanel.optionsPanels;
 
+import game.generals.Vector2;
 import gui.customComponents.AbstractCustomButton;
 import gui.customUI.customUIStyles.borderStrategies.AverageBorderStartegy;
 import gui.factories.GuiFactory;
@@ -8,7 +9,6 @@ import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
 import gui.views.BackgroundView;
-import gui.views.Point;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -24,7 +24,7 @@ public abstract class OptionsPanel extends BackgroundView {
     protected DefaultCustomMenuMenager customPanelAttackChoser;
     protected ArrayList<AbstractCustomButton> buttons = new ArrayList<>();
     protected int size = 0;
-    private Point currentPoint = new Point(-1, -1);
+    private Vector2 currentPoint = new Vector2(-1, -1);
 
     public OptionsPanel(GuiFactory factory, int size) {
         this.size = size;
@@ -42,10 +42,10 @@ public abstract class OptionsPanel extends BackgroundView {
     }
 
     public void setCurrentIndexes(int x, int y) {
-        currentPoint = new Point(x, y);
+        currentPoint = new Vector2(x, y);
     }
 
-    public Point getCurrentPoint() {
+    public Vector2 getCurrentPoint() {
         return currentPoint;
     }
 

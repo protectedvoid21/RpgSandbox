@@ -3,7 +3,6 @@ package gui.actionListener.warhammer;
 import game.board.RoundManager;
 import game.generals.Vector2;
 import gui.actionListener.turnOffButtons;
-import gui.views.Point;
 import gui.views.gamePanel.MainPanelGame;
 import gui.views.gamePanel.gamePanels.BaseGamePanel;
 import gui.views.gamePanel.gamePanels.GamePanel;
@@ -25,8 +24,8 @@ public class AttackListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        Point point = mainPanelGame.getGamePanel().getCurrentClickedIndexes();
-        roundManager.getActions().doAction(ATTACK,roundManager.getGameObjectWithTurn().getCreature(),roundManager.getBoard().getPlace(new Vector2(point.x, point.y)).getGameObject().getCreature());
+        Vector2 point = mainPanelGame.getGamePanel().getCurrentClickedIndexes();
+        roundManager.getActions().doAction(ATTACK,roundManager.getGameObjectWithTurn().getCreature(),roundManager.getBoard().getPlace(point).getGameObject().getCreature());
         mainPanelGame.getGamePanel().applyAttackActionsContent(point);
         turnOffButtons.turnOff(roundManager,mainPanelGame,0,2);
 

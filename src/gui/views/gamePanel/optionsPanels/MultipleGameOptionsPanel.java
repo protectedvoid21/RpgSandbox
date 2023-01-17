@@ -1,9 +1,9 @@
 package gui.views.gamePanel.optionsPanels;
 
+import game.generals.Vector2;
 import gui.card.SharedCmpsFont;
 import gui.customComponents.AbstractCustomLabel;
 import gui.factories.GuiFactory;
-import gui.views.Point;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,11 +33,11 @@ public class MultipleGameOptionsPanel extends OptionsPanel {
         }
         SharedCmpsFont.setUniformFont(labels);
     }
-    public void setDisabledIndexes(Point point, ArrayList<Integer> indexes) {
+    public void setDisabledIndexes(Vector2 point, ArrayList<Integer> indexes) {
        data.setPointData(point, indexes);
     }
 
-    public void setDisabledIndexes(Point point, Integer... indexes) {
+    public void setDisabledIndexes(Vector2 point, Integer... indexes) {
         setDisabledIndexes(point,new ArrayList<>(Arrays.asList(indexes)));
     }
 
@@ -47,7 +47,7 @@ public class MultipleGameOptionsPanel extends OptionsPanel {
         for (var button: buttons) {
             button.setEnabled(true);
         }
-        for (var index : data.getPointData(new Point(x, y))) {
+        for (var index : data.getPointData(new Vector2(x, y))) {
             if (index < size) {
                 buttons.get(index).setEnabled(false);
             }

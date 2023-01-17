@@ -1,5 +1,6 @@
 package gui.factories;
 
+import game.generals.Vector2;
 import gui.card.CardContentDataSet;
 import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleCreatureCards.OnlyVisibleEditCard;
 import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleCreatureCards.OnlyVisibleShowCard;
@@ -9,7 +10,6 @@ import gui.factories.customFactories.labelFactories.*;
 import gui.factories.customFactories.textComponentFactory.TextFactory;
 import gui.factories.customFactories.textComponentFactory.TextFieldFactory;
 import gui.utils.StringAdapter;
-import gui.views.Point;
 import gui.views.gamePanel.MainPanelGame;
 import gui.views.gamePanel.gamePanels.CreatorPanel;
 import gui.views.CardCancelView;
@@ -173,9 +173,9 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
         p1.setWholePanelDisabled();
         p2.setWholePanelDisabled();
         p3.setWholePanelDisabled();
-        p1.applyContent(new AbstractMap.SimpleEntry<>(new Point(9, 7), playerImagePath),
-                new AbstractMap.SimpleEntry<>(new Point(3, 4),
-                        npcImage), new AbstractMap.SimpleEntry<>(new Point(4, 4), npcImage))
+        p1.applyContent(new AbstractMap.SimpleEntry<>(new Vector2(9, 7), playerImagePath),
+                new AbstractMap.SimpleEntry<>(new Vector2(3, 4),
+                        npcImage), new AbstractMap.SimpleEntry<>(new Vector2(4, 4), npcImage))
         ;
         panel.uploadData(new ArrayList<>(Arrays.asList(p1, p2, p3)));
 

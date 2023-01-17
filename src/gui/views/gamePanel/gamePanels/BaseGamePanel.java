@@ -1,5 +1,6 @@
 package gui.views.gamePanel.gamePanels;
 
+import game.generals.Vector2;
 import gui.factories.IOverallFactory;
 import gui.card.fullCards.abstractCards.Card;
 import gui.customComponents.AbstractCustomButton;
@@ -10,7 +11,6 @@ import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
 import gui.views.BackgroundView;
-import gui.views.Point;
 import gui.views.gamePanel.optionsPanels.OneDataOptionsPanel;
 import gui.views.gamePanel.optionsPanels.OptionsPanel;
 
@@ -110,14 +110,14 @@ public abstract class BaseGamePanel extends BackgroundView {
 
 
 
-    public void applyContent(ArrayList<AbstractMap.SimpleEntry<Point, String>> content) {
+    public void applyContent(ArrayList<AbstractMap.SimpleEntry<Vector2, String>> content) {
         removeContent();
         for (var pair : content) {
             manager.getMiddleComponent(pair.getKey().x, pair.getKey().y).getComponent().setContent(pair.getValue());
         }
     }
 
-    public void applyContent(AbstractMap.SimpleEntry<Point, String>... content) {
+    public void applyContent(AbstractMap.SimpleEntry<Vector2, String>... content) {
         removeContent();
         applyContent(new ArrayList<>(Arrays.asList(content)));
     }
@@ -131,12 +131,12 @@ public abstract class BaseGamePanel extends BackgroundView {
         optionsPanel.addOptionsPanelCommand(index, listener);
     }
 
-    public Point getCurrentClickedIndexes() {
+    public Vector2 getCurrentClickedIndexes() {
         return optionsPanel.getCurrentPoint();
     }
 
 
-    public void setDisabledIndexes(ArrayList<Point> indexes) {
+    public void setDisabledIndexes(ArrayList<Vector2> indexes) {
         for (int i = 0; i < maxIndex; i++) {
             for (int j = 0; j < maxIndex; j++) {
                 manager.getMiddleComponent(i, j).getComponent().setEnabled(true);
@@ -150,17 +150,17 @@ public abstract class BaseGamePanel extends BackgroundView {
 
     }
 
-    public void setDisabledIndexes(Point... indexes) {
+    public void setDisabledIndexes(Vector2... indexes) {
         setDisabledIndexes(new ArrayList<>(Arrays.asList(indexes)));
 
     }
 
-    public void colorButtons(Point... indexes) {
+    public void colorButtons(Vector2... indexes) {
         colorButtons(new ArrayList<>(Arrays.asList(indexes)));
 
     }
 
-    public void colorButtons(ArrayList<Point> indexes) {
+    public void colorButtons(ArrayList<Vector2> indexes) {
         for (int i = 0; i < maxIndex; i++) {
             for (int j = 0; j < maxIndex; j++) {
                 manager.getMiddleComponent(i, j).getComponent().setBackground(baseBackColor);
