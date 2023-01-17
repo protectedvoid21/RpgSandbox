@@ -1,6 +1,5 @@
 package gui.views.gamePanel.optionsPanels;
 
-import com.kitfox.svg.A;
 import gui.views.Point;
 
 import java.util.AbstractMap;
