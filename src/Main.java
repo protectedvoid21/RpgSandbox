@@ -1,5 +1,4 @@
 import controllers.ControllerManager;
-import controllers.MenuController;
 import gui.factories.WarHammerFactory;
 
 public class Main {
