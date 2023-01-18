@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public abstract class OneDataOptionsPanel extends OptionsPanel {
-    public OneDataOptionsPanel(GuiFactory factory, int size) {
-        super(factory, size);
+    public OneDataOptionsPanel(GuiFactory factory) {
+        super(factory);
     }
 
     public void setDisabledIndexes(ArrayList<Integer> indexes) {

@@ -24,10 +24,10 @@ public abstract class OptionsPanel extends BackgroundView {
     protected DefaultCustomMenuMenager customPanelAttackChoser;
     protected ArrayList<AbstractCustomButton> buttons = new ArrayList<>();
     protected int size = 0;
+    protected int maximumSize  =10;
     private Vector2 currentPoint = new Vector2(-1, -1);
 
-    public OptionsPanel(GuiFactory factory, int size) {
-        this.size = size;
+    public OptionsPanel(GuiFactory factory) {
         this.factory = factory;
     }
 
@@ -87,7 +87,7 @@ public abstract class OptionsPanel extends BackgroundView {
     public abstract double getPercentFilledSizeY();
 
     private void initializeCustomPanel() {
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < maximumSize; i++) {
             customPanelAttackChoser.addMainComponent(10, 50);//cos sie pieprzy
             customPanelAttackChoser.getMainComponent(i).addSpace(1);
 
@@ -96,24 +96,38 @@ public abstract class OptionsPanel extends BackgroundView {
         customPanelAttackChoser.setBackground(Color.BLUE);
     }
 
+    public void setPotentialSize(int potentialSize){
+        size = size>potentialSize?size>maximumSize?10:size:potentialSize;
+    }
 
     public void initializeButtonsData(ArrayList<String> dataMap) {
 //        factory.setButtonFactory(new BasicButton());
         factory.setButtonType(GuiFactory.ButtonType.ICON);
         int i = 0;
+        size = size>dataMap.size()?size>maximumSize?10:size:dataMap.size();
         for (var data : dataMap) {
-            if (i < size) {
-                var button = factory.createButton(data, null);
-                buttons.add(button);
-                button.setHasDisabledColor(true);
-                button.setSecondDisabledColor(Color.BLACK);
-                customPanelAttackChoser.addMiddleComponent(button, i, 10);
-            }
+//            if (i < size) {
+            var button = factory.createButton(data, null);
+            buttons.add(button);
+            button.setHasDisabledColor(true);
+            button.setSecondDisabledColor(Color.BLACK);
+            customPanelAttackChoser.addMiddleComponent(button, i, 10);
+//            }
             i++;
         }
+        setCorrectVisibility();
+//        int space = (int)((100-size*10)/(double)2);
+//        System.out.println(space);
+//        customPanelAttackChoser.getCmp().addSpace(space, ComponentPanelMenager.Side.LEFT, ComponentPanelMenager.Side.RIGHT);
     }
-    public void applyUnivibilityAfterClicked(){
-        for (var button : buttons){
+
+    protected void setCorrectVisibility(){
+        for (int j = 0; j<maximumSize; j++){
+            customPanelAttackChoser.getMainComponent(j).setVisible(j<size?true:false);
+        }
+    }
+    public void applyUnivibilityAfterClicked() {
+        for (var button : buttons) {
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -136,7 +150,7 @@ public abstract class OptionsPanel extends BackgroundView {
         }
     }
 
-    public void setUniqueColor(boolean value){
+    public void setUniqueColor(boolean value) {
         customPanelAttackChoser.setHasUniqueColor(value);
     }
 

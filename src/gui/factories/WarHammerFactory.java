@@ -5,6 +5,8 @@ import gui.card.CardContentDataSet;
 import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleCreatureCards.OnlyVisibleEditCard;
 import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleCreatureCards.OnlyVisibleShowCard;
 import gui.customUI.customUIStyles.borderStrategies.DefaultBorderStrategy;
+import gui.factories.IOverallFactory;
+import gui.factories.WarhammerData;
 import gui.factories.customFactories.buttonFactories.*;
 import gui.factories.customFactories.labelFactories.*;
 import gui.factories.customFactories.textComponentFactory.TextFactory;
@@ -150,15 +152,14 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
         factory.setLabelFactory(labelFactory);
         var mainPanel = new MainPanelGame(this);
         mainPanel.getGamePanel().setBorder(basicBorderColor, basicBorderSize);
-        mainPanel.getActivityOptionsPanel().initializeButtonsData(new ArrayList<>(Arrays.asList(monsterPath,
-                playerImagePath, npcImage, playerImagePath,
-                npcImage, npcImage)));
-        mainPanel.getActivityOptionsPanel().initializeLabelsData(new ArrayList<>(Arrays.asList("1", "2", "3", "1", "1"
-                , "1")));
-        mainPanel.getGamePanel().initializeOptionsButtonPanelData(new ArrayList<>(Arrays.asList(monsterPath,
-                playerImagePath, npcImage, playerImagePath,
-                npcImage, npcImage)));
-        mainPanel.getGamePanel().initializeOptionsPanelLabelData(new ArrayList<>(Arrays.asList("1", "3", "0", "1", "2"
+        mainPanel.getActivityOptionsPanel().initializeButtonsData(new ArrayList<>(Arrays.asList(targetOpt,
+                defenseStandOpt, blockOption)));
+        mainPanel.getActivityOptionsPanel().initializeLabelsData(new ArrayList<>(Arrays.asList("1", "2", "1")));
+
+        mainPanel.getGamePanel().initializeOptionsButtonPanelData(new ArrayList<>(Arrays.asList(moveOption,
+                cardOption, normalAttackOpt, carefullattackOpt,
+                fastAttactOpt)));
+        mainPanel.getGamePanel().initializeOptionsPanelLabelData(new ArrayList<>(Arrays.asList("1", "0", "1", "2", "2"
         )));
         return mainPanel;
     }

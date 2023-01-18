@@ -5,6 +5,14 @@ import gui.utils.StringAdapter;
 import java.awt.*;
 
 public interface WarhammerData {
+    String moveOption = StringAdapter.getRelativePath("movingOpt.png");
+    String cardOption = StringAdapter.getRelativePath("cardOpt.png");
+    String carefullattackOpt = StringAdapter.getRelativePath("swordsOpt.png");
+    String normalAttackOpt = StringAdapter.getRelativePath("attackOpt.png");
+    String fastAttactOpt = StringAdapter.getRelativePath("knivesOpt.png");
+    String defenseStandOpt = StringAdapter.getRelativePath("shieldOpt.png");
+    String targetOpt = StringAdapter.getRelativePath("targetOpt.png");
+    String blockOption = StringAdapter.getRelativePath("block.png");
     String fontPath = StringAdapter.getRelativePath("Sabatica-regular.ttf");
     String background1 = StringAdapter.getRelativePath("aveeee.jpg");
     String editPath = StringAdapter.getRelativePath("edit.png");
