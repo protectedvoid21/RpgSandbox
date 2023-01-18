@@ -110,16 +110,26 @@ public abstract class BaseGamePanel extends BackgroundView {
 
 
 
-    public void applyContent(ArrayList<AbstractMap.SimpleEntry<Vector2, String>> content) {
-        removeContent();
+    protected void applyWithoutRemovingContent(ArrayList<AbstractMap.SimpleEntry<Vector2, String>> content) {
+//        removeContent();
         for (var pair : content) {
             manager.getMiddleComponent(pair.getKey().x, pair.getKey().y).getComponent().setContent(pair.getValue());
         }
     }
 
+    protected void applyWithoutRemovingContent(AbstractMap.SimpleEntry<Vector2, String>... content) {
+//        removeContent();
+        applyWithoutRemovingContent(new ArrayList<>(Arrays.asList(content)));
+    }
+
+    public void applyContent(ArrayList<AbstractMap.SimpleEntry<Vector2, String>> content) {
+        removeContent();
+        applyWithoutRemovingContent(content);
+    }
+
     public void applyContent(AbstractMap.SimpleEntry<Vector2, String>... content) {
         removeContent();
-        applyContent(new ArrayList<>(Arrays.asList(content)));
+        applyWithoutRemovingContent(content);
     }
 
     public void initializeOptionsButtonPanelData(ArrayList<String> optionsPanelData) {

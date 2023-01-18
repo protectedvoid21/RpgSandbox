@@ -176,7 +176,7 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
         p3.setWholePanelDisabled();
         p1.applyContent(new AbstractMap.SimpleEntry<>(new Vector2(9, 7), playerImagePath),
                 new AbstractMap.SimpleEntry<>(new Vector2(3, 4),
-                        npcImage), new AbstractMap.SimpleEntry<>(new Vector2(4, 4), npcImage))
+                        npcImage), new AbstractMap.SimpleEntry<>(new Vector2(4, 4), npcImage));
         ;
         panel.uploadData(new ArrayList<>(Arrays.asList(p1, p2, p3)));
 
