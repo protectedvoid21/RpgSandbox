@@ -1,8 +1,7 @@
 package gui.views.gamePanel.optionsPanels;
 
 
-
-import com.kitfox.svg.A;
+//import com.kitfox.svg.A;
 import game.generals.Vector2;
 
 

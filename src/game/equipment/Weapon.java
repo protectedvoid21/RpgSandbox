@@ -59,4 +59,29 @@ public class Weapon extends ManyUsageItem {
     public int getRange() {
         return range;
     }
+
+    public int getChanceForBleeding() {
+        return chanceForBleeding;
+    }
+
+    public int getChanceForFire() {
+        return chanceForFire;
+    }
+
+    public int getChanceForFreezing() {
+        return chanceForFreezing;
+    }
+
+    public int getChanceForPoison() {
+        return chanceForPoison;
+    }
+
+    public void upgrade(int damage, int bleeding, int poison, int fire, int freezing)
+    {
+        this.damage=damage;
+        chanceForBleeding=bleeding;
+        chanceForPoison=poison;
+        chanceForFire=fire;
+        chanceForFreezing=freezing;
+    }
 }
