@@ -11,7 +11,7 @@ public class InventoryFactory {
     {
         String type = stats.get(0), name = stats.get(1);
 
-        if(type.equals("Armor"))
+        if(type.equals("Weapon"))
         {
             String sdamage = stats.get(2);
             String srange = stats.get(3);
@@ -31,7 +31,7 @@ public class InventoryFactory {
 
             return new Weapon(name,damage,range,bleeding,poison,fire,freezing);
         }
-        else if(type.equals("Weapon"))
+        else if(type.equals("Armor"))
         {
             String sdefence = stats.get(2);
             int defence = Integer.parseInt(sdefence);

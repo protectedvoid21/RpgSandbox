@@ -4,38 +4,66 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Inventory {
-    private ArrayList<Item> itemList;
+    private ArrayList<Weapon> weapons;
+    private ArrayList<Armor> armors;
+    private ArrayList<Mount> mounts;
     private Weapon activeWeapon;
     private Armor activeArmor;
     private Mount activeMount;
 
     public Inventory() {
-        itemList = new ArrayList<>();
+        weapons = new ArrayList<>();
+        armors = new ArrayList<>();
+        mounts = new ArrayList<>();
         activeWeapon = noWeapon();
         activeArmor = noArmor();
         activeMount = noMount();
     }
 
-    public ArrayList<Item> getItems() {
-        return itemList;
+    public ArrayList<Weapon> getWeapons() {
+        return weapons;
+    }
+    public ArrayList<Armor> getArmors() {
+        return armors;
+    }
+    public ArrayList<Mount> getMounts() {
+        return mounts;
     }
 
     public void addItem(Item item) {
-        itemList.add(item);
+        if (item instanceof Weapon) {
+            weapons.add((Weapon) item);
 
-        if (item instanceof Weapon && activeWeapon.getName().equals("none")) {
-            activeWeapon = (Weapon) item;
+            if(activeWeapon.getName().equals("none")) {
+                activeWeapon = (Weapon) item;
+            }
         }
-        else if (item instanceof Armor && activeArmor.getName().equals("none")) {
-            activeArmor = (Armor) item;
+        else if (item instanceof Armor) {
+            armors.add((Armor) item);
+
+            if(activeArmor.getName().equals("none")) {
+                activeArmor = (Armor) item;
+            }
         }
-        else if (item instanceof Mount && activeMount.getName().equals("none")) {
-            activeMount = (Mount) item;
+        else if (item instanceof Mount) {
+            mounts.add((Mount) item);
+
+            if(activeMount.getName().equals("none")) {
+                activeMount = (Mount) item;
+            }
         }
     }
 
     public void removeItem(Item item) {
-        itemList.remove(item);
+        if (item instanceof Weapon) {
+            weapons.remove((Weapon) item);
+        }
+        else if (item instanceof Armor) {
+            armors.remove((Armor) item);
+        }
+        else if (item instanceof Mount) {
+            mounts.remove((Mount) item);
+        }
 
         inventoryCheck(item);
     }
@@ -49,7 +77,17 @@ public class Inventory {
     }
 
     public void removeEachItemIfNotValid() {
-        for (var item : itemList) {
+        for (var item : weapons) {
+            removeItemIfNotValid(item);
+
+            inventoryCheck(item);
+        }
+        for (var item : armors) {
+            removeItemIfNotValid(item);
+
+            inventoryCheck(item);
+        }
+        for (var item : mounts) {
             removeItemIfNotValid(item);
 
             inventoryCheck(item);
@@ -72,48 +110,114 @@ public class Inventory {
     }
 
     private void setActiveWeapon() {
-        for (Item item : itemList) {
-            if (item instanceof Weapon) {
-                activeWeapon = (Weapon) item;
-                break;
-            }
+        if (!weapons.isEmpty())
+        {
+            activeWeapon=weapons.get(0);
         }
     }
 
     public void setActiveWeapon(Weapon weapon) {
-        if (itemList.contains(weapon)) {
+        if (weapons.contains(weapon)) {
             activeWeapon = weapon;
         }
     }
 
+    public void nextWeapon()
+    {
+        int i = weapons.indexOf(activeWeapon)+1;
+
+        if(i==weapons.size())
+        {
+            i=0;
+        }
+
+        setActiveWeapon(weapons.get(i));
+    }
+
+    public void previousWeapon()
+    {
+        int i = weapons.indexOf(activeWeapon)-1;
+
+        if(i<0)
+        {
+            i= weapons.size()-1;
+        }
+
+        setActiveWeapon(weapons.get(i));
+    }
+
     private void setActiveArmor() {
-        for (Item item : itemList) {
-            if (item instanceof Armor) {
-                activeArmor = (Armor) item;
-                break;
-            }
+        if (!armors.isEmpty())
+        {
+            activeArmor=armors.get(0);
         }
     }
 
     public void setActiveArmor(Armor armor) {
-        if (itemList.contains(armor)) {
+        if (armors.contains(armor)) {
             activeArmor = armor;
         }
     }
 
+    public void nextArmor()
+    {
+        int i = armors.indexOf(activeArmor)+1;
+
+        if(i==armors.size())
+        {
+            i=0;
+        }
+
+        setActiveArmor(armors.get(i));
+    }
+
+    public void previousArmor()
+    {
+        int i = armors.indexOf(activeArmor)-1;
+
+        if(i<0)
+        {
+            i= armors.size()-1;
+        }
+
+        setActiveArmor(armors.get(i));
+    }
+
     private void setActiveMount() {
-        for (Item item : itemList) {
-            if (item instanceof Mount) {
-                activeMount = (Mount) item;
-                break;
-            }
+        if (!mounts.isEmpty())
+        {
+            activeMount=mounts.get(0);
         }
     }
 
     public void setActiveMount(Mount mount) {
-        if (itemList.contains(mount)) {
+        if (mounts.contains(mount)) {
             activeMount = mount;
         }
+    }
+
+    public void nextMount()
+    {
+        int i = mounts.indexOf(activeMount)+1;
+
+        if(i==mounts.size())
+        {
+            i=0;
+        }
+
+        setActiveMount(mounts.get(i));
+    }
+
+    public void previousMount()
+    {
+        int i = mounts.indexOf(activeMount)-1;
+
+        if(i<0)
+        {
+            i= mounts.size()-1;
+        }
+
+        setActiveMount(mounts.get(i));
     }
 
     public Weapon getActiveWeapon() {
