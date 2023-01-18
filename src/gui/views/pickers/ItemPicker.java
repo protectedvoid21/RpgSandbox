@@ -25,7 +25,10 @@ public class ItemPicker implements SwitchableComponent {
     private ArrayList<String> items = new ArrayList<>();
     private AbstractCustomLabel label;
     private int currentSide = 0;
-    private CustomLambdaExpression listener = ()->{};
+    private CustomLambdaExpression leftListener = () -> {
+    };
+    private CustomLambdaExpression rightListener = () -> {
+    };
 
     public ItemPicker(GuiFactory factory) {
         arrows = new DoubleArrowPanel(factory, this);
@@ -50,7 +53,10 @@ public class ItemPicker implements SwitchableComponent {
                 case RIGHT -> currentSide++;
             }
             updateContent();
-            listener.apply();
+            switch (side) {
+                case LEFT -> leftListener.apply();
+                case RIGHT -> rightListener.apply();
+            }
         }
     }
 
@@ -90,7 +96,10 @@ public class ItemPicker implements SwitchableComponent {
         updateContent();
     }
 
-    public void addListenerToPicker(CustomLambdaExpression expression) {
-
+    public void addListenerToPicker(DoubleArrowPanel.Side side, CustomLambdaExpression expression) {
+        switch (side) {
+            case LEFT -> leftListener = expression;
+            case RIGHT -> rightListener = expression;
+        }
     }
 }
