@@ -1,8 +1,11 @@
 package gui;
 
 import game.generals.Vector2;
+import gui.card.DoubleArrowPanel;
 import gui.factories.IOverallFactory;
 import gui.factories.WarHammerFactory;
+import gui.views.pickers.CustomLambdaExpression;
+import gui.views.pickers.FullItemPicker;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,6 +26,12 @@ public class TestMainGui {
         x.getGamePanel().setOptionsDisabledIndexes(new Vector2(1, 3),3, 4);
         x.getGamePanel().setOptionsDisabledIndexes(new Vector2(1, 3));
         x.getGamePanel().applyContent(new AbstractMap.SimpleEntry<>(new Vector2(3, 4), "src/gui/go.png"));
+        x.getPicker(FullItemPicker.LabelType.WEAPON).addListenerToPicker(DoubleArrowPanel.Side.LEFT,new CustomLambdaExpression() {
+            @Override
+            public void apply() {
+                System.out.println(x.getPicker(FullItemPicker.LabelType.WEAPON).getCurrentIndex());
+            }
+        });
 
 //        ramka.add(f.createCreatingEditingItemsPanel().getPanel());
 //        ramka.add(x.getPanel());
@@ -36,7 +45,7 @@ public class TestMainGui {
 //        ((GodCard)z).setItemViewStatus(Card.CardTypes.MOUNT, 2);
 //        ((GodCard)z).removeItemViewStatus();
 //        ramka.add(x.getPanel());
-        var y = f.createEntriesCard();
+//        var y = f.createEntriesCard();
         ramka.add(x.getPanel());
 //        y.setTitleIncorrect(BaseCard.Side.LEFT, 1555);
 //        ramka.add(f.createAllCreatureShowView().getPanel());
@@ -54,9 +63,10 @@ public class TestMainGui {
 //        ramka.add(f.createGameCard().getPanel());
 //        ramka.add(f.createMenuView().getPanel());
 //        ramka.add(f.createViewingItemsPanel().getPanel());
-        var ff = f.createCreatorGameView();
+//        var ff = f.createCreatorGameView();
+//        ff.get
 //        ff.getCreatorPanel().applyNewCreatureOnPosition("aa", new Vector2(2,3));
-        ramka.add(ff.getPanel());
+//        ramka.add(ff.getPanel());
 //        ramka.add(f.createAllCreatureShowView().getPanel());
 //        ramka.add(f.createCreaturesPanel().getPanel());
 //        ramka.add(f.createCreatorApplyingCharacterView().getPanel());
