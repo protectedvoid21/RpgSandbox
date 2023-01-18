@@ -78,7 +78,7 @@ public class DoubleArrowPanel {
     }
 
     private void addCmp(String pathEnabled, String pathDisabled) {
-        factory.setButtonType(GuiFactory.ButtonType.DISABLED_STRETCH_ICON);
+        factory.setButtonType(GuiFactory.ButtonType.DISABLED_ICON);
         menager.addMiddleComponent(factory.createButton(pathEnabled, pathDisabled, null), 0, 10);
     }
 

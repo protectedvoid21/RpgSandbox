@@ -897,9 +897,9 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
     private OnlyVisibleItemCard createSmallItemCard(OnlyVisibleItemCard card) {
         setFactoriesMode(Mode.CLICKED);
         card.initialize();
-        card.setBorder(basicBorderColor, basicBorderSize);
         card.setUniformFont();
         uploadBackgroundImage(card, cardBackground);
+        card.setBorder(basicBorderColor, basicBorderSize*2);
         return card;
     }
 
@@ -908,7 +908,7 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
         setFactoriesMode(Mode.CLICKED);
 
         var card = new OnlyVisibleEditCard(factory, 6);
-        card.setBorder(basicBorderColor, basicBorderSize);
+        card.setBorder(basicBorderColor, basicBorderSize*2);
         createSmallCard(card);
         return card;
     }
@@ -917,7 +917,7 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
     public OnlyVisibleShowCard createSmallShowCard() {
         setFactoriesMode(Mode.CLICKED);
         var card = new OnlyVisibleShowCard(factory, 6);
-        card.setBorder(basicBorderColor, basicBorderSize);
+        card.setBorder(basicBorderColor, basicBorderSize*2);
         createSmallCard(card);
         return card;
     }
@@ -967,7 +967,7 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
         setFactoriesMode(Mode.CLICKED);
         var card = new OnlyVisibleItemCard(factory);
         createSmallItemCard(card);
-        card.setBorder(basicBorderColor, basicBorderSize);
+//        card.setBorder(basicBorderColor, basicBorderSize);
         return card;
     }
 //    public  OptionsPanel createOptionsPanel(){
