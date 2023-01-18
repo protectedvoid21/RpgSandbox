@@ -11,24 +11,30 @@ import gui.card.contentCards.detailCards.DetailButtonsCard;
 import gui.card.fullCards.abstractCards.Card;
 import gui.customComponents.AbstractCustomButton;
 import gui.customComponents.customTextComponents.CustomTextComponent;
-import gui.customUI.customUIStyles.borderStrategies.DependantHeightBorderStrategy;
 import gui.factories.GuiFactory;
 import gui.menu.ComponentPanelMenager;
+import gui.utils.FileCopyManager;
+import gui.utils.StringAdapter;
 
 import javax.swing.*;
+import javax.swing.Timer;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.*;
 
 public class EntriesCard extends Card {
     public enum EntryType {SPINNER, ENTRY}
-
-    private CustomTextComponent textComponentTitle;
+    private boolean isImageSet = false;
     private AddingButtonCard choserEqCard2 = null;
     private ChoserCard choserCard;
     protected ComponentPanelMenager<AbstractCustomButton> addButton;
     private JComponent helpPanelVariable;
     private AbstractCustomButton saveButton;
+    protected ComponentPanelMenager<CustomTextComponent> rightEntryTitleComponent;
+    protected ComponentPanelMenager<AbstractCustomButton> leftButtonyTitleComponent;
 
     public EntriesCard(GuiFactory factory) {
         super(factory);
@@ -47,6 +53,10 @@ public class EntriesCard extends Card {
     public void setBackgroundImage(String path) {
         super.setBackgroundImage(path);
         choserCard.setBackgroundImage(path);
+    }
+
+    public boolean isImageSet() {
+        return isImageSet;
     }
 
     public HashMap<CardTypes, CardContentDataSet> getIndexesData() {
@@ -147,20 +157,50 @@ public class EntriesCard extends Card {
     @Override
     protected void updateTitle() {
         super.updateTitle();
-
-//        if (activeCard == allCards.get(CardTypes.OVERALL)) {
-        rightTitleComponent.setVisible(!(activeCard == allCards.get(CardTypes.OVERALL)));
-        rightEntryTitleComponent.setVisible((activeCard == allCards.get(CardTypes.OVERALL)));
-//        } else {
-//            rightEntryTitleComponent.setVisible(false);
-//            rightTitleComponent.setVisible(true);
-//        }
+        if (activeCard == allCards.get(CardTypes.OVERALL) || activeCard == amwGeneratorCard) {
+            setTitleOptionsVisible(Side.RIGHT, 1);
+            setTitleOptionsVisible(Side.LEFT, 1);
+        } else {
+            setTitleOptionsVisible(Side.RIGHT, 0);
+            setTitleOptionsVisible(Side.LEFT, 0);
+        }
     }
 
     @Override
     public void initializeTitle() {
         super.initializeTitle();
-        textComponentTitle = factory.createTextField();
+        rightEntryTitleComponent = new ComponentPanelMenager<>(factory.createTextField());
+        rightEntryTitleComponent.getComponent().getTextComponent().addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                super.keyReleased(e);
+                if (activeCard == amwGeneratorCard) {
+                    amwGeneratorCard.getData().titleContent = rightEntryTitleComponent.getComponent().getContent();
+                } else {
+                    allCards.get(CardTypes.OVERALL).getData().titleContent =
+                            rightEntryTitleComponent.getComponent().getContent();
+                }
+            }
+        });
+        initializeRightTitleComponent(rightEntryTitleComponent, 1);
+        factory.setButtonType(GuiFactory.ButtonType.ICON);
+        var but = factory.createButton(StringAdapter.getRelativePath("image.png"), null);
+        but.getCustomUI().setOffSet(0);
+        leftButtonyTitleComponent = new ComponentPanelMenager<>(but);
+        leftButtonyTitleComponent.getComponent().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                var chooser = new JFileChooser();
+                int answer = chooser.showOpenDialog(new JFrame());
+                if (answer == JFileChooser.APPROVE_OPTION) {
+                    isImageSet = true;
+                    leftButtonyTitleComponent.getComponent().setContent(String.valueOf(chooser.getSelectedFile().getAbsolutePath()));
+                    activeCard.getData().titlePath = StringAdapter.getRelativePath(FileCopyManager.getLastFileName());
+                    FileCopyManager.copyFile(String.valueOf(chooser.getSelectedFile().getPath()));
+                }
+            }
+        });
+        initializeLeftTitleComponent(leftButtonyTitleComponent, 1);
     }
 
     public AbstractCustomButton getSaveButton() {
@@ -173,6 +213,36 @@ public class EntriesCard extends Card {
         factory.setButtonType(GuiFactory.ButtonType.NORMAL);
         saveButton = factory.createButton("SAVE", null);
         initializeCancelPanelObject(saveButton, 1);
+    }
+
+    public CardContentDataSet getCurrectCreatorItemData() {
+        amwGeneratorCard.getData().titlePath = leftButtonyTitleComponent.getComponent().getContent();
+        amwGeneratorCard.getData().titleContent = rightEntryTitleComponent.getComponent().getContent();
+        return amwGeneratorCard.generateContentData();
+    }
+
+
+    public void setTitleIncorrect(Side side, int periodTime) {
+        switchSide(CardTypes.OVERALL);
+        leftArrows.updateSwitchingButtons();
+        if (side == Side.RIGHT) {
+            var cmp = rightEntryTitleComponent.getComponent();
+            var previousBG = cmp.getBackground();
+            cmp.setBackground(new Color(0x570606));
+            var timer = new Timer(periodTime, e -> cmp.setBackground(previousBG));
+            timer.setRepeats(false);
+            timer.start();
+        }
+        if (side == Side.LEFT) {
+            var cmp = leftButtonyTitleComponent.getComponent();
+            var cnt = cmp.getContent();
+            cmp.setContent(StringAdapter.getRelativePath("disimage.png"));
+            var timer = new Timer(periodTime, e -> {
+                cmp.setContent(cnt);
+            });
+            timer.setRepeats(false);
+            timer.start();
+        }
     }
 
     public void setEntriesIncorrect(ArrayList<Integer> values, int periodTime) {

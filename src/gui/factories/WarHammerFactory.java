@@ -52,8 +52,8 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
         factory.setTextFactory(textFactory);
     }
 
-    private void setFactoriesMode(Mode mode){
-        switch (mode){
+    private void setFactoriesMode(Mode mode) {
+        switch (mode) {
             case MENU -> {
                 factory.setLabelFactory(menuLabelFactory);
                 factory.setButtonFactory(menuButtonsFactory);
@@ -78,7 +78,8 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
         factory.setBorderStrategy(new DependantHeightBorderStrategy());
 
         menuButtonsFactory.setPaths(StringAdapter.getRelativePath("swo.png"), StringAdapter.getRelativePath("swo.png"));
-        menuLabelFactory.setPaths(StringAdapter.getRelativePath("leftsword.png"), StringAdapter.getRelativePath("rightsword.png"));
+        menuLabelFactory.setPaths(StringAdapter.getRelativePath("leftsword.png"), StringAdapter.getRelativePath(
+                "rightsword.png"));
         setFactoriesMode(Mode.MENU);
         var menu = new MenuView(factory);
         menu.setBorder(basicBorderColor, basicBorderSize);
@@ -117,7 +118,7 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
     public SelectingView createCreatingEditingItemsPanel() {
         setFactoriesMode(Mode.MENU);
         return createView(new ArrayList<>(Arrays.asList(
-                new AbstractMap.SimpleEntry<>(horsePath , "MOUNT"),
+                new AbstractMap.SimpleEntry<>(horsePath, "MOUNT"),
                 new AbstractMap.SimpleEntry<>(efectPath, "EFFECTS"),
                 new AbstractMap.SimpleEntry<>(armorPath, "ARMOR"))));
     }
@@ -223,9 +224,9 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
         return card;
     }
 
-    public BasicCard createBasicCard() {setFactoriesMode(Mode.CLICKED);
-
-        var card = new GodCard(factory);
+    public BasicCard createBasicCard() {
+        setFactoriesMode(Mode.CLICKED);
+        var card = new BasicCard(factory);
         card.setBorder(basicBorderColor, basicBorderSize);
         card.setBackgroundImage(cardBackground);
         card.initialize();
@@ -243,7 +244,8 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
     }
 
     @Override
-    public GameCard createGameCard() {setFactoriesMode(Mode.CLICKED);
+    public GameCard createGameCard() {
+        setFactoriesMode(Mode.CLICKED);
 
         var card = new GameCard(factory);
         card.setBorder(basicBorderColor, basicBorderSize);
@@ -258,9 +260,9 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
     public EntriesCard createCreatorCard(Card.CreatorTypes type) {
         setFactoriesMode(Mode.CLICKED);
         var card = new EntriesCard(factory);
+        card.initialize();
         card.setBorder(basicBorderColor, basicBorderSize);
         card.setBackgroundImage(cardBackground);
-        card.initialize();
         card.setUniformFont();
         card.setCancelButtonStatus(true);
         card.uploadCreatorItemsData(generateData1(), generateData2(), generateData1());
@@ -901,7 +903,8 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
     }
 
     @Override
-    public OnlyVisibleEditCard createSmallEditCard() {setFactoriesMode(Mode.CLICKED);
+    public OnlyVisibleEditCard createSmallEditCard() {
+        setFactoriesMode(Mode.CLICKED);
 
         var card = new OnlyVisibleEditCard(factory, 6);
         card.setBorder(basicBorderColor, basicBorderSize);
@@ -919,7 +922,8 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
     }
 
     @Override
-    public AllCreaturesEditView createAllCreatureEditView() {setFactoriesMode(Mode.CLICKED);
+    public AllCreaturesEditView createAllCreatureEditView() {
+        setFactoriesMode(Mode.CLICKED);
         var obj = new AllCreaturesEditView(this);
         obj.initialize();
         obj.setBackgroundImage(avePath);
@@ -927,7 +931,8 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
     }
 
     @Override
-    public AllCreaturesShowView createAllCreatureShowView() {setFactoriesMode(Mode.CLICKED);
+    public AllCreaturesShowView createAllCreatureShowView() {
+        setFactoriesMode(Mode.CLICKED);
         var obj = new AllCreaturesShowView(this);
         obj.initialize();
         obj.setBackgroundImage(avePath);
@@ -957,7 +962,8 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
     }
 
     @Override
-    public OnlyVisibleItemCard createSmallItemCard() {setFactoriesMode(Mode.CLICKED);
+    public OnlyVisibleItemCard createSmallItemCard() {
+        setFactoriesMode(Mode.CLICKED);
         var card = new OnlyVisibleItemCard(factory);
         createSmallItemCard(card);
         card.setBorder(basicBorderColor, basicBorderSize);
@@ -986,7 +992,7 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
         mapa.get(2).set(0, StringAdapter.getRelativePath("weapon.png"));
         mapa.get(1).set(0, StringAdapter.getRelativePath("effect.png"));
         mapa.get(4).set(0, StringAdapter.getRelativePath("horse.png"));
-        mapa.get(5).set(0,StringAdapter.getRelativePath("horse.png"));
+        mapa.get(5).set(0, StringAdapter.getRelativePath("horse.png"));
         CardContentDataSet data = new CardContentDataSet();
         data.content = mapa;
         data.titleContent = "WITCH";
