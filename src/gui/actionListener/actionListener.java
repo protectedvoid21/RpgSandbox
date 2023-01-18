@@ -4,7 +4,6 @@ import game.board.RoundManager;
 import game.creature.Creature;
 import game.generals.Vector2;
 import game.interfaceWarhammer.ActionsEnum;
-import gui.views.Point;
 import gui.views.gamePanel.MainPanelGame;
 import gui.views.gamePanel.gamePanels.BaseGamePanel;
 import gui.views.gamePanel.gamePanels.GamePanel;
@@ -28,7 +27,7 @@ public class actionListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        Point point = mainPanelGame.getGamePanel().getCurrentClickedIndexes();
+        Vector2 point = mainPanelGame.getGamePanel().getCurrentClickedIndexes();
         Creature you = roundManager.getGameObjectWithTurn().getCreature();
 
         // Tutaj wykonuje akcje

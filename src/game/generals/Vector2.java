@@ -3,9 +3,9 @@ package game.generals;
 import java.util.Objects;
 
 public class Vector2 {
-    public final int x;
-    public final int y;
-    
+    public int x = -1;
+    public int y = -1;
+
     public Vector2(int x, int y) {
         this.x = x;
         this.y = y;
@@ -27,4 +27,9 @@ public class Vector2 {
     public int hashCode() {
         return Objects.hash(x, y);
     }
+
+    public boolean isOutOfRange(int sizeX, int sizeY) {
+        return x < 0 || x >= sizeX || y < 0 || y >= sizeY;
+    }
+
 }

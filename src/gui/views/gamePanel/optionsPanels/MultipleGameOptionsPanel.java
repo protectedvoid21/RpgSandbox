@@ -1,9 +1,9 @@
 package gui.views.gamePanel.optionsPanels;
 
+import game.generals.Vector2;
 import gui.card.SharedCmpsFont;
 import gui.customComponents.AbstractCustomLabel;
 import gui.factories.GuiFactory;
-import gui.views.Point;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,7 +12,7 @@ public class MultipleGameOptionsPanel extends OptionsPanel {
     private ArrayList<AbstractCustomLabel> labels = new ArrayList<>();
     private OptionsPanelData data = new OptionsPanelData();
     public MultipleGameOptionsPanel(GuiFactory factory, int size) {
-        super(factory, size);
+        super(factory);
     }
 
     @Override
@@ -23,6 +23,7 @@ public class MultipleGameOptionsPanel extends OptionsPanel {
     public void initializeLabelsData(ArrayList<String> dataMap) {
         factory.setLabelType(GuiFactory.LabelType.NORMAL);
         int i = 0;
+        setPotentialSize(dataMap.size());
         for (var data : dataMap) {
             if (i < size) {
                 var label = factory.createLabel(data);
@@ -31,13 +32,14 @@ public class MultipleGameOptionsPanel extends OptionsPanel {
             }
             i++;
         }
+        setCorrectVisibility();
         SharedCmpsFont.setUniformFont(labels);
     }
-    public void setDisabledIndexes(Point point, ArrayList<Integer> indexes) {
+    public void setDisabledIndexes(Vector2 point, ArrayList<Integer> indexes) {
        data.setPointData(point, indexes);
     }
 
-    public void setDisabledIndexes(Point point, Integer... indexes) {
+    public void setDisabledIndexes(Vector2 point, Integer... indexes) {
         setDisabledIndexes(point,new ArrayList<>(Arrays.asList(indexes)));
     }
 
@@ -47,10 +49,18 @@ public class MultipleGameOptionsPanel extends OptionsPanel {
         for (var button: buttons) {
             button.setEnabled(true);
         }
-        for (var index : data.getPointData(new Point(x, y))) {
+        for (var index : data.getPointData(new Vector2(x, y))) {
             if (index < size) {
                 buttons.get(index).setEnabled(false);
             }
         }
     }
+
+//    @Override
+//    public void initializeButtonsData(ArrayList<String> dataMap) {
+//        for (int j = 0; j<maximumSize; j++){
+//            customPanelAttackChoser.getMainComponent(j).setVisible(j<size?true:false);
+//        }     super.initializeButtonsData(dataMap);
+//
+//    }
 }

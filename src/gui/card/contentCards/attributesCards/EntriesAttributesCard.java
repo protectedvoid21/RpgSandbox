@@ -28,7 +28,6 @@ public class EntriesAttributesCard extends AttributesCard {
     }
 
     public CardContentDataSet generateContentData() {
-
         for (int i = 0; i < data.content.size(); i++) {
             if (data.dataType.get(i) == CardContentDataSet.DataType.BOOLEAN && !data.content.get(i).isEmpty()) {
                 data.content.get(i).set(1, "1");
@@ -58,11 +57,10 @@ public class EntriesAttributesCard extends AttributesCard {
         entriesList.add(y);
         y.getTextComponent().addKeyListener(new KeyAdapter() {
             @Override
-            public void keyTyped(KeyEvent e) {
-                super.keyTyped(e);
+            public void keyReleased(KeyEvent e) {
+                super.keyReleased(e);
                 var index = getSideMaximumElementsNumber() - getMaximumElementNumber() + entriesList.indexOf(y);
                 data.content.get(index).set(1, y.getContent());
-
             }
 
 

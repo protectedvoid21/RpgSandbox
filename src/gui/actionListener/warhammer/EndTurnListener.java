@@ -3,7 +3,6 @@ package gui.actionListener.warhammer;
 import game.board.RoundManager;
 import game.creature.Creature;
 import gui.actionListener.turnOffButtons;
-import gui.views.Point;
 import gui.views.gamePanel.MainPanelGame;
 
 import java.awt.event.ActionEvent;
@@ -23,7 +22,7 @@ public class EndTurnListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         roundManager.moveToNextObject();
-
+        mainPanelGame.getGamePanel().colorButtons(roundManager.getGameObjectWithTurnPosition());
         turnOffButtons.turnOff(roundManager,mainPanelGame,2,0);
     }
 }

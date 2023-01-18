@@ -2,8 +2,8 @@ package gui.actionListener.warhammer;
 
 import game.board.RoundManager;
 import game.creature.Creature;
+import game.generals.Vector2;
 import gui.actionListener.turnOffButtons;
-import gui.views.Point;
 import gui.views.gamePanel.MainPanelGame;
 import gui.views.gamePanel.gamePanels.BaseGamePanel;
 import gui.views.gamePanel.gamePanels.GamePanel;
@@ -26,7 +26,7 @@ public class BlockListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        Point point = mainPanelGame.getGamePanel().getCurrentClickedIndexes();
+        Vector2 point = mainPanelGame.getGamePanel().getCurrentClickedIndexes();
         Creature you = roundManager.getGameObjectWithTurn().getCreature();
         roundManager.getActions().doAction(BLOCK, you);
 

@@ -1,17 +1,19 @@
 package gui.views.gamePanel.gamePanels;
 
+import game.generals.Vector2;
 import gui.factories.IOverallFactory;
 import gui.card.fullCards.abstractCards.Card;
 import gui.customComponents.AbstractCustomLabel;
 import gui.customComponents.iconComponents.IconLabel;
 import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
-import gui.views.Point;
 import gui.views.gamePanel.optionsPanels.GameOptionsPanel;
 import gui.views.gamePanel.optionsPanels.MultipleGameOptionsPanel;
 import gui.views.gamePanel.optionsPanels.OptionsPanelData;
 
+import java.util.AbstractMap;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class GamePanel extends BaseGamePanel {
@@ -27,11 +29,11 @@ public class GamePanel extends BaseGamePanel {
     public GamePanel(IOverallFactory factory, int size) {
         super(factory, size);
     }
-    public void setOptionsDisabledIndexes(Point point,ArrayList<Integer> indexes) {
+    public void setOptionsDisabledIndexes(Vector2 point,ArrayList<Integer> indexes) {
         gameOptionsPanel.setDisabledIndexes(point, indexes);
     }
 
-    public void setOptionsDisabledIndexes(Point point,Integer... indexes) {
+    public void setOptionsDisabledIndexes(Vector2 point, Integer... indexes) {
         gameOptionsPanel.setDisabledIndexes(point, indexes);
     }
 
@@ -80,15 +82,15 @@ public class GamePanel extends BaseGamePanel {
         }
     }
 
-    public void applyDefendActionsContent(Point position) {
+    public void applyDefendActionsContent(Vector2 position) {
         helpMethodActionsChangeContent(position, ActionsLabelsType.DEFEND);
     }
 
-    public void applyAttackActionsContent(Point position) {
+    public void applyAttackActionsContent(Vector2 position) {
         helpMethodActionsChangeContent(position, ActionsLabelsType.ATACK);
     }
 
-    private void helpMethodActionsChangeContent(Point position, ActionsLabelsType type) {
+    private void helpMethodActionsChangeContent(Vector2 position, ActionsLabelsType type) {
         if (!position.isOutOfRange(maxIndex, maxIndex)) {
             var pos = managerActions.getMiddleComponent(position.x, position.y);
             var label = pos.getComponent();

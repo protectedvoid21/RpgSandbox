@@ -4,7 +4,6 @@ import game.board.RoundManager;
 import game.creature.Creature;
 import game.interfaces.ITurnOffButtons;
 import gui.actionListener.turnOffButtons;
-import gui.views.Point;
 import gui.views.gamePanel.MainPanelGame;
 import gui.views.gamePanel.gamePanels.BaseGamePanel;
 import gui.views.gamePanel.gamePanels.GamePanel;
@@ -27,11 +26,9 @@ public class DefenseStandListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
-        Point point = mainPanelGame.getGamePanel().getCurrentClickedIndexes();
         Creature you = roundManager.getGameObjectWithTurn().getCreature();
         roundManager.getActions().doAction(DEFENSE_STAND, you);
-        mainPanelGame.getGamePanel().applyDefendActionsContent(point);
+        mainPanelGame.getGamePanel().applyDefendActionsContent(mainPanelGame.getGamePanel().getCurrentClickedIndexes());
 
         turnOffButtons.turnOff(roundManager,mainPanelGame,1,1);
 
