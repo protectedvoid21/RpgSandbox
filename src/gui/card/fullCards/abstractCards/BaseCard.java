@@ -5,10 +5,7 @@ import gui.customComponents.*;
 import gui.customComponents.customTextComponents.CustomTextComponent;
 import gui.customUI.customUIStyles.borderStrategies.AverageBorderStartegy;
 import gui.factories.GuiFactory;
-import gui.menu.ComponentPanelMenager;
-import gui.menu.ComponentsSeries;
-import gui.menu.DefaultCustomMenuMenager;
-import gui.menu.ICustomBackgorund;
+import gui.menu.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,11 +14,12 @@ import java.util.*;
 
 public abstract class BaseCard implements ICustomBackgorund {
 
-    protected ComponentsSeries<ComponentPanelMenager<? extends JComponent>> titleSeries =
-            new ComponentsSeries<>(ComponentsSeries.ComponentsDimension.HORIZONTAL);
+    protected DefaultCustomMenuMenager<ComponentPanelMenager<? extends JComponent>> titleSeries =
+            new DefaultCustomMenuMenager<>(ComponentsSeries.ComponentsDimension.HORIZONTAL,
+                    ComponentsSeries.ComponentsDimension.HORIZONTAL);
     protected ComponentPanelMenager<AbstractCustomLabel> leftTitleComponent;
     protected ComponentPanelMenager<AbstractCustomLabel> rightTitleComponent;
-    protected ComponentPanelMenager<CustomTextComponent> rightEntryTitleComponent;
+//    protected ComponentPanelMenager<CustomTextComponent> rightEntryTitleComponent;
 
     protected DefaultCustomMenuMenager seriesPanel;
     protected GuiFactory factory;
@@ -30,18 +28,14 @@ public abstract class BaseCard implements ICustomBackgorund {
         this.factory = factory;
         seriesPanel = new DefaultCustomMenuMenager(ComponentsSeries.ComponentsDimension.VERTICAL,
                 ComponentsSeries.ComponentsDimension.HORIZONTAL);
-//        seriesPanel.getCmp().addSpace(10);
         seriesPanel.getCmp().setHasUniqueColor(true);
-        initSeriesPanel(titleSeries, 0, 6);
-//        initSeriesPanel(ComponentPanelMenager.createEmptyInstance(), 1, 14);
-
+        initSeriesPanel(titleSeries.getCmp(), 0, 6);
         initializeTitle();
-//        seriesPanel.getCmp().setBorderData(Color.RED, new AverageBorderStartegy(), 8);
     }
 
-public void setBorder(Color color, int size){
-    seriesPanel.getCmp().setBorderData(color, new AverageBorderStartegy(), size);
-}
+    public void setBorder(Color color, int size) {
+        seriesPanel.getCmp().setBorderData(color, new AverageBorderStartegy(), size);
+    }
 
 
     protected void initSeriesPanel(JComponent content, int mainIndex, int weight) {
@@ -79,27 +73,43 @@ public void setBorder(Color color, int size){
     }
 
     public void initializeTitle() {//zmienia sie
+        titleSeries.addMainComponent(10);
+        titleSeries.addMainComponent(10);
         factory.setLabelType(GuiFactory.LabelType.ICON);
         leftTitleComponent = new ComponentPanelMenager<>(factory.createLabel(Card.EMPTY_DATA_CONTENT));
-        titleSeries.addOption(leftTitleComponent, 30);
-        titleSeries.getOption(0).addSpace(6, ComponentPanelMenager.Side.LEFT, ComponentPanelMenager.Side.TOP);
-        titleSeries.getOption(0).addSpace(1, ComponentPanelMenager.Side.RIGHT);
-        titleSeries.getOption(0).addSpace(2, ComponentPanelMenager.Side.BOTTOM);
+        initializeLeftTitleComponent(leftTitleComponent, 0);
 
         factory.setLabelType(GuiFactory.LabelType.NORMAL);
         rightTitleComponent = new ComponentPanelMenager<>(factory.createLabel(Card.EMPTY_DATA_CONTENT));
-        rightEntryTitleComponent = new ComponentPanelMenager<>(factory.createTextField());
+        initializeRightTitleComponent(rightTitleComponent, 0);
+    }
 
-        int index = 1;
-        for (var title : Arrays.asList(rightTitleComponent, rightEntryTitleComponent)) {
-            titleSeries.addOption(title, 30);
-            titleSeries.getOption(index).addSpace(6, ComponentPanelMenager.Side.RIGHT, ComponentPanelMenager.Side.TOP);
-            titleSeries.getOption(index).addSpace(1, ComponentPanelMenager.Side.LEFT);
-            titleSeries.getOption(index).addSpace(2, ComponentPanelMenager.Side.BOTTOM);
-            index = 2;
+    private void initializeRightTitleComponent(ComponentPanelMenager component, Side side, int middleIndex) {
+        int mainIndex = side == Side.LEFT ? 0 : 1;
+        titleSeries.addMiddleComponent(component, mainIndex, 30);
+        titleSeries.getMiddleComponent(mainIndex, middleIndex).addSpace(6, side == Side.RIGHT ?
+                ComponentPanelMenager.Side.RIGHT : ComponentPanelMenager.Side.LEFT, ComponentPanelMenager.Side.TOP);
+        titleSeries.getMiddleComponent(mainIndex, middleIndex).addSpace(3, side == Side.LEFT ?
+                ComponentPanelMenager.Side.RIGHT : ComponentPanelMenager.Side.LEFT);
+        titleSeries.getMiddleComponent(mainIndex, middleIndex).addSpace(2, ComponentPanelMenager.Side.BOTTOM);
+    }
+
+    protected void initializeRightTitleComponent(ComponentPanelMenager component, int index) {
+        initializeRightTitleComponent(component, Side.RIGHT, index);
+    }
+
+    protected void initializeLeftTitleComponent(ComponentPanelMenager component, int index) {
+        initializeRightTitleComponent(component, Side.LEFT, index);
+    }
+
+    public enum Side {LEFT, RIGHT}
+
+    protected void setTitleOptionsVisible(Side side, int index) {
+        var cmp = titleSeries.getMainComponent(side == Side.LEFT ? 0 : 1).getComponent();
+        for (var opt : cmp.getComponentsList()) {
+            opt.setVisible(false);
         }
-        rightEntryTitleComponent.setVisible(false);
-
+        cmp.getOption(index).setVisible(true);
     }
 
 

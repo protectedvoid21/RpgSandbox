@@ -75,11 +75,11 @@ public class OnlyVisibleItemCard extends BaseCard {
         rightTitleComponent.setVisible(false);
         rightTitleComponent =
                 new ComponentPanelMenager<>((factory.createLabel(rightTitleComponent.getComponent().getContent())));
-        titleSeries.addOption(rightTitleComponent, 30);
+        titleSeries.addMiddleComponent(rightTitleComponent, 1,30);
 
-        titleSeries.getOption(3).addSpace(6, ComponentPanelMenager.Side.RIGHT, ComponentPanelMenager.Side.TOP);
-        titleSeries.getOption(3).addSpace(1, ComponentPanelMenager.Side.LEFT);
-        titleSeries.getOption(3).addSpace(2, ComponentPanelMenager.Side.BOTTOM);
+        titleSeries.getMiddleComponent(1,1).addSpace(6, ComponentPanelMenager.Side.RIGHT, ComponentPanelMenager.Side.TOP);
+        titleSeries.getMiddleComponent(1,1).addSpace(1, ComponentPanelMenager.Side.LEFT);
+        titleSeries.getMiddleComponent(1,1).addSpace(2, ComponentPanelMenager.Side.BOTTOM);
         factory.setLabelType(GuiFactory.LabelType.NORMAL);
         nameLabel = factory.createLabel(Card.EMPTY_DATA_CONTENT);
 

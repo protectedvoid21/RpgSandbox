@@ -27,6 +27,14 @@ import java.io.IOException;
 public class GuiFactory {
     private Font currentFont = new Font("Helvetica", Font.PLAIN, 14);
 
+    @Override
+    public String toString() {
+        return "GuiFactory{" +
+                "buttonFactory=" + buttonFactory +
+                ", labelFactory=" + labelFactory +
+                '}';
+    }
+
     public enum LabelType {NORMAL, ICON, STRETCH_ICON}
 
     public enum ButtonType {NORMAL, ICON, STRETCH_ICON, DISABLED_STRETCH_ICON, DISABLED_ICON, DOUBLE, DOUBLE_WITH_ICONS}

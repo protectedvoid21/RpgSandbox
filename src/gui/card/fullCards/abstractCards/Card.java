@@ -133,7 +133,6 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
     }
 
 
-
     protected abstract AttributesCard createAttributeCard();
 
     protected abstract AttributesCard createDetailItemCard();
@@ -176,11 +175,10 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
         creatorData.put(CreatorTypes.MOUNT, mount);
         creatorData.put(CreatorTypes.WEAPONS, weapon);
         //jeszcze items albo i nie
-
     }
 
-    public void setCreatorCard(boolean value, CreatorTypes type) {
 
+    public void setCreatorCard(boolean value, CreatorTypes type) {
         if (value) {
             amwGeneratorCard.initializeCardData(creatorData.get(type), null);
             updateContent(amwGeneratorCard);
@@ -322,7 +320,7 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
 
     public void setVisibility(boolean value) {
         setAspectVisible(activeCard.getContentMenager().getComponentsList(), value);
-        setAspectVisible(new ArrayList<>(Arrays.asList(rightEntryTitleComponent.getComponent(),
+        setAspectVisible(new ArrayList<>(Arrays.asList(
                 leftTitleComponent.getComponent(), rightTitleComponent.getComponent())), value);
 
     }

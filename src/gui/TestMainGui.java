@@ -1,6 +1,7 @@
 package gui;
 
 import game.generals.Vector2;
+import gui.card.fullCards.abstractCards.BaseCard;
 import gui.card.fullCards.abstractCards.Card;
 import gui.card.fullCards.specificCards.GodCard;
 import gui.factories.IOverallFactory;
@@ -34,17 +35,19 @@ public class TestMainGui {
 
 //        ramka.add(f.createCreatingEditingItemsPanel().getPanel());
 //        ramka.add(x.getPanel());
-        var z = f.createBasicCard();
-        ((GodCard)z).setItemAction(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("xxx");
-            }
-        });
+//        var z = f.createBasicCard();
+//        ((GodCard)z).setItemAction(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                System.out.println("xxx");
+//            }
+//        });
 //        ((GodCard)z).setItemViewStatus(Card.CardTypes.MOUNT, 2);
 //        ((GodCard)z).removeItemViewStatus();
-        ramka.add(x.getPanel());
-//        ramka.add(f.createEntriesCard().getPanel());
+//        ramka.add(x.getPanel());
+        var y = f.createEntriesCard();
+        ramka.add(y.getPanel());
+//        y.setTitleIncorrect(BaseCard.Side.LEFT, 1555);
 //        ramka.add(f.createAllCreatureShowView().getPanel());
 //        ramka.add(f.createCreatorApplyingCharacterView().getPanel());
 //        ramka.add(f.createAllCreatureEditView().getPanel());
@@ -64,8 +67,9 @@ public class TestMainGui {
 //        ramka.add(f.createAllCreatureShowView().getPanel());
 //        ramka.add(f.createCreaturesPanel().getPanel());
 //        ramka.add(f.createCreatorApplyingCharacterView().getPanel());
-//        ramka.add(f.createCreatorCard(Card.CreatorTypes.ARMOR).getPanel());
-
+//        var z = f.createCreatorCard(Card.CreatorTypes.ARMOR);
+        ramka.add(f.createCreatorCard(Card.CreatorTypes.ARMOR).getPanel());
+//        ramka.add(f.createBasicCard().getPanel());
 
         ramka.setVisible(true);
     }
