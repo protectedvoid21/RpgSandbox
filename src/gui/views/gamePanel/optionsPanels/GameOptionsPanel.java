@@ -38,7 +38,6 @@ public class GameOptionsPanel extends OneDataOptionsPanel {
     public void initializeButtonsData(ArrayList<String> dataMap) {
         super.initializeButtonsData(dataMap);
         int space = (int)((10-size)/(double)2);
-        System.out.println(space);
         customPanelAttackChoser.getCmp().addSpace(space, ComponentPanelMenager.Side.LEFT, ComponentPanelMenager.Side.RIGHT);
     }
 }
