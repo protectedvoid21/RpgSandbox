@@ -46,7 +46,7 @@ public class TestMainGui {
 //        ((GodCard)z).removeItemViewStatus();
 //        ramka.add(x.getPanel());
         var y = f.createEntriesCard();
-        ramka.add(y.getPanel());
+        ramka.add(x.getPanel());
 //        y.setTitleIncorrect(BaseCard.Side.LEFT, 1555);
 //        ramka.add(f.createAllCreatureShowView().getPanel());
 //        ramka.add(f.createCreatorApplyingCharacterView().getPanel());
@@ -63,12 +63,14 @@ public class TestMainGui {
 //        ramka.add(f.createGameCard().getPanel());
 //        ramka.add(f.createMenuView().getPanel());
 //        ramka.add(f.createViewingItemsPanel().getPanel());
-//        ramka.add(f.createCreatorGameView().getPanel());
+//        var ff = f.createCreatorGameView();
+//        ff.getCreatorPanel().applyNewCreatureOnPosition("aa", new Vector2(2,3));
+//        ramka.add(ff.getPanel());
 //        ramka.add(f.createAllCreatureShowView().getPanel());
 //        ramka.add(f.createCreaturesPanel().getPanel());
 //        ramka.add(f.createCreatorApplyingCharacterView().getPanel());
 //        var z = f.createCreatorCard(Card.CreatorTypes.ARMOR);
-        ramka.add(f.createCreatorCard(Card.CreatorTypes.ARMOR).getPanel());
+//        ramka.add(f.createCreatorCard(Card.CreatorTypes.ARMOR).getPanel());
 //        ramka.add(f.createBasicCard().getPanel());
 
         ramka.setVisible(true);
