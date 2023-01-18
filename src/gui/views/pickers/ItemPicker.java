@@ -12,6 +12,8 @@ import gui.menu.DefaultCustomMenuMenager;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -23,6 +25,10 @@ public class ItemPicker implements SwitchableComponent {
     private ArrayList<String> items = new ArrayList<>();
     private AbstractCustomLabel label;
     private int currentSide = 0;
+    private CustomLambdaExpression leftListener = () -> {
+    };
+    private CustomLambdaExpression rightListener = () -> {
+    };
 
     public ItemPicker(GuiFactory factory) {
         arrows = new DoubleArrowPanel(factory, this);
@@ -47,12 +53,16 @@ public class ItemPicker implements SwitchableComponent {
                 case RIGHT -> currentSide++;
             }
             updateContent();
-
+            switch (side) {
+                case LEFT -> leftListener.apply();
+                case RIGHT -> rightListener.apply();
+            }
         }
     }
 
     private void updateContent() {
         label.setContent(items.get(currentSide));
+
     }
 
     public void uploadData(ArrayList<String> dataList) {
@@ -72,16 +82,24 @@ public class ItemPicker implements SwitchableComponent {
         return status;
     }
 
-    public JPanel getPanel(){
+    public JPanel getPanel() {
         return menager.getCmp();
     }
-    public int getCurrentIndex(){
+
+    public int getCurrentIndex() {
         return currentSide;
     }
 
-    public void setCurrentIndex(int value){
+    public void setCurrentIndex(int value) {
         currentSide = value;
         arrows.updateSwitchingButtons();
         updateContent();
+    }
+
+    public void addListenerToPicker(DoubleArrowPanel.Side side, CustomLambdaExpression expression) {
+        switch (side) {
+            case LEFT -> leftListener = expression;
+            case RIGHT -> rightListener = expression;
+        }
     }
 }

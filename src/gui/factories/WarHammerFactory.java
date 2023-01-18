@@ -5,6 +5,8 @@ import gui.card.CardContentDataSet;
 import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleCreatureCards.OnlyVisibleEditCard;
 import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleCreatureCards.OnlyVisibleShowCard;
 import gui.customUI.customUIStyles.borderStrategies.DefaultBorderStrategy;
+import gui.factories.IOverallFactory;
+import gui.factories.WarhammerData;
 import gui.factories.customFactories.buttonFactories.*;
 import gui.factories.customFactories.labelFactories.*;
 import gui.factories.customFactories.textComponentFactory.TextFactory;
@@ -150,15 +152,14 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
         factory.setLabelFactory(labelFactory);
         var mainPanel = new MainPanelGame(this);
         mainPanel.getGamePanel().setBorder(basicBorderColor, basicBorderSize);
-        mainPanel.getActivityOptionsPanel().initializeButtonsData(new ArrayList<>(Arrays.asList(monsterPath,
-                playerImagePath, npcImage, playerImagePath,
-                npcImage, npcImage)));
-        mainPanel.getActivityOptionsPanel().initializeLabelsData(new ArrayList<>(Arrays.asList("1", "2", "3", "1", "1"
-                , "1")));
-        mainPanel.getGamePanel().initializeOptionsButtonPanelData(new ArrayList<>(Arrays.asList(monsterPath,
-                playerImagePath, npcImage, playerImagePath,
-                npcImage, npcImage)));
-        mainPanel.getGamePanel().initializeOptionsPanelLabelData(new ArrayList<>(Arrays.asList("1", "3", "0", "1", "2"
+        mainPanel.getActivityOptionsPanel().initializeButtonsData(new ArrayList<>(Arrays.asList(targetOpt,
+                defenseStandOpt, blockOption)));
+        mainPanel.getActivityOptionsPanel().initializeLabelsData(new ArrayList<>(Arrays.asList("1", "2", "1")));
+
+        mainPanel.getGamePanel().initializeOptionsButtonPanelData(new ArrayList<>(Arrays.asList(moveOption,
+                cardOption, normalAttackOpt, carefullattackOpt,
+                fastAttactOpt)));
+        mainPanel.getGamePanel().initializeOptionsPanelLabelData(new ArrayList<>(Arrays.asList("1", "0", "1", "2", "2"
         )));
         return mainPanel;
     }
@@ -176,7 +177,7 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
         p3.setWholePanelDisabled();
         p1.applyContent(new AbstractMap.SimpleEntry<>(new Vector2(9, 7), playerImagePath),
                 new AbstractMap.SimpleEntry<>(new Vector2(3, 4),
-                        npcImage), new AbstractMap.SimpleEntry<>(new Vector2(4, 4), npcImage))
+                        npcImage), new AbstractMap.SimpleEntry<>(new Vector2(4, 4), npcImage));
         ;
         panel.uploadData(new ArrayList<>(Arrays.asList(p1, p2, p3)));
 
@@ -896,9 +897,9 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
     private OnlyVisibleItemCard createSmallItemCard(OnlyVisibleItemCard card) {
         setFactoriesMode(Mode.CLICKED);
         card.initialize();
-        card.setBorder(basicBorderColor, basicBorderSize);
         card.setUniformFont();
         uploadBackgroundImage(card, cardBackground);
+        card.setBorder(basicBorderColor, basicBorderSize*2);
         return card;
     }
 
@@ -907,7 +908,7 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
         setFactoriesMode(Mode.CLICKED);
 
         var card = new OnlyVisibleEditCard(factory, 6);
-        card.setBorder(basicBorderColor, basicBorderSize);
+        card.setBorder(basicBorderColor, basicBorderSize*2);
         createSmallCard(card);
         return card;
     }
@@ -916,7 +917,7 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
     public OnlyVisibleShowCard createSmallShowCard() {
         setFactoriesMode(Mode.CLICKED);
         var card = new OnlyVisibleShowCard(factory, 6);
-        card.setBorder(basicBorderColor, basicBorderSize);
+        card.setBorder(basicBorderColor, basicBorderSize*2);
         createSmallCard(card);
         return card;
     }
@@ -966,7 +967,7 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
         setFactoriesMode(Mode.CLICKED);
         var card = new OnlyVisibleItemCard(factory);
         createSmallItemCard(card);
-        card.setBorder(basicBorderColor, basicBorderSize);
+//        card.setBorder(basicBorderColor, basicBorderSize);
         return card;
     }
 //    public  OptionsPanel createOptionsPanel(){
