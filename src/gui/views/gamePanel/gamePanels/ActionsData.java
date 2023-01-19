@@ -12,7 +12,6 @@ public class ActionsData {
     private ArrayList<IconLabel> arrayList = new ArrayList<>();
     private int usedObjects;
     private String path;
-    private ArrayList<IconLabel> visibilityLabels = new ArrayList<>();
 
     public ActionsData() {
         for (int i = 0; i < 10; i++) {
@@ -29,12 +28,6 @@ public class ActionsData {
         }
     }
 
-//    public void setNonVisible(){
-////        for (var label : arrayList){
-////                label.setVisible(false);
-////        }
-//
-//    }
 
     public IconLabel getNextObject() {
         usedObjects++;
