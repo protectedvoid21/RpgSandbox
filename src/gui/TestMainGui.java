@@ -63,9 +63,9 @@ public class TestMainGui {
 //        ramka.add(f.createGameCard().getPanel());
 //        ramka.add(f.createMenuView().getPanel());
 //        ramka.add(f.createViewingItemsPanel().getPanel());
-//        var ff = f.createCreatorGameView();
-//        ff.get
-//        ff.getCreatorPanel().applyNewCreatureOnPosition("aa", new Vector2(2,3));
+ //       var ff = f.createCreatorGameView();
+
+//         ff.getCreatorPanel().applyNewCreatureOnPosition("aa", new Vector2(2,3));
 //        ramka.add(ff.getPanel());
 //        ramka.add(f.createAllCreatureShowView().getPanel());
 //        ramka.add(f.createCreaturesPanel().getPanel());
