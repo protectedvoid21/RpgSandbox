@@ -31,6 +31,38 @@ public class MathHelper {
         return coordinatesList;
     }
 
+    public static List<Vector2> getGridCircle(int range,Vector2 vector2) {
+        List<Vector2> coordinatesList = new ArrayList<>();
+        for (int x = 0; x <= range; x++) {
+            for (int y = 0; y <= range; y++) {
+                if (x + y > range) {
+                    continue;
+                }
+
+                coordinatesList.add(new Vector2(x, y));
+                if (x != 0 && y != 0) {
+                    coordinatesList.add(new Vector2(-x, y));
+                    coordinatesList.add(new Vector2(x, -y));
+                    coordinatesList.add(new Vector2(-x, -y));
+                }
+                if (x == 0 && y != 0) {
+                    coordinatesList.add(new Vector2(x, -y));
+                }
+                if (x != 0 && y == 0) {
+                    coordinatesList.add(new Vector2(-x, y));
+                }
+            }
+        }
+
+        List<Vector2> result = new ArrayList<>();
+
+        for(int i = 0; i < coordinatesList.size(); i++ ){
+            result.add(new Vector2(coordinatesList.get(i).x + vector2.x, coordinatesList.get(i).y + vector2.y));
+        }
+        return result;
+    }
+
+
     public static List<Vector2> getNextCels(Vector2 position){
         List<Vector2> cels = new ArrayList<Vector2>();
 
