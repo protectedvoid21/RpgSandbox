@@ -19,6 +19,11 @@ public class Inventory {
         activeArmor = noArmor();
         activeMount = noMount();
     }
+    public Inventory(Weapon activeWeapon, Armor activeArmor, Mount activeMount) {
+        this.activeWeapon = activeWeapon;
+        this.activeArmor = activeArmor;
+        this.activeMount = activeMount;
+    }
 
     public ArrayList<Weapon> getWeapons() {
         return weapons;

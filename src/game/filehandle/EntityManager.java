@@ -1,7 +1,10 @@
 package game.filehandle;
 
 import game.creature.*;
+import game.equipment.Armor;
 import game.equipment.Inventory;
+import game.equipment.Mount;
+import game.equipment.Weapon;
 import game.interfaceWarhammer.StatisticsWarhammer;
 import game.interfaceWarhammer.StruggleStatisticsWarhammer;
 import game.interfaces.IStatistics;
@@ -16,14 +19,17 @@ public class EntityManager {
     List<NPC> NPCList = new ArrayList<>();
     List<PlayerCharacter> playerCharacterList = new ArrayList<>();
     List<Creature> creatureList = new ArrayList<>();
-    Creature defaultCreature;
     PlayerCharacter playerCharacterWithAllItems;
+    PlayerCharacter defaultPlayerCharacter;
     FileManager fileManager;
 
     public EntityManager(String gameName) {
         fileManager = new FileManager(gameName);
-//        defaultCreature = new Creature(new StatisticsWarhammer(), new Experience(0), new StruggleStatisticsWarhammer());
-//        playerCharacterWithAllItems = new PlayerCharacter(new StatisticsWarhammer(), new Inventory(), new Experience(0), new StruggleStatisticsWarhammer());
+        defaultPlayerCharacter = new PlayerCharacter(new StatisticsWarhammer(), new Inventory(), new Experience(0), new StruggleStatisticsWarhammer());
+        playerCharacterWithAllItems = new PlayerCharacter(new StatisticsWarhammer(),
+                new Inventory(new Weapon("Sword", 0, 0, 0, 0,0 ,0),
+                              new Armor("Armor", 0), new Mount("Benek", 0)),
+                new Experience(0), new StruggleStatisticsWarhammer());
     }
 
     public void saveAllEntities() {
