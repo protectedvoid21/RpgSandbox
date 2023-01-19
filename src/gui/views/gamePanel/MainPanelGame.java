@@ -16,6 +16,8 @@ import gui.views.pickers.ItemPicker;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -28,6 +30,7 @@ public class MainPanelGame {
     private FullItemPicker picker;
     private AbstractCustomButton exitButton;
     private AbstractCustomButton nextPlayerButton;
+    private AbstractCustomButton actionsVisibilityButton;
     private GameOptionsPanel activityOptionsPanel;
     private AbstractCustomLabel remainingMoves;
     private ComponentsSeries<ComponentPanelMenager> seriesPanel =
@@ -45,6 +48,23 @@ public class MainPanelGame {
         remainingMoves = factory.getFactory().createLabel("0");
         exitButton = factory.getFactory().createButton("EXIT", null);
         nextPlayerButton = factory.getFactory().createButton("NEXT", null);
+
+        factory.getFactory().setButtonType(GuiFactory.ButtonType.ICON);
+        actionsVisibilityButton = factory.getFactory().createButton(StringAdapter.getRelativePath("eye.png"), null);
+        actionsVisibilityButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                actionMethod("hide.png", false);
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                actionMethod("eye.png", true);
+            }
+        });
+
         activityOptionsPanel = new GameOptionsPanel(factory.getFactory(), 7);
         activityOptionsPanel.initialize(10);
         activityOptionsPanel.getPanel().setVisible(true);
@@ -53,6 +73,11 @@ public class MainPanelGame {
         menager.getCmp().setHasUniqueColor(true);
         menager.getCmp().setBackground(new Color(0x56A6A6));
         SharedCmpsFont.setUniformFont(new ArrayList<>(Arrays.asList(nextPlayerButton, exitButton)));
+    }
+
+    private void actionMethod(String path, boolean value){
+        gamePanel.setActionsVisibility(value);
+        actionsVisibilityButton.setContent(StringAdapter.getRelativePath(path));
     }
 
     public GamePanel getGamePanel() {
@@ -86,7 +111,7 @@ public class MainPanelGame {
         menager.addMiddleComponent(seriesPanel, 0, 1, 20);
         menager.getMiddleComponent(0, 1).addSpace(1);
         seriesPanel.addOption(new ComponentPanelMenager(picker.getPanel()), 10);
-        for (var component : Arrays.asList(remainingMoves, nextPlayerButton, exitButton)) {
+        for (var component : Arrays.asList(remainingMoves, nextPlayerButton, exitButton, actionsVisibilityButton)) {
             var cmp = new ComponentPanelMenager<>(component);
             cmp.addSpace(1);
             seriesPanel.addOption(cmp, 2);

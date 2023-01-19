@@ -63,6 +63,7 @@ public abstract class OnlyVisibleCard extends BaseCard {
     @Override
     public void initialize() {
         initializeCard();
+//        seriesPanel.getMainComponent(1).setVisible(false);
         initializeContent();
     }
 
