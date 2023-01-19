@@ -89,6 +89,23 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
         return menu;
     }
 
+    @Override
+    public SelectingView createOverallItemPanel() {
+        setFactoriesMode(Mode.MENU);
+        return createView(new ArrayList<>(Arrays.asList(
+                new AbstractMap.SimpleEntry<>(editPath, "SHOW"),
+                new AbstractMap.SimpleEntry<>(createPath, "CREATE"))));
+    }
+
+    @Override
+    public SelectingView createOverallCreaturesPanel() {
+        setFactoriesMode(Mode.MENU);
+        return createView(new ArrayList<>(Arrays.asList(
+                new AbstractMap.SimpleEntry<>(editPath, "EDIT"),
+                new AbstractMap.SimpleEntry<>(createPath, "CREATE"),
+                new AbstractMap.SimpleEntry<>(viewPath, "VIEW"))));
+    }
+
     private SelectingView createView(ArrayList<AbstractMap.SimpleEntry<String, String>> content) {
         factory.setBorderStrategy(new DependantWidthBorderStrategy());
         menuButtonsFactory.setPaths("", "");
@@ -107,21 +124,21 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
     }
 
 
-    @Override
-    public SelectingView createOverallPanel() {
-        setFactoriesMode(Mode.MENU);
-        return createView(new ArrayList<>(Arrays.asList(
-                new AbstractMap.SimpleEntry<>(editPath, "EDIT"),
-                new AbstractMap.SimpleEntry<>(createPath, "CREATE"),
-                new AbstractMap.SimpleEntry<>(viewPath, "VIEW"))));
-    }
+//    @Override
+//    public SelectingView createOverallPanel() {
+//        setFactoriesMode(Mode.MENU);
+//        return createView(new ArrayList<>(Arrays.asList(
+//                new AbstractMap.SimpleEntry<>(editPath, "EDIT"),
+//                new AbstractMap.SimpleEntry<>(createPath, "CREATE"),
+//                new AbstractMap.SimpleEntry<>(viewPath, "VIEW"))));
+//    }
 
     @Override
     public SelectingView createCreatingEditingItemsPanel() {
         setFactoriesMode(Mode.MENU);
         return createView(new ArrayList<>(Arrays.asList(
                 new AbstractMap.SimpleEntry<>(horsePath, "MOUNT"),
-                new AbstractMap.SimpleEntry<>(efectPath, "EFFECTS"),
+                new AbstractMap.SimpleEntry<>(weaponPath, "WEAPON"),
                 new AbstractMap.SimpleEntry<>(armorPath, "ARMOR"))));
     }
 

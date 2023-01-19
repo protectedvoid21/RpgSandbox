@@ -48,7 +48,8 @@ public abstract class IOverallFactory {
         return factory;
     }
 
-    public abstract SelectingView createOverallPanel();
+    public abstract SelectingView createOverallItemPanel();
+    public abstract SelectingView createOverallCreaturesPanel();
 
     public abstract SelectingView createCreatingEditingItemsPanel();
 
