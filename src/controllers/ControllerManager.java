@@ -9,13 +9,8 @@ public class ControllerManager {
     private JFrame mainFrame;
 
     private IOverallFactory overallFactory;
-    
-    private static ControllerManager instance;
 
     public ControllerManager(IOverallFactory overallFactory) {
-        if(instance == null) {
-            instance = this;
-        }
         this.overallFactory = overallFactory;
 
         mainFrame = new JFrame();
@@ -24,15 +19,7 @@ public class ControllerManager {
         mainFrame.setVisible(true);
         mainFrame.setResizable(true);
 
-        changeController(new MenuController());
-    }
-    
-    public static ControllerManager getInstance() {
-        return instance;
-    }
-    
-    public JFrame getMainFrame() {
-        return mainFrame;
+        changeController(new MenuController(this, mainFrame));
     }
 
     public void changeController(Controller controller) {

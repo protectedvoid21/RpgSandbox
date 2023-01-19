@@ -3,22 +3,28 @@ package controllers;
 import gui.factories.IOverallFactory;
 import gui.views.menuViews.MenuView;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MenuController extends Controller {
+    public MenuController(ControllerManager controllerManager, JFrame mainFrame) {
+        super(controllerManager, mainFrame);
+    }
+
     @Override
     public void initialize(IOverallFactory overallFactory) {
         MenuView menuView = overallFactory.createMenuView();
         menuView.getExitButton().addActionListener(new ExitListener());
         menuView.getCreaturesButton().addActionListener(
-                new RedirectListener(new CreatureCreatorController()));
+                new RedirectListener(controllerManager, new CreatureCreatorController(controllerManager, mainFrame)));
         menuView.getItemsButton().addActionListener(
-                new RedirectListener(new ItemTypeMenuController()));
-        menuView.getNewGameButton().addActionListener(
-                new RedirectListener(new NewGameController())
+                new RedirectListener(controllerManager, new ItemTypeMenuController(controllerManager, mainFrame))
         );
-        ControllerManager.getInstance().getMainFrame().add(menuView.getPanel());
+        menuView.getNewGameButton().addActionListener(
+                new RedirectListener(controllerManager, new NewGameController(controllerManager, mainFrame))
+        );
+        mainFrame.add(menuView.getPanel());
     }
 
     private class ExitListener implements ActionListener {

@@ -3,14 +3,20 @@ package controllers;
 import gui.factories.IOverallFactory;
 import gui.views.objectViews.creationViews.CreatorGameView;
 
+import javax.swing.*;
+
 public class NewGameController extends Controller {
+    public NewGameController(ControllerManager controllerManager, JFrame mainFrame) {
+        super(controllerManager, mainFrame);
+    }
+
     @Override
     public void initialize(IOverallFactory overallFactory) {
         CreatorGameView creatorGameView = overallFactory.createCreatorGameView();
         creatorGameView.getExitButton().addActionListener(
-                new RedirectListener(new MenuController())
+                new RedirectListener(controllerManager, new MenuController(controllerManager, mainFrame))
         );
 
-        ControllerManager.getInstance().getMainFrame().add(creatorGameView.getPanel());
+        mainFrame.add(creatorGameView.getPanel());
     }
 }
