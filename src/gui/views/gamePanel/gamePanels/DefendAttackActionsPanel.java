@@ -74,10 +74,6 @@ public class DefendAttackActionsPanel {
         managerActions.getMiddleComponent(position.x,
                 position.y).getComponent().getOption(indexesMap.get(type)).setVisible(false);
         setrelevantSpace(position);
-//        managerActions.getMiddleComponent(position.x,
-//                position.y).addSpace(5);
-//        actionsMap.get(GamePanel.ActionsLabelsType.DEFEND).removeObject(managerActions.getMiddleComponent(position.x,
-//                position.y).getComponent().getOption(1).getComponent());
     }
 
     private void helpMethodActionsChangeContent(Vector2 position, GamePanel.ActionsLabelsType type) {
