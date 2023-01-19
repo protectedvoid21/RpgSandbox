@@ -6,15 +6,11 @@ import gui.views.objectViews.creationViews.CreatorGameView;
 import javax.swing.*;
 
 public class NewGameController extends Controller {
-    public NewGameController(ControllerManager controllerManager, JFrame mainFrame) {
-        super(controllerManager, mainFrame);
-    }
-
     @Override
-    public void initialize(IOverallFactory overallFactory) {
+    public void run(IOverallFactory overallFactory) {
         CreatorGameView creatorGameView = overallFactory.createCreatorGameView();
         creatorGameView.getExitButton().addActionListener(
-                new RedirectListener(controllerManager, new MenuController(controllerManager, mainFrame))
+                new RedirectListener(controllerManager, new MenuController())
         );
 
         mainFrame.add(creatorGameView.getPanel());

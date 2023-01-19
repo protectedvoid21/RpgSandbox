@@ -6,15 +6,11 @@ import gui.views.menuViews.SelectingView;
 import javax.swing.*;
 
 public class CreatureCreatorController extends Controller {
-    public CreatureCreatorController(ControllerManager controllerManager, JFrame mainFrame) {
-        super(controllerManager, mainFrame);
-    }
-
     @Override
-    public void initialize(IOverallFactory overallFactory) {
+    public void run(IOverallFactory overallFactory) {
         SelectingView selectingView = overallFactory.createCreaturesPanel();
         selectingView.getReturnButton().addActionListener(
-                new RedirectListener(controllerManager, new MenuController(controllerManager, mainFrame))
+                new RedirectListener(controllerManager, new MenuController())
         );
         //selectingView.getButton(0).addActionListener();
 

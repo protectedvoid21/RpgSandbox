@@ -8,21 +8,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MenuController extends Controller {
-    public MenuController(ControllerManager controllerManager, JFrame mainFrame) {
-        super(controllerManager, mainFrame);
-    }
-
     @Override
-    public void initialize(IOverallFactory overallFactory) {
+    public void run(IOverallFactory overallFactory) {
         MenuView menuView = overallFactory.createMenuView();
         menuView.getExitButton().addActionListener(new ExitListener());
         menuView.getCreaturesButton().addActionListener(
-                new RedirectListener(controllerManager, new CreatureCreatorController(controllerManager, mainFrame)));
+                new RedirectListener(controllerManager, new CreatureCreatorController()));
         menuView.getItemsButton().addActionListener(
-                new RedirectListener(controllerManager, new ItemTypeMenuController(controllerManager, mainFrame))
+                new RedirectListener(controllerManager, new ItemTypeMenuController())
         );
         menuView.getNewGameButton().addActionListener(
-                new RedirectListener(controllerManager, new NewGameController(controllerManager, mainFrame))
+                new RedirectListener(controllerManager, new NewGameController())
         );
         mainFrame.add(menuView.getPanel());
     }
