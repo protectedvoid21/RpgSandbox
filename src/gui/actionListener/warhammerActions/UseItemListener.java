@@ -1,4 +1,4 @@
-package gui.actionListener.warhammer;
+package gui.actionListener.warhammerActions;
 
 import game.board.RoundManager;
 import game.creature.Creature;
@@ -7,7 +7,7 @@ import gui.views.gamePanel.gamePanels.BaseGamePanel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import static game.interfaceWarhammer.ActionsEnum.*;
+
 public class UseItemListener implements ActionListener {
 
     RoundManager roundManager;

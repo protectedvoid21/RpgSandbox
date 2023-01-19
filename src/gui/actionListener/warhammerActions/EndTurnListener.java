@@ -1,7 +1,6 @@
-package gui.actionListener.warhammer;
+package gui.actionListener.warhammerActions;
 
 import game.board.RoundManager;
-import game.creature.Creature;
 import gui.actionListener.turnOffButtons;
 import gui.views.gamePanel.MainPanelGame;
 

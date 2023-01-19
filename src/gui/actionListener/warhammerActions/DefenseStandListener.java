@@ -1,17 +1,13 @@
-package gui.actionListener.warhammer;
+package gui.actionListener.warhammerActions;
 
 import game.board.RoundManager;
 import game.creature.Creature;
-import game.interfaces.ITurnOffButtons;
 import gui.actionListener.turnOffButtons;
 import gui.views.gamePanel.MainPanelGame;
-import gui.views.gamePanel.gamePanels.BaseGamePanel;
-import gui.views.gamePanel.gamePanels.GamePanel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static game.interfaceWarhammer.ActionsEnum.BLOCK;
 import static game.interfaceWarhammer.ActionsEnum.DEFENSE_STAND;
 
 public class DefenseStandListener implements ActionListener {
