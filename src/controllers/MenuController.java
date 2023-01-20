@@ -1,5 +1,6 @@
 package controllers;
 
+import controllers.creatures.CreatureTypeController;
 import controllers.items.ItemActionController;
 import gui.factories.IOverallFactory;
 import gui.views.menuViews.MenuView;
@@ -13,7 +14,7 @@ public class MenuController extends Controller {
         MenuView menuView = overallFactory.createMenuView();
         menuView.getExitButton().addActionListener(new ExitListener());
         menuView.getCreaturesButton().addActionListener(
-                new RedirectListener(controllerManager, new CreatureMenuController()));
+                new RedirectListener(controllerManager, new CreatureTypeController()));
         menuView.getItemsButton().addActionListener(
                 new RedirectListener(controllerManager, new ItemActionController())
         );

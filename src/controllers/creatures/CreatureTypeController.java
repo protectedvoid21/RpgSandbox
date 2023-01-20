@@ -1,9 +1,11 @@
-package controllers;
+package controllers.creatures;
 
+import controllers.Controller;
+import controllers.MenuController;
+import controllers.RedirectListener;
 import gui.factories.IOverallFactory;
-import gui.views.menuViews.SelectingView;
 
-public class CreatureMenuController extends Controller {
+public class CreatureTypeController extends Controller {
     @Override
     public void run(IOverallFactory overallFactory) {
         var view = overallFactory.createCreaturesPanel();

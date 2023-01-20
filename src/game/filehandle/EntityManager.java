@@ -23,13 +23,23 @@ public class EntityManager {
     PlayerCharacter defaultPlayerCharacter;
     FileManager fileManager;
 
+    private static EntityManager instance;
+    
     public EntityManager(String gameName) {
+        if(instance == null) {
+            instance = this;
+        }
+        
         fileManager = new FileManager(gameName);
         defaultPlayerCharacter = new PlayerCharacter(new StatisticsWarhammer(), new Inventory(), new Experience(0), new StruggleStatisticsWarhammer());
-        playerCharacterWithAllItems = new PlayerCharacter(new StatisticsWarhammer(),
-                new Inventory(new Weapon("Sword", 0, 0, 0, 0,0 ,0),
-                              new Armor("Armor", 0), new Mount("Benek", 0)),
+        playerCharacterWithAllItems = new PlayerCharacter(new StatisticsWarhammer(), 
+                new Inventory(new Weapon("Sword", 0, 0, 0, 0,0 ,0), 
+                        new Armor("Armor", 0), new Mount("Benek", 0)), 
                 new Experience(0), new StruggleStatisticsWarhammer());
+    }
+    
+    public EntityManager getInstance() {
+        return instance;
     }
 
     public void saveAllEntities() {

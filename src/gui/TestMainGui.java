@@ -85,7 +85,7 @@ public class TestMainGui {
 //        y.setTitleIncorrect(BaseCard.Side.LEFT, 1555);
 //        ramka.add(f.createAllCreatureShowView().getPanel());
 //        ramka.add(f.createCreatorApplyingCharacterView().getPanel());
-//        ramka.add(f.createAllCreatureEditView().getPanel());
+//       ramka.add(f.createAllCreatureEditView().getPanel());
 //        ramka.add(f.createAllItemsShowView().getPanel());
 //        ramka.add(f.createAllItemsShowView().getPanel());
 //        var pa = f.createGodCard();
