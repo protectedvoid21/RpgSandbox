@@ -17,18 +17,17 @@ public class TurnOffWarhammer implements ITurnOffButtons {
     public void turnOff(RoundManager roundManager, MainPanelGame mainPanelGame, Integer parametr, Integer usedIndex) {
         ArrayList<Integer> indexesCell = new ArrayList<Integer>();
         ArrayList<Integer> indexesOption = new ArrayList<Integer>();
-        int i = 0;
-        int j = 0;
-        int n = 2;
-        int m = 0;
+
+        int n;
+        int m;
 
 
-        List<Vector2> range = MathHelper.getGridCircle(roundManager.getGameObjectWithTurn().getCreature().getSpeed());
+        List<Vector2> range = MathHelper.getGridCircle(roundManager.getGameObjectWithTurn().getCreature().getSpeed(),roundManager.getGameObjectWithTurnPosition());
         List<Vector2> attackRange = MathHelper.getNextCels(roundManager.getGameObjectWithTurnPosition());
 
 
-        for (i = 0; i < roundManager.getBoard().getHeight(); i++) {
-            for (j = 0; j < roundManager.getBoard().getWidth(); i++) {
+        for (int i = 0; i < roundManager.getBoard().getHeight(); i++) {
+            for (int j = 0; j < roundManager.getBoard().getWidth(); i++) {
                 if (range.contains(new Vector2(j, i))) { // Sprawdza zasięg chodzenia
                     if (indexesCell.contains(0)) {
                         indexesCell.remove(0);

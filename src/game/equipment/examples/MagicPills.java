@@ -1,14 +1,13 @@
 package game.equipment.examples;
 
+import game.creature.Character;
 import game.equipment.DisposableItem;
 import game.interfaceWarhammer.EffectEnum;
-import game.interfaces.Statistics;
-import game.creature.Character;
 
-public class Bandage extends DisposableItem {
+public class MagicPills extends DisposableItem {
     private Character user;
 
-    public Bandage(int usageCount, Character user) {
+    public MagicPills(int usageCount, Character user) {
         super(usageCount);
         this.user=user;
     }
@@ -17,6 +16,6 @@ public class Bandage extends DisposableItem {
     public void use() {
         super.use();
 
-        user.getStatistics().getEffect(EffectEnum.BLEEDING).decreaseLength();
+        user.getStatistics().getEffect(EffectEnum.POISON).decreaseLength();
     }
 }

@@ -59,8 +59,6 @@ public abstract class BaseGamePanel extends BackgroundView {
         panel.setOpaque(false);
         generalManager.setBackground(new Color(0x2F5B51));
         generalManager.setHasUniqueColor(true);
-//        generalManager.setBorderData(Color.RED, new AverageBorderStartegy(), 10);
-//        factory.getFactory().setButtonFactory(new BasicButton());
         factory.getFactory().setButtonType(GuiFactory.ButtonType.ICON);
         factory.getFactory().setLabelType(GuiFactory.LabelType.ICON);
         for (int i = 0; i < maxIndex; i++) {
@@ -110,16 +108,24 @@ public abstract class BaseGamePanel extends BackgroundView {
 
 
 
-    public void applyContent(ArrayList<AbstractMap.SimpleEntry<Vector2, String>> content) {
-        removeContent();
+    protected void applyWithoutRemovingContent(ArrayList<AbstractMap.SimpleEntry<Vector2, String>> content) {
         for (var pair : content) {
             manager.getMiddleComponent(pair.getKey().x, pair.getKey().y).getComponent().setContent(pair.getValue());
         }
     }
 
+    protected void applyWithoutRemovingContent(AbstractMap.SimpleEntry<Vector2, String>... content) {
+        applyWithoutRemovingContent(new ArrayList<>(Arrays.asList(content)));
+    }
+
+    public void applyContent(ArrayList<AbstractMap.SimpleEntry<Vector2, String>> content) {
+        removeContent();
+        applyWithoutRemovingContent(content);
+    }
+
     public void applyContent(AbstractMap.SimpleEntry<Vector2, String>... content) {
         removeContent();
-        applyContent(new ArrayList<>(Arrays.asList(content)));
+        applyWithoutRemovingContent(content);
     }
 
     public void initializeOptionsButtonPanelData(ArrayList<String> optionsPanelData) {

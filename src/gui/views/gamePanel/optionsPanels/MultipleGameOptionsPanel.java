@@ -12,7 +12,7 @@ public class MultipleGameOptionsPanel extends OptionsPanel {
     private ArrayList<AbstractCustomLabel> labels = new ArrayList<>();
     private OptionsPanelData data = new OptionsPanelData();
     public MultipleGameOptionsPanel(GuiFactory factory, int size) {
-        super(factory, size);
+        super(factory);
     }
 
     @Override
@@ -23,6 +23,7 @@ public class MultipleGameOptionsPanel extends OptionsPanel {
     public void initializeLabelsData(ArrayList<String> dataMap) {
         factory.setLabelType(GuiFactory.LabelType.NORMAL);
         int i = 0;
+        setPotentialSize(dataMap.size());
         for (var data : dataMap) {
             if (i < size) {
                 var label = factory.createLabel(data);
@@ -31,6 +32,7 @@ public class MultipleGameOptionsPanel extends OptionsPanel {
             }
             i++;
         }
+        setCorrectVisibility();
         SharedCmpsFont.setUniformFont(labels);
     }
     public void setDisabledIndexes(Vector2 point, ArrayList<Integer> indexes) {
@@ -53,4 +55,12 @@ public class MultipleGameOptionsPanel extends OptionsPanel {
             }
         }
     }
+
+//    @Override
+//    public void initializeButtonsData(ArrayList<String> dataMap) {
+//        for (int j = 0; j<maximumSize; j++){
+//            customPanelAttackChoser.getMainComponent(j).setVisible(j<size?true:false);
+//        }     super.initializeButtonsData(dataMap);
+//
+//    }
 }
