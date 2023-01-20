@@ -23,7 +23,7 @@ public class TurnOffWarhammer implements ITurnOffButtons {
 
 
         List<Vector2> range = MathHelper.getGridCircle(roundManager.getGameObjectWithTurn().getCreature().getSpeed(),roundManager.getGameObjectWithTurnPosition());
-        List<Vector2> attackRange = MathHelper.getNextCels(roundManager.getGameObjectWithTurnPosition());
+        List<Vector2> attackRange = MathHelper.getNextCells(roundManager.getGameObjectWithTurnPosition());
 
 
         for (int i = 0; i < roundManager.getBoard().getHeight(); i++) {

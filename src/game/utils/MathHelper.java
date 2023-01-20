@@ -63,18 +63,22 @@ public class MathHelper {
     }
 
 
-    public static List<Vector2> getNextCels(Vector2 position){
-        List<Vector2> cels = new ArrayList<Vector2>();
+    public static List<Vector2> getNextCells(Vector2 position){
+        List<Vector2> cells = new ArrayList<Vector2>();
 
-        cels.add(new Vector2(position.x -1, position.y -1 ));
-        cels.add(new Vector2(position.x -1, position.y  ));
-        cels.add(new Vector2(position.x -1, position.y +1 ));
-        cels.add(new Vector2(position.x , position.y -1 ));
-        cels.add(new Vector2(position.x , position.y +1 ));
-        cels.add(new Vector2(position.x +1, position.y -1 ));
-        cels.add(new Vector2(position.x +1, position.y ));
-        cels.add(new Vector2(position.x +1, position.y +1 ));
+        cells.add(new Vector2(position.x -1, position.y -1 ));
+        cells.add(new Vector2(position.x -1, position.y  ));
+        cells.add(new Vector2(position.x -1, position.y +1 ));
+        cells.add(new Vector2(position.x , position.y -1 ));
+        cells.add(new Vector2(position.x , position.y +1 ));
+        cells.add(new Vector2(position.x +1, position.y -1 ));
+        cells.add(new Vector2(position.x +1, position.y ));
+        cells.add(new Vector2(position.x +1, position.y +1 ));
 
-        return cels;
+        return cells;
+    }
+
+    public static boolean isNumeric(String str){
+        return str != null && str.matches("[0-9.]+");
     }
 }
