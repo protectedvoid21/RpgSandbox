@@ -51,7 +51,7 @@ public class Converter {
 
         for (var item: character.getInventory().getItems()) {
             if (item instanceof Armor){
-                String armorName = item.getName();
+                String armorName = ((Armor)item).getName();
                 map.add(new ArrayList<>(Arrays.asList("gui/src/armor.png",armorName, "DETAILS")));
             }
         }
@@ -76,7 +76,7 @@ public class Converter {
 
         for (var item: character.getInventory().getItems()) {
             if (item instanceof Weapon){
-                String weaponName = item.getName();
+                String weaponName = ((Weapon)item).getName();
                 map.add(new ArrayList<>(Arrays.asList("gui/src/weapon.png",weaponName, "DETAILS")));
             }
         }
@@ -100,7 +100,7 @@ public class Converter {
 
         for (var item: character.getInventory().getItems()) {
             if (item instanceof Mount){
-                String mountName = item.getName();
+                String mountName = ((Mount)item).getName();
                 map.add(new ArrayList<>(Arrays.asList("gui/src/horse.png",mountName, "DETAILS")));
             }
         }
@@ -221,8 +221,10 @@ public class Converter {
         ArrayList<CardContentDataSet.DataType> dataTypesList = new ArrayList<>();
 
         for (var item: character.getInventory().getItems()){
-            String path = "src/gui/" + item.getClass().getSimpleName() + ".png";
-            map.add(new ArrayList<>(Arrays.asList(path, item.getName(), "DETAILS", "")));
+            if (item instanceof ManyUsageItem) {
+                String path = "src/gui/" + item.getClass().getSimpleName() + ".png";
+                map.add(new ArrayList<>(Arrays.asList(path, ((ManyUsageItem)item).getName(), "DETAILS", "")));
+            }
         }
 
         for (int i = 0; i< map.size();i++)
@@ -367,7 +369,7 @@ public class Converter {
         return data;
     }
 
-    private static CardContentDataSet detalisView(Item item){
+    private static CardContentDataSet detalisView(ManyUsageItem item){
         CardContentDataSet data = new CardContentDataSet();
         data.titlePath = "src/gui/"+item.getClass().getSimpleName()+".png";
         data.titleContent = item.getName();
@@ -466,7 +468,7 @@ public class Converter {
         Weapon weapon = new Weapon(name, damage, range);
         return  weapon;
     }
-    private static Armor createArmornFromCard(CardContentDataSet data){
+    private static Armor createArmorFromCard(CardContentDataSet data){
         String className = data.titleContent;
         String name = "";
         int defence = 0;
