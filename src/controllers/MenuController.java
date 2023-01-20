@@ -1,9 +1,9 @@
 package controllers;
 
+import controllers.items.ItemActionController;
 import gui.factories.IOverallFactory;
 import gui.views.menuViews.MenuView;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,9 +13,9 @@ public class MenuController extends Controller {
         MenuView menuView = overallFactory.createMenuView();
         menuView.getExitButton().addActionListener(new ExitListener());
         menuView.getCreaturesButton().addActionListener(
-                new RedirectListener(controllerManager, new CreatureCreatorController()));
+                new RedirectListener(controllerManager, new CreatureMenuController()));
         menuView.getItemsButton().addActionListener(
-                new RedirectListener(controllerManager, new ItemTypeMenuController())
+                new RedirectListener(controllerManager, new ItemActionController())
         );
         menuView.getNewGameButton().addActionListener(
                 new RedirectListener(controllerManager, new NewGameController())
