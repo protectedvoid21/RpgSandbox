@@ -99,7 +99,7 @@ public class Converter {
         ArrayList<CardContentDataSet.DataType> dataTypesList = new ArrayList<>();
 
         for (var item: character.getInventory().getItems()) {
-            if (item instanceof Armor){
+            if (item instanceof Mount){
                 String mountName = item.getName();
                 map.add(new ArrayList<>(Arrays.asList("gui/src/horse.png",mountName, "DETAILS")));
             }
@@ -215,7 +215,7 @@ public class Converter {
     private static CardContentDataSet addNewItemInEntriesCard(Character character){
         CardContentDataSet data = new CardContentDataSet();
         data.titlePath = "src/gui/item.png";
-        data.titleContent = "item";
+        data.titleContent = "Items";
 
         var map = new ArrayList<ArrayList<String>>();
         ArrayList<CardContentDataSet.DataType> dataTypesList = new ArrayList<>();
@@ -382,12 +382,12 @@ public class Converter {
         else if (item instanceof Weapon){
             var damage= ((Weapon) item).getDamage();
             var range= ((Weapon) item).getRange();
-            map.add(new ArrayList<>(Arrays.asList("defence", Integer.toString(damage))));
+            map.add(new ArrayList<>(Arrays.asList("damage", Integer.toString(damage))));
             map.add(new ArrayList<>(Arrays.asList("range", Integer.toString(range))));
         }
         else if (item instanceof Mount){
             var speed= ((Mount) item).getSpeed();
-            map.add(new ArrayList<>(Arrays.asList("defence", Integer.toString(speed))));
+            map.add(new ArrayList<>(Arrays.asList("speed", Integer.toString(speed))));
         }
 
         for (int i = 0; i< map.size();i++)
@@ -442,24 +442,108 @@ public class Converter {
 
         return data;
     }
-
+    private static boolean isNumeric(String str){
+        return str != null && str.matches("[0-9.]+");
+    }
+    private static Weapon createWeaponFromCard(CardContentDataSet data){
+        String className = data.titleContent;
+        String name = "";
+        int damage = 0;
+        int range = 0;
+        for (var parameter: data.content){
+            if (parameter.get(0).equals("name")) {
+                name = parameter.get(1);
+            }
+            if (parameter.get(0).equals("damage")) {
+                if (isNumeric(parameter.get(1)))
+                    damage = Integer.parseInt(parameter.get(1));
+            }
+            if (parameter.get(0).equals("range")) {
+                if (isNumeric(parameter.get(1)))
+                    range = Integer.parseInt(parameter.get(1));
+            }
+        }
+        Weapon weapon = new Weapon(name, damage, range);
+        return  weapon;
+    }
+    private static Armor createArmornFromCard(CardContentDataSet data){
+        String className = data.titleContent;
+        String name = "";
+        int defence = 0;
+        for (var parameter: data.content) {
+            if (parameter.get(0).equals("name")) {
+                name = parameter.get(1);
+            }
+            if (parameter.get(0).equals("defence")) {
+                if (isNumeric(parameter.get(1)))
+                    defence = Integer.parseInt(parameter.get(1));
+            }
+        }
+        Armor armor = new Armor(name,defence);
+        return  armor;
+    }
+    private static Mount createMountFromCard(CardContentDataSet data){
+        String className = data.titleContent;
+        String name = "";
+        int speed = 0;
+        for (var parameter: data.content){
+            if (parameter.get(0).equals("name")) {
+                name = parameter.get(1);
+            }
+            if (parameter.get(0).equals("speed")) {
+                if (isNumeric(parameter.get(1)))
+                    speed = Integer.parseInt(parameter.get(1));
+            }
+        }
+        Mount mount = new Mount(name, speed);
+        return  mount;
+    }
+    private static PlayerCharacter createPlayerCharacterFromCard(CardContentDataSet data){
+        PlayerCharacter playerCharacter = new PlayerCharacter(new StatisticsWarhammer(), new Inventory(), new Experience(0), new StruggleStatisticsWarhammer());
+        playerCharacter.setName(data.titleContent);
+        return playerCharacter;
+    }
+    private static NPC createNPCFromCard(CardContentDataSet data){
+        NPC npc = new NPC(new StatisticsWarhammer(), new Inventory(), new Experience(0), new StruggleStatisticsWarhammer());
+        npc.setName(data.titleContent);
+        return npc;
+    }
+    private static Monster createMonsterFromCard(CardContentDataSet data){
+        Monster monster = new Monster(new StatisticsWarhammer(), new Experience(0), new StruggleStatisticsWarhammer());
+        monster.setName(data.titleContent);
+        return monster;
+    }
 
 
     public static void main(String[] args) {
+        CardContentDataSet w1 = createWeaponInEntriesCard();
+        w1.content.get(0).set(1, "www1");
+        w1.content.get(1).set(1, "20");
+        w1.content.get(2).set(1, "6");
+        w1.content.get(2).set(1,"6t");
+        Weapon w1Res = createWeaponFromCard(w1);
+
+        CardContentDataSet npc1 = createNPCInEntriesCard();
+        npc1.titleContent = "BAddfg";
+        NPC npc1Res = createNPCFromCard(npc1);
+
         Weapon weapon = new Weapon("weapon1", 100, 10);
-        Mount mount = new Mount("horse", 20);
+        Mount mount = new Mount("horse1", 20);
+        Mount mount1 = new Mount("horse2", 30);
+        Mount mount2 = new Mount("horse3", 40);
         Armor armor = new Armor("armor1", 45);
         Inventory inventory = new Inventory();
         inventory.addItem(weapon);
         inventory.addItem(mount);
+        inventory.addItem(mount1);
+        inventory.addItem(mount2);
         inventory.addItem(armor);
         PlayerCharacter playerCharacter = new PlayerCharacter(new StatisticsWarhammer(), inventory, new Experience(10),new StruggleStatisticsWarhammer());
         playerCharacter.setName("Shgjehrk");
         playerCharacter.setObjectPathPicture("/src/gui/playerimage.png");
 
-        convertCreatureToDataSetInBasicCard(playerCharacter);
+        convertMountsToDataSet(playerCharacter);
 
-        System.out.println("\n\n\n\n");
         Monster monster = new Monster(new StatisticsWarhammer(), new Experience(10), new StruggleStatisticsWarhammer());
 
 
