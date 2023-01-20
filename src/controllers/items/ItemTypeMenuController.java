@@ -2,8 +2,7 @@ package controllers.items;
 
 import controllers.Controller;
 import controllers.MenuController;
-import controllers.RedirectListener;
-import controllers.items.ItemListController;
+import controllers.utils.RedirectListener;
 import gui.factories.IOverallFactory;
 
 public class ItemTypeMenuController extends Controller {

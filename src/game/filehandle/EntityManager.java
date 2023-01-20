@@ -38,7 +38,7 @@ public class EntityManager {
                 new Experience(0), new StruggleStatisticsWarhammer());
     }
     
-    public EntityManager getInstance() {
+    public static EntityManager getInstance() {
         return instance;
     }
 
@@ -54,6 +54,34 @@ public class EntityManager {
         NPCList = fileManager.readFromFile(NPC.class);
         playerCharacterList = fileManager.readFromFile(PlayerCharacter.class);
         creatureList = fileManager.readFromFile(Creature.class);
+    }
+    
+    public void addCreature(Creature creature) {
+        if(creature instanceof Monster) {
+            monsterList.add((Monster)creature);
+        }
+        if(creature instanceof PlayerCharacter) {
+            playerCharacterList.add((PlayerCharacter)creature);
+        }
+        if(creature instanceof NPC) {
+            NPCList.add((NPC)creature);
+        }
+        
+        creatureList.add(creature);
+    }
+
+    public void removeCreature(Creature creature) {
+        if(creature instanceof Monster) {
+            monsterList.remove((Monster)creature);
+        }
+        if(creature instanceof PlayerCharacter) {
+            playerCharacterList.remove((PlayerCharacter)creature);
+        }
+        if(creature instanceof NPC) {
+            NPCList.remove((NPC)creature);
+        }
+
+        creatureList.remove(creature);
     }
 }
 

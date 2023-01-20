@@ -1,9 +1,8 @@
 package controllers;
 
+import controllers.utils.RedirectListener;
 import gui.factories.IOverallFactory;
 import gui.views.objectViews.creationViews.CreatorGameView;
-
-import javax.swing.*;
 
 public class NewGameController extends Controller {
     @Override

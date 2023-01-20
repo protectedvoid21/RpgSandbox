@@ -1,7 +1,7 @@
 package controllers.items;
 
 import controllers.Controller;
-import controllers.RedirectListener;
+import controllers.utils.RedirectListener;
 import gui.card.fullCards.abstractCards.Card;
 import gui.factories.IOverallFactory;
 
