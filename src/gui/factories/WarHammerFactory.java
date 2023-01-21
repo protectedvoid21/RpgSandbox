@@ -96,7 +96,6 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
     public SelectingView createOverallCreaturesPanel() {
         setFactoriesMode(Mode.MENU);
         return createView(new ArrayList<>(Arrays.asList(
-                new AbstractMap.SimpleEntry<>(editPath, "EDIT"),
                 new AbstractMap.SimpleEntry<>(createPath, "CREATE"),
                 new AbstractMap.SimpleEntry<>(viewPath, "VIEW"))));
     }

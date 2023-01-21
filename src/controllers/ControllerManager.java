@@ -19,14 +19,15 @@ public class ControllerManager {
         mainFrame.setVisible(true);
         mainFrame.setResizable(true);
 
-        changeController(new MenuController(this, mainFrame));
+        changeController(new MenuController());
     }
 
     public void changeController(Controller controller) {
         currentController = controller;
+        controller.initialize(this, mainFrame);
         clearFrame();
 
-        currentController.initialize(overallFactory);
+        currentController.run(overallFactory);
         mainFrame.setVisible(true);
     }
 
