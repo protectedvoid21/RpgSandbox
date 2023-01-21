@@ -18,14 +18,11 @@ public class CreatureActionController extends Controller {
         view.getReturnButton().addActionListener(
                 new RedirectListener(controllerManager, new CreatureTypeController())
         );
-        
+
         view.getButton(0).addActionListener(
-                new RedirectListener(controllerManager, new CreatureEditListController(creatureType))
-        );
-        view.getButton(1).addActionListener(
                 new RedirectListener(controllerManager, new CreateCreatureController(creatureType))
         );
-        view.getButton(2).addActionListener(
+        view.getButton(1).addActionListener(
                 new RedirectListener(controllerManager, new CreatureListController(creatureType))
         );
         

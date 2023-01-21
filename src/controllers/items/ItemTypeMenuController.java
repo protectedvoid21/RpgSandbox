@@ -21,8 +21,6 @@ public class ItemTypeMenuController extends Controller {
                 new RedirectListener(controllerManager, new ItemListController()));
         view.getButton(3).addActionListener(
                 new RedirectListener(controllerManager, new ItemListController()));
-        view.getButton(4).addActionListener(
-                new RedirectListener(controllerManager, new ItemListController()));
 
         mainFrame.add(view.getPanel());
     }

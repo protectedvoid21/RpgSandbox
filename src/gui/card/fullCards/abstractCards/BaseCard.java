@@ -6,13 +6,14 @@ import gui.customComponents.customTextComponents.CustomTextComponent;
 import gui.customUI.customUIStyles.borderStrategies.AverageBorderStartegy;
 import gui.factories.GuiFactory;
 import gui.menu.*;
+import gui.views.PanelContainer;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.util.*;
 
-public abstract class BaseCard implements ICustomBackgorund {
+public abstract class BaseCard implements ICustomBackgorund, PanelContainer {
 
     protected DefaultCustomMenuMenager<ComponentPanelMenager<? extends JComponent>> titleSeries =
             new DefaultCustomMenuMenager<>(ComponentsSeries.ComponentsDimension.HORIZONTAL,
@@ -57,7 +58,7 @@ public abstract class BaseCard implements ICustomBackgorund {
         seriesPanel.setBackground(color);
     }
 
-    public JPanel getPanel() {
+    public ComponentPanelMenager getPanel() {
         return seriesPanel.getCmp();
     }
 

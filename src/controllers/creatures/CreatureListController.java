@@ -4,6 +4,7 @@ import controllers.Controller;
 import controllers.utils.CreatureType;
 import controllers.utils.RedirectListener;
 import gui.factories.IOverallFactory;
+import gui.views.objectViews.itemsViews.FullSmallView;
 
 public class CreatureListController extends Controller {
     private CreatureType creatureType;
@@ -14,7 +15,13 @@ public class CreatureListController extends Controller {
 
     @Override
     public void run(IOverallFactory overallFactory) {
-        var view = overallFactory.createAllCreatureShowView();
+        FullSmallView view;
+        switch(creatureType) {
+            case NPC -> view = overallFactory.createAllNPCView();
+            case MONSTER -> view = overallFactory.createAllMonstersView();
+            default -> view = overallFactory.createAllCharactersView();
+        }
+        
         view.getCancelButton().addActionListener(
                 new RedirectListener(controllerManager, new CreatureActionController(creatureType))
         );

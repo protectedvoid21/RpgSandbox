@@ -7,7 +7,7 @@ import gui.factories.IOverallFactory;
 public class ItemListController extends Controller {
     @Override
     public void run(IOverallFactory overallFactory) {
-        var view = overallFactory.createAllItemsShowView();
+        var view = overallFactory.createAllArmorsItemsView();
         view.getCancelButton().addActionListener(
                 new RedirectListener(controllerManager, new ItemTypeMenuController())
         );

@@ -8,12 +8,13 @@ import gui.factories.GuiFactory;
 import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
+import gui.views.PanelContainer;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class MenuView extends BackgroundView {
+public class MenuView extends BackgroundView implements PanelContainer {
     private GuiFactory factory;
 //    private AbstractCustomLabel customLabel;
     private ArrayList<AbstractCustomButton> buttons = new ArrayList<>();
@@ -46,7 +47,7 @@ public class MenuView extends BackgroundView {
         manager.getMiddleComponent(index, 0).addSpace(2, ComponentPanelMenager.Side.TOP, ComponentPanelMenager.Side.BOTTOM);
         manager.getMiddleComponent(index, 0).addSpace(1, ComponentPanelMenager.Side.RIGHT, ComponentPanelMenager.Side.LEFT);
     }
-    public JPanel getPanel(){
+    public ComponentPanelMenager getPanel(){
         return manager.getCmp();
     }
 

@@ -80,8 +80,10 @@ public class TestMainGui {
 //        x.getGamePanel().setNonVisibleActions();
 
         ramka.add(x.getPanel());
-        var y = f.createAllCreatureShowView();
-//        ramka.add(x.getPanel());
+        var y = f.createAllWeaponsItemsView();
+        var title = f.createTitleView();
+        title.initialize("HELLO world", y);
+        ramka.add(title.getPanel());
 //        y.setTitleIncorrect(BaseCard.Side.LEFT, 1555);
 //        ramka.add(f.createAllCreatureShowView().getPanel());
 //        ramka.add(f.createCreatorApplyingCharacterView().getPanel());

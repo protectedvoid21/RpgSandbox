@@ -10,13 +10,14 @@ import gui.factories.GuiFactory;
 import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
+import gui.views.PanelContainer;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 
-public class SelectingView extends BackgroundView {
+public class SelectingView extends BackgroundView implements PanelContainer {
     private GuiFactory factory;
     private ArrayList<AbstractCustomButton> buttons = new ArrayList<>();
     private ArrayList<AbstractCustomLabel> labels = new ArrayList<>();
@@ -44,7 +45,7 @@ public class SelectingView extends BackgroundView {
 //        manager.getCmp().setBorderData(new Color(0x4D0202), new DefaultBorderStrategy(), 10);
     }
 
-    public JPanel getPanel() {
+    public ComponentPanelMenager getPanel() {
         return manager.getCmp();
     }
 
