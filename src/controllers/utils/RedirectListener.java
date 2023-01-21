@@ -1,4 +1,7 @@
-package controllers;
+package controllers.utils;
+
+import controllers.Controller;
+import controllers.ControllerManager;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

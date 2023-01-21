@@ -18,6 +18,7 @@ public class ComponentPanelMenager<T extends JComponent> extends JPanel {
     private GridBagConstraints cst = new GridBagConstraints();
     protected T component;
     private Image backgroundImage;
+    private String backimgPath = "";
     private HashMap<Side, Component> freeSpaces = new HashMap<>();
     private double borderValue = 0;
     private Color borderColor;
@@ -137,6 +138,7 @@ public class ComponentPanelMenager<T extends JComponent> extends JPanel {
     }
 
     public void setBackgroundImage(String fileName) throws IOException {
+        backimgPath = fileName;
 //        try{
         backgroundImage = ImageIO.read(new File(fileName));
 //        }finally {
@@ -165,6 +167,14 @@ public class ComponentPanelMenager<T extends JComponent> extends JPanel {
             }
 
         }
+    }
+
+    public String getBackgroundImage() {
+        return backimgPath ;
+    }
+
+    public boolean isHasUniqueColor() {
+        return hasUniqueColor;
     }
 
     /**

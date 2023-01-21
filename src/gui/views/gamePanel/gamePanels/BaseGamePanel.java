@@ -11,6 +11,7 @@ import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
 import gui.views.BackgroundView;
+import gui.views.PanelContainer;
 import gui.views.gamePanel.optionsPanels.OneDataOptionsPanel;
 import gui.views.gamePanel.optionsPanels.OptionsPanel;
 
@@ -22,7 +23,7 @@ import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public abstract class BaseGamePanel extends BackgroundView {
+public abstract class BaseGamePanel extends BackgroundView implements PanelContainer {
     private Color baseBackColor;
 
     private Color secondBackColor = Color.YELLOW;
@@ -180,7 +181,7 @@ public abstract class BaseGamePanel extends BackgroundView {
     }
 
 
-    public JPanel getPanel() {
+    public ComponentPanelMenager getPanel() {
         return generalManager;
     }
 

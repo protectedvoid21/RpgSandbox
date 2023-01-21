@@ -8,10 +8,10 @@ public abstract class Controller {
     protected ControllerManager controllerManager;
     protected JFrame mainFrame;
 
-    public Controller(ControllerManager controllerManager, JFrame mainFrame) {
+    public void initialize(ControllerManager controllerManager, JFrame mainFrame) {
         this.controllerManager = controllerManager;
         this.mainFrame = mainFrame;
     }
-
-    public abstract void initialize(IOverallFactory overallFactory);
+    
+    public abstract void run(IOverallFactory overallFactory);
 }

@@ -1,4 +1,4 @@
-package gui.views.objectViews.creatureViews;
+package gui.views.objectViews.itemsViews;
 
 import gui.card.DoubleArrowPanel;
 import gui.customComponents.AbstractCustomButton;
@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class ShowApplyCreatureView extends AllCreaturesShowView{
+public class ShowApplyCreatureView extends ShowSmallView{
     private ArrayList<AbstractCustomButton> applyButtons = new ArrayList<>();
     public ShowApplyCreatureView(IOverallFactory factory) {
         super(factory);

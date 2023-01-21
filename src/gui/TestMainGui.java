@@ -2,6 +2,7 @@ package gui;
 
 import game.generals.Vector2;
 import gui.card.DoubleArrowPanel;
+import gui.card.fullCards.abstractCards.Card;
 import gui.factories.IOverallFactory;
 import gui.factories.WarHammerFactory;
 import gui.views.gamePanel.gamePanels.GamePanel;
@@ -79,12 +80,14 @@ public class TestMainGui {
 //        x.getGamePanel().setNonVisibleActions();
 
         ramka.add(x.getPanel());
-        var y = f.createAllCreatureShowView();
-//        ramka.add(x.getPanel());
+        var y = f.createAllWeaponsItemsView();
+        var title = f.createTitleView();
+        title.initialize("HELLO world", y);
+        ramka.add(title.getPanel());
 //        y.setTitleIncorrect(BaseCard.Side.LEFT, 1555);
 //        ramka.add(f.createAllCreatureShowView().getPanel());
 //        ramka.add(f.createCreatorApplyingCharacterView().getPanel());
-//        ramka.add(f.createAllCreatureEditView().getPanel());
+//       ramka.add(f.createAllCreatureEditView().getPanel());
 //        ramka.add(f.createAllItemsShowView().getPanel());
 //        ramka.add(f.createAllItemsShowView().getPanel());
 //        var pa = f.createGodCard();
@@ -106,8 +109,8 @@ public class TestMainGui {
 //        ramka.add(f.createCreatorApplyingCharacterView().getPanel());
 //        var z = f.createCreatorCard(Card.CreatorTypes.ARMOR);
 //        ramka.add(f.createCreatorCard(Card.CreatorTypes.ARMOR).getPanel());
-        ramka.add(f.createBasicCard().getPanel());
-        ramka.add(f.createOverallItemPanel().getPanel());
+//        ramka.add(f.createBasicCard().getPanel());
+//        ramka.add(f.createOverallItemPanel().getPanel());
 //        ramka.add(f.createOverallCreaturesPanel().getPanel());
         ramka.setVisible(true);
     }

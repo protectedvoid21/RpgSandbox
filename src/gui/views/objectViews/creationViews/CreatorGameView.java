@@ -52,7 +52,7 @@ public class CreatorGameView {
         return saveButton;
     }
 
-    public JPanel getPanel(){
+    public ComponentPanelMenager getPanel(){
         return manager.getCmp();
     }
 }
