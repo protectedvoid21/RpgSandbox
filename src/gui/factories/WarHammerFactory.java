@@ -194,7 +194,7 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
         return panel;
     }
 
-    private CreatorPanel createCreatorPanel() {
+    public CreatorPanel createCreatorPanel() {
         setFactoriesMode(Mode.BASIC);
         var panel = new CreatorPanel(this, 10);
         panel.initialize();

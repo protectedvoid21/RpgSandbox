@@ -104,6 +104,7 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
     protected void detailButtonMethod(DetailButtonsCard card, CardTypes type, int index) {
 
         var d = allCards.get(type).getDetailData();
+        System.out.println(type + "  "+ allCards.get(type).getDetailData());
 
         (type != CardTypes.ITEMS ? equipmentCard : textareaEquipmentCard).initializeCardData(allCards.get(type).getDetailData().get(allCards.get(type).getSideMaximumElementsNumber()
                 - allCards.get(type).getMaximumElementNumber() + index), null);
@@ -213,7 +214,8 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
     public void uploadNewData(LinkedHashMap<CardTypes, CardContentDataSet> newData, HashMap<CardTypes,
             ArrayList<CardContentDataSet>> detailData) {
         for (var type : newData.keySet()) {
-            if (type != CardTypes.OVERALL)
+            if (type != CardTypes.OVERALL && type!=CardTypes.ATTRIBUTE)
+                System.out.println(type);
                 allCards.get(type).initializeCardData(newData.get(type), detailData.get(type));
         }
         var a = new ArrayList<CardTypes>();

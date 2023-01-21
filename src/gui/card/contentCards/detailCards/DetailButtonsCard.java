@@ -51,6 +51,8 @@ public abstract class DetailButtonsCard extends AbstractCard<JComponent> {
         var sublist = data.content.subList(currentAttrSide * maximumElementNumber, maxSideIndex > dataSize ? dataSize :
                 maxSideIndex);
         int currentIndex = 0;
+        Card.setNonDependantAspectVisible(labelList);
+        Card.setNonDependantAspectVisible(detailList);
         for (var key : sublist) {
             labelList.get(currentIndex).setContent(key.get(0));
             getContentList().get(currentIndex).setContent(key.get(1));

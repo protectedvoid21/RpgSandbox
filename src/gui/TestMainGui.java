@@ -1,6 +1,15 @@
 package gui;
 
+import game.creature.Experience;
+import game.creature.Monster;
+import game.creature.PlayerCharacter;
+import game.equipment.Armor;
+import game.equipment.Inventory;
+import game.equipment.Mount;
+import game.equipment.Weapon;
 import game.generals.Vector2;
+import game.interfaceWarhammer.StatisticsWarhammer;
+import game.interfaceWarhammer.StruggleStatisticsWarhammer;
 import gui.card.DoubleArrowPanel;
 import gui.card.fullCards.abstractCards.Card;
 import gui.factories.IOverallFactory;
@@ -13,6 +22,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.util.AbstractMap;
+import java.util.HashMap;
 
 public class TestMainGui {
     static Font pixel;
@@ -85,7 +95,27 @@ public class TestMainGui {
         title.initialize("HELLO world", y);
         var god = f.createGodCard();
         god.setItemViewStatus(Card.CardTypes.ITEMS, 2);
-        ramka.add(god.getPanel());
+        ramka.add(f.createMainPanelGame().getPanel());
+        var card = f.createBasicCard();
+
+        Weapon weapon = new Weapon("weapon1", 100, 10);
+        Mount mount = new Mount("horse1", 20);
+        Mount mount1 = new Mount("horse2", 30);
+        Mount mount2 = new Mount("horse3", 40);
+        Armor armor = new Armor("armor1", 45);
+        Inventory inventory = new Inventory();
+        inventory.addItem(weapon);
+        inventory.addItem(mount);
+        inventory.addItem(mount1);
+        inventory.addItem(mount2);
+        inventory.addItem(armor);
+        Monster playerCharacter = new Monster(new StatisticsWarhammer(),
+                new Experience(10), new StruggleStatisticsWarhammer());
+        playerCharacter.setName("Shgjehrk");
+        playerCharacter.setObjectPathPicture("/src/gui/playerimage.png");
+
+        card.uploadNewData(Converter.createFullDataCreature(playerCharacter), Converter.createFullDetailDataCreature(playerCharacter));
+        ramka.add(card.getPanel());
 //        y.setTitleIncorrect(BaseCard.Side.LEFT, 1555);
 //        ramka.add(f.createAllCreatureShowView().getPanel());
 //        ramka.add(f.createCreatorApplyingCharacterView().getPanel());

@@ -1,5 +1,6 @@
 package gui;
 
+import com.kitfox.svg.A;
 import game.creature.*;
 import game.creature.Character;
 import game.equipment.*;
@@ -8,6 +9,7 @@ import game.interfaceWarhammer.StatisticsWarhammer;
 import game.interfaceWarhammer.StruggleStatisticsWarhammer;
 import game.utils.MathHelper;
 import gui.card.CardContentDataSet;
+import gui.card.fullCards.abstractCards.Card;
 import jdk.jshell.spi.ExecutionControl;
 
 import java.util.*;
@@ -24,12 +26,13 @@ public class Converter {
         ArrayList<CardContentDataSet.DataType> dataTypesList = new ArrayList<>();
 
         map.add(new ArrayList<>(Arrays.asList("src/gui/stats.png")));
-        map.add(new ArrayList<>(Arrays.asList("src/gui/effect.png")));
+//        map.add(new ArrayList<>(Arrays.asList("src/gui/effect.png")));
 
         if (creature instanceof Character) {
             map.add(new ArrayList<>(Arrays.asList("src/gui/horse.png")));
             map.add(new ArrayList<>(Arrays.asList("src/gui/armor.png")));
             map.add(new ArrayList<>(Arrays.asList("src/gui/weapon.png")));
+            map.add(new ArrayList<>(Arrays.asList("src/gui/effect.png")));
         }
 
         for (int i = 0; i < map.size(); i++)
@@ -122,9 +125,9 @@ public class Converter {
                 map.add(new ArrayList<>(Arrays.asList(attibuteName, attributeValue)));
                 cnt++;
             }
-            if (cnt == 6) {
-                break;
-            }
+//            if (cnt == 6) {
+//                break;
+//            }
         }
 
         for (int i = 0; i < map.size(); i++)
@@ -134,6 +137,57 @@ public class Converter {
         data.dataType = dataTypesList;
 
         return data;
+    }
+
+    public static HashMap<Card.CardTypes, ArrayList<CardContentDataSet>> createFullDetailDataCreature(Creature basecreature) {
+        var map = new LinkedHashMap<Card.CardTypes, ArrayList<CardContentDataSet>>();
+
+        if (basecreature instanceof Character) {
+            var creature = (Character)basecreature;
+            var armorlist = new ArrayList<CardContentDataSet>();
+            for (var armor : creature.getInventory().getArmors()) {
+                armorlist.add(detailsView(armor));
+            }
+            map.put(Card.CardTypes.ARMOR, armorlist);
+
+            var mountList = new ArrayList<CardContentDataSet>();
+            for (var mount : creature.getInventory().getMounts()) {
+                mountList.add(detailsView(mount));
+            }
+            map.put(Card.CardTypes.MOUNT, mountList);
+
+            var weaponList = new ArrayList<CardContentDataSet>();
+            for (var weapon : creature.getInventory().getWeapons()) {
+                weaponList.add(detailsView(weapon));
+            }
+            map.put(Card.CardTypes.WEAPONS, weaponList);
+
+            var itemsList = new ArrayList<CardContentDataSet>();
+            for (var item : creature.getInventory().getWeapons()) {
+                itemsList.add(detailsView(item));
+            }
+            map.put(Card.CardTypes.ITEMS, itemsList);//todo to change on items
+        }
+        return map;
+    }
+
+
+    public static LinkedHashMap<Card.CardTypes, CardContentDataSet> createFullDataCreature(Creature creature) {
+        var map = new LinkedHashMap<Card.CardTypes, CardContentDataSet>();
+        if (creature instanceof PlayerCharacter) {
+            map.put(Card.CardTypes.OVERALL, convertCreatureToDataSetInBasicCard(creature));
+            map.put(Card.CardTypes.ATTRIBUTE, convertStatsToDataSet(creature));
+            map.put(Card.CardTypes.MOUNT, convertMountsToDataSet((Character) creature));
+            map.put(Card.CardTypes.ARMOR, convertArmorsToDataSet((Character) creature));
+            map.put(Card.CardTypes.WEAPONS, convertWeaponsToDataSet((Character) creature));
+            map.put(Card.CardTypes.ITEMS, convertWeaponsToDataSet((Character) creature));
+        }
+        if(creature instanceof Monster){
+            map.put(Card.CardTypes.OVERALL, convertCreatureToDataSetInBasicCard(creature));
+            map.put(Card.CardTypes.ATTRIBUTE, convertStatsToDataSet(creature));
+        }
+        //todo rest of possiblities
+        return map;
     }
 
     // koniec
@@ -213,7 +267,7 @@ public class Converter {
 
         var map = new ArrayList<ArrayList<String>>();
         ArrayList<CardContentDataSet.DataType> dataTypesList = new ArrayList<>();
-        
+
         System.out.println("NOT IMPLEMENTED");
         //todo fix inventory filtering due to previous Inventory class changes
         /*for (var item : character.getInventory().getItems()) {
@@ -377,14 +431,12 @@ public class Converter {
         if (item instanceof Armor) {
             var defence = ((Armor) item).getDefence();
             map.add(new ArrayList<>(Arrays.asList("defence", Integer.toString(defence))));
-        }
-        else if (item instanceof Weapon) {
+        } else if (item instanceof Weapon) {
             var damage = ((Weapon) item).getDamage();
             var range = ((Weapon) item).getRange();
             map.add(new ArrayList<>(Arrays.asList("damage", Integer.toString(damage))));
             map.add(new ArrayList<>(Arrays.asList("range", Integer.toString(range))));
-        }
-        else if (item instanceof Mount) {
+        } else if (item instanceof Mount) {
             var speed = ((Mount) item).getSpeed();
             map.add(new ArrayList<>(Arrays.asList("speed", Integer.toString(speed))));
         }
@@ -494,19 +546,22 @@ public class Converter {
     }
 
     public static PlayerCharacter createPlayerCharacterFromCard(CardContentDataSet data) {
-        PlayerCharacter playerCharacter = new PlayerCharacter(new StatisticsWarhammer(), new Inventory(), new Experience(0), new StruggleStatisticsWarhammer());
+        PlayerCharacter playerCharacter = new PlayerCharacter(new StatisticsWarhammer(), new Inventory(),
+                new Experience(0), new StruggleStatisticsWarhammer());
         playerCharacter.setName(data.titleContent);
         return playerCharacter;
     }
 
     public static NPC createNPCFromCard(CardContentDataSet data) {
-        NPC npc = new NPC(new StatisticsWarhammer(), new Inventory(), new Experience(0), new StruggleStatisticsWarhammer());
+        NPC npc = new NPC(new StatisticsWarhammer(), new Inventory(), new Experience(0),
+                new StruggleStatisticsWarhammer());
         npc.setName(data.titleContent);
         return npc;
     }
 
     public static Monster createMonsterFromCard(CardContentDataSet data) {
-        Monster monster = new Monster(new StatisticsWarhammer(), new Experience(0), new StruggleStatisticsWarhammer());
+        Monster monster = new Monster(new StatisticsWarhammer(), new Experience(0),
+                new StruggleStatisticsWarhammer());
         monster.setName(data.titleContent);
         return monster;
     }
@@ -534,7 +589,8 @@ public class Converter {
         inventory.addItem(mount1);
         inventory.addItem(mount2);
         inventory.addItem(armor);
-        PlayerCharacter playerCharacter = new PlayerCharacter(new StatisticsWarhammer(), inventory, new Experience(10), new StruggleStatisticsWarhammer());
+        PlayerCharacter playerCharacter = new PlayerCharacter(new StatisticsWarhammer(), inventory,
+                new Experience(10), new StruggleStatisticsWarhammer());
         playerCharacter.setName("Shgjehrk");
         playerCharacter.setObjectPathPicture("/src/gui/playerimage.png");
 

@@ -52,7 +52,9 @@ public abstract class AttributesCard extends AbstractCard {
                 maxSideIndex);
 
         int currentIndex = 0;
+        Card.setNonDependantAspectVisible(labelList);
         for (var key : sublist) {
+
             labelList.get(currentIndex).setContent(key.get(0));
             getSecondContentList().get(currentIndex).setContent(key.get(1));
             currentIndex++;
@@ -64,6 +66,7 @@ public abstract class AttributesCard extends AbstractCard {
                 getSecondContentList().get(i).setContent(Card.EMPTY_DATA_CONTENT);
             }
         }
+
 
         Card.setAspectVisible(labelList, true);
 

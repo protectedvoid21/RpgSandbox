@@ -88,7 +88,10 @@ public abstract class AbstractCustomLabel extends JLabel implements IContentCust
     @Override
     public void setText(String text) {
         super.setText(text);
-        if (labelUI != null)
+        if (labelUI != null) {
+            System.out.println("tak" + getText());
             labelUI.getCustomUI().setRelevantFont(getText());
+            System.out.println("tak" + getFont());
+        }
     }
 }
