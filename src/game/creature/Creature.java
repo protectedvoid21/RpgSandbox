@@ -10,34 +10,34 @@ public abstract class Creature implements RoundListener {
     protected String name;
     protected Experience experience;
     private String objectPathPicture = "";
-    
+
     public Creature(IStatistics statistics, Experience experience, IStruggleStatistics struggleStatistics) {
         this.statistics = statistics;
         this.experience = experience;
         this.struggleStatistics = struggleStatistics;
     }
-    
+
     public void applyNewRound() {
         statistics.applyNewRound();
         struggleStatistics.applyNewRound();
     }
-    
+
     public IStatistics getStatistics() {
         return statistics;
     }
-    
+
     public String getName() {
         return name;
     }
-    
+
     public IStruggleStatistics getStruggleStatistics() {
         return struggleStatistics;
     }
-    
+
     public void setName(String name) {
         this.name = name;
     }
-    
+
     public Experience getExperience() {
         return experience;
     }
