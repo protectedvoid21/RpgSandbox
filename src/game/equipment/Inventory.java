@@ -7,6 +7,7 @@ public class Inventory {
     private ArrayList<Weapon> weapons;
     private ArrayList<Armor> armors;
     private ArrayList<Mount> mounts;
+    private ArrayList<DisposableItem> disposableItems;
     private Weapon activeWeapon;
     private Armor activeArmor;
     private Mount activeMount;
@@ -34,6 +35,9 @@ public class Inventory {
     public ArrayList<Mount> getMounts() {
         return mounts;
     }
+    public ArrayList<DisposableItem> getDisposableItems() {
+        return disposableItems;
+    }
 
     public void addItem(Item item) {
         if (item instanceof Weapon) {
@@ -57,6 +61,10 @@ public class Inventory {
                 activeMount = (Mount) item;
             }
         }
+        else if(item instanceof DisposableItem)
+        {
+            disposableItems.add((DisposableItem) item);
+        }
     }
 
     public void removeItem(Item item) {
@@ -68,6 +76,10 @@ public class Inventory {
         }
         else if (item instanceof Mount) {
             mounts.remove((Mount) item);
+        }
+        else if(item instanceof DisposableItem)
+        {
+            disposableItems.remove((DisposableItem) item);
         }
 
         inventoryCheck(item);
