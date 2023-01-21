@@ -22,7 +22,7 @@ public class StatisticsWarhammer extends Statistics {
 
     @Override
     public void initializeAttributes() {
-        EnumSet.range(AttributeEnum.POWER, AttributeEnum.FELLOWSHIP).forEach(attr -> attributes.put(attr, new LimitedAttribute(30)));
+        EnumSet.range(AttributeEnum.WEAPON_SKILL, AttributeEnum.FELLOWSHIP).forEach(attr -> attributes.put(attr, new LimitedAttribute(30)));
         attributes.put(AttributeEnum.ATTACKS, new UnlimitedAttribute(1));
         attributes.put(AttributeEnum.HEALTH_POINTS_MAX, new UnlimitedAttribute(15));
         attributes.put(AttributeEnum.HEALTH_POINTS_NOW, new UnlimitedAttribute(15));
