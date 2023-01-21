@@ -2,7 +2,7 @@ package gui.actionListener;
 
 import game.board.RoundManager;
 import game.interfaces.ITurnOffButtons;
-import gui.actionListener.warhammer.TurnOffWarhammer;
+import gui.actionListener.warhammerActions.TurnOffWarhammer;
 import gui.views.gamePanel.MainPanelGame;
 
 public class turnOffButtons {

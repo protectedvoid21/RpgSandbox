@@ -17,12 +17,12 @@ public class EntityManager {
     private List<NPC> NPCList = new ArrayList<>();
     private List<PlayerCharacter> playerCharacterList = new ArrayList<>();
     private List<Creature> creatureList = new ArrayList<>();
+
+    private PlayerCharacter playerCharacterWithAllItems;
+    private PlayerCharacter defaultPlayerCharacter;
+    private FileManager fileManager;
     private List<Item> itemList = new ArrayList<>();
     private List<Scenario> scenarioList = new ArrayList<>();
-
-    PlayerCharacter playerCharacterWithAllItems;
-    PlayerCharacter defaultPlayerCharacter;
-    FileManager fileManager;
 
     private static EntityManager instance;
     
@@ -111,6 +111,14 @@ public class EntityManager {
 
     public List<Scenario> getScenarioList() {
         return scenarioList;
+    }
+
+    public void removeItem(Item item){
+        playerCharacterWithAllItems.getInventory().removeItem(item);
+    }
+
+    public void addItem(Item item){
+        playerCharacterWithAllItems.getInventory().addItem(item);
     }
 }
 
