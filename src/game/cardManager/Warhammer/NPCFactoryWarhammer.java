@@ -33,7 +33,7 @@ public class NPCFactoryWarhammer implements IFactory {
 
         NPC npc = new NPC(statistics,new Inventory(),experience,struggleStatistics);
         npc.setName(name);
-        npc.setObjectPathPicture(stats.get(14));
+        npc.setObjectPathPicture(stats.get(13));
         return npc;
     }
 }
