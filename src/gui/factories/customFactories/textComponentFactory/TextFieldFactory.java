@@ -23,7 +23,20 @@ public class TextFieldFactory extends TextFactory {
 
     @Override
     public CustomTextComponent createTextArea() {
-        return initializeTextComponent(new CustomTextArea());
+        var textField = new CustomTextArea();
+        textField.setFont(font);
+        textField.getTextComponent().setForeground(new Color(0000000));
+        textField.setBackground(new Color(0x9BEC82));
+        var ui = new RoundedBorderUI(strategy, 2, 10);
+        ui.setAdditionaldColor(new Color(0x1A3D10), ICustomUI.Index.FIRST);
+        ui.setAdditionaldColor(new Color(0x206E0A), ICustomUI.Index.SECOND);
+        textField.setUI(new ChangingBorderColorWraper(ui));
+        textField.setUI(ui);
+        ui.setRespectionBorder(true);
+        textField.setListener(new CustomDocumentListener(new Color(0x697A69)));
+        textField.getMargin().set(10, 7, 10, 7);
+        textField.setFont(22);
+        return textField;
     }
 
     private CustomTextComponent initializeTextComponent(CustomTextComponent textField) {
