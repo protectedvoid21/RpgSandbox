@@ -1,7 +1,9 @@
 package gui.actionListener.scenarioCreating;
 
+import game.board.Board;
 import game.board.GameObject;
 import game.board.RoundManager;
+import game.board.ScenarioData;
 import game.creature.Monster;
 import game.creature.NPC;
 import gui.views.objectViews.creationViews.CreatorGameView;
@@ -12,23 +14,25 @@ import java.util.ArrayList;
 
 public class PutNPCListener implements ActionListener {
 
-    RoundManager roundManager;
+    ArrayList<ScenarioData> scenarioDataList;
 
     CreatorGameView creatorGameView;
-    ArrayList<NPC> mockNPC;
-    int index;
 
-    public PutNPCListener(RoundManager roundManager, CreatorGameView creatorGameView, int index, ArrayList<NPC> mockNPC) {
-        this.roundManager = roundManager;
+    NPC dependNPC;
+
+    public PutNPCListener(ArrayList<ScenarioData> scenarioDataList, CreatorGameView creatorGameView, NPC dependNPC) {
+        this.scenarioDataList = scenarioDataList;
         this.creatorGameView = creatorGameView;
-        this.index = index;
-        this.mockNPC = mockNPC;
+        this.dependNPC = dependNPC;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        roundManager.getBoard().getPlace(creatorGameView.getCreatorPanel().getCurrentClickedIndexes()).setGameObject(new GameObject(mockNPC.get(index)));
-        creatorGameView.getCreatorPanel().applyNewCreatureOnPosition(mockNPC.get(index).getObjectPathPicture(),creatorGameView.getCreatorPanel().getCurrentClickedIndexes());
+        ScenarioData scenarioData = new ScenarioData();
+        scenarioData.creature = dependNPC;
+        scenarioData.position = creatorGameView.getCreatorPanel().getCurrentClickedIndexes();
+        scenarioDataList.add(scenarioData);
+        creatorGameView.getCreatorPanel().applyNewCreatureOnPosition(dependNPC.getObjectPathPicture(),creatorGameView.getCreatorPanel().getCurrentClickedIndexes());
     }
 }

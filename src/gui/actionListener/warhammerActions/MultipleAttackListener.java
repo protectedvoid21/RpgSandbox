@@ -1,15 +1,12 @@
-package gui.actionListener.warhammer;
+package gui.actionListener.warhammerActions;
 
 import game.board.RoundManager;
 import game.generals.Vector2;
 import gui.views.gamePanel.MainPanelGame;
-import gui.views.gamePanel.gamePanels.BaseGamePanel;
-import gui.views.gamePanel.gamePanels.GamePanel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static game.interfaceWarhammer.ActionsEnum.ATTACK;
 import static game.interfaceWarhammer.ActionsEnum.MULTIPLE_ATTACK;
 import static game.interfaceWarhammer.AttributeEnum.*;
 

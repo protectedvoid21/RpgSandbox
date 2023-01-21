@@ -2,6 +2,7 @@ package gui;
 
 import game.generals.Vector2;
 import gui.card.DoubleArrowPanel;
+import gui.card.fullCards.abstractCards.Card;
 import gui.factories.IOverallFactory;
 import gui.factories.WarHammerFactory;
 import gui.views.gamePanel.gamePanels.GamePanel;
@@ -82,11 +83,13 @@ public class TestMainGui {
         var y = f.createAllWeaponsItemsView();
         var title = f.createTitleView();
         title.initialize("HELLO world", y);
-        ramka.add(title.getPanel());
+        var god = f.createGodCard();
+        god.setItemViewStatus(Card.CardTypes.ITEMS, 2);
+        ramka.add(god.getPanel());
 //        y.setTitleIncorrect(BaseCard.Side.LEFT, 1555);
 //        ramka.add(f.createAllCreatureShowView().getPanel());
 //        ramka.add(f.createCreatorApplyingCharacterView().getPanel());
-//        ramka.add(f.createAllCreatureEditView().getPanel());
+//       ramka.add(f.createAllCreatureEditView().getPanel());
 //        ramka.add(f.createAllItemsShowView().getPanel());
 //        ramka.add(f.createAllItemsShowView().getPanel());
 //        var pa = f.createGodCard();

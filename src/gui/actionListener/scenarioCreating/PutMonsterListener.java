@@ -1,7 +1,6 @@
 package gui.actionListener.scenarioCreating;
 
-import game.board.GameObject;
-import game.board.RoundManager;
+import game.board.*;
 import game.creature.Monster;
 import gui.views.gamePanel.MainPanelGame;
 import gui.views.objectViews.creationViews.CreatorGameView;
@@ -12,23 +11,25 @@ import java.util.ArrayList;
 
 public class PutMonsterListener implements ActionListener {
 
-    RoundManager roundManager;
+    ArrayList<ScenarioData> scenarioDataList;
 
     CreatorGameView creatorGameView;
-    ArrayList<Monster> mockMonsters;
-    int index;
+    Monster dependMonster;
 
-    public PutMonsterListener(RoundManager roundManager, CreatorGameView creatorGameView, int index, ArrayList<Monster> mockMonsters) {
-        this.roundManager = roundManager;
+    public PutMonsterListener(ArrayList<ScenarioData> scenarioData, CreatorGameView creatorGameView,Monster dependMonster) {
+        this.scenarioDataList = scenarioData;
         this.creatorGameView = creatorGameView;
-        this.index = index;
-        this.mockMonsters = mockMonsters;
+        this.dependMonster = dependMonster;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        roundManager.getBoard().getPlace(creatorGameView.getCreatorPanel().getCurrentClickedIndexes()).setGameObject(new GameObject(mockMonsters.get(index)));
-        creatorGameView.getCreatorPanel().applyNewCreatureOnPosition(mockMonsters.get(index).getObjectPathPicture(),creatorGameView.getCreatorPanel().getCurrentClickedIndexes());
+
+        ScenarioData scenarioData = new ScenarioData();
+        scenarioData.creature = dependMonster;
+        scenarioData.position = creatorGameView.getCreatorPanel().getCurrentClickedIndexes();
+        scenarioDataList.add(scenarioData);
+        creatorGameView.getCreatorPanel().applyNewCreatureOnPosition(dependMonster.getObjectPathPicture(),creatorGameView.getCreatorPanel().getCurrentClickedIndexes());
     }
 }

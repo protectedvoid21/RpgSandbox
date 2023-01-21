@@ -3,6 +3,7 @@ package gui.card.fullCards.abstractCards;
 import gui.card.*;
 import gui.card.contentCards.AbstractCard;
 import gui.card.contentCards.OverallCard;
+import gui.card.contentCards.TextAreaCard;
 import gui.card.contentCards.attributesCards.AttributesCard;
 import gui.card.contentCards.EmptyCard;
 import gui.card.contentCards.attributesCards.EntriesAttributesCard;
@@ -28,6 +29,7 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
     protected AbstractCard activeCard = new EmptyCard();
     protected LinkedHashMap<CardTypes, AbstractCard<? extends JComponent>> allCards = new LinkedHashMap<>();
     private AttributesCard equipmentCard;
+    private TextAreaCard textareaEquipmentCard;
 
     protected EntriesAttributesCard amwGeneratorCard;
 
@@ -103,12 +105,15 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
 
         var d = allCards.get(type).getDetailData();
 
-        equipmentCard.initializeCardData(allCards.get(type).getDetailData().get(allCards.get(type).getSideMaximumElementsNumber()
+        (type != CardTypes.ITEMS ? equipmentCard : textareaEquipmentCard).initializeCardData(allCards.get(type).getDetailData().get(allCards.get(type).getSideMaximumElementsNumber()
                 - allCards.get(type).getMaximumElementNumber() + index), null);
 
-        updateContent(equipmentCard);
+        updateContent((type != CardTypes.ITEMS ? equipmentCard : textareaEquipmentCard));
+
         arrowMenager.getOption(1).changeContent(exitButton);//yyyyto fix
+
         showCancelPanel(false);
+
     }
 
 
@@ -149,6 +154,8 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
 
         equipmentCard = createDetailItemCard();
         equipmentCard.initializeCard();
+        textareaEquipmentCard = new TextAreaCard(factory);
+        textareaEquipmentCard.initializeCard();
         var attrCard = createAttributeCard();
         attrCard.initializeCard();
         allCards.put(CardTypes.ATTRIBUTE, attrCard);
