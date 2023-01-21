@@ -72,6 +72,9 @@ public class EntriesAttributesCard extends AttributesCard {
 
     @Override
     public void initializeCardData(CardContentDataSet data, ArrayList detailData) {
+        while (data.dataType.size()<maximumElementNumber){
+            data.dataType.add(CardContentDataSet.DataType.STRING);
+        }
         super.initializeCardData(data, detailData);
         for (int i = 0; i < data.content.size() && i < data.dataType.size(); i++) {
             if (data.dataType.get(i) == CardContentDataSet.DataType.BOOLEAN) {
