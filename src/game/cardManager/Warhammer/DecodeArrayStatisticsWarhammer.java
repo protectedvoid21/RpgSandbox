@@ -22,8 +22,8 @@ public class DecodeArrayStatisticsWarhammer implements IDecodeArrayStatistics {
         }
 
         attributes.put(AttributeEnum.ATTACKS, new UnlimitedAttribute(Integer.parseInt(stats.get(9))));
-        attributes.put(AttributeEnum.HEALTH_POINTS_MAX, new UnlimitedAttribute(Integer.parseInt(stats.get(10))));
-        attributes.put(AttributeEnum.HEALTH_POINTS_NOW, new UnlimitedAttribute(Integer.parseInt(stats.get(11))));
+        attributes.put(AttributeEnum.HEALTH_POINTS_NOW, new UnlimitedAttribute(Integer.parseInt(stats.get(10))));
+        attributes.put(AttributeEnum.HEALTH_POINTS_MAX, new UnlimitedAttribute(Integer.parseInt(stats.get(11))));
         attributes.put(AttributeEnum.MOVEMENT, new UnlimitedAttribute(Integer.parseInt(stats.get(12))));
 
         StatisticsWarhammer statistics = new StatisticsWarhammer(attributes);
