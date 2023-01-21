@@ -1,10 +1,7 @@
 package game.filehandle;
 
 import game.creature.*;
-import game.equipment.Armor;
-import game.equipment.Inventory;
-import game.equipment.Mount;
-import game.equipment.Weapon;
+import game.equipment.*;
 import game.interfaceWarhammer.StatisticsWarhammer;
 import game.interfaceWarhammer.StruggleStatisticsWarhammer;
 import game.interfaces.IStatistics;
@@ -19,6 +16,7 @@ public class EntityManager {
     private List<NPC> NPCList = new ArrayList<>();
     private List<PlayerCharacter> playerCharacterList = new ArrayList<>();
     private List<Creature> creatureList = new ArrayList<>();
+    private List<Item> itemList = new ArrayList<>();
     PlayerCharacter playerCharacterWithAllItems;
     PlayerCharacter defaultPlayerCharacter;
     FileManager fileManager;
@@ -47,6 +45,7 @@ public class EntityManager {
         fileManager.writeToFile(NPCList, NPC.class);
         fileManager.writeToFile(playerCharacterList, PlayerCharacter.class);
         fileManager.writeToFile(creatureList, Creature.class);
+        fileManager.writeToFile(itemList, Item.class);
     }
 
     public void loadAllEntities() {
@@ -54,6 +53,7 @@ public class EntityManager {
         NPCList = fileManager.readFromFile(NPC.class);
         playerCharacterList = fileManager.readFromFile(PlayerCharacter.class);
         creatureList = fileManager.readFromFile(Creature.class);
+        itemList = fileManager.readFromFile(Item.class);
     }
     
     public void addCreature(Creature creature) {
@@ -98,6 +98,10 @@ public class EntityManager {
 
     public List<Creature> getCreatureList() {
         return creatureList;
+    }
+    
+    public List<Item> getItemList() {
+        return itemList;
     }
 }
 

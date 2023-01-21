@@ -2,7 +2,9 @@ package controllers.items;
 
 import controllers.Controller;
 import controllers.MenuController;
+import controllers.utils.ItemType;
 import controllers.utils.RedirectListener;
+import gui.card.fullCards.abstractCards.Card;
 import gui.factories.IOverallFactory;
 
 public class ItemTypeMenuController extends Controller {
@@ -14,13 +16,13 @@ public class ItemTypeMenuController extends Controller {
         );
 
         view.getButton(0).addActionListener(
-                new RedirectListener(controllerManager, new ItemListController()));
+                new RedirectListener(controllerManager, new ItemActionController(Card.CreatorTypes.MOUNT)));
         view.getButton(1).addActionListener(
-                new RedirectListener(controllerManager, new ItemListController()));
+                new RedirectListener(controllerManager, new ItemActionController(Card.CreatorTypes.ARMOR)));
         view.getButton(2).addActionListener(
-                new RedirectListener(controllerManager, new ItemListController()));
-        view.getButton(3).addActionListener(
-                new RedirectListener(controllerManager, new ItemListController()));
+                new RedirectListener(controllerManager, new ItemActionController(Card.CreatorTypes.WEAPONS)));
+        /*view.getButton(3).addActionListener(
+                new RedirectListener(controllerManager, new ItemActionController());*/
 
         mainFrame.add(view.getPanel());
     }

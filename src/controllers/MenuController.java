@@ -2,6 +2,8 @@ package controllers;
 
 import controllers.creatures.CreatureTypeController;
 import controllers.items.ItemActionController;
+import controllers.items.ItemListController;
+import controllers.items.ItemTypeMenuController;
 import controllers.utils.RedirectListener;
 import gui.factories.IOverallFactory;
 import gui.views.menuViews.MenuView;
@@ -19,7 +21,7 @@ public class MenuController extends Controller {
                 new RedirectListener(controllerManager, new CreatureTypeController())
         );
         menuView.getItemsButton().addActionListener(
-                new RedirectListener(controllerManager, new ItemActionController())
+                new RedirectListener(controllerManager, new ItemTypeMenuController())
         );
         menuView.getNewGameButton().addActionListener(
                 new RedirectListener(controllerManager, new NewGameController())

@@ -17,7 +17,7 @@ public class CreateItemController extends Controller {
         var view = overallFactory.createCreatorCard(creatorType);
         
         view.getCancelButton().addActionListener(
-                new RedirectListener(controllerManager, new CreateItemTypeController())
+                new RedirectListener(controllerManager, new ItemTypeMenuController())
         );
         
         mainFrame.add(view.getPanel());
