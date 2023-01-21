@@ -2,6 +2,7 @@ package gui.actionListener.creatureMenagment;
 
 import game.creature.Monster;
 import game.creature.NPC;
+import game.filehandle.EntityManager;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,17 +10,18 @@ import java.util.ArrayList;
 
 public class NPCDeleteListener implements ActionListener {
 
-    ArrayList<NPC> mockNPC;
+
+    EntityManager entityManager;
    NPC dependNPC;
 
-    public NPCDeleteListener( ArrayList<Monster> mockMonster, NPC dependNPC){
-        this.mockNPC = mockNPC;
+    public NPCDeleteListener( EntityManager entityManager, NPC dependNPC){
+        this.entityManager = entityManager;
         this.dependNPC = dependNPC;
     }
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        mockNPC.remove(dependNPC);
+        entityManager.removeNPC(dependNPC);
     }
 }

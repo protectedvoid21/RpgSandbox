@@ -1,10 +1,7 @@
 package game.filehandle;
 
 import game.creature.*;
-import game.equipment.Armor;
-import game.equipment.Inventory;
-import game.equipment.Mount;
-import game.equipment.Weapon;
+import game.equipment.*;
 import game.interfaceWarhammer.StatisticsWarhammer;
 import game.interfaceWarhammer.StruggleStatisticsWarhammer;
 import game.interfaces.IStatistics;
@@ -15,13 +12,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EntityManager {
-    List<Monster> monsterList = new ArrayList<>();
-    List<NPC> NPCList = new ArrayList<>();
-    List<PlayerCharacter> playerCharacterList = new ArrayList<>();
-    List<Creature> creatureList = new ArrayList<>();
-    PlayerCharacter playerCharacterWithAllItems;
-    PlayerCharacter defaultPlayerCharacter;
-    FileManager fileManager;
+    private List<Monster> monsterList = new ArrayList<>();
+    private List<NPC> NPCList = new ArrayList<>();
+    private List<PlayerCharacter> playerCharacterList = new ArrayList<>();
+    private List<Creature> creatureList = new ArrayList<>();
+    private PlayerCharacter playerCharacterWithAllItems;
+    private PlayerCharacter defaultPlayerCharacter;
+    private FileManager fileManager;
 
     public EntityManager(String gameName) {
         fileManager = new FileManager(gameName);
@@ -44,6 +41,34 @@ public class EntityManager {
         NPCList = fileManager.readFromFile(NPC.class);
         playerCharacterList = fileManager.readFromFile(PlayerCharacter.class);
         creatureList = fileManager.readFromFile(Creature.class);
+    }
+
+    public void removeMonster(Monster monster){
+        monsterList.remove(monster);
+    }
+    public void removeNPC(NPC npc){
+        NPCList.remove(npc);
+    }
+    public void removePC(PlayerCharacter playerCharacter){
+        playerCharacterList.remove(playerCharacter);
+    }
+    public void removeItem(Item item){
+        playerCharacterWithAllItems.getInventory().removeItem(item);
+    }
+
+
+    public void addMonster(Monster monster){
+        monsterList.add(monster);
+    }
+    public void addNPC(NPC npc){
+        NPCList.add(npc);
+    }
+    public void addPC(PlayerCharacter playerCharacter){
+        playerCharacterList.add(playerCharacter);
+    }
+
+    public void addItem(Item item){
+        playerCharacterWithAllItems.getInventory().addItem(item);
     }
 }
 
