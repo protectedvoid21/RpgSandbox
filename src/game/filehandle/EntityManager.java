@@ -15,10 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EntityManager {
-    List<Monster> monsterList = new ArrayList<>();
-    List<NPC> NPCList = new ArrayList<>();
-    List<PlayerCharacter> playerCharacterList = new ArrayList<>();
-    List<Creature> creatureList = new ArrayList<>();
+    private List<Monster> monsterList = new ArrayList<>();
+    private List<NPC> NPCList = new ArrayList<>();
+    private List<PlayerCharacter> playerCharacterList = new ArrayList<>();
+    private List<Creature> creatureList = new ArrayList<>();
     PlayerCharacter playerCharacterWithAllItems;
     PlayerCharacter defaultPlayerCharacter;
     FileManager fileManager;
@@ -82,6 +82,22 @@ public class EntityManager {
         }
 
         creatureList.remove(creature);
+    }
+
+    public List<Monster> getMonsterList() {
+        return monsterList;
+    }
+
+    public List<NPC> getNPCList() {
+        return NPCList;
+    }
+
+    public List<PlayerCharacter> getPlayerCharacterList() {
+        return playerCharacterList;
+    }
+
+    public List<Creature> getCreatureList() {
+        return creatureList;
     }
 }
 
