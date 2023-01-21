@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import game.board.Scenario;
+import game.creature.Creature;
 import game.creature.Monster;
 import game.creature.NPC;
 import game.creature.PlayerCharacter;
@@ -17,6 +18,7 @@ import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,11 +36,13 @@ public class FileManager {
         directoryMap.put(PlayerCharacter.class, "players.txt");
         directoryMap.put(Item.class, "items.txt");
         directoryMap.put(Scenario.class, "scenarios.txt");
+        directoryMap.put(Creature.class, "creatures.txt");
         
         gson = new GsonBuilder()
                 .setPrettyPrinting()
                 .setExclusionStrategies(new CustomExcludeStrategy())
                 .registerTypeAdapter(IStatistics.class, new StatisticsDeserializer())
+                .registerTypeAdapter(Creature.class, new CustomAdapter<Creature>())
                 .registerTypeAdapter(IAttributeEnum.class, new CustomAdapter<IAttributeEnum>())
                 .registerTypeAdapter(AttributeValue.class, new CustomAdapter<AttributeValue>())
                 .create();
@@ -94,7 +98,7 @@ public class FileManager {
     public <T> List<T> readFromFile(Class<T> objectType) {
         if (!directoryMap.containsKey(objectType)) {
             System.out.println("The " + objectType.toString() + " doesn't exist in directoryMap as a key");
-            return null;
+            return new ArrayList<>();
         }
 
         FileReader fileReader;
@@ -107,6 +111,7 @@ public class FileManager {
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         Type typeOfList = TypeToken.getParameterized(List.class, objectType).getType();
 
-        return gson.fromJson(bufferedReader, typeOfList);
+        List<T> deserializedList = gson.fromJson(bufferedReader, typeOfList);;
+        return deserializedList == null ? new ArrayList<>() : deserializedList;
     }
 }
