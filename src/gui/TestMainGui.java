@@ -83,7 +83,9 @@ public class TestMainGui {
         var y = f.createAllWeaponsItemsView();
         var title = f.createTitleView();
         title.initialize("HELLO world", y);
-        ramka.add(title.getPanel());
+        var god = f.createGodCard();
+        god.setItemViewStatus(Card.CardTypes.ITEMS, 2);
+        ramka.add(god.getPanel());
 //        y.setTitleIncorrect(BaseCard.Side.LEFT, 1555);
 //        ramka.add(f.createAllCreatureShowView().getPanel());
 //        ramka.add(f.createCreatorApplyingCharacterView().getPanel());
