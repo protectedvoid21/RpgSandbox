@@ -1,4 +1,4 @@
-package gui.actionListener.warhammer;
+package gui.actionListener.warhammerActions;
 
 import game.board.RoundManager;
 import game.generals.Vector2;
