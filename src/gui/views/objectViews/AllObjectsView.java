@@ -5,16 +5,18 @@ import gui.factories.IOverallFactory;
 import gui.card.SwitchableComponent;
 import gui.customComponents.AbstractCustomButton;
 import gui.factories.GuiFactory;
+import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
 import gui.views.BackgroundView;
+import gui.views.PanelContainer;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public abstract class AllObjectsView extends BackgroundView implements SwitchableComponent {
+public abstract class AllObjectsView extends BackgroundView implements SwitchableComponent, PanelContainer {
     protected HashMap<Integer, HashMap<ButtonType, ActionListener>> listenerHashMap = new HashMap<>();
     protected IOverallFactory factory;
     protected DefaultCustomMenuMenager manager =
@@ -75,7 +77,7 @@ public abstract class AllObjectsView extends BackgroundView implements Switchabl
         return manager;
     }
 
-    public JPanel getPanel() {
+    public ComponentPanelMenager getPanel() {
         return manager.getCmp();
     }
 

@@ -7,6 +7,7 @@ import gui.customComponents.iconComponents.IconLabel;
 import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
+import gui.views.PanelContainer;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
-public class DefendAttackActionsPanel {
+public class DefendAttackActionsPanel implements PanelContainer {
     private HashMap<GamePanel.ActionsLabelsType, ActionsData> actionsMap = new HashMap<>();
     private DefaultCustomMenuMenager<ComponentsSeries<ComponentPanelMenager<AbstractCustomLabel>>> managerActions =
             new DefaultCustomMenuMenager<ComponentsSeries<ComponentPanelMenager<AbstractCustomLabel>>>(ComponentsSeries.ComponentsDimension.HORIZONTAL,
@@ -52,7 +53,7 @@ public class DefendAttackActionsPanel {
         }
     }
 
-    public JPanel getPanel() {
+    public ComponentPanelMenager getPanel() {
         return managerActions.getCmp();
     }
 

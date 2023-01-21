@@ -1,8 +1,9 @@
 package gui.views.objectViews.itemsViews;
 
 import gui.card.DoubleArrowPanel;
+import gui.card.fullCards.specificCards.onlyVisibleCards.FullOnlyVisibleCard;
 import gui.factories.IOverallFactory;
-import gui.card.fullCards.specificCards.onlyVisibleCards.onlyVisibleItemsCards.OnlyVisibleItemCard;
+import gui.card.fullCards.specificCards.onlyVisibleCards.OnlyVisibleCard;
 import gui.views.objectViews.AllObjectsView;
 
 import java.awt.event.ActionEvent;
@@ -10,15 +11,16 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class AllItemsView extends AllObjectsView {
+public abstract class SmallCardsView extends AllObjectsView {
     protected ArrayList<ArrayList<String>> data = new ArrayList<>();
-    private ArrayList<OnlyVisibleItemCard> cards = new ArrayList<>();
+    protected ArrayList<OnlyVisibleCard> cards = new ArrayList<>();
+    private String imageName = "";
 
-    public AllItemsView(IOverallFactory factory) {
+    public SmallCardsView(IOverallFactory factory) {
         super(factory);
     }
 
-    public void initialize(){
+    public void initialize() {
         this.data = new ArrayList<>(Arrays.asList(new ArrayList<>(Arrays.asList("hah", "xd", "xxxx")),
                 new ArrayList<>(Arrays.asList("hah", "xd", "xxxx")), new ArrayList<>(Arrays.asList("hah", "xgdgd",
                         "xxxx")),
@@ -39,12 +41,17 @@ public class AllItemsView extends AllObjectsView {
     protected void initializeContent() {
         for (int j = 0; j < 2; j++) {
             for (int i = 0; i < 2; i++) {
-                var panel = createOnlyVisibleCard(j*2+i);
+                var panel = createOnlyVisibleCard(j * 2 + i);
                 manager.addMiddleComponent(panel.getPanel(), j, 10);
                 manager.getMiddleComponent(j, i).addSpace(1);
             }
         }
 
+    }
+
+    public void uploadMainImageData(String path) {
+        imageName = path;
+        updateContent();
     }
 
     public void uploadData(ArrayList<ArrayList<String>> data) {
@@ -67,7 +74,8 @@ public class AllItemsView extends AllObjectsView {
 
         int currentIndex = 0;
         for (var key : sublist) {
-            cards.get(currentIndex).uploadNewData(key.get(0), key.get(1), key.get(2));
+            cards.get(currentIndex).uploadNewData(key.get(0), key.get(1));
+            cards.get(currentIndex).uploadTypePathData(imageName);
             currentIndex++;
         }
         for (var card : cards) {
@@ -81,48 +89,6 @@ public class AllItemsView extends AllObjectsView {
 
     }
 
+    protected abstract OnlyVisibleCard createOnlyVisibleCard(int index);
 
-    protected OnlyVisibleItemCard createOnlyVisibleCard(int index){
-        var card = factory.createSmallItemCard();
-        card.getShowbutton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                clickedIndex = maximumumElements * currentSide + index;
-                if (listenerHashMap.containsKey(clickedIndex) && listenerHashMap.get(clickedIndex).containsKey(ButtonType.SHOW)) {
-                    listenerHashMap.get(clickedIndex).get(ButtonType.SHOW).actionPerformed(e);
-                }
-            }
-        });
-        card.getEditButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                clickedIndex = maximumumElements * currentSide + index;
-                if (listenerHashMap.containsKey(clickedIndex) && listenerHashMap.get(clickedIndex).containsKey(ButtonType.EDIT)) {
-                    listenerHashMap.get(clickedIndex).get(ButtonType.EDIT).actionPerformed(e);
-                }
-            }
-        });
-        card.getDeleteButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                clickedIndex = maximumumElements * currentSide + index;
-                if (listenerHashMap.containsKey(clickedIndex) && listenerHashMap.get(clickedIndex).containsKey(ButtonType.DELETE)) {
-                    listenerHashMap.get(clickedIndex).get(ButtonType.DELETE).actionPerformed(e);
-                }
-                data.remove(data.get(clickedIndex));
-                updateContent();
-                if (maximumumElements * currentSide >= data.size()) {
-                    switchSide(DoubleArrowPanel.Side.LEFT);
-                    arrowPanel.updateSwitchingButtons();
-                }
-            }
-        });
-        cards.add(card);
-        return card;
-    }
-
-
-//    protected ArrayList<? extends OnlyVisibleItemCard> getCards(){
-//        return cards;
-//    }
 }

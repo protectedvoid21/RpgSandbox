@@ -8,12 +8,13 @@ import gui.factories.GuiFactory;
 import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
+import gui.views.PanelContainer;
 
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class FullItemPicker implements SwitchableComponent {
+public class FullItemPicker implements SwitchableComponent, PanelContainer {
     public enum LabelType {WEAPON, ARMOR, MOUNT}
 
     private HashMap<Integer, LabelType> indexmap = new HashMap<>();
@@ -104,7 +105,7 @@ public class FullItemPicker implements SwitchableComponent {
         return status;
     }
 
-    public JPanel getPanel() {
+    public ComponentPanelMenager getPanel() {
         return menager.getCmp();
     }
 
