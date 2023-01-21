@@ -1,5 +1,6 @@
 package game.filehandle;
 
+import game.board.Scenario;
 import game.creature.*;
 import game.equipment.*;
 import game.interfaceWarhammer.StatisticsWarhammer;
@@ -17,6 +18,8 @@ public class EntityManager {
     private List<PlayerCharacter> playerCharacterList = new ArrayList<>();
     private List<Creature> creatureList = new ArrayList<>();
     private List<Item> itemList = new ArrayList<>();
+    private List<Scenario> scenarioList = new ArrayList<>();
+
     PlayerCharacter playerCharacterWithAllItems;
     PlayerCharacter defaultPlayerCharacter;
     FileManager fileManager;
@@ -46,6 +49,7 @@ public class EntityManager {
         fileManager.writeToFile(playerCharacterList, PlayerCharacter.class);
         fileManager.writeToFile(creatureList, Creature.class);
         fileManager.writeToFile(itemList, Item.class);
+        fileManager.writeToFile(scenarioList, Scenario.class);
     }
 
     public void loadAllEntities() {
@@ -54,6 +58,7 @@ public class EntityManager {
         playerCharacterList = fileManager.readFromFile(PlayerCharacter.class);
         creatureList = fileManager.readFromFile(Creature.class);
         itemList = fileManager.readFromFile(Item.class);
+        scenarioList = fileManager.readFromFile(Scenario.class);
     }
     
     public void addCreature(Creature creature) {
@@ -102,6 +107,10 @@ public class EntityManager {
     
     public List<Item> getItemList() {
         return itemList;
+    }
+
+    public List<Scenario> getScenarioList() {
+        return scenarioList;
     }
 }
 
