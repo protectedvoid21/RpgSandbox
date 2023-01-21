@@ -9,6 +9,7 @@ import game.interfaceWarhammer.StruggleStatisticsWarhammer;
 import game.utils.MathHelper;
 import gui.card.CardContentDataSet;
 import jdk.jshell.spi.ExecutionControl;
+import game.cardManager.Warhammer.*;
 
 import java.util.*;
 
@@ -112,20 +113,15 @@ public class Converter {
 
         var map = new ArrayList<ArrayList<String>>();
         ArrayList<CardContentDataSet.DataType> dataTypesList = new ArrayList<>();
+        map.add(new ArrayList<>(Arrays.asList("name", creature.getName())));
 
-        int cnt = 0;
         for (var attribute : AttributeEnum.values()) {
             String attibuteName = attribute.name();
             var value = creature.getStatistics().getAttribute(attribute).getValue();
             String attributeValue = Integer.toString(value);
-            if (value != 0) {
-                map.add(new ArrayList<>(Arrays.asList(attibuteName, attributeValue)));
-                cnt++;
-            }
-            if (cnt == 6) {
-                break;
-            }
+            map.add(new ArrayList<>(Arrays.asList(attibuteName, attributeValue)));
         }
+        map.add(new ArrayList<>(Arrays.asList("path", creature.getObjectPathPicture())));
 
         for (int i = 0; i < map.size(); i++)
             dataTypesList.add(CardContentDataSet.DataType.STRING);
@@ -135,8 +131,8 @@ public class Converter {
 
         return data;
     }
-
     // koniec
+
     //entries card
     public static CardContentDataSet createWeaponInEntriesCard() {
         CardContentDataSet data = new CardContentDataSet();
@@ -494,53 +490,43 @@ public class Converter {
     }
 
     public static PlayerCharacter createPlayerCharacterFromCard(CardContentDataSet data) {
-        PlayerCharacter playerCharacter = new PlayerCharacter(new StatisticsWarhammer(), new Inventory(), new Experience(0), new StruggleStatisticsWarhammer());
-        playerCharacter.setName(data.titleContent);
-        return playerCharacter;
+        ArrayList<String> stats = new ArrayList<>();
+        for (var attributeList: data.content)
+            stats.add(attributeList.get(1));
+
+        PCFactoryWarhammer PCfactory = new PCFactoryWarhammer();
+        return PCfactory.creat(stats);
     }
 
     public static NPC createNPCFromCard(CardContentDataSet data) {
-        NPC npc = new NPC(new StatisticsWarhammer(), new Inventory(), new Experience(0), new StruggleStatisticsWarhammer());
-        npc.setName(data.titleContent);
-        return npc;
+        ArrayList<String> stats = new ArrayList<>();
+        for (var attributeList: data.content)
+            stats.add(attributeList.get(1));
+
+        NPCFactoryWarhammer NPCfactory = new NPCFactoryWarhammer();
+        return NPCfactory.creat(stats);
     }
 
     public static Monster createMonsterFromCard(CardContentDataSet data) {
-        Monster monster = new Monster(new StatisticsWarhammer(), new Experience(0), new StruggleStatisticsWarhammer());
-        monster.setName(data.titleContent);
-        return monster;
+        ArrayList<String> stats = new ArrayList<>();
+        for (var attributeList: data.content)
+            stats.add(attributeList.get(1));
+
+        MonsterFactoryWarhammer monsterFactory = new MonsterFactoryWarhammer();
+        return monsterFactory.creat(stats);
     }
 
     public static void main(String[] args) {
-        CardContentDataSet w1 = createWeaponInEntriesCard();
-        w1.content.get(0).set(1, "www1");
-        w1.content.get(1).set(1, "20");
-        w1.content.get(2).set(1, "6");
-        w1.content.get(2).set(1, "6t");
-        Weapon w1Res = createWeaponFromCard(w1);
 
-        CardContentDataSet npc1 = createNPCInEntriesCard();
-        npc1.titleContent = "BAddfg";
-        NPC npc1Res = createNPCFromCard(npc1);
-
-        Weapon weapon = new Weapon("weapon1", 100, 10);
-        Mount mount = new Mount("horse1", 20);
-        Mount mount1 = new Mount("horse2", 30);
-        Mount mount2 = new Mount("horse3", 40);
-        Armor armor = new Armor("armor1", 45);
-        Inventory inventory = new Inventory();
-        inventory.addItem(weapon);
-        inventory.addItem(mount);
-        inventory.addItem(mount1);
-        inventory.addItem(mount2);
-        inventory.addItem(armor);
-        PlayerCharacter playerCharacter = new PlayerCharacter(new StatisticsWarhammer(), inventory, new Experience(10), new StruggleStatisticsWarhammer());
-        playerCharacter.setName("Shgjehrk");
-        playerCharacter.setObjectPathPicture("/src/gui/playerimage.png");
-
-        convertMountsToDataSet(playerCharacter);
-
-        Monster monster = new Monster(new StatisticsWarhammer(), new Experience(10), new StruggleStatisticsWarhammer());
+        MonsterFactoryWarhammer mF = new MonsterFactoryWarhammer();
+        ArrayList<String> test1 = new ArrayList<>();
+        test1.add("Khafil");
+        for (int i = 1; i<13; i++)
+            test1.add(Integer.toString(i));
+        test1.add("pathimage.png");
+        System.out.println(test1.size());
+        Monster m1  = mF.creat(test1);
+        Monster m2 = createMonsterFromCard(convertStatsToDataSet(m1));
 
 
     }
