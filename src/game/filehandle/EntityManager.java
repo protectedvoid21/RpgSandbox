@@ -17,28 +17,30 @@ public class EntityManager {
     private List<NPC> NPCList = new ArrayList<>();
     private List<PlayerCharacter> playerCharacterList = new ArrayList<>();
     private List<Creature> creatureList = new ArrayList<>();
+    private List<Item> itemList = new ArrayList<>();
+    private List<Scenario> scenarioList = new ArrayList<>();
 
     private PlayerCharacter playerCharacterWithAllItems;
     private PlayerCharacter defaultPlayerCharacter;
     private FileManager fileManager;
-    private List<Item> itemList = new ArrayList<>();
-    private List<Scenario> scenarioList = new ArrayList<>();
 
     private static EntityManager instance;
-    
+
     public EntityManager(String gameName) {
-        if(instance == null) {
+        if (instance == null) {
             instance = this;
         }
-        
+
         fileManager = new FileManager(gameName);
+        loadAllEntities();
+
         defaultPlayerCharacter = new PlayerCharacter(new StatisticsWarhammer(), new Inventory(), new Experience(0), new StruggleStatisticsWarhammer());
-        playerCharacterWithAllItems = new PlayerCharacter(new StatisticsWarhammer(), 
-                new Inventory(new Weapon("Sword", 0, 0, 0, 0,0 ,0), 
-                        new Armor("Armor", 0), new Mount("Benek", 0)), 
+        playerCharacterWithAllItems = new PlayerCharacter(new StatisticsWarhammer(),
+                new Inventory(new Weapon("Sword", 0, 0, 0, 0, 0, 0),
+                        new Armor("Armor", 0), new Mount("Benek", 0)),
                 new Experience(0), new StruggleStatisticsWarhammer());
     }
-    
+
     public static EntityManager getInstance() {
         return instance;
     }
@@ -52,50 +54,51 @@ public class EntityManager {
         fileManager.writeToFile(scenarioList, Scenario.class);
     }
 
-    public void loadAllEntities() {
+    private void loadAllEntities() {
+        scenarioList = fileManager.readFromFile(Scenario.class);
         monsterList = fileManager.readFromFile(Monster.class);
         NPCList = fileManager.readFromFile(NPC.class);
         playerCharacterList = fileManager.readFromFile(PlayerCharacter.class);
         creatureList = fileManager.readFromFile(Creature.class);
         itemList = fileManager.readFromFile(Item.class);
-        scenarioList = fileManager.readFromFile(Scenario.class);
     }
-    
+
     public void addCreature(Creature creature) {
-        if(creature instanceof Monster) {
-            monsterList.add((Monster)creature);
+        if (creature instanceof Monster) {
+            monsterList.add((Monster) creature);
         }
-        if(creature instanceof PlayerCharacter) {
-            playerCharacterList.add((PlayerCharacter)creature);
+        if (creature instanceof PlayerCharacter) {
+            playerCharacterList.add((PlayerCharacter) creature);
         }
-        if(creature instanceof NPC) {
-            NPCList.add((NPC)creature);
+        if (creature instanceof NPC) {
+            NPCList.add((NPC) creature);
         }
-        
+
         creatureList.add(creature);
     }
 
     public void removeCreature(Creature creature) {
-        if(creature instanceof Monster) {
-            monsterList.remove((Monster)creature);
+        if (creature instanceof Monster) {
+            monsterList.remove((Monster) creature);
         }
-        if(creature instanceof PlayerCharacter) {
-            playerCharacterList.remove((PlayerCharacter)creature);
+        if (creature instanceof PlayerCharacter) {
+            playerCharacterList.remove((PlayerCharacter) creature);
         }
-        if(creature instanceof NPC) {
-            NPCList.remove((NPC)creature);
+        if (creature instanceof NPC) {
+            NPCList.remove((NPC) creature);
         }
 
         creatureList.remove(creature);
     }
 
-    public void addScenario(Scenario scenario){
+    public void addScenario(Scenario scenario) {
         scenarioList.add(scenario);
     }
 
-    public void removeScenario(Scenario scenario){
+    public void removeScenario(Scenario scenario) {
         scenarioList.remove(scenario);
     }
+
     public List<Monster> getMonsterList() {
         return monsterList;
     }
@@ -111,7 +114,7 @@ public class EntityManager {
     public List<Creature> getCreatureList() {
         return creatureList;
     }
-    
+
     public List<Item> getItemList() {
         return itemList;
     }
@@ -120,11 +123,11 @@ public class EntityManager {
         return scenarioList;
     }
 
-    public void removeItem(Item item){
+    public void removeItem(Item item) {
         playerCharacterWithAllItems.getInventory().removeItem(item);
     }
 
-    public void addItem(Item item){
+    public void addItem(Item item) {
         playerCharacterWithAllItems.getInventory().addItem(item);
     }
 }

@@ -15,6 +15,8 @@ import java.util.List;
 
 public class ScenarioTester {
     public static void main(String[] args) {
+        new EntityManager("Warhammer");
+        
         List<ScenarioData> scenarioData = new ArrayList<>();
 
         scenarioData.add(new ScenarioData());
@@ -36,5 +38,6 @@ public class ScenarioTester {
         
         Scenario scenario = new Scenario(10, 10, scenarioData);
         EntityManager.getInstance().addScenario(scenario);
+        EntityManager.getInstance().saveAllEntities();
     }
 }
