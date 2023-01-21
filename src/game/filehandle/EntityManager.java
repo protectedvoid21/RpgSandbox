@@ -89,6 +89,13 @@ public class EntityManager {
         creatureList.remove(creature);
     }
 
+    public void addScenario(Scenario scenario){
+        scenarioList.add(scenario);
+    }
+
+    public void removeScenario(Scenario scenario){
+        scenarioList.remove(scenario);
+    }
     public List<Monster> getMonsterList() {
         return monsterList;
     }

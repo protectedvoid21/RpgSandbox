@@ -10,16 +10,14 @@ import java.util.ArrayList;
 
 public class SaveCreatures implements ActionListener {
 
-    EntityManager entityManager;
 
-    public SaveCreatures(EntityManager entityManager) {
-        this.entityManager = entityManager;
 
+    public SaveCreatures() {
     }
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        entityManager.saveAllEntities();
+        EntityManager.getInstance().saveAllEntities();
     }
 }
