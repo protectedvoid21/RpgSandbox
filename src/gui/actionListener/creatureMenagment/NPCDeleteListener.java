@@ -11,17 +11,17 @@ import java.util.ArrayList;
 public class NPCDeleteListener implements ActionListener {
 
 
-    EntityManager entityManager;
+
    NPC dependNPC;
 
-    public NPCDeleteListener( EntityManager entityManager, NPC dependNPC){
-        this.entityManager = entityManager;
+    public NPCDeleteListener( NPC dependNPC){
+
         this.dependNPC = dependNPC;
     }
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        entityManager.removeNPC(dependNPC);
+        EntityManager.getInstance().removeCreature(dependNPC);
     }
 }

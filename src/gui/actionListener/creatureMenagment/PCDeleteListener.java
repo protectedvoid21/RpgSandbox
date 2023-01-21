@@ -10,17 +10,18 @@ import java.util.ArrayList;
 
 public class PCDeleteListener implements ActionListener {
 
-    EntityManager entityManager;
+
     PlayerCharacter dependPC;
 
-    public PCDeleteListener( EntityManager entityManager, PlayerCharacter dependPC){
-        this.entityManager = entityManager;
+    public PCDeleteListener( PlayerCharacter dependPC){
         this.dependPC = dependPC;
     }
 
 
+
+
     @Override
     public void actionPerformed(ActionEvent e) {
-       entityManager.removePC(dependPC);
+        EntityManager.getInstance().removeCreature(dependPC);
     }
 }
