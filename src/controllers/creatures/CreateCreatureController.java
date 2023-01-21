@@ -14,9 +14,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class CreateCreatureController extends Controller {
-    private CreatureType creatureType;
-    
     private EntriesCard view;
+    private CreatureType creatureType;
     
     public CreateCreatureController(CreatureType creatureType) {
         this.creatureType = creatureType;
@@ -29,6 +28,9 @@ public class CreateCreatureController extends Controller {
                 new RedirectListener(controllerManager, new CreatureActionController(creatureType))
         );
         view.getSaveButton().addActionListener(new SaveCreatureListener());
+        view.getSaveButton().addActionListener(
+                new RedirectListener(controllerManager, new CreatureActionController(creatureType))
+        );
         
         mainFrame.add(view.getPanel());
     }
@@ -36,20 +38,13 @@ public class CreateCreatureController extends Controller {
     private class SaveCreatureListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            var cardContent = view.generateContentData().get(Card.CardTypes.OVERALL);
-
+            var cardContent = view.getCurrectCreatorItemData();
             Creature createdCreature = null;
             
             switch(creatureType) {
-                case MONSTER: {
-                    createdCreature = Converter.createMonsterFromCard(cardContent);
-                }
-                case NPC: {
-                    createdCreature = Converter.createNPCFromCard(cardContent);
-                }
-                case PLAYER_CHARACTER: {
-                    createdCreature = Converter.createPlayerCharacterFromCard(cardContent);
-                }
+                case MONSTER -> createdCreature = Converter.createMonsterFromCard(cardContent);
+                case NPC -> createdCreature = Converter.createNPCFromCard(cardContent);
+                case PLAYER_CHARACTER -> createdCreature = Converter.createPlayerCharacterFromCard(cardContent);
             }
             if(createdCreature == null) {
                 System.out.println("[FATAL ERROR] Passed creature is null");

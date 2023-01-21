@@ -55,12 +55,12 @@ public class EntityManager {
     }
 
     private void loadAllEntities() {
-        scenarioList = fileManager.readFromFile(Scenario.class);
         monsterList = fileManager.readFromFile(Monster.class);
         NPCList = fileManager.readFromFile(NPC.class);
         playerCharacterList = fileManager.readFromFile(PlayerCharacter.class);
         creatureList = fileManager.readFromFile(Creature.class);
         itemList = fileManager.readFromFile(Item.class);
+        scenarioList = fileManager.readFromFile(Scenario.class);
     }
 
     public void addCreature(Creature creature) {
