@@ -9,6 +9,7 @@ import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
 import gui.views.BackgroundView;
+import gui.views.PanelContainer;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -18,7 +19,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public abstract class OptionsPanel extends BackgroundView {
+public abstract class OptionsPanel extends BackgroundView implements PanelContainer {
     protected GuiFactory factory;
     private ComponentPanelMenager cmp;
     protected DefaultCustomMenuMenager customPanelAttackChoser;

@@ -27,10 +27,10 @@ public class ItemTypeMenuController extends Controller {
         selectingView.getButton(2).addActionListener(
                 new RedirectListener(controllerManager, new ItemListController(controllerManager, mainFrame))
         );
+//        selectingView.getButton(3).addActionListener(
+//                new RedirectListener(controllerManager, new ItemListController(controllerManager, mainFrame))
+//        );
         selectingView.getButton(3).addActionListener(
-                new RedirectListener(controllerManager, new ItemListController(controllerManager, mainFrame))
-        );
-        selectingView.getButton(4).addActionListener(
                 new RedirectListener(controllerManager, new ItemListController(controllerManager, mainFrame))
         );
 
