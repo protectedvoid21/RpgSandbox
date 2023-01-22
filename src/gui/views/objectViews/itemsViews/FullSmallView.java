@@ -22,8 +22,8 @@ public class FullSmallView extends SmallCardsView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 clickedIndex = maximumumElements * currentSide + index;
-                if (listenerHashMap.containsKey(clickedIndex) && listenerHashMap.get(clickedIndex).containsKey(ButtonType.SHOW)) {
-                    listenerHashMap.get(clickedIndex).get(ButtonType.SHOW).actionPerformed(e);
+                if (listenerHashMap.containsKey(index) && listenerHashMap.get(index).containsKey(ButtonType.SHOW)) {
+                    listenerHashMap.get(index).get(ButtonType.SHOW).actionPerformed(e);
                 }
             }
         });
@@ -31,8 +31,8 @@ public class FullSmallView extends SmallCardsView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 clickedIndex = maximumumElements * currentSide + index;
-                if (listenerHashMap.containsKey(clickedIndex) && listenerHashMap.get(clickedIndex).containsKey(ButtonType.EDIT)) {
-                    listenerHashMap.get(clickedIndex).get(ButtonType.EDIT).actionPerformed(e);
+                if (listenerHashMap.containsKey(index) && listenerHashMap.get(index).containsKey(ButtonType.EDIT)) {
+                    listenerHashMap.get(index).get(ButtonType.EDIT).actionPerformed(e);
                 }
             }
         });
@@ -40,8 +40,8 @@ public class FullSmallView extends SmallCardsView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 clickedIndex = maximumumElements * currentSide + index;
-                if (listenerHashMap.containsKey(clickedIndex) && listenerHashMap.get(clickedIndex).containsKey(ButtonType.DELETE)) {
-                    listenerHashMap.get(clickedIndex).get(ButtonType.DELETE).actionPerformed(e);
+                if (listenerHashMap.containsKey(index) && listenerHashMap.get(index).containsKey(ButtonType.DELETE)) {
+                    listenerHashMap.get(index).get(ButtonType.DELETE).actionPerformed(e);
                 }
                 data.remove(data.get(clickedIndex));
                 updateContent();

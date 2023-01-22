@@ -72,7 +72,7 @@ public class EntriesAttributesCard extends AttributesCard {
 
     @Override
     public void initializeCardData(CardContentDataSet data, ArrayList detailData) {
-        while (data.dataType.size()<maximumElementNumber){
+        while (data.dataType.size() < maximumElementNumber) {
             data.dataType.add(CardContentDataSet.DataType.STRING);
         }
         super.initializeCardData(data, detailData);
@@ -124,11 +124,16 @@ public class EntriesAttributesCard extends AttributesCard {
     }
 
     public void setEntryIncorrect(int index, int timePeriod) {
+
         var i = index % getMaximumElementNumber();
         if (data.dataType.get(index) == CardContentDataSet.DataType.STRING) {
             var previousBG = entriesList.get(i).getBackground();
             entriesList.get(i).setBackground(new Color(0x570606));
-            var timer = new Timer(timePeriod, e -> entriesList.get(i).setBackground(previousBG));
+            entriesList.get(i).getTextComponent().setEnabled(false);
+            var timer = new Timer(timePeriod, e -> {
+                entriesList.get(i).setBackground(previousBG);
+                entriesList.get(i).getTextComponent().setEnabled(true);
+            });
             timer.setRepeats(false);
             timer.start();
         }

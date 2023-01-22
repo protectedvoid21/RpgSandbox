@@ -6,7 +6,8 @@ public abstract class DisposableItem extends Item {
     private int usageCount;
     protected String description;
 
-    public DisposableItem(int usageCount) {
+    public DisposableItem(String name, int usageCount) {
+        super(name);
         if(usageCount < 1) {
             usageCount = 1;
         }

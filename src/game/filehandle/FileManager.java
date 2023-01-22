@@ -9,7 +9,7 @@ import game.creature.Creature;
 import game.creature.Monster;
 import game.creature.NPC;
 import game.creature.PlayerCharacter;
-import game.equipment.Item;
+import game.equipment.*;
 import game.generals.AttributeValue;
 import game.interfaces.IAttributeEnum;
 import game.interfaces.IStatistics;
@@ -35,7 +35,9 @@ public class FileManager {
         directoryMap.put(Monster.class, "monsters.txt");
         directoryMap.put(NPC.class, "npcs.txt");
         directoryMap.put(PlayerCharacter.class, "players.txt");
-        directoryMap.put(Item.class, "items.txt");
+        directoryMap.put(Weapon.class, "weapons.txt");
+        directoryMap.put(Armor.class, "armors.txt");
+        directoryMap.put(Mount.class, "mounts.txt");
         directoryMap.put(Scenario.class, "scenarios.txt");
         
         gson = new GsonBuilder()

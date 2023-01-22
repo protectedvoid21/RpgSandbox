@@ -21,16 +21,6 @@ public abstract class SmallCardsView extends AllObjectsView {
     }
 
     public void initialize() {
-        this.data = new ArrayList<>(Arrays.asList(new ArrayList<>(Arrays.asList("hah", "xd", "xxxx")),
-                new ArrayList<>(Arrays.asList("hah", "xd", "xxxx")), new ArrayList<>(Arrays.asList("hah", "xgdgd",
-                        "xxxx")),
-                new ArrayList<>(Arrays.asList("hah", "xd", "xxxfgdfgx")), new ArrayList<>(Arrays.asList("hah", "xd",
-                        "xgdfgxxx")),
-                new ArrayList<>(Arrays.asList("hah", "gfdgdxd", "xxfgdfxx")), new ArrayList<>(Arrays.asList("hah",
-                        "xd", "xxxx")),
-                new ArrayList<>(Arrays.asList("hdfgdah", "xdfgdgd", "xdgdfgxxx")), new ArrayList<>(Arrays.asList(
-                        "hagdgh", "xd", "xxxx"))))
-        ;
         initialize(4);
         initializeContent();
         updateContent();
@@ -58,6 +48,7 @@ public abstract class SmallCardsView extends AllObjectsView {
         this.data = data;
         currentSide = 0;
         updateContent();
+        arrowPanel.updateSwitchingButtons();
     }
 
     @Override

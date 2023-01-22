@@ -10,9 +10,9 @@ public class MagicPotion extends DisposableItem {
     private AttributeEnum what;
     private Character user;
 
-    public MagicPotion(Character user)
+    public MagicPotion(String name, Character user)
     {
-        super(new Random().nextInt(4)+1);
+        super(name, new Random().nextInt(4)+1);
         Random rand = new Random();
 
         AttributeEnum[] values = AttributeEnum.values();

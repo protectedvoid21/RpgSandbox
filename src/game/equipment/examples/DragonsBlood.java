@@ -6,8 +6,8 @@ import game.equipment.DisposableItem;
 public class DragonsBlood extends DisposableItem {
     private Character user;
 
-    public DragonsBlood(int usageCount, Character user) {
-        super(usageCount);
+    public DragonsBlood(String name, int usageCount, Character user) {
+        super(name, usageCount);
         this.user=user;
 
         description = "Dragon blood is poisoning sooooooo......when you put it on your sword your enemies will DIE IN VERY PAINFUL WAY";

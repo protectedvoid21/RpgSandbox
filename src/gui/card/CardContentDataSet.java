@@ -42,4 +42,13 @@ public class CardContentDataSet {
         return false;
     }
 
+    public CardContentDataSet clone(){
+        var cnt = new CardContentDataSet();
+        for (var array : this.content){
+            cnt.content.add((ArrayList<String>) array.clone());
+        }
+        cnt.titleContent = this.titleContent;
+        cnt.titlePath = this.titlePath;
+        return cnt;
+    }
 }

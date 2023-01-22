@@ -10,8 +10,8 @@ import static game.interfaceWarhammer.AttributeEnum.HEALTH_POINTS_NOW;
 public class ChickenLeg extends DisposableItem {
     private Character user;
 
-    public ChickenLeg(int usageCount, Character user) {
-        super(usageCount);
+    public ChickenLeg(String name, int usageCount, Character user) {
+        super(name, usageCount);
         this.user=user;
 
         description = "Traveller! Stop in our tavern and eat some chicken. It will help to restore your health";

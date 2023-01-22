@@ -2,19 +2,13 @@ package game.equipment;
 
 import game.interfaces.Statistics;
 
-public abstract class ManyUsageItem extends Item{
-    private String name;
-
+public abstract class ManyUsageItem extends Item {
     public ManyUsageItem(String name) {
-        this.name=name;
+        super(name);
     }
-    
+
     @Override
     public boolean isValid() {
         return true;
-    }
-
-    public String getName() {
-        return name;
     }
 }

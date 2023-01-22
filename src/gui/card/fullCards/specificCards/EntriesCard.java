@@ -27,6 +27,9 @@ import java.util.*;
 
 public class EntriesCard extends Card {
     public enum EntryType {SPINNER, ENTRY}
+
+    final static String baseEnabledPhotoPath = StringAdapter.getRelativePath("image.png");
+    final static String baseDisabledPhotoPath = StringAdapter.getRelativePath("disimage.png");
     private boolean isImageSet = false;
     private AddingButtonCard choserEqCard2 = null;
     private ChoserCard choserCard;
@@ -118,6 +121,10 @@ public class EntriesCard extends Card {
             ArrayList<CardContentDataSet>> detailData) {
         super.uploadNewData(newData, detailData);
         uploadNewChoserCardData(newData, detailData);
+        if (newData.containsKey(CardTypes.OVERALL)) {
+            rightEntryTitleComponent.getComponent().setContent(newData.get(CardTypes.OVERALL).titleContent);
+            leftButtonyTitleComponent.getComponent().setContent(newData.get(CardTypes.OVERALL).titlePath.equals(Card.EMPTY_DATA_CONTENT) ? EntriesCard.baseEnabledPhotoPath : newData.get(CardTypes.OVERALL).titlePath);
+        }
     }
 
     public void uploadNewChoserCardData(LinkedHashMap<CardTypes, CardContentDataSet> newData, HashMap<CardTypes,
@@ -184,7 +191,7 @@ public class EntriesCard extends Card {
         });
         initializeRightTitleComponent(rightEntryTitleComponent, 1);
         factory.setButtonType(GuiFactory.ButtonType.ICON);
-        var but = factory.createButton(StringAdapter.getRelativePath("image.png"), null);
+        var but = factory.createButton(baseEnabledPhotoPath, null);
         but.getCustomUI().setOffSet(0);
         leftButtonyTitleComponent = new ComponentPanelMenager<>(but);
         leftButtonyTitleComponent.getComponent().addActionListener(new ActionListener() {
@@ -195,8 +202,8 @@ public class EntriesCard extends Card {
                 if (answer == JFileChooser.APPROVE_OPTION) {
                     isImageSet = true;
                     leftButtonyTitleComponent.getComponent().setContent(String.valueOf(chooser.getSelectedFile().getAbsolutePath()));
-                    activeCard.getData().titlePath = StringAdapter.getRelativePath(FileCopyManager.getLastFileName());
                     FileCopyManager.copyFile(String.valueOf(chooser.getSelectedFile().getPath()));
+                    activeCard.getData().titlePath = FileCopyManager.getPathToImage(FileCopyManager.getLastFileName());
                 }
             }
         });
@@ -223,20 +230,25 @@ public class EntriesCard extends Card {
 
 
     public void setTitleIncorrect(Side side, int periodTime) {
+        disableSave(periodTime);
         switchSide(CardTypes.OVERALL);
         leftArrows.updateSwitchingButtons();
         if (side == Side.RIGHT) {
             var cmp = rightEntryTitleComponent.getComponent();
+            cmp.getTextComponent().setEnabled(false);
             var previousBG = cmp.getBackground();
             cmp.setBackground(new Color(0x570606));
-            var timer = new Timer(periodTime, e -> cmp.setBackground(previousBG));
+            var timer = new Timer(periodTime, e -> {
+                cmp.setBackground(previousBG);
+                cmp.getTextComponent().setEnabled(true);
+            });
             timer.setRepeats(false);
             timer.start();
         }
         if (side == Side.LEFT) {
             var cmp = leftButtonyTitleComponent.getComponent();
             var cnt = cmp.getContent();
-            cmp.setContent(StringAdapter.getRelativePath("disimage.png"));
+            cmp.setContent(baseDisabledPhotoPath);
             var timer = new Timer(periodTime, e -> {
                 cmp.setContent(cnt);
             });
@@ -245,8 +257,18 @@ public class EntriesCard extends Card {
         }
     }
 
+    private void disableSave(int period) {
+        if (saveButton.isEnabled()) {
+            saveButton.setEnabled(false);
+            var t = new Timer(period, e -> saveButton.setEnabled(true));
+            t.setRepeats(false);
+            t.start();
+        }
+    }
+
     public void setEntriesIncorrect(ArrayList<Integer> values, int periodTime) {
         if (values.size() > 0) {
+            disableSave(periodTime);
             if (!(activeCard == amwGeneratorCard)) {
                 switchSide(CardTypes.ATTRIBUTE);
             }
