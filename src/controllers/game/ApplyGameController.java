@@ -7,6 +7,7 @@ import controllers.creatures.CreatureListController;
 import controllers.creatures.CreatureTypeController;
 import controllers.utils.CreatureType;
 import controllers.utils.RedirectListener;
+import game.board.ScenarioTester;
 import game.filehandle.EntityManager;
 import gui.factories.IOverallFactory;
 import gui.views.gamePanel.gamePanels.CreatorPanel;
@@ -20,6 +21,7 @@ public class ApplyGameController extends Controller {
 
     @Override
     public void run(IOverallFactory overallFactory) {
+        ScenarioTester.main(null);
         var view = overallFactory.createchoosingCreationGameView();
         view.getCancelButton().addActionListener(
                 new RedirectListener(controllerManager, new MenuController())
@@ -27,16 +29,16 @@ public class ApplyGameController extends Controller {
         var array = new ArrayList<CreatorPanel>();
         for (var scenario : EntityManager.getInstance().getScenarioList()) {
             var p1 = overallFactory.createCreatorPanel();
-            p1.setWholePanelDisabled();
             for (var item : scenario.getScenarioDataList()) {
                 p1.applyNewCreatureOnPosition(item.creature.getObjectPathPicture(), item.position);
             }
+            p1.setWholePanelDisabled();
             array.add(p1);
         }
         view.uploadData(array);
         for (int i = 0; i < array.size(); i++) {
             view.addButtonActionListener(AllObjectsView.ButtonType.APPLY, i, new RedirectListener(controllerManager,
-                    new MenuController()));
+                    new MainGameController(EntityManager.getInstance().getScenarioList().get(i))));
         }
 
         mainFrame.add(view.getPanel());

@@ -26,16 +26,19 @@ public class ScenarioTester {
 
         scenarioData.get(0).position = new Vector2(1, 1);
         scenarioData.get(0).creature = new Monster(new StatisticsWarhammer(), new Experience(0), new StruggleStatisticsWarhammer());
-
+        scenarioData.get(0).creature.setObjectPathPicture("src/gui/witch.png");
         scenarioData.get(1).position = new Vector2(2, 2);
         scenarioData.get(1).creature = new Monster(new StatisticsWarhammer(), new Experience(1), new StruggleStatisticsWarhammer());
-
+        scenarioData.get(1).creature.setObjectPathPicture("src/gui/trolley.png");
         scenarioData.get(2).position = new Vector2(5, 5);
         scenarioData.get(2).creature = new Monster(new StatisticsWarhammer(), new Experience(2), new StruggleStatisticsWarhammer());
-
+        scenarioData.get(2).creature.setObjectPathPicture("src/gui/stats.png");
         scenarioData.get(3).position = new Vector2(0, 0);
         scenarioData.get(3).creature = new PlayerCharacter(new StatisticsWarhammer(), new Inventory(), new Experience(10), new StruggleStatisticsWarhammer());
-        
+        scenarioData.get(3).creature.setObjectPathPicture("src/gui/witch.png");
+        for (int i = 0; i<4; i++){
+            scenarioData.get(i).creature.setName("zdzichu");
+        }
         Scenario scenario = new Scenario(10, 10, scenarioData);
         EntityManager.getInstance().addScenario(scenario);
         EntityManager.getInstance().saveAllEntities();

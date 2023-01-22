@@ -115,7 +115,7 @@ public class TestMainGui {
         playerCharacter.setObjectPathPicture("/src/gui/playerimage.png");
 
         card.uploadNewData(Converter.createFullDataCreature(playerCharacter), Converter.createFullDetailDataCreature(playerCharacter));
-        ramka.add(card.getPanel());
+        ramka.add(f.createGameCard().getPanel());
 //        y.setTitleIncorrect(BaseCard.Side.LEFT, 1555);
 //        ramka.add(f.createAllCreatureShowView().getPanel());
 //        ramka.add(f.createCreatorApplyingCharacterView().getPanel());
@@ -143,7 +143,7 @@ public class TestMainGui {
 //        ramka.add(f.createCreatorCard(Card.CreatorTypes.ARMOR).getPanel());
 //        ramka.add(f.createBasicCard().getPanel());
 //        ramka.add(f.createOverallItemPanel().getPanel());
-//        ramka.add(f.createOverallCreaturesPanel().getPanel());
+//        ramka.add(f.createchoosingCreationGameView().getPanel());
         ramka.setVisible(true);
     }
 }

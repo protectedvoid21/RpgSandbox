@@ -35,15 +35,10 @@ public class SharedCmpsFont<T extends JComponent &IContentCustomUICmp> {//cos og
         var min = 10000;
         for (var cmp : cmps) {
             var newFontSize = cmp.getMaximumPossibleFontSize();
-            System.out.println(newFontSize);
-//            if (newFontSize < min && cmp.isVisible()) {
-//                min = newFontSize;
-//            }
             if (newFontSize < min && cmp.isVisible()) {
                 min = newFontSize;
             }
         }
-        System.out.println(min);
         return min;
     }
 

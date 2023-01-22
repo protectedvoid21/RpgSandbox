@@ -2,11 +2,12 @@ package gui.actionListener.scrollItem;
 
 import game.board.RoundManager;
 import game.creature.Character;
+import gui.views.pickers.CustomLambdaExpression;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class PreviousWeaponListener implements ActionListener {
+public class PreviousWeaponListener implements CustomLambdaExpression {
 
     RoundManager roundManager;
 
@@ -16,7 +17,7 @@ public class PreviousWeaponListener implements ActionListener {
 
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void apply() {
         if (roundManager.getGameObjectWithTurn().getCreature() instanceof Character){
             ((Character) roundManager.getGameObjectWithTurn().getCreature()).getInventory().previousWeapon();
         }

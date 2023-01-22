@@ -1,6 +1,7 @@
 package game.filehandle;
 
 import game.board.Scenario;
+import game.board.ScenarioTester;
 import game.creature.*;
 import game.equipment.*;
 import game.interfaceWarhammer.StatisticsWarhammer;
@@ -55,7 +56,7 @@ public class EntityManager {
     }
 
     private void loadAllEntities() {
-        scenarioList = fileManager.readFromFile(Scenario.class);
+//        scenarioList = fileManager.readFromFile(Scenario.class);
         monsterList = fileManager.readFromFile(Monster.class);
         NPCList = fileManager.readFromFile(NPC.class);
         playerCharacterList = fileManager.readFromFile(PlayerCharacter.class);

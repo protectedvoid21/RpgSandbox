@@ -70,13 +70,14 @@ private OneDataOptionsPanel panel;
         var array = new ArrayList<AbstractMap.SimpleEntry<Vector2, String>>();
         for (int i = 0; i < maxIndex; i++) {
             for (int j = 0; j < maxIndex; j++) {
+                manager.getMiddleComponent(i, j).getComponent().setEnabled(false);
                 if (manager.getMiddleComponent(i, j).getComponent().getContent().equals(basePath)) {
-                    manager.getMiddleComponent(i, j).getComponent().setEnabled(false);
+//                    manager.getMiddleComponent(i, j).getComponent().setEnabled(false);
                     array.add(new AbstractMap.SimpleEntry<>(new Vector2(i, j), Card.EMPTY_DATA_CONTENT));
                 }
             }
         }
-        applyContent(array);
+        applyWithoutRemovingContent(array);
     }
 
 

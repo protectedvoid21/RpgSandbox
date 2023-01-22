@@ -22,7 +22,8 @@ public class TurnOffWarhammer implements ITurnOffButtons {
         int m;
 
 
-        List<Vector2> range = MathHelper.getGridCircle(roundManager.getGameObjectWithTurn().getCreature().getSpeed(),roundManager.getGameObjectWithTurnPosition());
+        List<Vector2> range = MathHelper.getGridCircle(roundManager.getGameObjectWithTurn().getCreature().getSpeed(),
+                roundManager.getGameObjectWithTurnPosition());
         List<Vector2> attackRange = MathHelper.getNextCells(roundManager.getGameObjectWithTurnPosition());
 
 
@@ -59,6 +60,8 @@ public class TurnOffWarhammer implements ITurnOffButtons {
                 n = 2;
                 m = 0;
                 for (ActionsEnum actionsEnum : ActionsEnum.values()) {
+                    System.out.println(actionsEnum);
+                    System.out.println(roundManager.getActions().getActions());
                     if (roundManager.getActions().getActions().get(actionsEnum).isEffectOnEnemy()) {
                         if (roundManager.getActions().getActions().get(actionsEnum).getActionCost() > roundManager.getGameObjectWithTurn().getCreature().getStruggleStatistics().getAttribute(ACTIONS_TO_DO).getValue()) {
                             indexesCell.add(i);
@@ -74,7 +77,7 @@ public class TurnOffWarhammer implements ITurnOffButtons {
 
                 }
 
-                mainPanelGame.getGamePanel().setOptionsDisabledIndexes(new Vector2(j,i), indexesCell);
+                mainPanelGame.getGamePanel().setOptionsDisabledIndexes(new Vector2(j, i), indexesCell);
 
             }
 

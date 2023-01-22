@@ -120,13 +120,13 @@ public class MainPanelGame {
         activityOptionsPanel.getPanel().addSpace(2);
         var map = new HashMap<FullItemPicker.LabelType, String>();
         map.put(FullItemPicker.LabelType.WEAPON, StringAdapter.getRelativePath("weapon.png"));
-        map.put(FullItemPicker.LabelType.MOUNT, "src/gui/effect.png");
-        map.put(FullItemPicker.LabelType.ARMOR, "src/gui/remove.png");
-        var secondMap = new HashMap<FullItemPicker.LabelType, ArrayList<String >>();
-        secondMap.put(FullItemPicker.LabelType.WEAPON, new ArrayList<>(Arrays.asList("src/gui/weapon.png","src/gui/weapon.png","src/gui/weapon.png","src/gui/warback.png")));
-        secondMap.put(FullItemPicker.LabelType.MOUNT, new ArrayList<>(Arrays.asList("src/gui/weapon.png","src/gui/rightsword.png","src/gui/weapon.png","src/gui/warback.jpg")));
-        secondMap.put(FullItemPicker.LabelType.ARMOR, new ArrayList<>(Arrays.asList("src/gui/weapon.png")));
-        picker.uploadItemPaths(secondMap);
+        map.put(FullItemPicker.LabelType.MOUNT,StringAdapter.getRelativePath("horse.png"));
+        map.put(FullItemPicker.LabelType.ARMOR,StringAdapter.getRelativePath("armor.png"));
+//        var secondMap = new HashMap<FullItemPicker.LabelType, ArrayList<String >>();
+//        secondMap.put(FullItemPicker.LabelType.WEAPON, new ArrayList<>(Arrays.asList("src/gui/weapon.png","src/gui/weapon.png","src/gui/weapon.png","src/gui/warback.png")));
+//        secondMap.put(FullItemPicker.LabelType.MOUNT, new ArrayList<>(Arrays.asList("src/gui/weapon.png","src/gui/rightsword.png","src/gui/weapon.png","src/gui/warback.jpg")));
+//        secondMap.put(FullItemPicker.LabelType.ARMOR, new ArrayList<>(Arrays.asList("src/gui/weapon.png")));
+//        picker.uploadItemPaths(secondMap);
         picker.uploadMainPaths(map);
 //        activityOptionsPanel.initializeButtonsData(new ArrayList<>(Arrays.asList("xx", "dd", "ffff", "Fsd", "FDsf",
 //                "Fsf")));

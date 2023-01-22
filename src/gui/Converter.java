@@ -26,7 +26,7 @@ public class Converter {
         ArrayList<CardContentDataSet.DataType> dataTypesList = new ArrayList<>();
 
         map.add(new ArrayList<>(Arrays.asList("src/gui/stats.png")));
-        map.add(new ArrayList<>(Arrays.asList("src/gui/effect.png")));
+//        map.add(new ArrayList<>(Arrays.asList("src/gui/effect.png")));
 
         if (creature instanceof Character) {
             map.add(new ArrayList<>(Arrays.asList("src/gui/horse.png")));
@@ -543,27 +543,30 @@ public class Converter {
 
     public static PlayerCharacter createPlayerCharacterFromCard(CardContentDataSet data) {
         ArrayList<String> stats = new ArrayList<>();
+        stats.add(data.titleContent);
         for (var attributeList: data.content)
             stats.add(attributeList.get(1));
-
+        stats.add(data.titlePath);
         PCFactoryWarhammer PCfactory = new PCFactoryWarhammer();
         return PCfactory.creat(stats);
     }
 
     public static NPC createNPCFromCard(CardContentDataSet data) {
         ArrayList<String> stats = new ArrayList<>();
+        stats.add(data.titleContent);
         for (var attributeList: data.content)
             stats.add(attributeList.get(1));
-
+        stats.add(data.titlePath);
         NPCFactoryWarhammer NPCfactory = new NPCFactoryWarhammer();
         return NPCfactory.creat(stats);
     }
 
     public static Monster createMonsterFromCard(CardContentDataSet data) {
         ArrayList<String> stats = new ArrayList<>();
+        stats.add(data.titleContent);
         for (var attributeList: data.content)
             stats.add(attributeList.get(1));
-
+        stats.add(data.titlePath);
         MonsterFactoryWarhammer monsterFactory = new MonsterFactoryWarhammer();
         return monsterFactory.creat(stats);
     }

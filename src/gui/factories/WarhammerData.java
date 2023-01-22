@@ -20,7 +20,7 @@ public interface WarhammerData {
     String viewPath = StringAdapter.getRelativePath("view.png");
     String horsePath =StringAdapter.getRelativePath("horse");
     String efectPath = StringAdapter.getRelativePath("effect.png");
-    String armorPath = StringAdapter.getRelativePath("armor.png");
+    String armorPath = StringAdapter.getRelativePath("gui/armor.png");
     String weaponPath = StringAdapter.getRelativePath("weapon.png");
     String trolleyPath =StringAdapter.getRelativePath("trolley.png");
     String monsterPath = StringAdapter.getRelativePath("monsterimage.png");
