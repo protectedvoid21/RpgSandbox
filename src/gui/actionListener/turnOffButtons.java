@@ -9,5 +9,7 @@ public class turnOffButtons {
     public static void turnOff(RoundManager roundManager, MainPanelGame mainPanelGame, Integer parametr, Integer usedIndex){
         ITurnOffButtons offButon = new TurnOffWarhammer();
         offButon.turnOff(roundManager,mainPanelGame,parametr,usedIndex);
+        mainPanelGame.getGamePanel().disableOptionsPanel();
+
     }
 }

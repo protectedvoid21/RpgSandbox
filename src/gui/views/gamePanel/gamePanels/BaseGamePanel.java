@@ -88,6 +88,10 @@ public abstract class BaseGamePanel extends BackgroundView implements PanelConta
         baseBackColor = manager.getMiddleComponent(0, 0).getComponent().getBackground();
         addPanels();
     }
+    public void disableOptionsPanel(){
+        optionsPanel.disablePanel();
+    }
+
     protected void addPanels() {
         panel.add(optionsPanel.getPanel());
         panel.add(manager.getCmp());
