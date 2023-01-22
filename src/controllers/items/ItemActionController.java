@@ -1,8 +1,9 @@
 package controllers.items;
 
 import controllers.*;
-import controllers.utils.ItemType;
 import controllers.utils.RedirectListener;
+import game.equipment.Item;
+import game.filehandle.DummyCreator;
 import gui.card.fullCards.abstractCards.Card;
 import gui.factories.IOverallFactory;
 
@@ -23,8 +24,16 @@ public class ItemActionController extends Controller {
         view.getButton(0).addActionListener(
                 new RedirectListener(controllerManager, new ItemListController(creatorType))
         );
+
+        Item dummyItem = null;
+        switch(creatorType) {
+            case ARMOR -> dummyItem = DummyCreator.getArmor();
+            case MOUNT -> dummyItem = DummyCreator.getMount();
+            case WEAPONS -> dummyItem = DummyCreator.getWeapon();
+        }
+        
         view.getButton(1).addActionListener(
-                new RedirectListener(controllerManager, new CreateItemController(creatorType))
+                new RedirectListener(controllerManager, new ItemCreateController(dummyItem, creatorType))
         );
         
         mainFrame.add(view.getPanel());
