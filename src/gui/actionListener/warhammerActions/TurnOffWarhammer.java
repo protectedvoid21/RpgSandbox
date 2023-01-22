@@ -69,7 +69,7 @@ public class TurnOffWarhammer implements ITurnOffButtons {
                         n++;
                     } else {
                         if (roundManager.getActions().getActions().get(actionsEnum).getActionCost() > roundManager.getGameObjectWithTurn().getCreature().getStruggleStatistics().getAttribute(ACTIONS_TO_DO).getValue()) {
-                            if (!indexesCell.contains(m))
+                            if (!indexesOption.contains(m))
                                 indexesOption.add(m);
                         }
                         m++;

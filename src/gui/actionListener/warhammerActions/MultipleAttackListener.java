@@ -2,6 +2,7 @@ package gui.actionListener.warhammerActions;
 
 import game.board.RoundManager;
 import game.generals.Vector2;
+import gui.actionListener.turnOffButtons;
 import gui.views.gamePanel.MainPanelGame;
 
 import java.awt.event.ActionEvent;
@@ -27,10 +28,9 @@ public class MultipleAttackListener implements ActionListener {
         roundManager.getActions().doAction(MULTIPLE_ATTACK, roundManager.getGameObjectWithTurn().getCreature(),
                 roundManager.getBoard().getPlace(point).getGameObject().getCreature());
 
-        for (int i = 0; i < roundManager.getGameObjectWithTurn().getCreature().getStatistics().getAttribute(ATTACKS).getValue(); i++) {
-            mainPanelGame.getGamePanel().applyAttackActionsContent(point);
-        }
 
+        mainPanelGame.getGamePanel().applyAttackActionsContent(point);
+        turnOffButtons.turnOff(roundManager,mainPanelGame,0,4);
 
     }
 }
