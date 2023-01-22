@@ -40,9 +40,10 @@ public class CreatureCreateController extends Controller {
     private class SaveListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+            var data = view.generateContentData().get(Card.CardTypes.OVERALL);
             var contentData = view.generateContentData().get(Card.CardTypes.ATTRIBUTE);
-            contentData.titlePath = creature.getObjectPathPicture();
-            contentData.titleContent = creature.getName();
+            contentData.titlePath = data.titlePath;
+            contentData.titleContent = data.titleContent;
             
             EntityManager.getInstance().removeCreature(creature);
             Creature newCreature = null;
