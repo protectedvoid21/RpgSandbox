@@ -7,10 +7,10 @@ import java.util.ArrayList;
 
 public abstract class IFactory {
 
-    public static ArrayList<Integer> errorIndexes = new ArrayList<>();
-    public static boolean errorFlag = false;
-    public static boolean nameError = false;
-    public static boolean pathError = false;
+    private static ArrayList<Integer> errorIndexes = new ArrayList<>();
+    private static boolean errorFlag = false;
+    private static boolean nameError = false;
+    private static boolean pathError = false;
 
     public abstract Creature creat(ArrayList<String> stats);
 
@@ -23,19 +23,32 @@ public abstract class IFactory {
 
     protected void setErrors( String name, String path){
         if(!errorFlag){
-            errorFlag = DecodeArrayStatisticsWarhammer.errorFlag;
+            errorFlag = DecodeArrayStatisticsWarhammer.isErrorFlag();
         }
-        errorIndexes = DecodeArrayStatisticsWarhammer.errorIndexes;
-        System.out.println(errorIndexes);
+        errorIndexes = DecodeArrayStatisticsWarhammer.getErrorIndexes();
         if(name.isEmpty()){
-            System.out.println(errorFlag+"tututu4");
             errorFlag = true;
             nameError = true;
         }
         if(path.isEmpty()){
-            System.out.println(errorFlag+"tututu3");
             errorFlag = true;
             pathError = true;
         }
+    }
+
+    public static ArrayList<Integer> getErrorIndexes() {
+        return errorIndexes;
+    }
+
+    public static boolean isErrorFlag() {
+        return errorFlag;
+    }
+
+    public static boolean isNameError() {
+        return nameError;
+    }
+
+    public static boolean isPathError() {
+        return pathError;
     }
 }

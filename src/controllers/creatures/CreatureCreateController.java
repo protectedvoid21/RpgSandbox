@@ -63,12 +63,12 @@ public class CreatureCreateController extends Controller {
                     newCreature = Converter.createNPCFromCard(contentData);
                 }
             }
-            if (IFactory.errorFlag) {
+            if (IFactory.isErrorFlag()) {
                 System.out.println("helllo");
-                view.setEntriesIncorrect(IFactory.errorIndexes, 1500);
-                if (IFactory.pathError)
+                view.setEntriesIncorrect(IFactory.getErrorIndexes(), 1500);
+                if (IFactory.isPathError())
                     view.setTitleIncorrect(BaseCard.Side.LEFT, 1500);
-                if (IFactory.nameError)
+                if (IFactory.isNameError())
                     view.setTitleIncorrect(BaseCard.Side.RIGHT, 1500);
                 IFactory.resetErrorFlags();
                 return;
