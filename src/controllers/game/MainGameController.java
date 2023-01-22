@@ -1,6 +1,7 @@
 package controllers.game;
 
 import controllers.Controller;
+import controllers.ControllerManager;
 import controllers.MenuController;
 import controllers.utils.RedirectListener;
 import game.board.Board;
@@ -13,6 +14,7 @@ import gui.actionListener.scrollItem.*;
 import gui.actionListener.turnOffButtons;
 import gui.actionListener.warhammerActions.*;
 import gui.card.DoubleArrowPanel;
+import gui.card.fullCards.specificCards.GameCard;
 import gui.factories.GuiFactory;
 import gui.factories.IOverallFactory;
 import gui.views.gamePanel.MainPanelGame;
@@ -43,10 +45,27 @@ public class MainGameController extends Controller {
 
     private void startGame() {
 //     roundManager.startNewTurn();
-       gamePanel.getGamePanel().applyContent(roundManager.boardToList());
-       //roundManager.moveToNextObject();
-       gamePanel.getGamePanel().colorButtons(roundManager.getGameObjectWithTurnPosition());
-       turnOffButtons.turnOff(roundManager,gamePanel,2,0);
+        gamePanel.getGamePanel().applyContent(roundManager.boardToList());
+        //roundManager.moveToNextObject();
+        gamePanel.getGamePanel().colorButtons(roundManager.getGameObjectWithTurnPosition());
+        turnOffButtons.turnOff(roundManager, gamePanel, 2, 0);
+    }
+
+    private Vector2 getclickedIndexes() {
+        return gamePanel.getGamePanel().getCurrentClickedIndexes();
+    }
+
+    private GameCardController createGameCardController() {
+        return new GameCardController(!getclickedIndexes().isOutOfRange(10, 10) ?
+                roundManager.getBoard().getPlace(getclickedIndexes()).getGameObject().getCreature() : null, this);
+    }
+
+
+    private class ClickGameCardListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            controllerManager.changeController(createGameCardController());
+        }
     }
 
     @Override
@@ -61,24 +80,23 @@ public class MainGameController extends Controller {
 
         startGame();
 
-        int i = 0;
-        for (var listener : Arrays.asList(new MoveListener(roundManager, gamePanel),
-                new RedirectListener(controllerManager,
-                        new GameCardController(roundManager.getGameObjectWithTurn().getCreature(), this)),
-                new AttackListener(roundManager, gamePanel),
-                new CarefullListener(roundManager, gamePanel),
-                new MultipleAttackListener(roundManager, gamePanel))) {
-            gamePanel.getGamePanel().addOptionsListener(i++, listener);
-        }
+        gamePanel.getGamePanel().addOptionsListener(0, new MoveListener(roundManager, gamePanel));
+        gamePanel.getGamePanel().addOptionsListener(1, new ClickGameCardListener());
+        gamePanel.getGamePanel().addOptionsListener(2, new AttackListener(roundManager, gamePanel));
+        gamePanel.getGamePanel().addOptionsListener(3, new CarefullListener(roundManager, gamePanel));
+        gamePanel.getGamePanel().addOptionsListener(4, new MultipleAttackListener(roundManager, gamePanel));
 
         int j = 0;
         for (var list : Arrays.asList(new AimingListener(roundManager, gamePanel), new BlockListener(roundManager,
                 gamePanel), new DefenseStandListener(roundManager, gamePanel))) {
             gamePanel.getActivityOptionsPanel().addOptionsPanelCommand(j++, list);
         }
-        applyPickerListener(FullItemPicker.LabelType.WEAPON, new PreviousWeaponListener(roundManager), new NextWeaponListener(roundManager));
-        applyPickerListener(FullItemPicker.LabelType.ARMOR, new PreviousArmorListener(roundManager), new NextArmorListener(roundManager));
-        applyPickerListener(FullItemPicker.LabelType.MOUNT, new PreviousMountListener(roundManager), new NextMountListener(roundManager));
+        applyPickerListener(FullItemPicker.LabelType.WEAPON, new PreviousWeaponListener(roundManager),
+                new NextWeaponListener(roundManager));
+        applyPickerListener(FullItemPicker.LabelType.ARMOR, new PreviousArmorListener(roundManager),
+                new NextArmorListener(roundManager));
+        applyPickerListener(FullItemPicker.LabelType.MOUNT, new PreviousMountListener(roundManager),
+                new NextMountListener(roundManager));
 
         mainFrame.add(gamePanel.getPanel());
     }
