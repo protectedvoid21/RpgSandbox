@@ -8,7 +8,7 @@ public class SeedManager implements Seeder {
     
     public SeedManager() {
         seeders.add(new MonsterSeeder());
-        //add more seeders
+        seeders.add(new PlayerSeeder());
     }
     
     @Override

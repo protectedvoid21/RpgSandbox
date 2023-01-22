@@ -16,7 +16,6 @@ public class EntityManager {
     private List<Monster> monsterList = new ArrayList<>();
     private List<NPC> NPCList = new ArrayList<>();
     private List<PlayerCharacter> playerCharacterList = new ArrayList<>();
-    private List<Creature> creatureList = new ArrayList<>();
     private List<Item> itemList = new ArrayList<>();
     private List<Scenario> scenarioList = new ArrayList<>();
 
@@ -49,7 +48,6 @@ public class EntityManager {
         fileManager.writeToFile(monsterList, Monster.class);
         fileManager.writeToFile(NPCList, NPC.class);
         fileManager.writeToFile(playerCharacterList, PlayerCharacter.class);
-        fileManager.writeToFile(creatureList, Creature.class);
         fileManager.writeToFile(itemList, Item.class);
         fileManager.writeToFile(scenarioList, Scenario.class);
     }
@@ -58,7 +56,6 @@ public class EntityManager {
         monsterList = fileManager.readFromFile(Monster.class);
         NPCList = fileManager.readFromFile(NPC.class);
         playerCharacterList = fileManager.readFromFile(PlayerCharacter.class);
-        creatureList = fileManager.readFromFile(Creature.class);
         itemList = fileManager.readFromFile(Item.class);
         scenarioList = fileManager.readFromFile(Scenario.class);
     }
@@ -73,8 +70,6 @@ public class EntityManager {
         if (creature instanceof NPC) {
             NPCList.add((NPC) creature);
         }
-
-        creatureList.add(creature);
     }
 
     public void removeCreature(Creature creature) {
@@ -87,8 +82,6 @@ public class EntityManager {
         if (creature instanceof NPC) {
             NPCList.remove((NPC) creature);
         }
-
-        creatureList.remove(creature);
     }
 
     public void addScenario(Scenario scenario) {
@@ -110,11 +103,7 @@ public class EntityManager {
     public List<PlayerCharacter> getPlayerCharacterList() {
         return playerCharacterList;
     }
-
-    public List<Creature> getCreatureList() {
-        return creatureList;
-    }
-
+    
     public List<Item> getItemList() {
         return itemList;
     }

@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import game.board.Scenario;
+import game.creature.Character;
 import game.creature.Creature;
 import game.creature.Monster;
 import game.creature.NPC;
@@ -36,13 +37,11 @@ public class FileManager {
         directoryMap.put(PlayerCharacter.class, "players.txt");
         directoryMap.put(Item.class, "items.txt");
         directoryMap.put(Scenario.class, "scenarios.txt");
-        directoryMap.put(Creature.class, "creatures.txt");
         
         gson = new GsonBuilder()
                 .setPrettyPrinting()
                 .setExclusionStrategies(new CustomExcludeStrategy())
                 .registerTypeAdapter(IStatistics.class, new StatisticsDeserializer())
-                .registerTypeAdapter(Creature.class, new CustomAdapter<Creature>())
                 .registerTypeAdapter(IAttributeEnum.class, new CustomAdapter<IAttributeEnum>())
                 .registerTypeAdapter(AttributeValue.class, new CustomAdapter<AttributeValue>())
                 .create();
@@ -88,6 +87,7 @@ public class FileManager {
         try {
             bufferedWriter = new BufferedWriter(new FileWriter(savePath));
             gson.toJson(object, bufferedWriter);
+            bufferedWriter.flush();
             bufferedWriter.close();
         }
         catch (IOException e) {
@@ -111,7 +111,7 @@ public class FileManager {
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         Type typeOfList = TypeToken.getParameterized(List.class, objectType).getType();
 
-        List<T> deserializedList = gson.fromJson(bufferedReader, typeOfList);;
+        List<T> deserializedList = gson.fromJson(bufferedReader, typeOfList);
         return deserializedList == null ? new ArrayList<>() : deserializedList;
     }
 }
