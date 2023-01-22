@@ -73,13 +73,14 @@ public class InformationPanel extends BackgroundView implements PanelContainer {
         managerActions.getMiddleComponent(2, 0).addSpace(2, ComponentPanelMenager.Side.TOP, ComponentPanelMenager.Side.BOTTOM);
     }
 
-    public void setNewLabelContent(ArrayList<AbstractMap.SimpleEntry<Integer, String>> content){
+    public void setNewLabelContent(ArrayList<String> content){
         for (int i = 0; i<6; i++){
             managerActions.getMiddleComponent(1, i).setVisible(false);
         }
+        int index = 0;
         for (var pair : content){
-            informationLabels.get(pair.getKey()).setContent(pair.getValue());
-            managerActions.getMiddleComponent(1, pair.getKey()).setVisible(true);
+            informationLabels.get(index).setContent(pair);
+            managerActions.getMiddleComponent(1, index).setVisible(true);
         }
         mainCmp.setVisible(true);
     }

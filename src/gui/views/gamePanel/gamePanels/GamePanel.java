@@ -23,14 +23,13 @@ public class GamePanel extends BaseGamePanel {
 
     public enum ActionsLabelsType {ATACK, DEFEND}
     private DefendAttackActionsPanel defendAttackActionsPanel;
-  //  private InformationPanel informationPanel;
+    private InformationPanel informationPanel;
 
 
     public GamePanel(IOverallFactory factory, int size) {
         super(factory, size);
-       // informationPanel = new InformationPanel(factory.getFactory());
-      //  informationPanel.getPanel().addSpace(10);
-      //  informationPanel.setNewLabelContent(new ArrayList<>(Arrays.asList(new AbstractMap.SimpleEntry<>(1, "aaa"),new AbstractMap.SimpleEntry<>(2, "fff") )));
+        informationPanel = new InformationPanel(factory.getFactory());
+        informationPanel.getPanel().addSpace(10);
         defendAttackActionsPanel = new DefendAttackActionsPanel(size);
     }
 
@@ -95,7 +94,7 @@ public class GamePanel extends BaseGamePanel {
         this.defendAttackActionsPanel.applyAttackActionsContent(position);
     }
 
-    public void setInformationPanelText(ArrayList<AbstractMap.SimpleEntry<Integer, String>> content){
-       // informationPanel.setNewLabelContent(content);
+    public void setInformationPanelText(ArrayList<String> content){
+        informationPanel.setNewLabelContent(content);
     }
 }
