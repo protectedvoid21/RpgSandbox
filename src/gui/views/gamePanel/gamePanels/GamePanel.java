@@ -63,7 +63,7 @@ public class GamePanel extends BaseGamePanel {
     @Override
     public void setBorder(Color color, int value) {
         super.setBorder(color, value);
-  //      informationPanel.setBorder(color, value*2);
+        informationPanel.setBorder(color, value*2);
     }
 
     public void removeActionContent(Vector2 pos, ActionsLabelsType type){
