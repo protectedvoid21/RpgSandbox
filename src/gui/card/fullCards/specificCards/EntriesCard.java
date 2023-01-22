@@ -28,6 +28,8 @@ import java.util.*;
 public class EntriesCard extends Card {
     public enum EntryType {SPINNER, ENTRY}
 
+    final static String baseEnabledPhotoPath = StringAdapter.getRelativePath("image.png");
+    final static String baseDisabledPhotoPath = StringAdapter.getRelativePath("disimage.png");
     private boolean isImageSet = false;
     private AddingButtonCard choserEqCard2 = null;
     private ChoserCard choserCard;
@@ -121,7 +123,7 @@ public class EntriesCard extends Card {
         uploadNewChoserCardData(newData, detailData);
         if (newData.containsKey(CardTypes.OVERALL)) {
             rightEntryTitleComponent.getComponent().setContent(newData.get(CardTypes.OVERALL).titleContent);
-            leftButtonyTitleComponent.getComponent().setContent(newData.get(CardTypes.OVERALL).titlePath);
+            leftButtonyTitleComponent.getComponent().setContent(newData.get(CardTypes.OVERALL).titlePath.equals(Card.EMPTY_DATA_CONTENT) ? EntriesCard.baseEnabledPhotoPath : newData.get(CardTypes.OVERALL).titlePath);
         }
     }
 
@@ -189,7 +191,7 @@ public class EntriesCard extends Card {
         });
         initializeRightTitleComponent(rightEntryTitleComponent, 1);
         factory.setButtonType(GuiFactory.ButtonType.ICON);
-        var but = factory.createButton(StringAdapter.getRelativePath("image.png"), null);
+        var but = factory.createButton(baseEnabledPhotoPath, null);
         but.getCustomUI().setOffSet(0);
         leftButtonyTitleComponent = new ComponentPanelMenager<>(but);
         leftButtonyTitleComponent.getComponent().addActionListener(new ActionListener() {
@@ -242,7 +244,7 @@ public class EntriesCard extends Card {
         if (side == Side.LEFT) {
             var cmp = leftButtonyTitleComponent.getComponent();
             var cnt = cmp.getContent();
-            cmp.setContent(StringAdapter.getRelativePath("disimage.png"));
+            cmp.setContent(baseDisabledPhotoPath);
             var timer = new Timer(periodTime, e -> {
                 cmp.setContent(cnt);
             });
@@ -252,16 +254,19 @@ public class EntriesCard extends Card {
     }
 
     public void setEntriesIncorrect(ArrayList<Integer> values, int periodTime) {
+        System.out.println(activeCard.getData().titleContent+"Xx"+values);
         if (values.size() > 0) {
             if (!(activeCard == amwGeneratorCard)) {
                 switchSide(CardTypes.ATTRIBUTE);
             }
+            System.out.println(activeCard.getData().titleContent+"Xx"+values);
             activeCard.reset();
             for (int j = 0; j < values.get(0) / activeCard.getMaximumElementNumber(); j++) {
                 activeCard.switchSide(DoubleArrowPanel.Side.RIGHT);
                 leftArrows.updateSwitchingButtons();
             }
         }
+        System.out.println(activeCard.getData().titleContent);
 
         for (int i = 0; i < values.size(); i++) {
             if (!(activeCard == amwGeneratorCard)) {
@@ -271,6 +276,7 @@ public class EntriesCard extends Card {
                 amwGeneratorCard.setEntryIncorrect(values.get(i), periodTime);
             }
         }
+        System.out.println(activeCard.getData().titleContent);
 
     }
 

@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PCFactoryWarhammer implements IFactory {
+public class PCFactoryWarhammer extends IFactory {
     @Override
     public PlayerCharacter creat(ArrayList<String> stats) {
         String name = stats.get(0);
@@ -34,6 +34,7 @@ public class PCFactoryWarhammer implements IFactory {
         PlayerCharacter playerCharacter = new PlayerCharacter(statistics,new Inventory(),experience,struggleStatistics);
         playerCharacter.setName(name);
         playerCharacter.setObjectPathPicture(stats.get(13));
+        setErrors(name, stats.get(13));
         return playerCharacter;
     }
 }

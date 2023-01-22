@@ -15,12 +15,13 @@ import game.interfaces.IAttributeEnum;
 import game.interfaces.IFactory;
 import game.interfaces.Statistics;
 import game.interfaces.StruggleStatistics;
+import gui.card.fullCards.specificCards.EntriesCard;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MonsterFactoryWarhammer implements IFactory {
+public class MonsterFactoryWarhammer extends IFactory {
 
 
     public MonsterFactoryWarhammer(){};
@@ -37,7 +38,7 @@ public class MonsterFactoryWarhammer implements IFactory {
         Monster monster = new Monster(statistics,experience,struggleStatistics);
         monster.setName(name);
         monster.setObjectPathPicture(stats.get(13));
-        System.out.println(monster.getObjectPathPicture()+"paaa");
+        setErrors(name, stats.get(13));
         return monster;
     }
 }
