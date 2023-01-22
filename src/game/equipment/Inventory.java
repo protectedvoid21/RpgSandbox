@@ -1,5 +1,7 @@
 package game.equipment;
 
+import game.equipment.examples.DeadRat;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +13,7 @@ public class Inventory {
     private Weapon activeWeapon;
     private Armor activeArmor;
     private Mount activeMount;
+    private DisposableItem selectedDisposableItem;
 
     public Inventory() {
         weapons = new ArrayList<>();
@@ -64,6 +67,10 @@ public class Inventory {
         else if(item instanceof DisposableItem)
         {
             disposableItems.add((DisposableItem) item);
+
+            if(selectedDisposableItem instanceof DeadRat) {
+                selectedDisposableItem = (DisposableItem) item;
+            }
         }
     }
 
@@ -109,6 +116,12 @@ public class Inventory {
 
             inventoryCheck(item);
         }
+        for(var item : disposableItems)
+        {
+            removeItemIfNotValid(item);
+
+            inventoryCheck(item);
+        }
     }
 
     private void inventoryCheck(Item item) {
@@ -124,6 +137,49 @@ public class Inventory {
             activeMount = noMount();
             setActiveMount();
         }
+        else if(item.equals(selectedDisposableItem))
+        {
+            selectedDisposableItem = noDisposableItem();
+            setSelectedDisposableItem();
+        }
+    }
+
+    private void setSelectedDisposableItem() {
+        if (!disposableItems.isEmpty())
+        {
+            selectedDisposableItem=disposableItems.get(0);
+        }
+    }
+
+    private void setSelectedDisposableItem(DisposableItem disposableItem) {
+        if (disposableItems.contains(disposableItem))
+        {
+            selectedDisposableItem=disposableItem;
+        }
+    }
+
+    public void nextDisposableItem()
+    {
+        int i = disposableItems.indexOf(selectedDisposableItem)+1;
+
+        if(i==disposableItems.size())
+        {
+            i=0;
+        }
+
+        setSelectedDisposableItem(disposableItems.get(i));
+    }
+
+    public void previousDisposableItem()
+    {
+        int i = disposableItems.indexOf(selectedDisposableItem)-1;
+
+        if(i<0)
+        {
+            i= disposableItems.size()-1;
+        }
+
+        setSelectedDisposableItem(disposableItems.get(i));
     }
 
     private void setActiveWeapon() {
@@ -259,5 +315,9 @@ public class Inventory {
 
     private Mount noMount() {
         return new Mount("none", 0);
+    }
+    private DisposableItem noDisposableItem()
+    {
+        return new DeadRat(0);
     }
 }
