@@ -24,10 +24,15 @@ public class DecodeArrayStatisticsWarhammer implements IDecodeArrayStatistics {
         Map<IAttributeEnum, AttributeValue> attributes = new HashMap<>();
         for (int i = 1; i < 9; i++) {
             try {
+                var value = Integer.parseInt(stats.get(i));
+                if (value < 0 || value > 100) {
+                    throw new NumberFormatException();
+                }
                 attributes.put(AttributeEnum.values()[i - 1], new LimitedAttribute(0, 100,
-                        Integer.parseInt(stats.get(i))));
+                        value));
+
             } catch (NumberFormatException ex) {
-                errorIndexes.add(i-1);
+                errorIndexes.add(i - 1);
                 errorFlag = true;
             }
         }
@@ -53,10 +58,14 @@ public class DecodeArrayStatisticsWarhammer implements IDecodeArrayStatistics {
     private void setAttr(ArrayList<String> stats, Map<IAttributeEnum, AttributeValue> map, AttributeEnum enumValue,
                          int value) {
         try {
-            map.put(AttributeEnum.ATTACKS, new UnlimitedAttribute(Integer.parseInt(stats.get(value))));
+            var intValue = Integer.parseInt(stats.get(value));
+            if (intValue < 0) {
+                throw new NumberFormatException();
+            }
+            map.put(AttributeEnum.ATTACKS, new UnlimitedAttribute(intValue));
         } catch (NumberFormatException ex) {
             errorFlag = true;
-            errorIndexes.add(value-1);
+            errorIndexes.add(value - 1);
         }
     }
 }
