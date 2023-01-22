@@ -46,7 +46,7 @@ public class MainGameController extends Controller {
        gamePanel.getGamePanel().applyContent(roundManager.boardToList());
        //roundManager.moveToNextObject();
        gamePanel.getGamePanel().colorButtons(roundManager.getGameObjectWithTurnPosition());
-      // turnOffButtons.turnOff(roundManager,gamePanel,2,0);
+       turnOffButtons.turnOff(roundManager,gamePanel,2,0);
     }
 
     @Override
