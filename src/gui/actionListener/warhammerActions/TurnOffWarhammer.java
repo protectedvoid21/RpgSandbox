@@ -60,6 +60,11 @@ public class TurnOffWarhammer implements ITurnOffButtons {
                         indexesCell.add(4);
                     }
                 }
+                else {
+                    if(!indexesCell.contains(0)){
+                        indexesCell.add(0);
+                    }
+                }
 
 
                 n = 2;

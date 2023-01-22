@@ -26,7 +26,10 @@ public class DmgCalculator {
         if (dmg>0) {
             enemy.getStatistics().getAttribute(HEALTH_POINTS_NOW).decreaseValue(dmg);
             popUp.add("You dealt " + dmg + " Dmg");
+        } else {
+            popUp.add("You dealt 0 Dmg");
         }
+
 
         if(you instanceof Character){
             ((Character) you).getInventory().getActiveWeapon().effected(enemy,popUp);
