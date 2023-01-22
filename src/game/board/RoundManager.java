@@ -51,15 +51,16 @@ public class RoundManager {
     }
 
     public void moveToNextObject() {
-        while (!getGameObjectWithTurn().creature.getStatistics().isAbleToPlay()) {
+        do  {
             currentIndex++;
-        }
+            if (currentIndex >= activeGameObjects.size()) {
+                currentIndex = 0;
+                startNewTurn();
+            }
+        } while (!getGameObjectWithTurn().creature.getStatistics().isAbleToPlay());
         getGameObjectWithTurn().applyNewRound();
 
-        if (currentIndex >= activeGameObjects.size()) {
-            currentIndex = 0;
-            startNewTurn();
-        }
+
     }
 
     private Actions initializeActions() {

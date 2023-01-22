@@ -43,7 +43,8 @@ public class Board {
             return;
         }
 
-        getPlace(destPos).setGameObject(getPlace(destPos).getGameObject());
+
+        getPlace(destPos).setGameObject(getPlace(currentPos).getGameObject());
         removeGameObject(currentPos);
     }
     
