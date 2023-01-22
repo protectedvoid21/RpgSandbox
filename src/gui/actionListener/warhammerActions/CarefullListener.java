@@ -26,7 +26,7 @@ public class CarefullListener implements ActionListener {
         Vector2 point = mainPanelGame.getGamePanel().getCurrentClickedIndexes();
         roundManager.getActions().doAction(CAREFULL_ATTACK, roundManager.getGameObjectWithTurn().getCreature(),
                 roundManager.getBoard().getPlace(point).getGameObject().getCreature());
-        mainPanelGame.getGamePanel().applyAttackActionsContent(point);
+
         turnOffButtons.turnOff(roundManager, mainPanelGame, 0, 3);
     }
 }

@@ -2,6 +2,7 @@ package game.board;
 
 import java.util.*;
 
+import game.creature.Creature;
 import game.generals.Vector2;
 import game.interfaceWarhammer.ActionsWarhammer;
 import game.interfaces.Actions;
@@ -103,6 +104,17 @@ public class RoundManager {
 
         return result;
 
+
+    }
+    public void removeDead(){
+        for(int i = 0; i < activeGameObjects.size();i++){
+            if(!activeGameObjects.get(i).getCreature().getStatistics().isAlive()){
+                board.removeGameObject(getGameObjectPosition(activeGameObjects.get(i)));
+                activeGameObjects.remove(activeGameObjects.get(i));
+                i--;
+            }
+
+        }
 
     }
 

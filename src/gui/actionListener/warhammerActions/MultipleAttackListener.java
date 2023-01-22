@@ -29,7 +29,6 @@ public class MultipleAttackListener implements ActionListener {
                 roundManager.getBoard().getPlace(point).getGameObject().getCreature());
 
 
-        mainPanelGame.getGamePanel().applyAttackActionsContent(point);
         turnOffButtons.turnOff(roundManager,mainPanelGame,0,4);
 
     }
