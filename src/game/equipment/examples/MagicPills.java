@@ -10,6 +10,8 @@ public class MagicPills extends DisposableItem {
     public MagicPills(int usageCount, Character user) {
         super(usageCount);
         this.user=user;
+
+        description = "9/10 dentists says that they will remove poison effects from your blood";
     }
 
     @Override

@@ -11,6 +11,8 @@ public class Bandage extends DisposableItem {
     public Bandage(int usageCount, Character user) {
         super(usageCount);
         this.user=user;
+
+        description = "Bandage is great way to stop the bleeding! And yes! We have also kids version with dragons and warriors on it!";
     }
 
     @Override

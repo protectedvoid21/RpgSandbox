@@ -15,6 +15,10 @@ public class MonsterSeeder implements Seeder {
         monster2.setName("Kaspar");
         Monster monster3 = new Monster(new StatisticsWarhammer(), new Experience(0), new StruggleStatisticsWarhammer());
         monster3.setName("Krzysztof");
+        Monster monster4 = new Monster(new StatisticsWarhammer(), new Experience(0), new StruggleStatisticsWarhammer());
+        monster4.setName("Andrzej");
+        Monster monster5 = new Monster(new StatisticsWarhammer(), new Experience(0), new StruggleStatisticsWarhammer());
+        monster5.setName("Natka");
         
         EntityManager.getInstance().addCreature(monster1);
         EntityManager.getInstance().addCreature(monster2);

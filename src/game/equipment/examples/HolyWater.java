@@ -7,6 +7,8 @@ import game.equipment.DisposableItem;
 public class HolyWater extends DisposableItem {
     public HolyWater(int usageCount) {
         super(usageCount);
+
+        description = "Paladyn Edward claims that it works against monsters";
     }
 
     public void use(Monster enemy) {

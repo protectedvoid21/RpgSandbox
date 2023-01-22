@@ -13,6 +13,8 @@ public class ChickenLeg extends DisposableItem {
     public ChickenLeg(int usageCount, Character user) {
         super(usageCount);
         this.user=user;
+
+        description = "Traveller! Stop in our tavern and eat some chicken. It will help to restore your health";
     }
 
     @Override

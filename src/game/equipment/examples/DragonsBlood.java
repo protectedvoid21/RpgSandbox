@@ -9,6 +9,8 @@ public class DragonsBlood extends DisposableItem {
     public DragonsBlood(int usageCount, Character user) {
         super(usageCount);
         this.user=user;
+
+        description = "Dragon blood is poisoning sooooooo......when you put it on your sword your enemies will DIE IN VERY PAINFUL WAY";
     }
 
     @Override

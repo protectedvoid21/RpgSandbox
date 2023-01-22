@@ -19,6 +19,8 @@ public class MagicPotion extends DisposableItem {
 
         what=values[rand.nextInt(values.length)];
         this.user=user;
+
+        description = "Even the inventor don't know what it do. Just use it and try... MUHAHAHAHAHAHAHAAH";
     }
 
     @Override
