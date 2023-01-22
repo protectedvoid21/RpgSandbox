@@ -42,11 +42,11 @@ public class MainGameController extends Controller {
     }
 
     private void startGame() {
-        roundManager.startNewTurn();
-//        gamePanel.getGamePanel().applyContent(roundManager.boardToList());
-//        roundManager.moveToNextObject();
-//        gamePanel.getGamePanel().colorButtons(roundManager.getGameObjectWithTurnPosition());
-//        turnOffButtons.turnOff(roundManager,gamePanel,2,0);
+//     roundManager.startNewTurn();
+       gamePanel.getGamePanel().applyContent(roundManager.boardToList());
+       //roundManager.moveToNextObject();
+       gamePanel.getGamePanel().colorButtons(roundManager.getGameObjectWithTurnPosition());
+      // turnOffButtons.turnOff(roundManager,gamePanel,2,0);
     }
 
     @Override

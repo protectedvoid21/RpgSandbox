@@ -12,12 +12,14 @@ public class RoundManager {
 
     private Actions actions;
 
-    private int currentTurn = 1;
+    private int currentTurn = 0;
     private int currentIndex;
 
     public RoundManager(Board board) {
         this.board = board;
         this.actions = initializeActions();
+        currentTurn++;
+        starGame();
     }
 
     public GameObject getGameObjectWithTurn() {
@@ -65,6 +67,10 @@ public class RoundManager {
         return actions;
     }
 
+    private void starGame(){
+        activeGameObjects = board.getAllGameObjects();
+        sortByMovePriority(activeGameObjects);
+    }
     public void startNewTurn() {
         currentTurn++;
         activeGameObjects = board.getAllGameObjects();
