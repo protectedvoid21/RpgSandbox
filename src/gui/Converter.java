@@ -564,8 +564,10 @@ public class Converter {
     public static Monster createMonsterFromCard(CardContentDataSet data) {
         ArrayList<String> stats = new ArrayList<>();
         stats.add(data.titleContent);
-        for (var attributeList: data.content)
+        for (var attributeList: data.content) {
             stats.add(attributeList.get(1));
+        }
+            
         stats.add(data.titlePath);
         MonsterFactoryWarhammer monsterFactory = new MonsterFactoryWarhammer();
         return monsterFactory.creat(stats);

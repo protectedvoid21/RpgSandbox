@@ -2,7 +2,6 @@ package controllers.game;
 
 import controllers.Controller;
 import controllers.MenuController;
-import controllers.creatures.CreateCreatureController;
 import controllers.creatures.CreatureListController;
 import controllers.creatures.CreatureTypeController;
 import controllers.utils.CreatureType;

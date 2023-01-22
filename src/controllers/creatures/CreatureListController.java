@@ -5,8 +5,6 @@ import controllers.utils.CreatureType;
 import controllers.utils.RedirectListener;
 import game.creature.Creature;
 import game.filehandle.EntityManager;
-import gui.Converter;
-import gui.card.CardContentDataSet;
 import gui.factories.IOverallFactory;
 import gui.views.objectViews.AllObjectsView;
 import gui.views.objectViews.itemsViews.FullSmallView;
@@ -50,9 +48,8 @@ public class CreatureListController extends Controller {
         }
         for(int i = 0; i < 4; i++) {
             view.addButtonActionListener(AllObjectsView.ButtonType.DELETE, i, new DeleteButtonListener());
-            //view.addButtonActionListener(AllObjectsView.ButtonType.SHOW, i, new RedirectListener());
-            view.addButtonActionListener(AllObjectsView.ButtonType.EDIT, i, e -> creatureList.remove(view.getClickedIndex()));
-            
+            view.addButtonActionListener(AllObjectsView.ButtonType.EDIT, i, new EditButtonListener());
+            view.addButtonActionListener(AllObjectsView.ButtonType.SHOW, i, new ShowButtonListener());
         }
         view.uploadData(data);
         
@@ -61,6 +58,20 @@ public class CreatureListController extends Controller {
         );
         
         mainFrame.add(view.getPanel());
+    }
+    
+    private class EditButtonListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            controllerManager.changeController(new CreatureCreateController(creatureList.get(view.getClickedIndex()), creatureType));
+        }
+    }
+
+    private class ShowButtonListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            controllerManager.changeController(new CreatureShowController(creatureList.get(view.getClickedIndex()), creatureType));
+        }
     }
     
     private class DeleteButtonListener implements ActionListener {

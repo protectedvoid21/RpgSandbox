@@ -7,7 +7,7 @@ import game.interfaces.IStruggleStatistics;
 public abstract class Creature implements RoundListener {
     protected IStatistics statistics;
     protected IStruggleStatistics struggleStatistics;
-    protected String name;
+    protected String name = "Unnamed";
     protected Experience experience;
     private String objectPathPicture = "";
 
