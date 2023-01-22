@@ -1,6 +1,5 @@
 package gui;
 
-import com.kitfox.svg.A;
 import game.creature.*;
 import game.creature.Character;
 import game.equipment.*;
@@ -11,6 +10,7 @@ import game.utils.MathHelper;
 import gui.card.CardContentDataSet;
 import gui.card.fullCards.abstractCards.Card;
 import jdk.jshell.spi.ExecutionControl;
+import game.cardManager.Warhammer.*;
 
 import java.util.*;
 
@@ -26,13 +26,12 @@ public class Converter {
         ArrayList<CardContentDataSet.DataType> dataTypesList = new ArrayList<>();
 
         map.add(new ArrayList<>(Arrays.asList("src/gui/stats.png")));
-//        map.add(new ArrayList<>(Arrays.asList("src/gui/effect.png")));
+        map.add(new ArrayList<>(Arrays.asList("src/gui/effect.png")));
 
         if (creature instanceof Character) {
             map.add(new ArrayList<>(Arrays.asList("src/gui/horse.png")));
             map.add(new ArrayList<>(Arrays.asList("src/gui/armor.png")));
             map.add(new ArrayList<>(Arrays.asList("src/gui/weapon.png")));
-            map.add(new ArrayList<>(Arrays.asList("src/gui/effect.png")));
         }
 
         for (int i = 0; i < map.size(); i++)
@@ -115,20 +114,15 @@ public class Converter {
 
         var map = new ArrayList<ArrayList<String>>();
         ArrayList<CardContentDataSet.DataType> dataTypesList = new ArrayList<>();
+//        map.add(new ArrayList<>(Arrays.asList("name", creature.getName())));
 
-        int cnt = 0;
         for (var attribute : AttributeEnum.values()) {
             String attibuteName = attribute.name();
             var value = creature.getStatistics().getAttribute(attribute).getValue();
             String attributeValue = Integer.toString(value);
-            if (value != 0) {
-                map.add(new ArrayList<>(Arrays.asList(attibuteName, attributeValue)));
-                cnt++;
-            }
-//            if (cnt == 6) {
-//                break;
-//            }
+            map.add(new ArrayList<>(Arrays.asList(attibuteName, attributeValue)));
         }
+//        map.add(new ArrayList<>(Arrays.asList("path", creature.getObjectPathPicture())));
 
         for (int i = 0; i < map.size(); i++)
             dataTypesList.add(CardContentDataSet.DataType.STRING);
@@ -267,7 +261,7 @@ public class Converter {
 
         var map = new ArrayList<ArrayList<String>>();
         ArrayList<CardContentDataSet.DataType> dataTypesList = new ArrayList<>();
-
+        
         System.out.println("NOT IMPLEMENTED");
         //todo fix inventory filtering due to previous Inventory class changes
         /*for (var item : character.getInventory().getItems()) {
@@ -431,12 +425,14 @@ public class Converter {
         if (item instanceof Armor) {
             var defence = ((Armor) item).getDefence();
             map.add(new ArrayList<>(Arrays.asList("defence", Integer.toString(defence))));
-        } else if (item instanceof Weapon) {
+        }
+        else if (item instanceof Weapon) {
             var damage = ((Weapon) item).getDamage();
             var range = ((Weapon) item).getRange();
             map.add(new ArrayList<>(Arrays.asList("damage", Integer.toString(damage))));
             map.add(new ArrayList<>(Arrays.asList("range", Integer.toString(range))));
-        } else if (item instanceof Mount) {
+        }
+        else if (item instanceof Mount) {
             var speed = ((Mount) item).getSpeed();
             map.add(new ArrayList<>(Arrays.asList("speed", Integer.toString(speed))));
         }
@@ -546,24 +542,30 @@ public class Converter {
     }
 
     public static PlayerCharacter createPlayerCharacterFromCard(CardContentDataSet data) {
-        PlayerCharacter playerCharacter = new PlayerCharacter(new StatisticsWarhammer(), new Inventory(),
-                new Experience(0), new StruggleStatisticsWarhammer());
-        playerCharacter.setName(data.titleContent);
-        return playerCharacter;
+        ArrayList<String> stats = new ArrayList<>();
+        for (var attributeList: data.content)
+            stats.add(attributeList.get(1));
+
+        PCFactoryWarhammer PCfactory = new PCFactoryWarhammer();
+        return PCfactory.creat(stats);
     }
 
     public static NPC createNPCFromCard(CardContentDataSet data) {
-        NPC npc = new NPC(new StatisticsWarhammer(), new Inventory(), new Experience(0),
-                new StruggleStatisticsWarhammer());
-        npc.setName(data.titleContent);
-        return npc;
+        ArrayList<String> stats = new ArrayList<>();
+        for (var attributeList: data.content)
+            stats.add(attributeList.get(1));
+
+        NPCFactoryWarhammer NPCfactory = new NPCFactoryWarhammer();
+        return NPCfactory.creat(stats);
     }
 
     public static Monster createMonsterFromCard(CardContentDataSet data) {
-        Monster monster = new Monster(new StatisticsWarhammer(), new Experience(0),
-                new StruggleStatisticsWarhammer());
-        monster.setName(data.titleContent);
-        return monster;
+        ArrayList<String> stats = new ArrayList<>();
+        for (var attributeList: data.content)
+            stats.add(attributeList.get(1));
+
+        MonsterFactoryWarhammer monsterFactory = new MonsterFactoryWarhammer();
+        return monsterFactory.creat(stats);
     }
 
     public static void main(String[] args) {
@@ -589,15 +591,22 @@ public class Converter {
         inventory.addItem(mount1);
         inventory.addItem(mount2);
         inventory.addItem(armor);
-        PlayerCharacter playerCharacter = new PlayerCharacter(new StatisticsWarhammer(), inventory,
-                new Experience(10), new StruggleStatisticsWarhammer());
+        PlayerCharacter playerCharacter = new PlayerCharacter(new StatisticsWarhammer(), inventory, new Experience(10), new StruggleStatisticsWarhammer());
         playerCharacter.setName("Shgjehrk");
         playerCharacter.setObjectPathPicture("/src/gui/playerimage.png");
 
         convertMountsToDataSet(playerCharacter);
 
         Monster monster = new Monster(new StatisticsWarhammer(), new Experience(10), new StruggleStatisticsWarhammer());
-
+        MonsterFactoryWarhammer mF = new MonsterFactoryWarhammer();
+        ArrayList<String> test1 = new ArrayList<>();
+        test1.add("Khafil");
+        for (int i = 1; i<13; i++)
+            test1.add(Integer.toString(i));
+        test1.add("pathimage.png");
+        System.out.println(test1.size());
+        Monster m1  = mF.creat(test1);
+        Monster m2 = createMonsterFromCard(convertStatsToDataSet(m1));
 
     }
 }

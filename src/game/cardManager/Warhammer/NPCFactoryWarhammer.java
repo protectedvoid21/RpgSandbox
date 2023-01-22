@@ -11,6 +11,7 @@ import game.generals.LimitedAttribute;
 import game.generals.UnlimitedAttribute;
 import game.interfaceWarhammer.AttributeEnum;
 import game.interfaceWarhammer.StatisticsWarhammer;
+import game.interfaceWarhammer.StruggleStatisticsWarhammer;
 import game.interfaces.IAttributeEnum;
 import game.interfaces.IFactory;
 import game.interfaces.Statistics;
@@ -28,7 +29,7 @@ public class NPCFactoryWarhammer implements IFactory {
         int exp = 0;
 
         Statistics statistics = DecodeArrayStatistics.decodeStats(stats);
-        StruggleStatistics struggleStatistics = new StruggleStatistics();
+        StruggleStatistics struggleStatistics = new StruggleStatisticsWarhammer();
         Experience experience = new Experience(exp);
 
         NPC npc = new NPC(statistics,new Inventory(),experience,struggleStatistics);
