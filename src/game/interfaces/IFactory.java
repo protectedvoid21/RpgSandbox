@@ -28,10 +28,12 @@ public abstract class IFactory {
         errorIndexes = DecodeArrayStatisticsWarhammer.errorIndexes;
         System.out.println(errorIndexes);
         if(name.isEmpty()){
+            System.out.println(errorFlag+"tututu4");
             errorFlag = true;
             nameError = true;
         }
         if(path.isEmpty()){
+            System.out.println(errorFlag+"tututu3");
             errorFlag = true;
             pathError = true;
         }

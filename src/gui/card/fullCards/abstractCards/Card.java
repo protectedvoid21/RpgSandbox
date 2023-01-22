@@ -47,7 +47,6 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
             CardTypes.WEAPONS, CardTypes.EFFECTS, CardTypes.ARMOR, CardTypes.MOUNT, CardTypes.ITEMS));
     protected ComponentsSeries<ComponentPanelMenager<JComponent>> arrowMenager;
     protected ComponentPanelMenager<AbstractCustomButton> exitButton;
-//    private ComponentPanelMenager<AbstractCustomButton> exitCreatorCard;
 
     protected DoubleArrowPanel leftArrows;
     private DoubleArrowPanel rightArrows;
@@ -104,7 +103,6 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
     protected void detailButtonMethod(DetailButtonsCard card, CardTypes type, int index) {
 
         var d = allCards.get(type).getDetailData();
-        System.out.println(type + "  "+ allCards.get(type).getDetailData());
 
         (type != CardTypes.ITEMS ? equipmentCard : textareaEquipmentCard).initializeCardData(allCards.get(type).getDetailData().get(allCards.get(type).getSideMaximumElementsNumber()
                 - allCards.get(type).getMaximumElementNumber() + index), null);

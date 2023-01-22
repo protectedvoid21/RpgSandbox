@@ -202,7 +202,6 @@ public class EntriesCard extends Card {
                 if (answer == JFileChooser.APPROVE_OPTION) {
                     isImageSet = true;
                     leftButtonyTitleComponent.getComponent().setContent(String.valueOf(chooser.getSelectedFile().getAbsolutePath()));
-                    System.out.println(FileCopyManager.getLastFileName());
                     FileCopyManager.copyFile(String.valueOf(chooser.getSelectedFile().getPath()));
                     activeCard.getData().titlePath = FileCopyManager.getPathToImage(FileCopyManager.getLastFileName());
                 }
@@ -231,6 +230,7 @@ public class EntriesCard extends Card {
 
 
     public void setTitleIncorrect(Side side, int periodTime) {
+        disableSave(periodTime);
         switchSide(CardTypes.OVERALL);
         leftArrows.updateSwitchingButtons();
         if (side == Side.RIGHT) {
@@ -253,20 +253,27 @@ public class EntriesCard extends Card {
         }
     }
 
+    private void disableSave(int period) {
+        if (saveButton.isEnabled()) {
+            saveButton.setEnabled(false);
+            var t = new Timer(period, e -> saveButton.setEnabled(true));
+            t.setRepeats(false);
+            t.start();
+        }
+    }
+
     public void setEntriesIncorrect(ArrayList<Integer> values, int periodTime) {
-        System.out.println(activeCard.getData().titleContent+"Xx"+values);
         if (values.size() > 0) {
+            disableSave(periodTime);
             if (!(activeCard == amwGeneratorCard)) {
                 switchSide(CardTypes.ATTRIBUTE);
             }
-            System.out.println(activeCard.getData().titleContent+"Xx"+values);
             activeCard.reset();
             for (int j = 0; j < values.get(0) / activeCard.getMaximumElementNumber(); j++) {
                 activeCard.switchSide(DoubleArrowPanel.Side.RIGHT);
                 leftArrows.updateSwitchingButtons();
             }
         }
-        System.out.println(activeCard.getData().titleContent);
 
         for (int i = 0; i < values.size(); i++) {
             if (!(activeCard == amwGeneratorCard)) {
@@ -276,7 +283,6 @@ public class EntriesCard extends Card {
                 amwGeneratorCard.setEntryIncorrect(values.get(i), periodTime);
             }
         }
-        System.out.println(activeCard.getData().titleContent);
 
     }
 

@@ -44,7 +44,7 @@ public class CreatureCreateController extends Controller {
         @Override
         public void actionPerformed(ActionEvent e) {
             var data = view.generateContentData().get(Card.CardTypes.OVERALL);
-            var contentData = view.generateContentData().get(Card.CardTypes.ATTRIBUTE);
+            var contentData = view.generateContentData().get(Card.CardTypes.ATTRIBUTE).clone();
             contentData.titlePath = data.titlePath;
             contentData.titleContent = data.titleContent;
 
@@ -64,11 +64,12 @@ public class CreatureCreateController extends Controller {
                 }
             }
             if (IFactory.errorFlag) {
+                System.out.println("helllo");
                 view.setEntriesIncorrect(IFactory.errorIndexes, 1500);
-//                if (IFactory.pathError)
-//                    view.setTitleIncorrect(BaseCard.Side.LEFT, 1500);
-//                if (IFactory.nameError)
-//                    view.setTitleIncorrect(BaseCard.Side.RIGHT, 1500);
+                if (IFactory.pathError)
+                    view.setTitleIncorrect(BaseCard.Side.LEFT, 1500);
+                if (IFactory.nameError)
+                    view.setTitleIncorrect(BaseCard.Side.RIGHT, 1500);
                 IFactory.resetErrorFlags();
                 return;
             }

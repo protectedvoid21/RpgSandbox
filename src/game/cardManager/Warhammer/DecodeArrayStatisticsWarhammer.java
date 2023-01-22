@@ -19,6 +19,8 @@ public class DecodeArrayStatisticsWarhammer implements IDecodeArrayStatistics {
 
     @Override
     public Statistics decode(ArrayList<String> stats) {
+        errorFlag = false;
+        errorIndexes.clear();
         Map<IAttributeEnum, AttributeValue> attributes = new HashMap<>();
         for (int i = 1; i < 9; i++) {
             try {
@@ -26,6 +28,7 @@ public class DecodeArrayStatisticsWarhammer implements IDecodeArrayStatistics {
                         Integer.parseInt(stats.get(i))));
             } catch (NumberFormatException ex) {
                 errorIndexes.add(i-1);
+                System.out.println(errorFlag+"tututu");
                 errorFlag = true;
             }
         }
@@ -50,6 +53,7 @@ public class DecodeArrayStatisticsWarhammer implements IDecodeArrayStatistics {
             map.put(AttributeEnum.ATTACKS, new UnlimitedAttribute(Integer.parseInt(stats.get(value))));
         } catch (NumberFormatException ex) {
             errorFlag = true;
+            System.out.println(errorFlag+"tututu2");
             System.out.println(value+"value");
             errorIndexes.add(value-1);
             System.out.println(errorIndexes);

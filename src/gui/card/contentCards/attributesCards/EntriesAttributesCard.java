@@ -125,7 +125,6 @@ public class EntriesAttributesCard extends AttributesCard {
 
     public void setEntryIncorrect(int index, int timePeriod) {
 
-        System.out.println(data.titleContent+"cccc");
         var i = index % getMaximumElementNumber();
         if (data.dataType.get(index) == CardContentDataSet.DataType.STRING) {
             var previousBG = entriesList.get(i).getBackground();
