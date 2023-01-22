@@ -110,6 +110,9 @@ public class RoundManager {
         for(int i = 0; i < activeGameObjects.size();i++){
             if(!activeGameObjects.get(i).getCreature().getStatistics().isAlive()){
                 board.removeGameObject(getGameObjectPosition(activeGameObjects.get(i)));
+                if(i<currentIndex){
+                    currentTurn--;
+                }
                 activeGameObjects.remove(activeGameObjects.get(i));
                 i--;
             }
