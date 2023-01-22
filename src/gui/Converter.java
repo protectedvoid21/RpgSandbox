@@ -19,8 +19,9 @@ public class Converter {
     public static CardContentDataSet convertCreatureToDataSetInBasicCard(Creature creature) {
 
         CardContentDataSet data = new CardContentDataSet();
-        data.titlePath = "src/gui/" + creature.getClass().getSimpleName() + "image.png";
+        data.titlePath = creature.getObjectPathPicture();
         data.titleContent = creature.getName();
+        System.out.println(data.titlePath+"totosaff");
 
         var map = new ArrayList<ArrayList<String>>();
         ArrayList<CardContentDataSet.DataType> dataTypesList = new ArrayList<>();

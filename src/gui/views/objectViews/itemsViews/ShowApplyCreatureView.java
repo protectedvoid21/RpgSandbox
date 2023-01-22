@@ -40,8 +40,8 @@ public class ShowApplyCreatureView extends ShowSmallView{
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     clickedIndex = maximumumElements * currentSide + finalI;
-                    if (listenerHashMap.containsKey(clickedIndex) && listenerHashMap.get(clickedIndex).containsKey(ButtonType.APPLY)) {
-                        listenerHashMap.get(clickedIndex).get(ButtonType.APPLY).actionPerformed(e);
+                    if (listenerHashMap.containsKey(finalI) && listenerHashMap.get(finalI).containsKey(ButtonType.APPLY)) {
+                        listenerHashMap.get(finalI).get(ButtonType.APPLY).actionPerformed(e);
                     }
                 }
             });

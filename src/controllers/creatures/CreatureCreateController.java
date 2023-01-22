@@ -47,6 +47,7 @@ public class CreatureCreateController extends Controller {
             
             EntityManager.getInstance().removeCreature(creature);
             Creature newCreature = null;
+            System.out.println(contentData+"moj content");
             
             switch(creatureType) {
                 case MONSTER -> {

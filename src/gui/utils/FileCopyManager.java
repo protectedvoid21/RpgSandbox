@@ -19,6 +19,10 @@ public class FileCopyManager {
         }
     }
 
+    public static String getPathToImage(String img){
+        return "src/gui/copyImages/"+img;
+    }
+
     private static int calculateCopiedFilesNumber() {
         int value = 0;
         try {

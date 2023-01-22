@@ -27,6 +27,7 @@ import java.util.*;
 
 public class EntriesCard extends Card {
     public enum EntryType {SPINNER, ENTRY}
+
     private boolean isImageSet = false;
     private AddingButtonCard choserEqCard2 = null;
     private ChoserCard choserCard;
@@ -118,6 +119,10 @@ public class EntriesCard extends Card {
             ArrayList<CardContentDataSet>> detailData) {
         super.uploadNewData(newData, detailData);
         uploadNewChoserCardData(newData, detailData);
+        if (newData.containsKey(CardTypes.OVERALL)) {
+            rightEntryTitleComponent.getComponent().setContent(newData.get(CardTypes.OVERALL).titleContent);
+            leftButtonyTitleComponent.getComponent().setContent(newData.get(CardTypes.OVERALL).titlePath);
+        }
     }
 
     public void uploadNewChoserCardData(LinkedHashMap<CardTypes, CardContentDataSet> newData, HashMap<CardTypes,
@@ -195,8 +200,9 @@ public class EntriesCard extends Card {
                 if (answer == JFileChooser.APPROVE_OPTION) {
                     isImageSet = true;
                     leftButtonyTitleComponent.getComponent().setContent(String.valueOf(chooser.getSelectedFile().getAbsolutePath()));
-                    activeCard.getData().titlePath = StringAdapter.getRelativePath(FileCopyManager.getLastFileName());
+                    System.out.println(FileCopyManager.getLastFileName());
                     FileCopyManager.copyFile(String.valueOf(chooser.getSelectedFile().getPath()));
+                    activeCard.getData().titlePath = FileCopyManager.getPathToImage(FileCopyManager.getLastFileName());
                 }
             }
         });

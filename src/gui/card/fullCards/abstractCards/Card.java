@@ -213,6 +213,7 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
 
     public void uploadNewData(LinkedHashMap<CardTypes, CardContentDataSet> newData, HashMap<CardTypes,
             ArrayList<CardContentDataSet>> detailData) {
+        System.out.println(newData);
         for (var type : newData.keySet()) {
             if (type != CardTypes.OVERALL && type!=CardTypes.ATTRIBUTE)
                 System.out.println(type);

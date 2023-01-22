@@ -3,13 +3,14 @@ package game.creature;
 import game.interfaces.IStatistics;
 import game.interfaces.RoundListener;
 import game.interfaces.IStruggleStatistics;
+import gui.utils.StringAdapter;
 
 public abstract class Creature implements RoundListener {
     protected IStatistics statistics;
     protected IStruggleStatistics struggleStatistics;
-    protected String name = "Unnamed";
+    protected String name = "";
     protected Experience experience;
-    private String objectPathPicture = "";
+    private String objectPathPicture = StringAdapter.getRelativePath("image.png");
 
     public Creature(IStatistics statistics, Experience experience, IStruggleStatistics struggleStatistics) {
         this.statistics = statistics;
