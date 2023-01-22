@@ -26,7 +26,7 @@ import java.util.Arrays;
 public abstract class BaseGamePanel extends BackgroundView implements PanelContainer {
     private Color baseBackColor;
 
-    private Color secondBackColor = Color.YELLOW;
+    private Color secondBackColor = new Color(0x674F3A);
     private ComponentPanelMenager generalManager;
     protected JPanel panel = new JPanel();
     protected OptionsPanel optionsPanel;//ale inny
@@ -68,7 +68,7 @@ public abstract class BaseGamePanel extends BackgroundView implements PanelConta
                 var but = factory.getFactory().createButton(Card.EMPTY_DATA_CONTENT, null);
                 but.setHasDisabledColor(true);
                 but.setBackground(new Color(0xffca7a));
-                but.setSecondDisabledColor(Color.YELLOW);
+                but.setSecondDisabledColor(secondBackColor);
                 manager.addMiddleComponent(but, i, 5);
                 int finalI = i;
                 int finalJ = j;
@@ -88,6 +88,10 @@ public abstract class BaseGamePanel extends BackgroundView implements PanelConta
         baseBackColor = manager.getMiddleComponent(0, 0).getComponent().getBackground();
         addPanels();
     }
+    public void disableOptionsPanel(){
+        optionsPanel.disablePanel();
+    }
+
     protected void addPanels() {
         panel.add(optionsPanel.getPanel());
         panel.add(manager.getCmp());

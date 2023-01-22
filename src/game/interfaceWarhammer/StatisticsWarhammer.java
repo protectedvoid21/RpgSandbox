@@ -45,8 +45,9 @@ public class StatisticsWarhammer extends Statistics {
 
     @Override
     public void applyNewRound() {
-        for (var effect : effects.values()) {
-            effect.affect();
+        for (EffectEnum effectEnum: EffectEnum.values()) {
+            if(this.effects.get(effectEnum).isActive())
+                effects.get(effectEnum).affect();
         }
     }
 

@@ -11,6 +11,7 @@ import gui.views.gamePanel.optionsPanels.GameOptionsPanel;
 import gui.views.gamePanel.optionsPanels.MultipleGameOptionsPanel;
 import gui.views.gamePanel.optionsPanels.OptionsPanelData;
 
+import java.awt.*;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,10 +23,13 @@ public class GamePanel extends BaseGamePanel {
 
     public enum ActionsLabelsType {ATACK, DEFEND}
     private DefendAttackActionsPanel defendAttackActionsPanel;
+    private InformationPanel informationPanel;
 
 
     public GamePanel(IOverallFactory factory, int size) {
         super(factory, size);
+        informationPanel = new InformationPanel(factory.getFactory());
+        informationPanel.getPanel().addSpace(10);
         defendAttackActionsPanel = new DefendAttackActionsPanel(size);
     }
 
@@ -56,12 +60,19 @@ public class GamePanel extends BaseGamePanel {
         defendAttackActionsPanel.initialize();
     }
 
+    @Override
+    public void setBorder(Color color, int value) {
+        super.setBorder(color, value);
+        informationPanel.setBorder(color, value*2);
+    }
+
     public void removeActionContent(Vector2 pos, ActionsLabelsType type){
         defendAttackActionsPanel.removeActionContent(pos, type);
     }
 
     @Override
     protected void addPanels() {
+        panel.add(informationPanel.getPanel());
         panel.add(optionsPanel.getPanel());
         panel.add(defendAttackActionsPanel.getPanel());
         panel.add(manager.getCmp());
@@ -81,5 +92,9 @@ public class GamePanel extends BaseGamePanel {
 
     public void applyAttackActionsContent(Vector2 position) {
         this.defendAttackActionsPanel.applyAttackActionsContent(position);
+    }
+
+    public void setInformationPanelText(ArrayList<String> content){
+        informationPanel.setNewLabelContent(content);
     }
 }

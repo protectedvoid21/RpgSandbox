@@ -30,8 +30,7 @@ public class MoveListener implements ActionListener {
         
         roundManager.getBoard().move(vector2,point);
         roundManager.getGameObjectWithTurn().getCreature().getStruggleStatistics().getAttribute(ACTIONS_TO_DO).decreaseValue(1);
-        mainPanelGame.getGamePanel().applyContent(roundManager.boardToList());
-        mainPanelGame.getGamePanel().colorButtons(roundManager.getGameObjectWithTurnPosition());
+
         turnOffButtons.turnOff(roundManager,mainPanelGame,0,0);
     }
 }

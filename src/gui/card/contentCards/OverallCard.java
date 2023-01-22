@@ -45,6 +45,7 @@ public class OverallCard extends AbstractCard<JComponent> {
         var sublist = data.content.subList(currentAttrSide * maximumElementNumber, maxSideIndex > dataSize ? dataSize :
                 maxSideIndex);
         int currentIndex = 0;
+        Card.setNonDependantAspectVisible(labelList);
         for (var key : sublist) {
             labelList.get( currentIndex).setContent(key.get(0));
             goList.get(currentIndex).setVisible(true);

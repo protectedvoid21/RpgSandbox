@@ -60,6 +60,7 @@ public class AddingButtonCard extends NormalDetailButtonsCard {
                 maxSideIndex);
         int currentIndex = 0;
 
+        Card.setNonDependantAspectVisible(selectList);
 
         for (int i = currentAttrSide * maximumElementNumber; i < getSideMaximumElementsNumber(); i++) {
             if (addedIndexes.contains(i)) {

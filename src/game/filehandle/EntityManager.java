@@ -1,6 +1,7 @@
 package game.filehandle;
 
 import game.board.Scenario;
+import game.board.ScenarioTester;
 import game.creature.*;
 import game.equipment.*;
 import game.interfaceWarhammer.StatisticsWarhammer;

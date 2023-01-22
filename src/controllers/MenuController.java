@@ -1,6 +1,7 @@
 package controllers;
 
 import controllers.creatures.CreatureTypeController;
+import controllers.game.ApplyGameController;
 import controllers.items.ItemActionController;
 import controllers.items.ItemListController;
 import controllers.items.ItemTypeMenuController;
@@ -25,6 +26,9 @@ public class MenuController extends Controller {
         );
         menuView.getNewGameButton().addActionListener(
                 new RedirectListener(controllerManager, new NewGameController())
+        );
+        menuView.getScenarioButton().addActionListener(
+                new RedirectListener(controllerManager, new ApplyGameController())
         );
         
         mainFrame.add(menuView.getPanel());

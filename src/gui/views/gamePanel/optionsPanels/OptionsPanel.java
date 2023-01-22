@@ -42,6 +42,10 @@ public abstract class OptionsPanel extends BackgroundView implements PanelContai
         }
     }
 
+    public void disablePanel(){
+       setVisible(false);
+    }
+
     public void setCurrentIndexes(int x, int y) {
         currentPoint = new Vector2(x, y);
     }

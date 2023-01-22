@@ -34,6 +34,7 @@ public class DetailSelectButtonCard extends NormalDetailButtonsCard {
         var sublist = data.content.subList(currentAttrSide * maximumElementNumber, maxSideIndex > dataSize ? dataSize :
                 maxSideIndex);
         int currentIndex = 0;
+        Card.setNonDependantAspectVisible(selectList);
         for (var key : sublist) {
             String content = " ";
             var but = selectList.get(currentIndex);
