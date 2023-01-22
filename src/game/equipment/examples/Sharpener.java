@@ -6,8 +6,8 @@ import game.equipment.DisposableItem;
 public class Sharpener extends DisposableItem {
     private Character user;
 
-    public Sharpener(int usageCount, Character user) {
-        super(usageCount);
+    public Sharpener(String name, int usageCount, Character user) {
+        super(name, usageCount);
         this.user=user;
     }
 

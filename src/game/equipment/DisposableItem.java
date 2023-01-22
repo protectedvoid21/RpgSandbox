@@ -5,7 +5,8 @@ import game.interfaces.Statistics;
 public abstract class DisposableItem extends Item {
     private int usageCount;
 
-    public DisposableItem(int usageCount) {
+    public DisposableItem(String name, int usageCount) {
+        super(name);
         if(usageCount < 1) {
             usageCount = 1;
         }

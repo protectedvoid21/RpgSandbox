@@ -40,24 +40,32 @@ public class ItemCreateController extends Controller {
         public void actionPerformed(ActionEvent e) {
             CardContentDataSet contentData;
             
-           /* Item newItem = null;
+            Item newItem = null;
             
             switch (creatorType) {
                 case ARMOR -> {
-                    item = Converter.createArmorFromCard(contentSet);
+                    contentData = view.generateContentData().get(Card.CardTypes.ARMOR);
+                    newItem = Converter.createArmorFromCard(contentData);
                 } 
-                case MOUNT -> item = Converter.createMountFromCard(contentSet);
-                case WEAPONS -> item = Converter.createWeaponFromCard(contentSet);
-            }*/
+                case MOUNT -> {
+                    contentData = view.generateContentData().get(Card.CardTypes.MOUNT);
+                    newItem = Converter.createMountFromCard(contentData);
+                }
+                case WEAPONS -> {
+                    contentData = view.generateContentData().get(Card.CardTypes.WEAPONS);
+                    newItem = Converter.createWeaponFromCard(contentData);
+                }
+            }
             
             if(item == null) {
                 System.out.println("[FATAL ERROR] Passed item is null");
                 return;
             }
 
-            EntityManager.getInstance().addItem(item);
+            EntityManager.getInstance().removeItem(item);
+            EntityManager.getInstance().addItem(newItem);
 
-            controllerManager.changeController(new ItemTypeMenuController());
+            controllerManager.changeController(new ItemListController(creatorType));
         }
     }
 }

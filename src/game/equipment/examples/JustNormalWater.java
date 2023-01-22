@@ -7,8 +7,8 @@ import game.interfaceWarhammer.EffectEnum;
 public class JustNormalWater extends DisposableItem {
     private Character user;
 
-    public JustNormalWater(int usageCount, Character user) {
-        super(usageCount);
+    public JustNormalWater(String name, int usageCount, Character user) {
+        super(name, usageCount);
         this.user=user;
     }
 
