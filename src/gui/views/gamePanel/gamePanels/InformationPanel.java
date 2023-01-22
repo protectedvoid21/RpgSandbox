@@ -87,6 +87,7 @@ public class InformationPanel extends BackgroundView implements PanelContainer {
         for (var pair : content){
             informationLabels.get(index).setContent(pair);
             managerActions.getMiddleComponent(1, index).setVisible(true);
+            index++;
         }
         mainCmp.setVisible(true);
     }
