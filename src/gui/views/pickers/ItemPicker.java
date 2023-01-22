@@ -21,7 +21,7 @@ import java.util.Arrays;
 
 public class ItemPicker implements SwitchableComponent, PanelContainer {
     private DoubleArrowPanel arrows;
-    private DefaultCustomMenuMenager menager =
+    protected DefaultCustomMenuMenager menager =
             new DefaultCustomMenuMenager(ComponentsSeries.ComponentsDimension.VERTICAL,
                     ComponentsSeries.ComponentsDimension.HORIZONTAL);
     private ArrayList<String> items = new ArrayList<>();

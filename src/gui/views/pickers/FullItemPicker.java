@@ -29,7 +29,7 @@ public class FullItemPicker implements SwitchableComponent, PanelContainer {
 
     public FullItemPicker(GuiFactory factory) {
 
-        menager.getCmp().addSpace(4, ComponentPanelMenager.Side.TOP, ComponentPanelMenager.Side.BOTTOM);
+//        menager.getCmp().addSpace(4, ComponentPanelMenager.Side.TOP, ComponentPanelMenager.Side.BOTTOM);
         indexmap.put(0, LabelType.WEAPON);
         indexmap.put(1, LabelType.ARMOR);
         indexmap.put(2, LabelType.MOUNT);

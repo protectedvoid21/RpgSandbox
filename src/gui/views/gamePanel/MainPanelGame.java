@@ -1,5 +1,6 @@
 package gui.views.gamePanel;
 
+import game.equipment.Item;
 import gui.factories.IOverallFactory;
 import gui.card.SharedCmpsFont;
 import gui.customComponents.AbstractCustomButton;
@@ -13,6 +14,7 @@ import gui.views.gamePanel.gamePanels.GamePanel;
 import gui.views.gamePanel.optionsPanels.GameOptionsPanel;
 import gui.views.pickers.FullItemPicker;
 import gui.views.pickers.ItemPicker;
+import gui.views.pickers.MaxioItemPicker;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,6 +30,7 @@ public class MainPanelGame {
                     ComponentsSeries.ComponentsDimension.HORIZONTAL);
     private GamePanel gamePanel;
     private FullItemPicker picker;
+    private MaxioItemPicker itemsItemPicker;
     private AbstractCustomButton exitButton;
     private AbstractCustomButton nextPlayerButton;
     private AbstractCustomButton actionsVisibilityButton;
@@ -39,6 +42,7 @@ public class MainPanelGame {
 
     public MainPanelGame(IOverallFactory factory) {
         this.factory = factory;
+        itemsItemPicker = new MaxioItemPicker(factory.getFactory());
         gamePanel = new GamePanel(factory, 10);
 //        dice = new Dice(factory.getFactory());
         gamePanel.initialize();
@@ -75,7 +79,7 @@ public class MainPanelGame {
         SharedCmpsFont.setUniformFont(new ArrayList<>(Arrays.asList(nextPlayerButton, exitButton)));
     }
 
-    private void actionMethod(String path, boolean value){
+    private void actionMethod(String path, boolean value) {
         gamePanel.setActionsVisibility(value);
         actionsVisibilityButton.setContent(StringAdapter.getRelativePath(path));
     }
@@ -110,7 +114,12 @@ public class MainPanelGame {
         menager.addMiddleComponent(gamePanel.getPanel(), 0, 8);
         menager.addMiddleComponent(seriesPanel, 0, 1, 20);
         menager.getMiddleComponent(0, 1).addSpace(1);
-        seriesPanel.addOption(new ComponentPanelMenager(picker.getPanel()), 10);
+        var cmp1 = new ComponentPanelMenager(picker.getPanel());
+        cmp1.addSpace(2, ComponentPanelMenager.Side.TOP, ComponentPanelMenager.Side.BOTTOM);
+        var cmp2 = new ComponentPanelMenager(itemsItemPicker.getPanel());
+        cmp2.addSpace(2, ComponentPanelMenager.Side.BOTTOM);
+        seriesPanel.addOption(cmp1, 14);
+        seriesPanel.addOption(cmp2, 6);
         for (var component : Arrays.asList(remainingMoves, nextPlayerButton, exitButton, actionsVisibilityButton)) {
             var cmp = new ComponentPanelMenager<>(component);
             cmp.addSpace(1);
@@ -120,11 +129,13 @@ public class MainPanelGame {
         activityOptionsPanel.getPanel().addSpace(2);
         var map = new HashMap<FullItemPicker.LabelType, String>();
         map.put(FullItemPicker.LabelType.WEAPON, StringAdapter.getRelativePath("weapon.png"));
-        map.put(FullItemPicker.LabelType.MOUNT,StringAdapter.getRelativePath("horse.png"));
-        map.put(FullItemPicker.LabelType.ARMOR,StringAdapter.getRelativePath("armor.png"));
+        map.put(FullItemPicker.LabelType.MOUNT, StringAdapter.getRelativePath("horse.png"));
+        map.put(FullItemPicker.LabelType.ARMOR, StringAdapter.getRelativePath("armor.png"));
 //        var secondMap = new HashMap<FullItemPicker.LabelType, ArrayList<String >>();
-//        secondMap.put(FullItemPicker.LabelType.WEAPON, new ArrayList<>(Arrays.asList("src/gui/weapon.png","src/gui/weapon.png","src/gui/weapon.png","src/gui/warback.png")));
-//        secondMap.put(FullItemPicker.LabelType.MOUNT, new ArrayList<>(Arrays.asList("src/gui/weapon.png","src/gui/rightsword.png","src/gui/weapon.png","src/gui/warback.jpg")));
+//        secondMap.put(FullItemPicker.LabelType.WEAPON, new ArrayList<>(Arrays.asList("src/gui/weapon.png",
+//        "src/gui/weapon.png","src/gui/weapon.png","src/gui/warback.png")));
+//        secondMap.put(FullItemPicker.LabelType.MOUNT, new ArrayList<>(Arrays.asList("src/gui/weapon.png",
+//        "src/gui/rightsword.png","src/gui/weapon.png","src/gui/warback.jpg")));
 //        secondMap.put(FullItemPicker.LabelType.ARMOR, new ArrayList<>(Arrays.asList("src/gui/weapon.png")));
 //        picker.uploadItemPaths(secondMap);
         picker.uploadMainPaths(map);
