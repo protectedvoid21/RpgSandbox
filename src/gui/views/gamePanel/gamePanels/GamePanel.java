@@ -72,7 +72,7 @@ public class GamePanel extends BaseGamePanel {
 
     @Override
     protected void addPanels() {
-   //     panel.add(informationPanel.getPanel());
+        panel.add(informationPanel.getPanel());
         panel.add(optionsPanel.getPanel());
         panel.add(defendAttackActionsPanel.getPanel());
         panel.add(manager.getCmp());
