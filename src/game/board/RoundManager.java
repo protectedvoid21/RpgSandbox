@@ -14,8 +14,8 @@ public class RoundManager {
     private Actions actions;
 
     private int currentTurn = 0;
-    private int currentIndex;
-
+   // private int currentIndex;
+   private Object currentEntity;
     public RoundManager(Board board) {
         this.board = board;
         this.actions = initializeActions();
@@ -24,9 +24,8 @@ public class RoundManager {
     }
 
     public GameObject getGameObjectWithTurn() {
-        return activeGameObjects.get(currentIndex);
+        return activeGameObjects.get(activeGameObjects.indexOf(currentEntity));
     }
-
     public Vector2 getGameObjectWithTurnPosition() {
         for (int i = 0; i < getBoard().getHeight(); i++) {
             for (int j = 0; j < getBoard().getWidth(); j++) {
@@ -52,11 +51,14 @@ public class RoundManager {
     }
 
     public void moveToNextObject() {
-        do  {
-            currentIndex++;
-            if (currentIndex >= activeGameObjects.size()) {
-                currentIndex = 0;
+        do {
+            int index = activeGameObjects.indexOf(currentEntity);
+            index++;
+            if (index >= activeGameObjects.size()) {
+                currentEntity = activeGameObjects.get(0);
                 startNewTurn();
+            }else{
+                currentEntity = activeGameObjects.get(index);
             }
         } while (!getGameObjectWithTurn().creature.getStatistics().isAbleToPlay());
         getGameObjectWithTurn().applyNewRound();
@@ -72,6 +74,7 @@ public class RoundManager {
     private void starGame(){
         activeGameObjects = board.getAllGameObjects();
         sortByMovePriority(activeGameObjects);
+        currentEntity = activeGameObjects.get(0);
     }
     public void startNewTurn() {
         currentTurn++;
@@ -107,16 +110,19 @@ public class RoundManager {
 
     }
     public void removeDead(){
-        for(int i = 0; i < activeGameObjects.size();i++){
-            if(!activeGameObjects.get(i).getCreature().getStatistics().isAlive()){
+        var array = new ArrayList<Object>();
+        for (int i = 0; i < activeGameObjects.size(); i++) {
+            if (!activeGameObjects.get(i).getCreature().getStatistics().isAlive()) {
                 board.removeGameObject(getGameObjectPosition(activeGameObjects.get(i)));
-                if(i<currentIndex){
-                    currentTurn--;
-                }
-                activeGameObjects.remove(activeGameObjects.get(i));
-                i--;
+                array.add(activeGameObjects.get(i));
             }
+        }
 
+        for(var obj : array){
+            if(obj==currentEntity){
+                moveToNextObject();
+            }
+            activeGameObjects.remove(obj);
         }
 
     }
