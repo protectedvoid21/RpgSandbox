@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class NPCFactoryWarhammer implements IFactory {
+public class NPCFactoryWarhammer extends IFactory {
 
     @Override
     public NPC creat(ArrayList<String> stats) {
@@ -35,6 +35,7 @@ public class NPCFactoryWarhammer implements IFactory {
         NPC npc = new NPC(statistics,new Inventory(),experience,struggleStatistics);
         npc.setName(name);
         npc.setObjectPathPicture(stats.get(13));
+        setErrors(name, stats.get(13));
         return npc;
     }
 }

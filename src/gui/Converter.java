@@ -15,6 +15,10 @@ import game.cardManager.Warhammer.*;
 import java.util.*;
 
 public class Converter {
+
+    public static int errorSignalNumber = -1;
+    public static boolean errorSignalValue = false;
+
     //widoki entries i basic
     public static CardContentDataSet convertCreatureToDataSetInBasicCard(Creature creature) {
 

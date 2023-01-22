@@ -10,7 +10,7 @@ public abstract class Creature implements RoundListener {
     protected IStruggleStatistics struggleStatistics;
     protected String name = "";
     protected Experience experience;
-    private String objectPathPicture = StringAdapter.getRelativePath("image.png");
+    private String objectPathPicture = "";
 
     public Creature(IStatistics statistics, Experience experience, IStruggleStatistics struggleStatistics) {
         this.statistics = statistics;
