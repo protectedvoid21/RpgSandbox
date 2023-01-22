@@ -8,8 +8,8 @@ public class Main {
     public static void main(String[] args) {
         EntityManager entityManager = new EntityManager("Warhammer");
         Seeder seeder = new SeedManager();
-        seeder.seed();
-        entityManager.saveAllEntities();
+        //seeder.seed();
+        //entityManager.saveAllEntities();
         
         ControllerManager controllerManager = new ControllerManager(new WarHammerFactory());
     }
