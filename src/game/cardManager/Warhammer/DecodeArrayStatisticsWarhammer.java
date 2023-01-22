@@ -14,8 +14,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DecodeArrayStatisticsWarhammer implements IDecodeArrayStatistics {
-    public static ArrayList<Integer> errorIndexes = new ArrayList<>();
-    public static boolean errorFlag = false;
+    private static ArrayList<Integer> errorIndexes = new ArrayList<>();
+    private static boolean errorFlag = false;
 
     @Override
     public Statistics decode(ArrayList<String> stats) {
@@ -24,19 +24,19 @@ public class DecodeArrayStatisticsWarhammer implements IDecodeArrayStatistics {
         Map<IAttributeEnum, AttributeValue> attributes = new HashMap<>();
         for (int i = 1; i < 9; i++) {
             try {
+                var value = Integer.parseInt(stats.get(i));
+                if (value < 0 || value > 100) {
+                    throw new NumberFormatException();
+                }
                 attributes.put(AttributeEnum.values()[i - 1], new LimitedAttribute(0, 100,
-                        Integer.parseInt(stats.get(i))));
+                        value));
+
             } catch (NumberFormatException ex) {
-                errorIndexes.add(i-1);
-                System.out.println(errorFlag+"tututu");
+                errorIndexes.add(i - 1);
                 errorFlag = true;
             }
         }
 
-//        attributes.put(AttributeEnum.ATTACKS, new UnlimitedAttribute(Integer.parseInt(stats.get(9))));
-//        attributes.put(AttributeEnum.HEALTH_POINTS_NOW, new UnlimitedAttribute(Integer.parseInt(stats.get(10))));
-//        attributes.put(AttributeEnum.HEALTH_POINTS_MAX, new UnlimitedAttribute(Integer.parseInt(stats.get(11))));
-//        attributes.put(AttributeEnum.MOVEMENT, new UnlimitedAttribute(Integer.parseInt(stats.get(12))));
         setAttr(stats, attributes, AttributeEnum.ATTACKS, 9);
         setAttr(stats, attributes, AttributeEnum.ATTACKS, 10);
         setAttr(stats, attributes, AttributeEnum.ATTACKS, 11);
@@ -47,16 +47,25 @@ public class DecodeArrayStatisticsWarhammer implements IDecodeArrayStatistics {
         return statistics;
     }
 
+    public static ArrayList<Integer> getErrorIndexes() {
+        return errorIndexes;
+    }
+
+    public static boolean isErrorFlag() {
+        return errorFlag;
+    }
+
     private void setAttr(ArrayList<String> stats, Map<IAttributeEnum, AttributeValue> map, AttributeEnum enumValue,
                          int value) {
         try {
-            map.put(AttributeEnum.ATTACKS, new UnlimitedAttribute(Integer.parseInt(stats.get(value))));
+            var intValue = Integer.parseInt(stats.get(value));
+            if (intValue < 0) {
+                throw new NumberFormatException();
+            }
+            map.put(AttributeEnum.ATTACKS, new UnlimitedAttribute(intValue));
         } catch (NumberFormatException ex) {
             errorFlag = true;
-            System.out.println(errorFlag+"tututu2");
-            System.out.println(value+"value");
-            errorIndexes.add(value-1);
-            System.out.println(errorIndexes);
+            errorIndexes.add(value - 1);
         }
     }
 }

@@ -235,9 +235,13 @@ public class EntriesCard extends Card {
         leftArrows.updateSwitchingButtons();
         if (side == Side.RIGHT) {
             var cmp = rightEntryTitleComponent.getComponent();
+            cmp.getTextComponent().setEnabled(false);
             var previousBG = cmp.getBackground();
             cmp.setBackground(new Color(0x570606));
-            var timer = new Timer(periodTime, e -> cmp.setBackground(previousBG));
+            var timer = new Timer(periodTime, e -> {
+                cmp.setBackground(previousBG);
+                cmp.getTextComponent().setEnabled(true);
+            });
             timer.setRepeats(false);
             timer.start();
         }
