@@ -2,6 +2,7 @@ package controllers.utils;
 
 import controllers.Controller;
 import controllers.ControllerManager;
+import game.generals.Vector2;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

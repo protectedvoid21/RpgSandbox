@@ -9,9 +9,10 @@ import gui.card.fullCards.abstractCards.Card;
 import gui.factories.GuiFactory;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class GameCard extends Card {
-    private ArrayList<DetailSelectButtonCard> gameCards = new ArrayList<>();
+    private HashMap<CardTypes, DetailSelectButtonCard> gameCards = new HashMap<>();
 
     public GameCard(GuiFactory factory) {
         super(factory);
@@ -24,20 +25,22 @@ public class GameCard extends Card {
 
     @Override
     protected void initializeDetailButtonsCardPart(CardTypes type) {
-        var but = new DetailSelectButtonCard(factory);
+        var but = type != CardTypes.ITEMS ? new DetailSelectButtonCard(factory) : new NormalDetailButtonsCard(factory);
         but.initializeCard();
         allCards.put(type, but);
-        gameCards.add(but);
-        for (int i = 0; i<but.getMaximumElementNumber(); i++){
+        if (type != CardTypes.ITEMS)
+            gameCards.put(type, (DetailSelectButtonCard) but);
+        for (int i = 0; i < but.getMaximumElementNumber(); i++) {
             int finalI = i;
-            but.getDetailButton(i).addActionListener(e->detailButtonMethod(but, type, finalI));
+            but.getDetailButton(i).addActionListener(e -> detailButtonMethod(but, type, finalI));
         }
 
     }
 
-    public DetailSelectButtonCard getGameSelectedCard(int index) {
-        return gameCards.get(index);
+    public DetailSelectButtonCard getGameSelectedCard(CardTypes type) {
+        return gameCards.get(type);
     }
+
     @Override
     protected AttributesCard createAttributeCard() {
         return new LabelAttributeCard(factory);

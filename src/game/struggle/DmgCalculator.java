@@ -3,13 +3,15 @@ package game.struggle;
 import game.creature.Character;
 import game.creature.Creature;
 
+import java.util.ArrayList;
+
 import static game.interfaceWarhammer.AttributeEnum.HEALTH_POINTS_NOW;
 import static game.interfaceWarhammer.DependantEnum.STRENGTH_BONUS;
 import static game.interfaceWarhammer.DependantEnum.TOUGHNESS_BONUS;
 
 public class DmgCalculator {
 
-    public static int dealDMG(Creature you, Creature enemy){
+    public static int dealDMG(Creature you, Creature enemy, ArrayList<String> popUp){
 
         int dmg = Dice.roll(1,10) + you.getStatistics().getDependantAttrValue(STRENGTH_BONUS) - enemy.getStatistics().getDependantAttrValue(TOUGHNESS_BONUS);
 
@@ -23,10 +25,14 @@ public class DmgCalculator {
 
         if (dmg>0) {
             enemy.getStatistics().getAttribute(HEALTH_POINTS_NOW).decreaseValue(dmg);
+            popUp.add("You dealt " + dmg + " Dmg");
+        } else {
+            popUp.add("You dealt 0 Dmg");
         }
 
+
         if(you instanceof Character){
-            ((Character) you).getInventory().getActiveWeapon().effected(enemy);
+            ((Character) you).getInventory().getActiveWeapon().effected(enemy,popUp);
         }
 
         return dmg;

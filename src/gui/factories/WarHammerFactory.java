@@ -182,19 +182,22 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
         var p1 = createCreatorPanel();
         var p2 = createCreatorPanel();
         var p3 = createCreatorPanel();
-        p1.setWholePanelDisabled();
-        p2.setWholePanelDisabled();
-        p3.setWholePanelDisabled();
         p1.applyContent(new AbstractMap.SimpleEntry<>(new Vector2(9, 7), playerImagePath),
                 new AbstractMap.SimpleEntry<>(new Vector2(3, 4),
                         npcImage), new AbstractMap.SimpleEntry<>(new Vector2(4, 4), npcImage));
+        ;p2.applyContent(new AbstractMap.SimpleEntry<>(new Vector2(9, 7), playerImagePath),
+                new AbstractMap.SimpleEntry<>(new Vector2(3, 4),
+                        npcImage), new AbstractMap.SimpleEntry<>(new Vector2(4, 4), npcImage));
         ;
-        panel.uploadData(new ArrayList<>(Arrays.asList(p1, p2, p3)));
+        p1.setWholePanelDisabled();
+        p2.setWholePanelDisabled();
+        p3.setWholePanelDisabled();
+        panel.uploadData(new ArrayList<>(Arrays.asList(p1,p2,p3)));
 
         return panel;
     }
 
-    private CreatorPanel createCreatorPanel() {
+    public CreatorPanel createCreatorPanel() {
         setFactoriesMode(Mode.BASIC);
         var panel = new CreatorPanel(this, 10);
         panel.initialize();
@@ -270,7 +273,7 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
         card.initialize();
         card.setUniformFont();
         card.setCancelButtonStatus(true);
-        card.uploadNewData(generateSecondMap(), generateHashMap());
+//        card.uploadNewData(generateSecondMap(), generateHashMap());
         return card;
     }
 
@@ -1020,7 +1023,7 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
         mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
 
         mapa.get(0).set(0, StringAdapter.getRelativePath("stats.png"));
-        mapa.get(3).set(0, StringAdapter.getRelativePath("armor.png"));
+        mapa.get(3).set(0, StringAdapter.getRelativePath("gui/armor.png"));
         mapa.get(2).set(0, StringAdapter.getRelativePath("weapon.png"));
         mapa.get(1).set(0, StringAdapter.getRelativePath("effect.png"));
         mapa.get(4).set(0, StringAdapter.getRelativePath("horse.png"));

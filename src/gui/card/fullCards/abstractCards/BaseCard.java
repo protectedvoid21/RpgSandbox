@@ -73,6 +73,13 @@ public abstract class BaseCard implements ICustomBackgorund, PanelContainer {
         }
     }
 
+    public static <T extends JComponent & IContentCustomUICmp> void setNonDependantAspectVisible(ArrayList<T> container
+    ) {
+        for (var cmp : container) {
+            cmp.setVisible(true);
+        }
+    }
+
     public void initializeTitle() {//zmienia sie
         titleSeries.addMainComponent(10);
         titleSeries.addMainComponent(10);

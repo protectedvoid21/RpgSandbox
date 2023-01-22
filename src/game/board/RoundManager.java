@@ -2,6 +2,7 @@ package game.board;
 
 import java.util.*;
 
+import game.creature.Creature;
 import game.generals.Vector2;
 import game.interfaceWarhammer.ActionsWarhammer;
 import game.interfaces.Actions;
@@ -12,18 +13,19 @@ public class RoundManager {
 
     private Actions actions;
 
-    private int currentTurn = 1;
-    private int currentIndex;
-
+    private int currentTurn = 0;
+   // private int currentIndex;
+   private Object currentEntity;
     public RoundManager(Board board) {
         this.board = board;
         this.actions = initializeActions();
+        currentTurn++;
+        starGame();
     }
 
     public GameObject getGameObjectWithTurn() {
-        return activeGameObjects.get(currentIndex);
+        return activeGameObjects.get(activeGameObjects.indexOf(currentEntity));
     }
-
     public Vector2 getGameObjectWithTurnPosition() {
         for (int i = 0; i < getBoard().getHeight(); i++) {
             for (int j = 0; j < getBoard().getWidth(); j++) {
@@ -49,15 +51,19 @@ public class RoundManager {
     }
 
     public void moveToNextObject() {
-        while (!getGameObjectWithTurn().creature.getStatistics().isAbleToPlay()) {
-            currentIndex++;
-        }
+        do {
+            int index = activeGameObjects.indexOf(currentEntity);
+            index++;
+            if (index >= activeGameObjects.size()) {
+                currentEntity = activeGameObjects.get(0);
+                startNewTurn();
+            }else{
+                currentEntity = activeGameObjects.get(index);
+            }
+        } while (!getGameObjectWithTurn().creature.getStatistics().isAbleToPlay());
         getGameObjectWithTurn().applyNewRound();
 
-        if (currentIndex >= activeGameObjects.size()) {
-            currentIndex = 0;
-            startNewTurn();
-        }
+
     }
 
     private Actions initializeActions() {
@@ -65,6 +71,11 @@ public class RoundManager {
         return actions;
     }
 
+    private void starGame(){
+        activeGameObjects = board.getAllGameObjects();
+        sortByMovePriority(activeGameObjects);
+        currentEntity = activeGameObjects.get(0);
+    }
     public void startNewTurn() {
         currentTurn++;
         activeGameObjects = board.getAllGameObjects();
@@ -96,6 +107,23 @@ public class RoundManager {
 
         return result;
 
+
+    }
+    public void removeDead(){
+        var array = new ArrayList<Object>();
+        for (int i = 0; i < activeGameObjects.size(); i++) {
+            if (!activeGameObjects.get(i).getCreature().getStatistics().isAlive()) {
+                board.removeGameObject(getGameObjectPosition(activeGameObjects.get(i)));
+                array.add(activeGameObjects.get(i));
+            }
+        }
+
+        for(var obj : array){
+            if(obj==currentEntity){
+                moveToNextObject();
+            }
+            activeGameObjects.remove(obj);
+        }
 
     }
 

@@ -2,6 +2,8 @@ package game.interfaces;
 
 import game.creature.Creature;
 import game.struggle.Action;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,8 +17,8 @@ public abstract class Actions {
 
     protected abstract void initializeActions();
 
-    public void doAction(IActionsEnum iActionsEnum, Creature you, Creature enemy){
-        actions.get(iActionsEnum).doAction(you, enemy);
+    public void doAction(IActionsEnum iActionsEnum, Creature you, Creature enemy, ArrayList<String> popUp){
+        actions.get(iActionsEnum).doAction(you, enemy,popUp);
     };
     public void doAction(IActionsEnum iActionsEnum, Creature you){
         actions.get(iActionsEnum).doAction(you);
