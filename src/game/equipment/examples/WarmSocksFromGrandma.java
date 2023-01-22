@@ -7,8 +7,8 @@ import game.interfaceWarhammer.EffectEnum;
 public class WarmSocksFromGrandma extends DisposableItem {
     private Character user;
 
-    public WarmSocksFromGrandma(int usageCount, Character user) {
-        super(usageCount);
+    public WarmSocksFromGrandma(String name, int usageCount, Character user) {
+        super(name, usageCount);
         this.user=user;
     }
 

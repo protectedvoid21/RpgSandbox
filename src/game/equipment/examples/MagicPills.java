@@ -7,8 +7,8 @@ import game.interfaceWarhammer.EffectEnum;
 public class MagicPills extends DisposableItem {
     private Character user;
 
-    public MagicPills(int usageCount, Character user) {
-        super(usageCount);
+    public MagicPills(String name, int usageCount, Character user) {
+        super(name, usageCount);
         this.user=user;
     }
 

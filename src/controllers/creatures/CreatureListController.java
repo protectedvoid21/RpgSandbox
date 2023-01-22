@@ -43,9 +43,9 @@ public class CreatureListController extends Controller {
 
         ArrayList<ArrayList<String>> data = new ArrayList<>();
         for(var creature : creatureList) {
-            System.out.println(creature.getName());
             data.add(new ArrayList<>(Arrays.asList(creature.getObjectPathPicture(), creature.getName())));
         }
+        
         for(int i = 0; i < 4; i++) {
             view.addButtonActionListener(AllObjectsView.ButtonType.DELETE, i, new DeleteButtonListener());
             view.addButtonActionListener(AllObjectsView.ButtonType.EDIT, i, new EditButtonListener());

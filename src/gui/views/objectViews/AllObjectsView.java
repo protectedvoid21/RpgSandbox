@@ -32,7 +32,6 @@ public abstract class AllObjectsView extends BackgroundView implements Switchabl
 
 
     public void addButtonActionListener(ButtonType type, int index, ActionListener listener) {
-        JButton button = null;
         if (!listenerHashMap.containsKey(index)) {
             listenerHashMap.put(index, new HashMap<>());
         }

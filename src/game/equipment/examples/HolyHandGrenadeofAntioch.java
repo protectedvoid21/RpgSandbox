@@ -13,8 +13,8 @@ import static game.interfaceWarhammer.AttributeEnum.HEALTH_POINTS_NOW;
 public class HolyHandGrenadeofAntioch extends DisposableItem {
     private int range;
 
-    public HolyHandGrenadeofAntioch(int usageCount) {
-        super(usageCount);
+    public HolyHandGrenadeofAntioch(String name, int usageCount) {
+        super(name, usageCount);
         range = 2;
     }
 
