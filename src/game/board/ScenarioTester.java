@@ -38,7 +38,7 @@ public class ScenarioTester {
         scenarioData.get(2).creature.setObjectPathPicture("src/gui/stats.png");
         scenarioData.get(3).position = new Vector2(0, 0);
 
-        Weapon weapon = new Weapon("weapon1", 100, 10);
+        Weapon weapon = new Weapon("weapon1", 10, 10,100,100,100,100);
         Mount mount = new Mount("horse1", 20);
         Mount mount1 = new Mount("horse2", 30);
         Mount mount2 = new Mount("horse3", 40);

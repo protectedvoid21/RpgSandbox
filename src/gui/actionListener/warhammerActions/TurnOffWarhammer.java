@@ -1,6 +1,8 @@
 package gui.actionListener.warhammerActions;
 
 import game.board.RoundManager;
+import game.creature.Character;
+import game.creature.Monster;
 import game.generals.Vector2;
 import game.interfaceWarhammer.ActionsEnum;
 import game.interfaces.ITurnOffButtons;
@@ -21,11 +23,16 @@ public class TurnOffWarhammer implements ITurnOffButtons {
         int n;
         int m;
 
+        List<Vector2> attackRange = new ArrayList<>();
 
         List<Vector2> range = MathHelper.getGridCircle(roundManager.getGameObjectWithTurn().getCreature().getSpeed(),
                 roundManager.getGameObjectWithTurnPosition());
-        List<Vector2> attackRange = MathHelper.getNextCells(roundManager.getGameObjectWithTurnPosition());
+        if (roundManager.getGameObjectWithTurn().getCreature() instanceof Monster) {
 
+            attackRange = MathHelper.getNextCells(roundManager.getGameObjectWithTurnPosition());
+        } else if (roundManager.getGameObjectWithTurn().getCreature() instanceof Character){
+            attackRange = MathHelper.getGridCircle(((Character) roundManager.getGameObjectWithTurn().getCreature()).getInventory().getActiveWeapon().getRange(),roundManager.getGameObjectWithTurnPosition());
+        }
 
         for (int i = 0; i < roundManager.getBoard().getHeight(); i++) {
             for (int j = 0; j < roundManager.getBoard().getWidth(); j++) {
