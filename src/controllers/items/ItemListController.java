@@ -22,6 +22,7 @@ import java.util.List;
 public class ItemListController extends Controller {
     private FullSmallView view;
     private Card.CreatorTypes creatorType;
+    private Card.CardTypes cardType;
     private List<? extends Item> itemList;
 
     public ItemListController(Card.CreatorTypes creatorType) {
@@ -32,14 +33,17 @@ public class ItemListController extends Controller {
     public void run(IOverallFactory overallFactory) {
         switch(creatorType) {
             case ARMOR -> {
+                cardType = Card.CardTypes.ARMOR;
                 itemList = EntityManager.getInstance().getArmorList();
                 view = overallFactory.createAllArmorsItemsView();
             }
             case WEAPONS -> {
+                cardType = Card.CardTypes.WEAPONS;
                 itemList = EntityManager.getInstance().getWeaponList();
                 view = overallFactory.createAllWeaponsItemsView();
             }
-            default -> {
+            case MOUNT -> {
+                cardType = Card.CardTypes.MOUNT;
                 itemList = EntityManager.getInstance().getMountList();
                 view = overallFactory.createAllMountsItemsView();
             }
@@ -75,7 +79,7 @@ public class ItemListController extends Controller {
     private class ShowButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            controllerManager.changeController(new ItemShowController(itemList.get(view.getClickedIndex()), creatorType));
+            controllerManager.changeController(new ItemShowController(view.getClickedIndex(), cardType, creatorType));
         }
     }
 

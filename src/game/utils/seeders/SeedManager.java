@@ -7,10 +7,11 @@ public class SeedManager implements Seeder {
     private List<Seeder> seeders = new ArrayList<>();
     
     public SeedManager() {
+        seeders.add(new ItemSeeder());
         seeders.add(new MonsterSeeder());
         seeders.add(new PlayerSeeder());
         seeders.add(new NPCSeeder());
-        seeders.add(new ItemSeeder());
+        seeders.add(new ScenarioSeeder());
     }
     
     @Override

@@ -3,7 +3,6 @@ package controllers.game;
 import controllers.Controller;
 import controllers.MenuController;
 import controllers.utils.RedirectListener;
-import game.board.ScenarioTester;
 import game.creature.Character;
 import game.creature.Creature;
 import game.filehandle.EntityManager;

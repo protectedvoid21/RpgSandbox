@@ -127,6 +127,14 @@ public class EntriesCard extends Card {
         }
     }
 
+    @Override
+    public void uploadCreatorItemsData(CardContentDataSet data, CreatorTypes type) {
+        super.uploadCreatorItemsData(data, type);
+        rightEntryTitleComponent.getComponent().setContent(data.titleContent);
+        leftButtonyTitleComponent.getComponent().setContent(data.titlePath);
+
+    }
+
     public void uploadNewChoserCardData(LinkedHashMap<CardTypes, CardContentDataSet> newData, HashMap<CardTypes,
             ArrayList<CardContentDataSet>> detailData) {
         choserCard.uploadNewData(newData, detailData);
@@ -222,7 +230,7 @@ public class EntriesCard extends Card {
         initializeCancelPanelObject(saveButton, 1);
     }
 
-    public CardContentDataSet getCurrectCreatorItemData() {
+    public CardContentDataSet getCurrentCreatorItemData() {
         amwGeneratorCard.getData().titlePath = leftButtonyTitleComponent.getComponent().getContent();
         amwGeneratorCard.getData().titleContent = rightEntryTitleComponent.getComponent().getContent();
         return amwGeneratorCard.generateContentData();

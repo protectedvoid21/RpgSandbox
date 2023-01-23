@@ -38,9 +38,9 @@ public class DecodeArrayStatisticsWarhammer implements IDecodeArrayStatistics {
         }
 
         setAttr(stats, attributes, AttributeEnum.ATTACKS, 9);
-        setAttr(stats, attributes, AttributeEnum.ATTACKS, 10);
-        setAttr(stats, attributes, AttributeEnum.ATTACKS, 11);
-        setAttr(stats, attributes, AttributeEnum.ATTACKS, 12);
+        setAttr(stats, attributes, AttributeEnum.HEALTH_POINTS_NOW, 10);
+        setAttr(stats, attributes, AttributeEnum.HEALTH_POINTS_MAX, 11);
+        setAttr(stats, attributes, AttributeEnum.MOVEMENT, 12);
 
         StatisticsWarhammer statistics = new StatisticsWarhammer(attributes);
 
@@ -62,7 +62,7 @@ public class DecodeArrayStatisticsWarhammer implements IDecodeArrayStatistics {
             if (intValue < 0) {
                 throw new NumberFormatException();
             }
-            map.put(AttributeEnum.ATTACKS, new UnlimitedAttribute(intValue));
+            map.put(enumValue, new UnlimitedAttribute(intValue));
         } catch (NumberFormatException ex) {
             errorFlag = true;
             errorIndexes.add(value - 1);
