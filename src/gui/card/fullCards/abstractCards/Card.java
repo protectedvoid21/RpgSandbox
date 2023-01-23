@@ -176,7 +176,7 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
         leftArrows.updateSwitchingButtons();
     }
 
-    public void initializeCardData(){
+    public void initializeCardData() {
         creatorData.put(CreatorTypes.ARMOR, new CardContentDataSet());
         creatorData.put(CreatorTypes.MOUNT, new CardContentDataSet());
         creatorData.put(CreatorTypes.WEAPONS, new CardContentDataSet());
@@ -188,6 +188,7 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
         creatorData.put(CreatorTypes.WEAPONS, weapon);
         //jeszcze items albo i nie
     }
+
     public void uploadCreatorItemsData(CardContentDataSet data, CreatorTypes type) {
         creatorData.put(type, data);
         //jeszcze items albo i nie
@@ -221,11 +222,8 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
 
     public void uploadNewData(LinkedHashMap<CardTypes, CardContentDataSet> newData, HashMap<CardTypes,
             ArrayList<CardContentDataSet>> detailData) {
-        System.out.println(newData);
         for (var type : newData.keySet()) {
-            if (type != CardTypes.OVERALL && type!=CardTypes.ATTRIBUTE)
-                System.out.println(type);
-                allCards.get(type).initializeCardData(newData.get(type), detailData.get(type));
+            allCards.get(type).initializeCardData(newData.get(type), detailData.get(type));
         }
         var a = new ArrayList<CardTypes>();
         for (var key : newData.keySet()) {

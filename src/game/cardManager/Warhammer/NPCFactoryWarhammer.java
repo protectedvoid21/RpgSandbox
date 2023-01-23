@@ -35,7 +35,7 @@ public class NPCFactoryWarhammer extends IFactory {
         NPC npc = new NPC(statistics,new Inventory(),experience,struggleStatistics);
         npc.setName(name);
         npc.setObjectPathPicture(stats.get(13));
-        setErrors(name, stats.get(13));
+        setErrors(name, stats.get(13), DecodeArrayStatisticsWarhammer.getErrorValidationChecker().getErrorIndexes());
         return npc;
     }
 }

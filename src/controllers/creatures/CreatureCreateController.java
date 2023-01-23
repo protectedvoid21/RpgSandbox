@@ -63,13 +63,13 @@ public class CreatureCreateController extends Controller {
                     newCreature = Converter.createNPCFromCard(contentData);
                 }
             }
-            if (IFactory.isErrorFlag()) {
-                view.setEntriesIncorrect(IFactory.getErrorIndexes(), 1500);
-                if (IFactory.isPathError())
+            if (IFactory.getErrorValidationChecker().isErrorFlag()) {
+                view.setEntriesIncorrect(IFactory.getErrorValidationChecker().getErrorIndexes(), 1500);
+                if (IFactory.getErrorValidationChecker().isPathError())
                     view.setTitleIncorrect(BaseCard.Side.LEFT, 1500);
-                if (IFactory.isNameError())
+                if (IFactory.getErrorValidationChecker().isNameError())
                     view.setTitleIncorrect(BaseCard.Side.RIGHT, 1500);
-                IFactory.resetErrorFlags();
+                IFactory.getErrorValidationChecker().resetErrorFlags();
                 return;
             }
 

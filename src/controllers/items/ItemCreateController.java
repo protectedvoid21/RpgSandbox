@@ -7,8 +7,10 @@ import game.equipment.Item;
 import game.equipment.Mount;
 import game.equipment.Weapon;
 import game.filehandle.EntityManager;
+import game.interfaces.IFactory;
 import gui.Converter;
 import gui.card.CardContentDataSet;
+import gui.card.fullCards.abstractCards.BaseCard;
 import gui.card.fullCards.abstractCards.Card;
 import gui.card.fullCards.specificCards.EntriesCard;
 import gui.factories.IOverallFactory;
@@ -76,7 +78,13 @@ public class ItemCreateController extends Controller {
                 System.out.println("[FATAL ERROR] Passed item is null");
                 return;
             }
-            if(newItem.getName().isEmpty()) {
+            if (Converter.getErrorValidationChecker().isErrorFlag()) {
+                view.setEntriesIncorrect(Converter.getErrorValidationChecker().getErrorIndexes(), 1500);
+                if (Converter.getErrorValidationChecker().isPathError())
+                    view.setTitleIncorrect(BaseCard.Side.LEFT, 1500);
+                if (Converter.getErrorValidationChecker().isNameError())
+                    view.setTitleIncorrect(BaseCard.Side.RIGHT, 1500);
+                IFactory.getErrorValidationChecker().resetErrorFlags();
                 return;
             }
             

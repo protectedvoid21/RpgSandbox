@@ -38,7 +38,7 @@ public class MonsterFactoryWarhammer extends IFactory {
         Monster monster = new Monster(statistics,experience,struggleStatistics);
         monster.setName(name);
         monster.setObjectPathPicture(stats.get(13));
-        setErrors(name, stats.get(13));
+        setErrors(name, stats.get(13), DecodeArrayStatisticsWarhammer.getErrorValidationChecker().getErrorIndexes());
         return monster;
     }
 }

@@ -26,14 +26,14 @@ public class DummyCreator {
     }
     
     public static Weapon getWeapon() {
-        return new Weapon("Unnamed", 10, 2);
+        return new Weapon("", 10, 2);
     }
 
     public static Mount getMount() {
-        return new Mount("Unnamed", 3);
+        return new Mount("", 3);
     }
 
     public static Armor getArmor() {
-        return new Armor("Unnamed", 5);
+        return new Armor("", 5);
     }
 }

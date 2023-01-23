@@ -123,15 +123,18 @@ public class EntriesCard extends Card {
         uploadNewChoserCardData(newData, detailData);
         if (newData.containsKey(CardTypes.OVERALL)) {
             rightEntryTitleComponent.getComponent().setContent(newData.get(CardTypes.OVERALL).titleContent);
-            leftButtonyTitleComponent.getComponent().setContent(newData.get(CardTypes.OVERALL).titlePath.equals(Card.EMPTY_DATA_CONTENT) ? EntriesCard.baseEnabledPhotoPath : newData.get(CardTypes.OVERALL).titlePath);
+            leftButtonyTitleComponent.getComponent().setContent(newData.get(CardTypes.OVERALL).titlePath.equals(Card.EMPTY_DATA_CONTENT) ?
+                    EntriesCard.baseEnabledPhotoPath : newData.get(CardTypes.OVERALL).titlePath);
         }
     }
 
     @Override
     public void uploadCreatorItemsData(CardContentDataSet data, CreatorTypes type) {
         super.uploadCreatorItemsData(data, type);
+        System.out.println(data);
         rightEntryTitleComponent.getComponent().setContent(data.titleContent);
-        leftButtonyTitleComponent.getComponent().setContent(data.titlePath);
+        leftButtonyTitleComponent.getComponent().setContent(data.titlePath.equals(Card.EMPTY_DATA_CONTENT) ?
+                EntriesCard.baseEnabledPhotoPath : data.titlePath);
 
     }
 

@@ -2,53 +2,26 @@ package game.interfaces;
 
 import game.cardManager.Warhammer.DecodeArrayStatisticsWarhammer;
 import game.creature.Creature;
+import game.utils.ErrorValidationChecker;
 
 import java.util.ArrayList;
 
 public abstract class IFactory {
 
-    private static ArrayList<Integer> errorIndexes = new ArrayList<>();
-    private static boolean errorFlag = false;
-    private static boolean nameError = false;
-    private static boolean pathError = false;
+    protected static ErrorValidationChecker errorValidationChecker = new ErrorValidationChecker();
 
     public abstract Creature creat(ArrayList<String> stats);
 
-    public static void resetErrorFlags() {
-        errorFlag = false;
-        nameError = false;
-        pathError = false;
-        errorIndexes.clear();
+    public static ErrorValidationChecker getErrorValidationChecker() {
+        return errorValidationChecker;
     }
-
-    protected void setErrors( String name, String path){
-        if(!errorFlag){
-            errorFlag = DecodeArrayStatisticsWarhammer.isErrorFlag();
-        }
-        errorIndexes = DecodeArrayStatisticsWarhammer.getErrorIndexes();
+    protected void setErrors(String name, String path, ArrayList<Integer> indexes){
         if(name.isEmpty()){
-            errorFlag = true;
-            nameError = true;
+            errorValidationChecker.setNameErrorOnTrue();
         }
         if(path.isEmpty()){
-            errorFlag = true;
-            pathError = true;
+            errorValidationChecker.setPathErrorOnTrue();
         }
-    }
-
-    public static ArrayList<Integer> getErrorIndexes() {
-        return errorIndexes;
-    }
-
-    public static boolean isErrorFlag() {
-        return errorFlag;
-    }
-
-    public static boolean isNameError() {
-        return nameError;
-    }
-
-    public static boolean isPathError() {
-        return pathError;
+        errorValidationChecker.setErrorIndexes(indexes);
     }
 }

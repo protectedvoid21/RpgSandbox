@@ -240,7 +240,7 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
         card.setBorder(basicBorderColor, basicBorderSize);
         card.setCancelButtonStatus(true);
         card.setUniformFont();
-        card.uploadNewData(generateSecondMap(), generateHashMap());
+//        card.uploadNewData(generateSecondMap(), generateHashMap());
         return card;
     }
 
@@ -252,7 +252,7 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
         card.initialize();
         card.setUniformFont();
         card.setCancelButtonStatus(true);
-        card.uploadNewData(generateSecondMap(), generateHashMap());
+//        card.uploadNewData(generateSecondMap(), generateHashMap());
 //        card.setBorder(basicBorderColor, basicBorderSize);
 //        card.setBackgroundImage(cardBackground);
 //        card.initialize();
@@ -301,617 +301,617 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
     }
 
 
-    private CardContentDataSet generateData2() {
-        var mapa = new ArrayList<ArrayList<String>>();
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"XDDD", "1fd0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"XDDD", "1fd0"})));
+//    private CardContentDataSet generateData2() {
+//        var mapa = new ArrayList<ArrayList<String>>();
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"XDDD", "1fd0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"XDDD", "1fd0"})));
+//
+//
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
+//
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"XDDD", "1fd0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
+//
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
+//        var mapa2 = new ArrayList<ArrayList<String>>();
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATRdfgdfgYBUT1", "10"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"XDdfgdfgDD", "1fd0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAdfsdfM", "10f"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"MOfdgfC", "1fd0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"POWdfgdfgER", "1dfdgdf0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATRgdfgYBUT1", "10"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"XDfgfggDD", "1fgdfgdfgf0"})));
+//
+//
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
+//
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"XDDD", "1fd0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
+//
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
+//
+//        mapa.get(0).set(0, "src/gui/stats.png");
+//        mapa.get(1).set(0, "src/gui/armor.png");
+//        mapa.get(2).set(0, "src/gui/weapon.png");
+//        mapa.get(3).set(0, "src/gui/effect.png");
+//        mapa.get(4).set(0, "src/gui/horse.png");
+//
+//        CardContentDataSet data = new CardContentDataSet();
+//        data.content = mapa;
+//        data.titleContent = "WITCH";
+//        data.titlePath = "src/gui/witch.png";
+//        data.dataType = new ArrayList<>(Arrays.asList(CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.STRING, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING));
+//
+//        CardContentDataSet data2 = new CardContentDataSet();
+//        data2.content = mapa2;
+//        data2.titleContent = "WITCH";
+//        data2.titlePath = "src/gui/witch.png";
+//        data2.dataType = new ArrayList<>(Arrays.asList(CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.STRING, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING));
+//
+//
+//        var x = new LinkedHashMap<Card.CardTypes, CardContentDataSet>();
+//        for (var key : Card.CardTypes.values()) {
+//            x.put(key, data);
+//        }
+//        var hash = new LinkedHashMap<Card.CardTypes, ArrayList<CardContentDataSet>>();
+//        for (var type : Arrays.asList(Card.CardTypes.MOUNT, Card.CardTypes.WEAPONS, Card.CardTypes.EFFECTS,
+//                Card.CardTypes.ARMOR, Card.CardTypes.ITEMS)) {
+//            hash.put(type, new ArrayList<>(Arrays.asList(data2, data, data, data2, data2, data2, data2, data2, data2,
+//                    data2,
+//                    data2, data, data2, data2, data2, data2, data2, data2, data2, data2, data2, data2, data2, data2,
+//                    data2, data2,
+//                    data2, data2, data2, data2, data, data, data, data, data, data, data, data, data, data, data,
+//                    data, data, data, data, data, data, data, data, data, data)));
+//        }
+//
+//        return data2;
+//    }
 
+//    private CardContentDataSet generateData1() {
+//        var mapa = new ArrayList<ArrayList<String>>();
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"XDDD", "1fd0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"XDDD", "1fd0"})));
+//
+//
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
+//
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"XDDD", "1fd0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
+//
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
+//        var mapa2 = new ArrayList<ArrayList<String>>();
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATRdfgdfgYBUT1", "10"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"XDdfgdfgDD", "1fd0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAdfsdfM", "10f"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"MOfdgfC", "1fd0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"POWdfgdfgER", "1dfdgdf0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATRgdfgYBUT1", "10"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"XDfgfggDD", "1fgdfgdfgf0"})));
+//
+//
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
+//
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"XDDD", "1fd0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
+//
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
+//
+//        mapa.get(0).set(0, "src/gui/stats.png");
+//        mapa.get(1).set(0, "src/gui/armor.png");
+//        mapa.get(2).set(0, "src/gui/weapon.png");
+//        mapa.get(3).set(0, "src/gui/effect.png");
+//        mapa.get(4).set(0, "src/gui/horse.png");
+//
+//        CardContentDataSet data = new CardContentDataSet();
+//        data.content = mapa;
+//        data.titleContent = "WITCH";
+//        data.titlePath = "src/gui/witch.png";
+//        data.dataType = new ArrayList<>(Arrays.asList(CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.STRING, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING));
+//
+//        CardContentDataSet data2 = new CardContentDataSet();
+//        data2.content = mapa2;
+//        data2.titleContent = "WITCH";
+//        data2.titlePath = "src/gui/witch.png";
+//        data2.dataType = new ArrayList<>(Arrays.asList(CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.STRING, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING));
+//
+//
+//        var x = new LinkedHashMap<Card.CardTypes, CardContentDataSet>();
+//        for (var key : Card.CardTypes.values()) {
+//            x.put(key, data);
+//        }
+//        var hash = new LinkedHashMap<Card.CardTypes, ArrayList<CardContentDataSet>>();
+//        for (var type : Arrays.asList(Card.CardTypes.MOUNT, Card.CardTypes.WEAPONS, Card.CardTypes.EFFECTS,
+//                Card.CardTypes.ARMOR, Card.CardTypes.ITEMS)) {
+//            hash.put(type, new ArrayList<>(Arrays.asList(data2, data, data, data2, data2, data2, data2, data2, data2,
+//                    data2,
+//                    data2, data, data2, data2, data2, data2, data2, data2, data2, data2, data2, data2, data2, data2,
+//                    data2, data2,
+//                    data2, data2, data2, data2, data, data, data, data, data, data, data, data, data, data, data,
+//                    data, data, data, data, data, data, data, data, data, data)));
+//        }
+//
+//        return data;
+//    }
 
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
+//    private LinkedHashMap<Card.CardTypes, ArrayList<CardContentDataSet>> generateHashMap() {
+//        var mapa = new ArrayList<ArrayList<String>>();
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"XDDD", "1fd0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"XDDD", "1fd0"})));
+//
+//
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
+//
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"XDDD", "1fd0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
+//
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
+//        var mapa2 = new ArrayList<ArrayList<String>>();
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATRdfgdfgYBUT1", "10"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"XDdfgdfgDD", "1fd0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAdfsdfM", "10f"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"MOfdgfC", "1fd0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"POWdfgdfgER", "1dfdgdf0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATRgdfgYBUT1", "10"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"XDfgfggDD", "1fgdfgdfgf0"})));
+//
+//
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
+//
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"XDDD", "1fd0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
+//
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
+//
+//        mapa.get(0).set(0, "src/gui/stats.png");
+//        mapa.get(1).set(0, "src/gui/armor.png");
+//        mapa.get(2).set(0, "src/gui/weapon.png");
+//        mapa.get(3).set(0, "src/gui/effect.png");
+//        mapa.get(4).set(0, "src/gui/horse.png");
+//
+//        CardContentDataSet data = new CardContentDataSet();
+//        data.content = mapa;
+//        data.titleContent = "WITCH";
+//        data.titlePath = "src/gui/witch.png";
+//        data.dataType = new ArrayList<>(Arrays.asList(CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.STRING, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING));
+//
+//        CardContentDataSet data2 = new CardContentDataSet();
+//        data2.content = mapa2;
+//        data2.titleContent = "WITCH";
+//        data2.titlePath = "src/gui/witch.png";
+//        data2.dataType = new ArrayList<>(Arrays.asList(CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.STRING, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING));
+//
+//
+//        var x = new LinkedHashMap<Card.CardTypes, CardContentDataSet>();
+//        for (var key : Card.CardTypes.values()) {
+//            x.put(key, data);
+//        }
+//        var hash = new LinkedHashMap<Card.CardTypes, ArrayList<CardContentDataSet>>();
+//        for (var type : Arrays.asList(Card.CardTypes.MOUNT, Card.CardTypes.WEAPONS, Card.CardTypes.EFFECTS,
+//                Card.CardTypes.ARMOR, Card.CardTypes.ITEMS)) {
+//            hash.put(type, new ArrayList<>(Arrays.asList(data2, data, data, data2, data2, data2, data2, data2, data2,
+//                    data2,
+//                    data2, data, data2, data2, data2, data2, data2, data2, data2, data2, data2, data2, data2, data2,
+//                    data2, data2,
+//                    data2, data2, data2, data2, data, data, data, data, data, data, data, data, data, data, data,
+//                    data, data, data, data, data, data, data, data, data, data)));
+//        }
+//
+//        return hash;
+//    }
 
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"XDDD", "1fd0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
-
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
-        var mapa2 = new ArrayList<ArrayList<String>>();
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATRdfgdfgYBUT1", "10"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"XDdfgdfgDD", "1fd0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAdfsdfM", "10f"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"MOfdgfC", "1fd0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"POWdfgdfgER", "1dfdgdf0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATRgdfgYBUT1", "10"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"XDfgfggDD", "1fgdfgdfgf0"})));
-
-
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
-
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"XDDD", "1fd0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
-
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
-
-        mapa.get(0).set(0, "src/gui/stats.png");
-        mapa.get(1).set(0, "src/gui/armor.png");
-        mapa.get(2).set(0, "src/gui/weapon.png");
-        mapa.get(3).set(0, "src/gui/effect.png");
-        mapa.get(4).set(0, "src/gui/horse.png");
-
-        CardContentDataSet data = new CardContentDataSet();
-        data.content = mapa;
-        data.titleContent = "WITCH";
-        data.titlePath = "src/gui/witch.png";
-        data.dataType = new ArrayList<>(Arrays.asList(CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.STRING, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING));
-
-        CardContentDataSet data2 = new CardContentDataSet();
-        data2.content = mapa2;
-        data2.titleContent = "WITCH";
-        data2.titlePath = "src/gui/witch.png";
-        data2.dataType = new ArrayList<>(Arrays.asList(CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.STRING, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING));
-
-
-        var x = new LinkedHashMap<Card.CardTypes, CardContentDataSet>();
-        for (var key : Card.CardTypes.values()) {
-            x.put(key, data);
-        }
-        var hash = new LinkedHashMap<Card.CardTypes, ArrayList<CardContentDataSet>>();
-        for (var type : Arrays.asList(Card.CardTypes.MOUNT, Card.CardTypes.WEAPONS, Card.CardTypes.EFFECTS,
-                Card.CardTypes.ARMOR, Card.CardTypes.ITEMS)) {
-            hash.put(type, new ArrayList<>(Arrays.asList(data2, data, data, data2, data2, data2, data2, data2, data2,
-                    data2,
-                    data2, data, data2, data2, data2, data2, data2, data2, data2, data2, data2, data2, data2, data2,
-                    data2, data2,
-                    data2, data2, data2, data2, data, data, data, data, data, data, data, data, data, data, data,
-                    data, data, data, data, data, data, data, data, data, data)));
-        }
-
-        return data2;
-    }
-
-    private CardContentDataSet generateData1() {
-        var mapa = new ArrayList<ArrayList<String>>();
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"XDDD", "1fd0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"XDDD", "1fd0"})));
-
-
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
-
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"XDDD", "1fd0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
-
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
-        var mapa2 = new ArrayList<ArrayList<String>>();
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATRdfgdfgYBUT1", "10"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"XDdfgdfgDD", "1fd0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAdfsdfM", "10f"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"MOfdgfC", "1fd0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"POWdfgdfgER", "1dfdgdf0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATRgdfgYBUT1", "10"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"XDfgfggDD", "1fgdfgdfgf0"})));
-
-
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
-
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"XDDD", "1fd0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
-
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
-
-        mapa.get(0).set(0, "src/gui/stats.png");
-        mapa.get(1).set(0, "src/gui/armor.png");
-        mapa.get(2).set(0, "src/gui/weapon.png");
-        mapa.get(3).set(0, "src/gui/effect.png");
-        mapa.get(4).set(0, "src/gui/horse.png");
-
-        CardContentDataSet data = new CardContentDataSet();
-        data.content = mapa;
-        data.titleContent = "WITCH";
-        data.titlePath = "src/gui/witch.png";
-        data.dataType = new ArrayList<>(Arrays.asList(CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.STRING, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING));
-
-        CardContentDataSet data2 = new CardContentDataSet();
-        data2.content = mapa2;
-        data2.titleContent = "WITCH";
-        data2.titlePath = "src/gui/witch.png";
-        data2.dataType = new ArrayList<>(Arrays.asList(CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.STRING, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING));
-
-
-        var x = new LinkedHashMap<Card.CardTypes, CardContentDataSet>();
-        for (var key : Card.CardTypes.values()) {
-            x.put(key, data);
-        }
-        var hash = new LinkedHashMap<Card.CardTypes, ArrayList<CardContentDataSet>>();
-        for (var type : Arrays.asList(Card.CardTypes.MOUNT, Card.CardTypes.WEAPONS, Card.CardTypes.EFFECTS,
-                Card.CardTypes.ARMOR, Card.CardTypes.ITEMS)) {
-            hash.put(type, new ArrayList<>(Arrays.asList(data2, data, data, data2, data2, data2, data2, data2, data2,
-                    data2,
-                    data2, data, data2, data2, data2, data2, data2, data2, data2, data2, data2, data2, data2, data2,
-                    data2, data2,
-                    data2, data2, data2, data2, data, data, data, data, data, data, data, data, data, data, data,
-                    data, data, data, data, data, data, data, data, data, data)));
-        }
-
-        return data;
-    }
-
-    private LinkedHashMap<Card.CardTypes, ArrayList<CardContentDataSet>> generateHashMap() {
-        var mapa = new ArrayList<ArrayList<String>>();
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"XDDD", "1fd0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"XDDD", "1fd0"})));
-
-
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
-
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"XDDD", "1fd0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
-
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
-        var mapa2 = new ArrayList<ArrayList<String>>();
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATRdfgdfgYBUT1", "10"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"XDdfgdfgDD", "1fd0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAdfsdfM", "10f"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"MOfdgfC", "1fd0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"POWdfgdfgER", "1dfdgdf0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATRgdfgYBUT1", "10"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"XDfgfggDD", "1fgdfgdfgf0"})));
-
-
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
-
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"XDDD", "1fd0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
-
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
-
-        mapa.get(0).set(0, "src/gui/stats.png");
-        mapa.get(1).set(0, "src/gui/armor.png");
-        mapa.get(2).set(0, "src/gui/weapon.png");
-        mapa.get(3).set(0, "src/gui/effect.png");
-        mapa.get(4).set(0, "src/gui/horse.png");
-
-        CardContentDataSet data = new CardContentDataSet();
-        data.content = mapa;
-        data.titleContent = "WITCH";
-        data.titlePath = "src/gui/witch.png";
-        data.dataType = new ArrayList<>(Arrays.asList(CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.STRING, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING));
-
-        CardContentDataSet data2 = new CardContentDataSet();
-        data2.content = mapa2;
-        data2.titleContent = "WITCH";
-        data2.titlePath = "src/gui/witch.png";
-        data2.dataType = new ArrayList<>(Arrays.asList(CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.STRING, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING));
-
-
-        var x = new LinkedHashMap<Card.CardTypes, CardContentDataSet>();
-        for (var key : Card.CardTypes.values()) {
-            x.put(key, data);
-        }
-        var hash = new LinkedHashMap<Card.CardTypes, ArrayList<CardContentDataSet>>();
-        for (var type : Arrays.asList(Card.CardTypes.MOUNT, Card.CardTypes.WEAPONS, Card.CardTypes.EFFECTS,
-                Card.CardTypes.ARMOR, Card.CardTypes.ITEMS)) {
-            hash.put(type, new ArrayList<>(Arrays.asList(data2, data, data, data2, data2, data2, data2, data2, data2,
-                    data2,
-                    data2, data, data2, data2, data2, data2, data2, data2, data2, data2, data2, data2, data2, data2,
-                    data2, data2,
-                    data2, data2, data2, data2, data, data, data, data, data, data, data, data, data, data, data,
-                    data, data, data, data, data, data, data, data, data, data)));
-        }
-
-        return hash;
-    }
-
-    public LinkedHashMap<Card.CardTypes, CardContentDataSet> generateSecondMap() {
-        var mapa = new ArrayList<ArrayList<String>>();
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"XDDD", "1fd0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"XDDD", "1fd0"})));
-
-
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
-
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"XDDD", "1fd0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
-
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
-        var mapa2 = new ArrayList<ArrayList<String>>();
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATRdfgdfgYBUT1", "10"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"XDdfgdfgDD", "1fd0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAdfsdfM", "10f"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"MOfdgfC", "1fd0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"POWdfgdfgER", "1dfdgdf0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATRgdfgYBUT1", "10"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"XDfgfggDD", "1fgdfgdfgf0"})));
-
-
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
-
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"XDDD", "1fd0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
-
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
-        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
-        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
-
-        mapa.get(0).set(0, "src/gui/stats.png");
-        mapa.get(1).set(0, "src/gui/armor.png");
-        mapa.get(2).set(0, "src/gui/weapon.png");
-        mapa.get(3).set(0, "src/gui/effect.png");
-        mapa.get(4).set(0, "src/gui/horse.png");
-
-        CardContentDataSet data = new CardContentDataSet();
-        data.content = mapa;
-        data.titleContent = "WITCH";
-        data.titlePath = "src/gui/witch.png";
-        data.dataType = new ArrayList<>(Arrays.asList(CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.STRING, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING));
-
-        CardContentDataSet data2 = new CardContentDataSet();
-        data2.content = mapa2;
-        data2.titleContent = "WITCH";
-        data2.titlePath = "src/gui/witch.png";
-        data2.dataType = new ArrayList<>(Arrays.asList(CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.STRING, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
-                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING));
-
-
-        var x = new LinkedHashMap<Card.CardTypes, CardContentDataSet>();
-        for (var key : Card.CardTypes.values()) {
-            x.put(key, data);
-        }
-        var hash = new LinkedHashMap<Card.CardTypes, ArrayList<CardContentDataSet>>();
-        for (var type : Arrays.asList(Card.CardTypes.MOUNT, Card.CardTypes.WEAPONS, Card.CardTypes.EFFECTS,
-                Card.CardTypes.ARMOR, Card.CardTypes.ITEMS)) {
-            hash.put(type, new ArrayList<>(Arrays.asList(data2, data, data, data2, data2, data2, data2, data2, data2,
-                    data2,
-                    data2, data, data2, data2, data2, data2, data2, data2, data2, data2, data2, data2, data2, data2,
-                    data2, data2,
-                    data2, data2, data2, data2, data, data, data, data, data, data, data, data, data, data, data,
-                    data, data, data, data, data, data, data, data, data, data)));
-        }
-
-        return x;
-    }
+//    public LinkedHashMap<Card.CardTypes, CardContentDataSet> generateSecondMap() {
+//        var mapa = new ArrayList<ArrayList<String>>();
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"XDDD", "1fd0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"XDDD", "1fd0"})));
+//
+//
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
+//
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"XDDD", "1fd0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
+//
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
+//        var mapa2 = new ArrayList<ArrayList<String>>();
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATRdfgdfgYBUT1", "10"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"XDdfgdfgDD", "1fd0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAdfsdfM", "10f"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"MOfdgfC", "1fd0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"POWdfgdfgER", "1dfdgdf0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATRgdfgYBUT1", "10"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"XDfgfggDD", "1fgdfgdfgf0"})));
+//
+//
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
+//
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"XDDD", "1fd0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"COSTAM", "10f"})));
+//
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"MOC", "1fd0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"ATACK", "1fd0"})));
+//        mapa2.add(new ArrayList<>(Arrays.asList(new String[]{"POWER", "1df0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"DEFENSIVESKILLS", "1f0"})));
+//        mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ARMOR", "1f0"})));
+//
+//        mapa.get(0).set(0, "src/gui/stats.png");
+//        mapa.get(1).set(0, "src/gui/armor.png");
+//        mapa.get(2).set(0, "src/gui/weapon.png");
+//        mapa.get(3).set(0, "src/gui/effect.png");
+//        mapa.get(4).set(0, "src/gui/horse.png");
+//
+//        CardContentDataSet data = new CardContentDataSet();
+//        data.content = mapa;
+//        data.titleContent = "WITCH";
+//        data.titlePath = "src/gui/witch.png";
+//        data.dataType = new ArrayList<>(Arrays.asList(CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.STRING, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING));
+//
+//        CardContentDataSet data2 = new CardContentDataSet();
+//        data2.content = mapa2;
+//        data2.titleContent = "WITCH";
+//        data2.titlePath = "src/gui/witch.png";
+//        data2.dataType = new ArrayList<>(Arrays.asList(CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.STRING, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.BOOLEAN,
+//                CardContentDataSet.DataType.BOOLEAN, CardContentDataSet.DataType.STRING));
+//
+//
+//        var x = new LinkedHashMap<Card.CardTypes, CardContentDataSet>();
+//        for (var key : Card.CardTypes.values()) {
+//            x.put(key, data);
+//        }
+//        var hash = new LinkedHashMap<Card.CardTypes, ArrayList<CardContentDataSet>>();
+//        for (var type : Arrays.asList(Card.CardTypes.MOUNT, Card.CardTypes.WEAPONS, Card.CardTypes.EFFECTS,
+//                Card.CardTypes.ARMOR, Card.CardTypes.ITEMS)) {
+//            hash.put(type, new ArrayList<>(Arrays.asList(data2, data, data, data2, data2, data2, data2, data2, data2,
+//                    data2,
+//                    data2, data, data2, data2, data2, data2, data2, data2, data2, data2, data2, data2, data2, data2,
+//                    data2, data2,
+//                    data2, data2, data2, data2, data, data, data, data, data, data, data, data, data, data, data,
+//                    data, data, data, data, data, data, data, data, data, data)));
+//        }
+//
+//        return x;
+//    }
 
 
     private OnlyVisibleCard createSmallItemCard(OnlyVisibleCard card) {
@@ -1003,7 +1003,7 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
         card.initialize();
         card.setUniformFont();
         card.setCancelButtonStatus(true);
-        card.uploadNewData(generateSecondMap(), generateHashMap());
+//        card.uploadNewData(generateSecondMap(), generateHashMap());
         return card;
 
     }

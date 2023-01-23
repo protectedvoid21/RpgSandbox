@@ -31,10 +31,11 @@ public class PCFactoryWarhammer extends IFactory {
         StruggleStatistics struggleStatistics = new StruggleStatisticsWarhammer();
         Experience experience = new Experience(exp);
 
-        PlayerCharacter playerCharacter = new PlayerCharacter(statistics,new Inventory(),experience,struggleStatistics);
+        PlayerCharacter playerCharacter = new PlayerCharacter(statistics, new Inventory(), experience,
+                struggleStatistics);
         playerCharacter.setName(name);
         playerCharacter.setObjectPathPicture(stats.get(13));
-        setErrors(name, stats.get(13));
+        setErrors(name, stats.get(13), DecodeArrayStatisticsWarhammer.getErrorValidationChecker().getErrorIndexes());
         return playerCharacter;
     }
 }

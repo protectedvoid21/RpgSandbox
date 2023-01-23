@@ -6,6 +6,7 @@ import game.equipment.*;
 import game.interfaceWarhammer.AttributeEnum;
 import game.interfaceWarhammer.StatisticsWarhammer;
 import game.interfaceWarhammer.StruggleStatisticsWarhammer;
+import game.utils.ErrorValidationChecker;
 import game.utils.MathHelper;
 import gui.card.CardContentDataSet;
 import gui.card.fullCards.abstractCards.Card;
@@ -16,8 +17,11 @@ import java.util.*;
 
 public class Converter {
 
-    public static int errorSignalNumber = -1;
-    public static boolean errorSignalValue = false;
+    private static ErrorValidationChecker errorValidationChecker = new ErrorValidationChecker();
+
+    public static ErrorValidationChecker getErrorValidationChecker() {
+        return errorValidationChecker;
+    }
 
     //widoki entries i basic
     public static CardContentDataSet convertCreatureToDataSetInBasicCard(Creature creature) {
@@ -25,8 +29,6 @@ public class Converter {
         CardContentDataSet data = new CardContentDataSet();
         data.titlePath = creature.getObjectPathPicture();
         data.titleContent = creature.getName();
-        System.out.println(data.titlePath+"totosaff");
-
         var map = new ArrayList<ArrayList<String>>();
         ArrayList<CardContentDataSet.DataType> dataTypesList = new ArrayList<>();
 
@@ -142,7 +144,7 @@ public class Converter {
         var map = new LinkedHashMap<Card.CardTypes, ArrayList<CardContentDataSet>>();
 
         if (basecreature instanceof Character) {
-            var creature = (Character)basecreature;
+            var creature = (Character) basecreature;
             var armorlist = new ArrayList<CardContentDataSet>();
             for (var armor : creature.getInventory().getArmors()) {
                 armorlist.add(detailsView(armor));
@@ -181,7 +183,7 @@ public class Converter {
             map.put(Card.CardTypes.WEAPONS, convertWeaponsToDataSet((Character) creature));
             map.put(Card.CardTypes.ITEMS, convertWeaponsToDataSet((Character) creature));
         }
-        if(creature instanceof Monster){
+        if (creature instanceof Monster) {
             map.put(Card.CardTypes.OVERALL, convertCreatureToDataSetInBasicCard(creature));
             map.put(Card.CardTypes.ATTRIBUTE, convertStatsToDataSet(creature));
         }
@@ -266,7 +268,7 @@ public class Converter {
 
         var map = new ArrayList<ArrayList<String>>();
         ArrayList<CardContentDataSet.DataType> dataTypesList = new ArrayList<>();
-        
+
         System.out.println("NOT IMPLEMENTED");
         //todo fix inventory filtering due to previous Inventory class changes
         /*for (var item : character.getInventory().getItems()) {
@@ -333,7 +335,7 @@ public class Converter {
         CardContentDataSet data = new CardContentDataSet();
         data.titlePath = mount.getItemPathPicture();
         data.titleContent = mount.getName();
-        
+
         var map = new ArrayList<ArrayList<String>>();
         ArrayList<CardContentDataSet.DataType> dataTypesList = new ArrayList<>();
 
@@ -427,14 +429,12 @@ public class Converter {
         if (item instanceof Armor) {
             var defence = ((Armor) item).getDefence();
             map.add(new ArrayList<>(Arrays.asList("defence", Integer.toString(defence))));
-        }
-        else if (item instanceof Weapon) {
+        } else if (item instanceof Weapon) {
             var damage = ((Weapon) item).getDamage();
             var range = ((Weapon) item).getRange();
             map.add(new ArrayList<>(Arrays.asList("damage", Integer.toString(damage))));
             map.add(new ArrayList<>(Arrays.asList("range", Integer.toString(range))));
-        }
-        else if (item instanceof Mount) {
+        } else if (item instanceof Mount) {
             var speed = ((Mount) item).getSpeed();
             map.add(new ArrayList<>(Arrays.asList("speed", Integer.toString(speed))));
         }
@@ -485,17 +485,22 @@ public class Converter {
 
     public static Weapon createWeaponFromCard(CardContentDataSet data) {
         String name = data.titleContent;
+        setValidationOfNameAndPath(name, data.titlePath);
         int damage = 0;
         int range = 0;
         for (var parameter : data.content) {
             if (parameter.get(0).equals("damage")) {
                 if (MathHelper.isNumeric(parameter.get(1))) {
                     damage = Integer.parseInt(parameter.get(1));
+                } else {
+                    errorValidationChecker.addIntexToErrorList(data.content.indexOf(parameter));
                 }
             }
             if (parameter.get(0).equals("range")) {
                 if (MathHelper.isNumeric(parameter.get(1))) {
                     range = Integer.parseInt(parameter.get(1));
+                } else {
+                    errorValidationChecker.addIntexToErrorList(data.content.indexOf(parameter));
                 }
             }
         }
@@ -505,11 +510,14 @@ public class Converter {
 
     public static Armor createArmorFromCard(CardContentDataSet data) {
         String name = data.titleContent;
+        setValidationOfNameAndPath(name, data.titlePath);
         int defence = 0;
         for (var parameter : data.content) {
             if (parameter.get(0).equals("defence")) {
                 if (MathHelper.isNumeric(parameter.get(1))) {
                     defence = Integer.parseInt(parameter.get(1));
+                } else {
+                    errorValidationChecker.addIntexToErrorList(data.content.indexOf(parameter));
                 }
             }
         }
@@ -517,16 +525,29 @@ public class Converter {
         return armor;
     }
 
+    private static void setValidationOfNameAndPath(String name, String path) {
+        if (name.isEmpty()) {
+            errorValidationChecker.setNameErrorOnTrue();
+        }
+        if (path.isEmpty()) {
+            errorValidationChecker.setPathErrorOnTrue();
+        }
+    }
+
     public static Mount createMountFromCard(CardContentDataSet data) {
         String name = data.titleContent;
+        setValidationOfNameAndPath(name, data.titlePath);
         int speed = 0;
         for (var parameter : data.content) {
             if (parameter.get(0).equals("speed")) {
                 if (MathHelper.isNumeric(parameter.get(1))) {
                     speed = Integer.parseInt(parameter.get(1));
+                } else {
+                    errorValidationChecker.addIntexToErrorList(data.content.indexOf(parameter));
                 }
             }
         }
+
         Mount mount = new Mount(name, speed);
         return mount;
     }
@@ -534,7 +555,7 @@ public class Converter {
     public static PlayerCharacter createPlayerCharacterFromCard(CardContentDataSet data) {
         ArrayList<String> stats = new ArrayList<>();
         stats.add(data.titleContent);
-        for (var attributeList: data.content)
+        for (var attributeList : data.content)
             stats.add(attributeList.get(1));
         stats.add(data.titlePath);
         PCFactoryWarhammer PCfactory = new PCFactoryWarhammer();
@@ -544,7 +565,7 @@ public class Converter {
     public static NPC createNPCFromCard(CardContentDataSet data) {
         ArrayList<String> stats = new ArrayList<>();
         stats.add(data.titleContent);
-        for (var attributeList: data.content)
+        for (var attributeList : data.content)
             stats.add(attributeList.get(1));
         stats.add(data.titlePath);
         NPCFactoryWarhammer NPCfactory = new NPCFactoryWarhammer();
@@ -554,10 +575,10 @@ public class Converter {
     public static Monster createMonsterFromCard(CardContentDataSet data) {
         ArrayList<String> stats = new ArrayList<>();
         stats.add(data.titleContent);
-        for (var attributeList: data.content) {
+        for (var attributeList : data.content) {
             stats.add(attributeList.get(1));
         }
-            
+
         stats.add(data.titlePath);
         MonsterFactoryWarhammer monsterFactory = new MonsterFactoryWarhammer();
         return monsterFactory.creat(stats);
@@ -586,7 +607,8 @@ public class Converter {
         inventory.addItem(mount1);
         inventory.addItem(mount2);
         inventory.addItem(armor);
-        PlayerCharacter playerCharacter = new PlayerCharacter(new StatisticsWarhammer(), inventory, new Experience(10), new StruggleStatisticsWarhammer());
+        PlayerCharacter playerCharacter = new PlayerCharacter(new StatisticsWarhammer(), inventory,
+                new Experience(10), new StruggleStatisticsWarhammer());
         playerCharacter.setName("Shgjehrk");
         playerCharacter.setObjectPathPicture("/src/gui/playerimage.png");
 
@@ -596,11 +618,11 @@ public class Converter {
         MonsterFactoryWarhammer mF = new MonsterFactoryWarhammer();
         ArrayList<String> test1 = new ArrayList<>();
         test1.add("Khafil");
-        for (int i = 1; i<13; i++)
+        for (int i = 1; i < 13; i++)
             test1.add(Integer.toString(i));
         test1.add("pathimage.png");
         System.out.println(test1.size());
-        Monster m1  = mF.creat(test1);
+        Monster m1 = mF.creat(test1);
         Monster m2 = createMonsterFromCard(convertStatsToDataSet(m1));
 
     }
