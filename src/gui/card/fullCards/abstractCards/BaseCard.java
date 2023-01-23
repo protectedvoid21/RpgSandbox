@@ -20,7 +20,6 @@ public abstract class BaseCard implements ICustomBackgorund, PanelContainer {
                     ComponentsSeries.ComponentsDimension.HORIZONTAL);
     protected ComponentPanelMenager<AbstractCustomLabel> leftTitleComponent;
     protected ComponentPanelMenager<AbstractCustomLabel> rightTitleComponent;
-//    protected ComponentPanelMenager<CustomTextComponent> rightEntryTitleComponent;
 
     protected DefaultCustomMenuMenager seriesPanel;
     protected GuiFactory factory;

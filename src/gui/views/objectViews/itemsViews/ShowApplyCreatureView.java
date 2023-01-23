@@ -31,18 +31,14 @@ public class ShowApplyCreatureView extends ShowSmallView{
         manager.addMainComponent(3);
         for (int i = 0; i<number; i++){
             var button = factory.getFactory().createButton("APPLY", null);
-//            button.getCustomUI().setOffSet(4);
             applyButtons.add(button);
             manager.addMiddleComponent(button, 2,10);
             manager.getMiddleComponent(2, i).addSpace(5);
             int finalI = i;
-            button.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    clickedIndex = maximumumElements * currentSide + finalI;
-                    if (listenerHashMap.containsKey(finalI) && listenerHashMap.get(finalI).containsKey(ButtonType.APPLY)) {
-                        listenerHashMap.get(finalI).get(ButtonType.APPLY).actionPerformed(e);
-                    }
+            button.addActionListener(e -> {
+                clickedIndex = maximumumElements * currentSide + finalI;
+                if (listenerHashMap.containsKey(finalI) && listenerHashMap.get(finalI).containsKey(ButtonType.APPLY)) {
+                    listenerHashMap.get(finalI).get(ButtonType.APPLY).actionPerformed(e);
                 }
             });
         }

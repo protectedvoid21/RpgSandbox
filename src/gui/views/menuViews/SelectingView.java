@@ -68,14 +68,14 @@ public class SelectingView extends BackgroundView implements PanelContainer {
 
     public void createPanel(String path, String text, int index) {
         var button = factory.createButton(path, null);
-        button.getCustomUI().setOffSet(5);
+        button.getCustomUI().setOffSet(3);
         buttons.add(button);
         manager.addMiddleComponent(button, 0, 10);
 
         manager.getMiddleComponent(0, index).addSpace(1);
 
         var label = factory.createLabel(text);
-        label.getCustomUI().setOffSet(5);
+        label.getCustomUI().setOffSet(2);
         labels.add(label);
         manager.addMiddleComponent(label, 1, 10);
 

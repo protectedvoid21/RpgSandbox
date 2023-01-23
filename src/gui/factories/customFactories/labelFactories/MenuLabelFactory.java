@@ -10,13 +10,14 @@ import gui.customUI.interfaces.ICustomUI;
 import gui.customUI.wrapers.ChangingBorderColorWraper;
 import gui.customUI.wrapers.DarkerHoverComponentWraper;
 import gui.customUI.wrapers.ImageBorderWraper;
+import gui.utils.StringAdapter;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class MenuLabelFactory extends ImageLabelFactory {
     private String pathLeft = "";
-    private String pathRight = "src/gui/rightsword.png";
+    private String pathRight = StringAdapter.getRelativePath("rightsword.png");
 
     public MenuLabelFactory(double scalingSizeValue, double scalingPositionValue) {
         super(scalingSizeValue, scalingPositionValue);

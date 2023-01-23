@@ -4,7 +4,7 @@ import game.interfaces.IStatistics;
 import game.interfaces.Statistics;
 
 public abstract class Item {
-    private String name = "Unnamed";
+    private String name = "";
     private String itemPathPicture ="";
     
     public abstract boolean isValid();

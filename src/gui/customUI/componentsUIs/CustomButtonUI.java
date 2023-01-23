@@ -15,14 +15,12 @@ public class CustomButtonUI extends BasicButtonUI implements IComponentTextMargi
     private ICustomUI ui;
     public CustomButtonUI(ICustomUI ui){
         this.ui = ui;
-
     }
     @Override
     public void installUI (JComponent c) {
         super.installUI(c);
         ui.installUI(c);
     }
-
     @Override
     public void paint (Graphics g, JComponent c) {
         ui.paint(g, c);

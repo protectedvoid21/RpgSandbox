@@ -2,7 +2,6 @@ package gui;
 
 import game.creature.Experience;
 import game.creature.Monster;
-import game.creature.PlayerCharacter;
 import game.equipment.Armor;
 import game.equipment.Inventory;
 import game.equipment.Mount;
@@ -14,6 +13,7 @@ import gui.card.DoubleArrowPanel;
 import gui.card.fullCards.abstractCards.Card;
 import gui.factories.IOverallFactory;
 import gui.factories.WarHammerFactory;
+import gui.utils.Converter;
 import gui.views.gamePanel.gamePanels.GamePanel;
 import gui.views.pickers.CustomLambdaExpression;
 import gui.views.pickers.FullItemPicker;
@@ -22,7 +22,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.util.AbstractMap;
-import java.util.HashMap;
 
 public class TestMainGui {
     static Font pixel;
@@ -134,12 +133,11 @@ public class TestMainGui {
 //        ramka.add(f.createViewingItemsPanel().getPanel());
         //       var ff = f.createCreatorGameView();
 
-//         ff.getCreatorPanel().applyNewCreatureOnPosition("aa", new Vector2(2,3));
 //        ramka.add(ff.getPanel());
 //        ramka.add(f.createAllCreatureShowView().getPanel());
 //        ramka.add(f.createCreaturesPanel().getPanel());
 //        ramka.add(f.createCreatorApplyingCharacterView().getPanel());
-        var z = f.createCreatorCard(Card.CreatorTypes.ARMOR);
+        var z = f.createCreatorCard(Card.CardTypes.ARMOR);
         ramka.add(z.getPanel());
 //        ramka.add(f.createBasicCard().getPanel());
 //        ramka.add(f.createOverallItemPanel().getPanel());

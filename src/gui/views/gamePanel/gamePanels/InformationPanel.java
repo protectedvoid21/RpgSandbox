@@ -68,7 +68,6 @@ public class InformationPanel extends BackgroundView implements PanelContainer {
         }
         managerActions.addMiddleComponent(button, 2, 10);
         managerActions.getMiddleComponent(0, 0).addSpace(3);
-//        managerActions.getMiddleComponent(1, 0).addSpace(2);
         managerActions.getMiddleComponent(2, 0).addSpace(10, ComponentPanelMenager.Side.RIGHT, ComponentPanelMenager.Side.LEFT);
         managerActions.getMiddleComponent(2, 0).addSpace(2, ComponentPanelMenager.Side.TOP, ComponentPanelMenager.Side.BOTTOM);
         clear();

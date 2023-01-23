@@ -96,7 +96,7 @@ public class DefendAttackActionsPanel implements PanelContainer {
             }
         }
         managerActions.getMiddleComponent(position.x,
-                position.y).addSpace(6 - space * 2 >= 0 ? 6 - space * 2 : 0);
+                position.y).addSpace(Math.max(6 - space * 2, 0));
     }
 
 }
