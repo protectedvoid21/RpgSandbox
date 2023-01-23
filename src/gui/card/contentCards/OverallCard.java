@@ -20,7 +20,6 @@ public class OverallCard extends AbstractCard<JComponent> {
                     ComponentsSeries.ComponentsDimension.HORIZONTAL);
     protected ArrayList<AbstractCustomLabel> labelList = new ArrayList<>();
     protected ArrayList<AbstractCustomButton> goList = new ArrayList<>();
-    //    private Card parent;
     private LinkedHashMap<Card.CardTypes, ActionListener> cardActions = new LinkedHashMap<>();
 
     /**
@@ -87,7 +86,6 @@ public class OverallCard extends AbstractCard<JComponent> {
             goList.add(button);
             i++;
         }
-//        updateContent();
 
     }
 

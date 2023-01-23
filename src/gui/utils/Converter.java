@@ -35,8 +35,6 @@ public class Converter implements WarhammerData {
         ArrayList<CardContentDataSet.DataType> dataTypesList = new ArrayList<>();
 
         map.add(new ArrayList<>(Arrays.asList(StringAdapter.getRelativePath("stats.png"))));
-//        map.add(new ArrayList<>(Arrays.asList("src/gui/effect.png")));
-
         if (creature instanceof Character) {
             map.add(new ArrayList<>(Arrays.asList(horsePath)));
             map.add(new ArrayList<>(Arrays.asList(armorPath)));

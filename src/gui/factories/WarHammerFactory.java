@@ -373,10 +373,8 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
 
     private void createSmallCard(OnlyVisibleCard card) {
         factory.setBorderStrategy(new AverageBorderStartegy());
-//        var card = new OnlyVisibleCard(factory, 6);
         card.initialize();
         card.setBorder(basicBorderColor, basicBorderSize);
-//        card.uploadNewData("src/gui/stats.png", "bandage", "src/gui/stats.png");
         var mapa = new ArrayList<ArrayList<String>>();
         mapa.add(new ArrayList<>(Arrays.asList(new String[]{"ATRYBUT1", "10"})));
         mapa.add(new ArrayList<>(Arrays.asList(new String[]{"XDDD", "1fd0"})));

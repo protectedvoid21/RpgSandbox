@@ -10,11 +10,13 @@ import game.equipment.Item;
 import game.filehandle.EntityManager;
 import gui.card.fullCards.abstractCards.Card;
 import gui.factories.IOverallFactory;
+import gui.utils.FileManager;
 import gui.views.objectViews.AllObjectsView;
 import gui.views.objectViews.itemsViews.FullSmallView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -86,7 +88,9 @@ public class ItemListController extends Controller {
     private class DeleteButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            itemList.remove(view.getClickedIndex());
+            var index = view.getClickedIndex();
+            FileManager.deleteFile(itemList.get(index).getItemPathPicture());
+            itemList.remove(index);
             EntityManager.getInstance().saveAllEntities();
         }
     }

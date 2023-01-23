@@ -15,11 +15,9 @@ import java.awt.*;
  */
 public class CustomLabelUI extends BasicLabelUI implements IComponentTextMargin {
     private ICustomUI ui;
-
     public CustomLabelUI(ICustomUI ui) {
         this.ui = ui;
     }
-
 
     @Override
     public void installUI(JComponent c) {

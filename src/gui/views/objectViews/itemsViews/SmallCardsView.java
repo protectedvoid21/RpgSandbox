@@ -60,8 +60,7 @@ public abstract class SmallCardsView extends AllObjectsView {
     protected void updateContent() {
         int maxSideIndex = getSideMaximumElementsNumber();
         int dataSize = data.size();
-        var sublist = data.subList(currentSide * maximumumElements, maxSideIndex > dataSize ? dataSize :
-                maxSideIndex);
+        var sublist = data.subList(currentSide * maximumumElements, Math.min(maxSideIndex, dataSize));
 
         int currentIndex = 0;
         for (var key : sublist) {

@@ -13,7 +13,7 @@ import gui.customComponents.AbstractCustomButton;
 import gui.customComponents.customTextComponents.CustomTextComponent;
 import gui.factories.GuiFactory;
 import gui.menu.ComponentPanelMenager;
-import gui.utils.FileCopyManager;
+import gui.utils.FileManager;
 import gui.utils.StringAdapter;
 
 import javax.swing.*;
@@ -26,12 +26,10 @@ import java.awt.event.KeyEvent;
 import java.util.*;
 
 public class EntriesCard extends Card {
-    public enum EntryType {SPINNER, ENTRY}
 
     final static String baseEnabledPhotoPath = StringAdapter.getRelativePath("image.png");
     final static String baseDisabledPhotoPath = StringAdapter.getRelativePath("disimage.png");
     private boolean isImageSet = false;
-    private AddingButtonCard choserEqCard2 = null;
     private ChoserCard choserCard;
     protected ComponentPanelMenager<AbstractCustomButton> addButton;
     private JComponent helpPanelVariable;
@@ -45,13 +43,10 @@ public class EntriesCard extends Card {
 
     public HashMap<CardTypes, CardContentDataSet> generateContentData() {
         var newMapa = new HashMap<CardTypes, CardContentDataSet>();
-        System.out.println(allCards.get(CardTypes.OVERALL).getData().titlePath + "sss");
         newMapa.put(CardTypes.ATTRIBUTE, allCards.get(CardTypes.ATTRIBUTE).getData());
-//        System.out.println("generuje"+ newMapa.get(CardTypes.OVERALL).titlePath);
         for (var type : allCards.keySet()) {
             newMapa.put(type, allCards.get(type).getData());
         }
-        System.out.println("generuje" + newMapa.get(CardTypes.OVERALL).titlePath);
         return newMapa;
     }
 
@@ -124,25 +119,19 @@ public class EntriesCard extends Card {
             ArrayList<CardContentDataSet>> detailData) {
         super.uploadNewData(newData, detailData);
         uploadNewChoserCardData(newData, detailData);
-        System.out.println(newData.get(CardTypes.OVERALL).titlePath + "adasdasd"+(newData.get(CardTypes.OVERALL).titlePath.equals(Card.EMPTY_DATA_CONTENT)));
         if (newData.containsKey(CardTypes.OVERALL)) {
-            System.out.println(allCards.get(CardTypes.OVERALL).getData().titlePath +newData.get(CardTypes.OVERALL).titlePath+ "sssfdsfsdfsdfxxx");
             rightEntryTitleComponent.getComponent().setContent(newData.get(CardTypes.OVERALL).titleContent);
             leftButtonyTitleComponent.getComponent().setContent(newData.get(CardTypes.OVERALL).titlePath.equals(Card.EMPTY_DATA_CONTENT) ?
                     EntriesCard.baseEnabledPhotoPath : newData.get(CardTypes.OVERALL).titlePath);
         }
-        System.out.println(allCards.get(CardTypes.OVERALL).getData().titlePath + "sssxxx");
     }
 
     @Override
     public void uploadCreatorItemsData(CardContentDataSet data, CardTypes type) {
         super.uploadCreatorItemsData(data, type);
-        System.out.println(data.titlePath + "dfdddddddddddddd");
         rightEntryTitleComponent.getComponent().setContent(data.titleContent);
         leftButtonyTitleComponent.getComponent().setContent(data.titlePath.equals(Card.EMPTY_DATA_CONTENT) ?
                 EntriesCard.baseEnabledPhotoPath : data.titlePath);
-        System.out.println(amwGeneratorCard.getData().titlePath + "sssxxx");
-
     }
 
     public void uploadNewChoserCardData(LinkedHashMap<CardTypes, CardContentDataSet> newData, HashMap<CardTypes,
@@ -220,8 +209,8 @@ public class EntriesCard extends Card {
                 if (answer == JFileChooser.APPROVE_OPTION) {
                     isImageSet = true;
                     leftButtonyTitleComponent.getComponent().setContent(chooser.getSelectedFile().getAbsolutePath());
-                    FileCopyManager.copyFile(chooser.getSelectedFile().getPath());
-                    activeCard.getData().titlePath = FileCopyManager.getPathToImage(FileCopyManager.getLastFileName());
+                    FileManager.copyFile(chooser.getSelectedFile().getPath());
+                    activeCard.getData().titlePath = FileManager.getPathToImage(FileManager.getLastFileName());
                 }
             }
         });
@@ -241,10 +230,7 @@ public class EntriesCard extends Card {
     }
 
     public CardContentDataSet getCurrentCreatorItemData() {
-//        amwGeneratorCard.getData().titlePath = leftButtonyTitleComponent.getComponent().getContent();
         amwGeneratorCard.getData().titleContent = rightEntryTitleComponent.getComponent().getContent();
-        System.out.println(amwGeneratorCard.getData().titlePath);
-        System.out.println(amwGeneratorCard.getData().titlePath+"co jest kurwa");
         return amwGeneratorCard.generateContentData();
     }
 

@@ -31,11 +31,7 @@ public abstract class OnlyVisibleCard extends BaseCard {
         if (path != leftTitleComponent.getComponent().getContent()) {
             leftTitleComponent.getComponent().setContent(path);
         }
-//        if (path != rightTitleComponent.getComponent().getContent()) {
-//            rightTitleComponent.getComponent().setContent(path2);
-//        }
         nameLabel.setContent(name);
-//        seriesPanel.getCmp().setBorderData(Color.RED, new AverageBorderStartegy(), 16);
     }
 
 
@@ -84,14 +80,4 @@ public abstract class OnlyVisibleCard extends BaseCard {
     }
 
     public abstract boolean containsButton(JButton button);
-//    public AbstractCustomButton getEditButton() {
-//        return editButton;
-//    }
-//    public AbstractCustomButton getDeleteButton() {
-//        return deleteButton;
-//    }
-//
-//    public AbstractCustomButton getShowbutton(){
-//        return showbutton;
-//    }
 }

@@ -54,14 +54,12 @@ public class AddingButtonCard extends NormalDetailButtonsCard {
     @Override
     protected void updateContent() {
         super.updateContent();
-        int maxSideIndex = getSideMaximumElementsNumber();
-        int dataSize = data.content.size();
-        var sublist = data.content.subList(currentAttrSide * maximumElementNumber, maxSideIndex > dataSize ? dataSize :
-                maxSideIndex);
-        int currentIndex = 0;
-
+//        int maxSideIndex = getSideMaximumElementsNumber();
+//        int dataSize = data.content.size();
+//        var sublist = data.content.subList(currentAttrSide * maximumElementNumber, maxSideIndex > dataSize ? dataSize :
+//                maxSideIndex);
+//        int currentIndex = 0;
         Card.setNonDependantAspectVisible(selectList);
-
         for (int i = currentAttrSide * maximumElementNumber; i < getSideMaximumElementsNumber(); i++) {
             if (addedIndexes.contains(i)) {
                 selectList.get(i % maximumElementNumber).setContent("");

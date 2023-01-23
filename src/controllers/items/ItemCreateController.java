@@ -43,9 +43,7 @@ public class ItemCreateController extends Controller {
                 contentData = Converter.editWeaponInEntriesCard((Weapon)item);
             }
         }
-        System.out.println(contentData.titlePath+"sads");
         view.uploadCreatorItemsData(contentData, creatorType);
-        System.out.println(contentData.titlePath+"sads");
         view.setCreatorCard(true, creatorType);
         
         view.getCancelButton().addActionListener(
@@ -76,7 +74,6 @@ public class ItemCreateController extends Controller {
             }
             
             if(item == null) {
-                System.out.println("[FATAL ERROR] Passed item is null");
                 return;
             }
             if (Converter.getErrorValidationChecker().isErrorFlag()) {

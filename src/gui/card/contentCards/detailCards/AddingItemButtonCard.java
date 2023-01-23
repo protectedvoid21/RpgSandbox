@@ -4,13 +4,12 @@ import gui.customComponents.AbstractCustomButton;
 import gui.factories.GuiFactory;
 import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;
-import gui.menu.CustomMenuMenager;
 import gui.menu.DefaultCustomMenuMenager;
 
 import javax.swing.*;
 
 public class AddingItemButtonCard extends NormalDetailButtonsCard {
-    private DefaultCustomMenuMenager secondCustomMenager = new CustomMenuMenager(ComponentsSeries.ComponentsDimension.VERTICAL, ComponentsSeries.ComponentsDimension.HORIZONTAL);
+    private DefaultCustomMenuMenager secondCustomMenager = new DefaultCustomMenuMenager(ComponentsSeries.ComponentsDimension.VERTICAL, ComponentsSeries.ComponentsDimension.HORIZONTAL);
     private AbstractCustomButton button= createCustomButton();
     public AbstractCustomButton getPlusButton() {
         return button;

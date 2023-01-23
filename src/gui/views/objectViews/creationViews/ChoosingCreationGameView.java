@@ -47,13 +47,10 @@ public class ChoosingCreationGameView extends AllObjectsView {
             manager.addMiddleComponent(button, 2,10);
             manager.getMiddleComponent(2, i).addSpace(5);
             int finalI = i;
-            button.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    clickedIndex = maximumumElements * currentSide + finalI;
-                    if (listenerHashMap.containsKey(clickedIndex) && listenerHashMap.get(clickedIndex).containsKey(ButtonType.APPLY)) {
-                        listenerHashMap.get(clickedIndex).get(ButtonType.APPLY).actionPerformed(e);
-                    }
+            button.addActionListener(e -> {
+                clickedIndex = maximumumElements * currentSide + finalI;
+                if (listenerHashMap.containsKey(clickedIndex) && listenerHashMap.get(clickedIndex).containsKey(ButtonType.APPLY)) {
+                    listenerHashMap.get(clickedIndex).get(ButtonType.APPLY).actionPerformed(e);
                 }
             });
         }
@@ -97,8 +94,7 @@ public class ChoosingCreationGameView extends AllObjectsView {
     protected void updateContent() {
         int maxSideIndex = getSideMaximumElementsNumber();
         int dataSize = data.size();
-        var sublist = data.subList(currentSide * maximumumElements, maxSideIndex > dataSize ? dataSize :
-                maxSideIndex);
+        var sublist = data.subList(currentSide * maximumumElements, Math.min(maxSideIndex, dataSize));
         int currentIndex = 0;
         for (var key : sublist) {
             manager.getMiddleComponent(0, currentIndex).changeContent(key.getPanel());

@@ -11,6 +11,6 @@ public class StringAdapter {
         return fontRelativePath+path;
     }
     public static String getRelativePathBegin(){
-        return relativePathBegin;
+        return "src/gui/";
     }
 }

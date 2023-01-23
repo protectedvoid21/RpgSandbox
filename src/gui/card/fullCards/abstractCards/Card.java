@@ -37,9 +37,6 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
 
     protected HashMap<CardTypes, CardContentDataSet> creatorData = new HashMap<>();
 
-//    public enum CreatorTypes {ARMOR, WEAPONS, MOUNT}
-
-
     public enum CardTypes {OVERALL, ATTRIBUTE, ARMOR, WEAPONS, EFFECTS, MOUNT, ITEMS}
 
     protected static ArrayList<CardTypes> cardSideIndexes = new ArrayList<>(Arrays.asList(CardTypes.OVERALL,
@@ -262,11 +259,9 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
 
     public void switchSide(CardTypes cardType) {
         currentAttrSide = cardSideIndexes.indexOf(cardType);
-        System.out.println(currentAttrSide);
         updateContent();
         rightArrows.updateSwitchingButtons();
     }
-
 
     @Override
     public void switchSide(DoubleArrowPanel.Side side) {
@@ -305,12 +300,7 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
         factory.setButtonType(GuiFactory.ButtonType.NORMAL);
         exitButton = new ComponentPanelMenager<>(factory.createButton("exit", null));
         exitButton.addSpace(5);
-
-//        exitCreatorCard = new ComponentPanelMenager<>(factory.createButton("exit2", null));
-//        exitCreatorCard.addSpace(5);
-
         exitButton.getComponent().addActionListener(e -> methodOfRightDownPanelComponent());
-
         arrowMenager = new ComponentsSeries<>(ComponentsSeries.ComponentsDimension.HORIZONTAL);
         leftArrows = new DoubleArrowPanel(factory, activeCard);///
         leftArrows.setSpace(5);
