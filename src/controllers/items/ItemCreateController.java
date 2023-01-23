@@ -2,7 +2,10 @@ package controllers.items;
 
 import controllers.Controller;
 import controllers.utils.RedirectListener;
+import game.equipment.Armor;
 import game.equipment.Item;
+import game.equipment.Mount;
+import game.equipment.Weapon;
 import game.filehandle.EntityManager;
 import gui.Converter;
 import gui.card.CardContentDataSet;
@@ -27,8 +30,23 @@ public class ItemCreateController extends Controller {
     public void run(IOverallFactory overallFactory) {
         view = overallFactory.createCreatorCard(creatorType);
         
+        CardContentDataSet contentData = null;
+        switch (creatorType) {
+            case ARMOR -> {
+                contentData = Converter.editArmorInEntriesCard((Armor)item);
+            }
+            case MOUNT -> {
+                contentData = Converter.editMountInEntriesCard((Mount)item);
+            }
+            case WEAPONS -> {
+                contentData = Converter.editWeaponInEntriesCard((Weapon)item);
+            }
+        }
+        view.uploadCreatorItemsData(contentData, creatorType);
+        view.setCreatorCard(true, creatorType);
+        
         view.getCancelButton().addActionListener(
-                new RedirectListener(controllerManager, new ItemTypeMenuController())
+                new RedirectListener(controllerManager, new ItemListController(creatorType))
         );
         view.getSaveButton().addActionListener(new SaveItemListener());
         
@@ -39,21 +57,18 @@ public class ItemCreateController extends Controller {
         @Override
         public void actionPerformed(ActionEvent e) {
             CardContentDataSet contentData;
-            
             Item newItem = null;
             
             switch (creatorType) {
                 case ARMOR -> {
-                    contentData = view.generateContentData().get(Card.CardTypes.ARMOR);
+                    contentData = view.getCurrentCreatorItemData();
                     newItem = Converter.createArmorFromCard(contentData);
                 } 
                 case MOUNT -> {
-                    contentData = view.generateContentData().get(Card.CardTypes.MOUNT);
-                    newItem = Converter.createMountFromCard(contentData);
+                    newItem = Converter.createMountFromCard(view.getCurrentCreatorItemData());
                 }
                 case WEAPONS -> {
-                    contentData = view.generateContentData().get(Card.CardTypes.WEAPONS);
-                    newItem = Converter.createWeaponFromCard(contentData);
+                    newItem = Converter.createWeaponFromCard(view.getCurrentCreatorItemData());
                 }
             }
             
@@ -61,9 +76,13 @@ public class ItemCreateController extends Controller {
                 System.out.println("[FATAL ERROR] Passed item is null");
                 return;
             }
-
+            if(newItem.getName().isEmpty()) {
+                return;
+            }
+            
             EntityManager.getInstance().removeItem(item);
             EntityManager.getInstance().addItem(newItem);
+            EntityManager.getInstance().saveAllEntities();
 
             controllerManager.changeController(new ItemListController(creatorType));
         }

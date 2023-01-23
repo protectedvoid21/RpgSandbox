@@ -6,7 +6,6 @@ import controllers.creatures.CreatureListController;
 import controllers.creatures.CreatureTypeController;
 import controllers.utils.CreatureType;
 import controllers.utils.RedirectListener;
-import game.board.ScenarioTester;
 import game.filehandle.EntityManager;
 import gui.factories.IOverallFactory;
 import gui.views.gamePanel.gamePanels.CreatorPanel;
@@ -20,7 +19,6 @@ public class ApplyGameController extends Controller {
 
     @Override
     public void run(IOverallFactory overallFactory) {
-        ScenarioTester.main(null);
         var view = overallFactory.createchoosingCreationGameView();
         view.getCancelButton().addActionListener(
                 new RedirectListener(controllerManager, new MenuController())

@@ -287,8 +287,8 @@ public class Converter {
 
     public static CardContentDataSet editWeaponInEntriesCard(Weapon weapon) {
         CardContentDataSet data = new CardContentDataSet();
-        data.titlePath = "src/gui/weapon.png";
-        data.titleContent = "Weapon";
+        data.titlePath = weapon.getItemPathPicture();
+        data.titleContent = weapon.getName();
 
         var map = new ArrayList<ArrayList<String>>();
         ArrayList<CardContentDataSet.DataType> dataTypesList = new ArrayList<>();
@@ -296,7 +296,6 @@ public class Converter {
         String name = "";
         int damage = weapon.getDamage();
         int range = weapon.getRange();
-        map.add(new ArrayList<>(Arrays.asList("name", name)));
         map.add(new ArrayList<>(Arrays.asList("damage", Integer.toString(damage))));
         map.add(new ArrayList<>(Arrays.asList("range", Integer.toString(range))));
 
@@ -311,15 +310,14 @@ public class Converter {
 
     public static CardContentDataSet editArmorInEntriesCard(Armor armor) {
         CardContentDataSet data = new CardContentDataSet();
-        data.titlePath = "src/gui/armor.png";
-        data.titleContent = "Armor";
+        data.titlePath = armor.getItemPathPicture();
+        data.titleContent = armor.getName();
 
         var map = new ArrayList<ArrayList<String>>();
         ArrayList<CardContentDataSet.DataType> dataTypesList = new ArrayList<>();
 
         String name = "";
         int defence = armor.getDefence();
-        map.add(new ArrayList<>(Arrays.asList("name", name)));
         map.add(new ArrayList<>(Arrays.asList("defence", Integer.toString(defence))));
 
         for (int i = 0; i < map.size(); i++)
@@ -333,15 +331,14 @@ public class Converter {
 
     public static CardContentDataSet editMountInEntriesCard(Mount mount) {
         CardContentDataSet data = new CardContentDataSet();
-        data.titlePath = "src/gui/horse.png";
-        data.titleContent = "Mount";
-
+        data.titlePath = mount.getItemPathPicture();
+        data.titleContent = mount.getName();
+        
         var map = new ArrayList<ArrayList<String>>();
         ArrayList<CardContentDataSet.DataType> dataTypesList = new ArrayList<>();
 
         String name = mount.getName();
         int speed = mount.getSpeed();
-        map.add(new ArrayList<>(Arrays.asList("name", name)));
         map.add(new ArrayList<>(Arrays.asList("speed", Integer.toString(speed))));
 
         for (int i = 0; i < map.size(); i++)
@@ -487,14 +484,10 @@ public class Converter {
     }
 
     public static Weapon createWeaponFromCard(CardContentDataSet data) {
-        String className = data.titleContent;
-        String name = "";
+        String name = data.titleContent;
         int damage = 0;
         int range = 0;
         for (var parameter : data.content) {
-            if (parameter.get(0).equals("name")) {
-                name = parameter.get(1);
-            }
             if (parameter.get(0).equals("damage")) {
                 if (MathHelper.isNumeric(parameter.get(1))) {
                     damage = Integer.parseInt(parameter.get(1));
@@ -511,13 +504,9 @@ public class Converter {
     }
 
     public static Armor createArmorFromCard(CardContentDataSet data) {
-        String className = data.titleContent;
-        String name = "";
+        String name = data.titleContent;
         int defence = 0;
         for (var parameter : data.content) {
-            if (parameter.get(0).equals("name")) {
-                name = parameter.get(1);
-            }
             if (parameter.get(0).equals("defence")) {
                 if (MathHelper.isNumeric(parameter.get(1))) {
                     defence = Integer.parseInt(parameter.get(1));
@@ -529,13 +518,9 @@ public class Converter {
     }
 
     public static Mount createMountFromCard(CardContentDataSet data) {
-        String className = data.titleContent;
-        String name = "";
+        String name = data.titleContent;
         int speed = 0;
         for (var parameter : data.content) {
-            if (parameter.get(0).equals("name")) {
-                name = parameter.get(1);
-            }
             if (parameter.get(0).equals("speed")) {
                 if (MathHelper.isNumeric(parameter.get(1))) {
                     speed = Integer.parseInt(parameter.get(1));

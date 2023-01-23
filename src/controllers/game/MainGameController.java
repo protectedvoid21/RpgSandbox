@@ -76,7 +76,6 @@ public class MainGameController extends Controller {
                 new RedirectListener(controllerManager, new MenuController())
         );
         gamePanel.getNextPlayerButton().addActionListener(new EndTurnListener(roundManager, gamePanel));
-        var cntrl = this;
 
         startGame();
 

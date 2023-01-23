@@ -11,6 +11,7 @@ public class PlayerSeeder implements Seeder {
     @Override
     public void seed() {
         PlayerCharacter playerCharacter1 = new PlayerCharacter(new StatisticsWarhammer(), new Inventory(), new Experience(0), new StruggleStatisticsWarhammer());
+        playerCharacter1.getInventory().addItem(EntityManager.getInstance().getMountList().get(0));
         playerCharacter1.setName("Michalik");
         PlayerCharacter playerCharacter2 = new PlayerCharacter(new StatisticsWarhammer(), new Inventory(), new Experience(0), new StruggleStatisticsWarhammer());
         playerCharacter2.setName("Adamow");

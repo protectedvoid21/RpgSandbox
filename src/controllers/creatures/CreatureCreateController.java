@@ -64,7 +64,6 @@ public class CreatureCreateController extends Controller {
                 }
             }
             if (IFactory.isErrorFlag()) {
-                System.out.println("helllo");
                 view.setEntriesIncorrect(IFactory.getErrorIndexes(), 1500);
                 if (IFactory.isPathError())
                     view.setTitleIncorrect(BaseCard.Side.LEFT, 1500);

@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Inventory {
-    private ArrayList<Weapon> weapons;
-    private ArrayList<Armor> armors;
-    private ArrayList<Mount> mounts;
-    private ArrayList<DisposableItem> disposableItems;
+    private List<Weapon> weapons;
+    private List<Armor> armors;
+    private List<Mount> mounts;
+    private List<DisposableItem> disposableItems;
     private Weapon activeWeapon;
     private Armor activeArmor;
     private Mount activeMount;
@@ -20,22 +20,29 @@ public class Inventory {
         activeArmor = noArmor();
         activeMount = noMount();
     }
+    
     public Inventory(Weapon activeWeapon, Armor activeArmor, Mount activeMount) {
         this.activeWeapon = activeWeapon;
         this.activeArmor = activeArmor;
         this.activeMount = activeMount;
     }
 
-    public ArrayList<Weapon> getWeapons() {
+    public Inventory(List<Weapon> weapons, List<Armor> armors, List<Mount> mounts) {
+        this.weapons = weapons;
+        this.armors = armors;
+        this.mounts = mounts;
+    }
+
+    public List<Weapon> getWeapons() {
         return weapons;
     }
-    public ArrayList<Armor> getArmors() {
+    public List<Armor> getArmors() {
         return armors;
     }
-    public ArrayList<Mount> getMounts() {
+    public List<Mount> getMounts() {
         return mounts;
     }
-    public ArrayList<DisposableItem> getDisposableItems() {
+    public List<DisposableItem> getDisposableItems() {
         return disposableItems;
     }
 
