@@ -21,9 +21,9 @@ import java.awt.event.ActionListener;
 public class ItemCreateController extends Controller {
     private EntriesCard view;
     private Item item;
-    private Card.CreatorTypes creatorType;
+    private Card.CardTypes creatorType;
     
-    public ItemCreateController(Item item, Card.CreatorTypes creatorType) {
+    public ItemCreateController(Item item, Card.CardTypes creatorType) {
         this.item = item;
         this.creatorType = creatorType;
     }
@@ -44,7 +44,9 @@ public class ItemCreateController extends Controller {
                 contentData = Converter.editWeaponInEntriesCard((Weapon)item);
             }
         }
+        System.out.println(contentData.titlePath+"sads");
         view.uploadCreatorItemsData(contentData, creatorType);
+        System.out.println(contentData.titlePath+"sads");
         view.setCreatorCard(true, creatorType);
         
         view.getCancelButton().addActionListener(
@@ -84,7 +86,7 @@ public class ItemCreateController extends Controller {
                     view.setTitleIncorrect(BaseCard.Side.LEFT, 1500);
                 if (Converter.getErrorValidationChecker().isNameError())
                     view.setTitleIncorrect(BaseCard.Side.RIGHT, 1500);
-                IFactory.getErrorValidationChecker().resetErrorFlags();
+                Converter.getErrorValidationChecker().resetErrorFlags();
                 return;
             }
             

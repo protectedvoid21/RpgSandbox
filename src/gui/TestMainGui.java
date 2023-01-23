@@ -139,7 +139,7 @@ public class TestMainGui {
 //        ramka.add(f.createAllCreatureShowView().getPanel());
 //        ramka.add(f.createCreaturesPanel().getPanel());
 //        ramka.add(f.createCreatorApplyingCharacterView().getPanel());
-        var z = f.createCreatorCard(Card.CreatorTypes.ARMOR);
+        var z = f.createCreatorCard(Card.CardTypes.ARMOR);
         ramka.add(z.getPanel());
 //        ramka.add(f.createBasicCard().getPanel());
 //        ramka.add(f.createOverallItemPanel().getPanel());

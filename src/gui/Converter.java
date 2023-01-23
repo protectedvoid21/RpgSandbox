@@ -28,6 +28,7 @@ public class Converter {
 
         CardContentDataSet data = new CardContentDataSet();
         data.titlePath = creature.getObjectPathPicture();
+        System.out.println(data.titlePath+"kurwa");
         data.titleContent = creature.getName();
         var map = new ArrayList<ArrayList<String>>();
         ArrayList<CardContentDataSet.DataType> dataTypesList = new ArrayList<>();
@@ -314,6 +315,7 @@ public class Converter {
         CardContentDataSet data = new CardContentDataSet();
         data.titlePath = armor.getItemPathPicture();
         data.titleContent = armor.getName();
+        System.out.println(data.titlePath+"jajaj");
 
         var map = new ArrayList<ArrayList<String>>();
         ArrayList<CardContentDataSet.DataType> dataTypesList = new ArrayList<>();
@@ -505,6 +507,7 @@ public class Converter {
             }
         }
         Weapon weapon = new Weapon(name, damage, range);
+        weapon.setItemPathPicture(data.titlePath);
         return weapon;
     }
 
@@ -522,10 +525,12 @@ public class Converter {
             }
         }
         Armor armor = new Armor(name, defence);
+        armor.setItemPathPicture(data.titlePath);
         return armor;
     }
 
     private static void setValidationOfNameAndPath(String name, String path) {
+        System.out.println(path);
         if (name.isEmpty()) {
             errorValidationChecker.setNameErrorOnTrue();
         }
@@ -549,12 +554,14 @@ public class Converter {
         }
 
         Mount mount = new Mount(name, speed);
+        mount.setItemPathPicture(data.titlePath);
         return mount;
     }
 
     public static PlayerCharacter createPlayerCharacterFromCard(CardContentDataSet data) {
         ArrayList<String> stats = new ArrayList<>();
         stats.add(data.titleContent);
+        System.out.println(data.titlePath);
         for (var attributeList : data.content)
             stats.add(attributeList.get(1));
         stats.add(data.titlePath);

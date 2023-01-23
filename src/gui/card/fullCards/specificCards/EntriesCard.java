@@ -45,10 +45,13 @@ public class EntriesCard extends Card {
 
     public HashMap<CardTypes, CardContentDataSet> generateContentData() {
         var newMapa = new HashMap<CardTypes, CardContentDataSet>();
+        System.out.println(allCards.get(CardTypes.OVERALL).getData().titlePath + "sss");
         newMapa.put(CardTypes.ATTRIBUTE, allCards.get(CardTypes.ATTRIBUTE).getData());
+//        System.out.println("generuje"+ newMapa.get(CardTypes.OVERALL).titlePath);
         for (var type : allCards.keySet()) {
             newMapa.put(type, allCards.get(type).getData());
         }
+        System.out.println("generuje" + newMapa.get(CardTypes.OVERALL).titlePath);
         return newMapa;
     }
 
@@ -121,20 +124,24 @@ public class EntriesCard extends Card {
             ArrayList<CardContentDataSet>> detailData) {
         super.uploadNewData(newData, detailData);
         uploadNewChoserCardData(newData, detailData);
+        System.out.println(newData.get(CardTypes.OVERALL).titlePath + "adasdasd"+(newData.get(CardTypes.OVERALL).titlePath.equals(Card.EMPTY_DATA_CONTENT)));
         if (newData.containsKey(CardTypes.OVERALL)) {
+            System.out.println(allCards.get(CardTypes.OVERALL).getData().titlePath +newData.get(CardTypes.OVERALL).titlePath+ "sssfdsfsdfsdfxxx");
             rightEntryTitleComponent.getComponent().setContent(newData.get(CardTypes.OVERALL).titleContent);
             leftButtonyTitleComponent.getComponent().setContent(newData.get(CardTypes.OVERALL).titlePath.equals(Card.EMPTY_DATA_CONTENT) ?
                     EntriesCard.baseEnabledPhotoPath : newData.get(CardTypes.OVERALL).titlePath);
         }
+        System.out.println(allCards.get(CardTypes.OVERALL).getData().titlePath + "sssxxx");
     }
 
     @Override
-    public void uploadCreatorItemsData(CardContentDataSet data, CreatorTypes type) {
+    public void uploadCreatorItemsData(CardContentDataSet data, CardTypes type) {
         super.uploadCreatorItemsData(data, type);
-        System.out.println(data);
+        System.out.println(data.titlePath + "dfdddddddddddddd");
         rightEntryTitleComponent.getComponent().setContent(data.titleContent);
         leftButtonyTitleComponent.getComponent().setContent(data.titlePath.equals(Card.EMPTY_DATA_CONTENT) ?
                 EntriesCard.baseEnabledPhotoPath : data.titlePath);
+        System.out.println(amwGeneratorCard.getData().titlePath + "sssxxx");
 
     }
 
@@ -212,8 +219,8 @@ public class EntriesCard extends Card {
                 int answer = chooser.showOpenDialog(new JFrame());
                 if (answer == JFileChooser.APPROVE_OPTION) {
                     isImageSet = true;
-                    leftButtonyTitleComponent.getComponent().setContent(String.valueOf(chooser.getSelectedFile().getAbsolutePath()));
-                    FileCopyManager.copyFile(String.valueOf(chooser.getSelectedFile().getPath()));
+                    leftButtonyTitleComponent.getComponent().setContent(chooser.getSelectedFile().getAbsolutePath());
+                    FileCopyManager.copyFile(chooser.getSelectedFile().getPath());
                     activeCard.getData().titlePath = FileCopyManager.getPathToImage(FileCopyManager.getLastFileName());
                 }
             }
@@ -234,15 +241,18 @@ public class EntriesCard extends Card {
     }
 
     public CardContentDataSet getCurrentCreatorItemData() {
-        amwGeneratorCard.getData().titlePath = leftButtonyTitleComponent.getComponent().getContent();
+//        amwGeneratorCard.getData().titlePath = leftButtonyTitleComponent.getComponent().getContent();
         amwGeneratorCard.getData().titleContent = rightEntryTitleComponent.getComponent().getContent();
+        System.out.println(amwGeneratorCard.getData().titlePath);
+        System.out.println(amwGeneratorCard.getData().titlePath+"co jest kurwa");
         return amwGeneratorCard.generateContentData();
     }
 
 
     public void setTitleIncorrect(Side side, int periodTime) {
         disableSave(periodTime);
-        switchSide(CardTypes.OVERALL);
+        if (activeCard != amwGeneratorCard)
+            switchSide(CardTypes.OVERALL);
         leftArrows.updateSwitchingButtons();
         if (side == Side.RIGHT) {
             var cmp = rightEntryTitleComponent.getComponent();

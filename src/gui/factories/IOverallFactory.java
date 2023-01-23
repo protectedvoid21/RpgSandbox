@@ -42,7 +42,7 @@ public abstract class IOverallFactory {
     public abstract ShowSmallView createAllItemsItemsView();
     public abstract FullSmallView createAllArmorsItemsView();
     public abstract GodCard createGodCard();
-    public abstract EntriesCard createCreatorCard(Card.CreatorTypes type);
+    public abstract EntriesCard createCreatorCard(Card.CardTypes type);
 
     public abstract ShowApplyCreatureView createCreatorApplyingCharacterView();
 

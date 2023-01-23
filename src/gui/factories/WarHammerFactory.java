@@ -277,7 +277,7 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
         return card;
     }
 
-    public EntriesCard createCreatorCard(Card.CreatorTypes type) {
+    public EntriesCard createCreatorCard(Card.CardTypes type) {
         setFactoriesMode(Mode.CLICKED);
         var card = new EntriesCard(factory);
         card.initialize();

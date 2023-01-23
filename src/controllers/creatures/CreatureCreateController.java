@@ -47,6 +47,7 @@ public class CreatureCreateController extends Controller {
             var contentData = view.generateContentData().get(Card.CardTypes.ATTRIBUTE).clone();
             contentData.titlePath = data.titlePath;
             contentData.titleContent = data.titleContent;
+            System.out.println(data.titlePath+"dddddddddddd");
 
             EntityManager.getInstance().removeCreature(creature);
             Creature newCreature = null;

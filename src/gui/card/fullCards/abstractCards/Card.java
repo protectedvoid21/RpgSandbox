@@ -35,9 +35,9 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
 
     private AddingButtonCard choserEqCard = null;
 
-    protected HashMap<CreatorTypes, CardContentDataSet> creatorData = new HashMap<>();
+    protected HashMap<CardTypes, CardContentDataSet> creatorData = new HashMap<>();
 
-    public enum CreatorTypes {ARMOR, WEAPONS, MOUNT}
+//    public enum CreatorTypes {ARMOR, WEAPONS, MOUNT}
 
 
     public enum CardTypes {OVERALL, ATTRIBUTE, ARMOR, WEAPONS, EFFECTS, MOUNT, ITEMS}
@@ -177,25 +177,25 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
     }
 
     public void initializeCardData() {
-        creatorData.put(CreatorTypes.ARMOR, new CardContentDataSet());
-        creatorData.put(CreatorTypes.MOUNT, new CardContentDataSet());
-        creatorData.put(CreatorTypes.WEAPONS, new CardContentDataSet());
+        creatorData.put(CardTypes.ARMOR, new CardContentDataSet());
+        creatorData.put(CardTypes.MOUNT, new CardContentDataSet());
+        creatorData.put(CardTypes.WEAPONS, new CardContentDataSet());
     }
 
     public void uploadCreatorItemsData(CardContentDataSet weapon, CardContentDataSet mount, CardContentDataSet armor) {
-        creatorData.put(CreatorTypes.ARMOR, armor);
-        creatorData.put(CreatorTypes.MOUNT, mount);
-        creatorData.put(CreatorTypes.WEAPONS, weapon);
+        creatorData.put(CardTypes.ARMOR, armor);
+        creatorData.put(CardTypes.MOUNT, mount);
+        creatorData.put(CardTypes.WEAPONS, weapon);
         //jeszcze items albo i nie
     }
 
-    public void uploadCreatorItemsData(CardContentDataSet data, CreatorTypes type) {
+    public void uploadCreatorItemsData(CardContentDataSet data, CardTypes type) {
         creatorData.put(type, data);
         //jeszcze items albo i nie
     }
 
 
-    public void setCreatorCard(boolean value, CreatorTypes type) {
+    public void setCreatorCard(boolean value, CardTypes type) {
         if (value) {
             amwGeneratorCard.initializeCardData(creatorData.get(type), null);
             updateContent(amwGeneratorCard);
@@ -208,7 +208,7 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
         }
     }
 
-    public void setEqChoserCard(boolean val, CreatorTypes types) {
+    public void setEqChoserCard(boolean val, CardTypes types) {
         if (val) {
             //data init
             updateContent(choserEqCard);
@@ -262,6 +262,7 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
 
     public void switchSide(CardTypes cardType) {
         currentAttrSide = cardSideIndexes.indexOf(cardType);
+        System.out.println(currentAttrSide);
         updateContent();
         rightArrows.updateSwitchingButtons();
     }

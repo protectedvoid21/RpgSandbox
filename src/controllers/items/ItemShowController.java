@@ -14,9 +14,9 @@ import java.awt.event.ActionListener;
 public class ItemShowController extends Controller {
     private int index;
     private Card.CardTypes cardType;
-    private Card.CreatorTypes creatorTypes;
+    private Card.CardTypes creatorTypes;
     
-    public ItemShowController(int index, Card.CardTypes cardType, Card.CreatorTypes creatorTypes) {
+    public ItemShowController(int index, Card.CardTypes cardType, Card.CardTypes creatorTypes) {
         this.index = index;
         this.cardType = cardType;
         this.creatorTypes = creatorTypes;

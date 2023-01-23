@@ -28,11 +28,13 @@ public class EntriesAttributesCard extends AttributesCard {
     }
 
     public CardContentDataSet generateContentData() {
+        System.out.println(data.titlePath+"yyyyyyyyyyyy");
         for (int i = 0; i < data.content.size(); i++) {
             if (data.dataType.get(i) == CardContentDataSet.DataType.BOOLEAN && !data.content.get(i).isEmpty()) {
                 data.content.get(i).set(1, "1");
             }
         }
+        System.out.println(data.titlePath+"yyyyyyyyyyyy");
         return data;
     }
 

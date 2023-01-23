@@ -21,11 +21,11 @@ import java.util.List;
 
 public class ItemListController extends Controller {
     private FullSmallView view;
-    private Card.CreatorTypes creatorType;
+    private Card.CardTypes creatorType;
     private Card.CardTypes cardType;
     private List<? extends Item> itemList;
 
-    public ItemListController(Card.CreatorTypes creatorType) {
+    public ItemListController(Card.CardTypes creatorType) {
         this.creatorType = creatorType;
     }
 
