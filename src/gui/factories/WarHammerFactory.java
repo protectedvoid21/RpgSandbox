@@ -285,7 +285,8 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
         card.setBackgroundImage(cardBackground);
         card.setUniformFont();
         card.setCancelButtonStatus(true);
-        card.uploadCreatorItemsData(generateData1(), generateData2(), generateData1());
+        card.initializeCardData();
+//        card.uploadCreatorItemsData(generateData1(), type);
         card.setCreatorCard(true, type);
         return card;
     }

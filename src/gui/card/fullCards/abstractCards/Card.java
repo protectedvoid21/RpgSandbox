@@ -176,10 +176,20 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
         leftArrows.updateSwitchingButtons();
     }
 
+    public void initializeCardData(){
+        creatorData.put(CreatorTypes.ARMOR, new CardContentDataSet());
+        creatorData.put(CreatorTypes.MOUNT, new CardContentDataSet());
+        creatorData.put(CreatorTypes.WEAPONS, new CardContentDataSet());
+    }
+
     public void uploadCreatorItemsData(CardContentDataSet weapon, CardContentDataSet mount, CardContentDataSet armor) {
         creatorData.put(CreatorTypes.ARMOR, armor);
         creatorData.put(CreatorTypes.MOUNT, mount);
         creatorData.put(CreatorTypes.WEAPONS, weapon);
+        //jeszcze items albo i nie
+    }
+    public void uploadCreatorItemsData(CardContentDataSet data, CreatorTypes type) {
+        creatorData.put(type, data);
         //jeszcze items albo i nie
     }
 
