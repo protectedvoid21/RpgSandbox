@@ -73,6 +73,7 @@ public class CreatureCreateController extends Controller {
                 return;
             }
 
+            EntityManager.getInstance().removeCreature(creature);
             EntityManager.getInstance().addCreature(newCreature);
             EntityManager.getInstance().saveAllEntities();
 
