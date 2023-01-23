@@ -40,6 +40,7 @@ public class ImageBorderWraper extends BorderDecorator implements IRequieredReac
 
 
     public Image createImage(String path) {
+        System.out.println(path);
         try {
             var img = ImageIO.read(new File(path));
             return img;

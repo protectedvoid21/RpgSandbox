@@ -15,11 +15,12 @@ import game.generals.Vector2;
 import game.interfaceWarhammer.StatisticsWarhammer;
 import game.interfaceWarhammer.StruggleStatisticsWarhammer;
 import game.utils.seeders.Seeder;
+import gui.factories.WarhammerData;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ScenarioSeeder implements Seeder {
+public class ScenarioSeeder implements Seeder, WarhammerData {
     @Override
     public void seed() {
         new EntityManager("Warhammer");
@@ -33,13 +34,13 @@ public class ScenarioSeeder implements Seeder {
 
         scenarioData.get(0).position = new Vector2(1, 1);
         scenarioData.get(0).creature = new Monster(new StatisticsWarhammer(), new Experience(0), new StruggleStatisticsWarhammer());
-        scenarioData.get(0).creature.setObjectPathPicture("src/gui/witch.png");
+        scenarioData.get(0).creature.setObjectPathPicture("src/gui/guiImages/witch.png");
         scenarioData.get(1).position = new Vector2(2, 2);
         scenarioData.get(1).creature = new Monster(new StatisticsWarhammer(), new Experience(1), new StruggleStatisticsWarhammer());
-        scenarioData.get(1).creature.setObjectPathPicture("src/gui/trolley.png");
+        scenarioData.get(1).creature.setObjectPathPicture(trolleyPath);
         scenarioData.get(2).position = new Vector2(5, 5);
         scenarioData.get(2).creature = new Monster(new StatisticsWarhammer(), new Experience(2), new StruggleStatisticsWarhammer());
-        scenarioData.get(2).creature.setObjectPathPicture("src/gui/stats.png");
+        scenarioData.get(2).creature.setObjectPathPicture(statsPath);
         scenarioData.get(3).position = new Vector2(0, 0);
 
         Weapon weapon = new Weapon("weapon1", 10, 10,50,50,50,50);
@@ -54,7 +55,7 @@ public class ScenarioSeeder implements Seeder {
         inventory.addItem(mount2);
         inventory.addItem(armor);
         scenarioData.get(3).creature = new PlayerCharacter(new StatisticsWarhammer(), inventory, new Experience(10), new StruggleStatisticsWarhammer());
-        scenarioData.get(3).creature.setObjectPathPicture("src/gui/witch.png");
+        scenarioData.get(3).creature.setObjectPathPicture("src/gui/guiImages/witch.png");
         for (int i = 0; i<4; i++){
             scenarioData.get(i).creature.setName("zdzichu" + i);
         }

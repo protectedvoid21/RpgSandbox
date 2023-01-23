@@ -2,14 +2,10 @@ package controllers.items;
 
 import controllers.Controller;
 import controllers.utils.RedirectListener;
-import game.equipment.Item;
 import game.filehandle.EntityManager;
-import gui.Converter;
+import gui.utils.Converter;
 import gui.card.fullCards.abstractCards.Card;
 import gui.factories.IOverallFactory;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class ItemShowController extends Controller {
     private int index;

@@ -1,4 +1,4 @@
-package gui;
+package gui.utils;
 
 import game.creature.*;
 import game.creature.Character;
@@ -10,12 +10,14 @@ import game.utils.ErrorValidationChecker;
 import game.utils.MathHelper;
 import gui.card.CardContentDataSet;
 import gui.card.fullCards.abstractCards.Card;
+import gui.factories.WarhammerData;
+import gui.utils.StringAdapter;
 import jdk.jshell.spi.ExecutionControl;
 import game.cardManager.Warhammer.*;
 
 import java.util.*;
 
-public class Converter {
+public class Converter implements WarhammerData {
 
     private static ErrorValidationChecker errorValidationChecker = new ErrorValidationChecker();
 
@@ -28,18 +30,17 @@ public class Converter {
 
         CardContentDataSet data = new CardContentDataSet();
         data.titlePath = creature.getObjectPathPicture();
-        System.out.println(data.titlePath+"kurwa");
         data.titleContent = creature.getName();
         var map = new ArrayList<ArrayList<String>>();
         ArrayList<CardContentDataSet.DataType> dataTypesList = new ArrayList<>();
 
-        map.add(new ArrayList<>(Arrays.asList("src/gui/stats.png")));
+        map.add(new ArrayList<>(Arrays.asList(StringAdapter.getRelativePath("stats.png"))));
 //        map.add(new ArrayList<>(Arrays.asList("src/gui/effect.png")));
 
         if (creature instanceof Character) {
-            map.add(new ArrayList<>(Arrays.asList("src/gui/horse.png")));
-            map.add(new ArrayList<>(Arrays.asList("src/gui/armor.png")));
-            map.add(new ArrayList<>(Arrays.asList("src/gui/weapon.png")));
+            map.add(new ArrayList<>(Arrays.asList(horsePath)));
+            map.add(new ArrayList<>(Arrays.asList(armorPath)));
+            map.add(new ArrayList<>(Arrays.asList(weaponPath)));
         }
 
         for (int i = 0; i < map.size(); i++)
@@ -52,7 +53,7 @@ public class Converter {
 
     public static CardContentDataSet convertArmorsToDataSet(Character character) {
         CardContentDataSet data = new CardContentDataSet();
-        data.titlePath = "src/gui/armor.png";
+        data.titlePath = armorPath;
         data.titleContent = "Armor";
 
         var map = new ArrayList<ArrayList<String>>();
@@ -60,7 +61,7 @@ public class Converter {
 
         for (var item : character.getInventory().getArmors()) {
             String armorName = ((Armor) item).getName();
-            map.add(new ArrayList<>(Arrays.asList("gui/src/armor.png", armorName, "DETAILS")));
+            map.add(new ArrayList<>(Arrays.asList(armorPath, armorName, "DETAILS")));
         }
 
         for (int i = 0; i < map.size(); i++)
@@ -74,7 +75,7 @@ public class Converter {
 
     public static CardContentDataSet convertWeaponsToDataSet(Character character) {
         CardContentDataSet data = new CardContentDataSet();
-        data.titlePath = "src/gui/weapon.png";
+        data.titlePath = weaponPath;
         data.titleContent = "Weapon";
 
         var map = new ArrayList<ArrayList<String>>();
@@ -82,7 +83,7 @@ public class Converter {
 
         for (var weapon : character.getInventory().getWeapons()) {
             String weaponName = weapon.getName();
-            map.add(new ArrayList<>(Arrays.asList("gui/src/weapon.png", weaponName, "DETAILS")));
+            map.add(new ArrayList<>(Arrays.asList(weaponPath, weaponName, "DETAILS")));
         }
 
         for (int i = 0; i < map.size(); i++)
@@ -96,7 +97,7 @@ public class Converter {
 
     public static CardContentDataSet convertMountsToDataSet(Character character) {
         CardContentDataSet data = new CardContentDataSet();
-        data.titlePath = "src/gui/horse.png";
+        data.titlePath = horsePath;
         data.titleContent = "Mount";
 
         var map = new ArrayList<ArrayList<String>>();
@@ -104,7 +105,7 @@ public class Converter {
 
         for (var mount : character.getInventory().getMounts()) {
             String mountName = mount.getName();
-            map.add(new ArrayList<>(Arrays.asList("gui/src/horse.png", mountName, "DETAILS")));
+            map.add(new ArrayList<>(Arrays.asList(horsePath, mountName, "DETAILS")));
         }
         for (int i = 0; i < map.size(); i++)
             dataTypesList.add(CardContentDataSet.DataType.STRING);
@@ -117,7 +118,7 @@ public class Converter {
 
     public static CardContentDataSet convertStatsToDataSet(Creature creature) {
         CardContentDataSet data = new CardContentDataSet();
-        data.titlePath = "src/gui/attributes.png";
+        data.titlePath = statsPath;
         data.titleContent = "Attributes";
 
         var map = new ArrayList<ArrayList<String>>();
@@ -125,7 +126,7 @@ public class Converter {
 //        map.add(new ArrayList<>(Arrays.asList("name", creature.getName())));
 
         for (var attribute : AttributeEnum.values()) {
-            String attibuteName = attribute.name();
+            String attibuteName = attribute.name().replace("_", " ");//chyba bedzie git jak cos ten tego to usunac replace
             var value = creature.getStatistics().getAttribute(attribute).getValue();
             String attributeValue = Integer.toString(value);
             map.add(new ArrayList<>(Arrays.asList(attibuteName, attributeValue)));
@@ -196,7 +197,7 @@ public class Converter {
     //entries card
     public static CardContentDataSet createWeaponInEntriesCard() {
         CardContentDataSet data = new CardContentDataSet();
-        data.titlePath = "src/gui/weapon.png";
+        data.titlePath = weaponPath;
         data.titleContent = "Weapon";
 
         var map = new ArrayList<ArrayList<String>>();
@@ -220,7 +221,7 @@ public class Converter {
 
     public static CardContentDataSet createArmorInEntriesCard() {
         CardContentDataSet data = new CardContentDataSet();
-        data.titlePath = "src/gui/armor.png";
+        data.titlePath = armorPath;
         data.titleContent = "Armor";
 
         var map = new ArrayList<ArrayList<String>>();
@@ -242,7 +243,7 @@ public class Converter {
 
     public static CardContentDataSet createMountInEntriesCard() {
         CardContentDataSet data = new CardContentDataSet();
-        data.titlePath = "src/gui/horse.png";
+        data.titlePath = horsePath;
         data.titleContent = "Mount";
 
         var map = new ArrayList<ArrayList<String>>();
@@ -264,7 +265,7 @@ public class Converter {
 
     public static CardContentDataSet addNewItemInEntriesCard(Character character) {
         CardContentDataSet data = new CardContentDataSet();
-        data.titlePath = "src/gui/item.png";
+        data.titlePath = itemPath;
         data.titleContent = "Items";
 
         var map = new ArrayList<ArrayList<String>>();
@@ -356,14 +357,14 @@ public class Converter {
 
     public static CardContentDataSet createMonsterInEntriesCard() {
         CardContentDataSet data = new CardContentDataSet();
-        data.titlePath = "src/gui/monsterimage.png";
+        data.titlePath = monsterPath;
         data.titleContent = "";
 
         var map = new ArrayList<ArrayList<String>>();
         ArrayList<CardContentDataSet.DataType> dataTypesList = new ArrayList<>();
 
-        map.add(new ArrayList<>(Arrays.asList("src/gui/stats.png")));
-        map.add(new ArrayList<>(Arrays.asList("src/gui/effect.png")));
+        map.add(new ArrayList<>(Arrays.asList(statsPath)));
+        map.add(new ArrayList<>(Arrays.asList(efectPath)));
 
         for (int i = 0; i < map.size(); i++)
             dataTypesList.add(CardContentDataSet.DataType.STRING);
@@ -376,17 +377,17 @@ public class Converter {
 
     public static CardContentDataSet createPlayerCharacterInEntriesCard() {
         CardContentDataSet data = new CardContentDataSet();
-        data.titlePath = "src/gui/player.png";
+        data.titlePath = playerImagePath;
         data.titleContent = "";
 
         var map = new ArrayList<ArrayList<String>>();
         ArrayList<CardContentDataSet.DataType> dataTypesList = new ArrayList<>();
 
-        map.add(new ArrayList<>(Arrays.asList("src/gui/stats.png")));
-        map.add(new ArrayList<>(Arrays.asList("src/gui/effect.png")));
-        map.add(new ArrayList<>(Arrays.asList("src/gui/horse.png")));
-        map.add(new ArrayList<>(Arrays.asList("src/gui/armor.png")));
-        map.add(new ArrayList<>(Arrays.asList("src/gui/weapon.png")));
+        map.add(new ArrayList<>(Arrays.asList(statsPath)));
+        map.add(new ArrayList<>(Arrays.asList(efectPath)));
+        map.add(new ArrayList<>(Arrays.asList(horsePath)));
+        map.add(new ArrayList<>(Arrays.asList(armorPath)));
+        map.add(new ArrayList<>(Arrays.asList(weaponPath)));
 
         for (int i = 0; i < map.size(); i++)
             dataTypesList.add(CardContentDataSet.DataType.STRING);
@@ -399,17 +400,17 @@ public class Converter {
 
     public static CardContentDataSet createNPCInEntriesCard() {
         CardContentDataSet data = new CardContentDataSet();
-        data.titlePath = "src/gui/NPC.png";
+        data.titlePath = npcImage;
         data.titleContent = "";
 
         var map = new ArrayList<ArrayList<String>>();
         ArrayList<CardContentDataSet.DataType> dataTypesList = new ArrayList<>();
 
-        map.add(new ArrayList<>(Arrays.asList("src/gui/stats.png")));
-        map.add(new ArrayList<>(Arrays.asList("src/gui/effect.png")));
-        map.add(new ArrayList<>(Arrays.asList("src/gui/horse.png")));
-        map.add(new ArrayList<>(Arrays.asList("src/gui/armor.png")));
-        map.add(new ArrayList<>(Arrays.asList("src/gui/weapon.png")));
+        map.add(new ArrayList<>(Arrays.asList(statsPath)));
+        map.add(new ArrayList<>(Arrays.asList(efectPath)));
+        map.add(new ArrayList<>(Arrays.asList(horsePath)));
+        map.add(new ArrayList<>(Arrays.asList(armorPath)));
+        map.add(new ArrayList<>(Arrays.asList(weaponPath)));
 
         for (int i = 0; i < map.size(); i++)
             dataTypesList.add(CardContentDataSet.DataType.STRING);
@@ -422,7 +423,7 @@ public class Converter {
 
     public static CardContentDataSet detailsView(ManyUsageItem item) {
         CardContentDataSet data = new CardContentDataSet();
-        data.titlePath = "src/gui/" + item.getClass().getSimpleName() + ".png";
+        data.titlePath = "src/gui/" + item.getClass().getSimpleName() + ".png";//todo
         data.titleContent = item.getName();
 
         var map = new ArrayList<ArrayList<String>>();
@@ -462,9 +463,9 @@ public class Converter {
         int weaponCount = character.getInventory().getWeapons().size();
         int armorCount = character.getInventory().getArmors().size();
 
-        map.add(new ArrayList<>(Arrays.asList("src/gui/horse.png", Integer.toString(mountCount))));
-        map.add(new ArrayList<>(Arrays.asList("src/gui/armor.png", Integer.toString(armorCount))));
-        map.add(new ArrayList<>(Arrays.asList("src/gui/weapon.png", Integer.toString(weaponCount))));
+        map.add(new ArrayList<>(Arrays.asList(horsePath, Integer.toString(mountCount))));
+        map.add(new ArrayList<>(Arrays.asList(armorPath, Integer.toString(armorCount))));
+        map.add(new ArrayList<>(Arrays.asList(weaponPath, Integer.toString(weaponCount))));
 
         Random randomGenerator = new Random();
         int statsSecretValue = 0;
@@ -480,7 +481,7 @@ public class Converter {
         statsSecretValue /= cnt;
         statsSecretValue += randomGenerator.nextInt(4, 22);
 
-        map.add(new ArrayList<>(Arrays.asList("src/gui/stats.png", Integer.toString(statsSecretValue))));
+        map.add(new ArrayList<>(Arrays.asList(statsPath, Integer.toString(statsSecretValue))));
 
         return data;
     }
@@ -561,7 +562,6 @@ public class Converter {
     public static PlayerCharacter createPlayerCharacterFromCard(CardContentDataSet data) {
         ArrayList<String> stats = new ArrayList<>();
         stats.add(data.titleContent);
-        System.out.println(data.titlePath);
         for (var attributeList : data.content)
             stats.add(attributeList.get(1));
         stats.add(data.titlePath);
@@ -617,7 +617,7 @@ public class Converter {
         PlayerCharacter playerCharacter = new PlayerCharacter(new StatisticsWarhammer(), inventory,
                 new Experience(10), new StruggleStatisticsWarhammer());
         playerCharacter.setName("Shgjehrk");
-        playerCharacter.setObjectPathPicture("/src/gui/playerimage.png");
+        playerCharacter.setObjectPathPicture(playerImagePath);
 
         convertMountsToDataSet(playerCharacter);
 

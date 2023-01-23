@@ -7,6 +7,7 @@ import gui.customComponents.AbstractCustomLabel;
 import gui.customComponents.iconComponents.IconLabel;
 import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
+import gui.utils.StringAdapter;
 import gui.views.gamePanel.optionsPanels.GameOptionsPanel;
 import gui.views.gamePanel.optionsPanels.MultipleGameOptionsPanel;
 import gui.views.gamePanel.optionsPanels.OptionsPanelData;
@@ -56,7 +57,7 @@ public class GamePanel extends BaseGamePanel {
     @Override
     public void initialize() {
         super.initialize();
-        setAttackArmorPathContent("src/armor.png","src/gui/undoleft.png");
+        setAttackArmorPathContent(StringAdapter.getRelativePath("armor.png"),StringAdapter.getRelativePath("knivesOpt.png"));
         defendAttackActionsPanel.initialize();
     }
 

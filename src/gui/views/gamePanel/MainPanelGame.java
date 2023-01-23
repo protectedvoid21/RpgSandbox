@@ -135,7 +135,6 @@ public class MainPanelGame {
 //        secondMap.put(FullItemPicker.LabelType.WEAPON, new ArrayList<>(Arrays.asList("src/gui/weapon.png",
 //        "src/gui/weapon.png","src/gui/weapon.png","src/gui/warback.png")));
 //        secondMap.put(FullItemPicker.LabelType.MOUNT, new ArrayList<>(Arrays.asList("src/gui/weapon.png",
-//        "src/gui/rightsword.png","src/gui/weapon.png","src/gui/warback.jpg")));
 //        secondMap.put(FullItemPicker.LabelType.ARMOR, new ArrayList<>(Arrays.asList("src/gui/weapon.png")));
 //        picker.uploadItemPaths(secondMap);
         picker.uploadMainPaths(map);
