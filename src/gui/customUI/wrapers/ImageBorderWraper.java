@@ -53,10 +53,6 @@ public class ImageBorderWraper extends BorderDecorator implements IRequieredReac
         paintBackground(g, c, getBorderSize());
     }
 
-//    private void doHelpActivity(Graphics g, double sizeX, double sizeY, double positionX, double positionY) {
-//        g.drawImage(img.getScaledInstance((int) (sizeX), (int) (sizeY), Image.SCALE_SMOOTH), (int) positionX, (int)
-//        positionY, null);
-//    }
 
     @Override//to refactor
     public void paintBackground(Graphics g, JComponent c, int Offset) {//zrefactoryzowac i dorzucic jakos zmiany

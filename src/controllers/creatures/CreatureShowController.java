@@ -4,7 +4,7 @@ import controllers.Controller;
 import controllers.utils.CreatureType;
 import controllers.utils.RedirectListener;
 import game.creature.Creature;
-import gui.Converter;
+import gui.utils.Converter;
 import gui.factories.IOverallFactory;
 
 public class CreatureShowController extends Controller {

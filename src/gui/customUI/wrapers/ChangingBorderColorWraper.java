@@ -27,7 +27,6 @@ public class ChangingBorderColorWraper extends BorderDecorator {
             public void mousePressed(MouseEvent e) {
                 super.mousePressed(e);
                 if (c.isEnabled()) {
-//                    currentBaseBackgroundHelper = getCurrentBackHelper();
                     onlySuperAdditionalFirstSetter(getAdditionalColor(Index.SECOND), Index.FIRST);
                     c.repaint();
                     c.revalidate();
@@ -37,12 +36,9 @@ public class ChangingBorderColorWraper extends BorderDecorator {
             @Override
             public void mouseReleased(MouseEvent e) {
                 super.mousePressed(e);
-//                if (c.isEnabled()) {
                 setAdditionaldColor(currentBaseBackgroundHelper, Index.FIRST);
-//                    currentBaseBackgroundHelper = null;
                 c.repaint();
                 c.revalidate();
-//                }
             }
         });
     }

@@ -6,8 +6,7 @@ import controllers.utils.RedirectListener;
 import game.creature.Creature;
 import game.filehandle.EntityManager;
 import game.interfaces.IFactory;
-import gui.Converter;
-import gui.card.DoubleArrowPanel;
+import gui.utils.Converter;
 import gui.card.fullCards.abstractCards.BaseCard;
 import gui.card.fullCards.abstractCards.Card;
 import gui.card.fullCards.specificCards.EntriesCard;
@@ -47,11 +46,8 @@ public class CreatureCreateController extends Controller {
             var contentData = view.generateContentData().get(Card.CardTypes.ATTRIBUTE).clone();
             contentData.titlePath = data.titlePath;
             contentData.titleContent = data.titleContent;
-
             EntityManager.getInstance().removeCreature(creature);
             Creature newCreature = null;
-            System.out.println(contentData + "moj content");
-
             switch (creatureType) {
                 case MONSTER -> {
                     newCreature = Converter.createMonsterFromCard(contentData);
@@ -63,13 +59,13 @@ public class CreatureCreateController extends Controller {
                     newCreature = Converter.createNPCFromCard(contentData);
                 }
             }
-            if (IFactory.isErrorFlag()) {
-                view.setEntriesIncorrect(IFactory.getErrorIndexes(), 1500);
-                if (IFactory.isPathError())
+            if (IFactory.getErrorValidationChecker().isErrorFlag()) {
+                view.setEntriesIncorrect(IFactory.getErrorValidationChecker().getErrorIndexes(), 1500);
+                if (IFactory.getErrorValidationChecker().isPathError())
                     view.setTitleIncorrect(BaseCard.Side.LEFT, 1500);
-                if (IFactory.isNameError())
+                if (IFactory.getErrorValidationChecker().isNameError())
                     view.setTitleIncorrect(BaseCard.Side.RIGHT, 1500);
-                IFactory.resetErrorFlags();
+                IFactory.getErrorValidationChecker().resetErrorFlags();
                 return;
             }
 

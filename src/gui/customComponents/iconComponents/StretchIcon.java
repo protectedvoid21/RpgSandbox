@@ -15,30 +15,25 @@ import javax.swing.*;
 
 public class StretchIcon extends ImageIcon implements IRequieredReactionOnMovementComponent {
 
-//    protected HashMap<TextAttribute, Object> attrsMap = new HashMap<>();
     protected boolean proportionate;
     private int componentMovement = 0;
     private IMovementComponent.Direction direction;
     private String path;
 
-    public StretchIcon( String filename) {
-        this( filename, false);
+    public StretchIcon(String filename) {
+        this(filename, false);
     }
 
-
-
-    public StretchIcon( String filename, boolean proportionate) {
+    public StretchIcon(String filename, boolean proportionate) {
         super(filename);
         this.path = filename;
         this.proportionate = proportionate;
 
     }
 
-    public String getPath(){
+    public String getPath() {
         return path;
     }
-
-
 
     @Override
     public synchronized void paintIcon(Component c, Graphics g, int x, int y) {
@@ -70,7 +65,7 @@ public class StretchIcon extends ImageIcon implements IRequieredReactionOnMoveme
             }
         }
         ImageObserver io = getImageObserver();
-        g.drawImage(image, x+horizontalMovement, y+verticalMovement, w, h, io == null ? c : io);
+        g.drawImage(image, x + horizontalMovement, y + verticalMovement, w, h, io == null ? c : io);
     }
 
     public boolean isProportionate() {

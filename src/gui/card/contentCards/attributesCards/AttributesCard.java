@@ -66,10 +66,7 @@ public abstract class AttributesCard extends AbstractCard {
                 getSecondContentList().get(i).setContent(Card.EMPTY_DATA_CONTENT);
             }
         }
-
-
         Card.setAspectVisible(labelList, true);
-
     }
 
 
@@ -92,7 +89,6 @@ public abstract class AttributesCard extends AbstractCard {
             menager.getMainComponent(1).getComponent().getLastComponent().addSpace(2,
                     ComponentPanelMenager.Side.RIGHT, ComponentPanelMenager.Side.BOTTOM,
                     ComponentPanelMenager.Side.TOP);
-
         }
     }
 

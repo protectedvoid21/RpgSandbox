@@ -21,9 +21,6 @@ public abstract class DetailButtonsCard extends AbstractCard<JComponent> {
     protected ArrayList<AbstractCustomLabel> labelList = new ArrayList<>();
     protected ArrayList<AbstractCustomButton> detailList = new ArrayList<>();
 
-    /**
-     * dataMap should be in format [[path1, text1], [path2, text2], [path3, text3]...]
-     */
     public DetailButtonsCard(GuiFactory factory) {
         super(factory);
     }
@@ -93,10 +90,8 @@ public abstract class DetailButtonsCard extends AbstractCard<JComponent> {
     }
 
     protected void initLabel(ArrayList list, String text) {
-//        factory.setLabelType(GuiFactory.LabelType.ICON);
         var label = factory.createLabel(text);
         int index = list == labelList ? 0 : 3;
-//        int index = type == GuiFactory.LabelType.NORMAL ? 1 : 0;
         menager.addMiddleComponent(label, index, 20);
         menager.getMainComponent(index).getComponent().getLastComponent().addSpace(2);
         list.add(label);

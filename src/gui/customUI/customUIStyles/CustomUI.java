@@ -160,10 +160,6 @@ public abstract class CustomUI implements ICustomUI {
         return diff;
     }
 
-//    public int getMaximumPossibleFontSizeRelevantToHeight(String labelText) {
-//        return (int) (fontRelevantValue * getMaximumPossibleFont(labelText, Measure.HEIGHT).getSize());
-//    }
-
     @Override
     public void setFontRelevantToHeight(boolean val) {
         isFontRelevantToHeight = val;
@@ -251,10 +247,7 @@ public abstract class CustomUI implements ICustomUI {
 
     public void setRelevantFont(String labelText) {
         if (margin != null && borderStrategy != null) {
-//            if (isFontMaximized || isFontRelevantToHeight) {//wazne
             parent.setFont(getRelevantFont(labelText));
-//                return;
-//            }//w dzialajacej nie ma napewno tego slope'a
             if (hasSharedSize()) {
                 cmpsShared.setSharedFontSize(parent, labelText);
             }
