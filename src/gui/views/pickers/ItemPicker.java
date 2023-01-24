@@ -4,20 +4,14 @@ import gui.card.DoubleArrowPanel;
 import gui.card.SwitchableComponent;
 import gui.card.fullCards.abstractCards.Card;
 import gui.customComponents.AbstractCustomLabel;
-import gui.customUI.customUIStyles.borderStrategies.AverageBorderStartegy;
 import gui.factories.GuiFactory;
 import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;
-import gui.menu.CustomMenuMenager;
 import gui.menu.DefaultCustomMenuMenager;
 import gui.views.PanelContainer;
 
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class ItemPicker implements SwitchableComponent, PanelContainer {
     private DoubleArrowPanel arrows;

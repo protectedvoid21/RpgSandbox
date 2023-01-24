@@ -18,37 +18,28 @@ public class FullSmallView extends SmallCardsView {
 
     protected OnlyVisibleCard createOnlyVisibleCard(int index){
         var card = factory.createSmallFullCard();
-        card.getShowbutton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                clickedIndex = maximumumElements * currentSide + index;
-                if (listenerHashMap.containsKey(index) && listenerHashMap.get(index).containsKey(ButtonType.SHOW)) {
-                    listenerHashMap.get(index).get(ButtonType.SHOW).actionPerformed(e);
-                }
+        card.getShowbutton().addActionListener(e -> {
+            clickedIndex = maximumumElements * currentSide + index;
+            if (listenerHashMap.containsKey(index) && listenerHashMap.get(index).containsKey(ButtonType.SHOW)) {
+                listenerHashMap.get(index).get(ButtonType.SHOW).actionPerformed(e);
             }
         });
-        card.getEditButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                clickedIndex = maximumumElements * currentSide + index;
-                if (listenerHashMap.containsKey(index) && listenerHashMap.get(index).containsKey(ButtonType.EDIT)) {
-                    listenerHashMap.get(index).get(ButtonType.EDIT).actionPerformed(e);
-                }
+        card.getEditButton().addActionListener(e -> {
+            clickedIndex = maximumumElements * currentSide + index;
+            if (listenerHashMap.containsKey(index) && listenerHashMap.get(index).containsKey(ButtonType.EDIT)) {
+                listenerHashMap.get(index).get(ButtonType.EDIT).actionPerformed(e);
             }
         });
-        card.getDeleteButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                clickedIndex = maximumumElements * currentSide + index;
-                if (listenerHashMap.containsKey(index) && listenerHashMap.get(index).containsKey(ButtonType.DELETE)) {
-                    listenerHashMap.get(index).get(ButtonType.DELETE).actionPerformed(e);
-                }
-                data.remove(data.get(clickedIndex));
-                updateContent();
-                if (maximumumElements * currentSide >= data.size()) {
-                    switchSide(DoubleArrowPanel.Side.LEFT);
-                    arrowPanel.updateSwitchingButtons();
-                }
+        card.getDeleteButton().addActionListener(e -> {
+            clickedIndex = maximumumElements * currentSide + index;
+            if (listenerHashMap.containsKey(index) && listenerHashMap.get(index).containsKey(ButtonType.DELETE)) {
+                listenerHashMap.get(index).get(ButtonType.DELETE).actionPerformed(e);
+            }
+            data.remove(data.get(clickedIndex));
+            updateContent();
+            if (maximumumElements * currentSide >= data.size()) {
+                switchSide(DoubleArrowPanel.Side.LEFT);
+                arrowPanel.updateSwitchingButtons();
             }
         });
         cards.add(card);

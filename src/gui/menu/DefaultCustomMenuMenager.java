@@ -65,7 +65,6 @@ public class DefaultCustomMenuMenager<T extends JComponent> {
     }
 
     public void setBackground(Color color) {
-//        cmp.addSpace();
         cmp.setBackground(color);
     }
 

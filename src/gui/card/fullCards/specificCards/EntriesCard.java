@@ -13,7 +13,7 @@ import gui.customComponents.AbstractCustomButton;
 import gui.customComponents.customTextComponents.CustomTextComponent;
 import gui.factories.GuiFactory;
 import gui.menu.ComponentPanelMenager;
-import gui.utils.FileCopyManager;
+import gui.utils.FileManager;
 import gui.utils.StringAdapter;
 
 import javax.swing.*;
@@ -26,12 +26,10 @@ import java.awt.event.KeyEvent;
 import java.util.*;
 
 public class EntriesCard extends Card {
-    public enum EntryType {SPINNER, ENTRY}
 
     final static String baseEnabledPhotoPath = StringAdapter.getRelativePath("image.png");
     final static String baseDisabledPhotoPath = StringAdapter.getRelativePath("disimage.png");
     private boolean isImageSet = false;
-    private AddingButtonCard choserEqCard2 = null;
     private ChoserCard choserCard;
     protected ComponentPanelMenager<AbstractCustomButton> addButton;
     private JComponent helpPanelVariable;
@@ -123,8 +121,17 @@ public class EntriesCard extends Card {
         uploadNewChoserCardData(newData, detailData);
         if (newData.containsKey(CardTypes.OVERALL)) {
             rightEntryTitleComponent.getComponent().setContent(newData.get(CardTypes.OVERALL).titleContent);
-            leftButtonyTitleComponent.getComponent().setContent(newData.get(CardTypes.OVERALL).titlePath.equals(Card.EMPTY_DATA_CONTENT) ? EntriesCard.baseEnabledPhotoPath : newData.get(CardTypes.OVERALL).titlePath);
+            leftButtonyTitleComponent.getComponent().setContent(newData.get(CardTypes.OVERALL).titlePath.equals(Card.EMPTY_DATA_CONTENT) ?
+                    EntriesCard.baseEnabledPhotoPath : newData.get(CardTypes.OVERALL).titlePath);
         }
+    }
+
+    @Override
+    public void uploadCreatorItemsData(CardContentDataSet data, CardTypes type) {
+        super.uploadCreatorItemsData(data, type);
+        rightEntryTitleComponent.getComponent().setContent(data.titleContent);
+        leftButtonyTitleComponent.getComponent().setContent(data.titlePath.equals(Card.EMPTY_DATA_CONTENT) ?
+                EntriesCard.baseEnabledPhotoPath : data.titlePath);
     }
 
     public void uploadNewChoserCardData(LinkedHashMap<CardTypes, CardContentDataSet> newData, HashMap<CardTypes,
@@ -201,9 +208,9 @@ public class EntriesCard extends Card {
                 int answer = chooser.showOpenDialog(new JFrame());
                 if (answer == JFileChooser.APPROVE_OPTION) {
                     isImageSet = true;
-                    leftButtonyTitleComponent.getComponent().setContent(String.valueOf(chooser.getSelectedFile().getAbsolutePath()));
-                    FileCopyManager.copyFile(String.valueOf(chooser.getSelectedFile().getPath()));
-                    activeCard.getData().titlePath = FileCopyManager.getPathToImage(FileCopyManager.getLastFileName());
+                    leftButtonyTitleComponent.getComponent().setContent(chooser.getSelectedFile().getAbsolutePath());
+                    FileManager.copyFile(chooser.getSelectedFile().getPath());
+                    activeCard.getData().titlePath = FileManager.getPathToImage(FileManager.getLastFileName());
                 }
             }
         });
@@ -222,8 +229,7 @@ public class EntriesCard extends Card {
         initializeCancelPanelObject(saveButton, 1);
     }
 
-    public CardContentDataSet getCurrectCreatorItemData() {
-        amwGeneratorCard.getData().titlePath = leftButtonyTitleComponent.getComponent().getContent();
+    public CardContentDataSet getCurrentCreatorItemData() {
         amwGeneratorCard.getData().titleContent = rightEntryTitleComponent.getComponent().getContent();
         return amwGeneratorCard.generateContentData();
     }
@@ -231,7 +237,8 @@ public class EntriesCard extends Card {
 
     public void setTitleIncorrect(Side side, int periodTime) {
         disableSave(periodTime);
-        switchSide(CardTypes.OVERALL);
+        if (activeCard != amwGeneratorCard)
+            switchSide(CardTypes.OVERALL);
         leftArrows.updateSwitchingButtons();
         if (side == Side.RIGHT) {
             var cmp = rightEntryTitleComponent.getComponent();

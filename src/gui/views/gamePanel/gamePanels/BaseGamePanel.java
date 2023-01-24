@@ -198,10 +198,10 @@ public abstract class BaseGamePanel extends BackgroundView implements PanelConta
         optionsPanel.getPanel().setVisible(true);
         var changeX = optionsPanel.getPercentFilledSizeX();
         var changeY = optionsPanel.getPercentFilledSizeY();
-        int leftpercent = (int) (((double) (xindex + 0.5) / maxIndex) * 100 / changeX);
-        int rightpercent = (int) (100 / changeX) - weight - leftpercent;//30 to waga
+        int leftpercent = (int) (((xindex + 0.5) / maxIndex) * 100 / changeX);
+        int rightpercent = (int) (100 / changeX) - weight - leftpercent;
 
-        int upprocent = (int) (((double) (yindex + 0.5) / maxIndex) * 300 / changeY);
+        int upprocent = (int) (((yindex + 0.5) / maxIndex) * 300 / changeY);
         int bottomprocent = (int) (300 / changeY) - weight - upprocent;
 
         if (rightpercent < 0) {

@@ -5,6 +5,8 @@ import gui.utils.StringAdapter;
 import java.awt.*;
 
 public interface WarhammerData {
+    String statsPath = StringAdapter.getRelativePath("stats.png");
+    String itemPath = StringAdapter.getRelativePath("item.png");
     String moveOption = StringAdapter.getRelativePath("movingOpt.png");
     String cardOption = StringAdapter.getRelativePath("cardOpt.png");
     String carefullattackOpt = StringAdapter.getRelativePath("swordsOpt.png");
@@ -13,14 +15,14 @@ public interface WarhammerData {
     String defenseStandOpt = StringAdapter.getRelativePath("shieldOpt.png");
     String targetOpt = StringAdapter.getRelativePath("targetOpt.png");
     String blockOption = StringAdapter.getRelativePath("block.png");
-    String fontPath = StringAdapter.getRelativePath("Sabatica-regular.ttf");
+    String fontPath = StringAdapter.getFontRelativePath("Sabatica-regular.ttf");
     String background1 = StringAdapter.getRelativePath("aveeee.jpg");
     String editPath = StringAdapter.getRelativePath("edit.png");
     String createPath = StringAdapter.getRelativePath("create.png");
     String viewPath = StringAdapter.getRelativePath("view.png");
-    String horsePath =StringAdapter.getRelativePath("horse");
+    String horsePath =StringAdapter.getRelativePath("horse.png");
     String efectPath = StringAdapter.getRelativePath("effect.png");
-    String armorPath = StringAdapter.getRelativePath("gui/armor.png");
+    String armorPath = StringAdapter.getRelativePath("armor.png");
     String weaponPath = StringAdapter.getRelativePath("weapon.png");
     String trolleyPath =StringAdapter.getRelativePath("trolley.png");
     String monsterPath = StringAdapter.getRelativePath("monsterimage.png");

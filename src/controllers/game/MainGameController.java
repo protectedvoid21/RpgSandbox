@@ -1,35 +1,24 @@
 package controllers.game;
 
 import controllers.Controller;
-import controllers.ControllerManager;
 import controllers.MenuController;
 import controllers.utils.RedirectListener;
 import game.board.Board;
 import game.board.RoundManager;
 import game.board.Scenario;
-import game.filehandle.EntityManager;
 import game.generals.Vector2;
-import gui.Converter;
 import gui.actionListener.scrollItem.*;
 import gui.actionListener.turnOffButtons;
 import gui.actionListener.warhammerActions.*;
 import gui.card.DoubleArrowPanel;
-import gui.card.fullCards.specificCards.GameCard;
-import gui.factories.GuiFactory;
 import gui.factories.IOverallFactory;
 import gui.views.gamePanel.MainPanelGame;
-import gui.views.gamePanel.gamePanels.CreatorPanel;
-import gui.views.gamePanel.gamePanels.GamePanel;
-import gui.views.objectViews.AllObjectsView;
 import gui.views.pickers.CustomLambdaExpression;
 import gui.views.pickers.FullItemPicker;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.AbstractMap;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 
 public class MainGameController extends Controller {
     private RoundManager roundManager;
@@ -44,9 +33,7 @@ public class MainGameController extends Controller {
     }
 
     private void startGame() {
-//     roundManager.startNewTurn();
         gamePanel.getGamePanel().applyContent(roundManager.boardToList());
-        //roundManager.moveToNextObject();
         gamePanel.getGamePanel().colorButtons(roundManager.getGameObjectWithTurnPosition());
         turnOffButtons.turnOff(roundManager, gamePanel, 2, 0);
     }
@@ -76,7 +63,6 @@ public class MainGameController extends Controller {
                 new RedirectListener(controllerManager, new MenuController())
         );
         gamePanel.getNextPlayerButton().addActionListener(new EndTurnListener(roundManager, gamePanel));
-        var cntrl = this;
 
         startGame();
 

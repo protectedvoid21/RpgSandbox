@@ -8,8 +8,6 @@ import java.awt.event.ActionListener;
 public class CustomBooleanButton extends CustomButton implements IBooleanComponent {
     private String firstString = "";
     private String secondString = "";
-    //    private StretchIcon icon1;
-//    private StretchIcon icon2;
     private boolean value;
 
 

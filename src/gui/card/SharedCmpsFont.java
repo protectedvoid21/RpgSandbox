@@ -12,7 +12,7 @@ import java.util.stream.Stream;
 /**
  * Components have to be written using same font style, only can differ in font size(which will be optimized)
  */
-public class SharedCmpsFont<T extends JComponent &IContentCustomUICmp> {//cos ogarnac z metoda maksymalna font i array lista
+public class SharedCmpsFont<T extends JComponent &IContentCustomUICmp> {
     private ArrayList<T> cmps = new ArrayList<>();
 
 

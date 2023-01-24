@@ -47,7 +47,6 @@ public class DarkerHoverComponentWraper extends BorderDecorator {
             public void mouseExited(MouseEvent e) {
                 super.mouseExited(e);
                 setAdditionaldColor(currentBaseBackgroundHelper, Index.BASE_BACKGROUND);
-//                currentBaseBackgroundHelper = null;
                 c.repaint();
                 c.revalidate();
             }

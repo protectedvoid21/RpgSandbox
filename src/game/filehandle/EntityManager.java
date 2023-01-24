@@ -2,7 +2,10 @@ package game.filehandle;
 
 import game.board.Scenario;
 import game.creature.*;
+import game.creature.Character;
 import game.equipment.*;
+import game.interfaceWarhammer.StatisticsWarhammer;
+import game.interfaceWarhammer.StruggleStatisticsWarhammer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +19,8 @@ public class EntityManager {
     private List<Weapon> weaponList = new ArrayList<>();
     private List<Mount> mountList = new ArrayList<>();
     private List<Armor> armorList = new ArrayList<>();
+    
+    private Character playerCharacterWithAllItems;
     
     private FileManager fileManager;
 
@@ -52,6 +57,9 @@ public class EntityManager {
         weaponList = fileManager.readFromFile(Weapon.class);
         armorList = fileManager.readFromFile(Armor.class);
         mountList = fileManager.readFromFile(Mount.class);
+        
+        playerCharacterWithAllItems = new PlayerCharacter(
+                new StatisticsWarhammer(), new Inventory(weaponList, armorList, mountList), new Experience(0), new StruggleStatisticsWarhammer());
     }
 
     public void addCreature(Creature creature) {
@@ -112,6 +120,10 @@ public class EntityManager {
 
     public List<Armor> getArmorList() {
         return armorList;
+    }
+    
+    public Character getPlayerCharacterWithAllItems() {
+        return playerCharacterWithAllItems;
     }
     
     public void addItem(Item item) {

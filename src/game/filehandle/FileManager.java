@@ -44,6 +44,7 @@ public class FileManager {
                 .setPrettyPrinting()
                 .setExclusionStrategies(new CustomExcludeStrategy())
                 .registerTypeAdapter(IStatistics.class, new StatisticsDeserializer())
+                .registerTypeAdapter(Creature.class, new CustomAdapter<Creature>())
                 .registerTypeAdapter(IAttributeEnum.class, new CustomAdapter<IAttributeEnum>())
                 .registerTypeAdapter(AttributeValue.class, new CustomAdapter<AttributeValue>())
                 .create();

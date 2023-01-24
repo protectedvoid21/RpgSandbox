@@ -7,9 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class CustomIconBooleanButton extends IconButton implements IBooleanComponent {
-//    private String firstString = "";
-//    private String secondString = "";
-
     private StretchIcon secondIcon;
     private boolean value;
 
@@ -28,19 +25,12 @@ public class CustomIconBooleanButton extends IconButton implements IBooleanCompo
 
     private void initialize(String content, boolean initialValue, boolean prop){
         secondIcon = new StretchIcon(content);
-        addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                setValue(!value);
-            }
-        });
+        addActionListener(e -> setValue(!value));
     }
 
     public void setDoubleTextContent(String first, String second) {
         icon = new StretchIcon(first, icon.isProportionate());
         secondIcon = new StretchIcon(second, secondIcon.isProportionate());
-//        icon1 = new StretchIcon( text, icon1.isProportionate());
-//        icon2 = new StretchIcon( text, prop);
         setValue(value);
     }
 

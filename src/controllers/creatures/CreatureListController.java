@@ -6,6 +6,7 @@ import controllers.utils.RedirectListener;
 import game.creature.Creature;
 import game.filehandle.EntityManager;
 import gui.factories.IOverallFactory;
+import gui.utils.FileManager;
 import gui.views.objectViews.AllObjectsView;
 import gui.views.objectViews.itemsViews.FullSmallView;
 
@@ -77,7 +78,9 @@ public class CreatureListController extends Controller {
     private class DeleteButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            creatureList.remove(view.getClickedIndex());
+            var index = view.getClickedIndex();
+            FileManager.deleteFile(creatureList.get(index).getObjectPathPicture());
+            creatureList.remove(index);
             EntityManager.getInstance().saveAllEntities();
         }
     }

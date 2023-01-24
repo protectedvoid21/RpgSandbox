@@ -35,10 +35,7 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
 
     private AddingButtonCard choserEqCard = null;
 
-    protected HashMap<CreatorTypes, CardContentDataSet> creatorData = new HashMap<>();
-
-    public enum CreatorTypes {ARMOR, WEAPONS, MOUNT}
-
+    protected HashMap<CardTypes, CardContentDataSet> creatorData = new HashMap<>();
 
     public enum CardTypes {OVERALL, ATTRIBUTE, ARMOR, WEAPONS, EFFECTS, MOUNT, ITEMS}
 
@@ -176,15 +173,26 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
         leftArrows.updateSwitchingButtons();
     }
 
+    public void initializeCardData() {
+        creatorData.put(CardTypes.ARMOR, new CardContentDataSet());
+        creatorData.put(CardTypes.MOUNT, new CardContentDataSet());
+        creatorData.put(CardTypes.WEAPONS, new CardContentDataSet());
+    }
+
     public void uploadCreatorItemsData(CardContentDataSet weapon, CardContentDataSet mount, CardContentDataSet armor) {
-        creatorData.put(CreatorTypes.ARMOR, armor);
-        creatorData.put(CreatorTypes.MOUNT, mount);
-        creatorData.put(CreatorTypes.WEAPONS, weapon);
+        creatorData.put(CardTypes.ARMOR, armor);
+        creatorData.put(CardTypes.MOUNT, mount);
+        creatorData.put(CardTypes.WEAPONS, weapon);
+        //jeszcze items albo i nie
+    }
+
+    public void uploadCreatorItemsData(CardContentDataSet data, CardTypes type) {
+        creatorData.put(type, data);
         //jeszcze items albo i nie
     }
 
 
-    public void setCreatorCard(boolean value, CreatorTypes type) {
+    public void setCreatorCard(boolean value, CardTypes type) {
         if (value) {
             amwGeneratorCard.initializeCardData(creatorData.get(type), null);
             updateContent(amwGeneratorCard);
@@ -197,7 +205,7 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
         }
     }
 
-    public void setEqChoserCard(boolean val, CreatorTypes types) {
+    public void setEqChoserCard(boolean val, CardTypes types) {
         if (val) {
             //data init
             updateContent(choserEqCard);
@@ -211,11 +219,8 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
 
     public void uploadNewData(LinkedHashMap<CardTypes, CardContentDataSet> newData, HashMap<CardTypes,
             ArrayList<CardContentDataSet>> detailData) {
-        System.out.println(newData);
         for (var type : newData.keySet()) {
-            if (type != CardTypes.OVERALL && type!=CardTypes.ATTRIBUTE)
-                System.out.println(type);
-                allCards.get(type).initializeCardData(newData.get(type), detailData.get(type));
+            allCards.get(type).initializeCardData(newData.get(type), detailData.get(type));
         }
         var a = new ArrayList<CardTypes>();
         for (var key : newData.keySet()) {
@@ -258,7 +263,6 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
         rightArrows.updateSwitchingButtons();
     }
 
-
     @Override
     public void switchSide(DoubleArrowPanel.Side side) {
         if (isSwitchingSidePossible(side)) {
@@ -296,12 +300,7 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
         factory.setButtonType(GuiFactory.ButtonType.NORMAL);
         exitButton = new ComponentPanelMenager<>(factory.createButton("exit", null));
         exitButton.addSpace(5);
-
-//        exitCreatorCard = new ComponentPanelMenager<>(factory.createButton("exit2", null));
-//        exitCreatorCard.addSpace(5);
-
         exitButton.getComponent().addActionListener(e -> methodOfRightDownPanelComponent());
-
         arrowMenager = new ComponentsSeries<>(ComponentsSeries.ComponentsDimension.HORIZONTAL);
         leftArrows = new DoubleArrowPanel(factory, activeCard);///
         leftArrows.setSpace(5);

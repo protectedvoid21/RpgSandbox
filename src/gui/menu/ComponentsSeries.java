@@ -18,16 +18,6 @@ public class ComponentsSeries<T extends JComponent> extends JPanel {
     private ArrayList<T> componentsList = new ArrayList<>();
     private ComponentsDimension dimension;
 
-//    public ComponentsSeries(ComponentsDimension dimension, int initialHeight) {
-//        super();
-//        setOpaque(false);
-//
-//        setLayout(new GridBagLayout());
-//        this.dimension = dimension;
-//        mainCst.fill = GridBagConstraints.BOTH;
-//        initializeCst(0, 0, initialHeight, initialHeight);
-//    }
-
     public ComponentsSeries(ComponentsDimension dimension){
         super();
         setOpaque(false);
@@ -66,13 +56,6 @@ public class ComponentsSeries<T extends JComponent> extends JPanel {
     @Override
     public void setBackground(Color bg) {
         super.setBackground(bg);
-//        if (componentsList != null) {
-//            for (var cmp : componentsList) {
-//                if (cmp instanceof JPanel) {
-//                    cmp.setBackground(bg);
-//                }
-//            }
-//        }
     }
 
     public ArrayList<T> getComponentsList() {

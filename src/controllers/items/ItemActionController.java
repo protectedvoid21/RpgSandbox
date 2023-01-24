@@ -8,9 +8,9 @@ import gui.card.fullCards.abstractCards.Card;
 import gui.factories.IOverallFactory;
 
 public class ItemActionController extends Controller {
-    private Card.CreatorTypes creatorType;
+    private Card.CardTypes creatorType;
 
-    public ItemActionController(Card.CreatorTypes creatorType) {
+    public ItemActionController(Card.CardTypes creatorType) {
         this.creatorType = creatorType;
     }
 

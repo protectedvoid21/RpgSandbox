@@ -6,10 +6,10 @@ import gui.factories.WarHammerFactory;
 
 public class Main {
     public static void main(String[] args) {
-        EntityManager entityManager = new EntityManager("Warhammer");
+        new EntityManager("Warhammer");
         Seeder seeder = new SeedManager();
-        seeder.seed();
-        entityManager.saveAllEntities();
+        //seeder.seed();
+        //EntityManager.getInstance().saveAllEntities();
         
         ControllerManager controllerManager = new ControllerManager(new WarHammerFactory());
     }

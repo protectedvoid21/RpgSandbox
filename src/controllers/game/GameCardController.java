@@ -1,19 +1,12 @@
 package controllers.game;
 
 import controllers.Controller;
-import controllers.MenuController;
 import controllers.utils.RedirectListener;
-import game.board.ScenarioTester;
 import game.creature.Character;
 import game.creature.Creature;
-import game.filehandle.EntityManager;
-import gui.Converter;
+import gui.utils.Converter;
 import gui.card.fullCards.abstractCards.Card;
 import gui.factories.IOverallFactory;
-import gui.views.gamePanel.gamePanels.CreatorPanel;
-import gui.views.objectViews.AllObjectsView;
-
-import java.util.ArrayList;
 
 public class GameCardController extends Controller {
     private Creature creature;
