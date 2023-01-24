@@ -10,6 +10,8 @@ public class JustNormalWater extends DisposableItem {
     public JustNormalWater(String name, int usageCount, Character user) {
         super(name, usageCount);
         this.user=user;
+
+        description = "Like the name JUST NORMAL WATER! You can use it to stop fire or sth";
     }
 
     @Override

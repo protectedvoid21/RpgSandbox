@@ -9,6 +9,8 @@ public class Sharpener extends DisposableItem {
     public Sharpener(String name, int usageCount, Character user) {
         super(name, usageCount);
         this.user=user;
+
+        description = "Your big sword will become big and sharp (YES IT WILL MAKE MORE DAMAGE)";
     }
 
     @Override
