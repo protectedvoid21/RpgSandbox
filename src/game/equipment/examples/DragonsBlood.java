@@ -24,7 +24,7 @@ public class DragonsBlood extends DisposableItem {
         int freezing = user.getInventory().getActiveWeapon().getChanceForFreezing();
 
         damage += 2;
-        poison = (int) (poison*1.5);
+        poison = (int) (poison+ 25);
 
         user.getInventory().getActiveWeapon().upgrade(damage, bleeding,poison,fire,freezing);
     }
