@@ -10,7 +10,7 @@ public class MaxioItemPicker extends ItemPicker{
         super(factory);
         factory.setButtonType(GuiFactory.ButtonType.NORMAL);
         button = factory.createButton("USE", null);
-        button.getCustomUI().setOffSet(15);
+        button.getCustomUI().setOffSet(7);
         menager.addMainComponent(5);
         menager.addMiddleComponent(button, 2,10);
         menager.getMainComponent(2).addSpace(1);

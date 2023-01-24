@@ -157,6 +157,9 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
                 fastAttactOpt)));
         mainPanel.getGamePanel().initializeOptionsPanelLabelData(new ArrayList<>(Arrays.asList("1", "0", "1", "2", "2"
         )));
+        mainPanel.getGamePanel().changeActiveOptionsPanel();
+        mainPanel.getGamePanel().initializeOptionsButtonPanelData(new ArrayList<>(Arrays.asList(moveOption,
+                cardOption)));
         return mainPanel;
     }
 
@@ -171,14 +174,15 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
         p1.applyContent(new AbstractMap.SimpleEntry<>(new Vector2(9, 7), playerImagePath),
                 new AbstractMap.SimpleEntry<>(new Vector2(3, 4),
                         npcImage), new AbstractMap.SimpleEntry<>(new Vector2(4, 4), npcImage));
-        ;p2.applyContent(new AbstractMap.SimpleEntry<>(new Vector2(9, 7), playerImagePath),
+        ;
+        p2.applyContent(new AbstractMap.SimpleEntry<>(new Vector2(9, 7), playerImagePath),
                 new AbstractMap.SimpleEntry<>(new Vector2(3, 4),
                         npcImage), new AbstractMap.SimpleEntry<>(new Vector2(4, 4), npcImage));
         ;
         p1.setWholePanelDisabled();
         p2.setWholePanelDisabled();
         p3.setWholePanelDisabled();
-        panel.uploadData(new ArrayList<>(Arrays.asList(p1,p2,p3)));
+        panel.uploadData(new ArrayList<>(Arrays.asList(p1, p2, p3)));
 
         return panel;
     }
@@ -213,7 +217,7 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
 
     @Override
     public TitleView createTitleView() {
-       factory.setLabelFactory(labelFactory);
+        factory.setLabelFactory(labelFactory);
         return new TitleView(factory);
     }
 
@@ -282,7 +286,7 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
         card.initialize();
         card.setUniformFont();
         uploadBackgroundImage(card, cardBackground);
-        card.setBorder(basicBorderColor, basicBorderSize*2);
+        card.setBorder(basicBorderColor, basicBorderSize * 2);
         return card;
     }
 
@@ -291,7 +295,7 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
         setFactoriesMode(Mode.CLICKED);
 
         var card = new FullOnlyVisibleCard(factory);
-        card.setBorder(basicBorderColor, basicBorderSize*2);
+        card.setBorder(basicBorderColor, basicBorderSize * 2);
         createSmallCard(card);
         return card;
     }
@@ -301,22 +305,24 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
         setFactoriesMode(Mode.CLICKED);
 
         var card = new OnlyVisibleShowCard(factory);
-        card.setBorder(basicBorderColor, basicBorderSize*2);
+        card.setBorder(basicBorderColor, basicBorderSize * 2);
         createSmallCard(card);
         return card;
     }
 
-    public FullSmallView createAllMonstersView(){
+    public FullSmallView createAllMonstersView() {
         var card = createAllEditableItemsView();
         card.uploadMainImageData(monsterPath);
         return card;
     }
-    public FullSmallView createAllCharactersView(){
+
+    public FullSmallView createAllCharactersView() {
         var card = createAllEditableItemsView();
         card.uploadMainImageData(playerImagePath);
         return card;
     }
-    public FullSmallView createAllNPCView(){
+
+    public FullSmallView createAllNPCView() {
         var card = createAllEditableItemsView();
         card.uploadMainImageData(npcImage);
         return card;
@@ -329,6 +335,7 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
         obj.setBackgroundImage(avePath);
         return obj;
     }
+
     private ShowSmallView createAllItemsView() {
         setFactoriesMode(Mode.CLICKED);
         var obj = new ShowSmallView(this);
@@ -337,22 +344,25 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
         return obj;
     }
 
-    public  FullSmallView createAllWeaponsItemsView(){
+    public FullSmallView createAllWeaponsItemsView() {
         var card = createAllEditableItemsView();
         card.uploadMainImageData(weaponPath);
         return card;
     }
-    public  FullSmallView createAllMountsItemsView(){
+
+    public FullSmallView createAllMountsItemsView() {
         var card = createAllEditableItemsView();
         card.uploadMainImageData(horsePath);
         return card;
     }
-    public  ShowSmallView createAllItemsItemsView(){
+
+    public ShowSmallView createAllItemsItemsView() {
         var card = createAllItemsView();
         card.uploadMainImageData(armorPath);//todo
         return card;
     }
-    public  FullSmallView createAllArmorsItemsView(){
+
+    public FullSmallView createAllArmorsItemsView() {
         var card = createAllEditableItemsView();
         card.uploadMainImageData(armorPath);
         return card;
