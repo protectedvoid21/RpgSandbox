@@ -16,6 +16,7 @@ public class SetCreatureController extends Controller {
 
     public SetCreatureController(NewScenarioController scenarioController, CreatureType creatureType) {
         this.creatureType = creatureType;
+        this.scenarioController = scenarioController;
     }
 
     @Override
@@ -26,7 +27,7 @@ public class SetCreatureController extends Controller {
                 new RedirectListener(controllerManager, scenarioController)
         );
         view.uploadData(new ArrayList<>(List.of(new ArrayList<>(Arrays.asList("gowno", "gowno123")))));
-        
+
         mainFrame.add(view.getPanel());
     }
 }
