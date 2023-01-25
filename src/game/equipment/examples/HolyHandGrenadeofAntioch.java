@@ -13,6 +13,7 @@ import static game.interfaceWarhammer.AttributeEnum.HEALTH_POINTS_NOW;
 
 public class HolyHandGrenadeofAntioch extends DisposableItem implements WarhammerData {
     private int range;
+    boolean onEnemy = true;
 
     public HolyHandGrenadeofAntioch(String name, int usageCount) {
         super(name, usageCount);
@@ -63,7 +64,7 @@ public class HolyHandGrenadeofAntioch extends DisposableItem implements Warhamme
 
         if(!board.getPlace(new Vector2(x,y)).isEmpty())
         {
-            board.getPlace(new Vector2(x,y)).getGameObject().getCreature().getStatistics().getAttribute(HEALTH_POINTS_NOW).decreaseValue(3);
+            board.getPlace(new Vector2(x,y)).getGameObject().getCreature().getStatistics().getAttribute(HEALTH_POINTS_NOW).decreaseValue(5);
         }
 
         if(y< board.getHeight())

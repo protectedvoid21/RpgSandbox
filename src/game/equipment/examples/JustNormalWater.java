@@ -7,6 +7,8 @@ import gui.factories.WarhammerData;
 
 public class JustNormalWater extends DisposableItem implements WarhammerData {
     private Character user;
+    boolean onEnemy = false;
+
 
     public JustNormalWater(String name, int usageCount, Character user) {
         super(name, usageCount);

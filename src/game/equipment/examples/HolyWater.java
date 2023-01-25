@@ -8,12 +8,18 @@ import game.equipment.DisposableItem;
 import gui.factories.WarhammerData;
 
 public class HolyWater extends DisposableItem implements WarhammerData {
+    boolean onEnemy = true;
 
     public HolyWater(String name, int usageCount) {
         super(name, usageCount);setItemPathPicture(holyWaterPath);
         
          description = "Paladyn Edward claims that it works against monsters";
 
+    }
+
+    @Override
+    public boolean isOnEnemy() {
+        return onEnemy;
     }
 
     public void use(Creature enemy) {

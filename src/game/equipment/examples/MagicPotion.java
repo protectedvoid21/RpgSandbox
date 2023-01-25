@@ -10,6 +10,7 @@ import java.util.Random;
 public class MagicPotion extends DisposableItem implements WarhammerData {
     private AttributeEnum what;
     private Character user;
+    boolean onEnemy = false;
 
     public MagicPotion(String name, Character user)
     {

@@ -6,6 +6,8 @@ import gui.factories.WarhammerData;
 
 public class DragonsBlood extends DisposableItem implements WarhammerData {
     private Character user;
+    boolean onEnemy = false;
+
 
     public DragonsBlood(String name, int usageCount, Character user) {
         super(name, usageCount);

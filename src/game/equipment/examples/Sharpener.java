@@ -6,6 +6,7 @@ import gui.factories.WarhammerData;
 
 public class Sharpener extends DisposableItem implements WarhammerData {
     private Character user;
+    boolean onEnemy = false;
 
     public Sharpener(String name, int usageCount, Character user) {
         super(name, usageCount);

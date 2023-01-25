@@ -7,6 +7,7 @@ import gui.factories.WarhammerData;
 
 public class MagicPills extends DisposableItem implements WarhammerData {
     private Character user;
+    boolean onEnemy = false;
 
     public MagicPills(String name, int usageCount, Character user) {
         super(name, usageCount);

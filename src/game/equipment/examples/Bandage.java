@@ -7,6 +7,7 @@ import gui.factories.WarhammerData;
 
 public class Bandage extends DisposableItem implements WarhammerData {
     private Character user;
+    boolean onEnemy = false;
 
     public Bandage(String name, Character user, int usageCount) {
         super(name, usageCount);

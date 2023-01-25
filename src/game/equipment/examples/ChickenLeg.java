@@ -10,6 +10,7 @@ import static game.interfaceWarhammer.AttributeEnum.HEALTH_POINTS_NOW;
 
 public class ChickenLeg extends DisposableItem implements WarhammerData {
     private Character user;
+    boolean onEnemy = false;
 
     public ChickenLeg(String name, int usageCount, Character user) {
         super(name, usageCount);
