@@ -3,16 +3,17 @@ package game.equipment.examples;
 import game.creature.Character;
 import game.equipment.DisposableItem;
 import game.interfaceWarhammer.EffectEnum;
+import gui.factories.WarhammerData;
 
 import static game.interfaceWarhammer.AttributeEnum.HEALTH_POINTS_MAX;
 import static game.interfaceWarhammer.AttributeEnum.HEALTH_POINTS_NOW;
 
-public class ChickenLeg extends DisposableItem {
+public class ChickenLeg extends DisposableItem implements WarhammerData {
     private Character user;
 
     public ChickenLeg(String name, int usageCount, Character user) {
         super(name, usageCount);
-        this.user=user;
+        this.user=user;setItemPathPicture(chickenPath);
 
         description = "Traveller! Stop in our tavern and eat some chicken. It will help to restore your health";
     }
