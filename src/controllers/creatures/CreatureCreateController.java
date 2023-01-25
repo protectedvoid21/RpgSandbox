@@ -28,8 +28,8 @@ public class CreatureCreateController extends Controller {
     @Override
     public void run(IOverallFactory overallFactory) {
         view = overallFactory.createEntriesCard();
-        var contentData = Converter.createFullDataCreature(creature);
-        view.uploadNewData(contentData, Converter.createFullDetailDataCreature(creature));
+        var contentData = converter.createFullDataCreature(creature);
+        view.uploadNewData(contentData, converter.createFullDetailDataCreature(creature));
 
         view.getCancelButton().addActionListener(
                 new RedirectListener(controllerManager, new CreatureListController(creatureType))
@@ -50,13 +50,13 @@ public class CreatureCreateController extends Controller {
             Creature newCreature = null;
             switch (creatureType) {
                 case MONSTER -> {
-                    newCreature = Converter.createMonsterFromCard(contentData);
+                    newCreature = converter.createMonsterFromCard(contentData);
                 }
                 case PLAYER_CHARACTER -> {
-                    newCreature = Converter.createPlayerCharacterFromCard(contentData);
+                    newCreature = converter.createPlayerCharacterFromCard(contentData);
                 }
                 case NPC -> {
-                    newCreature = Converter.createNPCFromCard(contentData);
+                    newCreature = converter.createNPCFromCard(contentData);
                 }
             }
             if (IFactory.getErrorValidationChecker().isErrorFlag()) {

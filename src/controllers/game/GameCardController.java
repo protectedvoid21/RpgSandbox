@@ -20,8 +20,8 @@ public class GameCardController extends Controller {
     @Override
     public void run(IOverallFactory overallFactory) {
         var card = overallFactory.createGameCard();
-        card.uploadNewData(Converter.createFullDataCreature(creature),
-                Converter.createFullDetailDataCreature(creature));
+        card.uploadNewData(converter.createFullDataCreature(creature),
+                converter.createFullDetailDataCreature(creature));
         if (creature instanceof Character) {
             card.getGameSelectedCard(Card.CardTypes.ARMOR).setSelectedIndex(((Character) creature).getInventory().getArmors().indexOf(((Character) creature).getInventory().getActiveArmor()));
             card.getGameSelectedCard(Card.CardTypes.WEAPONS).setSelectedIndex(((Character) creature).getInventory().getWeapons().indexOf(((Character) creature).getInventory().getActiveWeapon()));

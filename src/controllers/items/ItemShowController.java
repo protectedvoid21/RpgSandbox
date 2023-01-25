@@ -21,8 +21,8 @@ public class ItemShowController extends Controller {
     @Override
     public void run(IOverallFactory overallFactory) {
         var view = overallFactory.createGodCard();
-        var contentData = Converter.createFullDataCreature(EntityManager.getInstance().getPlayerCharacterWithAllItems());
-        view.uploadNewData(contentData, Converter.createFullDetailDataCreature((EntityManager.getInstance().getPlayerCharacterWithAllItems())));
+        var contentData = converter.createFullDataCreature(EntityManager.getInstance().getPlayerCharacterWithAllItems());
+        view.uploadNewData(contentData, converter.createFullDetailDataCreature((EntityManager.getInstance().getPlayerCharacterWithAllItems())));
         
         view.setItemAction(new RedirectListener(controllerManager, new ItemListController(creatorTypes)));
         view.setItemViewStatus(cardType, index);

@@ -19,8 +19,8 @@ public class CreatureShowController extends Controller {
     @Override
     public void run(IOverallFactory overallFactory) {
         var view = overallFactory.createBasicCard();
-        var contentData = Converter.createFullDataCreature(creature);
-        view.uploadNewData(contentData, Converter.createFullDetailDataCreature(creature));
+        var contentData = converter.createFullDataCreature(creature);
+        view.uploadNewData(contentData, converter.createFullDetailDataCreature(creature));
 
         view.getCancelButton().addActionListener(
                 new RedirectListener(controllerManager, new CreatureListController(creatureType))
