@@ -12,40 +12,44 @@ public class CustomAudioManager {
     private boolean startStatus = false;
     protected HashMap<ICustomEnumAudio, Audio> audioHashMap = new HashMap<>();
     protected Audio currentRunAudio;
+
     public void setAudio(ICustomEnumAudio audio) {
-        if(currentRunAudio!=null){
+        if (currentRunAudio != null) {
             currentRunAudio.stop();
         }
         currentRunAudio = audioHashMap.get(audio);
-        new Thread(() -> currentRunAudio.runMainClip()).start();
+        new Thread(() -> {
+            currentRunAudio.runMainClip();
+        }).start();
     }
 
 
-//    private float sound;
-    public void setSoundOff(){
-        for (var audio : audioHashMap.values() ){
+    //    private float sound;
+    public void setSoundOff() {
+        for (var audio : audioHashMap.values()) {
             audio.setBlocked(true);
         }
     }
-    public void setSoundOn(){
-        for (var audio : audioHashMap.values() ){
+
+    public void setSoundOn() {
+        for (var audio : audioHashMap.values()) {
             audio.setBlocked(false);
         }
+        currentRunAudio.start();
     }
 
-    public void setAudioData(ICustomEnumAudio enumName, String audio, boolean loop){
+    public void setAudioData(ICustomEnumAudio enumName, String audio, boolean loop) {
 
         var customAudio = new Audio();
         customAudio.setMainClip(audio, loop);
         audioHashMap.put(enumName, customAudio);
     }
 
-    public void setAudioData(AudioData data){
+    public void setAudioData(AudioData data) {
         var customAudio = new Audio();
         customAudio.setMainClip(data.audio, data.loop);
         audioHashMap.put(data.enumName, customAudio);
     }
-
 
 
     public static void main(String[] args) {

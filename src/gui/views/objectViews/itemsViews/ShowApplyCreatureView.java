@@ -44,6 +44,22 @@ public class ShowApplyCreatureView extends ShowSmallView {
 
     }
 
+//    @Override
+//    protected void updateContent() {
+//        super.updateContent();
+//        int maxSideIndex = getSideMaximumElementsNumber();
+//        int dataSize = data.size();
+//        var sublist = data.subList(currentSide * maximumumElements, Math.min(maxSideIndex, dataSize));
+//        for (var button : applyButtons) {
+//           button.setVisible(true);
+//        }
+//        if (sublist.size() < maximumumElements) {
+//            for (int i = dataSize % maximumumElements; i < maximumumElements; i++) {
+//                applyButtons.get(i).setVisible(false);
+//            }
+//        }
+//    }
+
     private void initializeSetPanel(int number, DefaultCustomMenuMenager man) {
         factory.getFactory().setButtonType(GuiFactory.ButtonType.NORMAL);
         man.addMainComponent(12);
