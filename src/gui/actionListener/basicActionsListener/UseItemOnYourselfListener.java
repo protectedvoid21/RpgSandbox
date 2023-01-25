@@ -32,6 +32,6 @@ public class UseItemOnYourselfListener implements ActionListener {
 
 
         you.getStruggleStatistics().getAttribute(ACTIONS_TO_DO).decreaseValue(1);
-        turnOffButtons.turnOff(roundManager,mainPanelGame,2,0);
+
     }
 }
