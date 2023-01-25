@@ -1,5 +1,6 @@
 package game.creature;
 
+import game.interfaceWarhammer.StruggleStatisticsWarhammer;
 import game.interfaces.IStatistics;
 import game.interfaces.RoundListener;
 import game.interfaces.IStruggleStatistics;
