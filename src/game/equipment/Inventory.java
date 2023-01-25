@@ -311,7 +311,9 @@ public class Inventory {
     public Mount getActiveMount() {
         return activeMount;
     }
-
+    public DisposableItem getSelectedDisposableItem(){
+        return selectedDisposableItem;
+    }
     private Weapon noWeapon() {
         return new Weapon("none", 0, 0, 0, 0, 0, 0);
     }
@@ -323,8 +325,8 @@ public class Inventory {
     private Mount noMount() {
         return new Mount("none", 0);
     }
-    
-    private DisposableItem noDisposableItem() {
-        return new DeadRat("Dead Rat", 0);
+    private DisposableItem noDisposableItem()
+    {
+        return new DeadRat("Wrocławek",0);
     }
 }

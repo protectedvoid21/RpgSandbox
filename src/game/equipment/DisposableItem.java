@@ -1,5 +1,6 @@
 package game.equipment;
 
+import game.creature.Creature;
 import game.interfaces.Statistics;
 
 public abstract class DisposableItem extends Item {
@@ -20,6 +21,9 @@ public abstract class DisposableItem extends Item {
     }
 
     public void use() {
+        usageCount--;
+    }
+    public void use(Creature creature) {
         usageCount--;
     }
 
