@@ -26,7 +26,9 @@ public class ShowApplyCreatureView extends ShowSmallView {
     }
 
     public void initialize() {
-        super.initialize();
+        initialize(4);
+        initializeContent();
+        arrowPanel.updateSwitchingButtons();
         getCancelButton().getCustomUI().setOffSet(6);
         initializeSetPanel(2, manager1);
         initializeSetPanel(2, manager2);
@@ -40,25 +42,28 @@ public class ShowApplyCreatureView extends ShowSmallView {
         manager2.getMiddleComponent(0, 1).addSpace(1);
         manager.getMainComponent(0).changeContent(manager1.getCmp());
         manager.getMainComponent(1).changeContent(manager2.getCmp());
+        updateContent();
 
 
     }
 
-//    @Override
-//    protected void updateContent() {
-//        super.updateContent();
-//        int maxSideIndex = getSideMaximumElementsNumber();
-//        int dataSize = data.size();
-//        var sublist = data.subList(currentSide * maximumumElements, Math.min(maxSideIndex, dataSize));
-//        for (var button : applyButtons) {
-//           button.setVisible(true);
-//        }
-//        if (sublist.size() < maximumumElements) {
-//            for (int i = dataSize % maximumumElements; i < maximumumElements; i++) {
-//                applyButtons.get(i).setVisible(false);
-//            }
-//        }
-//    }
+    @Override
+    protected void updateContent() {
+        super.updateContent();
+        int maxSideIndex = getSideMaximumElementsNumber();
+        int dataSize = data.size();
+        var sublist = data.subList(currentSide * maximumumElements, Math.min(maxSideIndex, dataSize));
+
+
+        for (var button : applyButtons) {
+           button.setVisible(true);
+        }
+        if (sublist.size() < maximumumElements) {
+            for (int i = dataSize % maximumumElements; i < maximumumElements; i++) {
+                applyButtons.get(i).setVisible(false);
+            }
+        }
+    }
 
     private void initializeSetPanel(int number, DefaultCustomMenuMenager man) {
         factory.getFactory().setButtonType(GuiFactory.ButtonType.NORMAL);

@@ -12,8 +12,10 @@ import gui.card.fullCards.abstractCards.Card;
 import gui.card.fullCards.specificCards.EntriesCard;
 import gui.factories.IOverallFactory;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Time;
 
 public class CreatureCreateController extends Controller {
     private EntriesCard view;
@@ -30,9 +32,21 @@ public class CreatureCreateController extends Controller {
         view = overallFactory.createEntriesCard();
         var contentDataMap = Converter.createFullDataCreature(creature);
         view.uploadNewData(contentDataMap, Converter.createFullDetailDataCreature(creature));
-        view.uploadNewChoserCardData(Converter.createFullDataCreature(EntityManager.getInstance().getPlayerCharacterWithAllItems()), 
+        view.uploadNewChoserCardData(Converter.createFullDataCreature(EntityManager.getInstance().getPlayerCharacterWithAllItems()),
                 Converter.createFullDetailDataCreature(EntityManager.getInstance().getPlayerCharacterWithAllItems()));
-        
+//       SwingUtilities.invokeLater(new Runnable() {
+//           @Override
+//           public void run() {
+//               view.uploadNewChoserCardData(Converter.createFullDataCreature(EntityManager.getInstance()
+//               .getPlayerCharacterWithAllItems()),
+//                       Converter.createFullDetailDataCreature(EntityManager.getInstance()
+//                       .getPlayerCharacterWithAllItems()));
+//           }
+//       });
+//        view.uploadNewChoserCardData(Converter.createFullDataCreature(EntityManager.getInstance()
+//        .getPlayerCharacterWithAllItems()),
+//                Converter.createFullDetailDataCreature(EntityManager.getInstance().getPlayerCharacterWithAllItems()));
+
         view.getCancelButton().addActionListener(
                 new RedirectListener(controllerManager, new CreatureListController(creatureType))
         );
