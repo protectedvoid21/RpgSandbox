@@ -18,9 +18,18 @@ public class CustomAudioManager {
         currentRunAudio = audioHashMap.get(audio);
         new Thread(() -> currentRunAudio.runMainClip()).start();
     }
+
+
     private float sound;
+    public void setSoundOff(){
+        for (var audio : audioHashMap.values() ){
+            audio.setBlocked(true);
+        }
+    }
     public void setSoundOn(){
-//        for (var )
+        for (var audio : audioHashMap.values() ){
+            audio.setBlocked(false);
+        }
     }
 
     public void setAudioData(ICustomEnumAudio enumName, String audio, boolean loop){
@@ -30,10 +39,15 @@ public class CustomAudioManager {
         audioHashMap.put(enumName, customAudio);
     }
 
+    public void setAudioData(AudioData data){
+        var customAudio = new Audio();
+        customAudio.setMainClip(data.audio, data.loop);
+        audioHashMap.put(data.enumName, customAudio);
+    }
 
 
-    public static void main(String[] args) throws UnsupportedAudioFileException, LineUnavailableException,
-            IOException, InterruptedException {
+
+    public static void main(String[] args) {
         CustomAudioManager audioManager = new WarHammerAudioManager();
         SwingUtilities.invokeLater(new Runnable() {
             @Override

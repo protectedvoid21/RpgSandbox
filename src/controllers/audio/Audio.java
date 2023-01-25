@@ -7,12 +7,20 @@ import java.io.File;
 import java.io.IOException;
 
 public class Audio {
+    public void setBlocked(boolean blocked) {
+        if (blocked) {
+            this.stop();
+        }else{
+            this.start();
+        }
+    }
+
     private class AudioListener implements LineListener {
         private boolean done = false;
 
         @Override
         public synchronized void update(LineEvent event) {
-            if (event.getType() == LineEvent.Type.STOP) {
+            if (event.getType() == LineEvent.Type.STOP ) {
                 stopActivity.apply();
                 removeActivityOnStop();
             }
@@ -29,6 +37,7 @@ public class Audio {
         protected synchronized boolean loopCondition(LineEvent event) {
             return event.getType() == LineEvent.Type.CLOSE;
         }
+
 
         public synchronized void waitUntilDone() throws InterruptedException {
             while (!done) {
@@ -50,7 +59,7 @@ public class Audio {
     private AudioInputStream mainStream;
     private File file;
 
-    public void setMainClip(String path, boolean inLoop){
+    public void setMainClip(String path, boolean inLoop) {
         try {
             mainClip = AudioSystem.getClip();
             setInLoop(inLoop);
@@ -58,7 +67,7 @@ public class Audio {
             mainStream = AudioSystem.getAudioInputStream(file);
             mainClip.addLineListener(listener);
         } catch (LineUnavailableException | UnsupportedAudioFileException |
-                IOException ex){
+                 IOException ex) {
 
         }
     }
