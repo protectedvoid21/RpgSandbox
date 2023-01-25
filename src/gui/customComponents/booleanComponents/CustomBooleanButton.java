@@ -9,17 +9,28 @@ public class CustomBooleanButton extends CustomButton implements IBooleanCompone
     private String firstString = "";
     private String secondString = "";
     private boolean value;
+    private ActionListener on = e -> {
+    };
+    private ActionListener off = e -> {
+    };
 
 
     public CustomBooleanButton(boolean initialValue) {
         super();
         setValue(initialValue);
-        addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                setValue(!value);
+        addActionListener(e -> {
+            setValue(!value);
+            if (value){
+                on.actionPerformed(e);
+            }else{
+                off.actionPerformed(e);
             }
         });
+    }
+
+    public void setListeners(ActionListener on, ActionListener off){
+        this.on = on;
+        this.off = off;
     }
 
     public void setDoubleTextContent(String first, String second) {

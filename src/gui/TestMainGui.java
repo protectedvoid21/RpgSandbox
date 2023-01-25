@@ -31,19 +31,19 @@ public class TestMainGui {
         ramka.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ramka.setSize(800, 800);
         IOverallFactory f = new WarHammerFactory();
-        var x = f.createMainPanelGame();
-        x.getGamePanel().setOptionsDisabledIndexes(new Vector2(2, 3), 2, 4);
-        x.getGamePanel().setOptionsDisabledIndexes(new Vector2(2, 5), 1);
-        x.getGamePanel().setOptionsDisabledIndexes(new Vector2(1, 3), 3, 4);
-        x.getGamePanel().setOptionsDisabledIndexes(new Vector2(1, 3));
-        x.getGamePanel().applyContent(new AbstractMap.SimpleEntry<>(new Vector2(3, 4), "src/gui/go.png"));
-        x.getPicker(FullItemPicker.LabelType.WEAPON).addListenerToPicker(DoubleArrowPanel.Side.LEFT,
-                new CustomLambdaExpression() {
-                    @Override
-                    public void apply() {
-                        System.out.println(x.getPicker(FullItemPicker.LabelType.WEAPON).getCurrentIndex());
-                    }
-                });
+//        var x = f.createMainPanelGame();
+//        x.getGamePanel().setOptionsDisabledIndexes(new Vector2(2, 3), 2, 4);
+//        x.getGamePanel().setOptionsDisabledIndexes(new Vector2(2, 5), 1);
+//        x.getGamePanel().setOptionsDisabledIndexes(new Vector2(1, 3), 3, 4);
+//        x.getGamePanel().setOptionsDisabledIndexes(new Vector2(1, 3));
+//        x.getGamePanel().applyContent(new AbstractMap.SimpleEntry<>(new Vector2(3, 4), "src/gui/go.png"));
+//        x.getPicker(FullItemPicker.LabelType.WEAPON).addListenerToPicker(DoubleArrowPanel.Side.LEFT,
+//                new CustomLambdaExpression() {
+//                    @Override
+//                    public void apply() {
+//                        System.out.println(x.getPicker(FullItemPicker.LabelType.WEAPON).getCurrentIndex());
+//                    }
+//                });
 
 //        ramka.add(f.createCreatingEditingItemsPanel().getPanel());
 //        ramka.add(x.getPanel());
@@ -56,66 +56,66 @@ public class TestMainGui {
 //        });
 //        ((GodCard)z).setItemViewStatus(Card.CardTypes.MOUNT, 2);
 //        ((GodCard)z).removeItemViewStatus();
-        x.getGamePanel().applyDefendActionsContent(new Vector2(2, 4));
-        x.getGamePanel().applyDefendActionsContent(new Vector2(2, 5));
-        x.getGamePanel().applyDefendActionsContent(new Vector2(2, 4));
-        x.getGamePanel().applyDefendActionsContent(new Vector2(2, 5));
-        x.getGamePanel().applyDefendActionsContent(new Vector2(2, 4));
-        x.getGamePanel().applyDefendActionsContent(new Vector2(2, 5));
-        x.getGamePanel().applyDefendActionsContent(new Vector2(2, 4));
-        x.getGamePanel().applyDefendActionsContent(new Vector2(2, 5));
-        x.getGamePanel().applyDefendActionsContent(new Vector2(2, 4));
-        x.getGamePanel().applyDefendActionsContent(new Vector2(2, 5));
-        x.getGamePanel().applyDefendActionsContent(new Vector2(2, 4));
-        x.getGamePanel().applyDefendActionsContent(new Vector2(2, 5));
-        x.getGamePanel().applyDefendActionsContent(new Vector2(2, 4));
-        x.getGamePanel().applyDefendActionsContent(new Vector2(2, 5));
-        x.getGamePanel().applyDefendActionsContent(new Vector2(2, 4));
-        x.getGamePanel().applyDefendActionsContent(new Vector2(2, 5));
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 5; j++) {
-                x.getGamePanel().applyDefendActionsContent(new Vector2(i, j));
-            }
-        }
-        x.getGamePanel().applyAttackActionsContent(new Vector2(2, 1));
-        x.getGamePanel().applyAttackActionsContent(new Vector2(2, 1));
-        x.getGamePanel().removeActionContent(new Vector2(2, 1), GamePanel.ActionsLabelsType.ATACK);
-        x.getGamePanel().applyAttackActionsContent(new Vector2(2, 1));
+//        x.getGamePanel().applyDefendActionsContent(new Vector2(2, 4));
+//        x.getGamePanel().applyDefendActionsContent(new Vector2(2, 5));
+//        x.getGamePanel().applyDefendActionsContent(new Vector2(2, 4));
+//        x.getGamePanel().applyDefendActionsContent(new Vector2(2, 5));
+//        x.getGamePanel().applyDefendActionsContent(new Vector2(2, 4));
+//        x.getGamePanel().applyDefendActionsContent(new Vector2(2, 5));
+//        x.getGamePanel().applyDefendActionsContent(new Vector2(2, 4));
+//        x.getGamePanel().applyDefendActionsContent(new Vector2(2, 5));
+//        x.getGamePanel().applyDefendActionsContent(new Vector2(2, 4));
+//        x.getGamePanel().applyDefendActionsContent(new Vector2(2, 5));
+//        x.getGamePanel().applyDefendActionsContent(new Vector2(2, 4));
+//        x.getGamePanel().applyDefendActionsContent(new Vector2(2, 5));
+//        x.getGamePanel().applyDefendActionsContent(new Vector2(2, 4));
+//        x.getGamePanel().applyDefendActionsContent(new Vector2(2, 5));
+//        x.getGamePanel().applyDefendActionsContent(new Vector2(2, 4));
+//        x.getGamePanel().applyDefendActionsContent(new Vector2(2, 5));
+//        for (int i = 0; i < 5; i++) {
+//            for (int j = 0; j < 5; j++) {
+//                x.getGamePanel().applyDefendActionsContent(new Vector2(i, j));
+//            }
+//        }
+//        x.getGamePanel().applyAttackActionsContent(new Vector2(2, 1));
+//        x.getGamePanel().applyAttackActionsContent(new Vector2(2, 1));
+//        x.getGamePanel().removeActionContent(new Vector2(2, 1), GamePanel.ActionsLabelsType.ATACK);
+//        x.getGamePanel().applyAttackActionsContent(new Vector2(2, 1));
 //        for (int i = 0; i < 4; i++) {
 //            for (int j = 0; j < 4; j++) {
 //                x.getGamePanel().removeActionContent(new Vector2(i, j), GamePanel.ActionsLabelsType.DEFEND);
 //            }
 //        }
 //        x.getGamePanel().setNonVisibleActions();
-
-        ramka.add(x.getPanel());
-        var y = f.createAllWeaponsItemsView();
-        var title = f.createTitleView();
-        title.initialize("HELLO world", y);
-        var god = f.createGodCard();
-        god.setItemViewStatus(Card.CardTypes.ITEMS, 2);
-        ramka.add(f.createMainPanelGame().getPanel());
-        var card = f.createBasicCard();
-
-        Weapon weapon = new Weapon("weapon1", 100, 10);
-        Mount mount = new Mount("horse1", 20);
-        Mount mount1 = new Mount("horse2", 30);
-        Mount mount2 = new Mount("horse3", 40);
-        Armor armor = new Armor("armor1", 45);
-        Inventory inventory = new Inventory();
-        inventory.addItem(weapon);
-        inventory.addItem(mount);
-        inventory.addItem(mount1);
-        inventory.addItem(mount2);
-        inventory.addItem(armor);
-        Monster playerCharacter = new Monster(new StatisticsWarhammer(),
-                new Experience(10), new StruggleStatisticsWarhammer());
-        playerCharacter.setName("Shgjehrk");
-        playerCharacter.setObjectPathPicture("/src/gui/playerimage.png");
-
-        card.uploadNewData(Converter.createFullDataCreature(playerCharacter), Converter.createFullDetailDataCreature(playerCharacter));
-        ramka.add(f.createGameCard().getPanel());
-//        y.setTitleIncorrect(BaseCard.Side.LEFT, 1555);
+//
+//        ramka.add(x.getPanel());
+//        var y = f.createAllWeaponsItemsView();
+//        var title = f.createTitleView();
+//        title.initialize("HELLO world", y);
+//        var god = f.createGodCard();
+//        god.setItemViewStatus(Card.CardTypes.ITEMS, 2);
+//        ramka.add(f.createMainPanelGame().getPanel());
+//        var card = f.createBasicCard();
+//
+//        Weapon weapon = new Weapon("weapon1", 100, 10);
+//        Mount mount = new Mount("horse1", 20);
+//        Mount mount1 = new Mount("horse2", 30);
+//        Mount mount2 = new Mount("horse3", 40);
+//        Armor armor = new Armor("armor1", 45);
+//        Inventory inventory = new Inventory();
+//        inventory.addItem(weapon);
+//        inventory.addItem(mount);
+//        inventory.addItem(mount1);
+//        inventory.addItem(mount2);
+//        inventory.addItem(armor);
+//        Monster playerCharacter = new Monster(new StatisticsWarhammer(),
+//                new Experience(10), new StruggleStatisticsWarhammer());
+//        playerCharacter.setName("Shgjehrk");
+//        playerCharacter.setObjectPathPicture("/src/gui/playerimage.png");
+//
+//        card.uploadNewData(Converter.createFullDataCreature(playerCharacter), Converter.createFullDetailDataCreature(playerCharacter));
+//        ramka.add(f.createGameCard().getPanel());
+////        y.setTitleIncorrect(BaseCard.Side.LEFT, 1555);
 //        ramka.add(f.createAllCreatureShowView().getPanel());
 //        ramka.add(f.createCreatorApplyingCharacterView().getPanel());
 //       ramka.add(f.createAllCreatureEditView().getPanel());
@@ -136,9 +136,14 @@ public class TestMainGui {
 //        ramka.add(ff.getPanel());
 //        ramka.add(f.createAllCreatureShowView().getPanel());
 //        ramka.add(f.createCreaturesPanel().getPanel());
-//        ramka.add(f.createCreatorApplyingCharacterView().getPanel());
-        var z = f.createCreatorCard(Card.CardTypes.ARMOR);
-        ramka.add(z.getPanel());
+        var x = f.createMainPanelGame();
+        ramka.add(x.getPanel());
+        x.getGamePanel().changeActiveOptionsPanel();
+        x.getGamePanel().setOptionsDisabledIndexes(new Vector2(1, 2), 1);
+        x.getGamePanel().changeActiveOptionsPanel();
+//        x.getGamePanel().changeActiveOptionsPanel();
+//        x.getGamePanel().changeActiveOptionsPanel();
+
 //        ramka.add(f.createBasicCard().getPanel());
 //        ramka.add(f.createOverallItemPanel().getPanel());
 //        ramka.add(f.createchoosingCreationGameView().getPanel());

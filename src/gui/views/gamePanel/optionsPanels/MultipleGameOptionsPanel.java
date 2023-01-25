@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class MultipleGameOptionsPanel extends OptionsPanel {
-    private ArrayList<AbstractCustomLabel> labels = new ArrayList<>();
+//    private ArrayList<AbstractCustomLabel> labels = new ArrayList<>();
     private OptionsPanelData data = new OptionsPanelData();
     public MultipleGameOptionsPanel(GuiFactory factory, int size) {
         super(factory);
@@ -17,24 +17,24 @@ public class MultipleGameOptionsPanel extends OptionsPanel {
 
     @Override
     public double getPercentFilledSizeY() {
-        return 1;
+        return 0.5;
     }
 
-    public void initializeLabelsData(ArrayList<String> dataMap) {
-        factory.setLabelType(GuiFactory.LabelType.NORMAL);
-        int i = 0;
-        setPotentialSize(dataMap.size());
-        for (var data : dataMap) {
-            if (i < size) {
-                var label = factory.createLabel(data);
-                labels.add(label);
-                customPanelAttackChoser.addMiddleComponent(label, i, 10);
-            }
-            i++;
-        }
-        setCorrectVisibility();
-        SharedCmpsFont.setUniformFont(labels);
-    }
+//    public void initializeLabelsData(ArrayList<String> dataMap) {
+//        factory.setLabelType(GuiFactory.LabelType.NORMAL);
+//        int i = 0;
+//        setPotentialSize(dataMap.size());
+//        for (var data : dataMap) {
+//            if (i < size) {
+//                var label = factory.createLabel(data);
+//                labels.add(label);
+//                customPanelAttackChoser.addMiddleComponent(label, i, 10);
+//            }
+//            i++;
+//        }
+//        setCorrectVisibility();
+//        SharedCmpsFont.setUniformFont(labels);
+//    }
     public void setDisabledIndexes(Vector2 point, ArrayList<Integer> indexes) {
        data.setPointData(point, indexes);
     }
