@@ -31,7 +31,7 @@ public class UseItemOnEnemyListener implements ActionListener {
         }
 
         you.getStruggleStatistics().getAttribute(ACTIONS_TO_DO).decreaseValue(1);
-        turnOffButtons.turnOff(roundManager,mainPanelGame,2,0);
+        mainPanelGame.getGamePanel().changeActiveOptionsPanel();
 
     }
 }

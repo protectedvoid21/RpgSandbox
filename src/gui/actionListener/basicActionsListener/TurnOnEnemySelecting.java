@@ -21,7 +21,7 @@ public class TurnOnEnemySelecting implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        turnOffUseItem.turnOff(roundManager,mainPanelGame);
+        mainPanelGame.getGamePanel().changeActiveOptionsPanel();
 
     }
 }
