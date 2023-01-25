@@ -139,9 +139,9 @@ public class TestMainGui {
 //        ramka.add(ff.getPanel());
 //        ramka.add(f.createAllCreatureShowView().getPanel());
 //        ramka.add(f.createCreaturesPanel().getPanel());
-        var x = f.createCreatorApplyingCharacterView();
+//        var x = f.createCreatorApplyingCharacterView();
 
-        ramka.add(x.getPanel());
+//        ramka.add(x.getPanel());
 //        x.getGamePanel().changeActiveOptionsPanel();
 //        x.getGamePanel().setOptionsDisabledIndexes(new Vector2(1, 2), 1);
 //        x.getGamePanel().changeActiveOptionsPanel();

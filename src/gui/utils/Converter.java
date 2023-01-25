@@ -175,7 +175,7 @@ public class Converter implements WarhammerData {
 
     public static LinkedHashMap<Card.CardTypes, CardContentDataSet> createFullDataCreature(Creature creature) {
         var map = new LinkedHashMap<Card.CardTypes, CardContentDataSet>();
-        if (creature instanceof PlayerCharacter) {
+        if (creature instanceof Character) {
             map.put(Card.CardTypes.OVERALL, convertCreatureToDataSetInBasicCard(creature));
             map.put(Card.CardTypes.ATTRIBUTE, convertStatsToDataSet(creature));
             map.put(Card.CardTypes.MOUNT, convertMountsToDataSet((Character) creature));
@@ -187,6 +187,7 @@ public class Converter implements WarhammerData {
             map.put(Card.CardTypes.OVERALL, convertCreatureToDataSetInBasicCard(creature));
             map.put(Card.CardTypes.ATTRIBUTE, convertStatsToDataSet(creature));
         }
+
         //todo rest of possiblities
         return map;
     }
