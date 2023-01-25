@@ -133,12 +133,9 @@ public abstract class OptionsPanel extends BackgroundView implements PanelContai
     }
     public void applyUnivibilityAfterClicked() {
         for (var button : buttons) {
-            button.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    cmp.setVisible(false);
-                    setCurrentIndexes(-1, -1);
-                }
+            button.addActionListener(e -> {
+                cmp.setVisible(false);
+                setCurrentIndexes(-1, -1);
             });
         }
     }

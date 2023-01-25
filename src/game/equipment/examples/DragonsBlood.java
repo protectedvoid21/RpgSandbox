@@ -2,13 +2,14 @@ package game.equipment.examples;
 
 import game.creature.Character;
 import game.equipment.DisposableItem;
+import gui.factories.WarhammerData;
 
-public class DragonsBlood extends DisposableItem {
+public class DragonsBlood extends DisposableItem implements WarhammerData {
     private Character user;
 
     public DragonsBlood(String name, int usageCount, Character user) {
         super(name, usageCount);
-        this.user=user;
+        this.user=user;setItemPathPicture(bloodPaht);
 
         description = "Dragon blood is poisoning sooooooo......when you put it on your sword your enemies will DIE IN VERY PAINFUL WAY";
     }

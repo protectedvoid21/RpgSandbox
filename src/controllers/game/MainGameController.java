@@ -9,6 +9,7 @@ import game.board.Scenario;
 import game.generals.Vector2;
 import gui.actionListener.basicActionsListener.EndTurnListener;
 import gui.actionListener.basicActionsListener.MoveListener;
+import gui.actionListener.basicActionsListener.TurnOnEnemySelecting;
 import gui.actionListener.scrollItem.*;
 import gui.actionListener.turnOffButtons;
 import gui.actionListener.warhammerActions.*;
@@ -73,6 +74,7 @@ public class MainGameController extends Controller {
         gamePanel.getGamePanel().addOptionsListener(2, new AttackListener(roundManager, gamePanel));
         gamePanel.getGamePanel().addOptionsListener(3, new CarefullListener(roundManager, gamePanel));
         gamePanel.getGamePanel().addOptionsListener(4, new MultipleAttackListener(roundManager, gamePanel));
+        gamePanel.getItemsItemPicker().addButtonListener(new TurnOnEnemySelecting(roundManager, gamePanel));
 
         int j = 0;
         for (var list : Arrays.asList(new AimingListener(roundManager, gamePanel), new BlockListener(roundManager,

@@ -25,6 +25,7 @@ public class Inventory {
     }
     
     public Inventory(Weapon activeWeapon, Armor activeArmor, Mount activeMount) {
+        this();
         this.activeWeapon = activeWeapon;
         this.activeArmor = activeArmor;
         this.activeMount = activeMount;

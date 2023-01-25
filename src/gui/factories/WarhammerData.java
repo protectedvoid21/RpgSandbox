@@ -5,6 +5,17 @@ import gui.utils.StringAdapter;
 import java.awt.*;
 
 public interface WarhammerData {
+    String plasterPath = StringAdapter.getRelativePath("band-aid.png");
+    String socksPath = StringAdapter.getRelativePath("sock.png");
+    String sharper = StringAdapter.getRelativePath("sharper.png");
+    String bloodPaht = StringAdapter.getRelativePath("blood.png");
+    String chickenPath = StringAdapter.getRelativePath("chicken-leg.png");
+    String grenadePath = StringAdapter.getRelativePath("grenade.png");
+    String holyWaterPath = StringAdapter.getRelativePath("holy-water.png");
+    String mortarPath = StringAdapter.getRelativePath("mortar.png");
+    String potionPath = StringAdapter.getRelativePath("potion.png");
+    String ratPaht = StringAdapter.getRelativePath("rat.png");
+    String waterPath = StringAdapter.getRelativePath("water.png");
     String statsPath = StringAdapter.getRelativePath("stats.png");
     String itemPath = StringAdapter.getRelativePath("item.png");
     String moveOption = StringAdapter.getRelativePath("movingOpt.png");
