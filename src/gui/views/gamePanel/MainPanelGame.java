@@ -83,6 +83,10 @@ public class MainPanelGame {
         gamePanel.setActionsVisibility(value);
         actionsVisibilityButton.setContent(StringAdapter.getRelativePath(path));
     }
+    public void resizeGamePanel(boolean oversized){
+        menager.getMainComponent(1).setVisible(oversized);
+        menager.getMiddleComponent(0, 1).setVisible(oversized);
+    }
 
     public GamePanel getGamePanel() {
         return gamePanel;
