@@ -1,12 +1,11 @@
 package tests;
 
-import game.equipment.Armor;
-import game.equipment.Inventory;
-import game.equipment.Mount;
-import game.equipment.Weapon;
+import game.equipment.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,5 +67,37 @@ public class InventoryTests {
         Assertions.assertEquals(weaponList.size(), inventory.getWeapons().size());
         Assertions.assertEquals(armorList.size(), inventory.getArmors().size());
         Assertions.assertEquals(mountList.size(), inventory.getMounts().size());
+    }
+    
+    @Test
+    void switchToNextWeaponShouldBeVisible() {
+        inventory.nextWeapon();
+        
+        Assertions.assertEquals(weaponList.get(1), inventory.getActiveWeapon());
+    }
+
+    @Test
+    void switchToNextArmorShouldBeVisible() {
+        inventory.nextArmor();
+
+        Assertions.assertEquals(armorList.get(1), inventory.getActiveArmor());
+    }
+
+    @Test
+    void switchToNextMountShouldBeVisible() {
+        inventory.nextMount();
+
+        Assertions.assertEquals(mountList.get(1), inventory.getActiveMount());
+    }
+    
+    @Test
+    void switchToItemShouldBeVisible() {
+        inventory.setActiveWeapon(weaponList.get(2));
+        
+        Assertions.assertEquals(weaponList.get(2), inventory.getActiveWeapon());
+        
+        inventory.nextWeapon();
+        
+        Assertions.assertEquals(weaponList.get(0), inventory.getActiveWeapon());
     }
 }
