@@ -9,6 +9,7 @@ import java.util.HashMap;
 
 public class CustomAudioManager {
 
+    private boolean startStatus = false;
     protected HashMap<ICustomEnumAudio, Audio> audioHashMap = new HashMap<>();
     protected Audio currentRunAudio;
     public void setAudio(ICustomEnumAudio audio) {
@@ -20,7 +21,7 @@ public class CustomAudioManager {
     }
 
 
-    private float sound;
+//    private float sound;
     public void setSoundOff(){
         for (var audio : audioHashMap.values() ){
             audio.setBlocked(true);

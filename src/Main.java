@@ -10,13 +10,14 @@ import gui.factories.WarHammerFactory;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Main {
     public static void main(String[] args) {
         new EntityManager("Warhammer");
-        CustomAudioManager audioManager = new WarHammerAudioManager();
-        audioManager.setAudioData(new AudioData(WarhammerEnumAudio.MAIN_AUDIO, "src/controllers/audio/music.wav", true));
-        audioManager.setAudio(WarhammerEnumAudio.MAIN_AUDIO);
+        WarHammerAudioManager audioManager = new WarHammerAudioManager();
+        audioManager.initialize();
         Seeder seeder = new SeedManager();
         seeder.seed();
         //EntityManager.getInstance().saveAllEntities();

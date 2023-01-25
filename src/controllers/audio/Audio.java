@@ -7,7 +7,10 @@ import java.io.File;
 import java.io.IOException;
 
 public class Audio {
+
+    private boolean blocked;
     public void setBlocked(boolean blocked) {
+//        this.blocked = blocked;
         if (blocked) {
             this.stop();
         }else{
@@ -21,6 +24,7 @@ public class Audio {
         @Override
         public synchronized void update(LineEvent event) {
             if (event.getType() == LineEvent.Type.STOP ) {
+                System.out.println("Fsd");
                 stopActivity.apply();
                 removeActivityOnStop();
             }
@@ -115,6 +119,7 @@ public class Audio {
     };
 
     public void stop() {
+        System.out.println("ddd");
         mainClip.stop();
         currentClipTime = mainClip.getMicrosecondPosition();
     }
