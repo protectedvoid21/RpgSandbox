@@ -49,7 +49,6 @@ public class FileManager {
                 .registerTypeAdapter(IAttributeEnum.class, new CustomAdapter<IAttributeEnum>())
                 .registerTypeAdapter(AttributeValue.class, new CustomAdapter<AttributeValue>())
                 .create();
-
         try {
             ensurePathExists();
         }

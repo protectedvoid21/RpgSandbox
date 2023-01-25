@@ -28,9 +28,11 @@ public class CreatureCreateController extends Controller {
     @Override
     public void run(IOverallFactory overallFactory) {
         view = overallFactory.createEntriesCard();
-        var contentData = Converter.createFullDataCreature(creature);
-        view.uploadNewData(contentData, Converter.createFullDetailDataCreature(creature));
-
+        var contentDataMap = Converter.createFullDataCreature(creature);
+        view.uploadNewData(contentDataMap, Converter.createFullDetailDataCreature(creature));
+        view.uploadNewChoserCardData(Converter.createFullDataCreature(EntityManager.getInstance().getPlayerCharacterWithAllItems()), 
+                Converter.createFullDetailDataCreature(EntityManager.getInstance().getPlayerCharacterWithAllItems()));
+        
         view.getCancelButton().addActionListener(
                 new RedirectListener(controllerManager, new CreatureListController(creatureType))
         );
