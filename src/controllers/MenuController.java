@@ -2,9 +2,8 @@ package controllers;
 
 import controllers.creatures.CreatureTypeController;
 import controllers.game.ApplyGameController;
-import controllers.items.ItemActionController;
-import controllers.items.ItemListController;
 import controllers.items.ItemTypeMenuController;
+import controllers.scenario.NewScenarioController;
 import controllers.utils.RedirectListener;
 import gui.factories.IOverallFactory;
 import gui.views.menuViews.MenuView;
@@ -25,10 +24,10 @@ public class MenuController extends Controller {
                 new RedirectListener(controllerManager, new ItemTypeMenuController())
         );
         menuView.getNewGameButton().addActionListener(
-                new RedirectListener(controllerManager, new NewGameController())
+                new RedirectListener(controllerManager, new ApplyGameController())
         );
         menuView.getScenarioButton().addActionListener(
-                new RedirectListener(controllerManager, new ApplyGameController())
+                new RedirectListener(controllerManager, new NewScenarioController())
         );
         
         mainFrame.add(menuView.getPanel());
