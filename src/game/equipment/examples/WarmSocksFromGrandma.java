@@ -10,6 +10,8 @@ public class WarmSocksFromGrandma extends DisposableItem {
     public WarmSocksFromGrandma(String name, int usageCount, Character user) {
         super(name, usageCount);
         this.user=user;
+
+        description = "When you found them under christmas tree you said: \"MEEEEH\", but then you found out that they protect from freezing effect";
     }
 
     @Override

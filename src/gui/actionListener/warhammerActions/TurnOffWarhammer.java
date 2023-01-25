@@ -99,7 +99,7 @@ public class TurnOffWarhammer implements ITurnOffButtons {
                     if (!indexesCell.contains(usedIndex))
                         indexesCell.add(usedIndex);
                 }
-
+                indexesCell.add(5);
                 mainPanelGame.getGamePanel().setOptionsDisabledIndexes(new Vector2(j, i), indexesCell);
 
 

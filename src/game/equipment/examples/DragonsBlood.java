@@ -9,6 +9,8 @@ public class DragonsBlood extends DisposableItem {
     public DragonsBlood(String name, int usageCount, Character user) {
         super(name, usageCount);
         this.user=user;
+
+        description = "Dragon blood is poisoning sooooooo......when you put it on your sword your enemies will DIE IN VERY PAINFUL WAY";
     }
 
     @Override
@@ -22,7 +24,7 @@ public class DragonsBlood extends DisposableItem {
         int freezing = user.getInventory().getActiveWeapon().getChanceForFreezing();
 
         damage += 2;
-        poison = (int) (poison*1.5);
+        poison = (int) (poison+ 25);
 
         user.getInventory().getActiveWeapon().upgrade(damage, bleeding,poison,fire,freezing);
     }
