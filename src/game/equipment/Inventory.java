@@ -323,8 +323,8 @@ public class Inventory {
     private Mount noMount() {
         return new Mount("none", 0);
     }
-    private DisposableItem noDisposableItem()
-    {
-        return new DeadRat(0);
+    
+    private DisposableItem noDisposableItem() {
+        return new DeadRat("Dead Rat", 0);
     }
 }
