@@ -17,16 +17,16 @@ import game.cardManager.Warhammer.*;
 
 import java.util.*;
 
-public class Converter implements WarhammerData {
+public class Converter implements WarhammerData, AbstractConverter {
 
     private static ErrorValidationChecker errorValidationChecker = new ErrorValidationChecker();
 
-    public static ErrorValidationChecker getErrorValidationChecker() {
+    public ErrorValidationChecker getErrorValidationChecker() {
         return errorValidationChecker;
     }
 
     //widoki entries i basic
-    public static CardContentDataSet convertCreatureToDataSetInBasicCard(Creature creature) {
+    public CardContentDataSet convertCreatureToDataSetInBasicCard(Creature creature) {
 
         CardContentDataSet data = new CardContentDataSet();
         data.titlePath = creature.getObjectPathPicture();
@@ -49,7 +49,7 @@ public class Converter implements WarhammerData {
         return data;
     }
 
-    public static CardContentDataSet convertArmorsToDataSet(Character character) {
+    public CardContentDataSet convertArmorsToDataSet(Character character) {
         CardContentDataSet data = new CardContentDataSet();
         data.titlePath = armorPath;
         data.titleContent = "Armor";
@@ -71,7 +71,7 @@ public class Converter implements WarhammerData {
         return data;
     }
 
-    public static CardContentDataSet convertWeaponsToDataSet(Character character) {
+    public CardContentDataSet convertWeaponsToDataSet(Character character) {
         CardContentDataSet data = new CardContentDataSet();
         data.titlePath = weaponPath;
         data.titleContent = "Weapon";
@@ -93,7 +93,7 @@ public class Converter implements WarhammerData {
         return data;
     }
 
-    public static CardContentDataSet convertMountsToDataSet(Character character) {
+    public CardContentDataSet convertMountsToDataSet(Character character) {
         CardContentDataSet data = new CardContentDataSet();
         data.titlePath = horsePath;
         data.titleContent = "Mount";
@@ -114,7 +114,7 @@ public class Converter implements WarhammerData {
         return data;
     }
 
-    public static CardContentDataSet convertStatsToDataSet(Creature creature) {
+    public CardContentDataSet convertStatsToDataSet(Creature creature) {
         CardContentDataSet data = new CardContentDataSet();
         data.titlePath = statsPath;
         data.titleContent = "Attributes";
@@ -140,7 +140,7 @@ public class Converter implements WarhammerData {
         return data;
     }
 
-    public static HashMap<Card.CardTypes, ArrayList<CardContentDataSet>> createFullDetailDataCreature(Creature basecreature) {
+    public HashMap<Card.CardTypes, ArrayList<CardContentDataSet>> createFullDetailDataCreature(Creature basecreature) {
         var map = new LinkedHashMap<Card.CardTypes, ArrayList<CardContentDataSet>>();
 
         if (basecreature instanceof Character) {
@@ -173,7 +173,7 @@ public class Converter implements WarhammerData {
     }
 
 
-    public static LinkedHashMap<Card.CardTypes, CardContentDataSet> createFullDataCreature(Creature creature) {
+    public LinkedHashMap<Card.CardTypes, CardContentDataSet> createFullDataCreature(Creature creature) {
         var map = new LinkedHashMap<Card.CardTypes, CardContentDataSet>();
         if (creature instanceof Character) {
             map.put(Card.CardTypes.OVERALL, convertCreatureToDataSetInBasicCard(creature));
@@ -194,7 +194,7 @@ public class Converter implements WarhammerData {
 
     // koniec
     //entries card
-    public static CardContentDataSet createWeaponInEntriesCard() {
+    public CardContentDataSet createWeaponInEntriesCard() {
         CardContentDataSet data = new CardContentDataSet();
         data.titlePath = weaponPath;
         data.titleContent = "Weapon";
@@ -218,7 +218,7 @@ public class Converter implements WarhammerData {
         return data;
     }
 
-    public static CardContentDataSet createArmorInEntriesCard() {
+    public CardContentDataSet createArmorInEntriesCard() {
         CardContentDataSet data = new CardContentDataSet();
         data.titlePath = armorPath;
         data.titleContent = "Armor";
@@ -240,7 +240,7 @@ public class Converter implements WarhammerData {
         return data;
     }
 
-    public static CardContentDataSet createMountInEntriesCard() {
+    public CardContentDataSet createMountInEntriesCard() {
         CardContentDataSet data = new CardContentDataSet();
         data.titlePath = horsePath;
         data.titleContent = "Mount";
@@ -262,7 +262,7 @@ public class Converter implements WarhammerData {
         return data;
     }
 
-    public static CardContentDataSet addNewItemInEntriesCard(Character character) {
+    public CardContentDataSet addNewItemInEntriesCard(Character character) {
         CardContentDataSet data = new CardContentDataSet();
         data.titlePath = itemPath;
         data.titleContent = "Items";
@@ -288,7 +288,7 @@ public class Converter implements WarhammerData {
         return data;
     }
 
-    public static CardContentDataSet editWeaponInEntriesCard(Weapon weapon) {
+    public CardContentDataSet editWeaponInEntriesCard(Weapon weapon) {
         CardContentDataSet data = new CardContentDataSet();
         data.titlePath = weapon.getItemPathPicture();
         data.titleContent = weapon.getName();
@@ -311,7 +311,7 @@ public class Converter implements WarhammerData {
         return data;
     }
 
-    public static CardContentDataSet editArmorInEntriesCard(Armor armor) {
+    public CardContentDataSet editArmorInEntriesCard(Armor armor) {
         CardContentDataSet data = new CardContentDataSet();
         data.titlePath = armor.getItemPathPicture();
         data.titleContent = armor.getName();
@@ -333,7 +333,7 @@ public class Converter implements WarhammerData {
         return data;
     }
 
-    public static CardContentDataSet editMountInEntriesCard(Mount mount) {
+    public CardContentDataSet editMountInEntriesCard(Mount mount) {
         CardContentDataSet data = new CardContentDataSet();
         data.titlePath = mount.getItemPathPicture();
         data.titleContent = mount.getName();
@@ -354,7 +354,7 @@ public class Converter implements WarhammerData {
         return data;
     }
 
-    public static CardContentDataSet createMonsterInEntriesCard() {
+    public CardContentDataSet createMonsterInEntriesCard() {
         CardContentDataSet data = new CardContentDataSet();
         data.titlePath = monsterPath;
         data.titleContent = "";
@@ -374,7 +374,7 @@ public class Converter implements WarhammerData {
         return data;
     }
 
-    public static CardContentDataSet createPlayerCharacterInEntriesCard() {
+    public CardContentDataSet createPlayerCharacterInEntriesCard() {
         CardContentDataSet data = new CardContentDataSet();
         data.titlePath = playerImagePath;
         data.titleContent = "";
@@ -397,7 +397,7 @@ public class Converter implements WarhammerData {
         return data;
     }
 
-    public static CardContentDataSet createNPCInEntriesCard() {
+    public CardContentDataSet createNPCInEntriesCard() {
         CardContentDataSet data = new CardContentDataSet();
         data.titlePath = npcImage;
         data.titleContent = "";
@@ -420,7 +420,7 @@ public class Converter implements WarhammerData {
         return data;
     }
 
-    public static CardContentDataSet detailsView(ManyUsageItem item) {
+    public CardContentDataSet detailsView(ManyUsageItem item) {
         CardContentDataSet data = new CardContentDataSet();
         data.titlePath = "src/gui/" + item.getClass().getSimpleName() + ".png";//todo
         data.titleContent = item.getName();
@@ -450,7 +450,7 @@ public class Converter implements WarhammerData {
         return data;
     }
 
-    public static CardContentDataSet smallCharacterCards(Character character) {
+    public CardContentDataSet smallCharacterCards(Character character) {
         CardContentDataSet data = new CardContentDataSet();
         data.titlePath = "src/gui/" + character.getClass().getSimpleName() + ".png";
         data.titleContent = character.getName();
@@ -485,7 +485,7 @@ public class Converter implements WarhammerData {
         return data;
     }
 
-    public static Weapon createWeaponFromCard(CardContentDataSet data) {
+    public Weapon createWeaponFromCard(CardContentDataSet data) {
         String name = data.titleContent;
         setValidationOfNameAndPath(name, data.titlePath);
         int damage = 0;
@@ -511,7 +511,7 @@ public class Converter implements WarhammerData {
         return weapon;
     }
 
-    public static Armor createArmorFromCard(CardContentDataSet data) {
+    public Armor createArmorFromCard(CardContentDataSet data) {
         String name = data.titleContent;
         setValidationOfNameAndPath(name, data.titlePath);
         int defence = 0;
@@ -529,7 +529,7 @@ public class Converter implements WarhammerData {
         return armor;
     }
 
-    private static void setValidationOfNameAndPath(String name, String path) {
+    public void setValidationOfNameAndPath(String name, String path) {
         System.out.println(path);
         if (name.isEmpty()) {
             errorValidationChecker.setNameErrorOnTrue();
@@ -539,7 +539,7 @@ public class Converter implements WarhammerData {
         }
     }
 
-    public static Mount createMountFromCard(CardContentDataSet data) {
+    public Mount createMountFromCard(CardContentDataSet data) {
         String name = data.titleContent;
         setValidationOfNameAndPath(name, data.titlePath);
         int speed = 0;
@@ -558,7 +558,7 @@ public class Converter implements WarhammerData {
         return mount;
     }
 
-    public static PlayerCharacter createPlayerCharacterFromCard(CardContentDataSet data) {
+    public PlayerCharacter createPlayerCharacterFromCard(CardContentDataSet data) {
         ArrayList<String> stats = new ArrayList<>();
         stats.add(data.titleContent);
         for (var attributeList : data.content)
@@ -568,7 +568,7 @@ public class Converter implements WarhammerData {
         return PCfactory.creat(stats);
     }
 
-    public static NPC createNPCFromCard(CardContentDataSet data) {
+    public NPC createNPCFromCard(CardContentDataSet data) {
         ArrayList<String> stats = new ArrayList<>();
         stats.add(data.titleContent);
         for (var attributeList : data.content)
@@ -578,7 +578,7 @@ public class Converter implements WarhammerData {
         return NPCfactory.creat(stats);
     }
 
-    public static Monster createMonsterFromCard(CardContentDataSet data) {
+    public Monster createMonsterFromCard(CardContentDataSet data) {
         ArrayList<String> stats = new ArrayList<>();
         stats.add(data.titleContent);
         for (var attributeList : data.content) {
@@ -590,7 +590,7 @@ public class Converter implements WarhammerData {
         return monsterFactory.creat(stats);
     }
 
-    public static void main(String[] args) {
+    public void main(String[] args) {
         CardContentDataSet w1 = createWeaponInEntriesCard();
         w1.content.get(0).set(1, "www1");
         w1.content.get(1).set(1, "20");
