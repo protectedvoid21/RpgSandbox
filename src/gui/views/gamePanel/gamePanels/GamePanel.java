@@ -31,6 +31,7 @@ public class GamePanel extends BaseGamePanel {
     }
 
     public void changeActiveOptionsPanel() {
+        optionsPanel.setVisible(false);
         optionsPanel = optionsPanel == maxioItemsOptionsPanel ? gameOptionsPanel : maxioItemsOptionsPanel;
 //        optionsPanel = activeOptionsPanel;
     }

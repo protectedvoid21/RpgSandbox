@@ -2,13 +2,15 @@ package game.equipment.examples;
 
 import game.creature.Character;
 import game.equipment.DisposableItem;
+import gui.factories.WarhammerData;
 
-public class Sharpener extends DisposableItem {
+public class Sharpener extends DisposableItem implements WarhammerData {
     private Character user;
 
     public Sharpener(String name, int usageCount, Character user) {
         super(name, usageCount);
-        this.user=user;
+        this.user = user;
+        setItemPathPicture(sharper);
 
         description = "Your big sword will become big and sharp (YES IT WILL MAKE MORE DAMAGE)";
     }
@@ -25,6 +27,6 @@ public class Sharpener extends DisposableItem {
 
         damage += 3;
 
-        user.getInventory().getActiveWeapon().upgrade(damage, bleeding,poison,fire,freezing);
+        user.getInventory().getActiveWeapon().upgrade(damage, bleeding, poison, fire, freezing);
     }
 }

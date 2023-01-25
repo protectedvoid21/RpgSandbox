@@ -52,7 +52,7 @@ public class MenuView extends BackgroundView implements PanelContainer {
         if (!boolValue) {
             button = factory.createButton(name, null);
         } else {
-            audioButton = factory.createButton("SOUND ON", "SOUND OFF", true);
+            audioButton = factory.createButton("SOUND ON", "SOUND OFF", false);
             button = audioButton;
         }
         buttons.add(button);

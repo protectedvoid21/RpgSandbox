@@ -22,6 +22,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.util.AbstractMap;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class TestMainGui {
     static Font pixel;
@@ -113,7 +115,8 @@ public class TestMainGui {
 //        playerCharacter.setName("Shgjehrk");
 //        playerCharacter.setObjectPathPicture("/src/gui/playerimage.png");
 //
-//        card.uploadNewData(Converter.createFullDataCreature(playerCharacter), Converter.createFullDetailDataCreature(playerCharacter));
+//        card.uploadNewData(Converter.createFullDataCreature(playerCharacter), Converter
+//        .createFullDetailDataCreature(playerCharacter));
 //        ramka.add(f.createGameCard().getPanel());
 ////        y.setTitleIncorrect(BaseCard.Side.LEFT, 1555);
 //        ramka.add(f.createAllCreatureShowView().getPanel());
@@ -136,11 +139,13 @@ public class TestMainGui {
 //        ramka.add(ff.getPanel());
 //        ramka.add(f.createAllCreatureShowView().getPanel());
 //        ramka.add(f.createCreaturesPanel().getPanel());
-        var x = f.createMainPanelGame();
-        ramka.add(x.getPanel());
-        x.getGamePanel().changeActiveOptionsPanel();
-        x.getGamePanel().setOptionsDisabledIndexes(new Vector2(1, 2), 1);
-        x.getGamePanel().changeActiveOptionsPanel();
+//        var x = f.createCreatorApplyingCharacterView();
+
+//        ramka.add(x.getPanel());
+//        x.getGamePanel().changeActiveOptionsPanel();
+//        x.getGamePanel().setOptionsDisabledIndexes(new Vector2(1, 2), 1);
+//        x.getGamePanel().changeActiveOptionsPanel();
+//        x.resizeGamePanel(true);
 //        x.getGamePanel().changeActiveOptionsPanel();
 //        x.getGamePanel().changeActiveOptionsPanel();
 

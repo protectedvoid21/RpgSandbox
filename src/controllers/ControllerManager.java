@@ -1,5 +1,6 @@
 package controllers;
 
+import controllers.audio.CustomAudioManager;
 import gui.factories.IOverallFactory;
 
 import javax.swing.*;
@@ -9,8 +10,9 @@ public class ControllerManager {
     private JFrame mainFrame;
 
     private IOverallFactory overallFactory;
+    private CustomAudioManager audioManager;
 
-    public ControllerManager(IOverallFactory overallFactory) {
+    public ControllerManager(IOverallFactory overallFactory, CustomAudioManager audioManager) {
         this.overallFactory = overallFactory;
 
         mainFrame = new JFrame();
@@ -19,12 +21,13 @@ public class ControllerManager {
         mainFrame.setVisible(true);
         mainFrame.setResizable(true);
 
+        this.audioManager = audioManager;
         changeController(new MenuController());
     }
 
     public void changeController(Controller controller) {
         currentController = controller;
-        controller.initialize(this, mainFrame);
+        controller.initialize(this, mainFrame, audioManager);
         clearFrame();
 
         currentController.run(overallFactory);

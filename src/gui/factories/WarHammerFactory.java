@@ -160,6 +160,7 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
         mainPanel.getGamePanel().changeActiveOptionsPanel();
         mainPanel.getGamePanel().initializeOptionsButtonPanelData(new ArrayList<>(Arrays.asList(moveOption,
                 cardOption)));
+        mainPanel.getGamePanel().changeActiveOptionsPanel();
         return mainPanel;
     }
 
@@ -211,6 +212,7 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
         creator.getCreatorPanel().setBasePath(plusImage);
         creator.getCreatorPanel().initializeOptionsButtonPanelData(new ArrayList<>(Arrays.asList(monsterPath,
                 playerImagePath, npcImage)));
+//        creator.getCreatorPanel().
         return creator;
     }
 
@@ -278,6 +280,10 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
         var obj = new ShowApplyCreatureView(this);
         obj.initialize();
         obj.setBackgroundImage(avePath);
+        obj.uploadData(new ArrayList<>(Arrays.asList(new ArrayList<>(Arrays.asList("xxx", "xxx")),
+                new ArrayList<>(Arrays.asList("xxx", "xxx")), new ArrayList<>(Arrays.asList("xxx", "xxx")),
+                new ArrayList<>(Arrays.asList("xxx", "xxx")))));
+//        obj.uploadData()
         return obj;
     }
 

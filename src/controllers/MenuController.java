@@ -30,6 +30,7 @@ public class MenuController extends Controller {
         menuView.getScenarioButton().addActionListener(
                 new RedirectListener(controllerManager, new ApplyGameController())
         );
+        menuView.setAudioButtonsListener(e -> audioManager.setSoundOn(), e -> audioManager.setSoundOff());
         
         mainFrame.add(menuView.getPanel());
     }

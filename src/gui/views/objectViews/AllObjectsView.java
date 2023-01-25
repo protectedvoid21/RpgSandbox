@@ -56,7 +56,7 @@ public abstract class AllObjectsView extends BackgroundView implements Switchabl
         createDownPanel(maxindex);
     }
 
-    public void createDownPanel(int maxindex) {
+    private void createDownPanel(int maxindex) {
         manager.addMainComponent(4);
         arrowPanel = new DoubleArrowPanel(factory.getFactory(), this);
         arrowPanel.setSpace(2);
@@ -64,7 +64,7 @@ public abstract class AllObjectsView extends BackgroundView implements Switchabl
         cancelButton = factory.getFactory().createButton("CANCEL", null);
         manager.addMiddleComponent(arrowPanel.getPanel(), maxindex, 10);
         manager.addMiddleComponent(cancelButton, maxindex, 10);
-        manager.getMiddleComponent(maxindex, 1).addSpace(2);//maszyna stanow osk
+        manager.getMiddleComponent(maxindex, 1).addSpace(2);
     }
 
     public int getClickedIndex() {
