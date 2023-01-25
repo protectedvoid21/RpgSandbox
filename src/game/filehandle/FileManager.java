@@ -11,8 +11,7 @@ import game.creature.NPC;
 import game.creature.PlayerCharacter;
 import game.equipment.*;
 import game.generals.AttributeValue;
-import game.interfaces.IAttributeEnum;
-import game.interfaces.IStatistics;
+import game.interfaces.*;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -45,6 +44,8 @@ public class FileManager {
                 .setExclusionStrategies(new CustomExcludeStrategy())
                 .registerTypeAdapter(IStatistics.class, new StatisticsDeserializer())
                 .registerTypeAdapter(Creature.class, new CustomAdapter<Creature>())
+                .registerTypeAdapter(IStruggleStatistics.class, new StruggleDeserializer())
+                .registerTypeAdapter(IStruggleAtributeEnum.class, new CustomAdapter<IStruggleAtributeEnum>())
                 .registerTypeAdapter(IAttributeEnum.class, new CustomAdapter<IAttributeEnum>())
                 .registerTypeAdapter(AttributeValue.class, new CustomAdapter<AttributeValue>())
                 .create();
