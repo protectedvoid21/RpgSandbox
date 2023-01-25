@@ -96,6 +96,10 @@ public class MainPanelGame {
         return menager.getCmp();
     }
 
+    public MaxioItemPicker getItemsItemPicker() {
+        return itemsItemPicker;
+    }
+
     public ItemPicker getPicker(FullItemPicker.LabelType type) {
         return picker.getPicker(type);
     }

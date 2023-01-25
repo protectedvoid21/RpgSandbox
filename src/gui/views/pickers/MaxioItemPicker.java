@@ -3,6 +3,9 @@ package gui.views.pickers;
 import gui.customComponents.AbstractCustomButton;
 import gui.factories.GuiFactory;
 
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 public class MaxioItemPicker extends ItemPicker{
     private AbstractCustomButton button;
 
@@ -18,5 +21,15 @@ public class MaxioItemPicker extends ItemPicker{
 
     public AbstractCustomButton getButton() {
         return button;
+    }
+
+    @Override
+    public void uploadData(ArrayList<String> dataList) {
+        super.uploadData(dataList);
+        button.setEnabled(dataList.size()>0);
+    }
+
+    public void addButtonListener(ActionListener listener){
+        button.addActionListener(listener);
     }
 }

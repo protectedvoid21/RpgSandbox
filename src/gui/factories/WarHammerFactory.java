@@ -160,6 +160,7 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
         mainPanel.getGamePanel().changeActiveOptionsPanel();
         mainPanel.getGamePanel().initializeOptionsButtonPanelData(new ArrayList<>(Arrays.asList(moveOption,
                 cardOption)));
+        mainPanel.getGamePanel().changeActiveOptionsPanel();
         return mainPanel;
     }
 
