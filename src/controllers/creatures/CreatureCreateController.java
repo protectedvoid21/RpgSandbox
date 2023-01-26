@@ -3,6 +3,7 @@ package controllers.creatures;
 import controllers.Controller;
 import controllers.utils.CreatureType;
 import controllers.utils.RedirectListener;
+import game.creature.Character;
 import game.creature.Creature;
 import game.filehandle.EntityManager;
 import game.interfaces.IFactory;
@@ -14,6 +15,8 @@ import gui.factories.IOverallFactory;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
+import java.util.List;
 
 public class CreatureCreateController extends Controller {
     private EntriesCard view;
@@ -61,6 +64,26 @@ public class CreatureCreateController extends Controller {
                     newCreature = Converter.createNPCFromCard(contentData);
                 }
             }
+            if(newCreature instanceof Character) {
+                Character castedCharacter = (Character)newCreature;
+                
+                var numberData = view.generateIndexesNumberData();
+                for (var type : Arrays.asList(Card.CardTypes.ARMOR, Card.CardTypes.MOUNT, Card.CardTypes.WEAPONS)){
+                    for(var item : numberData.get(type)){
+                        if(type == Card.CardTypes.ARMOR) {
+                            castedCharacter.getInventory().addItem(EntityManager.getInstance().getArmorList().get(item));
+                        }
+                        else if(type == Card.CardTypes.MOUNT) {
+                            castedCharacter.getInventory().addItem(EntityManager.getInstance().getMountList().get(item));
+                        }
+                        else if(type == Card.CardTypes.WEAPONS) {
+                            castedCharacter.getInventory().addItem(EntityManager.getInstance().getWeaponList().get(item));
+                        }
+                    }
+                }
+            }
+            
+            
             if (IFactory.getErrorValidationChecker().isErrorFlag()) {
                 view.setEntriesIncorrect(IFactory.getErrorValidationChecker().getErrorIndexes(), 1500);
                 if (IFactory.getErrorValidationChecker().isPathError())

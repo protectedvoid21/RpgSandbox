@@ -118,7 +118,7 @@ public class EntriesCard extends Card {
     public void uploadNewData(LinkedHashMap<CardTypes, CardContentDataSet> newData, HashMap<CardTypes,
             ArrayList<CardContentDataSet>> detailData) {
         super.uploadNewData(newData, detailData);
-        uploadNewChoserCardData(newData, detailData);
+        //uploadNewChoserCardData(newData, detailData);
         if (newData.containsKey(CardTypes.OVERALL)) {
             rightEntryTitleComponent.getComponent().setContent(newData.get(CardTypes.OVERALL).titleContent);
             leftButtonyTitleComponent.getComponent().setContent(newData.get(CardTypes.OVERALL).titlePath.equals(Card.EMPTY_DATA_CONTENT) ?
@@ -138,6 +138,7 @@ public class EntriesCard extends Card {
             ArrayList<CardContentDataSet>> detailData) {
         choserCard.uploadNewData(newData, detailData);
         for (var key : detailData.keySet()) {
+            System.out.println(key.toString());
             choserCard.setCurrentType(key);
             var array = new ArrayList<Integer>();
 
@@ -150,8 +151,8 @@ public class EntriesCard extends Card {
             }
             choserCard.getGameSelectedCard(key).setAddedIndexes(array);
             choserCard.getGameSelectedCard(key).reset();
-            allCards.get(key).initializeCardData(choserCard.getCurrentData(),
-                    choserCard.getCurrentDetailData());
+            allCards.get(key).initializeCardData(choserCard.getCurrentData(), choserCard.getCurrentDetailData());
+            System.out.println();
         }
         updateContent();
         choserCard.updateContent();
