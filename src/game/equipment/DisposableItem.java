@@ -6,7 +6,7 @@ import game.interfaces.Statistics;
 public abstract class DisposableItem extends Item {
     private int usageCount;
     protected String description;
-    boolean onEnemy = false;
+    private int onEnemy = 0;
 
     public DisposableItem( int usageCount) {
         super("");
@@ -34,7 +34,10 @@ public abstract class DisposableItem extends Item {
         return description;
     }
 
-    public boolean isOnEnemy() {
+    public int isOnEnemy() {
         return onEnemy;
+    }
+    public void setOnEnemy(int parametr){
+        onEnemy = parametr;
     }
 }

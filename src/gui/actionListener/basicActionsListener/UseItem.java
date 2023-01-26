@@ -29,7 +29,7 @@ public class UseItem implements ActionListener {
         Creature you = roundManager.getGameObjectWithTurn().getCreature();
 
         if(you instanceof Character){
-            if(!((Character) you).getInventory().getSelectedDisposableItem().isOnEnemy()) {
+            if(!(((Character) you).getInventory().getSelectedDisposableItem().isOnEnemy()== 0)) {
                 ((Character) you).getInventory().getSelectedDisposableItem().use(you);
                 you.getStruggleStatistics().getAttribute(ACTIONS_TO_DO).decreaseValue(1);
             } else {
