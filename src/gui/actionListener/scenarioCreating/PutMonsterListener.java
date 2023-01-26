@@ -6,6 +6,7 @@ import controllers.utils.RedirectListener;
 import game.board.*;
 import game.creature.Monster;
 import game.filehandle.EntityManager;
+import gui.factories.IOverallFactory;
 import gui.views.gamePanel.MainPanelGame;
 import gui.views.objectViews.creationViews.CreatorGameView;
 import gui.views.objectViews.itemsViews.ShowApplyCreatureView;
@@ -22,10 +23,11 @@ public class PutMonsterListener implements ActionListener {
     ShowApplyCreatureView showApplyCreatureView;
     ControllerManager controllerManager;
     NewScenarioController scenarioController;
+    IOverallFactory factory;
 
     public PutMonsterListener(ArrayList<ScenarioData> scenarioData, CreatorGameView creatorGameView,
                               ShowApplyCreatureView showApplyCreatureView, ControllerManager controllerManager,
-                              NewScenarioController scenarioController)
+                              NewScenarioController scenarioController, IOverallFactory factory)
 
     {
         this.scenarioController = scenarioController;
@@ -33,6 +35,7 @@ public class PutMonsterListener implements ActionListener {
         this.creatorGameView = creatorGameView;
         this.showApplyCreatureView = showApplyCreatureView;
         this.controllerManager = controllerManager;
+        this.factory =factory;
     }
 
     @Override
@@ -47,9 +50,9 @@ public class PutMonsterListener implements ActionListener {
         scenarioDataList.add(scenarioData);
         creatorGameView.getCreatorPanel().applyNewCreatureOnPosition(dependMonster.getObjectPathPicture(),
                 creatorGameView.getCreatorPanel().getCurrentClickedIndexes());
-        creatorGameView.getPanel().setVisible(true);
-
-//        new RedirectListener(controllerManager, scenarioController).actionPerformed(e);
+//        creatorGameView.getPanel().setVisible(true);
+        var scenario = new NewScenarioController(factory);
+        new RedirectListener(controllerManager, scenario).actionPerformed(e);
         creatorGameView.getCreatorPanel().disableOptionsPanel();
     }
 }

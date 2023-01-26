@@ -31,6 +31,7 @@ public class SetCreatureController extends Controller {
     private CreatureType creatureType;
     private ArrayList<ScenarioData> data;
     private CreatorGameView mainview;
+    private ShowApplyCreatureView view;
 
 
     public SetCreatureController(CreatorGameView view, NewScenarioController scenarioController,
@@ -41,10 +42,17 @@ public class SetCreatureController extends Controller {
         this.data = data;
     }
 
+    private class NPCListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            new PutNPCListener(data, mainview, view, controllerManager,
+                    scenarioController).actionPerformed(e);
+        }
+    }
     @Override
     public void run(IOverallFactory overallFactory) {
-        mainview.getPanel().setVisible(false);
-        var view = overallFactory.createCreatorApplyingCharacterView(creatureType);
+         view = overallFactory.createCreatorApplyingCharacterView(creatureType);
 
         view.getCancelButton().addActionListener(
                 new RedirectListener(controllerManager, scenarioController)
@@ -53,9 +61,9 @@ public class SetCreatureController extends Controller {
         for (var creature : getEntities(creatureType)) {
             array.add(new ArrayList<>(Arrays.asList(creature.getObjectPathPicture(), creature.getName())));
         }
-        var map = Map.of(CreatureType.NPC, new PutNPCListener(data, mainview, view, controllerManager,
+        var map = Map.of(CreatureType.NPC,new PutNPCListener(data, mainview, view, controllerManager,
                         scenarioController), CreatureType.MONSTER,
-                new PutMonsterListener(data, mainview, view, controllerManager, scenarioController),
+                new PutMonsterListener(data, mainview, view, controllerManager, scenarioController, overallFactory),
                 CreatureType.PLAYER_CHARACTER, new PutPCListener(data,
                         mainview, view, controllerManager, scenarioController));
         var parent = this;

@@ -23,6 +23,8 @@ public class NewScenarioController extends Controller {
         view = overallFactory.createCreatorGameView();
     }
 
+
+
     @Override
     public void run(IOverallFactory overallFactory) {
 //        var view = overallFactory.createCreatorGameView();
