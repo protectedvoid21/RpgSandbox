@@ -23,7 +23,10 @@ public class GameCardController extends Controller {
         card.uploadNewData(Converter.createFullDataCreature(creature),
                 Converter.createFullDetailDataCreature(creature));
         if (creature instanceof Character) {
-            card.getGameSelectedCard(Card.CardTypes.ARMOR).setSelectedIndex(((Character) creature).getInventory().getArmors().indexOf(((Character) creature).getInventory().getActiveArmor()));
+            System.out.println(((Character) creature).getInventory().getArmors().
+                    indexOf(((Character) creature).getInventory().getActiveArmor()));
+            card.getGameSelectedCard(Card.CardTypes.ARMOR).setSelectedIndex(((Character) creature).getInventory().getArmors().
+                    indexOf(((Character) creature).getInventory().getActiveArmor()));
             card.getGameSelectedCard(Card.CardTypes.WEAPONS).setSelectedIndex(((Character) creature).getInventory().getWeapons().indexOf(((Character) creature).getInventory().getActiveWeapon()));
             card.getGameSelectedCard(Card.CardTypes.MOUNT).setSelectedIndex(((Character) creature).getInventory().getMounts().indexOf(((Character) creature).getInventory().getActiveMount()));
         }

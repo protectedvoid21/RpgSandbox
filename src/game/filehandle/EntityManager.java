@@ -72,8 +72,8 @@ public class EntityManager {
     }
 
     private void generateListOfItems() {
-        disposableItemList = new ArrayList<>(Arrays.asList(new Bandage(5),
-                new Bandage( 5), new DragonsBlood(5),
+        disposableItemList = new ArrayList<>(Arrays.asList(
+                new Bandage(5), new DragonsBlood(5),
                 new ChickenLeg(5), new DeadRat(5), new HolyWater(5),
                 new JustNormalWater(5), new MagicPills(5),
                 new MagicPotion(), new Sharpener(5),

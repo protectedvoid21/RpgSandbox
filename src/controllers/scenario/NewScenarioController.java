@@ -36,7 +36,6 @@ public class NewScenarioController extends Controller {
             view.getCreatorPanel().applyNewCreatureOnPosition(d.creature.getObjectPathPicture(), d.position);
         }
         System.out.println("wykonuje");
-        view.getCreatorPanel().applyNewCreatureOnPosition("", new Vector2(2, 2));
         view.getExitButton().addActionListener(
                 new RedirectListener(controllerManager, new MenuController())
         );

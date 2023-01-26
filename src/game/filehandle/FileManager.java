@@ -30,7 +30,7 @@ public class FileManager {
 
     public FileManager(String gameName) {
         this.gameName = gameName;
-        
+
         directoryMap.put(Monster.class, "monsters.txt");
         directoryMap.put(NPC.class, "npcs.txt");
         directoryMap.put(PlayerCharacter.class, "players.txt");
@@ -38,7 +38,7 @@ public class FileManager {
         directoryMap.put(Armor.class, "armors.txt");
         directoryMap.put(Mount.class, "mounts.txt");
         directoryMap.put(Scenario.class, "scenarios.txt");
-        
+
         gson = new GsonBuilder()
                 .setPrettyPrinting()
                 .setExclusionStrategies(new CustomExcludeStrategy())
@@ -47,12 +47,11 @@ public class FileManager {
                 .registerTypeAdapter(IStruggleStatistics.class, new StruggleDeserializer())
                 .registerTypeAdapter(IStruggleAtributeEnum.class, new CustomAdapter<IStruggleAtributeEnum>())
                 .registerTypeAdapter(IAttributeEnum.class, new CustomAdapter<IAttributeEnum>())
-                .registerTypeAdapter(AttributeValue.class, new CustomAdapter<AttributeValue>())
+                .registerTypeAdapter(AttributeValue.class, new CustomAdapter<AttributeValue>()).registerTypeAdapter(DisposableItem.class, new CustomAdapter<DisposableItem>())
                 .create();
         try {
             ensurePathExists();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -92,8 +91,7 @@ public class FileManager {
             gson.toJson(object, bufferedWriter);
             bufferedWriter.flush();
             bufferedWriter.close();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -107,8 +105,7 @@ public class FileManager {
         FileReader fileReader;
         try {
             fileReader = new FileReader("data/" + gameName + "/" + directoryMap.get(objectType));
-        }
-        catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
         BufferedReader bufferedReader = new BufferedReader(fileReader);
