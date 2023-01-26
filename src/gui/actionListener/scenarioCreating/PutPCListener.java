@@ -1,5 +1,7 @@
 package gui.actionListener.scenarioCreating;
 
+import controllers.ControllerManager;
+import controllers.scenario.NewScenarioController;
 import game.board.Board;
 import game.board.GameObject;
 import game.board.RoundManager;
@@ -21,21 +23,31 @@ public class PutPCListener implements ActionListener {
     CreatorGameView creatorGameView;
 
     ShowApplyCreatureView showApplyCreatureView;
+    ControllerManager controllerManager;
+    NewScenarioController scenarioController;
 
-    public PutPCListener(ArrayList<ScenarioData> scenarioDataList, CreatorGameView creatorGameView, ShowApplyCreatureView showApplyCreatureView) {
+
+    public PutPCListener(ArrayList<ScenarioData> scenarioDataList, CreatorGameView creatorGameView,
+                         ShowApplyCreatureView showApplyCreatureView, ControllerManager controllerManager, NewScenarioController scenarioController) {
         this.scenarioDataList = scenarioDataList;
         this.creatorGameView = creatorGameView;
         this.showApplyCreatureView = showApplyCreatureView;
+        this.controllerManager = controllerManager;
+        this.scenarioController = scenarioController;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        PlayerCharacter dependPlayerCharacter = EntityManager.getInstance().getPlayerCharacterList().get(showApplyCreatureView.getClickedIndex());
+        PlayerCharacter dependPlayerCharacter =
+                EntityManager.getInstance().getPlayerCharacterList().get(showApplyCreatureView.getClickedIndex());
         ScenarioData scenarioData = new ScenarioData();
         scenarioData.creature = dependPlayerCharacter;
         scenarioData.position = creatorGameView.getCreatorPanel().getCurrentClickedIndexes();
         scenarioDataList.add(scenarioData);
-        creatorGameView.getCreatorPanel().applyNewCreatureOnPosition(dependPlayerCharacter.getObjectPathPicture(),creatorGameView.getCreatorPanel().getCurrentClickedIndexes());
+        creatorGameView.getCreatorPanel().applyNewCreatureOnPosition(dependPlayerCharacter.getObjectPathPicture(),
+                creatorGameView.getCreatorPanel().getCurrentClickedIndexes());
+        controllerManager.changeController(scenarioController);
+
     }
 }

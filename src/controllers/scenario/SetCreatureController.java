@@ -49,9 +49,11 @@ public class SetCreatureController extends Controller {
         for (var creature : getEntities(creatureType)) {
             array.add(new ArrayList<>(Arrays.asList(creature.getObjectPathPicture(), creature.getName())));
         }
-        var map = Map.of(CreatureType.NPC, new PutNPCListener(data, mainview, view), CreatureType.MONSTER,
-                new PutMonsterListener(data, mainview, view), CreatureType.PLAYER_CHARACTER, new PutPCListener(data,
-                        mainview, view));
+        var map = Map.of(CreatureType.NPC, new PutNPCListener(data, mainview, view, controllerManager,
+                        scenarioController), CreatureType.MONSTER,
+                new PutMonsterListener(data, mainview, view, controllerManager, scenarioController),
+                CreatureType.PLAYER_CHARACTER, new PutPCListener(data,
+                        mainview, view, controllerManager, scenarioController));
         var parent = this;
 
         for (int i = 0; i < 4; i++) {

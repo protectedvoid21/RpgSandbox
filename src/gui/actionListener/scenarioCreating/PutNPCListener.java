@@ -1,5 +1,7 @@
 package gui.actionListener.scenarioCreating;
 
+import controllers.ControllerManager;
+import controllers.scenario.NewScenarioController;
 import game.board.Board;
 import game.board.GameObject;
 import game.board.RoundManager;
@@ -21,22 +23,29 @@ public class PutNPCListener implements ActionListener {
     CreatorGameView creatorGameView;
 
     ShowApplyCreatureView showApplyCreatureView;
+    ControllerManager controllerManager;
+    NewScenarioController scenarioController;
 
-    public PutNPCListener(ArrayList<ScenarioData> scenarioDataList, CreatorGameView creatorGameView, ShowApplyCreatureView showApplyCreatureView) {
+    public PutNPCListener(ArrayList<ScenarioData> scenarioDataList, CreatorGameView creatorGameView,
+                          ShowApplyCreatureView showApplyCreatureView, ControllerManager controllerManager,NewScenarioController scenarioController) {
         this.scenarioDataList = scenarioDataList;
         this.creatorGameView = creatorGameView;
         this.showApplyCreatureView = showApplyCreatureView;
+        this.controllerManager = controllerManager;
+        this.scenarioController = scenarioController;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("fa");
-
         NPC dependNPC = EntityManager.getInstance().getNPCList().get(showApplyCreatureView.getClickedIndex());
         ScenarioData scenarioData = new ScenarioData();
         scenarioData.creature = dependNPC;
         scenarioData.position = creatorGameView.getCreatorPanel().getCurrentClickedIndexes();
         scenarioDataList.add(scenarioData);
-        creatorGameView.getCreatorPanel().applyNewCreatureOnPosition(dependNPC.getObjectPathPicture(),creatorGameView.getCreatorPanel().getCurrentClickedIndexes());
+        System.out.println(creatorGameView.getCreatorPanel().getCurrentClickedIndexes());
+        creatorGameView.getCreatorPanel().applyNewCreatureOnPosition(dependNPC.getObjectPathPicture(),
+                creatorGameView.getCreatorPanel().getCurrentClickedIndexes());
+        controllerManager.changeController(scenarioController);
+
     }
 }
