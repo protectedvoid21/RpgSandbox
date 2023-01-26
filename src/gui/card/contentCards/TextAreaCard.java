@@ -11,7 +11,7 @@ import javax.swing.*;
 
 public class TextAreaCard extends AbstractCard {
     protected DefaultCustomMenuMenager<JComponent> menager =
-            new DefaultCustomMenuMenager<JComponent>(ComponentsSeries.ComponentsDimension.HORIZONTAL,
+            new DefaultCustomMenuMenager<>(ComponentsSeries.ComponentsDimension.HORIZONTAL,
                     ComponentsSeries.ComponentsDimension.VERTICAL);
     private CustomTextComponent textArea;
 

@@ -32,9 +32,6 @@ public abstract class OptionsPanel extends BackgroundView implements PanelContai
         this.factory = factory;
     }
 
-//    public void setBorderColor(Color color) {
-//        customPanelAttackChoser.getCmp().setBorderData(color, new AverageBorderStartegy(), 15);
-//    }
 
     public void addOptionsPanelCommand(int index, ActionListener listener) {
         if (index < size) {
@@ -122,7 +119,6 @@ public abstract class OptionsPanel extends BackgroundView implements PanelContai
         }
         setCorrectVisibility();
 //        int space = (int)((100-size*10)/(double)2);
-//        System.out.println(space);
 //        customPanelAttackChoser.getCmp().addSpace(space, ComponentPanelMenager.Side.LEFT, ComponentPanelMenager.Side.RIGHT);
     }
 

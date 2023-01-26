@@ -33,6 +33,7 @@ public class NewScenarioController extends Controller {
     public void run(IOverallFactory overallFactory) {
 //        var view = overallFactory.createCreatorGameView();
         for (var d : data){
+            System.out.println(d.creature);
             view.getCreatorPanel().applyNewCreatureOnPosition(d.creature.getObjectPathPicture(), d.position);
         }
         System.out.println("wykonuje");

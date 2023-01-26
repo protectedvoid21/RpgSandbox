@@ -22,12 +22,10 @@ public class BlockListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
-        Vector2 point = mainPanelGame.getGamePanel().getCurrentClickedIndexes();
         Creature you = roundManager.getGameObjectWithTurn().getCreature();
+        Vector2 point = roundManager.getGameObjectWithTurnPosition();
         roundManager.getActions().doAction(DEFENSE_STAND, you);
-
-
+        System.out.println(point);
         mainPanelGame.getGamePanel().applyDefendActionsContent(point);
 
         turnOffButtons.turnOff(roundManager,mainPanelGame,1,1);

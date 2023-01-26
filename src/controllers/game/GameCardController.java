@@ -22,8 +22,6 @@ public class GameCardController extends Controller {
         var card = overallFactory.createGameCard();
         card.uploadNewData(Converter.createFullDataCreature(creature),
                 Converter.createFullDetailDataCreature(creature));
-        System.out.println(((Character) creature).getInventory().getArmors().
-                indexOf(((Character) creature).getInventory().getActiveArmor()));
         if (creature instanceof Character) {
             var weaponIndex = ((Character) creature).getInventory().getWeapons().
                     indexOf(((Character) creature).getInventory().getActiveWeapon());

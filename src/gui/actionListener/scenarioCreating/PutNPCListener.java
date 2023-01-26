@@ -48,7 +48,6 @@ public class PutNPCListener implements ActionListener {
         scenarioData.creature = dependNPC;
         scenarioData.position = creatorGameView.getCreatorPanel().getCurrentClickedIndexes();
         scenarioDataList.add(scenarioData);
-        System.out.println(creatorGameView.getCreatorPanel().getCurrentClickedIndexes().x);
         creatorGameView.getCreatorPanel().applyNewCreatureOnPosition(dependNPC.getObjectPathPicture(),
                 creatorGameView.getCreatorPanel().getCurrentClickedIndexes());
 //        controllerManager.changeController(scenarioController);

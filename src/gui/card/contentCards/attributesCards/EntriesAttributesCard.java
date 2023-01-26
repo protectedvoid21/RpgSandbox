@@ -88,8 +88,9 @@ public class EntriesAttributesCard extends AttributesCard {
     @Override
     protected ArrayList<? extends IContentCustomUICmp> getSecondContentList() {
         var array = new ArrayList<IContentCustomUICmp>();
+        System.out.println(data.dataType);
         for (int i = currentAttrSide * maximumElementNumber; i < getSideMaximumElementsNumber(); i++) {
-            if (data.dataType.get(i) == CardContentDataSet.DataType.STRING) {
+            if (i >= data.dataType.size() ||data.dataType.get(i) == CardContentDataSet.DataType.STRING) {
                 array.add(entriesList.get(i % 5));
             } else {
                 array.add(buttonBooleanList.get(i % 5));
@@ -109,7 +110,7 @@ public class EntriesAttributesCard extends AttributesCard {
     protected void updateContent() {
         super.updateContent();
         for (int i = currentAttrSide * maximumElementNumber; i < getSideMaximumElementsNumber(); i++) {
-            if (data.dataType.get(i) == CardContentDataSet.DataType.STRING) {
+            if (i >= data.dataType.size() || data.dataType.get(i) == CardContentDataSet.DataType.STRING) {
                 entriesList.get(i % maximumElementNumber).setVisible(true);
                 buttonBooleanList.get(i % maximumElementNumber).setVisible(false);
             } else {

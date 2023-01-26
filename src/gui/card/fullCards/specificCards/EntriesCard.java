@@ -135,7 +135,6 @@ public class EntriesCard extends Card {
             ArrayList<CardContentDataSet>> detailData) {
         choserCard.uploadNewData(newData, detailData);
         for (var key : detailData.keySet()) {
-            System.out.println(key.toString());
             choserCard.setCurrentType(key);
             var array = new ArrayList<Integer>();
 
@@ -149,7 +148,6 @@ public class EntriesCard extends Card {
             choserCard.getGameSelectedCard(key).setAddedIndexes(array);
             choserCard.getGameSelectedCard(key).reset();
             allCards.get(key).initializeCardData(choserCard.getCurrentData(), choserCard.getCurrentDetailData());
-            System.out.println();
         }
         updateContent();
         choserCard.updateContent();

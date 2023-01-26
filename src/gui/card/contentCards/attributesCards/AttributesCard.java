@@ -48,8 +48,7 @@ public abstract class AttributesCard extends AbstractCard {
     protected void updateContent() {//zmienia sie
         int maxSideIndex = getSideMaximumElementsNumber();
         int dataSize = data.content.size();
-        var sublist = data.content.subList(currentAttrSide * maximumElementNumber, maxSideIndex > dataSize ? dataSize :
-                maxSideIndex);
+        var sublist = data.content.subList(currentAttrSide * maximumElementNumber, Math.min(maxSideIndex, dataSize));
 
         int currentIndex = 0;
         Card.setNonDependantAspectVisible(labelList);

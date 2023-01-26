@@ -54,7 +54,7 @@ private OneDataOptionsPanel panel;
 
     public void applyNewCreatureOnPosition(String path, Vector2 position) {
         applyWithoutRemovingContent(new AbstractMap.SimpleEntry<>(position, path));
-        setDisabledIndexes(position);
+        addDisabledIndex(position);
     }
 
     @Override

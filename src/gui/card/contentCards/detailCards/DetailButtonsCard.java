@@ -45,8 +45,7 @@ public abstract class DetailButtonsCard extends AbstractCard<JComponent> {
     protected void updateContent() {
         int maxSideIndex = getSideMaximumElementsNumber();
         int dataSize = data.content.size();
-        var sublist = data.content.subList(currentAttrSide * maximumElementNumber, maxSideIndex > dataSize ? dataSize :
-                maxSideIndex);
+        var sublist = data.content.subList(currentAttrSide * maximumElementNumber, Math.min(maxSideIndex, dataSize));
         int currentIndex = 0;
         Card.setNonDependantAspectVisible(labelList);
         Card.setNonDependantAspectVisible(detailList);
@@ -79,6 +78,7 @@ public abstract class DetailButtonsCard extends AbstractCard<JComponent> {
             initButton(detailList, "DETAIL");
 //            initButton(selectList, "SELECT");
         }
+//        SharedCmpsFont.setUniformFont(det);
 
     }
 

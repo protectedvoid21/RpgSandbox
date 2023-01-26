@@ -33,7 +33,9 @@ public class TestMainGui {
         ramka.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ramka.setSize(800, 800);
         IOverallFactory f = new WarHammerFactory();
-//        var x = f.createMainPanelGame();
+        var x = f.createMainPanelGame();
+//        x.getGamePanel().applyAttackActionsContent(new Vector2(3,4));
+        ramka.add(x.getPanel());
 //        x.getGamePanel().setOptionsDisabledIndexes(new Vector2(2, 3), 2, 4);
 //        x.getGamePanel().setOptionsDisabledIndexes(new Vector2(2, 5), 1);
 //        x.getGamePanel().setOptionsDisabledIndexes(new Vector2(1, 3), 3, 4);

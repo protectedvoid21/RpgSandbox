@@ -46,6 +46,7 @@ public class SetCreatureController extends Controller {
 
     @Override
     public void run(IOverallFactory overallFactory) {
+        System.out.println(data);
          view = overallFactory.createCreatorApplyingCharacterView(creatureType);
 
         view.getCancelButton().addActionListener(
@@ -60,7 +61,7 @@ public class SetCreatureController extends Controller {
                 new PutMonsterListener(data, mainview, view, controllerManager, scenarioController, overallFactory),
                 CreatureType.PLAYER_CHARACTER, new PutPCListener(data,
                         mainview, view, controllerManager, scenarioController, factory));
-        var parent = this;
+//        var parent = this;
         var entities = getEntities(creatureType);
         for (int i = 0; i < entities.size(); i++) {
             view.addButtonActionListener(AllObjectsView.ButtonType.SHOW, i,

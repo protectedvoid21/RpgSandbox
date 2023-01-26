@@ -30,6 +30,7 @@ public class PutPCListener implements ActionListener {
     IOverallFactory factory;
 
 
+
     public PutPCListener(ArrayList<ScenarioData> scenarioDataList, CreatorGameView creatorGameView,
                          ShowApplyCreatureView showApplyCreatureView, ControllerManager controllerManager,
                          NewScenarioController scenarioController, IOverallFactory factory) {
@@ -46,7 +47,6 @@ public class PutPCListener implements ActionListener {
 
         PlayerCharacter dependPlayerCharacter =
                 EntityManager.getInstance().getPlayerCharacterList().get(showApplyCreatureView.getClickedIndex());
-        System.out.println(showApplyCreatureView.getClickedIndex());
         ScenarioData scenarioData = new ScenarioData();
         scenarioData.creature = dependPlayerCharacter;
         scenarioData.position = creatorGameView.getCreatorPanel().getCurrentClickedIndexes();

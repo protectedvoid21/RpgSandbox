@@ -166,6 +166,10 @@ public abstract class BaseGamePanel extends BackgroundView implements PanelConta
 
     }
 
+    public void addDisabledIndex(Vector2 index){
+        manager.getMiddleComponent(index.x, index.y).getComponent().setEnabled(false);
+    }
+
     public void colorButtons(Vector2... indexes) {
         colorButtons(new ArrayList<>(Arrays.asList(indexes)));
 
