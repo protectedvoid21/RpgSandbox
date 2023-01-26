@@ -88,10 +88,10 @@ public class Audio {
 
             try {
                 System.out.println(blocked);
-                if (!blocked) {
+//                if (!blocked) {
                     mainClip.start();
                     listener.waitUntilDone();
-                }
+//                }
             } finally {
                 mainClip.close();
             }

@@ -10,6 +10,7 @@ public class Bandage extends DisposableItem implements WarhammerData {
     public Bandage(int usageCount) {
         super(usageCount);
         setItemPathPicture(plasterPath);
+        workOnEnemy = false;
 
 
         description = "Bandage is great way to stop the bleeding! And yes! We have also kids version with dragons and warriors on it!";

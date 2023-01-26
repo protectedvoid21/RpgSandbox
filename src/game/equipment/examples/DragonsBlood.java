@@ -12,6 +12,7 @@ public class DragonsBlood extends DisposableItem implements WarhammerData {
         super(usageCount);
 //        this.user = user;
         setItemPathPicture(bloodPaht);
+        workOnEnemy = false;
 
         description = "Dragon blood is poisoning sooooooo......when you put it on your sword your enemies will DIE IN" +
                 " VERY PAINFUL WAY";

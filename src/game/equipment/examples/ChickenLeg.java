@@ -16,6 +16,7 @@ public class ChickenLeg extends DisposableItem implements WarhammerData {
         super(usageCount);
 //        this.user = user;
         setItemPathPicture(chickenPath);
+        workOnEnemy = false;
 
         description = "Traveller! Stop in our tavern and eat some chicken. It will help to restore your health";
     }

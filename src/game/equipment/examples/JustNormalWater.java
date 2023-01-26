@@ -14,6 +14,7 @@ public class JustNormalWater extends DisposableItem implements WarhammerData {
 //        this.user = user;
         setItemPathPicture(waterPath);
 
+        workOnEnemy = false;
         description = "Like the name JUST NORMAL WATER! You can use it to stop fire or sth";
     }
 

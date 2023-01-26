@@ -12,6 +12,7 @@ public class WarmSocksFromGrandma extends DisposableItem implements WarhammerDat
     public WarmSocksFromGrandma(int usageCount) {
         super( usageCount);
 //        this.user = user;
+        workOnEnemy = false;
         setItemPathPicture(socksPath);
 
         description = "When you found them under christmas tree you said: \"MEEEEH\", but then you found out that " +

@@ -13,6 +13,7 @@ public class Sharpener extends DisposableItem implements WarhammerData {
 //        this.user = user;
         setItemPathPicture(sharper);
 
+        workOnEnemy = false;
         description = "Your big sword will become big and sharp (YES IT WILL MAKE MORE DAMAGE)";
     }
 

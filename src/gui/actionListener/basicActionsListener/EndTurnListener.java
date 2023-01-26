@@ -19,6 +19,7 @@ public class EndTurnListener implements ActionListener {
         this.roundManager = roundManager;
         this.mainPanelGame = mainPanelGame;
         method();
+        method2();
     }
 
     @Override
@@ -28,6 +29,7 @@ public class EndTurnListener implements ActionListener {
         mainPanelGame.getGamePanel().colorButtons(roundManager.getGameObjectWithTurnPosition());
         turnOffButtons.turnOff(roundManager, mainPanelGame, 2, 0);
 //        method();
+
 
     }
 
@@ -57,6 +59,22 @@ public class EndTurnListener implements ActionListener {
             mainPanelGame.getPicker(FullItemPicker.LabelType.ARMOR).uploadData(array2);
             mainPanelGame.getPicker(FullItemPicker.LabelType.ARMOR).setCurrentIndex(character.getInventory().getArmors().
                     indexOf(character.getInventory().getActiveArmor()));
+
+
+        }
+    }
+    private void method2() {
+        if (roundManager.getGameObjectWithTurn().getCreature() instanceof Character) {
+            var character = (Character) roundManager.getGameObjectWithTurn().getCreature();
+            var array = new ArrayList<String>();
+            for (var item : character.getInventory().getDisposableItems()) {
+                array.add(item.getItemPathPicture());
+            }
+            mainPanelGame.getItemsItemPicker().uploadData(array);
+            mainPanelGame.getItemsItemPicker().setCurrentIndex(character.getInventory().getDisposableItems().
+                    indexOf(character.getInventory().getSelectedDisposableItem()));
+
+
         }
     }
 }

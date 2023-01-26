@@ -7,6 +7,7 @@ public class DeadRat extends DisposableItem implements WarhammerData {
     public DeadRat(int usageCount) {
         super(usageCount);
         setItemPathPicture(ratPaht);
+        workOnEnemy = false;
         description = "Ah yes. We are in Wrocław";
     }
 }

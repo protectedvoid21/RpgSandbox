@@ -20,7 +20,7 @@ public class ItemPicker implements SwitchableComponent, PanelContainer {
                     ComponentsSeries.ComponentsDimension.HORIZONTAL);
     private ArrayList<String> items = new ArrayList<>();
     private AbstractCustomLabel label;
-    private int currentSide = 0;
+    protected int currentSide = 0;
     private CustomLambdaExpression leftListener = () -> {
     };
     private CustomLambdaExpression rightListener = () -> {

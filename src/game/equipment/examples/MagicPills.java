@@ -14,6 +14,7 @@ public class MagicPills extends DisposableItem implements WarhammerData {
 //        this.user=user;
         setItemPathPicture(mortarPath);
 
+        workOnEnemy = false;
         description = "9/10 dentists says that they will remove poison effects from your blood";
     }
 

@@ -9,6 +9,8 @@ import gui.views.gamePanel.MainPanelGame;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import static game.interfaceWarhammer.StruggleAtributeEnum.*;
 public class UseItemOnEnemyListener implements ActionListener {
 
@@ -32,6 +34,20 @@ public class UseItemOnEnemyListener implements ActionListener {
 
         you.getStruggleStatistics().getAttribute(ACTIONS_TO_DO).decreaseValue(1);
         mainPanelGame.getGamePanel().changeActiveOptionsPanel();
+        if (roundManager.getGameObjectWithTurn().getCreature() instanceof Character) {
+            var character = (Character) roundManager.getGameObjectWithTurn().getCreature();
+            var array = new ArrayList<String>();
+            for (var item : character.getInventory().getDisposableItems()) {
+                if(item.isValid())
+                array.add(item.getItemPathPicture());
+            }
+            mainPanelGame.getItemsItemPicker().uploadData(array);
+            mainPanelGame.getItemsItemPicker().setCurrentIndex(character.getInventory().getDisposableItems().
+                    indexOf(character.getInventory().getSelectedDisposableItem()));
+            mainPanelGame.getItemsItemPicker().addButtonLIstener(new UseListener(roundManager, mainPanelGame));
+
+        }
 
     }
+
 }
