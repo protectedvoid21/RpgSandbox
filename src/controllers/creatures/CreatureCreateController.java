@@ -12,8 +12,11 @@ import gui.card.fullCards.abstractCards.Card;
 import gui.card.fullCards.specificCards.EntriesCard;
 import gui.factories.IOverallFactory;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Time;
+import java.util.Arrays;
 
 public class CreatureCreateController extends Controller {
     private EntriesCard view;
@@ -28,8 +31,23 @@ public class CreatureCreateController extends Controller {
     @Override
     public void run(IOverallFactory overallFactory) {
         view = overallFactory.createEntriesCard();
-        var contentData = Converter.createFullDataCreature(creature);
-        view.uploadNewData(contentData, Converter.createFullDetailDataCreature(creature));
+        var contentDataMap = Converter.createFullDataCreature(creature);
+        view.uploadNewData(contentDataMap, Converter.createFullDetailDataCreature(creature));
+//        SwingUtilities.invokeLater(new );
+        view.uploadNewChoserCardData(Converter.createFullDataCreature(EntityManager.getInstance().getPlayerCharacterWithAllItems()),
+                Converter.createFullDetailDataCreature(EntityManager.getInstance().getPlayerCharacterWithAllItems()));
+//       SwingUtilities.invokeLater(new Runnable() {
+//           @Override
+//           public void run() {
+//               view.uploadNewChoserCardData(Converter.createFullDataCreature(EntityManager.getInstance()
+//               .getPlayerCharacterWithAllItems()),
+//                       Converter.createFullDetailDataCreature(EntityManager.getInstance()
+//                       .getPlayerCharacterWithAllItems()));
+//           }
+//       });
+//        view.uploadNewChoserCardData(Converter.createFullDataCreature(EntityManager.getInstance()
+//        .getPlayerCharacterWithAllItems()),
+//                Converter.createFullDetailDataCreature(EntityManager.getInstance().getPlayerCharacterWithAllItems()));
 
         view.getCancelButton().addActionListener(
                 new RedirectListener(controllerManager, new CreatureListController(creatureType))
@@ -44,6 +62,11 @@ public class CreatureCreateController extends Controller {
         public void actionPerformed(ActionEvent e) {
             var data = view.generateContentData().get(Card.CardTypes.OVERALL);
             var contentData = view.generateContentData().get(Card.CardTypes.ATTRIBUTE).clone();
+//            for (var type : Arrays.asList(Card.CardTypes.ARMOR, Card.CardTypes.MOUNT, Card.CardTypes.WEAPONS)){
+//                for(var item : numberData.get(type)){
+//
+//                }
+//            }
             contentData.titlePath = data.titlePath;
             contentData.titleContent = data.titleContent;
             EntityManager.getInstance().removeCreature(creature);

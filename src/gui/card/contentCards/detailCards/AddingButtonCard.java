@@ -21,7 +21,6 @@ public class AddingButtonCard extends NormalDetailButtonsCard {
         super(factory);
     }
 
-
     public ArrayList<CardContentDataSet> getDetailOnlyAddedIndexesData() {
         var newData = new ArrayList<CardContentDataSet>();
         for (var index : addedIndexes) {
@@ -54,11 +53,6 @@ public class AddingButtonCard extends NormalDetailButtonsCard {
     @Override
     protected void updateContent() {
         super.updateContent();
-//        int maxSideIndex = getSideMaximumElementsNumber();
-//        int dataSize = data.content.size();
-//        var sublist = data.content.subList(currentAttrSide * maximumElementNumber, maxSideIndex > dataSize ? dataSize :
-//                maxSideIndex);
-//        int currentIndex = 0;
         Card.setNonDependantAspectVisible(selectList);
         for (int i = currentAttrSide * maximumElementNumber; i < getSideMaximumElementsNumber(); i++) {
             if (addedIndexes.contains(i)) {

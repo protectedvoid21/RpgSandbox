@@ -5,6 +5,28 @@ import gui.utils.StringAdapter;
 import java.awt.*;
 
 public interface WarhammerData {
+    String person1Path = StringAdapter.getRelativePath("person1.png");
+    String person2Path = StringAdapter.getRelativePath("person2.png");
+    String person3Path = StringAdapter.getRelativePath("person3.png");
+    String person4Path = StringAdapter.getRelativePath("person4.png");
+    String person5Path = StringAdapter.getRelativePath("person5.png");
+    String person6Path = StringAdapter.getRelativePath("person6.png");
+    String person7Path = StringAdapter.getRelativePath("person7.png");
+    String person8Path = StringAdapter.getRelativePath("person8.png");
+    String person9Path = StringAdapter.getRelativePath("person9.png");
+    String person10Path = StringAdapter.getRelativePath("person10.png");
+    String person11Path = StringAdapter.getRelativePath("person11.png");
+    String armorBasicPath = StringAdapter.getRelativePath("armorbasic.png");
+    String cosbrzydkiegoPath = StringAdapter.getRelativePath("cosbrzydkiego.png");
+    String dragonPath = StringAdapter.getRelativePath("dragon.png");
+    String grootPath = StringAdapter.getRelativePath("groot.png");
+
+    String knightPath = StringAdapter.getRelativePath("knight.png");
+    String monsterek = StringAdapter.getRelativePath("mosnterek.png");
+    String mountBasicPath = StringAdapter.getRelativePath("mountbasic.png");
+    String swardbasic = StringAdapter.getRelativePath("swardbasic.png");
+
+
     String plasterPath = StringAdapter.getRelativePath("band-aid.png");
     String socksPath = StringAdapter.getRelativePath("sock.png");
     String sharper = StringAdapter.getRelativePath("sharper.png");
@@ -31,17 +53,17 @@ public interface WarhammerData {
     String editPath = StringAdapter.getRelativePath("edit.png");
     String createPath = StringAdapter.getRelativePath("create.png");
     String viewPath = StringAdapter.getRelativePath("view.png");
-    String horsePath =StringAdapter.getRelativePath("horse.png");
+    String horsePath = StringAdapter.getRelativePath("horse.png");
     String efectPath = StringAdapter.getRelativePath("effect.png");
     String armorPath = StringAdapter.getRelativePath("armor.png");
     String weaponPath = StringAdapter.getRelativePath("weapon.png");
-    String trolleyPath =StringAdapter.getRelativePath("trolley.png");
+    String trolleyPath = StringAdapter.getRelativePath("trolley.png");
     String monsterPath = StringAdapter.getRelativePath("monsterimage.png");
-    String playerImagePath =StringAdapter.getRelativePath("playerimage.png");
+    String playerImagePath = StringAdapter.getRelativePath("playerimage.png");
     String npcImage = StringAdapter.getRelativePath("npcimage.png");
     String plusImage = StringAdapter.getRelativePath("plus.png");
     String cardBackground = StringAdapter.getRelativePath("backforcard.jpg");
-    String avePath =StringAdapter.getRelativePath("wood.jpg");
+    String avePath = StringAdapter.getRelativePath("wood.jpg");
     Color basicBorderColor = new Color(0x4D0202);//jako ze wszedzie ten sam to moze sie popsuc gdy gdzies sie
     // przypadkiem zmieni, brak czasu na testy, sie w miedzyczasie to ogarnie
     int basicBorderSize = 10;

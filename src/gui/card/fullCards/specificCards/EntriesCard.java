@@ -102,14 +102,11 @@ public class EntriesCard extends Card {
         choserCard = new ChoserCard(factory);
         choserCard.initialize();
         helpPanelVariable = seriesPanel.getCmp().getComponent();
-        choserCard.getAddButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                seriesPanel.getCmp().changeContent(helpPanelVariable);
-                allCards.get(choserCard.getCurrentCardType()).initializeCardData(choserCard.getCurrentData(),
-                        choserCard.getCurrentDetailData());
-                updateContent();
-            }
+        choserCard.getAddButton().addActionListener(e -> {
+            seriesPanel.getCmp().changeContent(helpPanelVariable);
+            allCards.get(choserCard.getCurrentCardType()).initializeCardData(choserCard.getCurrentData(),
+                    choserCard.getCurrentDetailData());
+            updateContent();
         });
     }
 
@@ -118,7 +115,7 @@ public class EntriesCard extends Card {
     public void uploadNewData(LinkedHashMap<CardTypes, CardContentDataSet> newData, HashMap<CardTypes,
             ArrayList<CardContentDataSet>> detailData) {
         super.uploadNewData(newData, detailData);
-        uploadNewChoserCardData(newData, detailData);
+//        uploadNewChoserCardData(newData, detailData);
         if (newData.containsKey(CardTypes.OVERALL)) {
             rightEntryTitleComponent.getComponent().setContent(newData.get(CardTypes.OVERALL).titleContent);
             leftButtonyTitleComponent.getComponent().setContent(newData.get(CardTypes.OVERALL).titlePath.equals(Card.EMPTY_DATA_CONTENT) ?

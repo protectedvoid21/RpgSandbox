@@ -1,6 +1,7 @@
 package gui.card.fullCards.specificCards;
 
 import gui.card.CardContentDataSet;
+import gui.card.SharedCmpsFont;
 import gui.card.contentCards.attributesCards.AttributesCard;
 import gui.card.contentCards.attributesCards.LabelAttributeCard;
 import gui.card.contentCards.detailCards.AddingButtonCard;
@@ -28,11 +29,20 @@ public class ChoserCard extends Card {
     public void initialize() {
         super.initialize();
         seriesPanel.getCmp().removeBorderData();
+        setUniformFont();
     }
 
+    @Override
+    public void setUniformFont() {
+        super.setUniformFont();
+//        for (var card : cards.values()){
+//            card.setUniformForm();
+//        }
+    }
 
     public void setCurrentType(CardTypes type) {
         currentCardType = type;
+        cards.get(currentCardType).setUniformForm();
     }
 
     public CardTypes getCurrentCardType() {

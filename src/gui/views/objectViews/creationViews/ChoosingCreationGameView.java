@@ -23,6 +23,7 @@ public class ChoosingCreationGameView extends AllObjectsView {
 
     }
 
+
     public void initialize() {
         initialize(2);
         initializeSetPanel(2);
