@@ -12,18 +12,15 @@ import java.util.ArrayList;
 
 public class SaveBoard implements ActionListener {
 
-    ArrayList<ScenarioData> scenarioDataList;
-
-
-
-    public SaveBoard (ArrayList<ScenarioData> scenarioData){
+   private final ArrayList<ScenarioData> scenarioDataList;
+    public SaveBoard(ArrayList<ScenarioData> scenarioData) {
         this.scenarioDataList = scenarioData;
     }
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        EntityManager.getInstance().addScenario(new Scenario(10,10, scenarioDataList));
+        EntityManager.getInstance().addScenario(new Scenario(10, 10, scenarioDataList));
         EntityManager.getInstance().saveAllEntities();
     }
 }

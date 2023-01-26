@@ -3,6 +3,7 @@ package gui.actionListener.basicActionsListener;
 import game.board.RoundManager;
 import game.creature.Creature;
 import game.generals.Vector2;
+import gui.actionListener.ListenerBaseData;
 import gui.actionListener.turnOffButtons;
 import gui.views.gamePanel.MainPanelGame;
 
@@ -12,26 +13,28 @@ import static game.interfaceWarhammer.StruggleAtributeEnum.*;
 
 public class MoveListener implements ActionListener {
 
-    RoundManager roundManager;
-    MainPanelGame mainPanelGame;
+//   private RoundManager roundManager;
+//    MainPanelGame mainPanelGame;
+    private ListenerBaseData listenerBaseData;
 
-    public MoveListener(RoundManager roundManager, MainPanelGame mainPanelGame) {
-        this.roundManager = roundManager;
-        this.mainPanelGame = mainPanelGame;
+    public MoveListener(ListenerBaseData listenerBaseData) {
+//        this.roundManager = roundManager;
+//        this.mainPanelGame = mainPanelGame;
+        this.listenerBaseData = listenerBaseData;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        Vector2 point = mainPanelGame.getGamePanel().getCurrentClickedIndexes();
-        Creature you = roundManager.getGameObjectWithTurn().getCreature();
-        Vector2 vector2 = roundManager.getGameObjectWithTurnPosition();
+        Vector2 point = listenerBaseData.mainPanelGame.getGamePanel().getCurrentClickedIndexes();
+        Creature you = listenerBaseData.roundManager.getGameObjectWithTurn().getCreature();
+        Vector2 vector2 = listenerBaseData.roundManager.getGameObjectWithTurnPosition();
 
         
-        roundManager.getBoard().move(vector2,point);
-        roundManager.getGameObjectWithTurn().getCreature().getStruggleStatistics().getAttribute(ACTIONS_TO_DO).decreaseValue(1);
+        listenerBaseData.roundManager.getBoard().move(vector2,point);
+        listenerBaseData.roundManager.getGameObjectWithTurn().getCreature().getStruggleStatistics().getAttribute(ACTIONS_TO_DO).decreaseValue(1);
 
-        turnOffButtons.turnOff(roundManager,mainPanelGame,0,0);
+        turnOffButtons.turnOff(listenerBaseData.roundManager,listenerBaseData.mainPanelGame,0,0);
     }
 }
 

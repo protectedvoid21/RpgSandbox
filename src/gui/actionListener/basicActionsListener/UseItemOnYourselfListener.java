@@ -4,6 +4,8 @@ import controllers.audio.CustomAudioManager;
 import game.board.RoundManager;
 import game.creature.Character;
 import game.creature.Creature;
+import gui.actionListener.ListenerBaseData;
+import gui.actionListener.PathsArrayListGenerator;
 import gui.actionListener.turnOffButtons;
 import gui.views.gamePanel.MainPanelGame;
 
@@ -14,20 +16,21 @@ import java.util.ArrayList;
 import static game.interfaceWarhammer.StruggleAtributeEnum.ACTIONS_TO_DO;
 
 public class UseItemOnYourselfListener implements ActionListener {
-
-    RoundManager roundManager;
-    MainPanelGame mainPanelGame;
-    private CustomAudioManager audio;
-    public UseItemOnYourselfListener(RoundManager roundManager, MainPanelGame mainPanelGame, CustomAudioManager audio) {
-        this.roundManager = roundManager;
-        this.mainPanelGame = mainPanelGame;
-        this.audio = audio;
+private ListenerBaseData listenerBaseData;
+//    RoundManager roundManager;
+//    MainPanelGame mainPanelGame;
+//    private CustomAudioManager audio;
+    public UseItemOnYourselfListener(ListenerBaseData listenerBaseData) {
+//        this.roundManager = roundManager;
+//        this.mainPanelGame = mainPanelGame;
+//        this.audio = audio;
+        this.listenerBaseData = listenerBaseData;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        Creature you = roundManager.getGameObjectWithTurn().getCreature();
+        Creature you = listenerBaseData.roundManager.getGameObjectWithTurn().getCreature();
 
         if(you instanceof Character){
             ((Character) you).getInventory().getSelectedDisposableItem().use(you);
@@ -35,18 +38,19 @@ public class UseItemOnYourselfListener implements ActionListener {
 
 
         you.getStruggleStatistics().getAttribute(ACTIONS_TO_DO).decreaseValue(1);
-        if (roundManager.getGameObjectWithTurn().getCreature() instanceof Character) {
-            var character = (Character) roundManager.getGameObjectWithTurn().getCreature();
-            var array = new ArrayList<String>();
-            for (var item : character.getInventory().getDisposableItems()) {
-                if(item.isValid())
-                array.add(item.getItemPathPicture());
-            }
-            mainPanelGame.getItemsItemPicker().uploadData(array);
-            mainPanelGame.getItemsItemPicker().setCurrentIndex(character.getInventory().getDisposableItems().
+        if (you instanceof Character) {
+            var character = (Character) you;
+//            var array = new ArrayList<String>();
+//            for (var item : character.getInventory().getDisposableItems()) {
+//                if(item.isValid())
+//                array.add(item.getItemPathPicture());
+//            }
+            var array = PathsArrayListGenerator.generatePathsArrayList(character.getInventory().getDisposableItems());
+            listenerBaseData.mainPanelGame.getItemsItemPicker().uploadData(array);
+            listenerBaseData.mainPanelGame.getItemsItemPicker().setCurrentIndex(character.getInventory().getDisposableItems().
                     indexOf(character.getInventory().getSelectedDisposableItem()));
 
-            mainPanelGame.getItemsItemPicker().addButtonLIstener(new UseListener(roundManager, mainPanelGame, audio));
+            listenerBaseData.mainPanelGame.getItemsItemPicker().addButtonLIstener(new UseListener(listenerBaseData));
 
 
         }

@@ -9,6 +9,7 @@ import game.board.Scenario;
 import game.creature.Character;
 import game.filehandle.EntityManager;
 import game.generals.Vector2;
+import gui.actionListener.ListenerBaseData;
 import gui.actionListener.basicActionsListener.*;
 import gui.actionListener.scrollItem.*;
 import gui.actionListener.turnOffButtons;
@@ -26,30 +27,35 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class MainGameController extends Controller {
-    private RoundManager roundManager;
-    private Board board;
-    private Scenario scenario;
-    private MainPanelGame gamePanel;
+    private ListenerBaseData listenerBaseData;
+//    private RoundManager roundManager;
+//    private Board board;
+//    private Scenario scenario;
+//    private MainPanelGame gamePanel;
 
     public MainGameController(Scenario scenario) {
-        this.scenario = scenario;
-        this.board = new Board(scenario);
-        this.roundManager = new RoundManager(board);
+//        this.scenario = scenario;
+        this.listenerBaseData = new ListenerBaseData();
+//        this.board = new Board(scenario);
+//        this.roundManager = new RoundManager(board);
+        listenerBaseData.audioManager = audioManager;
+        listenerBaseData.roundManager = new RoundManager(new Board(scenario));
+        ;
     }
 
     private void startGame() {
-        gamePanel.getGamePanel().applyContent(roundManager.boardToList());
-        gamePanel.getGamePanel().colorButtons(roundManager.getGameObjectWithTurnPosition());
-        turnOffButtons.turnOff(roundManager, gamePanel, 2, 0);
+        listenerBaseData.mainPanelGame.getGamePanel().applyContent(listenerBaseData.roundManager.boardToList());
+        listenerBaseData.mainPanelGame.getGamePanel().colorButtons(listenerBaseData.roundManager.getGameObjectWithTurnPosition());
+        turnOffButtons.turnOff(listenerBaseData.roundManager, listenerBaseData.mainPanelGame, 2, 0);
     }
 
     private Vector2 getclickedIndexes() {
-        return gamePanel.getGamePanel().getCurrentClickedIndexes();
+        return listenerBaseData.mainPanelGame.getGamePanel().getCurrentClickedIndexes();
     }
 
     private GameCardController createGameCardController() {
         return new GameCardController(!getclickedIndexes().isOutOfRange(10, 10) ?
-                roundManager.getBoard().getPlace(getclickedIndexes()).getGameObject().getCreature() : null, this);
+                listenerBaseData.roundManager.getBoard().getPlace(getclickedIndexes()).getGameObject().getCreature() : null, this);
     }
 
 
@@ -71,44 +77,56 @@ public class MainGameController extends Controller {
 
     @Override
     public void run(IOverallFactory overallFactory) {
-        gamePanel = overallFactory.createMainPanelGame();
+        listenerBaseData.mainPanelGame = overallFactory.createMainPanelGame();
+
+        var gamePanel = listenerBaseData.mainPanelGame;
 
         gamePanel.getExitButton().addActionListener(
                 new ExitListener());
-        gamePanel.getNextPlayerButton().addActionListener(new EndTurnListener(roundManager, gamePanel));
+        gamePanel.getNextPlayerButton().addActionListener(new EndTurnListener(listenerBaseData));
 
         startGame();
 
-        gamePanel.getGamePanel().addOptionsListener(0, new MoveListener(roundManager, gamePanel));
+        gamePanel.getGamePanel().addOptionsListener(0, new MoveListener(listenerBaseData));
         gamePanel.getGamePanel().addOptionsListener(1, new ClickGameCardListener());
-        gamePanel.getGamePanel().addOptionsListener(2, new AttackListener(roundManager, gamePanel));
-        gamePanel.getGamePanel().addOptionsListener(3, new CarefullListener(roundManager, gamePanel));
-        gamePanel.getGamePanel().addOptionsListener(4, new MultipleAttackListener(roundManager, gamePanel));
-        gamePanel.getItemsItemPicker().addButtonListener(new TurnOnEnemySelecting(roundManager, gamePanel));
+        gamePanel.getGamePanel().addOptionsListener(2, new AttackListener(listenerBaseData));
+        gamePanel.getGamePanel().addOptionsListener(3, new CarefullListener(listenerBaseData));
+        gamePanel.getGamePanel().addOptionsListener(4, new MultipleAttackListener(listenerBaseData));
+        gamePanel.getItemsItemPicker().addButtonListener(new TurnOnEnemySelecting(listenerBaseData));
 
         int j = 0;
-        for (var list : Arrays.asList(new AimingListener(roundManager, gamePanel), new BlockListener(roundManager,
-                gamePanel), new DefenseStandListener(roundManager, gamePanel))) {
+        for (var list : Arrays.asList(new AimingListener(listenerBaseData), new BlockListener(listenerBaseData),
+                new DefenseStandListener(listenerBaseData))) {
             gamePanel.getActivityOptionsPanel().addOptionsPanelCommand(j++, list);
         }
-        applyPickerListener(FullItemPicker.LabelType.WEAPON, new PreviousWeaponListener(roundManager),
-                new NextWeaponListener(roundManager));
-        applyPickerListener(FullItemPicker.LabelType.ARMOR, new PreviousArmorListener(roundManager),
-                new NextArmorListener(roundManager));
-        applyPickerListener(FullItemPicker.LabelType.MOUNT, new PreviousMountListener(roundManager),
-                new NextMountListener(roundManager));
-        gamePanel.getPicker(FullItemPicker.LabelType.WEAPON).addListenerToPicker(DoubleArrowPanel.Side.LEFT,
-                new PreviousWeaponListener(roundManager));
-        gamePanel.getPicker(FullItemPicker.LabelType.MOUNT).addListenerToPicker(DoubleArrowPanel.Side.LEFT,
-                new PreviousMountListener(roundManager));
-        gamePanel.getPicker(FullItemPicker.LabelType.ARMOR).addListenerToPicker(DoubleArrowPanel.Side.LEFT,
-                new PreviousArmorListener(roundManager));
-        gamePanel.getPicker(FullItemPicker.LabelType.WEAPON).addListenerToPicker(DoubleArrowPanel.Side.RIGHT,
-                new NextWeaponListener(roundManager));
-        gamePanel.getPicker(FullItemPicker.LabelType.MOUNT).addListenerToPicker(DoubleArrowPanel.Side.RIGHT,
-                new NextMountListener(roundManager));
-        gamePanel.getPicker(FullItemPicker.LabelType.ARMOR).addListenerToPicker(DoubleArrowPanel.Side.RIGHT,
-                new NextArmorListener(roundManager));
+
+        var roundManager = listenerBaseData.roundManager;
+
+        for (var item : Arrays.asList(FullItemPicker.LabelType.WEAPON, FullItemPicker.LabelType.MOUNT,
+                FullItemPicker.LabelType.ARMOR)) {
+            applyPickerListener(item, new PreviousWeaponListener(roundManager),
+                    new NextWeaponListener(roundManager));
+        }
+
+
+//        applyPickerListener(FullItemPicker.LabelType.WEAPON, new PreviousWeaponListener(roundManager),
+//                new NextWeaponListener(roundManager));
+//        applyPickerListener(FullItemPicker.LabelType.ARMOR, new PreviousArmorListener(roundManager),
+//                new NextArmorListener(roundManager));
+//        applyPickerListener(FullItemPicker.LabelType.MOUNT, new PreviousMountListener(roundManager),
+//                new NextMountListener(roundManager));
+//        gamePanel.getPicker(FullItemPicker.LabelType.WEAPON).addListenerToPicker(DoubleArrowPanel.Side.LEFT,
+//                new PreviousWeaponListener(roundManager));
+//        gamePanel.getPicker(FullItemPicker.LabelType.MOUNT).addListenerToPicker(DoubleArrowPanel.Side.LEFT,
+//                new PreviousMountListener(roundManager));
+//        gamePanel.getPicker(FullItemPicker.LabelType.ARMOR).addListenerToPicker(DoubleArrowPanel.Side.LEFT,
+//                new PreviousArmorListener(roundManager));
+//        gamePanel.getPicker(FullItemPicker.LabelType.WEAPON).addListenerToPicker(DoubleArrowPanel.Side.RIGHT,
+//                new NextWeaponListener(roundManager));
+//        gamePanel.getPicker(FullItemPicker.LabelType.MOUNT).addListenerToPicker(DoubleArrowPanel.Side.RIGHT,
+//                new NextMountListener(roundManager));
+//        gamePanel.getPicker(FullItemPicker.LabelType.ARMOR).addListenerToPicker(DoubleArrowPanel.Side.RIGHT,
+//                new NextArmorListener(roundManager));
         mainFrame.add(gamePanel.getPanel());
 
         gamePanel.getItemsItemPicker().addListenerToPicker(DoubleArrowPanel.Side.LEFT,
@@ -117,13 +135,13 @@ public class MainGameController extends Controller {
                 new NextActiveListener(roundManager));
 
 
-        gamePanel.getItemsItemPicker().addButtonLIstener(new UseListener(roundManager, gamePanel, audioManager ));
+        gamePanel.getItemsItemPicker().addButtonLIstener(new UseListener(listenerBaseData));
 
     }
 
     private void applyPickerListener(FullItemPicker.LabelType type, CustomLambdaExpression expLeft,
                                      CustomLambdaExpression expRight) {
-        gamePanel.getPicker(type).addListenerToPicker(DoubleArrowPanel.Side.LEFT, expLeft);
-        gamePanel.getPicker(type).addListenerToPicker(DoubleArrowPanel.Side.RIGHT, expRight);
+        listenerBaseData.mainPanelGame.getPicker(type).addListenerToPicker(DoubleArrowPanel.Side.LEFT, expLeft);
+        listenerBaseData.mainPanelGame.getPicker(type).addListenerToPicker(DoubleArrowPanel.Side.RIGHT, expRight);
     }
 }

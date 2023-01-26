@@ -27,12 +27,12 @@ import java.util.List;
 import java.util.Map;
 
 public class SetCreatureController extends Controller {
-    private NewScenarioController scenarioController;
-    private CreatureType creatureType;
-    private ArrayList<ScenarioData> data;
-    private CreatorGameView mainview;
+    private final NewScenarioController scenarioController;
+    private final CreatureType creatureType;
+    private final ArrayList<ScenarioData> data;
+    private final CreatorGameView mainview;
     private ShowApplyCreatureView view;
-    private IOverallFactory factory;
+    private final IOverallFactory factory;
 
 
     public SetCreatureController(CreatorGameView view, NewScenarioController scenarioController,
@@ -46,9 +46,7 @@ public class SetCreatureController extends Controller {
 
     @Override
     public void run(IOverallFactory overallFactory) {
-        System.out.println(data);
          view = overallFactory.createCreatorApplyingCharacterView(creatureType);
-
         view.getCancelButton().addActionListener(
                 new RedirectListener(controllerManager, new NewScenarioController(factory, data))
         );
@@ -56,12 +54,10 @@ public class SetCreatureController extends Controller {
         for (var creature : getEntities(creatureType)) {
             array.add(new ArrayList<>(Arrays.asList(creature.getObjectPathPicture(), creature.getName())));
         }
-        var map = Map.of(CreatureType.NPC,new PutNPCListener(data, mainview, view, controllerManager,
-                        scenarioController, factory), CreatureType.MONSTER,
-                new PutMonsterListener(data, mainview, view, controllerManager, scenarioController, overallFactory),
+        var map = Map.of(CreatureType.NPC,new PutNPCListener(data, mainview, view, controllerManager, factory), CreatureType.MONSTER,
+                new PutMonsterListener(data, mainview, view, controllerManager, factory),
                 CreatureType.PLAYER_CHARACTER, new PutPCListener(data,
-                        mainview, view, controllerManager, scenarioController, factory));
-//        var parent = this;
+                        mainview, view, controllerManager, factory));
         var entities = getEntities(creatureType);
         for (int i = 0; i < entities.size(); i++) {
             view.addButtonActionListener(AllObjectsView.ButtonType.SHOW, i,

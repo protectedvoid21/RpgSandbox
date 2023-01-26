@@ -2,6 +2,7 @@ package gui.actionListener.warhammerActions;
 
 import game.board.RoundManager;
 import game.generals.Vector2;
+import gui.actionListener.ListenerBaseData;
 import gui.actionListener.turnOffButtons;
 import gui.views.gamePanel.MainPanelGame;
 
@@ -13,16 +14,18 @@ import static game.interfaceWarhammer.ActionsEnum.*;
 
 public class CarefullListener implements ActionListener {
 
-    RoundManager roundManager;
-    MainPanelGame mainPanelGame;
+    private ListenerBaseData listenerBaseData;
 
-    public CarefullListener(RoundManager roundManager, MainPanelGame mainPanelGame) {
-        this.roundManager = roundManager;
-        this.mainPanelGame = mainPanelGame;
+    public CarefullListener(ListenerBaseData listenerBaseData) {
+//        this.roundManager = roundManager;
+//        this.mainPanelGame = mainPanelGame;
+        this.listenerBaseData = listenerBaseData;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        var mainPanelGame = listenerBaseData.mainPanelGame;
+        var roundManager = listenerBaseData.roundManager;
 
         Vector2 point = mainPanelGame.getGamePanel().getCurrentClickedIndexes();
         ArrayList<String> popUp = new ArrayList<>();

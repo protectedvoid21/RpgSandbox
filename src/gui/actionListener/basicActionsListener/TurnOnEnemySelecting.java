@@ -2,6 +2,7 @@ package gui.actionListener.basicActionsListener;
 
 import game.board.RoundManager;
 
+import gui.actionListener.ListenerBaseData;
 import gui.actionListener.warhammerActions.turnOffUseItem;
 import gui.views.gamePanel.MainPanelGame;
 
@@ -10,18 +11,20 @@ import java.awt.event.ActionListener;
 
 public class TurnOnEnemySelecting implements ActionListener {
 
-    RoundManager roundManager;
-    MainPanelGame mainPanelGame;
+    //    RoundManager roundManager;
+//    MainPanelGame mainPanelGame;
+    private ListenerBaseData listenerBaseData;
 
-    public TurnOnEnemySelecting(RoundManager roundManager, MainPanelGame mainPanelGame) {
-        this.roundManager = roundManager;
-        this.mainPanelGame = mainPanelGame;
+    public TurnOnEnemySelecting(ListenerBaseData listenerBaseData) {
+//        this.roundManager = roundManager;
+//        this.mainPanelGame = mainPanelGame;
+        this.listenerBaseData = listenerBaseData;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        mainPanelGame.getGamePanel().changeActiveOptionsPanel();
+       listenerBaseData.mainPanelGame.getGamePanel().changeActiveOptionsPanel();
 
     }
 }

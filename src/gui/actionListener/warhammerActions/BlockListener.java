@@ -3,6 +3,7 @@ package gui.actionListener.warhammerActions;
 import game.board.RoundManager;
 import game.creature.Creature;
 import game.generals.Vector2;
+import gui.actionListener.ListenerBaseData;
 import gui.actionListener.turnOffButtons;
 import gui.views.gamePanel.MainPanelGame;
 
@@ -12,22 +13,19 @@ import static game.interfaceWarhammer.ActionsEnum.*;
 
 public class BlockListener implements ActionListener {
 
-    RoundManager roundManager;
-    MainPanelGame mainPanelGame;
+    private final ListenerBaseData listenerBaseData;
 
-    public BlockListener(RoundManager roundManager, MainPanelGame mainPanelGame) {
-        this.roundManager = roundManager;
-        this.mainPanelGame = mainPanelGame;
+    public BlockListener(ListenerBaseData listenerBaseData) {
+        this.listenerBaseData = listenerBaseData;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        var roundManager = listenerBaseData.roundManager;
         Creature you = roundManager.getGameObjectWithTurn().getCreature();
         Vector2 point = roundManager.getGameObjectWithTurnPosition();
         roundManager.getActions().doAction(DEFENSE_STAND, you);
-        System.out.println(point);
-        mainPanelGame.getGamePanel().applyDefendActionsContent(point);
-
-        turnOffButtons.turnOff(roundManager,mainPanelGame,1,1);
+        listenerBaseData.mainPanelGame.getGamePanel().applyDefendActionsContent(point);
+        turnOffButtons.turnOff(roundManager,listenerBaseData.mainPanelGame,1,1);
     }
 }
