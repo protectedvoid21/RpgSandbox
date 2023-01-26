@@ -10,6 +10,7 @@ import gui.factories.WarhammerData;
 
 public class HolyWater extends DisposableItem implements WarhammerData {
 
+    boolean onEnemy = true;
     public HolyWater( int usageCount) {
         super( usageCount);setItemPathPicture(holyWaterPath);
         
