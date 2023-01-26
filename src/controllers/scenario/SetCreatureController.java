@@ -5,6 +5,7 @@ import controllers.creatures.CreatureListController;
 import controllers.creatures.CreatureShowController;
 import controllers.utils.CreatureType;
 import controllers.utils.RedirectListener;
+import game.board.Scenario;
 import game.board.ScenarioData;
 import game.creature.Creature;
 import game.filehandle.EntityManager;
@@ -32,7 +33,7 @@ public class SetCreatureController extends Controller {
     private CreatorGameView mainview;
 
     public SetCreatureController(CreatorGameView view, NewScenarioController scenarioController,
-                                 CreatureType creatureType) {
+                                 CreatureType creatureType, ArrayList<ScenarioData> data) {
         this.creatureType = creatureType;
         this.scenarioController = scenarioController;
         this.mainview = view;
@@ -67,7 +68,6 @@ public class SetCreatureController extends Controller {
                     }));
             view.addButtonActionListener(AllObjectsView.ButtonType.APPLY, i, map.get(creatureType));
         }
-
         view.uploadData(array);
 
         mainFrame.add(view.getPanel());
