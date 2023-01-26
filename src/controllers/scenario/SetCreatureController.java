@@ -32,24 +32,18 @@ public class SetCreatureController extends Controller {
     private ArrayList<ScenarioData> data;
     private CreatorGameView mainview;
     private ShowApplyCreatureView view;
+    private IOverallFactory factory;
 
 
     public SetCreatureController(CreatorGameView view, NewScenarioController scenarioController,
-                                 CreatureType creatureType, ArrayList<ScenarioData> data) {
+                                 CreatureType creatureType, ArrayList<ScenarioData> data, IOverallFactory factory) {
         this.creatureType = creatureType;
+        this.factory = factory;
         this.scenarioController = scenarioController;
         this.mainview = view;
         this.data = data;
     }
 
-    private class NPCListener implements ActionListener{
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            new PutNPCListener(data, mainview, view, controllerManager,
-                    scenarioController).actionPerformed(e);
-        }
-    }
     @Override
     public void run(IOverallFactory overallFactory) {
          view = overallFactory.createCreatorApplyingCharacterView(creatureType);
@@ -74,7 +68,7 @@ public class SetCreatureController extends Controller {
                         @Override
                         protected void setCancelButtonListener(BasicCard view1) {
                             view1.getCancelButton().addActionListener(
-                                    new RedirectListener(controllerManager, parent));
+                                    new RedirectListener(controllerManager, new NewScenarioController(factory, data)));
                         }
                     }));
             view.addButtonActionListener(AllObjectsView.ButtonType.APPLY, i, map.get(creatureType));

@@ -22,12 +22,19 @@ public class NewScenarioController extends Controller {
     public NewScenarioController(IOverallFactory overallFactory) {
         view = overallFactory.createCreatorGameView();
     }
+    public NewScenarioController(IOverallFactory overallFactory,ArrayList<ScenarioData> data) {
+        view = overallFactory.createCreatorGameView();
+        this.data = data;
+    }
 
 
 
     @Override
     public void run(IOverallFactory overallFactory) {
 //        var view = overallFactory.createCreatorGameView();
+        for (var d : data){
+            view.getCreatorPanel().applyNewCreatureOnPosition(d.creature.getObjectPathPicture(), d.position);
+        }
         System.out.println("wykonuje");
         view.getCreatorPanel().applyNewCreatureOnPosition("", new Vector2(2, 2));
         view.getExitButton().addActionListener(
@@ -37,14 +44,14 @@ public class NewScenarioController extends Controller {
 
         view.getCreatorPanel().addOptionsListener(0,
                 new RedirectListener(controllerManager, new SetCreatureController(view, cntrl, CreatureType.MONSTER,
-                        data))
+                        data, overallFactory))
         );
         view.getCreatorPanel().addOptionsListener(1,
                 new RedirectListener(controllerManager, new SetCreatureController(view, cntrl,
-                        CreatureType.PLAYER_CHARACTER, data))
+                        CreatureType.PLAYER_CHARACTER, data, overallFactory))
         );
         view.getCreatorPanel().addOptionsListener(2,
-                new RedirectListener(controllerManager, new SetCreatureController(view, cntrl, CreatureType.NPC, data))
+                new RedirectListener(controllerManager, new SetCreatureController(view, cntrl, CreatureType.NPC, data, overallFactory))
         );
         view.getSaveButton().addActionListener(new ActionListener() {
             @Override

@@ -51,7 +51,7 @@ public class PutMonsterListener implements ActionListener {
         creatorGameView.getCreatorPanel().applyNewCreatureOnPosition(dependMonster.getObjectPathPicture(),
                 creatorGameView.getCreatorPanel().getCurrentClickedIndexes());
 //        creatorGameView.getPanel().setVisible(true);
-        var scenario = new NewScenarioController(factory);
+        var scenario = new NewScenarioController(factory,scenarioDataList);
         new RedirectListener(controllerManager, scenario).actionPerformed(e);
         creatorGameView.getCreatorPanel().disableOptionsPanel();
     }
