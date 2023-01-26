@@ -7,8 +7,9 @@ public abstract class DisposableItem extends Item {
     private int usageCount;
     protected String description;
 
-    public DisposableItem(String name, int usageCount) {
-        super(name);
+    public DisposableItem( int usageCount) {
+        super("");
+        setName(getClass().getSimpleName());
         if(usageCount < 1) {
             usageCount = 1;
         }
@@ -20,9 +21,9 @@ public abstract class DisposableItem extends Item {
         return usageCount > 0;
     }
 
-    public void use() {
-        usageCount--;
-    }
+//    public void use() {
+//        usageCount--;
+//    }
     public void use(Creature creature) {
         usageCount--;
     }

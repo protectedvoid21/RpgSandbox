@@ -1,32 +1,36 @@
 package game.equipment.examples;
 
 import game.creature.Character;
+import game.creature.Creature;
 import game.equipment.DisposableItem;
 import gui.factories.WarhammerData;
 
 public class Sharpener extends DisposableItem implements WarhammerData {
-    private Character user;
+//    private Character user;
 
-    public Sharpener(String name, int usageCount, Character user) {
-        super(name, usageCount);
-        this.user = user;
+    public Sharpener(int usageCount) {
+        super(usageCount);
+//        this.user = user;
         setItemPathPicture(sharper);
 
         description = "Your big sword will become big and sharp (YES IT WILL MAKE MORE DAMAGE)";
     }
 
     @Override
-    public void use() {
-        super.use();
+    public void use(Creature creature) {
+        super.use(creature);
 
-        int damage = user.getInventory().getActiveWeapon().getDamage();
-        int bleeding = user.getInventory().getActiveWeapon().getChanceForBleeding();
-        int poison = user.getInventory().getActiveWeapon().getChanceForPoison();
-        int fire = user.getInventory().getActiveWeapon().getChanceForFire();
-        int freezing = user.getInventory().getActiveWeapon().getChanceForFreezing();
+        if (creature instanceof Character) {
+            var user = (Character)creature;
+            int damage = user.getInventory().getActiveWeapon().getDamage();
+            int bleeding = user.getInventory().getActiveWeapon().getChanceForBleeding();
+            int poison = user.getInventory().getActiveWeapon().getChanceForPoison();
+            int fire = user.getInventory().getActiveWeapon().getChanceForFire();
+            int freezing = user.getInventory().getActiveWeapon().getChanceForFreezing();
 
-        damage += 3;
+            damage += 3;
 
-        user.getInventory().getActiveWeapon().upgrade(damage, bleeding, poison, fire, freezing);
+            user.getInventory().getActiveWeapon().upgrade(damage, bleeding, poison, fire, freezing);
+        }
     }
 }

@@ -1,16 +1,14 @@
 package game.equipment.examples;
 
+import game.creature.Creature;
 import game.equipment.DisposableItem;
 import game.interfaceWarhammer.EffectEnum;
 import game.creature.Character;
 import gui.factories.WarhammerData;
 
 public class Bandage extends DisposableItem implements WarhammerData {
-    private Character user;
-
-    public Bandage(String name, Character user, int usageCount) {
-        super(name, usageCount);
-        this.user=user;
+    public Bandage(int usageCount) {
+        super(usageCount);
         setItemPathPicture(plasterPath);
 
 
@@ -18,9 +16,10 @@ public class Bandage extends DisposableItem implements WarhammerData {
     }
 
     @Override
-    public void use() {
-        super.use();
+    public void use(Creature creature) {
+        super.use(creature);
 
-        user.getStatistics().getEffect(EffectEnum.BLEEDING).decreaseLength();
+        creature.getStatistics().getEffect(EffectEnum.BLEEDING).decreaseLength();
     }
+
 }

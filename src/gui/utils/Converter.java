@@ -39,6 +39,7 @@ public class Converter implements WarhammerData {
             map.add(new ArrayList<>(Arrays.asList(horsePath)));
             map.add(new ArrayList<>(Arrays.asList(armorPath)));
             map.add(new ArrayList<>(Arrays.asList(weaponPath)));
+            map.add(new ArrayList<>(Arrays.asList(trolleyPath)));
         }
 
         for (int i = 0; i < map.size(); i++)
@@ -58,8 +59,28 @@ public class Converter implements WarhammerData {
         ArrayList<CardContentDataSet.DataType> dataTypesList = new ArrayList<>();
 
         for (var item : character.getInventory().getArmors()) {
-            String armorName = ((Armor) item).getName();
-            map.add(new ArrayList<>(Arrays.asList(armorPath, armorName, "DETAILS")));
+            String armorName = item.getName();
+            map.add(new ArrayList<>(Arrays.asList(item.getItemPathPicture(), armorName, "DETAILS")));
+        }
+
+        for (int i = 0; i < map.size(); i++)
+            dataTypesList.add(CardContentDataSet.DataType.STRING);
+
+        data.content = map;
+        data.dataType = dataTypesList;
+
+        return data;
+    }
+    public static CardContentDataSet convertItemsToDataSet(Character character) {
+        CardContentDataSet data = new CardContentDataSet();
+        data.titlePath = trolleyPath;
+        data.titleContent = "Items";
+
+        var map = new ArrayList<ArrayList<String>>();
+        ArrayList<CardContentDataSet.DataType> dataTypesList = new ArrayList<>();
+
+        for (var item : character.getInventory().getDisposableItems()) {
+            map.add(new ArrayList<>(Arrays.asList(item.getItemPathPicture(), item.getName(), "DETAILS")));
         }
 
         for (int i = 0; i < map.size(); i++)
@@ -81,7 +102,7 @@ public class Converter implements WarhammerData {
 
         for (var weapon : character.getInventory().getWeapons()) {
             String weaponName = weapon.getName();
-            map.add(new ArrayList<>(Arrays.asList(weaponPath, weaponName, "DETAILS")));
+            map.add(new ArrayList<>(Arrays.asList(weapon.getItemPathPicture(), weaponName, "DETAILS")));
         }
 
         for (int i = 0; i < map.size(); i++)
@@ -103,7 +124,7 @@ public class Converter implements WarhammerData {
 
         for (var mount : character.getInventory().getMounts()) {
             String mountName = mount.getName();
-            map.add(new ArrayList<>(Arrays.asList(horsePath, mountName, "DETAILS")));
+            map.add(new ArrayList<>(Arrays.asList(mount.getItemPathPicture(), mountName, "DETAILS")));
         }
         for (int i = 0; i < map.size(); i++)
             dataTypesList.add(CardContentDataSet.DataType.STRING);
@@ -142,7 +163,7 @@ public class Converter implements WarhammerData {
 
     public static HashMap<Card.CardTypes, ArrayList<CardContentDataSet>> createFullDetailDataCreature(Creature basecreature) {
         var map = new LinkedHashMap<Card.CardTypes, ArrayList<CardContentDataSet>>();
-
+    System.out.println("fsdfs");
         if (basecreature instanceof Character) {
             var creature = (Character) basecreature;
             var armorlist = new ArrayList<CardContentDataSet>();
@@ -164,9 +185,12 @@ public class Converter implements WarhammerData {
             map.put(Card.CardTypes.WEAPONS, weaponList);
 
             var itemsList = new ArrayList<CardContentDataSet>();
-            for (var item : creature.getInventory().getWeapons()) {
-                itemsList.add(detailsView(item));
+            System.out.println(creature);System.out.println(creature.getInventory().getDisposableItems());
+
+            for (var item : creature.getInventory().getDisposableItems()) {
+                itemsList.add(detailsItemView(item));
             }
+            System.out.println(itemsList);
             map.put(Card.CardTypes.ITEMS, itemsList);//todo to change on items
         }
         return map;
@@ -181,8 +205,9 @@ public class Converter implements WarhammerData {
             map.put(Card.CardTypes.MOUNT, convertMountsToDataSet((Character) creature));
             map.put(Card.CardTypes.ARMOR, convertArmorsToDataSet((Character) creature));
             map.put(Card.CardTypes.WEAPONS, convertWeaponsToDataSet((Character) creature));
-            map.put(Card.CardTypes.ITEMS, convertWeaponsToDataSet((Character) creature));
+            map.put(Card.CardTypes.ITEMS, convertItemsToDataSet((Character) creature));
         }
+        System.out.println(map);
         if (creature instanceof Monster) {
             map.put(Card.CardTypes.OVERALL, convertCreatureToDataSetInBasicCard(creature));
             map.put(Card.CardTypes.ATTRIBUTE, convertStatsToDataSet(creature));
@@ -264,7 +289,7 @@ public class Converter implements WarhammerData {
 
     public static CardContentDataSet addNewItemInEntriesCard(Character character) {
         CardContentDataSet data = new CardContentDataSet();
-        data.titlePath = itemPath;
+        data.titlePath = trolleyPath;
         data.titleContent = "Items";
 
         var map = new ArrayList<ArrayList<String>>();
@@ -443,6 +468,20 @@ public class Converter implements WarhammerData {
 
         for (int i = 0; i < map.size(); i++)
             dataTypesList.add(CardContentDataSet.DataType.STRING);
+
+        data.content = map;
+        data.dataType = dataTypesList;
+
+        return data;
+    }
+    public static CardContentDataSet detailsItemView(DisposableItem item) {
+        CardContentDataSet data = new CardContentDataSet();
+        data.titlePath = item.getItemPathPicture();//todo
+        data.titleContent = item.getName();
+
+        var map = new ArrayList<ArrayList<String>>();
+        ArrayList<CardContentDataSet.DataType> dataTypesList = new ArrayList<>();
+        map.add(new ArrayList<>(Arrays.asList(item.getDescription())));
 
         data.content = map;
         data.dataType = dataTypesList;

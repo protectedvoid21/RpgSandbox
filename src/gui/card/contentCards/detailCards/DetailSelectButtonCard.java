@@ -23,6 +23,7 @@ public class DetailSelectButtonCard extends NormalDetailButtonsCard {
 
     public void setSelectedIndex(int value) {
         selectedIndex = value;
+        updateContent();
     }
 
 
@@ -31,8 +32,7 @@ public class DetailSelectButtonCard extends NormalDetailButtonsCard {
         super.updateContent();
         int maxSideIndex = getSideMaximumElementsNumber();
         int dataSize = data.content.size();
-        var sublist = data.content.subList(currentAttrSide * maximumElementNumber, maxSideIndex > dataSize ? dataSize :
-                maxSideIndex);
+        var sublist = data.content.subList(currentAttrSide * maximumElementNumber, Math.min(maxSideIndex, dataSize));
         int currentIndex = 0;
         Card.setNonDependantAspectVisible(selectList);
         for (var key : sublist) {

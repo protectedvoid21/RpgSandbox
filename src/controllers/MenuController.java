@@ -27,7 +27,7 @@ public class MenuController extends Controller {
                 new RedirectListener(controllerManager, new ApplyGameController())
         );
         menuView.getScenarioButton().addActionListener(
-                new RedirectListener(controllerManager, new NewScenarioController())
+                new RedirectListener(controllerManager, new NewScenarioController(overallFactory))
         );
         menuView.setAudioButtonsListener(e -> audioManager.setSoundOn(), e -> audioManager.setSoundOff());
         

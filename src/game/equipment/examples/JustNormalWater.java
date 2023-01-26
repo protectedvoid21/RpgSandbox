@@ -1,24 +1,26 @@
 package game.equipment.examples;
 
 import game.creature.Character;
+import game.creature.Creature;
 import game.equipment.DisposableItem;
 import game.interfaceWarhammer.EffectEnum;
 import gui.factories.WarhammerData;
 
 public class JustNormalWater extends DisposableItem implements WarhammerData {
-    private Character user;
+//    private Character user;
 
-    public JustNormalWater(String name, int usageCount, Character user) {
-        super(name, usageCount);
-        this.user=user;setItemPathPicture(waterPath);
+    public JustNormalWater(int usageCount) {
+        super(usageCount);
+//        this.user = user;
+        setItemPathPicture(waterPath);
 
         description = "Like the name JUST NORMAL WATER! You can use it to stop fire or sth";
     }
 
     @Override
-    public void use() {
-        super.use();
+    public void use(Creature creature) {
+        super.use(creature);
 
-        user.getStatistics().getEffect(EffectEnum.IN_FIRE).decreaseLength();
+        creature.getStatistics().getEffect(EffectEnum.IN_FIRE).decreaseLength();
     }
 }

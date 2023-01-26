@@ -27,7 +27,7 @@ public class UseItemOnYourselfListener implements ActionListener {
         Creature you = roundManager.getGameObjectWithTurn().getCreature();
 
         if(you instanceof Character){
-            ((Character) you).getInventory().getSelectedDisposableItem().use();
+            ((Character) you).getInventory().getSelectedDisposableItem().use(you);
         }
 
 

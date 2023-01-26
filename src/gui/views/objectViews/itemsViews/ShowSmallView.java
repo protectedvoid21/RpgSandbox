@@ -17,6 +17,7 @@ public class ShowSmallView extends SmallCardsView {
         var card = factory.createSmallOnlyShowCard();
         card.getShowbutton().addActionListener(e -> {
             clickedIndex = maximumumElements * currentSide + index;
+            System.out.println();
             if (listenerHashMap.containsKey(clickedIndex) && listenerHashMap.get(clickedIndex).containsKey(ButtonType.SHOW)) {
                 listenerHashMap.get(clickedIndex).get(ButtonType.SHOW).actionPerformed(e);
             }

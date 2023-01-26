@@ -18,6 +18,9 @@ public class CustomAudioManager {
             currentRunAudio.stop();
         }
         currentRunAudio = audioHashMap.get(audio);
+    }
+
+    public void runCurrentRadio(){
         new Thread(() -> {
             currentRunAudio.runMainClip();
         }).start();
