@@ -6,7 +6,9 @@ import game.board.RoundManager;
 import game.board.ScenarioData;
 import game.creature.Monster;
 import game.creature.NPC;
+import game.filehandle.EntityManager;
 import gui.views.objectViews.creationViews.CreatorGameView;
+import gui.views.objectViews.itemsViews.ShowApplyCreatureView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,17 +20,18 @@ public class PutNPCListener implements ActionListener {
 
     CreatorGameView creatorGameView;
 
-    NPC dependNPC;
+    ShowApplyCreatureView showApplyCreatureView;
 
-    public PutNPCListener(ArrayList<ScenarioData> scenarioDataList, CreatorGameView creatorGameView, NPC dependNPC) {
+    public PutNPCListener(ArrayList<ScenarioData> scenarioDataList, CreatorGameView creatorGameView, ShowApplyCreatureView showApplyCreatureView) {
         this.scenarioDataList = scenarioDataList;
         this.creatorGameView = creatorGameView;
-        this.dependNPC = dependNPC;
+        this.showApplyCreatureView = showApplyCreatureView;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
+        NPC dependNPC = EntityManager.getInstance().getNPCList().get(showApplyCreatureView.getClickedIndex());
         ScenarioData scenarioData = new ScenarioData();
         scenarioData.creature = dependNPC;
         scenarioData.position = creatorGameView.getCreatorPanel().getCurrentClickedIndexes();
