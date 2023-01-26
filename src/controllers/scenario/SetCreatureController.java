@@ -29,18 +29,21 @@ import java.util.Map;
 public class SetCreatureController extends Controller {
     private NewScenarioController scenarioController;
     private CreatureType creatureType;
-    private ArrayList<ScenarioData> data = new ArrayList<>();
+    private ArrayList<ScenarioData> data;
     private CreatorGameView mainview;
+
 
     public SetCreatureController(CreatorGameView view, NewScenarioController scenarioController,
                                  CreatureType creatureType, ArrayList<ScenarioData> data) {
         this.creatureType = creatureType;
         this.scenarioController = scenarioController;
         this.mainview = view;
+        this.data = data;
     }
 
     @Override
     public void run(IOverallFactory overallFactory) {
+        mainview.getPanel().setVisible(false);
         var view = overallFactory.createCreatorApplyingCharacterView(creatureType);
 
         view.getCancelButton().addActionListener(
