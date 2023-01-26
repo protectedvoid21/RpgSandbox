@@ -30,6 +30,7 @@ public class PutNPCListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        System.out.println("fa");
 
         NPC dependNPC = EntityManager.getInstance().getNPCList().get(showApplyCreatureView.getClickedIndex());
         ScenarioData scenarioData = new ScenarioData();

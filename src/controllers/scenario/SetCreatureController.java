@@ -8,11 +8,14 @@ import controllers.utils.RedirectListener;
 import game.board.ScenarioData;
 import game.creature.Creature;
 import game.filehandle.EntityManager;
+import gui.actionListener.scenarioCreating.PutMonsterListener;
 import gui.actionListener.scenarioCreating.PutNPCListener;
+import gui.actionListener.scenarioCreating.PutPCListener;
 import gui.card.fullCards.abstractCards.Card;
 import gui.card.fullCards.specificCards.BasicCard;
 import gui.factories.IOverallFactory;
 import gui.views.objectViews.AllObjectsView;
+import gui.views.objectViews.creationViews.CreatorGameView;
 import gui.views.objectViews.itemsViews.ShowApplyCreatureView;
 
 import java.awt.event.ActionEvent;
@@ -25,10 +28,14 @@ import java.util.Map;
 public class SetCreatureController extends Controller {
     private NewScenarioController scenarioController;
     private CreatureType creatureType;
+    private ArrayList<ScenarioData> data = new ArrayList<>();
+    private CreatorGameView mainview;
 
-    public SetCreatureController(NewScenarioController scenarioController, CreatureType creatureType) {
+    public SetCreatureController(CreatorGameView view, NewScenarioController scenarioController,
+                                 CreatureType creatureType) {
         this.creatureType = creatureType;
         this.scenarioController = scenarioController;
+        this.mainview = view;
     }
 
     @Override
@@ -42,19 +49,22 @@ public class SetCreatureController extends Controller {
         for (var creature : getEntities(creatureType)) {
             array.add(new ArrayList<>(Arrays.asList(creature.getObjectPathPicture(), creature.getName())));
         }
-        System.out.println(array);
+        var map = Map.of(CreatureType.NPC, new PutNPCListener(data, mainview, view), CreatureType.MONSTER,
+                new PutMonsterListener(data, mainview, view), CreatureType.PLAYER_CHARACTER, new PutPCListener(data,
+                        mainview, view));
         var parent = this;
 
         for (int i = 0; i < 4; i++) {
             view.addButtonActionListener(AllObjectsView.ButtonType.SHOW, i,
                     e -> controllerManager.changeController(new CreatureShowController(getEntities(creatureType).get(view.getClickedIndex()), creatureType) {
-                @Override
-                protected void setCancelButtonListener(BasicCard view1) {
-                    view1.getCancelButton().addActionListener(
-                            new RedirectListener(controllerManager, parent));
-                }
-            }));
-//            view.addButtonActionListener(AllObjectsView.ButtonType.APPLY, i, );
+                        @Override
+                        protected void setCancelButtonListener(BasicCard view1) {
+                            view1.getCancelButton().addActionListener(
+                                    new RedirectListener(controllerManager, parent));
+                        }
+                    }));
+            System.out.println(map.get(creatureType));
+            view.addButtonActionListener(AllObjectsView.ButtonType.APPLY, i, map.get(creatureType));
         }
 
         view.uploadData(array);

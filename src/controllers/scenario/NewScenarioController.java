@@ -16,13 +16,13 @@ public class NewScenarioController extends Controller {
         );
 
         view.getCreatorPanel().addOptionsListener(0, 
-                new RedirectListener(controllerManager, new SetCreatureController(this, CreatureType.MONSTER))
+                new RedirectListener(controllerManager, new SetCreatureController(view,this, CreatureType.MONSTER))
         );
         view.getCreatorPanel().addOptionsListener(1,
-                new RedirectListener(controllerManager, new SetCreatureController(this, CreatureType.NPC))
+                new RedirectListener(controllerManager, new SetCreatureController(view,this, CreatureType.NPC))
         );
         view.getCreatorPanel().addOptionsListener(2,
-                new RedirectListener(controllerManager, new SetCreatureController(this, CreatureType.PLAYER_CHARACTER))
+                new RedirectListener(controllerManager, new SetCreatureController(view,this, CreatureType.PLAYER_CHARACTER))
         );
         
         mainFrame.add(view.getPanel());

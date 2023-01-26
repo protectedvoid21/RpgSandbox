@@ -80,6 +80,8 @@ public class ShowApplyCreatureView extends ShowSmallView {
             button.addActionListener(e -> {
                 clickedIndex = maximumumElements * currentSide + finalI;
                 if (listenerHashMap.containsKey(finalI) && listenerHashMap.get(finalI).containsKey(ButtonType.APPLY)) {
+                    System.out.println("sfsdfsdsd");
+                    System.out.println( listenerHashMap.get(finalI).get(ButtonType.APPLY));
                     listenerHashMap.get(finalI).get(ButtonType.APPLY).actionPerformed(e);
                 }
             });
