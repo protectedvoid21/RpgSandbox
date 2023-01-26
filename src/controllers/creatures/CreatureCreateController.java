@@ -3,6 +3,7 @@ package controllers.creatures;
 import controllers.Controller;
 import controllers.utils.CreatureType;
 import controllers.utils.RedirectListener;
+import game.creature.Character;
 import game.creature.Creature;
 import game.filehandle.EntityManager;
 import game.interfaces.IFactory;
@@ -12,9 +13,11 @@ import gui.card.fullCards.abstractCards.Card;
 import gui.card.fullCards.specificCards.EntriesCard;
 import gui.factories.IOverallFactory;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import java.util.Arrays;
+import java.util.List;
 import java.sql.Time;
 import java.util.Arrays;
 
@@ -33,22 +36,9 @@ public class CreatureCreateController extends Controller {
         view = overallFactory.createEntriesCard();
         var contentDataMap = Converter.createFullDataCreature(creature);
         view.uploadNewData(contentDataMap, Converter.createFullDetailDataCreature(creature));
-//        SwingUtilities.invokeLater(new );
-        view.uploadNewChoserCardData(Converter.createFullDataCreature(EntityManager.getInstance().getPlayerCharacterWithAllItems()),
+        view.uploadNewChoserCardData(Converter.createFullDataCreature(EntityManager.getInstance().getPlayerCharacterWithAllItems()), 
                 Converter.createFullDetailDataCreature(EntityManager.getInstance().getPlayerCharacterWithAllItems()));
-//       SwingUtilities.invokeLater(new Runnable() {
-//           @Override
-//           public void run() {
-//               view.uploadNewChoserCardData(Converter.createFullDataCreature(EntityManager.getInstance()
-//               .getPlayerCharacterWithAllItems()),
-//                       Converter.createFullDetailDataCreature(EntityManager.getInstance()
-//                       .getPlayerCharacterWithAllItems()));
-//           }
-//       });
-//        view.uploadNewChoserCardData(Converter.createFullDataCreature(EntityManager.getInstance()
-//        .getPlayerCharacterWithAllItems()),
-//                Converter.createFullDetailDataCreature(EntityManager.getInstance().getPlayerCharacterWithAllItems()));
-
+        
         view.getCancelButton().addActionListener(
                 new RedirectListener(controllerManager, new CreatureListController(creatureType))
         );
@@ -82,6 +72,26 @@ public class CreatureCreateController extends Controller {
                     newCreature = Converter.createNPCFromCard(contentData);
                 }
             }
+            if(newCreature instanceof Character) {
+                Character castedCharacter = (Character)newCreature;
+                
+                var numberData = view.generateIndexesNumberData();
+                for (var type : Arrays.asList(Card.CardTypes.ARMOR, Card.CardTypes.MOUNT, Card.CardTypes.WEAPONS)){
+                    for(var item : numberData.get(type)){
+                        if(type == Card.CardTypes.ARMOR) {
+                            castedCharacter.getInventory().addItem(EntityManager.getInstance().getArmorList().get(item));
+                        }
+                        else if(type == Card.CardTypes.MOUNT) {
+                            castedCharacter.getInventory().addItem(EntityManager.getInstance().getMountList().get(item));
+                        }
+                        else if(type == Card.CardTypes.WEAPONS) {
+                            castedCharacter.getInventory().addItem(EntityManager.getInstance().getWeaponList().get(item));
+                        }
+                    }
+                }
+            }
+            
+            
             if (IFactory.getErrorValidationChecker().isErrorFlag()) {
                 view.setEntriesIncorrect(IFactory.getErrorValidationChecker().getErrorIndexes(), 1500);
                 if (IFactory.getErrorValidationChecker().isPathError())
