@@ -49,7 +49,7 @@ public class EntityManager {
         fileManager.writeToFile(scenarioList, Scenario.class);
     }
 
-    private void loadAllEntities() {
+    public  void loadAllEntities() {
         monsterList = fileManager.readFromFile(Monster.class);
         NPCList = fileManager.readFromFile(NPC.class);
         playerCharacterList = fileManager.readFromFile(PlayerCharacter.class);

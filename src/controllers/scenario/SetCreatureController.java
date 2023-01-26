@@ -55,17 +55,16 @@ public class SetCreatureController extends Controller {
                 CreatureType.PLAYER_CHARACTER, new PutPCListener(data,
                         mainview, view, controllerManager, scenarioController));
         var parent = this;
-
-        for (int i = 0; i < 4; i++) {
+        var entities = getEntities(creatureType);
+        for (int i = 0; i < entities.size(); i++) {
             view.addButtonActionListener(AllObjectsView.ButtonType.SHOW, i,
-                    e -> controllerManager.changeController(new CreatureShowController(getEntities(creatureType).get(view.getClickedIndex()), creatureType) {
+                    e -> controllerManager.changeController(new CreatureShowController(entities.get(view.getClickedIndex()), creatureType) {
                         @Override
                         protected void setCancelButtonListener(BasicCard view1) {
                             view1.getCancelButton().addActionListener(
                                     new RedirectListener(controllerManager, parent));
                         }
                     }));
-            System.out.println(map.get(creatureType));
             view.addButtonActionListener(AllObjectsView.ButtonType.APPLY, i, map.get(creatureType));
         }
 

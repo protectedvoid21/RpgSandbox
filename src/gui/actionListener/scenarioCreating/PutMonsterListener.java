@@ -2,6 +2,7 @@ package gui.actionListener.scenarioCreating;
 
 import controllers.ControllerManager;
 import controllers.scenario.NewScenarioController;
+import controllers.utils.RedirectListener;
 import game.board.*;
 import game.creature.Monster;
 import game.filehandle.EntityManager;
@@ -46,6 +47,7 @@ public class PutMonsterListener implements ActionListener {
         scenarioDataList.add(scenarioData);
         creatorGameView.getCreatorPanel().applyNewCreatureOnPosition(dependMonster.getObjectPathPicture(),
                 creatorGameView.getCreatorPanel().getCurrentClickedIndexes());
-        controllerManager.changeController(scenarioController);
+        new RedirectListener(controllerManager, scenarioController).actionPerformed(e);
+        creatorGameView.getCreatorPanel().disableOptionsPanel();
     }
 }

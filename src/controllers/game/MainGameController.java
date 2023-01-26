@@ -6,6 +6,7 @@ import controllers.utils.RedirectListener;
 import game.board.Board;
 import game.board.RoundManager;
 import game.board.Scenario;
+import game.filehandle.EntityManager;
 import game.generals.Vector2;
 import gui.actionListener.basicActionsListener.EndTurnListener;
 import gui.actionListener.basicActionsListener.MoveListener;
@@ -15,6 +16,7 @@ import gui.actionListener.turnOffButtons;
 import gui.actionListener.warhammerActions.*;
 import gui.card.DoubleArrowPanel;
 import gui.factories.IOverallFactory;
+import gui.utils.FileManager;
 import gui.views.gamePanel.MainPanelGame;
 import gui.views.pickers.CustomLambdaExpression;
 import gui.views.pickers.FullItemPicker;
@@ -58,13 +60,21 @@ public class MainGameController extends Controller {
         }
     }
 
+    private class ExitListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            controllerManager.changeController(new MenuController());
+            EntityManager.getInstance().loadAllEntities();
+        }
+    }
+
     @Override
     public void run(IOverallFactory overallFactory) {
         gamePanel = overallFactory.createMainPanelGame();
 
         gamePanel.getExitButton().addActionListener(
-                new RedirectListener(controllerManager, new MenuController())
-        );
+               new ExitListener());
         gamePanel.getNextPlayerButton().addActionListener(new EndTurnListener(roundManager, gamePanel));
 
         startGame();

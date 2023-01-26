@@ -2,6 +2,7 @@ package gui.actionListener.scenarioCreating;
 
 import controllers.ControllerManager;
 import controllers.scenario.NewScenarioController;
+import controllers.utils.RedirectListener;
 import game.board.Board;
 import game.board.GameObject;
 import game.board.RoundManager;
@@ -27,7 +28,8 @@ public class PutNPCListener implements ActionListener {
     NewScenarioController scenarioController;
 
     public PutNPCListener(ArrayList<ScenarioData> scenarioDataList, CreatorGameView creatorGameView,
-                          ShowApplyCreatureView showApplyCreatureView, ControllerManager controllerManager,NewScenarioController scenarioController) {
+                          ShowApplyCreatureView showApplyCreatureView, ControllerManager controllerManager,
+                          NewScenarioController scenarioController) {
         this.scenarioDataList = scenarioDataList;
         this.creatorGameView = creatorGameView;
         this.showApplyCreatureView = showApplyCreatureView;
@@ -42,10 +44,12 @@ public class PutNPCListener implements ActionListener {
         scenarioData.creature = dependNPC;
         scenarioData.position = creatorGameView.getCreatorPanel().getCurrentClickedIndexes();
         scenarioDataList.add(scenarioData);
-        System.out.println(creatorGameView.getCreatorPanel().getCurrentClickedIndexes());
+        System.out.println(creatorGameView.getCreatorPanel().getCurrentClickedIndexes().x);
         creatorGameView.getCreatorPanel().applyNewCreatureOnPosition(dependNPC.getObjectPathPicture(),
                 creatorGameView.getCreatorPanel().getCurrentClickedIndexes());
         controllerManager.changeController(scenarioController);
+        new RedirectListener(controllerManager, scenarioController).actionPerformed(e);
+        creatorGameView.getCreatorPanel().disableOptionsPanel();
 
     }
 }

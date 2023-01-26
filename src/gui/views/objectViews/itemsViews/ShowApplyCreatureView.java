@@ -30,8 +30,8 @@ public class ShowApplyCreatureView extends ShowSmallView {
         initializeContent();
         arrowPanel.updateSwitchingButtons();
         getCancelButton().getCustomUI().setOffSet(6);
-        initializeSetPanel(2, manager1);
-        initializeSetPanel(2, manager2);
+        initializeSetPanel(0,2, manager1);
+        initializeSetPanel(2,4, manager2);
         manager1.addMiddleComponent(cards.get(0).getPanel(), 0, 20);
         manager1.addMiddleComponent(cards.get(1).getPanel(), 0, 20);
         manager1.getMiddleComponent(0, 0).addSpace(1);
@@ -65,24 +65,23 @@ public class ShowApplyCreatureView extends ShowSmallView {
         }
     }
 
-    private void initializeSetPanel(int number, DefaultCustomMenuMenager man) {
+    private void initializeSetPanel(int number,int end, DefaultCustomMenuMenager man) {
         factory.getFactory().setButtonType(GuiFactory.ButtonType.NORMAL);
         man.addMainComponent(12);
         man.addMainComponent(3);
 //        manager.addMainComponent(4);
-        for (int i = 0; i < number; i++) {
+        for (int i = number; i < end; i++) {
             var button = factory.getFactory().createButton("APPLY", null);
             button.getCustomUI().setOffSet(4);
             applyButtons.add(button);
             man.addMiddleComponent(button, 1, 10);
-            man.getMiddleComponent(1, i).addSpace(5);
+            man.getMiddleComponent(1, i-number).addSpace(5);
             int finalI = i;
             button.addActionListener(e -> {
                 clickedIndex = maximumumElements * currentSide + finalI;
-                if (listenerHashMap.containsKey(finalI) && listenerHashMap.get(finalI).containsKey(ButtonType.APPLY)) {
+                if (listenerHashMap.containsKey(clickedIndex) && listenerHashMap.get(clickedIndex).containsKey(ButtonType.APPLY)) {
                     System.out.println("sfsdfsdsd");
-                    System.out.println( listenerHashMap.get(finalI).get(ButtonType.APPLY));
-                    listenerHashMap.get(finalI).get(ButtonType.APPLY).actionPerformed(e);
+                    listenerHashMap.get(clickedIndex).get(ButtonType.APPLY).actionPerformed(e);
                 }
             });
         }
