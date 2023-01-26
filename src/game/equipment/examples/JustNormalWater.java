@@ -8,8 +8,8 @@ import gui.factories.WarhammerData;
 public class JustNormalWater extends DisposableItem implements WarhammerData {
     private Character user;
 
-    public JustNormalWater(String name, int usageCount, Character user) {
-        super(name, usageCount);
+    public JustNormalWater(int usageCount, Character user) {
+        super(usageCount);
         this.user=user;setItemPathPicture(waterPath);
 
         description = "Like the name JUST NORMAL WATER! You can use it to stop fire or sth";

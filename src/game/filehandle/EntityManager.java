@@ -4,10 +4,12 @@ import game.board.Scenario;
 import game.creature.*;
 import game.creature.Character;
 import game.equipment.*;
+import game.equipment.examples.*;
 import game.interfaceWarhammer.StatisticsWarhammer;
 import game.interfaceWarhammer.StruggleStatisticsWarhammer;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class EntityManager {
@@ -15,13 +17,14 @@ public class EntityManager {
     private List<NPC> NPCList = new ArrayList<>();
     private List<PlayerCharacter> playerCharacterList = new ArrayList<>();
     private List<Scenario> scenarioList = new ArrayList<>();
-    
+
     private List<Weapon> weaponList = new ArrayList<>();
     private List<Mount> mountList = new ArrayList<>();
     private List<Armor> armorList = new ArrayList<>();
-    
+    private List<DisposableItem> disposableItemList = new ArrayList<>();
+
     private Character playerCharacterWithAllItems;
-    
+
     private FileManager fileManager;
 
     private static EntityManager instance;
@@ -32,11 +35,16 @@ public class EntityManager {
         }
 
         fileManager = new FileManager(gameName);
+        generateListOfItems();
         loadAllEntities();
     }
 
     public static EntityManager getInstance() {
         return instance;
+    }
+
+    public List<DisposableItem> getDisposableItemList() {
+        return disposableItemList;
     }
 
     public void saveAllEntities() {
@@ -49,7 +57,7 @@ public class EntityManager {
         fileManager.writeToFile(scenarioList, Scenario.class);
     }
 
-    public  void loadAllEntities() {
+    public void loadAllEntities() {
         monsterList = fileManager.readFromFile(Monster.class);
         NPCList = fileManager.readFromFile(NPC.class);
         playerCharacterList = fileManager.readFromFile(PlayerCharacter.class);
@@ -57,9 +65,20 @@ public class EntityManager {
         weaponList = fileManager.readFromFile(Weapon.class);
         armorList = fileManager.readFromFile(Armor.class);
         mountList = fileManager.readFromFile(Mount.class);
-        
+
         playerCharacterWithAllItems = new PlayerCharacter(
-                new StatisticsWarhammer(), new Inventory(weaponList, armorList, mountList), new Experience(0), new StruggleStatisticsWarhammer());
+                new StatisticsWarhammer(), new Inventory(weaponList, armorList, mountList, disposableItemList),
+                new Experience(0), new StruggleStatisticsWarhammer());
+    }
+
+    private void generateListOfItems() {
+        disposableItemList = new ArrayList<>(Arrays.asList(new Bandage(playerCharacterWithAllItems, 5),
+                new Bandage(playerCharacterWithAllItems, 5), new DragonsBlood(5, playerCharacterWithAllItems),
+                new ChickenLeg(5, playerCharacterWithAllItems), new DeadRat(5),
+                new HolyHandGrenadeofAntioch(5), new HolyWater(5),
+                new JustNormalWater(5, playerCharacterWithAllItems), new MagicPills(5, playerCharacterWithAllItems),
+                new MagicPotion(playerCharacterWithAllItems), new Sharpener(5, playerCharacterWithAllItems),
+                new WarmSocksFromGrandma(5, playerCharacterWithAllItems)));
     }
 
     public void addCreature(Creature creature) {
@@ -121,32 +140,38 @@ public class EntityManager {
     public List<Armor> getArmorList() {
         return armorList;
     }
-    
+
     public Character getPlayerCharacterWithAllItems() {
         return playerCharacterWithAllItems;
     }
-    
+
     public void addItem(Item item) {
-        if(item instanceof Weapon) {
-            weaponList.add((Weapon)item);
+        if (item instanceof Weapon) {
+            weaponList.add((Weapon) item);
         }
-        if(item instanceof Mount) {
-            mountList.add((Mount)item);
+        if (item instanceof Mount) {
+            mountList.add((Mount) item);
         }
-        if(item instanceof Armor) {
-            armorList.add((Armor)item);
+        if (item instanceof Armor) {
+            armorList.add((Armor) item);
+        }
+        if (item instanceof DisposableItem) {
+            disposableItemList.add((DisposableItem) item);
         }
     }
 
     public void removeItem(Item item) {
-        if(item instanceof Weapon) {
+        if (item instanceof Weapon) {
             weaponList.remove(item);
         }
-        if(item instanceof Mount) {
+        if (item instanceof Mount) {
             mountList.remove(item);
         }
-        if(item instanceof Armor) {
+        if (item instanceof Armor) {
             armorList.remove(item);
+        }
+        if (item instanceof DisposableItem) {
+            disposableItemList.remove(item);
         }
     }
 }

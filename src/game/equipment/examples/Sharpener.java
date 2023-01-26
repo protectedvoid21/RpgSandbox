@@ -7,8 +7,8 @@ import gui.factories.WarhammerData;
 public class Sharpener extends DisposableItem implements WarhammerData {
     private Character user;
 
-    public Sharpener(String name, int usageCount, Character user) {
-        super(name, usageCount);
+    public Sharpener( int usageCount, Character user) {
+        super(usageCount);
         this.user = user;
         setItemPathPicture(sharper);
 

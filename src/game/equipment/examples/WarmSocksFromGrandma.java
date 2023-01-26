@@ -8,8 +8,8 @@ import gui.factories.WarhammerData;
 public class WarmSocksFromGrandma extends DisposableItem implements WarhammerData {
     private Character user;
 
-    public WarmSocksFromGrandma(String name, int usageCount, Character user) {
-        super(name, usageCount);
+    public WarmSocksFromGrandma(int usageCount, Character user) {
+        super( usageCount);
         this.user = user;
         setItemPathPicture(socksPath);
 

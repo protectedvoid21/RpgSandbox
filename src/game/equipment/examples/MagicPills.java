@@ -8,8 +8,8 @@ import gui.factories.WarhammerData;
 public class MagicPills extends DisposableItem implements WarhammerData {
     private Character user;
 
-    public MagicPills(String name, int usageCount, Character user) {
-        super(name, usageCount);
+    public MagicPills( int usageCount, Character user) {
+        super(usageCount);
         this.user=user;setItemPathPicture(mortarPath);
 
         description = "9/10 dentists says that they will remove poison effects from your blood";

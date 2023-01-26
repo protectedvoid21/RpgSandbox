@@ -11,9 +11,9 @@ public class MagicPotion extends DisposableItem implements WarhammerData {
     private AttributeEnum what;
     private Character user;
 
-    public MagicPotion(String name, Character user)
+    public MagicPotion( Character user)
     {
-        super(name, new Random().nextInt(4)+1);
+        super(new Random().nextInt(4)+1);
         Random rand = new Random();setItemPathPicture(potionPath);
 
         AttributeEnum[] values = AttributeEnum.values();

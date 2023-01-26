@@ -8,8 +8,8 @@ import gui.factories.WarhammerData;
 public class Bandage extends DisposableItem implements WarhammerData {
     private Character user;
 
-    public Bandage(String name, Character user, int usageCount) {
-        super(name, usageCount);
+    public Bandage(Character user, int usageCount) {
+        super(usageCount);
         this.user=user;
         setItemPathPicture(plasterPath);
 
@@ -23,4 +23,5 @@ public class Bandage extends DisposableItem implements WarhammerData {
 
         user.getStatistics().getEffect(EffectEnum.BLEEDING).decreaseLength();
     }
+
 }

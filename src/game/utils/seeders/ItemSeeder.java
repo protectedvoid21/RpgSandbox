@@ -31,9 +31,9 @@ public class ItemSeeder implements Seeder {
         Mount mount4 = new Mount("Another player", 2);
         Mount mount5 = new Mount("Flying Pig", 5);
 
-        DisposableItem disposableItem1 = new HolyHandGrenadeofAntioch("HoHoHo",1);
-        DisposableItem disposableItem2 = new HolyWater("HAtssssssssss", 3);
-        DisposableItem disposableItem3 = new HolyHandGrenadeofAntioch("Now there 2 of them?!",2);
+        DisposableItem disposableItem1 = new HolyHandGrenadeofAntioch(1);
+        DisposableItem disposableItem2 = new HolyWater( 3);
+        DisposableItem disposableItem3 = new HolyHandGrenadeofAntioch(2);
 
         EntityManager.getInstance().addItem(weapon1);
         EntityManager.getInstance().addItem(weapon2);

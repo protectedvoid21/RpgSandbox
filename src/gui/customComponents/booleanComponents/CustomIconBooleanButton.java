@@ -24,7 +24,7 @@ public class CustomIconBooleanButton extends IconButton implements IBooleanCompo
     }
 
     private void initialize(String content, boolean initialValue, boolean prop){
-        secondIcon = new StretchIcon(content);
+        secondIcon = new StretchIcon(content, prop);
         addActionListener(e -> setValue(!value));
     }
 

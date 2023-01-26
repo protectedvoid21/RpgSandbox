@@ -6,10 +6,11 @@ public class WarHammerAudioManager extends CustomAudioManager {
 
     public void initialize() {
         setAudioData(new AudioData(WarhammerEnumAudio.MAIN_AUDIO, "src/controllers/audio/music.wav", true));
-        setSoundOff();
-        audioHashMap.get(WarhammerEnumAudio.MAIN_AUDIO).stop();
-        setAudio(WarhammerEnumAudio.MAIN_AUDIO);
-        audioHashMap.get(WarhammerEnumAudio.MAIN_AUDIO).stop();
+//        setSoundOff();
+//        audioHashMap.get(WarhammerEnumAudio.MAIN_AUDIO).stop();
+         setAudio(WarhammerEnumAudio.MAIN_AUDIO);
+//        setAudio(WarhammerEnumAudio.MAIN_AUDIO);
+//        audioHashMap.get(WarhammerEnumAudio.MAIN_AUDIO).stop();
 //        var t = new Timer(1, e -> setSoundOff());
 //        t.start();
 //        t.setRepeats(false);

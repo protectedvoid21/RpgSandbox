@@ -19,6 +19,7 @@ public class Inventory {
         weapons = new ArrayList<>();
         armors = new ArrayList<>();
         mounts = new ArrayList<>();
+        disposableItems = new ArrayList<>();
         activeWeapon = noWeapon();
         activeArmor = noArmor();
         activeMount = noMount();
@@ -31,10 +32,11 @@ public class Inventory {
         this.activeMount = activeMount;
     }
 
-    public Inventory(List<Weapon> weapons, List<Armor> armors, List<Mount> mounts) {
+    public Inventory(List<Weapon> weapons, List<Armor> armors, List<Mount> mounts, List<DisposableItem> disposableItems) {
         this.weapons = weapons;
         this.armors = armors;
         this.mounts = mounts;
+        this.disposableItems = disposableItems;
     }
 
     public List<Weapon> getWeapons() {
@@ -328,6 +330,6 @@ public class Inventory {
     }
     private DisposableItem noDisposableItem()
     {
-        return new DeadRat("Wrocławek",0);
+        return new DeadRat(0);
     }
 }

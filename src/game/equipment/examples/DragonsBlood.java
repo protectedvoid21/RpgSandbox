@@ -7,8 +7,8 @@ import gui.factories.WarhammerData;
 public class DragonsBlood extends DisposableItem implements WarhammerData {
     private Character user;
 
-    public DragonsBlood(String name, int usageCount, Character user) {
-        super(name, usageCount);
+    public DragonsBlood( int usageCount, Character user) {
+        super( usageCount);
         this.user=user;setItemPathPicture(bloodPaht);
 
         description = "Dragon blood is poisoning sooooooo......when you put it on your sword your enemies will DIE IN VERY PAINFUL WAY";

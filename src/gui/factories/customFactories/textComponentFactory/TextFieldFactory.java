@@ -34,7 +34,7 @@ public class TextFieldFactory extends TextFactory {
         textField.setUI(ui);
         ui.setRespectionBorder(true);
         textField.setListener(new CustomDocumentListener(new Color(0x697A69)));
-        textField.getMargin().set(10, 7, 10, 7);
+        textField.getMargin().set(5, 5, 5, 5);
         textField.setFont(22);
         return textField;
     }

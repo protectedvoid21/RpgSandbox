@@ -38,6 +38,7 @@ public class CreatureCreateController extends Controller {
         view.uploadNewData(contentDataMap, Converter.createFullDetailDataCreature(creature));
         view.uploadNewChoserCardData(Converter.createFullDataCreature(EntityManager.getInstance().getPlayerCharacterWithAllItems()), 
                 Converter.createFullDetailDataCreature(EntityManager.getInstance().getPlayerCharacterWithAllItems()));
+
         
         view.getCancelButton().addActionListener(
                 new RedirectListener(controllerManager, new CreatureListController(creatureType))
@@ -86,6 +87,9 @@ public class CreatureCreateController extends Controller {
                         }
                         else if(type == Card.CardTypes.WEAPONS) {
                             castedCharacter.getInventory().addItem(EntityManager.getInstance().getWeaponList().get(item));
+                        }
+                        else if(type == Card.CardTypes.WEAPONS) {
+                            castedCharacter.getInventory().addItem(EntityManager.getInstance().getDisposableItemList().get(item));
                         }
                     }
                 }
