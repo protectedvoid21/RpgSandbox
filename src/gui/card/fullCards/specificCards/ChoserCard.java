@@ -35,9 +35,9 @@ public class ChoserCard extends Card {
     @Override
     public void setUniformFont() {
         super.setUniformFont();
-        for (var card : cards.values()){
-            card.setUniformForm();
-        }
+//        for (var card : cards.values()){
+//            card.setUniformForm();
+//        }
     }
 
     public void setCurrentType(CardTypes type) {
