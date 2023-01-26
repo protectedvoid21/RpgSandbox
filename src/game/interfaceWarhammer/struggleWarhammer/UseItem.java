@@ -15,7 +15,7 @@ public class UseItem extends Action {
     public void doAction(Creature you, Item item) {
 
         if (item instanceof DisposableItem){
-            ((DisposableItem) item).use();
+//            ((DisposableItem) item).use();
             you.getStruggleStatistics().getAttribute(StruggleAtributeEnum.ACTIONS_TO_DO).decreaseValue(actionCost);
         }
     }

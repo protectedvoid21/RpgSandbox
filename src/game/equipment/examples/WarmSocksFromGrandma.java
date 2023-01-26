@@ -1,16 +1,17 @@
 package game.equipment.examples;
 
 import game.creature.Character;
+import game.creature.Creature;
 import game.equipment.DisposableItem;
 import game.interfaceWarhammer.EffectEnum;
 import gui.factories.WarhammerData;
 
 public class WarmSocksFromGrandma extends DisposableItem implements WarhammerData {
-    private Character user;
+//    private Character user;
 
-    public WarmSocksFromGrandma(int usageCount, Character user) {
+    public WarmSocksFromGrandma(int usageCount) {
         super( usageCount);
-        this.user = user;
+//        this.user = user;
         setItemPathPicture(socksPath);
 
         description = "When you found them under christmas tree you said: \"MEEEEH\", but then you found out that " +
@@ -18,9 +19,9 @@ public class WarmSocksFromGrandma extends DisposableItem implements WarhammerDat
     }
 
     @Override
-    public void use() {
-        super.use();
+    public void use(Creature creature) {
+        super.use(creature);
 
-        user.getStatistics().getEffect(EffectEnum.FREEZING).decreaseLength();
+        creature.getStatistics().getEffect(EffectEnum.FREEZING).decreaseLength();
     }
 }

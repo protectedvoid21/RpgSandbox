@@ -77,7 +77,7 @@ public class CreatureCreateController extends Controller {
                 Character castedCharacter = (Character)newCreature;
                 
                 var numberData = view.generateIndexesNumberData();
-                for (var type : Arrays.asList(Card.CardTypes.ARMOR, Card.CardTypes.MOUNT, Card.CardTypes.WEAPONS)){
+                for (var type : Arrays.asList(Card.CardTypes.ARMOR, Card.CardTypes.MOUNT, Card.CardTypes.WEAPONS, Card.CardTypes.ITEMS)){
                     for(var item : numberData.get(type)){
                         if(type == Card.CardTypes.ARMOR) {
                             castedCharacter.getInventory().addItem(EntityManager.getInstance().getArmorList().get(item));
@@ -88,7 +88,7 @@ public class CreatureCreateController extends Controller {
                         else if(type == Card.CardTypes.WEAPONS) {
                             castedCharacter.getInventory().addItem(EntityManager.getInstance().getWeaponList().get(item));
                         }
-                        else if(type == Card.CardTypes.WEAPONS) {
+                        else if(type == Card.CardTypes.ITEMS) {
                             castedCharacter.getInventory().addItem(EntityManager.getInstance().getDisposableItemList().get(item));
                         }
                     }

@@ -1,6 +1,7 @@
 package game.equipment.examples;
 
 import game.creature.Character;
+import game.creature.Creature;
 import game.equipment.DisposableItem;
 import game.interfaceWarhammer.EffectEnum;
 import gui.factories.WarhammerData;
@@ -9,24 +10,25 @@ import static game.interfaceWarhammer.AttributeEnum.HEALTH_POINTS_MAX;
 import static game.interfaceWarhammer.AttributeEnum.HEALTH_POINTS_NOW;
 
 public class ChickenLeg extends DisposableItem implements WarhammerData {
-    private Character user;
+//    private Character user;
 
-    public ChickenLeg( int usageCount, Character user) {
+    public ChickenLeg(int usageCount) {
         super(usageCount);
-        this.user=user;setItemPathPicture(chickenPath);
+//        this.user = user;
+        setItemPathPicture(chickenPath);
 
         description = "Traveller! Stop in our tavern and eat some chicken. It will help to restore your health";
     }
 
     @Override
-    public void use() {
-        super.use();
+    public void use(Creature creature) {
+        super.use(creature);
 
-        user.getStatistics().getAttribute(HEALTH_POINTS_NOW).increaseValue(5);
 
-        if(user.getStatistics().getAttribute(HEALTH_POINTS_NOW).getValue()>user.getStatistics().getAttribute(HEALTH_POINTS_MAX).getValue())
-        {
-            user.getStatistics().getAttribute(HEALTH_POINTS_NOW).setValue(user.getStatistics().getAttribute(HEALTH_POINTS_MAX).getValue());
+        creature.getStatistics().getAttribute(HEALTH_POINTS_NOW).increaseValue(5);
+
+        if (creature.getStatistics().getAttribute(HEALTH_POINTS_NOW).getValue() > creature.getStatistics().getAttribute(HEALTH_POINTS_MAX).getValue()) {
+            creature.getStatistics().getAttribute(HEALTH_POINTS_NOW).setValue(creature.getStatistics().getAttribute(HEALTH_POINTS_MAX).getValue());
         }
     }
 }

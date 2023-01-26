@@ -72,13 +72,12 @@ public class EntityManager {
     }
 
     private void generateListOfItems() {
-        disposableItemList = new ArrayList<>(Arrays.asList(new Bandage(playerCharacterWithAllItems, 5),
-                new Bandage(playerCharacterWithAllItems, 5), new DragonsBlood(5, playerCharacterWithAllItems),
-                new ChickenLeg(5, playerCharacterWithAllItems), new DeadRat(5),
-                new HolyHandGrenadeofAntioch(5), new HolyWater(5),
-                new JustNormalWater(5, playerCharacterWithAllItems), new MagicPills(5, playerCharacterWithAllItems),
-                new MagicPotion(playerCharacterWithAllItems), new Sharpener(5, playerCharacterWithAllItems),
-                new WarmSocksFromGrandma(5, playerCharacterWithAllItems)));
+        disposableItemList = new ArrayList<>(Arrays.asList(new Bandage(5),
+                new Bandage( 5), new DragonsBlood(5),
+                new ChickenLeg(5), new DeadRat(5), new HolyWater(5),
+                new JustNormalWater(5), new MagicPills(5),
+                new MagicPotion(), new Sharpener(5),
+                new WarmSocksFromGrandma(5)));
     }
 
     public void addCreature(Creature creature) {

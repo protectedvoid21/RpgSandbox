@@ -5,7 +5,6 @@ import game.equipment.DisposableItem;
 import game.equipment.Mount;
 import game.equipment.Weapon;
 import game.equipment.examples.Bandage;
-import game.equipment.examples.HolyHandGrenadeofAntioch;
 import game.equipment.examples.HolyWater;
 import game.equipment.examples.Sharpener;
 import game.filehandle.EntityManager;
@@ -31,9 +30,9 @@ public class ItemSeeder implements Seeder {
         Mount mount4 = new Mount("Another player", 2);
         Mount mount5 = new Mount("Flying Pig", 5);
 
-        DisposableItem disposableItem1 = new HolyHandGrenadeofAntioch(1);
+//        DisposableItem disposableItem1 = new HolyHandGrenadeofAntioch(1);
         DisposableItem disposableItem2 = new HolyWater( 3);
-        DisposableItem disposableItem3 = new HolyHandGrenadeofAntioch(2);
+//        DisposableItem disposableItem3 = new HolyHandGrenadeofAntioch(2);
 
         EntityManager.getInstance().addItem(weapon1);
         EntityManager.getInstance().addItem(weapon2);
@@ -53,8 +52,8 @@ public class ItemSeeder implements Seeder {
         EntityManager.getInstance().addItem(mount4);
         EntityManager.getInstance().addItem(mount5);
 
-        EntityManager.getInstance().addItem(disposableItem1);
+//        EntityManager.getInstance().addItem(disposableItem1);
         EntityManager.getInstance().addItem(disposableItem2);
-        EntityManager.getInstance().addItem(disposableItem3);
+//        EntityManager.getInstance().addItem(disposableItem3);
     }
 }

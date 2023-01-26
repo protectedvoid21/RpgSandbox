@@ -18,7 +18,7 @@ public class HolyWater extends DisposableItem implements WarhammerData {
     }
 
     public void use(Creature enemy) {
-        super.use();
+        super.use(enemy);
 
         if (enemy instanceof Monster) {
             enemy.getStatistics().getAttribute(HEALTH_POINTS_NOW).decreaseValue(3);

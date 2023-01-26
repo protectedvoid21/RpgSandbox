@@ -21,9 +21,9 @@ public abstract class DisposableItem extends Item {
         return usageCount > 0;
     }
 
-    public void use() {
-        usageCount--;
-    }
+//    public void use() {
+//        usageCount--;
+//    }
     public void use(Creature creature) {
         usageCount--;
     }

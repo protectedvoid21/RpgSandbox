@@ -19,8 +19,8 @@ public class Main {
         WarHammerAudioManager audioManager = new WarHammerAudioManager();
         audioManager.initialize();
         Seeder seeder = new SeedManager();
-//        seeder.seed();
-//        EntityManager.getInstance().saveAllEntities();
+        seeder.seed();
+        EntityManager.getInstance().saveAllEntities();
         SwingUtilities.invokeLater(() -> {
             ControllerManager controllerManager = new ControllerManager(new WarHammerFactory(), audioManager);
         });
