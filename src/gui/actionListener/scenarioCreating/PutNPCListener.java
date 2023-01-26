@@ -10,6 +10,7 @@ import game.board.ScenarioData;
 import game.creature.Monster;
 import game.creature.NPC;
 import game.filehandle.EntityManager;
+import gui.factories.IOverallFactory;
 import gui.views.objectViews.creationViews.CreatorGameView;
 import gui.views.objectViews.itemsViews.ShowApplyCreatureView;
 
@@ -26,15 +27,18 @@ public class PutNPCListener implements ActionListener {
     ShowApplyCreatureView showApplyCreatureView;
     ControllerManager controllerManager;
     NewScenarioController scenarioController;
+    IOverallFactory factory;
 
     public PutNPCListener(ArrayList<ScenarioData> scenarioDataList, CreatorGameView creatorGameView,
                           ShowApplyCreatureView showApplyCreatureView, ControllerManager controllerManager,
-                          NewScenarioController scenarioController) {
+                          NewScenarioController scenarioController, IOverallFactory factory) {
         this.scenarioDataList = scenarioDataList;
         this.creatorGameView = creatorGameView;
         this.showApplyCreatureView = showApplyCreatureView;
         this.controllerManager = controllerManager;
         this.scenarioController = scenarioController;
+        this.factory =factory;
+
     }
 
     @Override
@@ -47,8 +51,9 @@ public class PutNPCListener implements ActionListener {
         System.out.println(creatorGameView.getCreatorPanel().getCurrentClickedIndexes().x);
         creatorGameView.getCreatorPanel().applyNewCreatureOnPosition(dependNPC.getObjectPathPicture(),
                 creatorGameView.getCreatorPanel().getCurrentClickedIndexes());
-        controllerManager.changeController(scenarioController);
-        new RedirectListener(controllerManager, scenarioController).actionPerformed(e);
+//        controllerManager.changeController(scenarioController);
+        var scenario = new NewScenarioController(factory,scenarioDataList);
+        new RedirectListener(controllerManager, scenario).actionPerformed(e);
         creatorGameView.getCreatorPanel().disableOptionsPanel();
 
     }

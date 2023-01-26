@@ -49,17 +49,17 @@ public class SetCreatureController extends Controller {
          view = overallFactory.createCreatorApplyingCharacterView(creatureType);
 
         view.getCancelButton().addActionListener(
-                new RedirectListener(controllerManager, scenarioController)
+                new RedirectListener(controllerManager, new NewScenarioController(factory, data))
         );
         ArrayList<ArrayList<String>> array = new ArrayList<>();
         for (var creature : getEntities(creatureType)) {
             array.add(new ArrayList<>(Arrays.asList(creature.getObjectPathPicture(), creature.getName())));
         }
         var map = Map.of(CreatureType.NPC,new PutNPCListener(data, mainview, view, controllerManager,
-                        scenarioController), CreatureType.MONSTER,
+                        scenarioController, factory), CreatureType.MONSTER,
                 new PutMonsterListener(data, mainview, view, controllerManager, scenarioController, overallFactory),
                 CreatureType.PLAYER_CHARACTER, new PutPCListener(data,
-                        mainview, view, controllerManager, scenarioController));
+                        mainview, view, controllerManager, scenarioController, factory));
         var parent = this;
         var entities = getEntities(creatureType);
         for (int i = 0; i < entities.size(); i++) {
@@ -68,7 +68,7 @@ public class SetCreatureController extends Controller {
                         @Override
                         protected void setCancelButtonListener(BasicCard view1) {
                             view1.getCancelButton().addActionListener(
-                                    new RedirectListener(controllerManager, new NewScenarioController(factory, data)));
+                                    new RedirectListener(controllerManager, new SetCreatureController(mainview, scenarioController, creatureType, data, factory)));
                         }
                     }));
             view.addButtonActionListener(AllObjectsView.ButtonType.APPLY, i, map.get(creatureType));
