@@ -102,14 +102,11 @@ public class EntriesCard extends Card {
         choserCard = new ChoserCard(factory);
         choserCard.initialize();
         helpPanelVariable = seriesPanel.getCmp().getComponent();
-        choserCard.getAddButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                seriesPanel.getCmp().changeContent(helpPanelVariable);
-                allCards.get(choserCard.getCurrentCardType()).initializeCardData(choserCard.getCurrentData(),
-                        choserCard.getCurrentDetailData());
-                updateContent();
-            }
+        choserCard.getAddButton().addActionListener(e -> {
+            seriesPanel.getCmp().changeContent(helpPanelVariable);
+            allCards.get(choserCard.getCurrentCardType()).initializeCardData(choserCard.getCurrentData(),
+                    choserCard.getCurrentDetailData());
+            updateContent();
         });
     }
 

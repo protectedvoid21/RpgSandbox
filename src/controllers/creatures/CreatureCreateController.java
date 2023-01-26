@@ -15,8 +15,11 @@ import gui.factories.IOverallFactory;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import java.util.Arrays;
 import java.util.List;
+import java.sql.Time;
+import java.util.Arrays;
 
 public class CreatureCreateController extends Controller {
     private EntriesCard view;
@@ -49,6 +52,11 @@ public class CreatureCreateController extends Controller {
         public void actionPerformed(ActionEvent e) {
             var data = view.generateContentData().get(Card.CardTypes.OVERALL);
             var contentData = view.generateContentData().get(Card.CardTypes.ATTRIBUTE).clone();
+//            for (var type : Arrays.asList(Card.CardTypes.ARMOR, Card.CardTypes.MOUNT, Card.CardTypes.WEAPONS)){
+//                for(var item : numberData.get(type)){
+//
+//                }
+//            }
             contentData.titlePath = data.titlePath;
             contentData.titleContent = data.titleContent;
             EntityManager.getInstance().removeCreature(creature);

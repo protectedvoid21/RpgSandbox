@@ -1,5 +1,6 @@
 package gui.factories;
 
+import controllers.utils.CreatureType;
 import gui.card.fullCards.specificCards.onlyVisibleCards.FullOnlyVisibleCard;
 import gui.card.fullCards.specificCards.onlyVisibleCards.OnlyVisibleShowCard;
 import gui.views.TitleView;
@@ -44,7 +45,7 @@ public abstract class IOverallFactory {
     public abstract GodCard createGodCard();
     public abstract EntriesCard createCreatorCard(Card.CardTypes type);
 
-    public abstract ShowApplyCreatureView createCreatorApplyingCharacterView();
+    public abstract ShowApplyCreatureView createCreatorApplyingCharacterView(CreatureType type);
 
     public abstract MenuView createMenuView();
 
