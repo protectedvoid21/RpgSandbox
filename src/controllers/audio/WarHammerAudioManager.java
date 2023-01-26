@@ -19,9 +19,6 @@ public class WarHammerAudioManager extends CustomAudioManager {
 
         setAudio(WarhammerEnumAudio.MAIN_AUDIO);
         audioHashMap.get(WarhammerEnumAudio.MAIN_AUDIO).stop();
-//        var t = new Timer(1, e -> setSoundOff());
-//        t.start();
-//        t.setRepeats(false);
     }
 
     @Override

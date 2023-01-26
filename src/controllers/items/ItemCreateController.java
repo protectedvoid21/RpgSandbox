@@ -19,8 +19,8 @@ import java.awt.event.ActionListener;
 
 public class ItemCreateController extends Controller {
     private EntriesCard view;
-    private Item item;
-    private Card.CardTypes creatorType;
+    private final Item item;
+    private final Card.CardTypes creatorType;
     
     public ItemCreateController(Item item, Card.CardTypes creatorType) {
         this.item = item;

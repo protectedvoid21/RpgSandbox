@@ -20,6 +20,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.sql.Time;
 import java.util.Arrays;
+import java.util.Map;
 
 public class CreatureCreateController extends Controller {
     private EntriesCard view;
@@ -36,10 +37,10 @@ public class CreatureCreateController extends Controller {
         view = overallFactory.createEntriesCard();
         var contentDataMap = Converter.createFullDataCreature(creature);
         view.uploadNewData(contentDataMap, Converter.createFullDetailDataCreature(creature));
-        view.uploadNewChoserCardData(Converter.createFullDataCreature(EntityManager.getInstance().getPlayerCharacterWithAllItems()), 
+        view.uploadNewChoserCardData(Converter.createFullDataCreature(EntityManager.getInstance().getPlayerCharacterWithAllItems()),
                 Converter.createFullDetailDataCreature(EntityManager.getInstance().getPlayerCharacterWithAllItems()));
 
-        
+
         view.getCancelButton().addActionListener(
                 new RedirectListener(controllerManager, new CreatureListController(creatureType))
         );
@@ -53,15 +54,15 @@ public class CreatureCreateController extends Controller {
         public void actionPerformed(ActionEvent e) {
             var data = view.generateContentData().get(Card.CardTypes.OVERALL);
             var contentData = view.generateContentData().get(Card.CardTypes.ATTRIBUTE).clone();
-//            for (var type : Arrays.asList(Card.CardTypes.ARMOR, Card.CardTypes.MOUNT, Card.CardTypes.WEAPONS)){
-//                for(var item : numberData.get(type)){
-//
-//                }
-//            }
             contentData.titlePath = data.titlePath;
             contentData.titleContent = data.titleContent;
             EntityManager.getInstance().removeCreature(creature);
             Creature newCreature = null;
+            var entity = EntityManager.getInstance();
+            var entitiesMap = Map.of(Card.CardTypes.ARMOR, entity.getArmorList(), Card.CardTypes.MOUNT,
+                    entity.getMountList(), Card.CardTypes.WEAPONS, entity.getWeaponList(), Card.CardTypes.ITEMS,
+                    entity.getDisposableItemList());
+
             switch (creatureType) {
                 case MONSTER -> {
                     newCreature = Converter.createMonsterFromCard(contentData);
@@ -73,29 +74,16 @@ public class CreatureCreateController extends Controller {
                     newCreature = Converter.createNPCFromCard(contentData);
                 }
             }
-            if(newCreature instanceof Character) {
-                Character castedCharacter = (Character)newCreature;
-                
+            if (newCreature instanceof Character castedCharacter) {
                 var numberData = view.generateIndexesNumberData();
-                for (var type : Arrays.asList(Card.CardTypes.ARMOR, Card.CardTypes.MOUNT, Card.CardTypes.WEAPONS, Card.CardTypes.ITEMS)){
-                    for(var item : numberData.get(type)){
-                        if(type == Card.CardTypes.ARMOR) {
-                            castedCharacter.getInventory().addItem(EntityManager.getInstance().getArmorList().get(item));
-                        }
-                        else if(type == Card.CardTypes.MOUNT) {
-                            castedCharacter.getInventory().addItem(EntityManager.getInstance().getMountList().get(item));
-                        }
-                        else if(type == Card.CardTypes.WEAPONS) {
-                            castedCharacter.getInventory().addItem(EntityManager.getInstance().getWeaponList().get(item));
-                        }
-                        else if(type == Card.CardTypes.ITEMS) {
-                            castedCharacter.getInventory().addItem(EntityManager.getInstance().getDisposableItemList().get(item));
-                        }
-                    }
+                for (var type : Arrays.asList(Card.CardTypes.ARMOR, Card.CardTypes.MOUNT, Card.CardTypes.WEAPONS,
+                        Card.CardTypes.ITEMS)) {
+                    for (var item : numberData.get(type))
+                        castedCharacter.getInventory().addItem(entitiesMap.get(type).get(item));
                 }
             }
-            
-            
+
+
             if (IFactory.getErrorValidationChecker().isErrorFlag()) {
                 view.setEntriesIncorrect(IFactory.getErrorValidationChecker().getErrorIndexes(), 1500);
                 if (IFactory.getErrorValidationChecker().isPathError())

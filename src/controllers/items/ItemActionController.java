@@ -8,7 +8,7 @@ import gui.card.fullCards.abstractCards.Card;
 import gui.factories.IOverallFactory;
 
 public class ItemActionController extends Controller {
-    private Card.CardTypes creatorType;
+    private final Card.CardTypes creatorType;
 
     public ItemActionController(Card.CardTypes creatorType) {
         this.creatorType = creatorType;

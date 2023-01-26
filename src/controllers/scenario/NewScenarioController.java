@@ -33,7 +33,6 @@ public class NewScenarioController extends Controller {
 
     @Override
     public void run(IOverallFactory overallFactory) {
-//        var view = overallFactory.createCreatorGameView();
         for (var d : data) {
             view.getCreatorPanel().applyNewCreatureOnPosition(d.creature.getObjectPathPicture(), d.position);
         }
@@ -49,19 +48,6 @@ public class NewScenarioController extends Controller {
                             data, overallFactory))
             );
         }
-
-//        view.getCreatorPanel().addOptionsListener(0,
-//                new RedirectListener(controllerManager, new SetCreatureController(view, cntrl, CreatureType.MONSTER,
-//                        data, overallFactory))
-//        );
-//        view.getCreatorPanel().addOptionsListener(1,
-//                new RedirectListener(controllerManager, new SetCreatureController(view, cntrl,
-//                        CreatureType.PLAYER_CHARACTER, data, overallFactory))
-//        );
-//        view.getCreatorPanel().addOptionsListener(2,
-//                new RedirectListener(controllerManager, new SetCreatureController(view, cntrl, CreatureType.NPC, data
-//                        , overallFactory))
-//        );
         view.getSaveButton().addActionListener(e -> {
             new SaveBoard(data).actionPerformed(e);
             controllerManager.changeController(new MenuController());
