@@ -2,7 +2,6 @@ package controllers.game;
 
 import controllers.Controller;
 import controllers.MenuController;
-import controllers.utils.RedirectListener;
 import game.board.Board;
 import game.board.RoundManager;
 import game.board.Scenario;
@@ -10,13 +9,12 @@ import game.filehandle.EntityManager;
 import game.generals.Vector2;
 import gui.actionListener.basicActionsListener.EndTurnListener;
 import gui.actionListener.basicActionsListener.MoveListener;
-import gui.actionListener.basicActionsListener.TurnOnEnemySelecting;
+import gui.actionListener.basicActionsListener.UseItem;
 import gui.actionListener.scrollItem.*;
 import gui.actionListener.turnOffButtons;
 import gui.actionListener.warhammerActions.*;
 import gui.card.DoubleArrowPanel;
 import gui.factories.IOverallFactory;
-import gui.utils.FileManager;
 import gui.views.gamePanel.MainPanelGame;
 import gui.views.pickers.CustomLambdaExpression;
 import gui.views.pickers.FullItemPicker;
@@ -84,7 +82,7 @@ public class MainGameController extends Controller {
         gamePanel.getGamePanel().addOptionsListener(2, new AttackListener(roundManager, gamePanel));
         gamePanel.getGamePanel().addOptionsListener(3, new CarefullListener(roundManager, gamePanel));
         gamePanel.getGamePanel().addOptionsListener(4, new MultipleAttackListener(roundManager, gamePanel));
-        gamePanel.getItemsItemPicker().addButtonListener(new TurnOnEnemySelecting(roundManager, gamePanel));
+        gamePanel.getItemsItemPicker().addButtonListener(new UseItem(roundManager, gamePanel));
 
         int j = 0;
         for (var list : Arrays.asList(new AimingListener(roundManager, gamePanel), new BlockListener(roundManager,
