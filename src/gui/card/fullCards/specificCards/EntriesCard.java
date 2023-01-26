@@ -115,7 +115,7 @@ public class EntriesCard extends Card {
     public void uploadNewData(LinkedHashMap<CardTypes, CardContentDataSet> newData, HashMap<CardTypes,
             ArrayList<CardContentDataSet>> detailData) {
         super.uploadNewData(newData, detailData);
-        uploadNewChoserCardData(newData, detailData);
+//        uploadNewChoserCardData(newData, detailData);
         if (newData.containsKey(CardTypes.OVERALL)) {
             rightEntryTitleComponent.getComponent().setContent(newData.get(CardTypes.OVERALL).titleContent);
             leftButtonyTitleComponent.getComponent().setContent(newData.get(CardTypes.OVERALL).titlePath.equals(Card.EMPTY_DATA_CONTENT) ?
