@@ -16,6 +16,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Time;
+import java.util.Arrays;
 
 public class CreatureCreateController extends Controller {
     private EntriesCard view;
@@ -32,6 +33,7 @@ public class CreatureCreateController extends Controller {
         view = overallFactory.createEntriesCard();
         var contentDataMap = Converter.createFullDataCreature(creature);
         view.uploadNewData(contentDataMap, Converter.createFullDetailDataCreature(creature));
+//        SwingUtilities.invokeLater(new );
         view.uploadNewChoserCardData(Converter.createFullDataCreature(EntityManager.getInstance().getPlayerCharacterWithAllItems()),
                 Converter.createFullDetailDataCreature(EntityManager.getInstance().getPlayerCharacterWithAllItems()));
 //       SwingUtilities.invokeLater(new Runnable() {
@@ -60,6 +62,11 @@ public class CreatureCreateController extends Controller {
         public void actionPerformed(ActionEvent e) {
             var data = view.generateContentData().get(Card.CardTypes.OVERALL);
             var contentData = view.generateContentData().get(Card.CardTypes.ATTRIBUTE).clone();
+//            for (var type : Arrays.asList(Card.CardTypes.ARMOR, Card.CardTypes.MOUNT, Card.CardTypes.WEAPONS)){
+//                for(var item : numberData.get(type)){
+//
+//                }
+//            }
             contentData.titlePath = data.titlePath;
             contentData.titleContent = data.titleContent;
             EntityManager.getInstance().removeCreature(creature);

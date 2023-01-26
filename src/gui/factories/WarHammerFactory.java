@@ -1,5 +1,6 @@
 package gui.factories;
 
+import controllers.utils.CreatureType;
 import game.generals.Vector2;
 import gui.card.CardContentDataSet;
 import gui.card.fullCards.specificCards.onlyVisibleCards.FullOnlyVisibleCard;
@@ -9,6 +10,7 @@ import gui.factories.customFactories.labelFactories.*;
 import gui.factories.customFactories.textComponentFactory.TextFactory;
 import gui.factories.customFactories.textComponentFactory.TextFieldFactory;
 import gui.utils.StringAdapter;
+import gui.views.PanelContainer;
 import gui.views.TitleView;
 import gui.views.gamePanel.MainPanelGame;
 import gui.views.gamePanel.gamePanels.CreatorPanel;
@@ -170,6 +172,7 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
         var panel = new ChoosingCreationGameView(this);
         panel.initialize();
         var p1 = createCreatorPanel();
+
         var p2 = createCreatorPanel();
         var p3 = createCreatorPanel();
         p1.applyContent(new AbstractMap.SimpleEntry<>(new Vector2(9, 7), playerImagePath),
@@ -275,7 +278,7 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
     }
 
     @Override
-    public ShowApplyCreatureView createCreatorApplyingCharacterView() {
+    public ShowApplyCreatureView createCreatorApplyingCharacterView(CreatureType type) {
         setFactoriesMode(Mode.CLICKED);
         var obj = new ShowApplyCreatureView(this);
         obj.initialize();
@@ -284,6 +287,11 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
                 new ArrayList<>(Arrays.asList("xxx", "xxx")), new ArrayList<>(Arrays.asList("xxx", "xxx")),
                 new ArrayList<>(Arrays.asList("xxx", "xxx")))));
 //        obj.uploadData()
+        switch (type){
+            case NPC -> obj.uploadMainImageData(npcImage);
+            case MONSTER -> obj.uploadMainImageData(monsterPath);
+            case PLAYER_CHARACTER -> obj.uploadMainImageData(playerImagePath);
+        }
         return obj;
     }
 
