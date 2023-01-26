@@ -23,6 +23,7 @@ public class DetailSelectButtonCard extends NormalDetailButtonsCard {
 
     public void setSelectedIndex(int value) {
         selectedIndex = value;
+        updateContent();
     }
 
 

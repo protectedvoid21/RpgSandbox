@@ -57,11 +57,10 @@ public class ItemPicker implements SwitchableComponent, PanelContainer {
     }
 
     private void updateContent() {
-        if (items.size() > 0 && currentSide>=0) {
-            System.out.println(currentSide);
-            label.setContent(items.get(currentSide));
+        if (currentSide >= -1) {
+            System.out.println(items);
+            label.setContent(currentSide >= 0 && items.size()>currentSide ? items.get(currentSide) : "");
         }
-
     }
 
     public void uploadData(ArrayList<String> dataList) {

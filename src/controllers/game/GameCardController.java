@@ -22,13 +22,26 @@ public class GameCardController extends Controller {
         var card = overallFactory.createGameCard();
         card.uploadNewData(Converter.createFullDataCreature(creature),
                 Converter.createFullDetailDataCreature(creature));
+        System.out.println(((Character) creature).getInventory().getArmors().
+                indexOf(((Character) creature).getInventory().getActiveArmor()));
         if (creature instanceof Character) {
-            System.out.println(((Character) creature).getInventory().getArmors().
-                    indexOf(((Character) creature).getInventory().getActiveArmor()));
-            card.getGameSelectedCard(Card.CardTypes.ARMOR).setSelectedIndex(((Character) creature).getInventory().getArmors().
-                    indexOf(((Character) creature).getInventory().getActiveArmor()));
-            card.getGameSelectedCard(Card.CardTypes.WEAPONS).setSelectedIndex(((Character) creature).getInventory().getWeapons().indexOf(((Character) creature).getInventory().getActiveWeapon()));
-            card.getGameSelectedCard(Card.CardTypes.MOUNT).setSelectedIndex(((Character) creature).getInventory().getMounts().indexOf(((Character) creature).getInventory().getActiveMount()));
+            var weaponIndex = ((Character) creature).getInventory().getWeapons().
+                    indexOf(((Character) creature).getInventory().getActiveWeapon());
+            var armorIndex = ((Character) creature).getInventory().getArmors().
+                    indexOf(((Character) creature).getInventory().getActiveArmor());
+            var moundIndex = ((Character) creature).getInventory().getMounts().
+                    indexOf(((Character) creature).getInventory().getActiveMount());
+            System.out.println(weaponIndex+"  "+armorIndex+"   "+moundIndex);
+            if (weaponIndex >= 0)
+                card.getGameSelectedCard(Card.CardTypes.WEAPONS).setSelectedIndex(weaponIndex);
+            if (armorIndex >= 0)
+                card.getGameSelectedCard(Card.CardTypes.ARMOR).setSelectedIndex(armorIndex);
+            if (moundIndex >= 0)
+                card.getGameSelectedCard(Card.CardTypes.MOUNT).setSelectedIndex(moundIndex);
+//            card.getGameSelectedCard(Card.CardTypes.WEAPONS).setSelectedIndex(((Character) creature).getInventory()
+//            .getWeapons().indexOf(((Character) creature).getInventory().getActiveWeapon()));
+//            card.getGameSelectedCard(Card.CardTypes.MOUNT).setSelectedIndex(((Character) creature).getInventory()
+//            .getMounts().indexOf(((Character) creature).getInventory().getActiveMount()));
         }
         mainFrame.add(card.getPanel());
         card.getCancelButton().addActionListener(new RedirectListener(controllerManager, secondcntrl));
