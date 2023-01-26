@@ -1,5 +1,6 @@
 package game.equipment.examples;
 
+import controllers.audio.WarhammerEnumAudio;
 import game.creature.Character;
 import game.creature.Creature;
 import game.equipment.DisposableItem;
@@ -10,12 +11,12 @@ import static game.interfaceWarhammer.AttributeEnum.HEALTH_POINTS_MAX;
 import static game.interfaceWarhammer.AttributeEnum.HEALTH_POINTS_NOW;
 
 public class ChickenLeg extends DisposableItem implements WarhammerData {
-//    private Character user;
-
+    //    private Character user;
     public ChickenLeg(int usageCount) {
         super(usageCount);
 //        this.user = user;
         setItemPathPicture(chickenPath);
+        enumAudio = WarhammerEnumAudio.EATING;
         workOnEnemy = false;
 
         description = "Traveller! Stop in our tavern and eat some chicken. It will help to restore your health";

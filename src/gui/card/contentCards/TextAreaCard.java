@@ -34,6 +34,7 @@ public class TextAreaCard extends AbstractCard {
         textArea = factory.createTextArea();
         menager.addMiddleComponent(textArea, 0, 10);
         menager.getMiddleComponent(0,0).addSpace(4, ComponentPanelMenager.Side.RIGHT, ComponentPanelMenager.Side.LEFT);
+
     }
 
     @Override

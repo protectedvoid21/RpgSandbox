@@ -1,5 +1,6 @@
 package game.equipment;
 
+import controllers.audio.WarhammerEnumAudio;
 import game.creature.Creature;
 import game.interfaces.Statistics;
 
@@ -7,6 +8,7 @@ public abstract class DisposableItem extends Item {
     private int usageCount;
     protected String description;
     protected boolean workOnEnemy = false;
+    public WarhammerEnumAudio enumAudio;
 
     public DisposableItem( int usageCount) {
         super("");

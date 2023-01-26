@@ -1,5 +1,6 @@
 package gui.actionListener.basicActionsListener;
 
+import controllers.audio.CustomAudioManager;
 import game.board.RoundManager;
 import game.creature.Character;
 import game.creature.Creature;
@@ -12,12 +13,14 @@ import java.util.ArrayList;
 import static game.interfaceWarhammer.StruggleAtributeEnum.ACTIONS_TO_DO;
 
 public class UseListener implements ActionListener {
-    RoundManager roundManager;
-    MainPanelGame mainPanelGame;
+    private RoundManager roundManager;
+    private MainPanelGame mainPanelGame;
+    private CustomAudioManager audio;
 
-    public UseListener(RoundManager roundManager, MainPanelGame mainPanelGame) {
+    public UseListener(RoundManager roundManager, MainPanelGame mainPanelGame, CustomAudioManager audio) {
         this.roundManager = roundManager;
         this.mainPanelGame = mainPanelGame;
+        this.audio = audio;
     }
 
     @Override
@@ -26,9 +29,11 @@ public class UseListener implements ActionListener {
         if (roundManager.getGameObjectWithTurn().getCreature() instanceof Character) {
             var obj = (Character) roundManager.getGameObjectWithTurn().getCreature();
             if (obj.getInventory().getSelectedDisposableItem().getWorkOnEnemy()) {
-                new UseItemOnEnemyListener(roundManager, mainPanelGame).actionPerformed(e);
+                audio.setAudio(obj.getInventory().getSelectedDisposableItem().enumAudio);
+                new UseItemOnEnemyListener(roundManager, mainPanelGame, audio).actionPerformed(e);
             } else {
-                new UseItemOnYourselfListener(roundManager, mainPanelGame).actionPerformed(e);
+                new UseItemOnYourselfListener(roundManager, mainPanelGame, audio).actionPerformed(e);
+                audio.setAudio(obj.getInventory().getSelectedDisposableItem().enumAudio);
             }
         }
 

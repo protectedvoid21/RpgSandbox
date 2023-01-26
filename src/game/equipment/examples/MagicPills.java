@@ -1,5 +1,6 @@
 package game.equipment.examples;
 
+import controllers.audio.WarhammerEnumAudio;
 import game.creature.Character;
 import game.creature.Creature;
 import game.equipment.DisposableItem;
@@ -8,11 +9,10 @@ import gui.factories.WarhammerData;
 
 public class MagicPills extends DisposableItem implements WarhammerData {
 //    private Character user;
-
     public MagicPills( int usageCount) {
         super(usageCount);
 //        this.user=user;
-        setItemPathPicture(mortarPath);
+        setItemPathPicture(mortarPath); enumAudio = WarhammerEnumAudio.PILL;
 
         workOnEnemy = false;
         description = "9/10 dentists says that they will remove poison effects from your blood";

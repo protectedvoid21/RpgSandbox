@@ -114,7 +114,9 @@ public class MainGameController extends Controller {
                 new PreviousActiveListener(roundManager));
         gamePanel.getItemsItemPicker().addListenerToPicker(DoubleArrowPanel.Side.RIGHT,
                 new NextActiveListener(roundManager));
-        gamePanel.getItemsItemPicker().addButtonLIstener(new UseListener(roundManager, gamePanel));
+
+
+        gamePanel.getItemsItemPicker().addButtonLIstener(new UseListener(roundManager, gamePanel, audioManager ));
 
     }
 

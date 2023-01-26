@@ -1,5 +1,6 @@
 package game.equipment.examples;
 
+import controllers.audio.WarhammerEnumAudio;
 import game.creature.Character;
 import game.creature.Creature;
 import game.equipment.DisposableItem;
@@ -11,11 +12,10 @@ import java.util.Random;
 public class MagicPotion extends DisposableItem implements WarhammerData {
     private AttributeEnum what;
 //    private Character user;
-
     public MagicPotion()
     {
         super(new Random().nextInt(4)+1);
-        Random rand = new Random();setItemPathPicture(potionPath);
+        Random rand = new Random();setItemPathPicture(potionPath);enumAudio = WarhammerEnumAudio.POTION;
 
         AttributeEnum[] values = AttributeEnum.values();
 

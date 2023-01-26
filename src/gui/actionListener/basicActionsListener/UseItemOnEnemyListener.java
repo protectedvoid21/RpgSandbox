@@ -1,5 +1,6 @@
 package gui.actionListener.basicActionsListener;
 
+import controllers.audio.CustomAudioManager;
 import game.board.RoundManager;
 import game.creature.Character;
 import game.creature.Creature;
@@ -16,10 +17,12 @@ public class UseItemOnEnemyListener implements ActionListener {
 
     RoundManager roundManager;
     MainPanelGame mainPanelGame;
+    private CustomAudioManager audioManager;
 
-    public UseItemOnEnemyListener(RoundManager roundManager, MainPanelGame mainPanelGame) {
+    public UseItemOnEnemyListener(RoundManager roundManager, MainPanelGame mainPanelGame, CustomAudioManager audioManager) {
         this.roundManager = roundManager;
         this.mainPanelGame = mainPanelGame;
+        this.audioManager= audioManager;
     }
 
     @Override
@@ -44,7 +47,7 @@ public class UseItemOnEnemyListener implements ActionListener {
             mainPanelGame.getItemsItemPicker().uploadData(array);
             mainPanelGame.getItemsItemPicker().setCurrentIndex(character.getInventory().getDisposableItems().
                     indexOf(character.getInventory().getSelectedDisposableItem()));
-            mainPanelGame.getItemsItemPicker().addButtonLIstener(new UseListener(roundManager, mainPanelGame));
+            mainPanelGame.getItemsItemPicker().addButtonLIstener(new UseListener(roundManager, mainPanelGame,audioManager));
 
         }
 
