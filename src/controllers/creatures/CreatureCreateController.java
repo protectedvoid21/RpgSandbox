@@ -15,10 +15,6 @@ import gui.factories.IOverallFactory;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import java.util.Arrays;
-import java.util.List;
-import java.sql.Time;
 import java.util.Arrays;
 import java.util.Map;
 
@@ -35,12 +31,10 @@ public class CreatureCreateController extends Controller {
     @Override
     public void run(IOverallFactory overallFactory) {
         view = overallFactory.createEntriesCard();
-        var contentDataMap = Converter.createFullDataCreature(creature);
-        view.uploadNewData(contentDataMap, Converter.createFullDetailDataCreature(creature));
-        view.uploadNewChoserCardData(Converter.createFullDataCreature(EntityManager.getInstance().getPlayerCharacterWithAllItems()),
-                Converter.createFullDetailDataCreature(EntityManager.getInstance().getPlayerCharacterWithAllItems()));
-
-
+        var contentData = converter.createFullDataCreature(creature);
+        view.uploadNewData(contentData, converter.createFullDetailDataCreature(creature));
+        view.uploadNewChoserCardData(converter.createFullDataCreature(EntityManager.getInstance().getPlayerCharacterWithAllItems()),
+                converter.createFullDetailDataCreature(EntityManager.getInstance().getPlayerCharacterWithAllItems()));
         view.getCancelButton().addActionListener(
                 new RedirectListener(controllerManager, new CreatureListController(creatureType))
         );
@@ -64,15 +58,10 @@ public class CreatureCreateController extends Controller {
                     entity.getDisposableItemList());
 
             switch (creatureType) {
-                case MONSTER -> {
-                    newCreature = Converter.createMonsterFromCard(contentData);
-                }
-                case PLAYER_CHARACTER -> {
-                    newCreature = Converter.createPlayerCharacterFromCard(contentData);
-                }
-                case NPC -> {
-                    newCreature = Converter.createNPCFromCard(contentData);
-                }
+                case MONSTER -> newCreature = converter.createMonsterFromCard(contentData);
+                case PLAYER_CHARACTER -> newCreature = converter.createPlayerCharacterFromCard(contentData);
+                case NPC -> newCreature = converter.createNPCFromCard(contentData);
+
             }
             if (newCreature instanceof Character castedCharacter) {
                 var numberData = view.generateIndexesNumberData();
