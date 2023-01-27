@@ -12,9 +12,7 @@ public class FullSmallView extends SmallCardsView {
 
     protected OnlyVisibleCard createOnlyVisibleCard(int index){
         var card = factory.createSmallFullCard();
-
         card.getShowbutton().addActionListener(generateActionListener(ButtonType.SHOW, index));
-
         card.getEditButton().addActionListener(generateActionListener(ButtonType.EDIT, index));
 
         card.getDeleteButton().addActionListener(e -> {

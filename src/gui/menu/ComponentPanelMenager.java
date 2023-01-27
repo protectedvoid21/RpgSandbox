@@ -84,8 +84,6 @@ public class ComponentPanelMenager<T extends JComponent> extends JPanel {
             case LEFT, RIGHT -> initCstForVerticalBox(weight, side);
         }
         var box = Box.createGlue();
-//        box.setBackground(new Color(0,0,0,0));
-//box.setOpaque(false);//niebezpieccznie zmienione tylko pierdolilo background
         removeAddedSpace(side);
         add(box, cst);
         freeSpaces.put(side, box);
@@ -123,29 +121,14 @@ public class ComponentPanelMenager<T extends JComponent> extends JPanel {
         revalidate();
     }
 
-    @Override//it really smells, i know
+    @Override
     public void setBackground(Color bg) {
         super.setBackground(bg);
-//        if(bg.getRed()==238&&bg.getBlue()==238))
-//        if (component instanceof JPanel) {
-//            component.setBackground(bg);
-//        }
-//        if (component instanceof DefaultCustomMenuMenager<? extends JComponent>>) {
-//            component.setBackground(bg);
-//        }to opaque pamietac moze cos z tym wspolnym interfejsem
     }
 
     public void setBackgroundImage(String fileName) throws IOException {
         backimgPath = fileName;
-//        try{
         backgroundImage = ImageIO.read(new File(fileName));
-//        }finally {
-//            if(backgroundImage==null){
-//                setOpaque(true);
-//            }else{
-//                setOpaque(false);
-//            }
-//        }
         repaint();
         revalidate();
 
@@ -156,7 +139,6 @@ public class ComponentPanelMenager<T extends JComponent> extends JPanel {
 
     @Override
     public void paintComponent(Graphics g) {
-//        setOpaque(backgroundImage==null?false:true);
         super.paintComponent(g);
 
         if (backgroundImage != null) {
@@ -183,22 +165,13 @@ public class ComponentPanelMenager<T extends JComponent> extends JPanel {
      */
     public void setBorderData(Color color, IBorderStrategy strategy, int borderValue) {
         borderData = new BorderData(strategy,  ((double) borderValue) / 10, color);
-//        this.strategy = strategy;
-//        this.borderColor = color;
-//        this.borderValue = ((double) borderValue) / 10;
     }
     public void setBorderData(BorderData borderData) {
         this.borderData = borderData;
-//        this.strategy = strategy;
-//        this.borderColor = color;
-//        this.borderValue = ((double) borderValue) / 10;
     }
 
     public void removeBorderData() {
         borderData = new BorderData();
-//        strategy = new DefaultBorderStrategy();
-//        this.borderColor = null;
-//        this.borderValue = 0;
     }
 
     public BorderData getBorderData(){

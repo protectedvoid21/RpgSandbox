@@ -78,10 +78,9 @@ public class CreatureListController extends Controller {
     private class DeleteButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println("czy ja kurwa usuwam");
             var index = view.getClickedIndex();
             System.out.println(index);
-            FileManager.deleteFile(creatureList.get(index).getObjectPathPicture());
+//            FileManager.deleteFile(creatureList.get(index).getObjectPathPicture());
             creatureList.remove(index);
             EntityManager.getInstance().saveAllEntities();
         }

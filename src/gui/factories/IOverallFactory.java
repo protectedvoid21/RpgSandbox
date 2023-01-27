@@ -20,8 +20,6 @@ import gui.views.objectViews.itemsViews.ShowSmallView;
 public abstract class IOverallFactory {
     protected GuiFactory factory = new GuiFactory();
 
-    public abstract TitleView createTitleView();
-
     public abstract EntriesCard createEntriesCard();
 
     public abstract BasicCard createBasicCard();
@@ -40,7 +38,6 @@ public abstract class IOverallFactory {
 
     public abstract FullSmallView createAllWeaponsItemsView();
     public abstract FullSmallView createAllMountsItemsView();
-    public abstract ShowSmallView createAllItemsItemsView();
     public abstract FullSmallView createAllArmorsItemsView();
     public abstract GodCard createGodCard();
     public abstract EntriesCard createCreatorCard(Card.CardTypes type);
@@ -56,7 +53,6 @@ public abstract class IOverallFactory {
     public abstract SelectingView createOverallItemPanel();
     public abstract SelectingView createOverallCreaturesPanel();
 
-    public abstract SelectingView createCreatingEditingItemsPanel();
 
     public abstract SelectingView createViewingItemsPanel();
 
@@ -66,10 +62,8 @@ public abstract class IOverallFactory {
 
     public abstract ChoosingCreationGameView createchoosingCreationGameView();
 
-    public abstract CardCancelView createCardCancelView(Card card);
 
     public abstract CreatorGameView createCreatorGameView();
 
     public abstract CreatorPanel createCreatorPanel();
-//    public abstract OptionsPanel createOptionsPanel();
 }

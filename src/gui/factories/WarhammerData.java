@@ -5,6 +5,9 @@ import gui.utils.StringAdapter;
 import java.awt.*;
 
 public interface WarhammerData {
+    String gameTitle = "RPG ENGINE";
+    String smallSward1 = StringAdapter.getRelativePath("swo.png");
+    String smallSward2 = StringAdapter.getRelativePath("leftsword.png");
     String person1Path = StringAdapter.getRelativePath("person1.png");
     String person2Path = StringAdapter.getRelativePath("person2.png");
     String person3Path = StringAdapter.getRelativePath("person3.png");
