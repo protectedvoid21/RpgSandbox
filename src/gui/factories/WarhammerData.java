@@ -64,8 +64,8 @@ public interface WarhammerData {
     String plusImage = StringAdapter.getRelativePath("plus.png");
     String cardBackground = StringAdapter.getRelativePath("backforcard.jpg");
     String avePath = StringAdapter.getRelativePath("wood.jpg");
-    Color basicBorderColor = new Color(0x4D0202);//jako ze wszedzie ten sam to moze sie popsuc gdy gdzies sie
-    // przypadkiem zmieni, brak czasu na testy, sie w miedzyczasie to ogarnie
+    String knivesOpt = StringAdapter.getRelativePath("knivesOpt.png");
+    Color basicBorderColor = new Color(0x4D0202);
     int basicBorderSize = 10;
 
 }

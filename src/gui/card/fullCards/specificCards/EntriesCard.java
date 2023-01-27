@@ -133,7 +133,9 @@ public class EntriesCard extends Card {
 
     public void uploadNewChoserCardData(LinkedHashMap<CardTypes, CardContentDataSet> newData, HashMap<CardTypes,
             ArrayList<CardContentDataSet>> detailData) {
+        System.out.println(cardSideIndexes+"cujjj");
         choserCard.uploadNewData(newData, detailData);
+        System.out.println(cardSideIndexes+"cujjjsss");
         for (var key : detailData.keySet()) {
             choserCard.setCurrentType(key);
             var array = new ArrayList<Integer>();
@@ -151,6 +153,7 @@ public class EntriesCard extends Card {
         }
         updateContent();
         choserCard.updateContent();
+        System.out.println(cardSideIndexes+"cujjj");
     }
 
     @Override

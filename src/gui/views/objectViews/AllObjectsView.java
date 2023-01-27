@@ -1,17 +1,15 @@
 package gui.views.objectViews;
 
 import gui.card.DoubleArrowPanel;
-import gui.factories.IOverallFactory;
 import gui.card.SwitchableComponent;
 import gui.customComponents.AbstractCustomButton;
 import gui.factories.GuiFactory;
+import gui.factories.IOverallFactory;
 import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
 import gui.views.BackgroundView;
 import gui.views.PanelContainer;
-
-import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,6 +28,17 @@ public abstract class AllObjectsView extends BackgroundView implements Switchabl
 
     public enum ButtonType {SHOW, EDIT, DELETE, APPLY}
 
+    protected void setClickedIndex(int index){
+        currentSide = maximumumElements * currentSide + index;
+    }
+    protected ActionListener generateActionListener(ButtonType type, int index){
+        return e -> {
+            setClickedIndex(index);
+            if (listenerHashMap.containsKey(index) && listenerHashMap.get(index).containsKey(type)) {
+                listenerHashMap.get(index).get(type).actionPerformed(e);
+            }
+        };
+    }
 
     public void addButtonActionListener(ButtonType type, int index, ActionListener listener) {
         if (!listenerHashMap.containsKey(index)) {

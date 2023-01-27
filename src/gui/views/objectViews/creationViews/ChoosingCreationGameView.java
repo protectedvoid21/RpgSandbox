@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class ChoosingCreationGameView extends AllObjectsView {
     protected ArrayList<CreatorPanel> data = new ArrayList<>();
-    private ArrayList<AbstractCustomButton> applyButtons = new ArrayList<>();
+    private final ArrayList<AbstractCustomButton> applyButtons = new ArrayList<>();
 
 
     public ChoosingCreationGameView(IOverallFactory factory) {
@@ -47,13 +47,7 @@ public class ChoosingCreationGameView extends AllObjectsView {
             applyButtons.add(button);
             manager.addMiddleComponent(button, 2,10);
             manager.getMiddleComponent(2, i).addSpace(5);
-            int finalI = i;
-            button.addActionListener(e -> {
-                clickedIndex = maximumumElements * currentSide + finalI;
-                if (listenerHashMap.containsKey(clickedIndex) && listenerHashMap.get(clickedIndex).containsKey(ButtonType.APPLY)) {
-                    listenerHashMap.get(clickedIndex).get(ButtonType.APPLY).actionPerformed(e);
-                }
-            });
+            button.addActionListener(generateActionListener(ButtonType.APPLY, i));
         }
     }
 
@@ -86,11 +80,6 @@ public class ChoosingCreationGameView extends AllObjectsView {
     public ArrayList<? extends CreatorPanel> getData() {
         return data;
     }
-
-    public AbstractCustomButton getApplyButton(int index){
-        return applyButtons.get(index);
-    }
-
     @Override
     protected void updateContent() {
         int maxSideIndex = getSideMaximumElementsNumber();

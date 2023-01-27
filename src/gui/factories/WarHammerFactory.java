@@ -29,6 +29,7 @@ import gui.menu.ICustomBackgorund;
 import gui.views.menuViews.MenuView;
 import gui.views.objectViews.itemsViews.FullSmallView;
 import gui.views.objectViews.itemsViews.ShowSmallView;
+import gui.views.pickers.FullItemPicker;
 
 import java.util.*;
 
@@ -80,7 +81,7 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
         menuLabelFactory.setPaths(StringAdapter.getRelativePath("leftsword.png"), StringAdapter.getRelativePath(
                 "rightsword.png"));
         setFactoriesMode(Mode.MENU);
-        var menu = new MenuView(factory);
+        var menu = new MenuView(factory, "RPG ENGINE");
         menu.setBorder(basicBorderColor, basicBorderSize);
         uploadBackgroundImage(menu, background1);
         return menu;
@@ -149,6 +150,11 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
         factory.setButtonFactory(basicButtonFactory);
         factory.setLabelFactory(labelFactory);
         var mainPanel = new MainPanelGame(this);
+        var map = new HashMap<FullItemPicker.LabelType, String>();
+        map.put(FullItemPicker.LabelType.WEAPON, weaponPath);
+        map.put(FullItemPicker.LabelType.MOUNT, horsePath);
+        map.put(FullItemPicker.LabelType.ARMOR, armorPath);
+        mainPanel.initializePicker(map);
         mainPanel.getGamePanel().setBorder(basicBorderColor, basicBorderSize);
         mainPanel.getActivityOptionsPanel().initializeButtonsData(new ArrayList<>(Arrays.asList(targetOpt,
                 defenseStandOpt, blockOption)));
@@ -163,6 +169,7 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
         mainPanel.getGamePanel().initializeOptionsButtonPanelData(new ArrayList<>(Arrays.asList(moveOption,
                 cardOption)));
         mainPanel.getGamePanel().changeActiveOptionsPanel();
+        mainPanel.getGamePanel().setAttackArmorPathContent(armorPath, knivesOpt);
         return mainPanel;
     }
 
@@ -172,7 +179,6 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
         var panel = new ChoosingCreationGameView(this);
         panel.initialize();
         var p1 = createCreatorPanel();
-
         var p2 = createCreatorPanel();
         var p3 = createCreatorPanel();
         p1.applyContent(new AbstractMap.SimpleEntry<>(new Vector2(9, 7), playerImagePath),
@@ -287,7 +293,7 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData {
                 new ArrayList<>(Arrays.asList("xxx", "xxx")), new ArrayList<>(Arrays.asList("xxx", "xxx")),
                 new ArrayList<>(Arrays.asList("xxx", "xxx")))));
 //        obj.uploadData()
-        switch (type){
+        switch (type) {
             case NPC -> obj.uploadMainImageData(npcImage);
             case MONSTER -> obj.uploadMainImageData(monsterPath);
             case PLAYER_CHARACTER -> obj.uploadMainImageData(playerImagePath);

@@ -10,16 +10,17 @@ import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
 import gui.views.PanelContainer;
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
 public class ItemPicker implements SwitchableComponent, PanelContainer {
-    private DoubleArrowPanel arrows;
-    protected DefaultCustomMenuMenager menager =
-            new DefaultCustomMenuMenager(ComponentsSeries.ComponentsDimension.VERTICAL,
+    private final DoubleArrowPanel arrows;
+    protected DefaultCustomMenuMenager<JComponent> menager =
+            new DefaultCustomMenuMenager<>(ComponentsSeries.ComponentsDimension.VERTICAL,
                     ComponentsSeries.ComponentsDimension.HORIZONTAL);
     private ArrayList<String> items = new ArrayList<>();
-    private AbstractCustomLabel label;
+    private final AbstractCustomLabel label;
     protected int currentSide = 0;
     private CustomLambdaExpression leftListener = () -> {
     };
@@ -58,7 +59,6 @@ public class ItemPicker implements SwitchableComponent, PanelContainer {
 
     private void updateContent() {
         if (currentSide >= -1) {
-            System.out.println(items);
             label.setContent(currentSide >= 0 && items.size()>currentSide ? items.get(currentSide) : "");
         }
     }

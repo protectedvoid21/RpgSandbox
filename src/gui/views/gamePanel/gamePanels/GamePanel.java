@@ -10,16 +10,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class GamePanel extends BaseGamePanel {
-
     private LabelMultipleGameOptionsPanel gameOptionsPanel;
     private MultipleGameOptionsPanel maxioItemsOptionsPanel;
-
     public enum ActionsLabelsType {ATACK, DEFEND}
-
     private DefendAttackActionsPanel defendAttackActionsPanel;
     private InformationPanel informationPanel;
-
-//    private MultipleGameOptionsPanel activeOptionsPanel = null;
 
 
     public GamePanel(IOverallFactory factory, int size) {
@@ -33,7 +28,6 @@ public class GamePanel extends BaseGamePanel {
     public void changeActiveOptionsPanel() {
         optionsPanel.setVisible(false);
         optionsPanel = optionsPanel == maxioItemsOptionsPanel ? gameOptionsPanel : maxioItemsOptionsPanel;
-//        optionsPanel = activeOptionsPanel;
     }
 
     public void setActionsVisibility(boolean value) {
@@ -46,7 +40,6 @@ public class GamePanel extends BaseGamePanel {
     }
 
     public void setOptionsDisabledIndexes(Vector2 point, Integer... indexes) {
-//        activeOptionsPanel.setDisabledIndexes(point, indexes);
         setOptionsDisabledIndexes(point, new ArrayList<>(Arrays.asList(indexes)));
     }
 
@@ -61,8 +54,6 @@ public class GamePanel extends BaseGamePanel {
     @Override
     public void initialize() {
         super.initialize();
-        setAttackArmorPathContent(StringAdapter.getRelativePath("armor.png"), StringAdapter.getRelativePath(
-                "knivesOpt.png"));
         defendAttackActionsPanel.initialize();
     }
 
@@ -94,7 +85,6 @@ public class GamePanel extends BaseGamePanel {
         optionsPanel = opt;
         optionsPanel.initialize(weight);
         maxioItemsOptionsPanel = new MultipleGameOptionsPanel(factory.getFactory(), 2);
-//        activeOptionsPanel = gameOptionsPanel;
         maxioItemsOptionsPanel.initialize(weight);
     }
 

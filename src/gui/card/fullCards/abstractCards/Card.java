@@ -39,7 +39,7 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
 
     public enum CardTypes {OVERALL, ATTRIBUTE, ARMOR, WEAPONS, EFFECTS, MOUNT, ITEMS}
 
-    protected static ArrayList<CardTypes> cardSideIndexes = new ArrayList<>(Arrays.asList(CardTypes.OVERALL,
+    protected  ArrayList<CardTypes> cardSideIndexes = new ArrayList<>(Arrays.asList(CardTypes.OVERALL,
             CardTypes.ATTRIBUTE,
             CardTypes.WEAPONS, CardTypes.EFFECTS, CardTypes.ARMOR, CardTypes.MOUNT, CardTypes.ITEMS));
     protected ComponentsSeries<ComponentPanelMenager<JComponent>> arrowMenager;
@@ -61,7 +61,7 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
     }
 
     protected void showCancelPanel(boolean status) {
-        seriesPanel.getMainComponent(3).setVisible(hasCancelPanel == false ? false : status);
+        seriesPanel.getMainComponent(3).setVisible(hasCancelPanel && status);
     }
 
     protected void createCancelPanel() {
@@ -219,14 +219,16 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
 
     public void uploadNewData(LinkedHashMap<CardTypes, CardContentDataSet> newData, HashMap<CardTypes,
             ArrayList<CardContentDataSet>> detailData) {
+
         for (var type : newData.keySet()) {
             allCards.get(type).initializeCardData(newData.get(type), detailData.get(type));
         }
-        var a = new ArrayList<CardTypes>();
-        for (var key : newData.keySet()) {
-            a.add(key);
-        }
-        cardSideIndexes = a;
+        cardSideIndexes = new ArrayList<>(newData.keySet());
+//        var a = new ArrayList<CardTypes>();
+//        for (var key : newData.keySet()) {
+//            a.add(key);
+//        }
+//        cardSideIndexes = a;
         var map = new LinkedHashMap<CardTypes, ActionListener>();
 
         for (var key : cardSideIndexes) {
@@ -241,6 +243,9 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
                 detailData.get(CardTypes.OVERALL));
 
         switchSide(cardSideIndexes.get(0));
+        System.out.println(allCards);
+        System.out.println(cardSideIndexes);
+        rightArrows.updateSwitchingButtons();
     }
 
     public void updateContent(AbstractCard newActiveCard) {
@@ -277,6 +282,8 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
     @Override
     public boolean isSwitchingSidePossible(DoubleArrowPanel.Side side) {
         boolean status = false;
+        System.out.println(cardSideIndexes);
+        System.out.println(currentAttrSide);
         switch (side) {
             case LEFT -> status = currentAttrSide > 0;
             case RIGHT -> status = currentAttrSide < cardSideIndexes.size() - 1;

@@ -164,8 +164,7 @@ public class Converter implements WarhammerData {
     public static HashMap<Card.CardTypes, ArrayList<CardContentDataSet>> createFullDetailDataCreature(Creature basecreature) {
         var map = new LinkedHashMap<Card.CardTypes, ArrayList<CardContentDataSet>>();
     System.out.println("fsdfs");
-        if (basecreature instanceof Character) {
-            var creature = (Character) basecreature;
+        if (basecreature instanceof Character creature) {
             var armorlist = new ArrayList<CardContentDataSet>();
             for (var armor : creature.getInventory().getArmors()) {
                 armorlist.add(detailsView(armor));
@@ -207,7 +206,6 @@ public class Converter implements WarhammerData {
             map.put(Card.CardTypes.WEAPONS, convertWeaponsToDataSet((Character) creature));
             map.put(Card.CardTypes.ITEMS, convertItemsToDataSet((Character) creature));
         }
-        System.out.println(map);
         if (creature instanceof Monster) {
             map.put(Card.CardTypes.OVERALL, convertCreatureToDataSetInBasicCard(creature));
             map.put(Card.CardTypes.ATTRIBUTE, convertStatsToDataSet(creature));

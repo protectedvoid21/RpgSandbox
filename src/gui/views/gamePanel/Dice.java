@@ -1,15 +1,10 @@
 package gui.views.gamePanel;
 
 import gui.customComponents.AbstractCustomButton;
-import gui.customComponents.AbstractCustomLabel;
-import gui.customComponents.iconComponents.IconButton;
-import gui.customComponents.iconComponents.IconLabel;
 import gui.factories.GuiFactory;
 import gui.utils.StringAdapter;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 

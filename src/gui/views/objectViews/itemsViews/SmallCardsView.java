@@ -1,15 +1,9 @@
 package gui.views.objectViews.itemsViews;
 
-import gui.card.DoubleArrowPanel;
-import gui.card.fullCards.specificCards.onlyVisibleCards.FullOnlyVisibleCard;
-import gui.factories.IOverallFactory;
 import gui.card.fullCards.specificCards.onlyVisibleCards.OnlyVisibleCard;
+import gui.factories.IOverallFactory;
 import gui.views.objectViews.AllObjectsView;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public abstract class SmallCardsView extends AllObjectsView {
     protected ArrayList<ArrayList<String>> data = new ArrayList<>();

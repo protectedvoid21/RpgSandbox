@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class MaxioItemPicker extends ItemPicker {
-    private AbstractCustomButton button;
+    private final AbstractCustomButton button;
     private ActionListener currentListener = e -> {
     };
 
@@ -25,10 +25,6 @@ public class MaxioItemPicker extends ItemPicker {
                 currentListener.actionPerformed(e);
         });
     }
-
-    //    public AbstractCustomButton getButton() {
-//        return button;
-//    }
     public void addButtonLIstener(ActionListener listener) {
         currentListener = listener;
     }

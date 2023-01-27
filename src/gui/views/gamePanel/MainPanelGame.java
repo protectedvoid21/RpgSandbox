@@ -1,6 +1,5 @@
 package gui.views.gamePanel;
 
-import game.equipment.Item;
 import gui.factories.IOverallFactory;
 import gui.card.SharedCmpsFont;
 import gui.customComponents.AbstractCustomButton;
@@ -25,23 +24,21 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class MainPanelGame {
-    private DefaultCustomMenuMenager menager =
-            new DefaultCustomMenuMenager(ComponentsSeries.ComponentsDimension.VERTICAL,
+    private final DefaultCustomMenuMenager<JComponent> menager =
+            new DefaultCustomMenuMenager<>(ComponentsSeries.ComponentsDimension.VERTICAL,
                     ComponentsSeries.ComponentsDimension.HORIZONTAL);
-    private GamePanel gamePanel;
-    private FullItemPicker picker;
-    private MaxioItemPicker itemsItemPicker;
-    private AbstractCustomButton exitButton;
-    private AbstractCustomButton nextPlayerButton;
-    private AbstractCustomButton actionsVisibilityButton;
-    private GameOptionsPanel activityOptionsPanel;
-    private AbstractCustomLabel remainingMoves;
-    private ComponentsSeries<ComponentPanelMenager> seriesPanel =
-            new ComponentsSeries(ComponentsSeries.ComponentsDimension.VERTICAL);
-    private IOverallFactory factory;
+    private final GamePanel gamePanel;
+    private final FullItemPicker picker;
+    private final MaxioItemPicker itemsItemPicker;
+    private final AbstractCustomButton exitButton;
+    private final AbstractCustomButton nextPlayerButton;
+    private final AbstractCustomButton actionsVisibilityButton;
+    private final GameOptionsPanel activityOptionsPanel;
+    private final AbstractCustomLabel remainingMoves;
+    private final ComponentsSeries<ComponentPanelMenager<? extends JComponent>> seriesPanel =
+            new ComponentsSeries<>(ComponentsSeries.ComponentsDimension.VERTICAL);
 
     public MainPanelGame(IOverallFactory factory) {
-        this.factory = factory;
         itemsItemPicker = new MaxioItemPicker(factory.getFactory());
         gamePanel = new GamePanel(factory, 10);
 //        dice = new Dice(factory.getFactory());
@@ -122,9 +119,9 @@ public class MainPanelGame {
         menager.addMiddleComponent(gamePanel.getPanel(), 0, 8);
         menager.addMiddleComponent(seriesPanel, 0, 1, 20);
         menager.getMiddleComponent(0, 1).addSpace(1);
-        var cmp1 = new ComponentPanelMenager(picker.getPanel());
+        var cmp1 = new ComponentPanelMenager<>(picker.getPanel());
         cmp1.addSpace(2, ComponentPanelMenager.Side.TOP, ComponentPanelMenager.Side.BOTTOM);
-        var cmp2 = new ComponentPanelMenager(itemsItemPicker.getPanel());
+        var cmp2 = new ComponentPanelMenager<>(itemsItemPicker.getPanel());
         cmp2.addSpace(2, ComponentPanelMenager.Side.BOTTOM);
         seriesPanel.addOption(cmp1, 14);
         seriesPanel.addOption(cmp2, 6);
@@ -135,20 +132,10 @@ public class MainPanelGame {
         }
         menager.addMiddleComponent(activityOptionsPanel.getPanel(), 1, 10);
         activityOptionsPanel.getPanel().addSpace(2);
-        var map = new HashMap<FullItemPicker.LabelType, String>();
-        map.put(FullItemPicker.LabelType.WEAPON, StringAdapter.getRelativePath("weapon.png"));
-        map.put(FullItemPicker.LabelType.MOUNT, StringAdapter.getRelativePath("horse.png"));
-        map.put(FullItemPicker.LabelType.ARMOR, StringAdapter.getRelativePath("armor.png"));
-//        var secondMap = new HashMap<FullItemPicker.LabelType, ArrayList<String >>();
-//        secondMap.put(FullItemPicker.LabelType.WEAPON, new ArrayList<>(Arrays.asList("src/gui/weapon.png",
-//        "src/gui/weapon.png","src/gui/weapon.png","src/gui/warback.png")));
-//        secondMap.put(FullItemPicker.LabelType.MOUNT, new ArrayList<>(Arrays.asList("src/gui/weapon.png",
-//        secondMap.put(FullItemPicker.LabelType.ARMOR, new ArrayList<>(Arrays.asList("src/gui/weapon.png")));
-//        picker.uploadItemPaths(secondMap);
+    }
+
+    public void initializePicker(HashMap<FullItemPicker.LabelType, String>map){
         picker.uploadMainPaths(map);
-//        activityOptionsPanel.initializeButtonsData(new ArrayList<>(Arrays.asList("xx", "dd", "ffff", "Fsd", "FDsf",
-//                "Fsf")));
-//        activityOptionsPanel.initializeLabelsData(new ArrayList<>(Arrays.asList("1", "2", "3", "1", "1", "1")));
     }
 
     public void setMovesNumber(int val) {

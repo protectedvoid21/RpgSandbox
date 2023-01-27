@@ -25,13 +25,13 @@ public class MenuView extends BackgroundView implements PanelContainer {
             new DefaultCustomMenuMenager<>(ComponentsSeries.ComponentsDimension.VERTICAL,
                     ComponentsSeries.ComponentsDimension.HORIZONTAL);
 
-    public MenuView(GuiFactory factory) {
+    public MenuView(GuiFactory factory, String titleGame) {
         this.factory = factory;
         manager.getCmp().addSpace(2, ComponentPanelMenager.Side.BOTTOM, ComponentPanelMenager.Side.TOP);
         manager.getCmp().addSpace(2, ComponentPanelMenager.Side.RIGHT, ComponentPanelMenager.Side.LEFT);
         manager.addMainComponent(14);
         factory.setLabelType(GuiFactory.LabelType.NORMAL);
-        manager.addMiddleComponent(factory.createLabel("RPG ENGINE"), 0, 1);
+        manager.addMiddleComponent(factory.createLabel(titleGame), 0, 1);
         manager.getMiddleComponent(0, 0).addSpace(3, ComponentPanelMenager.Side.BOTTOM);
         createButton("NEW GAME", 1, false);
         createButton("ITEMS", 2, false);
