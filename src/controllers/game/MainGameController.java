@@ -2,21 +2,21 @@ package controllers.game;
 
 import controllers.Controller;
 import controllers.MenuController;
-import controllers.utils.RedirectListener;
 import game.board.Board;
 import game.board.RoundManager;
 import game.board.Scenario;
 import game.filehandle.EntityManager;
 import game.generals.Vector2;
+import gui.actionListener.ListenerBaseData;
 import gui.actionListener.basicActionsListener.EndTurnListener;
 import gui.actionListener.basicActionsListener.MoveListener;
 import gui.actionListener.basicActionsListener.TurnOnEnemySelecting;
+import gui.actionListener.basicActionsListener.UseListener;
 import gui.actionListener.scrollItem.*;
 import gui.actionListener.turnOffButtons;
 import gui.actionListener.warhammerActions.*;
 import gui.card.DoubleArrowPanel;
 import gui.factories.IOverallFactory;
-import gui.views.gamePanel.MainPanelGame;
 import gui.views.pickers.CustomLambdaExpression;
 import gui.views.pickers.FullItemPicker;
 

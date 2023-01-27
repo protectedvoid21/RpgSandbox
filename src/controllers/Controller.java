@@ -2,17 +2,17 @@ package controllers;
 
 import controllers.audio.CustomAudioManager;
 import gui.factories.IOverallFactory;
-import gui.utils.Converter;
+import gui.utils.AbstractConverter;
 
 import javax.swing.*;
 
 public abstract class Controller {
     protected ControllerManager controllerManager;
     protected JFrame mainFrame;
-    protected Converter converter;
+    protected AbstractConverter converter;
     protected CustomAudioManager audioManager;
 
-    public void initialize(ControllerManager controllerManager, JFrame mainFrame, Converter converter, CustomAudioManager audioManager) {
+    public void initialize(ControllerManager controllerManager, JFrame mainFrame, AbstractConverter converter, CustomAudioManager audioManager) {
         this.controllerManager = controllerManager;
         this.mainFrame = mainFrame;
         this.audioManager = audioManager;

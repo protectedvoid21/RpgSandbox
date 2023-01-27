@@ -18,7 +18,10 @@ public class FullSmallView extends SmallCardsView {
         card.getShowbutton().addActionListener(generateActionListener(ButtonType.EDIT, index));
 
         card.getShowbutton().addActionListener(e -> {
+            System.out.println(index);
+
             generateActionListener(ButtonType.DELETE, index).actionPerformed(e);
+            System.out.println(clickedIndex+"xd");
             data.remove(data.get(clickedIndex));
             updateContent();
             if (maximumumElements * currentSide >= data.size()) {

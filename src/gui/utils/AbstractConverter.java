@@ -15,59 +15,58 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 public interface AbstractConverter {
-    public ErrorValidationChecker getErrorValidationChecker();
+    ErrorValidationChecker getErrorValidationChecker();
 
-    public CardContentDataSet convertCreatureToDataSetInBasicCard(Creature creature);
+     CardContentDataSet convertCreatureToDataSetInBasicCard(Creature creature);
 
-    public CardContentDataSet convertArmorsToDataSet(Character character);
+     CardContentDataSet convertArmorsToDataSet(Character character);
 
-    public CardContentDataSet convertWeaponsToDataSet(Character character);
+     CardContentDataSet convertWeaponsToDataSet(Character character);
 
-    public CardContentDataSet convertMountsToDataSet(Character character);
+     CardContentDataSet convertMountsToDataSet(Character character);
 
-    public CardContentDataSet convertStatsToDataSet(Creature creature);
+     CardContentDataSet convertStatsToDataSet(Creature creature);
 
-    public HashMap<Card.CardTypes, ArrayList<CardContentDataSet>> createFullDetailDataCreature(Creature basecreature);
+     HashMap<Card.CardTypes, ArrayList<CardContentDataSet>> createFullDetailDataCreature(Creature basecreature);
 
-    public LinkedHashMap<Card.CardTypes, CardContentDataSet> createFullDataCreature(Creature creature);
+     LinkedHashMap<Card.CardTypes, CardContentDataSet> createFullDataCreature(Creature creature);
 
-    public CardContentDataSet createWeaponInEntriesCard();
+     CardContentDataSet createWeaponInEntriesCard();
+     CardContentDataSet createArmorInEntriesCard();
 
-    public CardContentDataSet createArmorInEntriesCard();
+     CardContentDataSet createMountInEntriesCard();
 
-    public CardContentDataSet createMountInEntriesCard();
+     CardContentDataSet addNewItemInEntriesCard(Character character);
 
-    public CardContentDataSet addNewItemInEntriesCard(Character character);
+     CardContentDataSet editWeaponInEntriesCard(Weapon weapon);
 
-    public CardContentDataSet editWeaponInEntriesCard(Weapon weapon);
+     CardContentDataSet editArmorInEntriesCard(Armor armor);
 
-    public CardContentDataSet editArmorInEntriesCard(Armor armor);
+     CardContentDataSet editMountInEntriesCard(Mount mount);
 
-    public CardContentDataSet editMountInEntriesCard(Mount mount);
+     CardContentDataSet createMonsterInEntriesCard();
 
-    public CardContentDataSet createMonsterInEntriesCard();
+     CardContentDataSet createPlayerCharacterInEntriesCard();
 
-    public CardContentDataSet createPlayerCharacterInEntriesCard();
+     CardContentDataSet createNPCInEntriesCard();
 
-    public CardContentDataSet createNPCInEntriesCard();
+     CardContentDataSet detailsView(ManyUsageItem item);
 
-    public CardContentDataSet detailsView(ManyUsageItem item);
+     CardContentDataSet smallCharacterCards(Character character);
 
-    public CardContentDataSet smallCharacterCards(Character character);
+     Weapon createWeaponFromCard(CardContentDataSet data);
 
-    public Weapon createWeaponFromCard(CardContentDataSet data);
+     Armor createArmorFromCard(CardContentDataSet data);
 
-    public Armor createArmorFromCard(CardContentDataSet data);
+     void setValidationOfNameAndPath(String name, String path);
 
-    public void setValidationOfNameAndPath(String name, String path);
+     Mount createMountFromCard(CardContentDataSet data);
 
-    public Mount createMountFromCard(CardContentDataSet data);
+     PlayerCharacter createPlayerCharacterFromCard(CardContentDataSet data);
 
-    public PlayerCharacter createPlayerCharacterFromCard(CardContentDataSet data);
+     NPC createNPCFromCard(CardContentDataSet data);
 
-    public NPC createNPCFromCard(CardContentDataSet data);
+     Monster createMonsterFromCard(CardContentDataSet data);
 
-    public Monster createMonsterFromCard(CardContentDataSet data);
-
-    public void main(String[] args);
+     void main(String[] args);
 }
