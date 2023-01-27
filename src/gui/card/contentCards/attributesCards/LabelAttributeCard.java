@@ -11,12 +11,10 @@ import java.util.ArrayList;
 
 public class LabelAttributeCard extends AttributesCard {
 
-    private ArrayList<AbstractCustomLabel> secondLabelList = new ArrayList<>();
-
+    private final ArrayList<AbstractCustomLabel> secondLabelList = new ArrayList<>();
     public LabelAttributeCard(GuiFactory factory) {
         super(factory);
     }
-
     @Override
     protected JComponent createSecondContentComponent() {
         factory.setLabelType(GuiFactory.LabelType.NORMAL);

@@ -1,7 +1,6 @@
 package gui.card.fullCards.specificCards;
 
 import gui.card.CardContentDataSet;
-import gui.card.SharedCmpsFont;
 import gui.card.contentCards.attributesCards.AttributesCard;
 import gui.card.contentCards.attributesCards.LabelAttributeCard;
 import gui.card.contentCards.detailCards.AddingButtonCard;
@@ -17,10 +16,8 @@ import java.util.HashMap;
 
 public class ChoserCard extends Card {
     private ComponentPanelMenager<AbstractCustomButton> button;
-    private HashMap<CardTypes, AddingButtonCard> cards = new HashMap<>();
+    private final HashMap<CardTypes, AddingButtonCard> cards = new HashMap<>();
     private CardTypes currentCardType;
-
-
     public ChoserCard(GuiFactory factory) {
         super(factory);
     }
@@ -35,9 +32,6 @@ public class ChoserCard extends Card {
     @Override
     public void setUniformFont() {
         super.setUniformFont();
-//        for (var card : cards.values()){
-//            card.setUniformForm();
-//        }
     }
 
     public void setCurrentType(CardTypes type) {
@@ -97,7 +91,7 @@ public class ChoserCard extends Card {
     protected void createArrowComponentSeries() {
         super.createArrowComponentSeries();
         factory.setButtonType(GuiFactory.ButtonType.NORMAL);
-        button = new ComponentPanelMenager<>(factory.createButton("ADD", null));
+        button = new ComponentPanelMenager<>(factory.createButton(addText, null));
         button.addSpace(5);
         arrowMenager.getOption(1).changeContent(new ComponentPanelMenager<>(button));
     }
@@ -113,7 +107,7 @@ public class ChoserCard extends Card {
     @Override
     protected void methodOfRightDownPanelComponent() {
         super.methodOfRightDownPanelComponent();
-        arrowMenager.getOption(1).changeContent(button);//to fix
+        arrowMenager.getOption(1).changeContent(button);
     }
 
 

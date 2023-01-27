@@ -11,13 +11,14 @@ import game.utils.ErrorValidationChecker;
 import game.utils.MathHelper;
 import gui.card.CardContentDataSet;
 import gui.card.fullCards.abstractCards.Card;
+import gui.factories.TextData;
 import gui.factories.WarhammerData;
 
 import java.util.*;
 
-public class Converter implements WarhammerData, AbstractConverter {
+public class Converter implements WarhammerData, AbstractConverter, TextData {
 
-    private static ErrorValidationChecker errorValidationChecker = new ErrorValidationChecker();
+    private static final ErrorValidationChecker errorValidationChecker = new ErrorValidationChecker();
 
     public ErrorValidationChecker getErrorValidationChecker() {
         return errorValidationChecker;
@@ -27,7 +28,7 @@ public class Converter implements WarhammerData, AbstractConverter {
 
         CardContentDataSet data = new CardContentDataSet(creature.getObjectPathPicture(), creature.getName());
         var map = new ArrayList<ArrayList<String>>();
-        map.add(new ArrayList<>(List.of(StringAdapter.getRelativePath("stats.png"))));
+        map.add(new ArrayList<>(List.of(statsPath)));
         if (creature instanceof Character) {
             for (var path : Arrays.asList(horsePath, armorPath, weaponPath, trolleyPath)) {
                 map.add(new ArrayList<>(List.of(path)));
@@ -43,7 +44,7 @@ public class Converter implements WarhammerData, AbstractConverter {
         var map = new ArrayList<ArrayList<String>>();
         for (var item : items) {
             String armorName = item.getName();
-            map.add(new ArrayList<>(Arrays.asList(item.getItemPathPicture(), armorName, "DETAILS")));
+            map.add(new ArrayList<>(Arrays.asList(item.getItemPathPicture(), armorName, detailsText)));
         }
         data.content = map;
         data.setFullStringDataContent();
@@ -53,23 +54,23 @@ public class Converter implements WarhammerData, AbstractConverter {
 
 
     public CardContentDataSet convertArmorsToDataSet(Character character) {
-        return itemToDataSet(character.getInventory().getArmors(), "Armor", armorPath);
+        return itemToDataSet(character.getInventory().getArmors(), armorText, armorPath);
     }
 
     public CardContentDataSet convertItemsToDataSet(Character character) {
-        return itemToDataSet(character.getInventory().getDisposableItems(), "Items", trolleyPath);
+        return itemToDataSet(character.getInventory().getDisposableItems(), itemsText, trolleyPath);
     }
 
     public CardContentDataSet convertWeaponsToDataSet(Character character) {
-        return itemToDataSet(character.getInventory().getWeapons(), "Weapons", weaponPath);
+        return itemToDataSet(character.getInventory().getWeapons(), weaponsText, weaponPath);
     }
 
     public CardContentDataSet convertMountsToDataSet(Character character) {
-        return itemToDataSet(character.getInventory().getMounts(), "Mounts", horsePath);
+        return itemToDataSet(character.getInventory().getMounts(), mountsText, horsePath);
     }
 
     public CardContentDataSet convertStatsToDataSet(Creature creature) {
-        CardContentDataSet data = new CardContentDataSet(statsPath, "Attributes");
+        CardContentDataSet data = new CardContentDataSet(statsPath, attrText);
         var map = new ArrayList<ArrayList<String>>();
         for (var attribute : AttributeEnum.values()) {
             String attibuteName = attribute.name().replace("_", " ");
@@ -148,18 +149,18 @@ public class Converter implements WarhammerData, AbstractConverter {
     }
 
     public CardContentDataSet editWeaponInEntriesCard(Weapon weapon) {
-        var firstPair = new Pair(Integer.toString(weapon.getDamage()), "damage");
-        var secondPair = new Pair(Integer.toString(weapon.getRange()), "range");
+        var firstPair = new Pair(Integer.toString(weapon.getDamage()), damageText);
+        var secondPair = new Pair(Integer.toString(weapon.getRange()), rangeText);
         return createItemInEntriesCard(weapon.getName(), weapon.getItemPathPicture(), firstPair, secondPair);
     }
 
     public CardContentDataSet editArmorInEntriesCard(Armor armor) {
-        var firstPair = new Pair(Integer.toString(armor.getDefence()), "defence");
+        var firstPair = new Pair(Integer.toString(armor.getDefence()), defenceText);
         return createItemInEntriesCard(armor.getName(), armor.getItemPathPicture(), firstPair);
     }
 
     public CardContentDataSet editMountInEntriesCard(Mount mount) {
-        var firstPair = new Pair(Integer.toString(mount.getSpeed()), "speed");
+        var firstPair = new Pair(Integer.toString(mount.getSpeed()), speedText);
         return createItemInEntriesCard(mount.getName(), mount.getItemPathPicture(), firstPair);
     }
 
@@ -189,10 +190,10 @@ public class Converter implements WarhammerData, AbstractConverter {
         int damage = 0;
         int range = 0;
         for (var parameter : data.content) {
-            if (parameter.get(0).equals("damage")) {
+            if (parameter.get(0).equals(damageText)) {
                 damage = getCheckedParameter(data, parameter);
             }
-            if (parameter.get(0).equals("range")) {
+            if (parameter.get(0).equals(rangeText)) {
                 range = getCheckedParameter(data, parameter);
             }
         }
@@ -216,7 +217,7 @@ public class Converter implements WarhammerData, AbstractConverter {
         setValidationOfNameAndPath(name, data.titlePath);
         int defence = 0;
         for (var parameter : data.content) {
-            if (parameter.get(0).equals("defence")) {
+            if (parameter.get(0).equals(defenceText)) {
                 defence = getCheckedParameter(data, parameter);
             }
         }
@@ -226,7 +227,6 @@ public class Converter implements WarhammerData, AbstractConverter {
     }
 
     public void setValidationOfNameAndPath(String name, String path) {
-        System.out.println(path);
         if (name.isEmpty()) {
             errorValidationChecker.setNameErrorOnTrue();
         }
@@ -240,7 +240,7 @@ public class Converter implements WarhammerData, AbstractConverter {
         setValidationOfNameAndPath(name, data.titlePath);
         int speed = 0;
         for (var parameter : data.content) {
-            if (parameter.get(0).equals("speed")) {
+            if (parameter.get(0).equals(speedText)) {
                 speed = getCheckedParameter(data, parameter);
             }
         }

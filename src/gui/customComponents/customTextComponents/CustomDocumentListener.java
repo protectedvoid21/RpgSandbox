@@ -54,7 +54,6 @@ public class CustomDocumentListener implements DocumentListener {
         });
     }
 
-    //to fix when some other background filters are used
     @Override
     public void insertUpdate(DocumentEvent e) {
         changedAction(e);

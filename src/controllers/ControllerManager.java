@@ -23,7 +23,6 @@ public class ControllerManager {
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setVisible(true);
         mainFrame.setResizable(true);
-
         this.audioManager = audioManager;
         changeController(new MenuController());
     }
@@ -32,7 +31,6 @@ public class ControllerManager {
         currentController = controller;
         controller.initialize(this, mainFrame, converter, audioManager);
         clearFrame();
-
         currentController.run(overallFactory);
         mainFrame.setVisible(true);
     }

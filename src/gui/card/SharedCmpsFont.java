@@ -6,6 +6,8 @@ import gui.customUI.interfaces.ICustomUI;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -14,12 +16,8 @@ import java.util.stream.Stream;
  */
 public class SharedCmpsFont<T extends JComponent &IContentCustomUICmp> {
     private ArrayList<T> cmps = new ArrayList<>();
-
-
     public SharedCmpsFont(T... cmps) {
-        for (var cmp : cmps) {
-            this.cmps.add(cmp);
-        }
+        this.cmps.addAll(Arrays.asList(cmps));
     }
 
     public SharedCmpsFont(ArrayList<T> cmps) {
@@ -42,19 +40,17 @@ public class SharedCmpsFont<T extends JComponent &IContentCustomUICmp> {
         return min;
     }
 
-    public void setSharedFontSize(JComponent component, String text) {
+    public void setSharedFontSize() {
         var size = getMinFont();
         for (var cmp : cmps) {
             if (cmp.hasSharedSize()) {
                 cmp.setFont(size);
             }
         }
-        for (var cmp : cmps) {
-        }
     }
 
     public static void setUniformFont(ArrayList<? extends IContentCustomUICmp>... elements) {
-        setUniformFont(new ArrayList<>(Stream.of(elements).flatMap(x -> x.stream()).collect(Collectors.toList())));
+        setUniformFont(new ArrayList<>(Stream.of(elements).flatMap(Collection::stream).collect(Collectors.toList())));
     }
 
     public static void setUniformFont(ArrayList<? extends IContentCustomUICmp> elements) {

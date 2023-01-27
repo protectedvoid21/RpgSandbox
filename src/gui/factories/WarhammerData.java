@@ -5,6 +5,10 @@ import gui.utils.StringAdapter;
 import java.awt.*;
 
 public interface WarhammerData {
+    String damageText = "damage";
+    String defenceText = "defence";
+    String speedText = "speed";
+    String rangeText = "range";
     String gameTitle = "RPG ENGINE";
     String smallSward1 = StringAdapter.getRelativePath("swo.png");
     String smallSward2 = StringAdapter.getRelativePath("leftsword.png");

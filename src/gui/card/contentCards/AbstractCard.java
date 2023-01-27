@@ -4,6 +4,7 @@ import gui.card.CardContentDataSet;
 import gui.card.DoubleArrowPanel;
 import gui.card.SwitchableComponent;
 import gui.factories.GuiFactory;
+import gui.factories.TextData;
 import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
 
@@ -11,7 +12,7 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public abstract class AbstractCard<T extends JComponent> implements SwitchableComponent {
+public abstract class AbstractCard<T extends JComponent> implements SwitchableComponent, TextData {
     protected GuiFactory factory;
     protected int currentAttrSide = 0;
     protected CardContentDataSet data = new CardContentDataSet();

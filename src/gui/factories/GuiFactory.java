@@ -27,14 +27,6 @@ import java.io.IOException;
 public class GuiFactory {
     private Font currentFont = new Font("Helvetica", Font.PLAIN, 14);
 
-    @Override
-    public String toString() {
-        return "GuiFactory{" +
-                "buttonFactory=" + buttonFactory +
-                ", labelFactory=" + labelFactory +
-                '}';
-    }
-
     public enum LabelType {NORMAL, ICON, STRETCH_ICON}
 
     public enum ButtonType {NORMAL, ICON, STRETCH_ICON, DISABLED_STRETCH_ICON, DISABLED_ICON, DOUBLE, DOUBLE_WITH_ICONS}
@@ -42,7 +34,7 @@ public class GuiFactory {
     private LabelType labelType = LabelType.NORMAL;
     private ButtonType buttonType = ButtonType.NORMAL;
     private ButtonFactory buttonFactory = new CardDownPanelButtonFactory();
-    private LabelFactory labelFactory = new GameGreenLabelFactory();//dorzucic defaultowe typys
+    private LabelFactory labelFactory = new GameGreenLabelFactory();
     private TextFactory textFactory = new TextFieldFactory();
     private IBorderStrategy borderStrategy;
 

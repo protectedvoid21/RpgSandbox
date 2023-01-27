@@ -53,12 +53,10 @@ public abstract class AttributesCard extends AbstractCard {
         int currentIndex = 0;
         Card.setNonDependantAspectVisible(labelList);
         for (var key : sublist) {
-
             labelList.get(currentIndex).setContent(key.get(0));
             getSecondContentList().get(currentIndex).setContent(key.get(1));
             currentIndex++;
         }
-
         if (sublist.size() < maximumElementNumber) {
             for (int i = dataSize % maximumElementNumber; i < maximumElementNumber; i++) {
                 labelList.get(i).setContent(Card.EMPTY_DATA_CONTENT);
@@ -74,7 +72,7 @@ public abstract class AttributesCard extends AbstractCard {
     protected abstract ArrayList<? extends IContentCustomUICmp> getSecondContentList();
 
     @Override
-    protected void initializeContent() {//zmienia sie
+    protected void initializeContent() {
         factory.setLabelType(GuiFactory.LabelType.NORMAL);
         for (int i = 0; i < maximumElementNumber; i++) {
             var label = factory.createLabel(Card.EMPTY_DATA_CONTENT);

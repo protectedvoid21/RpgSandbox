@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class NormalDetailButtonsCard extends DetailButtonsCard {
 
-    private ArrayList<AbstractCustomLabel> list = new ArrayList<>();
+    private final ArrayList<AbstractCustomLabel> list = new ArrayList<>();
     public NormalDetailButtonsCard(GuiFactory factory) {
         super(factory);
     }

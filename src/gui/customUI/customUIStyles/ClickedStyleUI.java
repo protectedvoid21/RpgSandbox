@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class ClickedStyleUI extends CustomUI implements IMovementComponent {
     final private int arcWidth;
     private boolean isPressed = false;
-    private ArrayList<IRequieredReactionOnMovementComponent> componentsList = new ArrayList<>();
+    private final ArrayList<IRequieredReactionOnMovementComponent> componentsList = new ArrayList<>();
 
     public ClickedStyleUI(IBorderStrategy strategy) {
         this(strategy, 10, 10);

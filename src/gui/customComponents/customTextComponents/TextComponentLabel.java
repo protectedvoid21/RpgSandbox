@@ -8,7 +8,5 @@ public class TextComponentLabel extends CustomLabel {
     public TextComponentLabel(){
         super();
         setForeground(new Color(0, 0, 0, 0));
-
     }
-
 }

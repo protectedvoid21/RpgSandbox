@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class UseListener implements ActionListener {
-    private ListenerBaseData listenerBaseData;
+    private final ListenerBaseData listenerBaseData;
     public UseListener(ListenerBaseData listenerBaseData) {
         this.listenerBaseData = listenerBaseData;
     }

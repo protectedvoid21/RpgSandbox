@@ -4,21 +4,15 @@ import gui.customUI.interfaces.IMovementComponent;
 import gui.customUI.interfaces.IRequieredReactionOnMovementComponent;
 
 import java.awt.*;
-import java.awt.font.TextAttribute;
 import java.awt.image.ImageObserver;
-import java.text.AttributedString;
-import java.util.HashMap;
 import javax.swing.*;
-//import org.jfree.graphics2d.svg.SVGGraphics2D;
-//import org.jfree;
-//import
 
 public class StretchIcon extends ImageIcon implements IRequieredReactionOnMovementComponent {
 
     protected boolean proportionate;
     private int componentMovement = 0;
     private IMovementComponent.Direction direction;
-    private String path;
+    private final String path;
 
     public StretchIcon(String filename) {
         this(filename, false);

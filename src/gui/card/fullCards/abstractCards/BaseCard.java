@@ -5,6 +5,7 @@ import gui.customComponents.*;
 import gui.customComponents.customTextComponents.CustomTextComponent;
 import gui.customUI.customUIStyles.borderStrategies.AverageBorderStartegy;
 import gui.factories.GuiFactory;
+import gui.factories.TextData;
 import gui.menu.*;
 import gui.views.PanelContainer;
 
@@ -13,7 +14,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.*;
 
-public abstract class BaseCard implements ICustomBackgorund, PanelContainer {
+public abstract class BaseCard implements ICustomBackgorund, PanelContainer, TextData {
 
     protected DefaultCustomMenuMenager<ComponentPanelMenager<? extends JComponent>> titleSeries =
             new DefaultCustomMenuMenager<>(ComponentsSeries.ComponentsDimension.HORIZONTAL,

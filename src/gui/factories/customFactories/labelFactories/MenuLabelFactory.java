@@ -23,10 +23,6 @@ public class MenuLabelFactory extends ImageLabelFactory {
         super(scalingSizeValue, scalingPositionValue);
     }
 
-    public MenuLabelFactory() {
-        super();
-
-    }
 
     private AbstractCustomLabel helpCreatedMethod(AbstractCustomLabel label) {
         label.setFont(font);
@@ -46,7 +42,6 @@ public class MenuLabelFactory extends ImageLabelFactory {
             ui2 = new CustomLabelUI(ui);
         }
         ui.setAdditionaldColor(new Color(0x4D0202), ICustomUI.Index.FIRST);
-//        var ui2 = new CustomLabelUI(uiHelper);
         label.setUI(ui2);
         label.setMaximumFontSizeStatus(true);
         label.getCustomUI().getMargin().set(10, 20, 10, 20);
@@ -61,7 +56,6 @@ public class MenuLabelFactory extends ImageLabelFactory {
     public AbstractCustomLabel createIconPropLabel(String path) {
         var label = helpCreatedMethod(new IconLabel(path, true));
         label.getCustomUI().setBackGroundTransparent(true);
-//        label.getLabelUI().getCustomUI().setRespectionBorder(false);
         return label;
     }
 

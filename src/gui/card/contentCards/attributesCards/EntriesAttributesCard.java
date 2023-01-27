@@ -20,8 +20,8 @@ import java.sql.Time;
 import java.util.ArrayList;
 
 public class EntriesAttributesCard extends AttributesCard {
-    private ArrayList<CustomTextComponent> entriesList = new ArrayList<>();
-    private ArrayList<CustomBooleanButton> buttonBooleanList = new ArrayList<>();
+    private final ArrayList<CustomTextComponent> entriesList = new ArrayList<>();
+    private final ArrayList<CustomBooleanButton> buttonBooleanList = new ArrayList<>();
 
     public EntriesAttributesCard(GuiFactory factory) {
         super(factory);
@@ -35,24 +35,16 @@ public class EntriesAttributesCard extends AttributesCard {
         }
         return data;
     }
-
-    public CardContentDataSet generateDetailContentData() {
-        return null;
-    }
-
     @Override
     protected JComponent createSecondContentComponent() {
-        var series = new ComponentsSeries<JComponent>(ComponentsSeries.ComponentsDimension.VERTICAL);
+        var series = new ComponentsSeries<>(ComponentsSeries.ComponentsDimension.VERTICAL);
         var x = factory.createButton("YES", "NO", true);
         x.getCustomUI().changeBorderStrategy(new DependantHeightBorderStrategy());
         buttonBooleanList.add(x);
         var y = factory.createTextField();
-        x.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                var index = getSideMaximumElementsNumber() - getMaximumElementNumber() + buttonBooleanList.indexOf(x);
-                data.content.get(index).set(1, !x.getStatus() ? "1" : Card.EMPTY_DATA_CONTENT);
-            }
+        x.addActionListener(e -> {
+            var index = getSideMaximumElementsNumber() - getMaximumElementNumber() + buttonBooleanList.indexOf(x);
+            data.content.get(index).set(1, !x.getStatus() ? "1" : Card.EMPTY_DATA_CONTENT);
         });
         entriesList.add(y);
         y.getTextComponent().addKeyListener(new KeyAdapter() {
@@ -88,7 +80,6 @@ public class EntriesAttributesCard extends AttributesCard {
     @Override
     protected ArrayList<? extends IContentCustomUICmp> getSecondContentList() {
         var array = new ArrayList<IContentCustomUICmp>();
-        System.out.println(data.dataType);
         for (int i = currentAttrSide * maximumElementNumber; i < getSideMaximumElementsNumber(); i++) {
             if (i >= data.dataType.size() ||data.dataType.get(i) == CardContentDataSet.DataType.STRING) {
                 array.add(entriesList.get(i % 5));
@@ -105,22 +96,20 @@ public class EntriesAttributesCard extends AttributesCard {
         SharedCmpsFont.setUniformFont(entriesList);
         SharedCmpsFont.setUniformFont(buttonBooleanList);
     }
+    private void setEntryListVisibilty(int index,boolean condiition, boolean condition2){
+        entriesList.get(index).setVisible(condiition);
+        buttonBooleanList.get(index).setVisible(condition2);
+    }
 
     @Override
     protected void updateContent() {
         super.updateContent();
         for (int i = currentAttrSide * maximumElementNumber; i < getSideMaximumElementsNumber(); i++) {
-            if (i >= data.dataType.size() || data.dataType.get(i) == CardContentDataSet.DataType.STRING) {
-                entriesList.get(i % maximumElementNumber).setVisible(true);
-                buttonBooleanList.get(i % maximumElementNumber).setVisible(false);
-            } else {
-                entriesList.get(i % maximumElementNumber).setVisible(false);
-                buttonBooleanList.get(i % maximumElementNumber).setVisible(true);
-            }
+            var condition = i >= data.dataType.size() || data.dataType.get(i) == CardContentDataSet.DataType.STRING;
+            setEntryListVisibilty(i%maximumElementNumber, condition, !condition);
         }
         for (int i = data.content.size(); i < getSideMaximumElementsNumber(); i++) {
-            entriesList.get(i % maximumElementNumber).setVisible(false);
-            buttonBooleanList.get(i % maximumElementNumber).setVisible(false);
+            setEntryListVisibilty(i % maximumElementNumber, false, false);
         }
     }
 

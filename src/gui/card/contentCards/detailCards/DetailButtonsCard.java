@@ -52,7 +52,7 @@ public abstract class DetailButtonsCard extends AbstractCard<JComponent> {
         for (var key : sublist) {
             labelList.get(currentIndex).setContent(key.get(0));
             getContentList().get(currentIndex).setContent(key.get(1));
-            detailList.get(currentIndex).setContent("DETAILS");
+            detailList.get(currentIndex).setContent(detailText);
             currentIndex++;
         }
         if (sublist.size() < maximumElementNumber) {
@@ -75,11 +75,8 @@ public abstract class DetailButtonsCard extends AbstractCard<JComponent> {
             factory.setLabelType(GuiFactory.LabelType.ICON);
             initLabel(labelList, Card.EMPTY_DATA_CONTENT);
             initContentSegment();
-            initButton(detailList, "DETAIL");
-//            initButton(selectList, "SELECT");
+            initButton(detailList, detailText);
         }
-//        SharedCmpsFont.setUniformFont(det);
-
     }
 
     protected abstract JComponent createContentSegment();

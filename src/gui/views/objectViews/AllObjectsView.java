@@ -33,10 +33,7 @@ public abstract class AllObjectsView extends BackgroundView implements Switchabl
     }
     protected ActionListener generateActionListener(ButtonType type, int index){
         return e -> {
-            System.out.println(clickedIndex+"xd");
             setClickedIndex(index);
-            System.out.println(clickedIndex+"xd");
-            System.out.println(index);
             if (listenerHashMap.containsKey(index) && listenerHashMap.get(index).containsKey(type)) {
                 listenerHashMap.get(index).get(type).actionPerformed(e);
             }

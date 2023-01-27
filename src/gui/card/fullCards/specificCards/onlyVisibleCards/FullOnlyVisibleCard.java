@@ -17,9 +17,9 @@ public class FullOnlyVisibleCard extends OnlyVisibleCard{
     }
 
     protected void initializeDownPanel(){
-        showbutton = factory.createButton("SHOW", null);
-        editButton = factory.createButton("EDIT", null);
-        deleteButton = factory.createButton("DELETE", null);
+        showbutton = factory.createButton(showText, null);
+        editButton = factory.createButton(editText, null);
+        deleteButton = factory.createButton(deleteText, null);
         var list = Arrays.asList(editButton, deleteButton, showbutton);
         for (var but : list){
             int i = 0;

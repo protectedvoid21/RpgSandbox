@@ -55,12 +55,7 @@ public class AddingButtonCard extends NormalDetailButtonsCard {
         super.updateContent();
         Card.setNonDependantAspectVisible(selectList);
         for (int i = currentAttrSide * maximumElementNumber; i < getSideMaximumElementsNumber(); i++) {
-            if (addedIndexes.contains(i)) {
-                selectList.get(i % maximumElementNumber).setContent("");
-            } else {
-                selectList.get(i % maximumElementNumber).setContent("es");
-            }
-
+                selectList.get(i % maximumElementNumber).setContent(addedIndexes.contains(i)?"":"es");
         }
         Card.setAspectVisible(selectList, true);
         for (int i = data.content.size(); i < getSideMaximumElementsNumber(); i++) {
@@ -75,36 +70,25 @@ public class AddingButtonCard extends NormalDetailButtonsCard {
         selectList = new ArrayList<>();
         for (int i = 0; i < maximumElementNumber; i++) {
             factory.setButtonType(GuiFactory.ButtonType.ICON);
-            var but = factory.createButton(StringAdapter.getRelativePath("plus.png"), StringAdapter.getRelativePath(
-                    "remove.png"), true, true);
+            var but = factory.createButton(plusImage,removeImage, true, true);
             selectList.add(but);
-            but.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    var ind = currentAttrSide * maximumElementNumber + selectList.indexOf(but);
-                    if (addedIndexes.contains(ind)) {
-
-                        addedIndexes.remove(addedIndexes.indexOf(ind));
-                    } else {
-                        addedIndexes.add(ind);
-                    }
+            but.addActionListener(e -> {
+                var ind = currentAttrSide * maximumElementNumber + selectList.indexOf(but);
+                if (addedIndexes.contains(ind)) {
+                    addedIndexes.remove(addedIndexes.indexOf(ind));
+                } else {
+                    addedIndexes.add(ind);
                 }
-
             });
             menager.addMiddleComponent(but, 3, 20);
             menager.getMainComponent(3).getComponent().getLastComponent().addSpace(4);
         }
-
     }
-
-
     @Override
     protected void initializeCard(int maximumElementNumber) {
         super.initializeCard(maximumElementNumber);
         getContentMenager().addMainComponent(10);
-
     }
-
     @Override
     public void setUniformForm() {
         super.setUniformForm();

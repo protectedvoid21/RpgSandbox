@@ -1,7 +1,9 @@
 package controllers.game;
 
 import controllers.Controller;
+import controllers.ControllerManager;
 import controllers.MenuController;
+import controllers.audio.CustomAudioManager;
 import game.board.Board;
 import game.board.RoundManager;
 import game.board.Scenario;
@@ -17,9 +19,11 @@ import gui.actionListener.turnOffButtons;
 import gui.actionListener.warhammerActions.*;
 import gui.card.DoubleArrowPanel;
 import gui.factories.IOverallFactory;
+import gui.utils.AbstractConverter;
 import gui.views.pickers.CustomLambdaExpression;
 import gui.views.pickers.FullItemPicker;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
@@ -28,9 +32,13 @@ public class MainGameController extends Controller {
     private final ListenerBaseData listenerBaseData;
     public MainGameController(Scenario scenario) {
         this.listenerBaseData = new ListenerBaseData();
-        listenerBaseData.audioManager = audioManager;
         listenerBaseData.roundManager = new RoundManager(new Board(scenario));
-        ;
+    }
+
+    @Override
+    public void initialize(ControllerManager controllerManager, JFrame mainFrame, AbstractConverter converter, CustomAudioManager audioManager) {
+        super.initialize(controllerManager, mainFrame, converter, audioManager);
+        listenerBaseData.audioManager = audioManager;
     }
 
     private void startGame() {
@@ -104,8 +112,6 @@ public class MainGameController extends Controller {
                 new PreviousActiveListener(roundManager));
         gamePanel.getItemsItemPicker().addListenerToPicker(DoubleArrowPanel.Side.RIGHT,
                 new NextActiveListener(roundManager));
-
-
         gamePanel.getItemsItemPicker().addButtonLIstener(new UseListener(listenerBaseData));
 
     }

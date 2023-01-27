@@ -177,7 +177,7 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData, 
         var panel = new CreatorPanel(this, 10);
         panel.initialize();
         panel.setBorder(basicBorderColor, basicBorderSize);
-        panel.setBasePath(plusImage);
+        panel.setBasePath(TextData.plusImage);
         return panel;
     }
 
@@ -185,7 +185,7 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData, 
     public CreatorGameView createCreatorGameView() {
         setFactoriesMode(Mode.BASIC);
         var creator = new CreatorGameView(this, 10);
-        creator.getCreatorPanel().setBasePath(plusImage);
+        creator.getCreatorPanel().setBasePath(TextData.plusImage);
         creator.getCreatorPanel().initializeOptionsButtonPanelData(new ArrayList<>(Arrays.asList(monsterPath,
                 playerImagePath, npcImage)));
         return creator;
@@ -333,8 +333,8 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData, 
 
     private void initCard(BaseCard card){
         card.setBorder(basicBorderColor, basicBorderSize);
-        card.setBackgroundImage(cardBackground);
         card.initialize();
+        card.setBackgroundImage(cardBackground);
         card.setUniformFont();
     }
 }

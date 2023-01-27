@@ -11,19 +11,12 @@ public class GodCard extends BasicCard{
     }
     private ActionListener itemAction = e -> {
     };
-
     public void setItemViewStatus(CardTypes type, int index){
         switchSide(type);
         if (type != CardTypes.OVERALL && type != CardTypes.ATTRIBUTE) {
             detailButtonMethod(null, type, index);
         }
         setListener(itemAction);
-    }
-
-    public void removeItemViewStatus(){
-        methodOfRightDownPanelComponent();
-        switchSide(CardTypes.OVERALL);
-        setListener(e->methodOfRightDownPanelComponent());
     }
     private void setListener(ActionListener listener){
         for (var lst : exitButton.getComponent().getActionListeners()){
