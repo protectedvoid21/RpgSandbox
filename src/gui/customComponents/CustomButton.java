@@ -1,7 +1,5 @@
 package gui.customComponents;
 
-import java.awt.*;
-
 public class CustomButton extends AbstractCustomButton {
     public CustomButton() {
         super("");

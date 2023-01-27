@@ -1,12 +1,11 @@
 package gui.views.gamePanel.gamePanels;
 
 import game.generals.Vector2;
-import gui.factories.IOverallFactory;
 import gui.card.fullCards.abstractCards.Card;
+import gui.factories.IOverallFactory;
 import gui.views.gamePanel.optionsPanels.CreatorOptionsPanel;
 import gui.views.gamePanel.optionsPanels.OneDataOptionsPanel;
 
-import java.awt.*;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 
@@ -17,8 +16,6 @@ private OneDataOptionsPanel panel;
     public CreatorPanel(IOverallFactory factory, int size) {
         super(factory, size);
     }
-
-
     @Override
     public void initialize() {
         super.initialize();
@@ -54,7 +51,7 @@ private OneDataOptionsPanel panel;
 
     public void applyNewCreatureOnPosition(String path, Vector2 position) {
         applyWithoutRemovingContent(new AbstractMap.SimpleEntry<>(position, path));
-        setDisabledIndexes(position);
+        addDisabledIndex(position);
     }
 
     @Override
@@ -63,7 +60,6 @@ private OneDataOptionsPanel panel;
         panel = new CreatorOptionsPanel(factory.getFactory(), 3);
         optionsPanel = panel;
         optionsPanel.initialize(weight);
-//        optionsPanel.setBorderColor(Color.RED);
     }
 
     public void setWholePanelDisabled() {
@@ -72,7 +68,6 @@ private OneDataOptionsPanel panel;
             for (int j = 0; j < maxIndex; j++) {
                 manager.getMiddleComponent(i, j).getComponent().setEnabled(false);
                 if (manager.getMiddleComponent(i, j).getComponent().getContent().equals(basePath)) {
-//                    manager.getMiddleComponent(i, j).getComponent().setEnabled(false);
                     array.add(new AbstractMap.SimpleEntry<>(new Vector2(i, j), Card.EMPTY_DATA_CONTENT));
                 }
             }

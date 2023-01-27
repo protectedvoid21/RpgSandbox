@@ -5,6 +5,13 @@ import gui.utils.StringAdapter;
 import java.awt.*;
 
 public interface WarhammerData {
+    String damageText = "damage";
+    String defenceText = "defence";
+    String speedText = "speed";
+    String rangeText = "range";
+    String gameTitle = "RPG ENGINE";
+    String smallSward1 = StringAdapter.getRelativePath("swo.png");
+    String smallSward2 = StringAdapter.getRelativePath("leftsword.png");
     String person1Path = StringAdapter.getRelativePath("person1.png");
     String person2Path = StringAdapter.getRelativePath("person2.png");
     String person3Path = StringAdapter.getRelativePath("person3.png");
@@ -64,8 +71,8 @@ public interface WarhammerData {
     String plusImage = StringAdapter.getRelativePath("plus.png");
     String cardBackground = StringAdapter.getRelativePath("backforcard.jpg");
     String avePath = StringAdapter.getRelativePath("wood.jpg");
-    Color basicBorderColor = new Color(0x4D0202);//jako ze wszedzie ten sam to moze sie popsuc gdy gdzies sie
-    // przypadkiem zmieni, brak czasu na testy, sie w miedzyczasie to ogarnie
+    String knivesOpt = StringAdapter.getRelativePath("knivesOpt.png");
+    Color basicBorderColor = new Color(0x4D0202);
     int basicBorderSize = 10;
 
 }

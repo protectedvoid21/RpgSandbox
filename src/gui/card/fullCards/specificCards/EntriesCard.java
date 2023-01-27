@@ -12,6 +12,7 @@ import gui.card.fullCards.abstractCards.Card;
 import gui.customComponents.AbstractCustomButton;
 import gui.customComponents.customTextComponents.CustomTextComponent;
 import gui.factories.GuiFactory;
+import gui.factories.TextData;
 import gui.menu.ComponentPanelMenager;
 import gui.utils.FileManager;
 import gui.utils.StringAdapter;
@@ -25,13 +26,12 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.*;
 
-public class EntriesCard extends Card {
+public class EntriesCard extends Card{
 
-    final static String baseEnabledPhotoPath = StringAdapter.getRelativePath("image.png");
-    final static String baseDisabledPhotoPath = StringAdapter.getRelativePath("disimage.png");
+    final static String baseEnabledPhotoPath = nondisImage;
+    final static String baseDisabledPhotoPath = disImage;
     private boolean isImageSet = false;
     private ChoserCard choserCard;
-    protected ComponentPanelMenager<AbstractCustomButton> addButton;
     private JComponent helpPanelVariable;
     private AbstractCustomButton saveButton;
     protected ComponentPanelMenager<CustomTextComponent> rightEntryTitleComponent;
@@ -60,15 +60,6 @@ public class EntriesCard extends Card {
         return isImageSet;
     }
 
-    public HashMap<CardTypes, CardContentDataSet> getIndexesData() {
-        var newMapa = new HashMap<CardTypes, CardContentDataSet>();
-        for (var type : Arrays.asList(CardTypes.ARMOR, CardTypes.WEAPONS, CardTypes.MOUNT, CardTypes.ITEMS)) {
-            newMapa.put(type, choserCard.getGameSelectedCard(type).getOnlyAddedIndexesData());
-        }//niepotrzebn ale kto wie...
-        return newMapa;
-
-    }
-
     public HashMap<CardTypes, ArrayList<Integer>> generateIndexesNumberData() {
         var newMapa = new HashMap<CardTypes, ArrayList<Integer>>();
         for (var type : Arrays.asList(CardTypes.ARMOR, CardTypes.WEAPONS, CardTypes.MOUNT, CardTypes.ITEMS)) {
@@ -82,12 +73,9 @@ public class EntriesCard extends Card {
     protected DetailButtonsCard createDetailButtonCard(CardTypes type) {
         var card = new AddingItemButtonCard(factory);
 
-        card.getPlusButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                choserCard.switchSide(type);
-                seriesPanel.getCmp().changeContent(choserCard.getPanel());
-            }
+        card.getPlusButton().addActionListener(e -> {
+            choserCard.switchSide(type);
+            seriesPanel.getCmp().changeContent(choserCard.getPanel());
         });
         return card;
     }
@@ -115,7 +103,6 @@ public class EntriesCard extends Card {
     public void uploadNewData(LinkedHashMap<CardTypes, CardContentDataSet> newData, HashMap<CardTypes,
             ArrayList<CardContentDataSet>> detailData) {
         super.uploadNewData(newData, detailData);
-        //uploadNewChoserCardData(newData, detailData);
         if (newData.containsKey(CardTypes.OVERALL)) {
             rightEntryTitleComponent.getComponent().setContent(newData.get(CardTypes.OVERALL).titleContent);
             leftButtonyTitleComponent.getComponent().setContent(newData.get(CardTypes.OVERALL).titlePath.equals(Card.EMPTY_DATA_CONTENT) ?
@@ -135,10 +122,8 @@ public class EntriesCard extends Card {
             ArrayList<CardContentDataSet>> detailData) {
         choserCard.uploadNewData(newData, detailData);
         for (var key : detailData.keySet()) {
-            System.out.println(key.toString());
             choserCard.setCurrentType(key);
             var array = new ArrayList<Integer>();
-
             for (var data : detailData.get(key)) {
                 for (var data2 : allCards.get(key).getDetailData()) {
                     if (data.equals(data2) && !array.contains(detailData.get(key).indexOf(data))) {
@@ -149,7 +134,6 @@ public class EntriesCard extends Card {
             choserCard.getGameSelectedCard(key).setAddedIndexes(array);
             choserCard.getGameSelectedCard(key).reset();
             allCards.get(key).initializeCardData(choserCard.getCurrentData(), choserCard.getCurrentDetailData());
-            System.out.println();
         }
         updateContent();
         choserCard.updateContent();
@@ -199,17 +183,14 @@ public class EntriesCard extends Card {
         var but = factory.createButton(baseEnabledPhotoPath, null);
         but.getCustomUI().setOffSet(0);
         leftButtonyTitleComponent = new ComponentPanelMenager<>(but);
-        leftButtonyTitleComponent.getComponent().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                var chooser = new JFileChooser();
-                int answer = chooser.showOpenDialog(new JFrame());
-                if (answer == JFileChooser.APPROVE_OPTION) {
-                    isImageSet = true;
-                    leftButtonyTitleComponent.getComponent().setContent(chooser.getSelectedFile().getAbsolutePath());
-                    FileManager.copyFile(chooser.getSelectedFile().getPath());
-                    activeCard.getData().titlePath = FileManager.getPathToImage(FileManager.getLastFileName());
-                }
+        leftButtonyTitleComponent.getComponent().addActionListener(e -> {
+            var chooser = new JFileChooser();
+            int answer = chooser.showOpenDialog(new JFrame());
+            if (answer == JFileChooser.APPROVE_OPTION) {
+                isImageSet = true;
+                leftButtonyTitleComponent.getComponent().setContent(chooser.getSelectedFile().getAbsolutePath());
+                FileManager.copyFile(chooser.getSelectedFile().getPath());
+                activeCard.getData().titlePath = FileManager.getPathToImage(FileManager.getLastFileName());
             }
         });
         initializeLeftTitleComponent(leftButtonyTitleComponent, 1);
@@ -223,7 +204,7 @@ public class EntriesCard extends Card {
     protected void createCancelPanel() {
         super.createCancelPanel();
         factory.setButtonType(GuiFactory.ButtonType.NORMAL);
-        saveButton = factory.createButton("SAVE", null);
+        saveButton = factory.createButton(saveText, null);
         initializeCancelPanelObject(saveButton, 1);
     }
 
@@ -283,7 +264,6 @@ public class EntriesCard extends Card {
                 leftArrows.updateSwitchingButtons();
             }
         }
-
         for (int i = 0; i < values.size(); i++) {
             if (!(activeCard == amwGeneratorCard)) {
                 ((EntriesAttributesCard) this.allCards.get(CardTypes.ATTRIBUTE)).setEntryIncorrect(values.get(i),

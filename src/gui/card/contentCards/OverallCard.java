@@ -8,11 +8,12 @@ import gui.factories.GuiFactory;
 import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
-import gui.utils.StringAdapter;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
 
 public class OverallCard extends AbstractCard<JComponent> {
     private DefaultCustomMenuMenager<JComponent> menager =
@@ -20,7 +21,7 @@ public class OverallCard extends AbstractCard<JComponent> {
                     ComponentsSeries.ComponentsDimension.HORIZONTAL);
     protected ArrayList<AbstractCustomLabel> labelList = new ArrayList<>();
     protected ArrayList<AbstractCustomButton> goList = new ArrayList<>();
-    private LinkedHashMap<Card.CardTypes, ActionListener> cardActions = new LinkedHashMap<>();
+    private LinkedHashMap<Card.CardTypes, ActionListener> cardActions;
 
     /**
      * dataMap should be in format [[path1, text1], [path2, text2], [path3, text3]...]
@@ -41,8 +42,7 @@ public class OverallCard extends AbstractCard<JComponent> {
     protected void updateContent() {
         int maxSideIndex = getSideMaximumElementsNumber();
         int dataSize = data.content.size();
-        var sublist = data.content.subList(currentAttrSide * maximumElementNumber, maxSideIndex > dataSize ? dataSize :
-                maxSideIndex);
+        var sublist = data.content.subList(currentAttrSide * maximumElementNumber, Math.min(maxSideIndex, dataSize));
         int currentIndex = 0;
         Card.setNonDependantAspectVisible(labelList);
         for (var key : sublist) {
@@ -67,8 +67,8 @@ public class OverallCard extends AbstractCard<JComponent> {
             factory.setLabelType(GuiFactory.LabelType.ICON);
             var label = factory.createLabel(Card.EMPTY_DATA_CONTENT);
             factory.setButtonType(GuiFactory.ButtonType.ICON);
-            var button = factory.createButton(StringAdapter.getRelativePath("go2.png"), null);
-            button.addActionListener(cardActions.get(key));//dodac pewnie zmiane listenera
+            var button = factory.createButton(goImage, null);
+            button.addActionListener(cardActions.get(key));
 
             var newPanel =
                     new ComponentsSeries<ComponentPanelMenager<JComponent>>(ComponentsSeries.ComponentsDimension.HORIZONTAL);

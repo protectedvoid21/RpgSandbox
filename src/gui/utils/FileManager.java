@@ -12,8 +12,6 @@ public class FileManager {
         try {
             Path src = Paths.get(from);
             Path dest = Paths.get(StringAdapter.getRelativePathBegin() +copyPath+generateRandomImgName());
-            System.out.println(src.toFile().toPath());
-            System.out.println(dest.toFile().toPath());
             Files.copy(src.toFile().toPath(), dest.toFile().toPath());
         } catch (IOException ex) {
             System.out.println("Cannot copy this file!");
@@ -42,7 +40,7 @@ public class FileManager {
         try {
             var directoryStream = Files.newDirectoryStream(Paths.get(StringAdapter.getRelativePathBegin() + copyPath));
             for (Path path : directoryStream) {
-                if(name.equals(path.getFileName())){
+                if(name.equals(path.toString())){
                     return false;
                 }
             }

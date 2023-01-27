@@ -261,11 +261,12 @@ public class CustomTextComponent extends JPanel implements IComponentTextMargin,
             margin.set(side, label.getCustomUI().getCurrentActivatedMargin().getPercentValue(side));
         }
             label.setContent(textField.getText());
-        var f = label.getCustomUI().getRelevantFont(label.getText());
-        textField.setFont(new Font(label.getFont().getName(), label.getFont().getStyle(),
-                f.getSize()));
-        label.setFont(new Font(label.getFont().getName(), label.getFont().getStyle(),
-                f.getSize()));
+//        var f = label.getCustomUI().getRelevantFont(label.getText());
+//        for (var cmp : Arrays.asList(textField, label)){
+//            cmp.setFont(new Font(label.getFont().getName(), label.getFont().getStyle(),
+//                    f.getSize()));
+//        }
+        setFont( label.getCustomUI().getRelevantFont(label.getText()).getSize());
     }
 
     public void setMaximumFontRelevantToHeight(boolean value) {

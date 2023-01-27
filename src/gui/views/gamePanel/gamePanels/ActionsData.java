@@ -1,15 +1,13 @@
 package gui.views.gamePanel.gamePanels;
 
-import game.generals.Vector2;
 import gui.card.fullCards.abstractCards.Card;
 import gui.customComponents.AbstractCustomLabel;
 import gui.customComponents.iconComponents.IconLabel;
 
-import javax.swing.*;
 import java.util.ArrayList;
 
 public class ActionsData {
-    private ArrayList<IconLabel> arrayList = new ArrayList<>();
+    private final ArrayList<IconLabel> arrayList = new ArrayList<>();
     private int usedObjects;
     private String path;
 

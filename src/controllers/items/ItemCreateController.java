@@ -19,8 +19,8 @@ import java.awt.event.ActionListener;
 
 public class ItemCreateController extends Controller {
     private EntriesCard view;
-    private Item item;
-    private Card.CardTypes creatorType;
+    private final Item item;
+    private final Card.CardTypes creatorType;
     
     public ItemCreateController(Item item, Card.CardTypes creatorType) {
         this.item = item;
@@ -34,13 +34,13 @@ public class ItemCreateController extends Controller {
         CardContentDataSet contentData = null;
         switch (creatorType) {
             case ARMOR -> {
-                contentData = Converter.editArmorInEntriesCard((Armor)item);
+                contentData = converter.editArmorInEntriesCard((Armor)item);
             }
             case MOUNT -> {
-                contentData = Converter.editMountInEntriesCard((Mount)item);
+                contentData = converter.editMountInEntriesCard((Mount)item);
             }
             case WEAPONS -> {
-                contentData = Converter.editWeaponInEntriesCard((Weapon)item);
+                contentData = converter.editWeaponInEntriesCard((Weapon)item);
             }
         }
         view.uploadCreatorItemsData(contentData, creatorType);
@@ -63,26 +63,26 @@ public class ItemCreateController extends Controller {
             switch (creatorType) {
                 case ARMOR -> {
                     contentData = view.getCurrentCreatorItemData();
-                    newItem = Converter.createArmorFromCard(contentData);
+                    newItem = converter.createArmorFromCard(contentData);
                 } 
                 case MOUNT -> {
-                    newItem = Converter.createMountFromCard(view.getCurrentCreatorItemData());
+                    newItem = converter.createMountFromCard(view.getCurrentCreatorItemData());
                 }
                 case WEAPONS -> {
-                    newItem = Converter.createWeaponFromCard(view.getCurrentCreatorItemData());
+                    newItem = converter.createWeaponFromCard(view.getCurrentCreatorItemData());
                 }
             }
             
             if(item == null) {
                 return;
             }
-            if (Converter.getErrorValidationChecker().isErrorFlag()) {
-                view.setEntriesIncorrect(Converter.getErrorValidationChecker().getErrorIndexes(), 1500);
-                if (Converter.getErrorValidationChecker().isPathError())
+            if (converter.getErrorValidationChecker().isErrorFlag()) {
+                view.setEntriesIncorrect(converter.getErrorValidationChecker().getErrorIndexes(), 1500);
+                if (converter.getErrorValidationChecker().isPathError())
                     view.setTitleIncorrect(BaseCard.Side.LEFT, 1500);
-                if (Converter.getErrorValidationChecker().isNameError())
+                if (converter.getErrorValidationChecker().isNameError())
                     view.setTitleIncorrect(BaseCard.Side.RIGHT, 1500);
-                Converter.getErrorValidationChecker().resetErrorFlags();
+                converter.getErrorValidationChecker().resetErrorFlags();
                 return;
             }
             

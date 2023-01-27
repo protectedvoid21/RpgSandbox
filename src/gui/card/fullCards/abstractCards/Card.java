@@ -3,7 +3,7 @@ package gui.card.fullCards.abstractCards;
 import gui.card.*;
 import gui.card.contentCards.AbstractCard;
 import gui.card.contentCards.OverallCard;
-import gui.card.contentCards.TextAreaCard;
+import gui.card.contentCards.detailCards.TextAreaCard;
 import gui.card.contentCards.attributesCards.AttributesCard;
 import gui.card.contentCards.EmptyCard;
 import gui.card.contentCards.attributesCards.EntriesAttributesCard;
@@ -22,7 +22,6 @@ import java.util.*;
 
 public abstract class Card extends BaseCard implements SwitchableComponent, ICancelCard {
     static final public String EMPTY_DATA_CONTENT = "";
-
     private boolean hasCancelPanel = false;
     private AbstractCustomButton cancelButton = null;
 
@@ -39,7 +38,7 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
 
     public enum CardTypes {OVERALL, ATTRIBUTE, ARMOR, WEAPONS, EFFECTS, MOUNT, ITEMS}
 
-    protected static ArrayList<CardTypes> cardSideIndexes = new ArrayList<>(Arrays.asList(CardTypes.OVERALL,
+    protected ArrayList<CardTypes> cardSideIndexes = new ArrayList<>(Arrays.asList(CardTypes.OVERALL,
             CardTypes.ATTRIBUTE,
             CardTypes.WEAPONS, CardTypes.EFFECTS, CardTypes.ARMOR, CardTypes.MOUNT, CardTypes.ITEMS));
     protected ComponentsSeries<ComponentPanelMenager<JComponent>> arrowMenager;
@@ -61,13 +60,13 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
     }
 
     protected void showCancelPanel(boolean status) {
-        seriesPanel.getMainComponent(3).setVisible(hasCancelPanel == false ? false : status);
+        seriesPanel.getMainComponent(3).setVisible(hasCancelPanel && status);
     }
 
     protected void createCancelPanel() {
         seriesPanel.addMainComponent(1);
         factory.setButtonType(GuiFactory.ButtonType.NORMAL);
-        cancelButton = factory.createButton("CANCEL", e -> seriesPanel.getCmp().setVisible(false));
+        cancelButton = factory.createButton(canceltext, e -> seriesPanel.getCmp().setVisible(false));
         initializeCancelPanelObject(cancelButton, 0);
     }
 
@@ -103,10 +102,8 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
 
         (type != CardTypes.ITEMS ? equipmentCard : textareaEquipmentCard).initializeCardData(allCards.get(type).getDetailData().get(allCards.get(type).getSideMaximumElementsNumber()
                 - allCards.get(type).getMaximumElementNumber() + index), null);
-
         updateContent((type != CardTypes.ITEMS ? equipmentCard : textareaEquipmentCard));
-
-        arrowMenager.getOption(1).changeContent(exitButton);//yyyyto fix
+        arrowMenager.getOption(1).changeContent(exitButton);
 
         showCancelPanel(false);
 
@@ -118,18 +115,11 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
 
     protected void initializeDetailButtonsCardPart(CardTypes type) {
         var but = createDetailButtonCard(type);
-
         but.initializeCard();
         for (int i = 0; i < but.getMaximumElementNumber(); i++) {
             int finalI = i;
-            but.getDetailButton(i).addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    detailButtonMethod(but, type, finalI);
-                }
-            });
+            but.getDetailButton(i).addActionListener(e -> detailButtonMethod(but, type, finalI));
         }
-
         allCards.put(type, but);
     }
 
@@ -196,37 +186,31 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
         if (value) {
             amwGeneratorCard.initializeCardData(creatorData.get(type), null);
             updateContent(amwGeneratorCard);
-//            arrowMenager.getOption(1).changeContent(exitCreatorCard);//yyyyto fix
-//            showCancelPanel(false);
         } else {
             updateContent(allCards.get(CardTypes.OVERALL));
-//            arrowMenager.getOption(1).changeContent(rightArrows.getPanel());
             showCancelPanel(hasCancelPanel);
         }
     }
 
-    public void setEqChoserCard(boolean val, CardTypes types) {
-        if (val) {
-            //data init
-            updateContent(choserEqCard);
-            showCancelPanel(false);
-        } else {
-            showCancelPanel(hasCancelPanel);
-            updateContent();
-        }
-    }
+//    public void setEqChoserCard(boolean val, CardTypes types) {
+//        if (val) {
+//            //data init
+//            updateContent(choserEqCard);
+//            showCancelPanel(false);
+//        } else {
+//            showCancelPanel(hasCancelPanel);
+//            updateContent();
+//        }
+//    }
 
 
     public void uploadNewData(LinkedHashMap<CardTypes, CardContentDataSet> newData, HashMap<CardTypes,
             ArrayList<CardContentDataSet>> detailData) {
+
         for (var type : newData.keySet()) {
             allCards.get(type).initializeCardData(newData.get(type), detailData.get(type));
         }
-        var a = new ArrayList<CardTypes>();
-        for (var key : newData.keySet()) {
-            a.add(key);
-        }
-        cardSideIndexes = a;
+        cardSideIndexes = new ArrayList<>(newData.keySet());
         var map = new LinkedHashMap<CardTypes, ActionListener>();
 
         for (var key : cardSideIndexes) {
@@ -241,11 +225,11 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
                 detailData.get(CardTypes.OVERALL));
 
         switchSide(cardSideIndexes.get(0));
+        rightArrows.updateSwitchingButtons();
     }
 
     public void updateContent(AbstractCard newActiveCard) {
-
-        activeCard.reset();// zawsze niech resetuje jest prosciej
+        activeCard.reset();
         activeCard = newActiveCard;
         seriesPanel.getMainComponent(1).changeContent(activeCard.getMenager());
         leftArrows.setSwitchableComponent(activeCard);
@@ -291,23 +275,22 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
     }
 
     protected void methodOfRightDownPanelComponent() {
-        arrowMenager.getOption(1).changeContent(rightArrows.getPanel());//to fix
+        arrowMenager.getOption(1).changeContent(rightArrows.getPanel());
         showCancelPanel(hasCancelPanel);
         updateContent();
     }
 
     protected void createArrowComponentSeries() {
         factory.setButtonType(GuiFactory.ButtonType.NORMAL);
-        exitButton = new ComponentPanelMenager<>(factory.createButton("exit", null));
+        exitButton = new ComponentPanelMenager<>(factory.createButton(exitText, null));
         exitButton.addSpace(5);
         exitButton.getComponent().addActionListener(e -> methodOfRightDownPanelComponent());
         arrowMenager = new ComponentsSeries<>(ComponentsSeries.ComponentsDimension.HORIZONTAL);
-        leftArrows = new DoubleArrowPanel(factory, activeCard);///
+        leftArrows = new DoubleArrowPanel(factory, activeCard);
         leftArrows.setSpace(5);
         rightArrows = new DoubleArrowPanel(factory, activeCard);
         rightArrows.setSpace(5);
 
-        factory.setButtonType(GuiFactory.ButtonType.NORMAL);
         arrowMenager.addOption(new ComponentPanelMenager<>(leftArrows.getPanel()), 5);
         arrowMenager.addOption(new ComponentPanelMenager<>(rightArrows.getPanel()), 5);
     }
@@ -333,7 +316,7 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
     }
 
 
-    protected void updateTitle() {//zmienia sie
+    protected void updateTitle() {
 
         leftTitleComponent.getComponent().setContent(activeCard.getFirstTitleContent());
         rightTitleComponent.getComponent().setContent(activeCard.getSecondTitleContent());

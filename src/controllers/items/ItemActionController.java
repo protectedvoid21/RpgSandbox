@@ -6,9 +6,16 @@ import game.equipment.Item;
 import game.filehandle.DummyCreator;
 import gui.card.fullCards.abstractCards.Card;
 import gui.factories.IOverallFactory;
+import gui.views.TitleView;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ItemActionController extends Controller {
-    private Card.CardTypes creatorType;
+    private static final Map<Card.CardTypes, String> titleTexts = Map.of(Card.CardTypes.ARMOR, "Armors manager",
+            Card.CardTypes.WEAPONS, "Weapons manager", Card.CardTypes.MOUNT, "Mounts manager", Card.CardTypes.ITEMS,
+            "Items manager");
+    private final Card.CardTypes creatorType;
 
     public ItemActionController(Card.CardTypes creatorType) {
         this.creatorType = creatorType;
@@ -17,25 +24,27 @@ public class ItemActionController extends Controller {
     @Override
     public void run(IOverallFactory overallFactory) {
         var view = overallFactory.createOverallItemPanel();
+        var title = new TitleView(overallFactory.getFactory());
+        title.initialize(titleTexts.get(creatorType), view, 12, 20);
         view.getReturnButton().addActionListener(
                 new RedirectListener(controllerManager, new ItemTypeMenuController())
         );
-        
+
         view.getButton(0).addActionListener(
                 new RedirectListener(controllerManager, new ItemListController(creatorType))
         );
 
         Item dummyItem = null;
-        switch(creatorType) {
+        switch (creatorType) {
             case ARMOR -> dummyItem = DummyCreator.getArmor();
             case MOUNT -> dummyItem = DummyCreator.getMount();
             case WEAPONS -> dummyItem = DummyCreator.getWeapon();
         }
-        
+
         view.getButton(1).addActionListener(
                 new RedirectListener(controllerManager, new ItemCreateController(dummyItem, creatorType))
         );
-        
-        mainFrame.add(view.getPanel());
+
+        mainFrame.add(title.getPanel());
     }
 }

@@ -1,5 +1,6 @@
 package game.equipment.examples;
 
+import controllers.audio.WarhammerEnumAudio;
 import game.creature.Character;
 import game.creature.Creature;
 import game.equipment.DisposableItem;
@@ -7,11 +8,11 @@ import gui.factories.WarhammerData;
 
 public class DragonsBlood extends DisposableItem implements WarhammerData {
 //    private Character user;
-
     public DragonsBlood(int usageCount) {
         super(usageCount);
 //        this.user = user;
-        setItemPathPicture(bloodPaht);
+        setItemPathPicture(bloodPaht); enumAudio = WarhammerEnumAudio.DRAGON;
+        workOnEnemy = false;
 
         description = "Dragon blood is poisoning sooooooo......when you put it on your sword your enemies will DIE IN" +
                 " VERY PAINFUL WAY";

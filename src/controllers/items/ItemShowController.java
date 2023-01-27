@@ -8,9 +8,9 @@ import gui.card.fullCards.abstractCards.Card;
 import gui.factories.IOverallFactory;
 
 public class ItemShowController extends Controller {
-    private int index;
-    private Card.CardTypes cardType;
-    private Card.CardTypes creatorTypes;
+    private final int index;
+    private final Card.CardTypes cardType;
+    private final Card.CardTypes creatorTypes;
     
     public ItemShowController(int index, Card.CardTypes cardType, Card.CardTypes creatorTypes) {
         this.index = index;
@@ -21,8 +21,8 @@ public class ItemShowController extends Controller {
     @Override
     public void run(IOverallFactory overallFactory) {
         var view = overallFactory.createGodCard();
-        var contentData = Converter.createFullDataCreature(EntityManager.getInstance().getPlayerCharacterWithAllItems());
-        view.uploadNewData(contentData, Converter.createFullDetailDataCreature((EntityManager.getInstance().getPlayerCharacterWithAllItems())));
+        var contentData = converter.createFullDataCreature(EntityManager.getInstance().getPlayerCharacterWithAllItems());
+        view.uploadNewData(contentData, converter.createFullDetailDataCreature((EntityManager.getInstance().getPlayerCharacterWithAllItems())));
         
         view.setItemAction(new RedirectListener(controllerManager, new ItemListController(creatorTypes)));
         view.setItemViewStatus(cardType, index);

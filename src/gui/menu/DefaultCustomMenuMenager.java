@@ -42,12 +42,12 @@ public class DefaultCustomMenuMenager<T extends JComponent> {
     }
 
     public void addMiddleComponent(T newComponent, int mainIndex, double weight) {
-        cmp.getComponent().getOption(mainIndex).getComponent().addOption(new ComponentPanelMenager(newComponent),
+        cmp.getComponent().getOption(mainIndex).getComponent().addOption(new ComponentPanelMenager<>(newComponent),
                 weight);
     }
 
     public void addMiddleComponent(T newComponent, int mainIndex, double weight, int initialWeight) {
-        cmp.getComponent().getOption(mainIndex).getComponent().addOption(new ComponentPanelMenager(newComponent,
+        cmp.getComponent().getOption(mainIndex).getComponent().addOption(new ComponentPanelMenager<>(newComponent,
                         initialWeight),
                 weight);
     }
@@ -68,7 +68,7 @@ public class DefaultCustomMenuMenager<T extends JComponent> {
         cmp.setBackground(color);
     }
 
-    public ComponentPanelMenager getCmp() {
+    public ComponentPanelMenager<? extends JComponent> getCmp() {
         return cmp;
     }
 

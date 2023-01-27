@@ -89,7 +89,7 @@ public class ItemListController extends Controller {
         @Override
         public void actionPerformed(ActionEvent e) {
             var index = view.getClickedIndex();
-            FileManager.deleteFile(itemList.get(index).getItemPathPicture());
+//            FileManager.deleteFile(itemList.get(index).getItemPathPicture());
             itemList.remove(index);
             EntityManager.getInstance().saveAllEntities();
         }

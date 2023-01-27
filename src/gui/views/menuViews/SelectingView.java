@@ -18,9 +18,9 @@ import java.util.AbstractMap;
 import java.util.ArrayList;
 
 public class SelectingView extends BackgroundView implements PanelContainer {
-    private GuiFactory factory;
-    private ArrayList<AbstractCustomButton> buttons = new ArrayList<>();
-    private ArrayList<AbstractCustomLabel> labels = new ArrayList<>();
+    private final GuiFactory factory;
+    private final ArrayList<AbstractCustomButton> buttons = new ArrayList<>();
+    private final ArrayList<AbstractCustomLabel> labels = new ArrayList<>();
     private AbstractCustomButton returnButton;
     private DefaultCustomMenuMenager manager =
             new DefaultCustomMenuMenager(ComponentsSeries.ComponentsDimension.VERTICAL,
@@ -34,15 +34,14 @@ public class SelectingView extends BackgroundView implements PanelContainer {
 
         factory.setButtonType(GuiFactory.ButtonType.ICON);
         factory.setLabelType(GuiFactory.LabelType.NORMAL);
-        manager.getCmp().addSpace(4, ComponentPanelMenager.Side.TOP);
-        manager.getCmp().addSpace(2, ComponentPanelMenager.Side.BOTTOM);
+        manager.getCmp().addSpace(2, ComponentPanelMenager.Side.TOP);
+        manager.getCmp().addSpace(1, ComponentPanelMenager.Side.BOTTOM);
         int i = 0;
         for (var pair : content) {
             createPanel(pair.getKey(), pair.getValue(), i++);
         }
         createReturnButton();
         SharedCmpsFont.setUniformFont(labels);
-//        manager.getCmp().setBorderData(new Color(0x4D0202), new DefaultBorderStrategy(), 10);
     }
 
     public ComponentPanelMenager getPanel() {

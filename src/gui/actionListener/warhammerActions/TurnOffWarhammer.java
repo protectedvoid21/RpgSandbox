@@ -17,7 +17,7 @@ import static game.interfaceWarhammer.StruggleAtributeEnum.ACTIONS_TO_DO;
 public class TurnOffWarhammer implements ITurnOffButtons {
     @Override
     public void turnOff(RoundManager roundManager, MainPanelGame mainPanelGame, Integer parametr, Integer usedIndex) {
-        ArrayList<Integer> indexesCell = new ArrayList<Integer>();
+        ArrayList<Integer> indexesCell;
         ArrayList<Integer> indexesOption = new ArrayList<Integer>();
 
         int n;
@@ -28,15 +28,15 @@ public class TurnOffWarhammer implements ITurnOffButtons {
         List<Vector2> range = MathHelper.getGridCircle(roundManager.getGameObjectWithTurn().getCreature().getSpeed(),
                 roundManager.getGameObjectWithTurnPosition());
         if (roundManager.getGameObjectWithTurn().getCreature() instanceof Monster) {
-
             attackRange = MathHelper.getNextCells(roundManager.getGameObjectWithTurnPosition());
-        } else if (roundManager.getGameObjectWithTurn().getCreature() instanceof Character){
-            attackRange = MathHelper.getGridCircle(((Character) roundManager.getGameObjectWithTurn().getCreature()).getInventory().getActiveWeapon().getRange(),roundManager.getGameObjectWithTurnPosition());
+        } else if (roundManager.getGameObjectWithTurn().getCreature() instanceof Character) {
+            attackRange =
+                    MathHelper.getGridCircle(((Character) roundManager.getGameObjectWithTurn().getCreature()).getInventory().getActiveWeapon().getRange(), roundManager.getGameObjectWithTurnPosition());
         }
 
         for (int i = 0; i < roundManager.getBoard().getHeight(); i++) {
             for (int j = 0; j < roundManager.getBoard().getWidth(); j++) {
-                indexesCell = new ArrayList<Integer>();
+                indexesCell = new ArrayList<>();
 
                 if (!range.contains(new Vector2(j, i))) { // Sprawdza zasięg chodzenia
 
@@ -45,7 +45,6 @@ public class TurnOffWarhammer implements ITurnOffButtons {
                 }
 
                 if (!attackRange.contains(new Vector2(j, i))) {  // Sprawdza zasieg ataku
-
                     indexesCell.add(2);
                     indexesCell.add(3);
                     indexesCell.add(4);
@@ -54,14 +53,13 @@ public class TurnOffWarhammer implements ITurnOffButtons {
                 if (roundManager.getBoard().getPlace(new Vector2(j, i)).isEmpty()) { // Sprawdza czy jest postać
 
                     indexesCell.add(1);
-                    if(!indexesCell.contains(2)){
+                    if (!indexesCell.contains(2)) {
                         indexesCell.add(2);
                         indexesCell.add(3);
                         indexesCell.add(4);
                     }
-                }
-                else {
-                    if(!indexesCell.contains(0)){
+                } else {
+                    if (!indexesCell.contains(0)) {
                         indexesCell.add(0);
                     }
                 }
@@ -70,8 +68,6 @@ public class TurnOffWarhammer implements ITurnOffButtons {
                 n = 2;
                 m = 0;
                 for (ActionsEnum actionsEnum : ActionsEnum.values()) {
-                    System.out.println(actionsEnum);
-                    System.out.println(roundManager.getActions().getActions());
                     if (roundManager.getActions().getActions().get(actionsEnum).isEffectOnEnemy()) {
 
                         if (roundManager.getActions().getActions().get(actionsEnum).getActionCost() > roundManager.getGameObjectWithTurn().getCreature().getStruggleStatistics().getAttribute(ACTIONS_TO_DO).getValue()) {
@@ -90,8 +86,8 @@ public class TurnOffWarhammer implements ITurnOffButtons {
 
                 }
 
-                if (roundManager.getGameObjectWithTurn().getCreature().getStruggleStatistics().getAttribute(ACTIONS_TO_DO).getValue() == 0){
-                    if (!indexesCell.contains(0)){
+                if (roundManager.getGameObjectWithTurn().getCreature().getStruggleStatistics().getAttribute(ACTIONS_TO_DO).getValue() == 0) {
+                    if (!indexesCell.contains(0)) {
                         indexesCell.add(0);
                     }
                 }
@@ -105,12 +101,12 @@ public class TurnOffWarhammer implements ITurnOffButtons {
 
             }
 
-                if (parametr == 1) {
-                    if (!indexesOption.contains(usedIndex))
-                        indexesOption.add(usedIndex);
-                }
+            if (parametr == 1) {
+                if (!indexesOption.contains(usedIndex))
+                    indexesOption.add(usedIndex);
+            }
 
-                mainPanelGame.getActivityOptionsPanel().setDisabledIndexes(indexesOption);
+            mainPanelGame.getActivityOptionsPanel().setDisabledIndexes(indexesOption);
         }
     }
 }

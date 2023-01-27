@@ -9,8 +9,8 @@ import gui.menu.DefaultCustomMenuMenager;
 import javax.swing.*;
 
 public class AddingItemButtonCard extends NormalDetailButtonsCard {
-    private DefaultCustomMenuMenager secondCustomMenager = new DefaultCustomMenuMenager(ComponentsSeries.ComponentsDimension.VERTICAL, ComponentsSeries.ComponentsDimension.HORIZONTAL);
-    private AbstractCustomButton button= createCustomButton();
+    private final DefaultCustomMenuMenager secondCustomMenager = new DefaultCustomMenuMenager(ComponentsSeries.ComponentsDimension.VERTICAL, ComponentsSeries.ComponentsDimension.HORIZONTAL);
+    private final AbstractCustomButton button= createCustomButton();
     public AbstractCustomButton getPlusButton() {
         return button;
     }

@@ -1,37 +1,44 @@
 package gui.actionListener.basicActionsListener;
 
-import game.board.RoundManager;
 import game.creature.Character;
 import game.creature.Creature;
 import game.generals.Vector2;
-import gui.actionListener.turnOffButtons;
-import gui.views.gamePanel.MainPanelGame;
+import gui.actionListener.ListenerBaseData;
+import gui.actionListener.PathsArrayListGenerator;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import static game.interfaceWarhammer.StruggleAtributeEnum.*;
+
+import static game.interfaceWarhammer.StruggleAtributeEnum.ACTIONS_TO_DO;
+
 public class UseItemOnEnemyListener implements ActionListener {
+    private final ListenerBaseData listenerBaseData;
 
-    RoundManager roundManager;
-    MainPanelGame mainPanelGame;
-
-    public UseItemOnEnemyListener(RoundManager roundManager, MainPanelGame mainPanelGame) {
-        this.roundManager = roundManager;
-        this.mainPanelGame = mainPanelGame;
+    public UseItemOnEnemyListener(ListenerBaseData listenerBaseData) {
+        this.listenerBaseData = listenerBaseData;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        Vector2 point = mainPanelGame.getGamePanel().getCurrentClickedIndexes();
-        Creature you = roundManager.getGameObjectWithTurn().getCreature();
+        Vector2 point = listenerBaseData.mainPanelGame.getGamePanel().getCurrentClickedIndexes();
+        Creature you = listenerBaseData.roundManager.getGameObjectWithTurn().getCreature();
 
-        if(you instanceof Character){
-            ((Character) you).getInventory().getSelectedDisposableItem().use(roundManager.getBoard().getPlace(point).getGameObject().getCreature());
+        if (you instanceof Character) {
+            ((Character) you).getInventory().getSelectedDisposableItem().use(listenerBaseData.roundManager.getBoard().getPlace(point).getGameObject().getCreature());
         }
 
         you.getStruggleStatistics().getAttribute(ACTIONS_TO_DO).decreaseValue(1);
-        mainPanelGame.getGamePanel().changeActiveOptionsPanel();
+        listenerBaseData.mainPanelGame.getGamePanel().changeActiveOptionsPanel();
+        if (you instanceof Character character) {
+            var array = PathsArrayListGenerator.generatePathsArrayList(character.getInventory().getDisposableItems());
+            listenerBaseData.mainPanelGame.getItemsItemPicker().uploadData(array);
+            listenerBaseData.mainPanelGame.getItemsItemPicker().setCurrentIndex(character.getInventory().getDisposableItems().
+                    indexOf(character.getInventory().getSelectedDisposableItem()));
+            listenerBaseData.mainPanelGame.getItemsItemPicker().addButtonLIstener(new UseListener(listenerBaseData));
+
+        }
 
     }
+
 }

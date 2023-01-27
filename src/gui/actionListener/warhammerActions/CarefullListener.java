@@ -1,28 +1,26 @@
 package gui.actionListener.warhammerActions;
 
-import game.board.RoundManager;
 import game.generals.Vector2;
+import gui.actionListener.ListenerBaseData;
 import gui.actionListener.turnOffButtons;
-import gui.views.gamePanel.MainPanelGame;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import static game.interfaceWarhammer.ActionsEnum.*;
+import static game.interfaceWarhammer.ActionsEnum.CAREFULL_ATTACK;
 
 public class CarefullListener implements ActionListener {
 
-    RoundManager roundManager;
-    MainPanelGame mainPanelGame;
+    private final ListenerBaseData listenerBaseData;
 
-    public CarefullListener(RoundManager roundManager, MainPanelGame mainPanelGame) {
-        this.roundManager = roundManager;
-        this.mainPanelGame = mainPanelGame;
+    public CarefullListener(ListenerBaseData listenerBaseData) {
+        this.listenerBaseData = listenerBaseData;
     }
-
     @Override
     public void actionPerformed(ActionEvent e) {
+        var mainPanelGame = listenerBaseData.mainPanelGame;
+        var roundManager = listenerBaseData.roundManager;
 
         Vector2 point = mainPanelGame.getGamePanel().getCurrentClickedIndexes();
         ArrayList<String> popUp = new ArrayList<>();

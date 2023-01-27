@@ -1,18 +1,16 @@
 package gui.views.gamePanel.gamePanels;
 
 import game.generals.Vector2;
-import gui.factories.IOverallFactory;
 import gui.card.fullCards.abstractCards.Card;
 import gui.customComponents.AbstractCustomButton;
 import gui.customUI.customUIStyles.borderStrategies.AverageBorderStartegy;
 import gui.factories.GuiFactory;
-import gui.factories.customFactories.buttonFactories.BasicButton;
+import gui.factories.IOverallFactory;
 import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
 import gui.views.BackgroundView;
 import gui.views.PanelContainer;
-import gui.views.gamePanel.optionsPanels.OneDataOptionsPanel;
 import gui.views.gamePanel.optionsPanels.OptionsPanel;
 
 import javax.swing.*;
@@ -29,11 +27,11 @@ public abstract class BaseGamePanel extends BackgroundView implements PanelConta
     private Color secondBackColor = new Color(0x674F3A);
     private ComponentPanelMenager generalManager;
     protected JPanel panel = new JPanel();
-    protected OptionsPanel optionsPanel;//ale inny
-    protected IOverallFactory factory;//
-    private OverlayLayout layout;//
+    protected OptionsPanel optionsPanel;
+    protected IOverallFactory factory;
+    private OverlayLayout layout;
     protected int maxIndex;
-    protected final int weight;//
+    protected final int weight;
     public DefaultCustomMenuMenager<AbstractCustomButton> manager =
             new DefaultCustomMenuMenager<AbstractCustomButton>(ComponentsSeries.ComponentsDimension.HORIZONTAL,
                     ComponentsSeries.ComponentsDimension.VERTICAL);//
@@ -55,7 +53,7 @@ public abstract class BaseGamePanel extends BackgroundView implements PanelConta
     }
 
     public void initialize() {
-        generalManager = new ComponentPanelMenager(panel, 60);
+        generalManager = new ComponentPanelMenager<>(panel, 60);
         generalManager.addSpace(1);
         panel.setOpaque(false);
         generalManager.setBackground(new Color(0x2F5B51));
@@ -72,15 +70,12 @@ public abstract class BaseGamePanel extends BackgroundView implements PanelConta
                 manager.addMiddleComponent(but, i, 5);
                 int finalI = i;
                 int finalJ = j;
-                but.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        if (optionsPanel.getCurrentPoint().x != finalI || optionsPanel.getCurrentPoint().y != finalJ) {
-                            addButton(finalI, finalJ);
-                            optionsPanel.setCurrentIndexes(finalI, finalJ);
-                        } else {
-                            optionsPanel.setVisible(false);
-                        }
+                but.addActionListener(e -> {
+                    if (optionsPanel.getCurrentPoint().x != finalI || optionsPanel.getCurrentPoint().y != finalJ) {
+                        addButton(finalI, finalJ);
+                        optionsPanel.setCurrentIndexes(finalI, finalJ);
+                    } else {
+                        optionsPanel.setVisible(false);
                     }
                 });
             }
@@ -119,7 +114,8 @@ public abstract class BaseGamePanel extends BackgroundView implements PanelConta
         }
     }
 
-    protected void applyWithoutRemovingContent(AbstractMap.SimpleEntry<Vector2, String>... content) {
+    @SafeVarargs
+    protected final void applyWithoutRemovingContent(AbstractMap.SimpleEntry<Vector2, String>... content) {
         applyWithoutRemovingContent(new ArrayList<>(Arrays.asList(content)));
     }
 
@@ -128,7 +124,8 @@ public abstract class BaseGamePanel extends BackgroundView implements PanelConta
         applyWithoutRemovingContent(content);
     }
 
-    public void applyContent(AbstractMap.SimpleEntry<Vector2, String>... content) {
+    @SafeVarargs
+    public final void applyContent(AbstractMap.SimpleEntry<Vector2, String>... content) {
         removeContent();
         applyWithoutRemovingContent(content);
     }
@@ -161,9 +158,13 @@ public abstract class BaseGamePanel extends BackgroundView implements PanelConta
 
     }
 
-    public void setDisabledIndexes(Vector2... indexes) {
+    public final void setDisabledIndexes(Vector2... indexes) {
         setDisabledIndexes(new ArrayList<>(Arrays.asList(indexes)));
 
+    }
+
+    public void addDisabledIndex(Vector2 index){
+        manager.getMiddleComponent(index.x, index.y).getComponent().setEnabled(false);
     }
 
     public void colorButtons(Vector2... indexes) {

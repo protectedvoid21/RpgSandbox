@@ -11,7 +11,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class CardCancelView {
-    private AbstractCustomButton button;
+    private final AbstractCustomButton button;
     private DefaultCustomMenuMenager menager =
             new DefaultCustomMenuMenager(ComponentsSeries.ComponentsDimension.VERTICAL,
                     ComponentsSeries.ComponentsDimension.HORIZONTAL);

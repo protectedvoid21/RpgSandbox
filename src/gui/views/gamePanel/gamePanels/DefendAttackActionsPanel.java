@@ -8,21 +8,17 @@ import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
 import gui.views.PanelContainer;
-
-import javax.swing.*;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 
 public class DefendAttackActionsPanel implements PanelContainer {
-    private HashMap<GamePanel.ActionsLabelsType, ActionsData> actionsMap = new HashMap<>();
-    private DefaultCustomMenuMenager<ComponentsSeries<ComponentPanelMenager<AbstractCustomLabel>>> managerActions =
-            new DefaultCustomMenuMenager<ComponentsSeries<ComponentPanelMenager<AbstractCustomLabel>>>(ComponentsSeries.ComponentsDimension.HORIZONTAL,
+    private final HashMap<GamePanel.ActionsLabelsType, ActionsData> actionsMap = new HashMap<>();
+    private final DefaultCustomMenuMenager<ComponentsSeries<ComponentPanelMenager<AbstractCustomLabel>>> managerActions =
+            new DefaultCustomMenuMenager<>(ComponentsSeries.ComponentsDimension.HORIZONTAL,
                     ComponentsSeries.ComponentsDimension.VERTICAL);
-    private HashMap<GamePanel.ActionsLabelsType, Integer> indexesMap =
+    private final HashMap<GamePanel.ActionsLabelsType, Integer> indexesMap =
             new HashMap<>(Map.of(GamePanel.ActionsLabelsType.ATACK, 0, GamePanel.ActionsLabelsType.DEFEND, 1));
-    private int maxIndex;
+    private final int maxIndex;
 
     public DefendAttackActionsPanel(int maxIndex) {
         this.maxIndex = maxIndex;
@@ -39,8 +35,7 @@ public class DefendAttackActionsPanel implements PanelContainer {
         for (int i = 0; i < maxIndex; i++) {
             managerActions.addMainComponent(5);
             for (int j = 0; j < maxIndex; j++) {
-                var cmp =
-                        new ComponentsSeries<ComponentPanelMenager<AbstractCustomLabel>>(ComponentsSeries.ComponentsDimension.HORIZONTAL);
+                var cmp = new ComponentsSeries<ComponentPanelMenager<AbstractCustomLabel>>(ComponentsSeries.ComponentsDimension.HORIZONTAL);
                 var cmp1 = new ComponentPanelMenager<AbstractCustomLabel>(new IconLabel(Card.EMPTY_DATA_CONTENT, true));
                 cmp1.setVisible(false);
                 var cmp2 = new ComponentPanelMenager<AbstractCustomLabel>(new IconLabel(Card.EMPTY_DATA_CONTENT, true));

@@ -11,9 +11,9 @@ import gui.menu.ComponentPanelMenager;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 
 public abstract class OnlyVisibleCard extends BaseCard {
-//    private AbstractCustomButton showbutton;
     private AbstractCustomLabel nameLabel;
 
 
@@ -22,7 +22,7 @@ public abstract class OnlyVisibleCard extends BaseCard {
     }
 
     public void uploadTypePathData(String path){
-        if (path != rightTitleComponent.getComponent().getContent()) {
+        if (!Objects.equals(path, rightTitleComponent.getComponent().getContent())) {
             rightTitleComponent.getComponent().setContent(path);
         }
     }
@@ -60,12 +60,9 @@ public abstract class OnlyVisibleCard extends BaseCard {
         titleSeries.addMiddleComponent(rightTitleComponent, 1,30);
 
         titleSeries.getMiddleComponent(1,1).addSpace(4, ComponentPanelMenager.Side.RIGHT, ComponentPanelMenager.Side.TOP);
-//        titleSeries.getMiddleComponent(1,1).addSpace(1, ComponentPanelMenager.Side.LEFT);
         titleSeries.getMiddleComponent(1,1).addSpace(2, ComponentPanelMenager.Side.BOTTOM);
         factory.setLabelType(GuiFactory.LabelType.NORMAL);
         nameLabel = factory.createLabel(Card.EMPTY_DATA_CONTENT);
-
-//        showbutton = factory.createButton("SHOW", null);
         seriesPanel.addMainComponent(4);
         seriesPanel.addMainComponent(4);
         seriesPanel.addMiddleComponent(nameLabel, 1, 10);

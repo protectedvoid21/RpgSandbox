@@ -69,7 +69,7 @@ public class DoubleArrowPanel {
     }
 
 
-    public ComponentPanelMenager<JComponent> getPanel() {
+    public ComponentPanelMenager getPanel() {
         return menager.getCmp();
     }
 

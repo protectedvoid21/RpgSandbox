@@ -7,6 +7,7 @@ import game.filehandle.EntityManager;
 import game.utils.seeders.SeedManager;
 import game.utils.seeders.Seeder;
 import gui.factories.WarHammerFactory;
+import gui.utils.Converter;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,7 +23,7 @@ public class Main {
 //        seeder.seed();
 //        EntityManager.getInstance().saveAllEntities();
         SwingUtilities.invokeLater(() -> {
-            ControllerManager controllerManager = new ControllerManager(new WarHammerFactory(), audioManager);
+            new ControllerManager(new WarHammerFactory(), audioManager, new Converter());
         });
     }
 }

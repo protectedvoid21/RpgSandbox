@@ -33,7 +33,6 @@ public class BasicLabelFactory extends LabelFactory{
     public  AbstractCustomLabel createIconPropLabel(String path){
         var label = helpCreatedMethod(new IconLabel(path, true));
         label.getCustomUI().setBackGroundTransparent(true);
-//        label.getLabelUI().getCustomUI().setRespectionBorder(false);
         return label;
     }
     public  AbstractCustomLabel createIconStretchLabel(String path){

@@ -58,7 +58,6 @@ public abstract class AbstractCustomButton extends JButton implements IContentCu
 
     @Override
     public void setEnabled(boolean b) {
-//        super.setEnabled(b);
         if (hasDisabledColor) {
             if (!b) {
                 setOnlySuperBackground(secondColor);

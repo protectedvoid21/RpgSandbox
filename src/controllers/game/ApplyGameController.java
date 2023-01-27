@@ -10,6 +10,7 @@ import game.filehandle.EntityManager;
 import gui.factories.IOverallFactory;
 import gui.views.gamePanel.gamePanels.CreatorPanel;
 import gui.views.objectViews.AllObjectsView;
+import gui.views.objectViews.creationViews.ChoosingCreationGameView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,9 +18,10 @@ import java.util.ArrayList;
 
 public class ApplyGameController extends Controller {
 
+    private ChoosingCreationGameView view;
     @Override
     public void run(IOverallFactory overallFactory) {
-        var view = overallFactory.createchoosingCreationGameView();
+        view = overallFactory.createchoosingCreationGameView();
         view.getCancelButton().addActionListener(
                 new RedirectListener(controllerManager, new MenuController())
         );
@@ -34,10 +36,18 @@ public class ApplyGameController extends Controller {
         }
         view.uploadData(array);
         for (int i = 0; i < array.size(); i++) {
-            view.addButtonActionListener(AllObjectsView.ButtonType.APPLY, i, new RedirectListener(controllerManager,
-                    new MainGameController(EntityManager.getInstance().getScenarioList().get(i))));
+            view.addButtonActionListener(AllObjectsView.ButtonType.APPLY, i, new Listener());
         }
 
         mainFrame.add(view.getPanel());
+    }
+
+    private class Listener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            new RedirectListener(controllerManager,
+                    new MainGameController(EntityManager.getInstance().getScenarioList().get(view.getClickedIndex()))).actionPerformed(e);
+        }
     }
 }

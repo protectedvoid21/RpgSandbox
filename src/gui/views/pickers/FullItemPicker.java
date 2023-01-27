@@ -12,36 +12,35 @@ import gui.views.PanelContainer;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class FullItemPicker implements SwitchableComponent, PanelContainer {
     public enum LabelType {WEAPON, ARMOR, MOUNT}
 
-    private HashMap<Integer, LabelType> indexmap = new HashMap<>();
-    private DoubleArrowPanel arrows;
-    private DefaultCustomMenuMenager<JComponent> menager =
-            new DefaultCustomMenuMenager<JComponent>(ComponentsSeries.ComponentsDimension.VERTICAL,
+    private final HashMap<Integer, LabelType> indexmap = new HashMap<>();
+    private final DoubleArrowPanel arrows;
+    private final DefaultCustomMenuMenager<JComponent> menager =
+            new DefaultCustomMenuMenager<>(ComponentsSeries.ComponentsDimension.VERTICAL,
                     ComponentsSeries.ComponentsDimension.HORIZONTAL);
     private HashMap<LabelType, ItemPicker> items = new HashMap<>();
     private HashMap<LabelType, String> labelPaths = new HashMap<>();
-    private AbstractCustomLabel label;
+    private final AbstractCustomLabel label;
     private int currentSide = 0;
 
     public FullItemPicker(GuiFactory factory) {
-
-//        menager.getCmp().addSpace(4, ComponentPanelMenager.Side.TOP, ComponentPanelMenager.Side.BOTTOM);
         indexmap.put(0, LabelType.WEAPON);
         indexmap.put(1, LabelType.ARMOR);
         indexmap.put(2, LabelType.MOUNT);
+
         arrows = new DoubleArrowPanel(factory, this);
-        menager.addMainComponent(8);
-        menager.addMainComponent(12);
-        menager.addMainComponent(4);
+
+        for(var num : Arrays.asList(8,12, 4)){
+            menager.addMainComponent(num);
+        }
         for (var item : LabelType.values()){
             items.put(item, new ItemPicker(factory));
         }
-
-
         label = factory.createLabel(Card.EMPTY_DATA_CONTENT);
         menager.addMiddleComponent(label, 0, 10,30);
         menager.addMiddleComponent(arrows.getPanel(), 2, 10,30);
@@ -69,8 +68,6 @@ public class FullItemPicker implements SwitchableComponent, PanelContainer {
     private void updateContent() {
         label.setContent(labelPaths.get(indexmap.get(currentSide)));
         menager.getMiddleComponent(1, 0).changeContent(items.get(indexmap.get(currentSide)).getPanel());
-
-//        panel.changeContent(items.get(indexmap.get(currentSide)).getPanel());
     }
 
     public void uploadMainPaths(HashMap<LabelType, String> map) {
@@ -92,7 +89,7 @@ public class FullItemPicker implements SwitchableComponent, PanelContainer {
     }
 
     public ItemPicker getPicker(LabelType type) {
-        return items.containsKey(type) ? items.get(type) : null;
+        return items.getOrDefault(type, null);
     }
 
     @Override

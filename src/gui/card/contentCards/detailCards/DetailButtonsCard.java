@@ -45,15 +45,14 @@ public abstract class DetailButtonsCard extends AbstractCard<JComponent> {
     protected void updateContent() {
         int maxSideIndex = getSideMaximumElementsNumber();
         int dataSize = data.content.size();
-        var sublist = data.content.subList(currentAttrSide * maximumElementNumber, maxSideIndex > dataSize ? dataSize :
-                maxSideIndex);
+        var sublist = data.content.subList(currentAttrSide * maximumElementNumber, Math.min(maxSideIndex, dataSize));
         int currentIndex = 0;
         Card.setNonDependantAspectVisible(labelList);
         Card.setNonDependantAspectVisible(detailList);
         for (var key : sublist) {
             labelList.get(currentIndex).setContent(key.get(0));
             getContentList().get(currentIndex).setContent(key.get(1));
-            detailList.get(currentIndex).setContent("DETAILS");
+            detailList.get(currentIndex).setContent(detailText);
             currentIndex++;
         }
         if (sublist.size() < maximumElementNumber) {
@@ -76,10 +75,8 @@ public abstract class DetailButtonsCard extends AbstractCard<JComponent> {
             factory.setLabelType(GuiFactory.LabelType.ICON);
             initLabel(labelList, Card.EMPTY_DATA_CONTENT);
             initContentSegment();
-            initButton(detailList, "DETAIL");
-//            initButton(selectList, "SELECT");
+            initButton(detailList, detailText);
         }
-
     }
 
     protected abstract JComponent createContentSegment();

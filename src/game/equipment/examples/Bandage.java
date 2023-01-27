@@ -1,5 +1,6 @@
 package game.equipment.examples;
 
+import controllers.audio.WarhammerEnumAudio;
 import game.creature.Creature;
 import game.equipment.DisposableItem;
 import game.interfaceWarhammer.EffectEnum;
@@ -10,9 +11,12 @@ public class Bandage extends DisposableItem implements WarhammerData {
     public Bandage(int usageCount) {
         super(usageCount);
         setItemPathPicture(plasterPath);
+        enumAudio = WarhammerEnumAudio.BANDAGE;
+        workOnEnemy = false;
 
 
-        description = "Bandage is great way to stop the bleeding! And yes! We have also kids version with dragons and warriors on it!";
+        description = "Bandage is great way to stop the bleeding! And yes! We have also kids version with dragons and" +
+                " warriors on it!";
     }
 
     @Override

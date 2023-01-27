@@ -79,7 +79,7 @@ public class CreatureListController extends Controller {
         @Override
         public void actionPerformed(ActionEvent e) {
             var index = view.getClickedIndex();
-            FileManager.deleteFile(creatureList.get(index).getObjectPathPicture());
+//            FileManager.deleteFile(creatureList.get(index).getObjectPathPicture());
             creatureList.remove(index);
             EntityManager.getInstance().saveAllEntities();
         }

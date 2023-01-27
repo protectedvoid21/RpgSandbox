@@ -12,6 +12,20 @@ public class CardContentDataSet {
 
     public ArrayList<DataType> dataType = new ArrayList<>();
 
+    public CardContentDataSet(String titlePath, String titleContent) {
+        this.titlePath = titlePath;
+        this.titleContent = titleContent;
+    }
+
+    public CardContentDataSet() {
+    }
+
+    public void setFullStringDataContent(){
+        for (int i = 0; i < content.size(); i++) {
+            dataType.add(CardContentDataSet.DataType.STRING);
+        }
+    }
+
     public boolean equals(CardContentDataSet secondData) {
 
         if (!(titlePath.equals(secondData.titlePath))) {
