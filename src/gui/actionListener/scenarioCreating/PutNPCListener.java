@@ -30,39 +30,4 @@ public class PutNPCListener extends PutListener {
     protected Creature getClickedCreature() {
         return EntityManager.getInstance().getNPCList().get(showApplyCreatureView.getClickedIndex());
     }
-//
-//    final private ArrayList<ScenarioData> scenarioDataList;
-//
-//    final private CreatorGameView creatorGameView;
-//
-//    final private ShowApplyCreatureView showApplyCreatureView;
-//    final private ControllerManager controllerManager;
-//    final private IOverallFactory factory;
-//
-//    public PutNPCListener(ArrayList<ScenarioData> scenarioDataList, CreatorGameView creatorGameView,
-//                          ShowApplyCreatureView showApplyCreatureView, ControllerManager controllerManager,
-//                          NewScenarioController scenarioController, IOverallFactory factory) {
-//        this.scenarioDataList = scenarioDataList;
-//        this.creatorGameView = creatorGameView;
-//        this.showApplyCreatureView = showApplyCreatureView;
-//        this.controllerManager = controllerManager;
-//        this.factory =factory;
-//
-//    }
-//
-//    @Override
-//    public void actionPerformed(ActionEvent e) {
-//        NPC dependNPC = EntityManager.getInstance().getNPCList().get(showApplyCreatureView.getClickedIndex());
-//        ScenarioData scenarioData = new ScenarioData();
-//        scenarioData.creature = dependNPC;
-//        scenarioData.position = creatorGameView.getCreatorPanel().getCurrentClickedIndexes();
-//        scenarioDataList.add(scenarioData);
-//        creatorGameView.getCreatorPanel().applyNewCreatureOnPosition(dependNPC.getObjectPathPicture(),
-//                creatorGameView.getCreatorPanel().getCurrentClickedIndexes());
-////        controllerManager.changeController(scenarioController);
-//        var scenario = new NewScenarioController(factory,scenarioDataList);
-//        new RedirectListener(controllerManager, scenario).actionPerformed(e);
-//        creatorGameView.getCreatorPanel().disableOptionsPanel();
-//
-//    }
 }

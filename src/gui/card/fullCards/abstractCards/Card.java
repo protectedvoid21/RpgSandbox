@@ -3,7 +3,7 @@ package gui.card.fullCards.abstractCards;
 import gui.card.*;
 import gui.card.contentCards.AbstractCard;
 import gui.card.contentCards.OverallCard;
-import gui.card.contentCards.TextAreaCard;
+import gui.card.contentCards.detailCards.TextAreaCard;
 import gui.card.contentCards.attributesCards.AttributesCard;
 import gui.card.contentCards.EmptyCard;
 import gui.card.contentCards.attributesCards.EntriesAttributesCard;

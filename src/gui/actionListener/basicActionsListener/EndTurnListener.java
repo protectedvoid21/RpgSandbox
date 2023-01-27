@@ -55,46 +55,8 @@ public class EndTurnListener implements ActionListener {
             mainPanelGame.getItemsItemPicker().uploadData(array);
             mainPanelGame.getItemsItemPicker().setCurrentIndex(character.getInventory().getDisposableItems().
                     indexOf(character.getInventory().getSelectedDisposableItem()));
-
-//            var array = new ArrayList<String>();
-//            for (var item : character.getInventory().getMounts()) {
-//                array.add(item.getItemPathPicture());
-//            }
-//            var array1 = new ArrayList<String>();
-//            for (var item : character.getInventory().getWeapons()) {
-//                array1.add(item.getItemPathPicture());
-//            }
-//            var array2 = new ArrayList<String>();
-//            for (var item : character.getInventory().getArmors()) {
-//                array2.add(item.getItemPathPicture());
-//            }
-//            mainPanelGame.getPicker(FullItemPicker.LabelType.MOUNT).uploadData(array);
-//            mainPanelGame.getPicker(FullItemPicker.LabelType.MOUNT).setCurrentIndex(character.getInventory().getMounts().
-//                    indexOf(character.getInventory().getActiveMount()));
-//            mainPanelGame.getPicker(FullItemPicker.LabelType.WEAPON).uploadData(array1);
-//            mainPanelGame.getPicker(FullItemPicker.LabelType.WEAPON).setCurrentIndex(character.getInventory().getWeapons().
-//                    indexOf(character.getInventory().getActiveWeapon()));
-//
-//            mainPanelGame.getPicker(FullItemPicker.LabelType.ARMOR).uploadData(array2);
-//            mainPanelGame.getPicker(FullItemPicker.LabelType.ARMOR).setCurrentIndex(character.getInventory().getArmors().
-//                    indexOf(character.getInventory().getActiveArmor()));
-
-
         }
     }
-
-//    private void disItemGenerator() {
-//        if (roundManager.getGameObjectWithTurn().getCreature() instanceof Character) {
-//            var character = (Character) roundManager.getGameObjectWithTurn().getCreature();
-//            var array = generatePathsArrayList(character.getInventory().getDisposableItems());
-//            mainPanelGame.getItemsItemPicker().uploadData(array);
-//            mainPanelGame.getItemsItemPicker().setCurrentIndex(character.getInventory().getDisposableItems().
-//                    indexOf(character.getInventory().getSelectedDisposableItem()));
-//
-//
-//        }
-//    }
-
     private ArrayList<String> generatePathsArrayList(List<? extends Item> items){
         var array = new ArrayList<String>();
         for (var item : items) {

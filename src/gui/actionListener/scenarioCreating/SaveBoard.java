@@ -1,10 +1,8 @@
 package gui.actionListener.scenarioCreating;
 
-import game.board.Board;
 import game.board.Scenario;
 import game.board.ScenarioData;
 import game.filehandle.EntityManager;
-import game.filehandle.FileManager;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

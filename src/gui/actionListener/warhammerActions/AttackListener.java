@@ -15,10 +15,7 @@ import static game.interfaceWarhammer.ActionsEnum.*;
 import static game.interfaceWarhammer.AttributeEnum.HEALTH_POINTS_NOW;
 
 public class AttackListener implements ActionListener {
-
-    //    RoundManager roundManager;
-//    MainPanelGame mainPanelGame;
-    private ListenerBaseData listenerBaseData;
+    private final ListenerBaseData listenerBaseData;
 
     public AttackListener(ListenerBaseData listenerBaseData) {
         this.listenerBaseData = listenerBaseData;
@@ -26,8 +23,6 @@ public class AttackListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-//        Vector2 point = mainPanelGame.getGamePanel().getCurrentClickedIndexes();
-
         Vector2 point = listenerBaseData.roundManager.getGameObjectWithTurnPosition();
         ArrayList<String> popUp = new ArrayList<>();
         var roundManager = listenerBaseData.roundManager;

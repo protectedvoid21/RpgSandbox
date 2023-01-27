@@ -20,9 +20,11 @@ public class ComponentPanelMenager<T extends JComponent> extends JPanel {
     private Image backgroundImage;
     private String backimgPath = "";
     private HashMap<Side, Component> freeSpaces = new HashMap<>();
-    private double borderValue = 0;
-    private Color borderColor;
-    private IBorderStrategy strategy = new DefaultBorderStrategy();
+//    private double borderValue = 0;
+//    private Color borderColor;
+
+    private BorderData borderData = new BorderData();
+//    private IBorderStrategy strategy = new DefaultBorderStrategy();
     private boolean hasUniqueColor = false;
 
     public void setHasUniqueColor(boolean hasUniqueColor) {
@@ -152,6 +154,9 @@ public class ComponentPanelMenager<T extends JComponent> extends JPanel {
         revalidate();
 
     }
+    public void removeBackGroundImage(){
+        this.backgroundImage = null;
+    }
 
     @Override
     public void paintComponent(Graphics g) {
@@ -181,23 +186,35 @@ public class ComponentPanelMenager<T extends JComponent> extends JPanel {
      * Border value is given in per mille
      */
     public void setBorderData(Color color, IBorderStrategy strategy, int borderValue) {
-        this.strategy = strategy;
-        this.borderColor = color;
-        this.borderValue = ((double) borderValue) / 10;
+        borderData = new BorderData(strategy,  ((double) borderValue) / 10, color);
+//        this.strategy = strategy;
+//        this.borderColor = color;
+//        this.borderValue = ((double) borderValue) / 10;
+    }
+    public void setBorderData(BorderData borderData) {
+        this.borderData = borderData;
+//        this.strategy = strategy;
+//        this.borderColor = color;
+//        this.borderValue = ((double) borderValue) / 10;
     }
 
     public void removeBorderData() {
-        strategy = new DefaultBorderStrategy();
-        this.borderColor = null;
-        this.borderValue = 0;
+        borderData = new BorderData();
+//        strategy = new DefaultBorderStrategy();
+//        this.borderColor = null;
+//        this.borderValue = 0;
+    }
+
+    public BorderData getBorderData(){
+        return borderData;
     }
 
     @Override
     protected void paintBorder(Graphics g) {
-        var top = (int) strategy.convertTOPBorderSizeToValue(this, borderValue);
-        var side = (int) strategy.convertSIDEBorderSizeToValue(this, borderValue);
-        if (!(getBorder().getBorderInsets(this).top == top && getBorder().getBorderInsets(this).left == side) && borderColor != null) {
-            setBorder(BorderFactory.createMatteBorder(top, side, top, side, borderColor));
+        var top = (int) borderData.borderStrategy.convertTOPBorderSizeToValue(this, borderData.borderValue);
+        var side = (int) borderData.borderStrategy.convertSIDEBorderSizeToValue(this, borderData.borderValue);
+        if (!(getBorder().getBorderInsets(this).top == top && getBorder().getBorderInsets(this).left == side) && borderData.borderColor != null) {
+            setBorder(BorderFactory.createMatteBorder(top, side, top, side, borderData.borderColor));
         }
         super.paintBorder(g);
     }

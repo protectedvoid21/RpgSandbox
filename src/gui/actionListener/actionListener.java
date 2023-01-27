@@ -3,17 +3,10 @@ package gui.actionListener;
 import game.board.RoundManager;
 import game.creature.Creature;
 import game.generals.Vector2;
-import game.interfaceWarhammer.ActionsEnum;
 import gui.views.gamePanel.MainPanelGame;
-import gui.views.gamePanel.gamePanels.BaseGamePanel;
-import gui.views.gamePanel.gamePanels.GamePanel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-
-import static game.interfaceWarhammer.ActionsEnum.*;
-import static game.interfaceWarhammer.StruggleAtributeEnum.*;
 public class actionListener implements ActionListener {
 
     RoundManager roundManager;

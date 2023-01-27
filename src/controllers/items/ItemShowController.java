@@ -8,9 +8,9 @@ import gui.card.fullCards.abstractCards.Card;
 import gui.factories.IOverallFactory;
 
 public class ItemShowController extends Controller {
-    private int index;
-    private Card.CardTypes cardType;
-    private Card.CardTypes creatorTypes;
+    private final int index;
+    private final Card.CardTypes cardType;
+    private final Card.CardTypes creatorTypes;
     
     public ItemShowController(int index, Card.CardTypes cardType, Card.CardTypes creatorTypes) {
         this.index = index;

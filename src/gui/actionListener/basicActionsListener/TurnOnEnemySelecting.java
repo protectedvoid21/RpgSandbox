@@ -10,14 +10,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class TurnOnEnemySelecting implements ActionListener {
-
-    //    RoundManager roundManager;
-//    MainPanelGame mainPanelGame;
     private ListenerBaseData listenerBaseData;
 
     public TurnOnEnemySelecting(ListenerBaseData listenerBaseData) {
-//        this.roundManager = roundManager;
-//        this.mainPanelGame = mainPanelGame;
         this.listenerBaseData = listenerBaseData;
     }
 

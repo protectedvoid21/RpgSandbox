@@ -2,28 +2,26 @@ package controllers.game;
 
 import controllers.Controller;
 import controllers.MenuController;
-import controllers.utils.RedirectListener;
 import game.board.Board;
 import game.board.RoundManager;
 import game.board.Scenario;
-import game.creature.Character;
 import game.filehandle.EntityManager;
 import game.generals.Vector2;
 import gui.actionListener.ListenerBaseData;
-import gui.actionListener.basicActionsListener.*;
+import gui.actionListener.basicActionsListener.EndTurnListener;
+import gui.actionListener.basicActionsListener.MoveListener;
+import gui.actionListener.basicActionsListener.TurnOnEnemySelecting;
+import gui.actionListener.basicActionsListener.UseListener;
 import gui.actionListener.scrollItem.*;
 import gui.actionListener.turnOffButtons;
 import gui.actionListener.warhammerActions.*;
 import gui.card.DoubleArrowPanel;
 import gui.factories.IOverallFactory;
-import gui.utils.FileManager;
-import gui.views.gamePanel.MainPanelGame;
 import gui.views.pickers.CustomLambdaExpression;
 import gui.views.pickers.FullItemPicker;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class MainGameController extends Controller {
@@ -93,12 +91,13 @@ public class MainGameController extends Controller {
         }
 
         var roundManager = listenerBaseData.roundManager;
+        applyPickerListener(FullItemPicker.LabelType.WEAPON, new PreviousWeaponListener(roundManager),
+                new NextWeaponListener(roundManager));
+        applyPickerListener(FullItemPicker.LabelType.ARMOR, new PreviousArmorListener(roundManager),
+                new NextArmorListener(roundManager));
+        applyPickerListener(FullItemPicker.LabelType.MOUNT, new PreviousMountListener(roundManager),
+                new NextMountListener(roundManager));
 
-        for (var item : Arrays.asList(FullItemPicker.LabelType.WEAPON, FullItemPicker.LabelType.MOUNT,
-                FullItemPicker.LabelType.ARMOR)) {
-            applyPickerListener(item, new PreviousWeaponListener(roundManager),
-                    new NextWeaponListener(roundManager));
-        }
         mainFrame.add(gamePanel.getPanel());
 
         gamePanel.getItemsItemPicker().addListenerToPicker(DoubleArrowPanel.Side.LEFT,

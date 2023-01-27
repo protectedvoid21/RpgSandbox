@@ -1,21 +1,18 @@
 package gui.actionListener.warhammerActions;
 
-import game.board.RoundManager;
 import game.generals.Vector2;
 import gui.actionListener.ListenerBaseData;
 import gui.actionListener.turnOffButtons;
-import gui.views.gamePanel.MainPanelGame;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import static game.interfaceWarhammer.ActionsEnum.MULTIPLE_ATTACK;
-import static game.interfaceWarhammer.AttributeEnum.*;
 
 public class MultipleAttackListener implements ActionListener {
 
-    private ListenerBaseData listenerBaseData;
+    private final ListenerBaseData listenerBaseData;
 
     public MultipleAttackListener(ListenerBaseData listenerBaseData) {
         this.listenerBaseData = listenerBaseData;

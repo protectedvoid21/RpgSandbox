@@ -1,24 +1,16 @@
 package gui.actionListener.basicActionsListener;
 
-import game.board.RoundManager;
 import game.creature.Character;
 import game.creature.Creature;
 import gui.actionListener.ListenerBaseData;
-import gui.views.gamePanel.MainPanelGame;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class ShowDescripton implements ActionListener {
-
-//    RoundManager roundManager;
-//    MainPanelGame mainPanelGame;
-
-    private ListenerBaseData listenerBaseData;
+    private final ListenerBaseData listenerBaseData;
     public ShowDescripton(ListenerBaseData listenerBaseData) {
-//        this.roundManager = roundManager;
-//        this.mainPanelGame = mainPanelGame;
         this.listenerBaseData = listenerBaseData;
     }
 

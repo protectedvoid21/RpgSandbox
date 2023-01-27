@@ -1,25 +1,18 @@
 package gui.actionListener.basicActionsListener;
 
-import game.board.RoundManager;
 import game.creature.Creature;
 import game.generals.Vector2;
 import gui.actionListener.ListenerBaseData;
 import gui.actionListener.turnOffButtons;
-import gui.views.gamePanel.MainPanelGame;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import static game.interfaceWarhammer.StruggleAtributeEnum.*;
+
+import static game.interfaceWarhammer.StruggleAtributeEnum.ACTIONS_TO_DO;
 
 public class MoveListener implements ActionListener {
-
-//   private RoundManager roundManager;
-//    MainPanelGame mainPanelGame;
-    private ListenerBaseData listenerBaseData;
+    private final ListenerBaseData listenerBaseData;
 
     public MoveListener(ListenerBaseData listenerBaseData) {
-//        this.roundManager = roundManager;
-//        this.mainPanelGame = mainPanelGame;
         this.listenerBaseData = listenerBaseData;
     }
 

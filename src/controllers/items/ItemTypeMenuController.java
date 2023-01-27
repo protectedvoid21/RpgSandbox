@@ -6,6 +6,7 @@ import controllers.utils.ItemType;
 import controllers.utils.RedirectListener;
 import gui.card.fullCards.abstractCards.Card;
 import gui.factories.IOverallFactory;
+import gui.views.TitleView;
 
 public class ItemTypeMenuController extends Controller {
     @Override
@@ -14,6 +15,8 @@ public class ItemTypeMenuController extends Controller {
         view.getReturnButton().addActionListener(
                 new RedirectListener(controllerManager, new MenuController())
         );
+        var title = new TitleView(overallFactory.getFactory());
+        title.initialize("Equipment Manager", view, 12, 20);
 
         view.getButton(0).addActionListener(
                 new RedirectListener(controllerManager, new ItemActionController(Card.CardTypes.MOUNT)));
@@ -24,6 +27,6 @@ public class ItemTypeMenuController extends Controller {
         /*view.getButton(3).addActionListener(
                 new RedirectListener(controllerManager, new ItemActionController());*/
 
-        mainFrame.add(view.getPanel());
+        mainFrame.add(title.getPanel());
     }
 }

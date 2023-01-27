@@ -1,5 +1,6 @@
-package gui.card.contentCards;
+package gui.card.contentCards.detailCards;
 
+import gui.card.contentCards.AbstractCard;
 import gui.customComponents.customTextComponents.CustomTextArea;
 import gui.customComponents.customTextComponents.CustomTextComponent;
 import gui.factories.GuiFactory;
@@ -32,6 +33,7 @@ public class TextAreaCard extends AbstractCard {
     @Override
     protected void initializeContent() {
         textArea = factory.createTextArea();
+
         menager.addMiddleComponent(textArea, 0, 10);
         menager.getMiddleComponent(0,0).addSpace(4, ComponentPanelMenager.Side.RIGHT, ComponentPanelMenager.Side.LEFT);
 

@@ -34,12 +34,12 @@ public class Converter implements WarhammerData {
         var map = new ArrayList<ArrayList<String>>();
         ArrayList<CardContentDataSet.DataType> dataTypesList = new ArrayList<>();
 
-        map.add(new ArrayList<>(Arrays.asList(StringAdapter.getRelativePath("stats.png"))));
+        map.add(new ArrayList<>(List.of(StringAdapter.getRelativePath("stats.png"))));
         if (creature instanceof Character) {
-            map.add(new ArrayList<>(Arrays.asList(horsePath)));
-            map.add(new ArrayList<>(Arrays.asList(armorPath)));
-            map.add(new ArrayList<>(Arrays.asList(weaponPath)));
-            map.add(new ArrayList<>(Arrays.asList(trolleyPath)));
+            map.add(new ArrayList<>(List.of(horsePath)));
+            map.add(new ArrayList<>(List.of(armorPath)));
+            map.add(new ArrayList<>(List.of(weaponPath)));
+            map.add(new ArrayList<>(List.of(trolleyPath)));
         }
 
         for (int i = 0; i < map.size(); i++)
@@ -481,7 +481,7 @@ public class Converter implements WarhammerData {
 
         var map = new ArrayList<ArrayList<String>>();
         ArrayList<CardContentDataSet.DataType> dataTypesList = new ArrayList<>();
-        map.add(new ArrayList<>(Arrays.asList(item.getDescription())));
+        map.add(new ArrayList<>(Collections.singletonList(item.getDescription())));
 
         data.content = map;
         data.dataType = dataTypesList;

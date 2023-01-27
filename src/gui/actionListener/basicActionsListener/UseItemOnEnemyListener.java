@@ -1,32 +1,20 @@
 package gui.actionListener.basicActionsListener;
 
-import controllers.audio.CustomAudioManager;
-import game.board.RoundManager;
 import game.creature.Character;
 import game.creature.Creature;
 import game.generals.Vector2;
 import gui.actionListener.ListenerBaseData;
 import gui.actionListener.PathsArrayListGenerator;
-import gui.actionListener.turnOffButtons;
-import gui.views.gamePanel.MainPanelGame;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
-import static game.interfaceWarhammer.StruggleAtributeEnum.*;
+import static game.interfaceWarhammer.StruggleAtributeEnum.ACTIONS_TO_DO;
 
 public class UseItemOnEnemyListener implements ActionListener {
-
-    private ListenerBaseData listenerBaseData;
-//    RoundManager roundManager;
-//    MainPanelGame mainPanelGame;
-//    private CustomAudioManager audioManager;
+    private final ListenerBaseData listenerBaseData;
 
     public UseItemOnEnemyListener(ListenerBaseData listenerBaseData) {
-//        this.roundManager = roundManager;
-//        this.mainPanelGame = mainPanelGame;
-//        this.audioManager= audioManager;
         this.listenerBaseData = listenerBaseData;
     }
 
@@ -42,13 +30,7 @@ public class UseItemOnEnemyListener implements ActionListener {
 
         you.getStruggleStatistics().getAttribute(ACTIONS_TO_DO).decreaseValue(1);
         listenerBaseData.mainPanelGame.getGamePanel().changeActiveOptionsPanel();
-        if (you instanceof Character) {
-            var character = (Character) you;
-//            var array = new ArrayList<String>();
-//            for (var item : character.getInventory().getDisposableItems()) {
-//                if (item.isValid())
-//                    array.add(item.getItemPathPicture());
-//            }
+        if (you instanceof Character character) {
             var array = PathsArrayListGenerator.generatePathsArrayList(character.getInventory().getDisposableItems());
             listenerBaseData.mainPanelGame.getItemsItemPicker().uploadData(array);
             listenerBaseData.mainPanelGame.getItemsItemPicker().setCurrentIndex(character.getInventory().getDisposableItems().

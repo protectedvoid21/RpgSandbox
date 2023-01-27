@@ -17,22 +17,8 @@ public class turnOffUseItem {
         var indexesCell = new ArrayList<>(Arrays.asList(0, 2, 3, 4));
         var indexesOption = new ArrayList<>(Arrays.asList(0, 1, 2));
 
-//        indexesCell.add(0);
-//        indexesCell.add(2);
-//        indexesCell.add(3);
-//        indexesCell.add(4);
-//
-//        indexesOption.add(0);
-//        indexesOption.add(1);
-//        indexesOption.add(2);
-
         for (int i = 0; i < roundManager.getBoard().getHeight(); i++) {
             for (int j = 0; j < roundManager.getBoard().getWidth(); j++) {
-//                indexesCell = new ArrayList<>();
-//                indexesCell.add(0);
-//                indexesCell.add(2);
-//                indexesCell.add(3);
-//                indexesCell.add(4);
                 indexesCell = new ArrayList<>(Arrays.asList(0, 2, 3, 4));
 
                 if (roundManager.getBoard().getPlace(new Vector2(j, i)).isEmpty()) { // Sprawdza czy jest postać

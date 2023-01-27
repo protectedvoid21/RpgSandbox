@@ -2,6 +2,9 @@ package gui.views;
 
 import gui.menu.ComponentPanelMenager;
 
+import javax.swing.*;
+
 public interface PanelContainer {
-    ComponentPanelMenager getPanel();
+    ComponentPanelMenager<? extends JComponent> getPanel();
+
 }

@@ -5,11 +5,17 @@ import controllers.utils.CreatureType;
 import controllers.utils.RedirectListener;
 import game.creature.Creature;
 import game.filehandle.DummyCreator;
+import gui.card.fullCards.abstractCards.Card;
 import gui.factories.IOverallFactory;
+import gui.views.TitleView;
+
+import java.util.Map;
 
 public class CreatureActionController extends Controller {
-    private CreatureType creatureType;
+    private final CreatureType creatureType;
     private Creature dummyCreature;
+    private static final Map<CreatureType, String> titleTexts = Map.of(CreatureType.NPC, "NPC Manager",
+            CreatureType.MONSTER, "Monster Manager", CreatureType.PLAYER_CHARACTER, "Player Character Manager");
 
     public CreatureActionController(CreatureType creatureType) {
         this.creatureType = creatureType;
@@ -30,6 +36,8 @@ public class CreatureActionController extends Controller {
     @Override
     public void run(IOverallFactory overallFactory) {
         var view = overallFactory.createOverallCreaturesPanel();
+        var title = new TitleView(overallFactory.getFactory());
+        title.initialize(titleTexts.get(creatureType), view, 12, 20);
         view.getReturnButton().addActionListener(
                 new RedirectListener(controllerManager, new CreatureTypeController())
         );
@@ -41,6 +49,6 @@ public class CreatureActionController extends Controller {
                 new RedirectListener(controllerManager, new CreatureListController(creatureType))
         );
         
-        mainFrame.add(view.getPanel());
+        mainFrame.add(title.getPanel());
     }
 }

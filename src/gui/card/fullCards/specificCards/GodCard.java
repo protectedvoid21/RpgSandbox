@@ -9,10 +9,7 @@ public class GodCard extends BasicCard{
     public GodCard(GuiFactory factory) {
         super(factory);
     }
-    private ActionListener itemAction = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-        }
+    private ActionListener itemAction = e -> {
     };
 
     public void setItemViewStatus(CardTypes type, int index){

@@ -11,18 +11,17 @@ import javax.swing.*;
 import java.io.IOException;
 
 public class TitleView {
-    private DefaultCustomMenuMenager<JComponent> manager =
+    private final DefaultCustomMenuMenager<JComponent> manager =
             new DefaultCustomMenuMenager<>(ComponentsSeries.ComponentsDimension.VERTICAL,
                     ComponentsSeries.ComponentsDimension.HORIZONTAL);
-    private AbstractCustomLabel label;
-    private GuiFactory factory;
-
-
+    private final GuiFactory factory;
     public TitleView(GuiFactory factory) {
         this.factory = factory;
     }
 
     public <T extends PanelContainer> void initialize(String text, T panel, int size, int space) {
+        manager.getCmp().setBorderData(panel.getPanel().getBorderData());
+        panel.getPanel().removeBorderData();
         factory.setLabelType(GuiFactory.LabelType.NORMAL);
         manager.addMainComponent(size, 100);
         manager.addMainComponent(100 - size);
@@ -30,10 +29,11 @@ public class TitleView {
         manager.setBackground(panel.getPanel().getBackground());
         try {
             manager.getCmp().setBackgroundImage(panel.getPanel().getBackgroundImage());
-        } catch (IOException e) {
+        } catch (IOException ignored) {
         }
+        panel.getPanel().removeBackGroundImage();
 
-        label = factory.createLabel(text);
+        AbstractCustomLabel label = factory.createLabel(text);
         label.getCustomUI().changeBorderStrategy(new DependantHeightBorderStrategy());
         manager.addMiddleComponent(label, 0, 10);
         manager.addMiddleComponent(panel.getPanel(), 1, 10);
