@@ -20,11 +20,7 @@ public class ComponentPanelMenager<T extends JComponent> extends JPanel {
     private Image backgroundImage;
     private String backimgPath = "";
     private HashMap<Side, Component> freeSpaces = new HashMap<>();
-//    private double borderValue = 0;
-//    private Color borderColor;
-
     private BorderData borderData = new BorderData();
-//    private IBorderStrategy strategy = new DefaultBorderStrategy();
     private boolean hasUniqueColor = false;
 
     public void setHasUniqueColor(boolean hasUniqueColor) {

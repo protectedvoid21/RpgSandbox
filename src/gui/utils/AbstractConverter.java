@@ -2,10 +2,7 @@ package gui.utils;
 
 import game.creature.*;
 import game.creature.Character;
-import game.equipment.Armor;
-import game.equipment.ManyUsageItem;
-import game.equipment.Mount;
-import game.equipment.Weapon;
+import game.equipment.*;
 import game.utils.ErrorValidationChecker;
 import gui.card.CardContentDataSet;
 import gui.card.fullCards.abstractCards.Card;
@@ -31,12 +28,7 @@ public interface AbstractConverter {
 
      LinkedHashMap<Card.CardTypes, CardContentDataSet> createFullDataCreature(Creature creature);
 
-     CardContentDataSet createWeaponInEntriesCard();
-     CardContentDataSet createArmorInEntriesCard();
 
-     CardContentDataSet createMountInEntriesCard();
-
-     CardContentDataSet addNewItemInEntriesCard(Character character);
 
      CardContentDataSet editWeaponInEntriesCard(Weapon weapon);
 
@@ -44,15 +36,9 @@ public interface AbstractConverter {
 
      CardContentDataSet editMountInEntriesCard(Mount mount);
 
-     CardContentDataSet createMonsterInEntriesCard();
 
-     CardContentDataSet createPlayerCharacterInEntriesCard();
+     CardContentDataSet detailsView(Item item);
 
-     CardContentDataSet createNPCInEntriesCard();
-
-     CardContentDataSet detailsView(ManyUsageItem item);
-
-     CardContentDataSet smallCharacterCards(Character character);
 
      Weapon createWeaponFromCard(CardContentDataSet data);
 
@@ -68,5 +54,4 @@ public interface AbstractConverter {
 
      Monster createMonsterFromCard(CardContentDataSet data);
 
-     void main(String[] args);
 }
