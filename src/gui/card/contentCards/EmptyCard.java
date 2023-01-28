@@ -1,7 +1,6 @@
 package gui.card.contentCards;
 
-import gui.card.contentCards.AbstractCard;
-import gui.customComponents.AbstractCustomLabel;
+import gui.customComponents.abstractComponents.AbstractCustomLabel;
 import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
 

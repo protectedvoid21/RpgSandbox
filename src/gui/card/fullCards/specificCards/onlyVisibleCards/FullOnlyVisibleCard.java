@@ -1,7 +1,7 @@
 package gui.card.fullCards.specificCards.onlyVisibleCards;
 
 import gui.card.SharedCmpsFont;
-import gui.customComponents.AbstractCustomButton;
+import gui.customComponents.abstractComponents.AbstractCustomButton;
 import gui.factories.GuiFactory;
 
 import javax.swing.*;

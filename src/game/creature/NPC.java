@@ -3,7 +3,7 @@ package game.creature;
 import game.equipment.Inventory;
 import game.interfaces.IStatistics;
 import game.interfaces.IStruggleStatistics;
-import gui.factories.WarhammerData;
+import gui.data.WarhammerData;
 
 public class NPC extends Character implements WarhammerData {
     public NPC(IStatistics statistics, Inventory inventory, Experience experience, IStruggleStatistics struggleStatistics) {

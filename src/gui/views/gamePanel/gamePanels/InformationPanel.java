@@ -1,21 +1,19 @@
 package gui.views.gamePanel.gamePanels;
 
-import gui.customComponents.AbstractCustomButton;
-import gui.customComponents.AbstractCustomLabel;
+import gui.customComponents.abstractComponents.AbstractCustomButton;
+import gui.customComponents.abstractComponents.AbstractCustomLabel;
 import gui.factories.GuiFactory;
 import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
-import gui.views.BackgroundView;
+import gui.views.utilsViews.BackgroundView;
 import gui.views.PanelContainer;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.AbstractMap;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class InformationPanel extends BackgroundView implements PanelContainer {
     private ComponentPanelMenager mainCmp;

@@ -2,20 +2,19 @@ package gui.views.gamePanel.gamePanels;
 
 import game.generals.Vector2;
 import gui.card.fullCards.abstractCards.Card;
-import gui.customComponents.AbstractCustomButton;
+import gui.customComponents.abstractComponents.AbstractCustomButton;
 import gui.customUI.customUIStyles.borderStrategies.AverageBorderStartegy;
 import gui.factories.GuiFactory;
 import gui.factories.IOverallFactory;
 import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
-import gui.views.BackgroundView;
+import gui.views.utilsViews.BackgroundView;
 import gui.views.PanelContainer;
 import gui.views.gamePanel.optionsPanels.OptionsPanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.AbstractMap;
 import java.util.ArrayList;

@@ -8,7 +8,7 @@ import gui.card.contentCards.attributesCards.LabelAttributeCard;
 import gui.card.contentCards.detailCards.AddingItemButtonCard;
 import gui.card.contentCards.detailCards.DetailButtonsCard;
 import gui.card.fullCards.abstractCards.Card;
-import gui.customComponents.AbstractCustomButton;
+import gui.customComponents.abstractComponents.AbstractCustomButton;
 import gui.customComponents.customTextComponents.CustomTextComponent;
 import gui.factories.GuiFactory;
 import gui.menu.ComponentPanelMenager;
@@ -187,11 +187,12 @@ public class EntriesCard extends Card {
             if (answer == JFileChooser.APPROVE_OPTION) {
                 isImageSet = true;
                 leftButtonyTitleComponent.getComponent().setContent(chooser.getSelectedFile().getAbsolutePath());
-                var p = chooser.getSelectedFile().getPath();
+                var p = chooser.getSelectedFile();
                 if (ownImagePath) {
                     FileManager.copyFile(p);
                 }
-                activeCard.getData().titlePath = ownImagePath?FileManager.getPathToImage(FileManager.getLastFileName()):p;
+                activeCard.getData().titlePath = ownImagePath ?
+                        FileManager.getPathToImage(FileManager.getLastFileName()) : FileManager.reducePath(p);
             }
         });
         initializeLeftTitleComponent(leftButtonyTitleComponent, 1);

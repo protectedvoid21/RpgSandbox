@@ -1,12 +1,10 @@
 package gui.views.gamePanel.optionsPanels;
 
-import game.generals.Vector2;
 import gui.card.SharedCmpsFont;
-import gui.customComponents.AbstractCustomLabel;
+import gui.customComponents.abstractComponents.AbstractCustomLabel;
 import gui.factories.GuiFactory;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class LabelMultipleGameOptionsPanel extends MultipleGameOptionsPanel {
     private ArrayList<AbstractCustomLabel> labels = new ArrayList<>();

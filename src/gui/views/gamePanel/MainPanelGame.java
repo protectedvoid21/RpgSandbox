@@ -2,14 +2,13 @@ package gui.views.gamePanel;
 
 import gui.factories.IOverallFactory;
 import gui.card.SharedCmpsFont;
-import gui.customComponents.AbstractCustomButton;
-import gui.customComponents.AbstractCustomLabel;
+import gui.customComponents.abstractComponents.AbstractCustomButton;
+import gui.customComponents.abstractComponents.AbstractCustomLabel;
 import gui.factories.GuiFactory;
-import gui.factories.TextData;
+import gui.data.TextData;
 import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
-import gui.utils.StringAdapter;
 import gui.views.gamePanel.gamePanels.GamePanel;
 import gui.views.gamePanel.optionsPanels.GameOptionsPanel;
 import gui.views.pickers.FullItemPicker;

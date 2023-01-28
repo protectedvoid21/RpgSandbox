@@ -1,11 +1,9 @@
 package game.equipment.examples;
 
 import controllers.audio.WarhammerEnumAudio;
-import game.creature.Character;
 import game.creature.Creature;
 import game.equipment.DisposableItem;
-import game.interfaceWarhammer.EffectEnum;
-import gui.factories.WarhammerData;
+import gui.data.WarhammerData;
 
 import static game.interfaceWarhammer.AttributeEnum.HEALTH_POINTS_MAX;
 import static game.interfaceWarhammer.AttributeEnum.HEALTH_POINTS_NOW;

@@ -1,4 +1,6 @@
-package gui.customComponents;
+package gui.customComponents.baseCustomComponents;
+
+import gui.customComponents.abstractComponents.AbstractCustomButton;
 
 public class CustomButton extends AbstractCustomButton {
     public CustomButton() {

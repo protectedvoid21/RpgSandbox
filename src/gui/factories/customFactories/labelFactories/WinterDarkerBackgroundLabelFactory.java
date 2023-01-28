@@ -1,7 +1,7 @@
 package gui.factories.customFactories.labelFactories;
 
-import gui.customComponents.AbstractCustomLabel;
-import gui.customComponents.CustomLabel;
+import gui.customComponents.abstractComponents.AbstractCustomLabel;
+import gui.customComponents.baseCustomComponents.CustomLabel;
 import gui.customComponents.iconComponents.IconLabel;
 import gui.customUI.componentsUIs.CustomLabelUI;
 import gui.customUI.customUIStyles.RoundedBorderUI;

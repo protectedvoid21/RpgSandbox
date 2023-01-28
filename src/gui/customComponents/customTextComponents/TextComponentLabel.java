@@ -1,6 +1,6 @@
 package gui.customComponents.customTextComponents;
 
-import gui.customComponents.CustomLabel;
+import gui.customComponents.baseCustomComponents.CustomLabel;
 
 import java.awt.*;
 

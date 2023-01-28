@@ -1,6 +1,6 @@
 package gui.views.gamePanel;
 
-import gui.customComponents.AbstractCustomButton;
+import gui.customComponents.abstractComponents.AbstractCustomButton;
 import gui.factories.GuiFactory;
 import gui.utils.StringAdapter;
 

@@ -1,6 +1,6 @@
 package gui.card;
 
-import gui.customComponents.AbstractCustomButton;
+import gui.customComponents.abstractComponents.AbstractCustomButton;
 
 public interface ICancelCard {
     public AbstractCustomButton getCancelButton();

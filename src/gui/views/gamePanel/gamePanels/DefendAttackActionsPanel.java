@@ -2,7 +2,7 @@ package gui.views.gamePanel.gamePanels;
 
 import game.generals.Vector2;
 import gui.card.fullCards.abstractCards.Card;
-import gui.customComponents.AbstractCustomLabel;
+import gui.customComponents.abstractComponents.AbstractCustomLabel;
 import gui.customComponents.iconComponents.IconLabel;
 import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;

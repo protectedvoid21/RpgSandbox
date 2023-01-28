@@ -3,11 +3,10 @@ package game.equipment.examples;
 import static game.interfaceWarhammer.AttributeEnum.HEALTH_POINTS_NOW;
 
 import controllers.audio.WarhammerEnumAudio;
-import game.creature.Character;
 import game.creature.Creature;
 import game.creature.Monster;
 import game.equipment.DisposableItem;
-import gui.factories.WarhammerData;
+import gui.data.WarhammerData;
 
 public class HolyWater extends DisposableItem implements WarhammerData {
 

@@ -3,7 +3,7 @@ package gui.views.pickers;
 import gui.card.DoubleArrowPanel;
 import gui.card.SwitchableComponent;
 import gui.card.fullCards.abstractCards.Card;
-import gui.customComponents.AbstractCustomLabel;
+import gui.customComponents.abstractComponents.AbstractCustomLabel;
 import gui.factories.GuiFactory;
 import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;

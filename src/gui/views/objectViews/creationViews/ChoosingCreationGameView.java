@@ -1,7 +1,7 @@
 package gui.views.objectViews.creationViews;
 
 import gui.factories.IOverallFactory;
-import gui.customComponents.AbstractCustomButton;
+import gui.customComponents.abstractComponents.AbstractCustomButton;
 import gui.factories.GuiFactory;
 import gui.menu.ComponentPanelMenager;
 import gui.views.gamePanel.gamePanels.CreatorPanel;
@@ -9,8 +9,6 @@ import gui.views.objectViews.AllObjectsView;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class ChoosingCreationGameView extends AllObjectsView {

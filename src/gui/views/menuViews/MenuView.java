@@ -1,10 +1,9 @@
 package gui.views.menuViews;
 
 import gui.customComponents.booleanComponents.CustomBooleanButton;
-import gui.views.BackgroundView;
+import gui.views.utilsViews.BackgroundView;
 import gui.card.SharedCmpsFont;
-import gui.customComponents.AbstractCustomButton;
-import gui.customUI.customUIStyles.borderStrategies.DefaultBorderStrategy;
+import gui.customComponents.abstractComponents.AbstractCustomButton;
 import gui.factories.GuiFactory;
 import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;
@@ -12,8 +11,6 @@ import gui.menu.DefaultCustomMenuMenager;
 import gui.views.PanelContainer;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 

@@ -1,17 +1,6 @@
 package gui.customComponents.iconComponents;
 
-import gui.customComponents.AbstractCustomLabel;
-import gui.customComponents.CustomLabel;
-import gui.customComponents.iconComponents.IIconComponent;
-import gui.customComponents.iconComponents.StretchIcon;
-
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
-import java.awt.*;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.awt.font.TextAttribute;
+import gui.customComponents.abstractComponents.AbstractCustomLabel;
 
 public class IconLabel extends AbstractCustomLabel implements IIconComponent {
     private StretchIcon icon;

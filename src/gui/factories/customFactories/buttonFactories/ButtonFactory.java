@@ -1,6 +1,6 @@
 package gui.factories.customFactories.buttonFactories;
 
-import gui.customComponents.AbstractCustomButton;
+import gui.customComponents.abstractComponents.AbstractCustomButton;
 import gui.customComponents.booleanComponents.CustomBooleanButton;
 import gui.customComponents.booleanComponents.CustomIconBooleanButton;
 import gui.factories.customFactories.ComponentFactory;

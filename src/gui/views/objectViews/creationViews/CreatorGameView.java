@@ -1,7 +1,7 @@
 package gui.views.objectViews.creationViews;
 
 import gui.factories.IOverallFactory;
-import gui.customComponents.AbstractCustomButton;
+import gui.customComponents.abstractComponents.AbstractCustomButton;
 import gui.factories.GuiFactory;
 import gui.factories.customFactories.buttonFactories.BasicButton;
 import gui.menu.ComponentPanelMenager;
@@ -9,7 +9,6 @@ import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
 import gui.views.gamePanel.gamePanels.CreatorPanel;
 
-import javax.swing.*;
 import java.awt.*;
 
 public class CreatorGameView {

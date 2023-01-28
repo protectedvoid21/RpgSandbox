@@ -10,12 +10,10 @@ import game.equipment.Inventory;
 import game.equipment.Mount;
 import game.equipment.Weapon;
 import game.filehandle.EntityManager;
-import game.filehandle.FileManager;
 import game.generals.Vector2;
 import game.interfaceWarhammer.StatisticsWarhammer;
 import game.interfaceWarhammer.StruggleStatisticsWarhammer;
-import game.utils.seeders.Seeder;
-import gui.factories.WarhammerData;
+import gui.data.WarhammerData;
 
 import java.util.ArrayList;
 import java.util.List;

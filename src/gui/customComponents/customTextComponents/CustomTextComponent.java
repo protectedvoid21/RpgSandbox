@@ -1,15 +1,11 @@
 package gui.customComponents.customTextComponents;
 
-import gui.customComponents.AbstractCustomLabel;
-import gui.customComponents.CustomLabel;
+import gui.customComponents.abstractComponents.AbstractCustomLabel;
 import gui.customComponents.IContentCustomUICmp;
 import gui.customUI.componentsUIs.CustomLabelUI;
-import gui.customUI.customUIStyles.RoundedBorderUI;
 import gui.customUI.interfaces.ICustomUI;
-import gui.factories.GuiFactory;
 import gui.margin.ComponentTextMarginManager;
 import gui.margin.IComponentTextMargin;
-import gui.margin.MarginAction;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -18,9 +14,6 @@ import javax.swing.event.DocumentListener;
 import javax.swing.text.JTextComponent;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Base abstract class for CustomTextField and CustomTextArea classes.

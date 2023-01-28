@@ -1,13 +1,6 @@
 package gui.customComponents.iconComponents;
 
-import gui.customComponents.AbstractCustomButton;
-import gui.customComponents.iconComponents.IIconComponent;
-import gui.customComponents.iconComponents.StretchIcon;
-
-import javax.swing.*;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.awt.image.BufferedImage;
+import gui.customComponents.abstractComponents.AbstractCustomButton;
 
 public class IconButton extends AbstractCustomButton implements IIconComponent {
 

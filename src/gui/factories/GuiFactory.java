@@ -1,7 +1,7 @@
 package gui.factories;
 
-import gui.customComponents.*;
-import gui.customComponents.AbstractCustomButton;
+import gui.customComponents.abstractComponents.AbstractCustomButton;
+import gui.customComponents.abstractComponents.AbstractCustomLabel;
 import gui.customComponents.booleanComponents.CustomBooleanButton;
 import gui.customComponents.customTextComponents.CustomTextComponent;
 import gui.customComponents.booleanComponents.CustomIconBooleanButton;

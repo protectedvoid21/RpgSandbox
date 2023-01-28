@@ -1,18 +1,13 @@
 package gui.factories.customFactories.labelFactories;
 
-import gui.customComponents.AbstractCustomLabel;
-import gui.customComponents.CustomLabel;
+import gui.customComponents.abstractComponents.AbstractCustomLabel;
+import gui.customComponents.baseCustomComponents.CustomLabel;
 import gui.customComponents.iconComponents.IconLabel;
-import gui.customUI.componentsUIs.CustomButtonUI;
 import gui.customUI.componentsUIs.CustomLabelUI;
 import gui.customUI.customUIStyles.RoundedBorderUI;
 import gui.customUI.interfaces.ICustomUI;
-import gui.customUI.wrapers.ChangingBorderColorWraper;
-import gui.customUI.wrapers.DarkerHoverComponentWraper;
 import gui.customUI.wrapers.ImageBorderWraper;
-import gui.factories.TextData;
-import gui.factories.WarhammerData;
-import gui.utils.StringAdapter;
+import gui.data.WarhammerData;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,7 +1,5 @@
 package game.equipment;
 
-import gui.factories.WarhammerData;
-
 public class Mount extends ManyUsageItem {
     private int speed;
 
