@@ -1,38 +1,43 @@
 package gui.factories;
 
 import controllers.utils.CreatureType;
-import game.generals.Vector2;
-import gui.card.CardContentDataSet;
 import gui.card.fullCards.abstractCards.BaseCard;
+import gui.card.fullCards.abstractCards.Card;
+import gui.card.fullCards.specificCards.BasicCard;
+import gui.card.fullCards.specificCards.EntriesCard;
+import gui.card.fullCards.specificCards.GameCard;
+import gui.card.fullCards.specificCards.GodCard;
 import gui.card.fullCards.specificCards.onlyVisibleCards.FullOnlyVisibleCard;
 import gui.card.fullCards.specificCards.onlyVisibleCards.OnlyVisibleShowCard;
-import gui.factories.customFactories.buttonFactories.*;
-import gui.factories.customFactories.labelFactories.*;
-import gui.factories.customFactories.textComponentFactory.TextFactory;
-import gui.factories.customFactories.textComponentFactory.TextFieldFactory;
-import gui.utils.StringAdapter;
-import gui.views.PanelContainer;
-import gui.views.TitleView;
-import gui.views.gamePanel.MainPanelGame;
-import gui.views.gamePanel.gamePanels.CreatorPanel;
-import gui.views.CardCancelView;
-import gui.views.objectViews.creationViews.CreatorGameView;
-import gui.views.objectViews.creationViews.ChoosingCreationGameView;
-import gui.views.objectViews.itemsViews.ShowApplyCreatureView;
-import gui.views.menuViews.SelectingView;
-import gui.card.fullCards.abstractCards.Card;
-import gui.card.fullCards.specificCards.*;
-import gui.card.fullCards.specificCards.onlyVisibleCards.OnlyVisibleCard;
 import gui.customUI.customUIStyles.borderStrategies.AverageBorderStartegy;
 import gui.customUI.customUIStyles.borderStrategies.DependantHeightBorderStrategy;
 import gui.customUI.customUIStyles.borderStrategies.DependantWidthBorderStrategy;
+import gui.factories.customFactories.buttonFactories.BasicButton;
+import gui.factories.customFactories.buttonFactories.ButtonFactory;
+import gui.factories.customFactories.buttonFactories.ClickedWarhammerBasicFactory;
+import gui.factories.customFactories.buttonFactories.MenuButtonsFactory;
+import gui.factories.customFactories.labelFactories.BasicLabelFactory;
+import gui.factories.customFactories.labelFactories.ClickedLabelFactory;
+import gui.factories.customFactories.labelFactories.LabelFactory;
+import gui.factories.customFactories.labelFactories.MenuLabelFactory;
+import gui.factories.customFactories.textComponentFactory.TextFactory;
+import gui.factories.customFactories.textComponentFactory.TextFieldFactory;
 import gui.menu.ICustomBackgorund;
+import gui.views.gamePanel.MainPanelGame;
+import gui.views.gamePanel.gamePanels.CreatorPanel;
 import gui.views.menuViews.MenuView;
+import gui.views.menuViews.SelectingView;
+import gui.views.objectViews.creationViews.ChoosingCreationGameView;
+import gui.views.objectViews.creationViews.CreatorGameView;
 import gui.views.objectViews.itemsViews.FullSmallView;
+import gui.views.objectViews.itemsViews.ShowApplyCreatureView;
 import gui.views.objectViews.itemsViews.ShowSmallView;
 import gui.views.pickers.FullItemPicker;
 
-import java.util.*;
+import java.util.AbstractMap;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 
 public class WarHammerFactory extends IOverallFactory implements WarhammerData, TextData {
     private final ButtonFactory basicButtonFactory = new BasicButton();
@@ -232,10 +237,6 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData, 
         var obj = new ShowApplyCreatureView(this);
         obj.initialize();
         obj.setBackgroundImage(avePath);
-//        obj.uploadData(new ArrayList<>(Arrays.asList(new ArrayList<>(Arrays.asList("xxx", "xxx")),
-//                new ArrayList<>(Arrays.asList("xxx", "xxx")), new ArrayList<>(Arrays.asList("xxx", "xxx")),
-//                new ArrayList<>(Arrays.asList("xxx", "xxx")))));
-////        obj.uploadData()
         switch (type) {
             case NPC -> obj.uploadMainImageData(npcImage);
             case MONSTER -> obj.uploadMainImageData(monsterPath);
@@ -290,14 +291,6 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData, 
         return obj;
     }
 
-    private ShowSmallView createAllItemsView() {
-        setFactoriesMode(Mode.CLICKED);
-        var obj = new ShowSmallView(this);
-        obj.initialize();
-        obj.setBackgroundImage(avePath);
-        return obj;
-    }
-
     public FullSmallView createAllWeaponsItemsView() {
         var card = createAllEditableItemsView();
         card.uploadMainImageData(weaponPath);
@@ -311,9 +304,12 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData, 
     }
 
     public ShowSmallView createAllItemsItemsView() {
-        var card = createAllItemsView();
-        card.uploadMainImageData(armorPath);//todo
-        return card;
+        setFactoriesMode(Mode.CLICKED);
+        var obj = new ShowSmallView(this);
+        obj.initialize();
+        obj.setBackgroundImage(avePath);
+        obj.uploadMainImageData(trolleyPath);
+        return obj;
     }
 
     public FullSmallView createAllArmorsItemsView() {

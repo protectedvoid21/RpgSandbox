@@ -165,7 +165,7 @@ public class Converter implements WarhammerData, AbstractConverter, TextData {
     }
 
     public CardContentDataSet editItemInEntriesCard(DisposableItem item){
-        return createItemInEntriesCard(item.getName(), item.getItemPathPicture(), new Pair(item.getDescription(), ""));
+        return createItemInEntriesCard(item.getName(), item.getItemPathPicture(), new Pair(item.getDescription(), item.getDescription()));
     }
 
     public CardContentDataSet detailsView(Item item) {

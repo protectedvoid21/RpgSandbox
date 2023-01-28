@@ -14,7 +14,6 @@ import java.awt.event.MouseEvent;
 public class ChangingBackgroundColorWraper extends BorderDecorator {
     private Color currentBaseBackgroundHelper;
 
-
     public ChangingBackgroundColorWraper(ICustomUI ui) {
         super(ui);
     }
@@ -25,7 +24,7 @@ public class ChangingBackgroundColorWraper extends BorderDecorator {
         c.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                if (c.isEnabled()) {
+                if (c.isEnabled() && isOn()) {
                     currentBaseBackgroundHelper = getAdditionalColor(Index.BASE_BACKGROUND);
                     setAdditionaldColor(getAdditionalColor(Index.THIRD), Index.BASE_BACKGROUND);
                     super.mousePressed(e);

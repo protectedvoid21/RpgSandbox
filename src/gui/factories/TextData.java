@@ -15,6 +15,7 @@ public interface TextData {
     String exitText = "EXIT";
     String detailText = "DETAIL";
     String detailsText = "DETAILS";
+    String applyText = "APPLY";
     String armorsText = "Armors";
     String itemsText = "Items";
     String weaponsText = "Weapons";

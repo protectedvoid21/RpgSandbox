@@ -26,7 +26,7 @@ public class ChangingBorderColorWraper extends BorderDecorator {
             @Override
             public void mousePressed(MouseEvent e) {
                 super.mousePressed(e);
-                if (c.isEnabled()) {
+                if (c.isEnabled()&& isOn()) {
                     onlySuperAdditionalFirstSetter(getAdditionalColor(Index.SECOND), Index.FIRST);
                     c.repaint();
                     c.revalidate();

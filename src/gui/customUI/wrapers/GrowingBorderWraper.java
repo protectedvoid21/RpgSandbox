@@ -7,22 +7,24 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-/**Wrapper which can increase size of border when mouse is hovering component. The ratio is equals 2.*/
+/**
+ * Wrapper which can increase size of border when mouse is hovering component. The ratio is equals 2.
+ */
 public class GrowingBorderWraper extends BorderDecorator {
     private boolean componentHovered = false;
 
-    public GrowingBorderWraper(ICustomUI ui){
+    public GrowingBorderWraper(ICustomUI ui) {
         super(ui);
     }
 
     @Override
     public void installUI(JComponent c) {
-       super.installUI(c);
+        super.installUI(c);
         c.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
-                componentHovered = true;
+                componentHovered = isOn();
                 c.repaint();
                 c.revalidate();
             }
@@ -44,6 +46,6 @@ public class GrowingBorderWraper extends BorderDecorator {
 
     @Override
     public int getBorderSize() {
-        return componentHovered ? 2*super.getBorderSize() : (int) (super.getBorderSize());
+        return componentHovered ? 2 * super.getBorderSize() : (int) (super.getBorderSize());
     }
 }

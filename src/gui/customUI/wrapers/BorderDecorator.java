@@ -14,6 +14,10 @@ import java.awt.*;
 public abstract class BorderDecorator implements ICustomUI {
     protected ICustomUI customUI;
 
+    protected boolean isOn() {
+        return true;
+    }
+
     @Override
     public void setOffSet(int value) {
         customUI.setOffSet(value);

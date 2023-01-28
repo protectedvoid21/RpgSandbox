@@ -24,6 +24,8 @@ public class ItemTypeMenuController extends Controller {
                 new RedirectListener(controllerManager, new ItemActionController(Card.CardTypes.ARMOR)));
         view.getButton(2).addActionListener(
                 new RedirectListener(controllerManager, new ItemActionController(Card.CardTypes.WEAPONS)));
+        view.getButton(3).addActionListener(
+                new RedirectListener(controllerManager, new ItemListController(Card.CardTypes.ITEMS)));
         /*view.getButton(3).addActionListener(
                 new RedirectListener(controllerManager, new ItemActionController());*/
 

@@ -3,12 +3,13 @@ package gui.views.objectViews.itemsViews;
 import gui.customComponents.AbstractCustomButton;
 import gui.factories.GuiFactory;
 import gui.factories.IOverallFactory;
+import gui.factories.TextData;
 import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
 
 import java.util.ArrayList;
 
-public class ShowApplyCreatureView extends ShowSmallView {
+public class ShowApplyCreatureView extends ShowSmallView implements TextData {
     private final ArrayList<AbstractCustomButton> applyButtons = new ArrayList<>();
     private final DefaultCustomMenuMenager manager1 =
             new DefaultCustomMenuMenager(ComponentsSeries.ComponentsDimension.VERTICAL,
@@ -67,7 +68,7 @@ public class ShowApplyCreatureView extends ShowSmallView {
         man.addMainComponent(12);
         man.addMainComponent(3);
         for (int i = number; i < end; i++) {
-            var button = factory.getFactory().createButton("APPLY", null);
+            var button = factory.getFactory().createButton(applyText, null);
             button.getCustomUI().setOffSet(4);
             applyButtons.add(button);
             man.addMiddleComponent(button, 1, 10);
