@@ -2,11 +2,12 @@ package game.equipment;
 
 import game.creature.Creature;
 import game.interfaceWarhammer.EffectEnum;
+import gui.factories.WarhammerData;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Weapon extends ManyUsageItem {
+public class Weapon extends ManyUsageItem implements WarhammerData {
     private int damage;
     private int range;
     private int chanceForBleeding;
@@ -17,6 +18,7 @@ public class Weapon extends ManyUsageItem {
     public Weapon(String name, int damage, int range) {
         super(name);
         Random random = new Random();
+        setItemPathPicture(weaponPath);
 
         this.range = range;
         this.damage = damage;
@@ -28,6 +30,7 @@ public class Weapon extends ManyUsageItem {
 
     public Weapon(String name, int damage, int range, int bleeding, int poison, int fire, int freezing) {
         super(name);
+        setItemPathPicture(weaponPath);
         this.damage = damage;
         this.range = range;
         chanceForBleeding = bleeding;
