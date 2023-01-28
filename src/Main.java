@@ -23,7 +23,8 @@ public class Main {
 //        seeder.seed();
 //        EntityManager.getInstance().saveAllEntities();
         SwingUtilities.invokeLater(() -> {
-            new ControllerManager(new WarHammerFactory(), audioManager, new Converter());
+            var manager = new ControllerManager(new WarHammerFactory(), audioManager, new Converter());
+            manager.setFrameData("Warhammer", "war.png");
         });
     }
 }

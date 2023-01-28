@@ -19,12 +19,16 @@ public class StringAdapter {
     private static String relativePathBegin = "src/gui/guiImages/";
     private static String fontRelativePath = "src/gui/fonts/";
 
-    public static String getDirectoryPath(Directories dir){
+    public static String getDirectoryPath(Directories dir) {
         return relativePathBegin + directoriesStringHashMap.get(dir);
     }
 
     public static String getRelativePath(String path) {
         return relativePathBegin + path;
+    }
+
+    public static String getTitleIconPath(String path) {
+        return relativePathBegin + "FrameIcons/" + path;
     }
 
     public static String getMonsterRelativePath(String path) {
