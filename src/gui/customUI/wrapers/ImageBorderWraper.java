@@ -54,7 +54,7 @@ public class ImageBorderWraper extends BorderDecorator implements IRequieredReac
 
 
     @Override//to refactor
-    public void paintBackground(Graphics g, JComponent c, int Offset) {git status
+    public void paintBackground(Graphics g, JComponent c, int Offset) {
         super.paintBackground(g, c, Offset);
         var w = c.getWidth();
         var h = c.getHeight();
