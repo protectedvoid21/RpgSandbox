@@ -27,7 +27,6 @@ public class BasicButton extends ButtonFactory {
         var ui = new RoundedBorderUI(strategy, 5, 10);
         ui.setAdditionaldColor(new Color(0x4D0202), ICustomUI.Index.FIRST);
         ui.setAdditionaldColor(new Color(0xFF3333), ICustomUI.Index.SECOND);
-//        var x = new ChangingBorderColorWraper(new DisabledColorWraper(ui));
         var x = new ChangingBorderColorWraper(ui);
         CustomButtonUI ui2 =  new CustomButtonUI(x);
         button.setUI(ui2);
@@ -43,16 +42,6 @@ public class BasicButton extends ButtonFactory {
 
     @Override
     public AbstractCustomButton createIconPropButton(String text, ActionListener listener) {
-//        var b = new ChanginBackDisabledButton(text, true, Color.YELLOW);
-//        {
-//            @Override
-//            public Color getBackground() {
-//                return isEnabled()?super.getBackground():Color.CYAN;
-//            }
-//        };
-
-//        var but = helpCreatedMethod( new ChanginBackDisabledButton(text, true, Color.YELLOW), listener);
-//        but.getCustomUI().getMargin().set(7,7,7,7);
         return createDisabledIconPropButton(text, text, listener);
     }
 

@@ -34,7 +34,7 @@ public class ScenarioSeeder implements Seeder, WarhammerData {
 
         scenarioData.get(0).position = new Vector2(1, 1);
         scenarioData.get(0).creature = new Monster(new StatisticsWarhammer(), new Experience(0), new StruggleStatisticsWarhammer());
-        scenarioData.get(0).creature.setObjectPathPicture("src/gui/guiImages/witch.png");
+        scenarioData.get(0).creature.setObjectPathPicture(witchPath);
         scenarioData.get(1).position = new Vector2(2, 2);
         scenarioData.get(1).creature = new Monster(new StatisticsWarhammer(), new Experience(1), new StruggleStatisticsWarhammer());
         scenarioData.get(1).creature.setObjectPathPicture(trolleyPath);
@@ -55,7 +55,7 @@ public class ScenarioSeeder implements Seeder, WarhammerData {
         inventory.addItem(mount2);
         inventory.addItem(armor);
         scenarioData.get(3).creature = new PlayerCharacter(new StatisticsWarhammer(), inventory, new Experience(10), new StruggleStatisticsWarhammer());
-        scenarioData.get(3).creature.setObjectPathPicture("src/gui/guiImages/witch.png");
+        scenarioData.get(3).creature.setObjectPathPicture(witchPath);
         for (int i = 0; i<4; i++){
             scenarioData.get(i).creature.setName("zdzichu" + i);
         }

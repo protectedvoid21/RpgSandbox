@@ -18,7 +18,6 @@ public class TitleCardLabelFactory extends LabelFactory {
         label.setFont(font);
         label.setForeground(new Color(0xFFFBFB));
         label.setHorizontalAlignment(SwingConstants.CENTER);
-//        var uiHelper = new RoundedBorderUI((int) (5 * GuiFactory.getSizeIndex(size)), 10);
         label.setBackground(new Color(0x5F17EA));
         uiHelper.setAdditionaldColor(new Color(0x5F17EA), ICustomUI.Index.FIFTH);
         uiHelper.setAdditionaldColor(new Color(0x1F3617), ICustomUI.Index.FIRST);

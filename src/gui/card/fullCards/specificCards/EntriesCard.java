@@ -5,29 +5,27 @@ import gui.card.DoubleArrowPanel;
 import gui.card.contentCards.attributesCards.AttributesCard;
 import gui.card.contentCards.attributesCards.EntriesAttributesCard;
 import gui.card.contentCards.attributesCards.LabelAttributeCard;
-import gui.card.contentCards.detailCards.AddingButtonCard;
 import gui.card.contentCards.detailCards.AddingItemButtonCard;
 import gui.card.contentCards.detailCards.DetailButtonsCard;
 import gui.card.fullCards.abstractCards.Card;
 import gui.customComponents.AbstractCustomButton;
 import gui.customComponents.customTextComponents.CustomTextComponent;
 import gui.factories.GuiFactory;
-import gui.factories.TextData;
 import gui.menu.ComponentPanelMenager;
 import gui.utils.FileManager;
-import gui.utils.StringAdapter;
 
 import javax.swing.*;
-import javax.swing.Timer;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 
-public class EntriesCard extends Card{
+public class EntriesCard extends Card {
 
+    private String jChooserDirectory = "";
     final static String baseEnabledPhotoPath = nondisImage;
     final static String baseDisabledPhotoPath = disImage;
     private boolean isImageSet = false;
@@ -184,16 +182,26 @@ public class EntriesCard extends Card{
         but.getCustomUI().setOffSet(0);
         leftButtonyTitleComponent = new ComponentPanelMenager<>(but);
         leftButtonyTitleComponent.getComponent().addActionListener(e -> {
-            var chooser = new JFileChooser();
+            var chooser = new JFileChooser(jChooserDirectory);
             int answer = chooser.showOpenDialog(new JFrame());
             if (answer == JFileChooser.APPROVE_OPTION) {
                 isImageSet = true;
                 leftButtonyTitleComponent.getComponent().setContent(chooser.getSelectedFile().getAbsolutePath());
-                FileManager.copyFile(chooser.getSelectedFile().getPath());
-                activeCard.getData().titlePath = FileManager.getPathToImage(FileManager.getLastFileName());
+                var p = chooser.getSelectedFile().getPath();
+                if (ownImagePath) {
+                    FileManager.copyFile(p);
+                }
+                activeCard.getData().titlePath = ownImagePath?FileManager.getPathToImage(FileManager.getLastFileName()):p;
             }
         });
         initializeLeftTitleComponent(leftButtonyTitleComponent, 1);
+    }
+
+    private boolean ownImagePath = false;
+
+    public void setJChooserDirectory(String directory, boolean ownImage) {
+        this.ownImagePath = ownImage;
+        this.jChooserDirectory = directory;
     }
 
     public AbstractCustomButton getSaveButton() {

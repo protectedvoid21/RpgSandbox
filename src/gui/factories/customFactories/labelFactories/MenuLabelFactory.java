@@ -10,14 +10,16 @@ import gui.customUI.interfaces.ICustomUI;
 import gui.customUI.wrapers.ChangingBorderColorWraper;
 import gui.customUI.wrapers.DarkerHoverComponentWraper;
 import gui.customUI.wrapers.ImageBorderWraper;
+import gui.factories.TextData;
+import gui.factories.WarhammerData;
 import gui.utils.StringAdapter;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class MenuLabelFactory extends ImageLabelFactory {
+public class MenuLabelFactory extends ImageLabelFactory implements WarhammerData {
     private String pathLeft = "";
-    private String pathRight = StringAdapter.getRelativePath("rightsword.png");
+    private String pathRight = smallSward3;
 
     public MenuLabelFactory(double scalingSizeValue, double scalingPositionValue) {
         super(scalingSizeValue, scalingPositionValue);
@@ -30,7 +32,7 @@ public class MenuLabelFactory extends ImageLabelFactory {
         label.setHorizontalAlignment(SwingConstants.CENTER);
         label.setBackground(new Color(0x51813D));
         var ui = new RoundedBorderUI(strategy, 7, 10);
-        CustomLabelUI ui2 = null;
+        CustomLabelUI ui2;
         if (!pathLeft.isEmpty() && !pathRight.isEmpty()) {
             var uiHelper = new ImageBorderWraper(ui, pathLeft, pathRight);
             if (isScaled) {

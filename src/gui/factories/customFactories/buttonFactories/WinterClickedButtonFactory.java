@@ -30,12 +30,6 @@ public class WinterClickedButtonFactory extends ImageButtonFactory {
         super();
     }
 
-//    private ClickedStyleUI helpCreatedMethod2( button, GuiFactory.Size size){
-//        var ui = new ClickedStyleUI((int)(4*GuiFactory.getSizeIndex(size)), 10);
-//        ui.addComponent(button);
-//        return ui;
-//    }
-
     private AbstractCustomButton helpCreatedMethod(AbstractCustomButton button, ActionListener listener) {
         button.setFont(font);
         button.addActionListener(listener);
@@ -69,7 +63,6 @@ public class WinterClickedButtonFactory extends ImageButtonFactory {
     @Override
     public AbstractCustomButton createIconPropButton(String text, ActionListener listener) {
         var but = helpCreatedMethod(new IconButton(text, true), listener);
-//        but.getCustomUI().setBackGroundTransparent(true);
         return but;
     }
 

@@ -29,7 +29,6 @@ public class ClickedWarhammerBasicFactory extends ButtonFactory{
         if (button instanceof IconButton) {
             ui.addComponent(((IconButton) button).getCustomIcon());
         }
-//        ui.setAdditionaldColor(new Color(0x0A4B1D), ICustomUI.Index.THIRD);
         var ui2 = new CustomButtonUI(ui);
         button.setUI(ui2);
         button.setMaximumFontSizeStatus(true);

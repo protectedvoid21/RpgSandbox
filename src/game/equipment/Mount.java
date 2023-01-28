@@ -1,6 +1,8 @@
 package game.equipment;
 
-public class Mount extends ManyUsageItem{
+import gui.factories.WarhammerData;
+
+public class Mount extends ManyUsageItem {
     private int speed;
 
     public Mount(String name, int speed) {

@@ -12,6 +12,7 @@ import gui.card.fullCards.abstractCards.BaseCard;
 import gui.card.fullCards.abstractCards.Card;
 import gui.card.fullCards.specificCards.EntriesCard;
 import gui.factories.IOverallFactory;
+import gui.utils.StringAdapter;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,8 +21,8 @@ import java.util.Map;
 
 public class CreatureCreateController extends Controller {
     private EntriesCard view;
-    private Creature creature;
-    private CreatureType creatureType;
+    private final Creature creature;
+    private final CreatureType creatureType;
 
     public CreatureCreateController(Creature creature, CreatureType creatureType) {
         this.creature = creature;
@@ -31,6 +32,11 @@ public class CreatureCreateController extends Controller {
     @Override
     public void run(IOverallFactory overallFactory) {
         view = overallFactory.createEntriesCard();
+        Map<CreatureType, StringAdapter.Directories> map = Map.of(CreatureType.PLAYER_CHARACTER,
+                StringAdapter.Directories.PLAYERS, CreatureType.MONSTER, StringAdapter.Directories.MONSTERS,
+                CreatureType.NPC, StringAdapter.Directories.NPC);
+
+        view.setJChooserDirectory(StringAdapter.getDirectoryPath(map.get(creatureType)), false);
         var contentData = converter.createFullDataCreature(creature);
         view.uploadNewData(contentData, converter.createFullDetailDataCreature(creature));
         view.uploadNewChoserCardData(converter.createFullDataCreature(EntityManager.getInstance().getPlayerCharacterWithAllItems()),

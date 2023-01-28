@@ -41,8 +41,8 @@ public class ImageBorderWraper extends BorderDecorator implements IRequieredReac
 
     public Image createImage(String path) {
         try {
-            var img = ImageIO.read(new File(path));
-            return img;
+            System.out.println(path);
+            return ImageIO.read(new File(path));
         } catch (IOException | NullPointerException e) {
             return null;
         }

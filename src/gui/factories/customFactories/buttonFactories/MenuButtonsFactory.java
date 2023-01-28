@@ -27,16 +27,6 @@ public class MenuButtonsFactory extends ImageButtonFactory {
         super(scalingSizeValue, scalingPositionValue);
     }
 
-    public MenuButtonsFactory() {
-        super();
-    }
-
-//    private ClickedStyleUI helpCreatedMethod2( button, GuiFactory.Size size){
-//        var ui = new ClickedStyleUI((int)(4*GuiFactory.getSizeIndex(size)), 10);
-//        ui.addComponent(button);
-//        return ui;
-//    }
-
     private AbstractCustomButton helpCreatedMethod(AbstractCustomButton button, ActionListener listener) {
         button.setFont(font);
         button.addActionListener(listener);
@@ -47,8 +37,7 @@ public class MenuButtonsFactory extends ImageButtonFactory {
         ui.setAdditionaldColor(new Color(0x4D0202), ICustomUI.Index.FIRST);
         ui.setAdditionaldColor(new Color(0xFF3333), ICustomUI.Index.SECOND);
         var x = new ChangingBorderColorWraper(new DarkerHoverComponentWraper(ui));
-//        var uiHelper = new ImageBorderWraper(ui, "src/gui/swo.png", "src/gui/swo.png");
-        CustomButtonUI ui2 = null;
+        CustomButtonUI ui2;
         if (!pathLeft.isEmpty() && !pathRight.isEmpty()) {
             var uiHelper = new ImageBorderWraper(x, pathLeft, pathRight);
             if (isScaled) {
@@ -60,17 +49,6 @@ public class MenuButtonsFactory extends ImageButtonFactory {
             ui2 = new CustomButtonUI(x);
         }
 
-//        var uiHelper = new ImageBorderWraper(ui, "src/gui/swo.png", "src/gui/swo.png");
-//        if (isScaled) {
-//            uiHelper.setScalingValue(scalingSizeValue, scalingPositionValue);
-//            uiHelper.setScalingStatus(true);
-//        }
-//        uiHelper.setAdditionaldColor(new Color(0x4D0202), ICustomUI.Index.FIRST);
-//        uiHelper.setAdditionaldColor(new Color(0xFF3333), ICustomUI.Index.SECOND);
-//        ui.setAdditionaldColor(new Color(0x0A4B1D), ICustomUI.Index.THIRD);
-//        var x = new ChangingBorderColorWraper(new DarkerHoverComponentWraper(ui));
-
-//        var ui2 = new CustomButtonUI(x);
         button.setUI(ui2);
         button.setMaximumFontSizeStatus(true);
         button.getCustomUI().getMargin().set(10, 30, 10, 30);
@@ -87,15 +65,12 @@ public class MenuButtonsFactory extends ImageButtonFactory {
     public AbstractCustomButton createIconPropButton(String text, ActionListener listener) {
         var but = helpCreatedMethod(new IconButton(text, true), listener);
         but.getCustomUI().getMargin().set(10,10,10,10);
-//        but.getCustomUI().setRespectionBorder(false);
-//        but.getCustomUI().setBackGroundTransparent(true);
         return but;
     }
 
     @Override
     public AbstractCustomButton createIconStretchButton(String text, ActionListener listener) {
-        var but = helpCreatedMethod(new IconButton(text), listener);
-        return but;
+        return helpCreatedMethod(new IconButton(text), listener);
     }
 
     @Override
@@ -128,7 +103,6 @@ public class MenuButtonsFactory extends ImageButtonFactory {
     @Override
     public CustomIconBooleanButton createBooleanButtonWithIcons(String path1, String path2, boolean initialValue, boolean proportionate) {
         var but = helpCreatedMethod(new CustomIconBooleanButton(path1, path2, initialValue, proportionate), null);
-//        ((CustomIconBooleanButton) but).setDoubleTextContent(path1, path2);
         return (CustomIconBooleanButton) but;
     }
     public void setPaths(String pathLeft, String pathRight) {

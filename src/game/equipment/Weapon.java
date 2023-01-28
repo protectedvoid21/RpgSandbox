@@ -2,6 +2,7 @@ package game.equipment;
 
 import game.creature.Creature;
 import game.interfaceWarhammer.EffectEnum;
+import gui.factories.WarhammerData;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -17,7 +18,6 @@ public class Weapon extends ManyUsageItem {
     public Weapon(String name, int damage, int range) {
         super(name);
         Random random = new Random();
-
         this.range = range;
         this.damage = damage;
         chanceForBleeding = random.nextInt(101);
