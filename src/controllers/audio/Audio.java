@@ -24,7 +24,6 @@ public class Audio {
         public synchronized void update(LineEvent event) {
             if (event.getType() == LineEvent.Type.STOP ) {
                 stopActivity.apply();
-                removeActivityOnStop();
             }
             if (loopCondition(event)) {
                 done = true;
@@ -132,7 +131,7 @@ public class Audio {
         stopActivity = lambdaExpression;
     }
 
-    private void removeActivityOnStop() {
+    public void removeActivityOnStop() {
         stopActivity = () -> {
         };
     }

@@ -8,12 +8,11 @@ import game.interfaceWarhammer.EffectEnum;
 import gui.factories.WarhammerData;
 
 public class JustNormalWater extends DisposableItem implements WarhammerData {
-//    private Character user;
+
     public JustNormalWater(int usageCount) {
         super(usageCount);
-//        this.user = user;
-        setItemPathPicture(waterPath);enumAudio = WarhammerEnumAudio.WATER;
-
+        setItemPathPicture(waterPath);
+        enumAudio = WarhammerEnumAudio.WATER;
         workOnEnemy = false;
         description = "Like the name JUST NORMAL WATER! You can use it to stop fire or sth";
     }

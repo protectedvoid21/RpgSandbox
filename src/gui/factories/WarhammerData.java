@@ -6,6 +6,7 @@ import java.awt.*;
 
 public interface WarhammerData {
     String damageText = "damage";
+    String tapImage = StringAdapter.getRelativePath("tap.png");
     String defenceText = "defence";
     String speedText = "speed";
     String rangeText = "range";

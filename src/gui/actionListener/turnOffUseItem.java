@@ -1,4 +1,4 @@
-package gui.actionListener.warhammerActions;
+package gui.actionListener;
 
 import game.board.RoundManager;
 import game.creature.Character;
@@ -19,17 +19,15 @@ public class turnOffUseItem {
 
         for (int i = 0; i < roundManager.getBoard().getHeight(); i++) {
             for (int j = 0; j < roundManager.getBoard().getWidth(); j++) {
-                indexesCell = new ArrayList<>(Arrays.asList(0, 2, 3, 4));
-
+                indexesCell = new ArrayList<>();
                 if (roundManager.getBoard().getPlace(new Vector2(j, i)).isEmpty()) { // Sprawdza czy jest postać
+                    indexesCell.add(0);
                     indexesCell.add(1);
-                    indexesCell.add(5);
                 }
                 mainPanelGame.getGamePanel().setOptionsDisabledIndexes(new Vector2(j, i), indexesCell);
             }
         }
         mainPanelGame.getActivityOptionsPanel().setDisabledIndexes(indexesOption);
-
     }
 }
 

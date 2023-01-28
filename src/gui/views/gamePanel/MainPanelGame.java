@@ -5,6 +5,7 @@ import gui.card.SharedCmpsFont;
 import gui.customComponents.AbstractCustomButton;
 import gui.customComponents.AbstractCustomLabel;
 import gui.factories.GuiFactory;
+import gui.factories.TextData;
 import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-public class MainPanelGame {
+public class MainPanelGame implements TextData {
     private final DefaultCustomMenuMenager<JComponent> menager =
             new DefaultCustomMenuMenager<>(ComponentsSeries.ComponentsDimension.VERTICAL,
                     ComponentsSeries.ComponentsDimension.HORIZONTAL);
@@ -47,8 +48,8 @@ public class MainPanelGame {
         factory.getFactory().setButtonType(GuiFactory.ButtonType.NORMAL);
         factory.getFactory().setLabelType(GuiFactory.LabelType.NORMAL);
         remainingMoves = factory.getFactory().createLabel("0");
-        exitButton = factory.getFactory().createButton("EXIT", null);
-        nextPlayerButton = factory.getFactory().createButton("NEXT", null);
+        exitButton = factory.getFactory().createButton(exitText, null);
+        nextPlayerButton = factory.getFactory().createButton(nextText, null);
 
         factory.getFactory().setButtonType(GuiFactory.ButtonType.ICON);
         actionsVisibilityButton = factory.getFactory().createButton(StringAdapter.getRelativePath("eye.png"), null);
@@ -80,7 +81,8 @@ public class MainPanelGame {
         gamePanel.setActionsVisibility(value);
         actionsVisibilityButton.setContent(StringAdapter.getRelativePath(path));
     }
-    public void resizeGamePanel(boolean oversized){
+
+    public void resizeGamePanel(boolean oversized) {
         menager.getMainComponent(1).setVisible(oversized);
         menager.getMiddleComponent(0, 1).setVisible(oversized);
     }
@@ -113,6 +115,13 @@ public class MainPanelGame {
         return activityOptionsPanel;
     }
 
+    public void setRightPickersVisibility(boolean value) {
+        seriesPanel.getOption(0).setVisible(value);
+        seriesPanel.getOption(1).setVisible(value);
+        this.menager.getMiddleComponent(0, 1).addSpace(value ? 0 : 10, ComponentPanelMenager.Side.BOTTOM,
+                ComponentPanelMenager.Side.TOP);
+    }
+
     public void initialize() {
         menager.addMainComponent(15);
         menager.addMainComponent(2);
@@ -134,7 +143,7 @@ public class MainPanelGame {
         activityOptionsPanel.getPanel().addSpace(2);
     }
 
-    public void initializePicker(HashMap<FullItemPicker.LabelType, String>map){
+    public void initializePicker(HashMap<FullItemPicker.LabelType, String> map) {
         picker.uploadMainPaths(map);
     }
 
