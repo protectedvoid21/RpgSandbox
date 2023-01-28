@@ -22,8 +22,6 @@ public class GameGreenLabelFactory extends LabelFactory {
         var ui2 = new CustomLabelUI(uiHelper);
         label.setUI(ui2);
         label.setMaximumFontSizeStatus(true);
-//        label.getCustomUI().setFontRelevantToHeight(true);
-//        label.getCustomUI().setFontRelevantToHeightValue(0.5);
         ui2.getCustomUI().setRespectionBorder(true);
         ui2.getMargin().set(0, 30, 0, 0);
         return label;
@@ -35,7 +33,6 @@ public class GameGreenLabelFactory extends LabelFactory {
     public  AbstractCustomLabel createIconPropLabel(String path){
         var label = helpCreatedMethod(new IconLabel(path, true));
         label.getCustomUI().setBackGroundTransparent(true);
-//        label.getLabelUI().getCustomUI().setRespectionBorder(false);
         return label;
     }
     public  AbstractCustomLabel createIconStretchLabel(String path){

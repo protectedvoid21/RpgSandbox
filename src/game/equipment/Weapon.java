@@ -7,7 +7,7 @@ import gui.factories.WarhammerData;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Weapon extends ManyUsageItem implements WarhammerData {
+public class Weapon extends ManyUsageItem {
     private int damage;
     private int range;
     private int chanceForBleeding;
@@ -18,8 +18,6 @@ public class Weapon extends ManyUsageItem implements WarhammerData {
     public Weapon(String name, int damage, int range) {
         super(name);
         Random random = new Random();
-        setItemPathPicture(weaponPath);
-
         this.range = range;
         this.damage = damage;
         chanceForBleeding = random.nextInt(101);
@@ -30,7 +28,6 @@ public class Weapon extends ManyUsageItem implements WarhammerData {
 
     public Weapon(String name, int damage, int range, int bleeding, int poison, int fire, int freezing) {
         super(name);
-        setItemPathPicture(weaponPath);
         this.damage = damage;
         this.range = range;
         chanceForBleeding = bleeding;

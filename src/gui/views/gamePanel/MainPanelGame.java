@@ -52,18 +52,18 @@ public class MainPanelGame implements TextData {
         nextPlayerButton = factory.getFactory().createButton(nextText, null);
 
         factory.getFactory().setButtonType(GuiFactory.ButtonType.ICON);
-        actionsVisibilityButton = factory.getFactory().createButton(StringAdapter.getRelativePath("eye.png"), null);
+        actionsVisibilityButton = factory.getFactory().createButton(eyePath, null);
         actionsVisibilityButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
                 super.mousePressed(e);
-                actionMethod("hide.png", false);
+                actionMethod(hideImage, false);
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
                 super.mouseReleased(e);
-                actionMethod("eye.png", true);
+                actionMethod(eyePath, true);
             }
         });
 
@@ -79,7 +79,7 @@ public class MainPanelGame implements TextData {
 
     private void actionMethod(String path, boolean value) {
         gamePanel.setActionsVisibility(value);
-        actionsVisibilityButton.setContent(StringAdapter.getRelativePath(path));
+        actionsVisibilityButton.setContent(path);
     }
 
     public void resizeGamePanel(boolean oversized) {

@@ -2,6 +2,7 @@ package gui.card;
 
 import gui.customComponents.AbstractCustomButton;
 import gui.factories.GuiFactory;
+import gui.factories.TextData;
 import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
@@ -12,7 +13,7 @@ import java.awt.event.ActionListener;
 import java.util.AbstractMap;
 import java.util.Map;
 
-public class DoubleArrowPanel {
+public class DoubleArrowPanel implements TextData {
 
     private SwitchableComponent switchableComponent;
     private DefaultCustomMenuMenager<AbstractCustomButton> menager =
@@ -35,19 +36,19 @@ public class DoubleArrowPanel {
 
     }
 
-    private void arrowMethod(Side side ){
+    private void arrowMethod(Side side) {
         if (switchableComponent.isSwitchingSidePossible(side)) {
             switchableComponent.switchSide(side);
             updateSwitchingButtons();
         }
     }
 
-    public void updateSwitchingButtons(){
+    public void updateSwitchingButtons() {
         checkTurningButton(Side.LEFT);
         checkTurningButton(Side.RIGHT);
     }
 
-    private void checkTurningButton(Side side){
+    private void checkTurningButton(Side side) {
         if (!switchableComponent.isSwitchingSidePossible(side)) {
             getButton(side).setEnabled(false);
         } else {
@@ -55,16 +56,16 @@ public class DoubleArrowPanel {
         }
     }
 
-    public void setSwitchableComponent(SwitchableComponent cmp){
+    public void setSwitchableComponent(SwitchableComponent cmp) {
         switchableComponent = cmp;
         updateSwitchingButtons();
     }
 
     public DoubleArrowPanel(GuiFactory factory, SwitchableComponent switchableComponent) {
 
-        this(factory, switchableComponent, Map.of(Side.LEFT, new AbstractMap.SimpleEntry<>(StringAdapter.getRelativePath("leftarrowactive" +
-                ".png"), StringAdapter.getRelativePath("leftarrowdisabled.png")), Side.RIGHT, new AbstractMap.SimpleEntry<>(StringAdapter.getRelativePath("rightarrowactive.png"),
-                StringAdapter.getRelativePath("rightarrowdisabled.png"))));
+        this(factory, switchableComponent, Map.of(Side.LEFT, new AbstractMap.SimpleEntry<>(leftArrowActivePath,
+                leftArrowDisabledPath), Side.RIGHT, new AbstractMap.SimpleEntry<>(
+                rightArrowActivePath, rightArrowDisabledPath)));
 
     }
 

@@ -4,8 +4,8 @@ import gui.utils.StringAdapter;
 
 public interface TextData {
 
-    String disImage = StringAdapter.getRelativePath("disimage.png");
-    String nondisImage = StringAdapter.getRelativePath("image.png");
+    String disImage = StringAdapter.getViewsRelativePath("disimage.png");
+    String nondisImage = StringAdapter.getViewsRelativePath("image.png");
     String saveText = "SAVE";
     String nextText = "NEXT";
     String useTex = "USE";
@@ -24,9 +24,16 @@ public interface TextData {
     String mountsText = "Mounts";
     String attrText = "Attributes";
     String statsText = "Stats";
-    String plusImage = StringAdapter.getRelativePath("plus.png");
-    String removeImage = StringAdapter.getRelativePath("remove.png");
-    String goImage = StringAdapter.getRelativePath("go2.png");
+    String plusImage = StringAdapter.getActionsRelativePath("plus.png");
+    String hideImage = StringAdapter.getActionsRelativePath("hide.png");
+    String removeImage = StringAdapter.getActionsRelativePath("remove.png");
+    String goImage = StringAdapter.getActionsRelativePath("go2.png");
+    String leftArrowActivePath = StringAdapter.getActionsRelativePath("leftarrowactive.png");
+    String leftArrowDisabledPath = StringAdapter.getActionsRelativePath("leftarrowdisabled.png");
+    String rightArrowActivePath = StringAdapter.getActionsRelativePath("rightarrowactive.png");
+    String rightArrowDisabledPath = StringAdapter.getActionsRelativePath("rightarrowdisabled.png");
+    String disImagePath = StringAdapter.getViewsRelativePath("disimage.png");
+    String eyePath = StringAdapter.getViewsRelativePath("eye.png");
     String deleteText = "DELETE";
     String viewText = "VIEW";
     String mountText = "MOUNT";

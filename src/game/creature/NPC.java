@@ -8,6 +8,5 @@ import gui.factories.WarhammerData;
 public class NPC extends Character implements WarhammerData {
     public NPC(IStatistics statistics, Inventory inventory, Experience experience, IStruggleStatistics struggleStatistics) {
         super(statistics, inventory, experience, struggleStatistics);
-        setObjectPathPicture(npcImage);
     }
 }

@@ -8,11 +8,7 @@ import gui.factories.WarhammerData;
 public class Monster extends Creature implements WarhammerData {
     public Monster(IStatistics creatureStats, Experience experience, IStruggleStatistics struggleStatistics) {
         super(creatureStats, experience, struggleStatistics);
-        setObjectPathPicture(monsterPath);
     }
-
-
-
     @Override
     public int getSpeed() {
         return statistics.getAttribute(AttributeEnum.MOVEMENT).getValue();
