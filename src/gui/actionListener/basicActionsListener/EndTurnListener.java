@@ -4,6 +4,7 @@ import game.board.RoundManager;
 import game.creature.Character;
 import game.equipment.Item;
 import gui.actionListener.ListenerBaseData;
+import gui.actionListener.ValidatorItemListener;
 import gui.actionListener.turnOffButtons;
 import gui.views.gamePanel.MainPanelGame;
 import gui.views.pickers.FullItemPicker;
@@ -17,10 +18,12 @@ public class EndTurnListener implements ActionListener {
 
     final private RoundManager roundManager;
     final private MainPanelGame mainPanelGame;
+    final private ListenerBaseData listenerBaseData;
 
     public EndTurnListener(ListenerBaseData listenerBaseData) {
+        this.listenerBaseData = listenerBaseData;
         this.roundManager = listenerBaseData.roundManager;
-        this.mainPanelGame =listenerBaseData. mainPanelGame;
+        this.mainPanelGame = listenerBaseData.mainPanelGame;
         itemGenerator();
     }
 
@@ -42,9 +45,11 @@ public class EndTurnListener implements ActionListener {
     }
 
     private void itemGenerator() {
-        if (roundManager.getGameObjectWithTurn().getCreature() instanceof Character) {
-            var character = (Character) roundManager.getGameObjectWithTurn().getCreature();
-
+        var creature =  roundManager.getGameObjectWithTurn().getCreature();
+        boolean validator = creature instanceof Character;
+        mainPanelGame.setRightPickersVisibility(validator);
+        if (validator) {
+            var character = (Character)creature;
             uploadPicker(FullItemPicker.LabelType.MOUNT, character.getInventory().getMounts(),
                     character.getInventory().getActiveMount());
             uploadPicker(FullItemPicker.LabelType.ARMOR, character.getInventory().getArmors(),
@@ -55,9 +60,11 @@ public class EndTurnListener implements ActionListener {
             mainPanelGame.getItemsItemPicker().uploadData(array);
             mainPanelGame.getItemsItemPicker().setCurrentIndex(character.getInventory().getDisposableItems().
                     indexOf(character.getInventory().getSelectedDisposableItem()));
+            ValidatorItemListener.setValid(character, listenerBaseData);
         }
     }
-    private ArrayList<String> generatePathsArrayList(List<? extends Item> items){
+
+    private ArrayList<String> generatePathsArrayList(List<? extends Item> items) {
         var array = new ArrayList<String>();
         for (var item : items) {
             array.add(item.getItemPathPicture());

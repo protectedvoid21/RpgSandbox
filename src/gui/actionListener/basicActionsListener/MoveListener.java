@@ -20,10 +20,7 @@ public class MoveListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         Vector2 point = listenerBaseData.mainPanelGame.getGamePanel().getCurrentClickedIndexes();
-        Creature you = listenerBaseData.roundManager.getGameObjectWithTurn().getCreature();
         Vector2 vector2 = listenerBaseData.roundManager.getGameObjectWithTurnPosition();
-
-        
         listenerBaseData.roundManager.getBoard().move(vector2,point);
         listenerBaseData.roundManager.getGameObjectWithTurn().getCreature().getStruggleStatistics().getAttribute(ACTIONS_TO_DO).decreaseValue(1);
 

@@ -2,12 +2,14 @@ package gui.views.pickers;
 
 import gui.customComponents.AbstractCustomButton;
 import gui.factories.GuiFactory;
+import gui.factories.TextData;
+import org.w3c.dom.Text;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class MaxioItemPicker extends ItemPicker {
+public class MaxioItemPicker extends ItemPicker implements TextData {
     private final AbstractCustomButton button;
     private ActionListener currentListener = e -> {
     };
@@ -15,7 +17,7 @@ public class MaxioItemPicker extends ItemPicker {
     public MaxioItemPicker(GuiFactory factory) {
         super(factory);
         factory.setButtonType(GuiFactory.ButtonType.NORMAL);
-        button = factory.createButton("USE", null);
+        button = factory.createButton(useTex, null);
         button.getCustomUI().setOffSet(7);
         menager.addMainComponent(5);
         menager.addMiddleComponent(button, 2, 10);
@@ -25,9 +27,14 @@ public class MaxioItemPicker extends ItemPicker {
                 currentListener.actionPerformed(e);
         });
     }
+
+    public void setButtonEnability(boolean val){
+        button.setEnabled(val);
+    }
     public void addButtonLIstener(ActionListener listener) {
         currentListener = listener;
     }
+
 
     @Override
     public void uploadData(ArrayList<String> dataList) {
@@ -35,7 +42,4 @@ public class MaxioItemPicker extends ItemPicker {
         button.setEnabled(dataList.size() > 0);
     }
 
-    public void addButtonListener(ActionListener listener) {
-        button.addActionListener(listener);
-    }
 }

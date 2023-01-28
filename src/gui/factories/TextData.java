@@ -7,6 +7,8 @@ public interface TextData {
     String disImage = StringAdapter.getRelativePath("disimage.png");
     String nondisImage = StringAdapter.getRelativePath("image.png");
     String saveText = "SAVE";
+    String nextText = "NEXT";
+    String useTex = "USE";
     String showText = "SHOW";
     String editText = "EDIT";
     String addText = "ADD";

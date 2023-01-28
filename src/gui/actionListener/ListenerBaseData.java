@@ -9,4 +9,5 @@ public class ListenerBaseData {
     public RoundManager roundManager;
     public MainPanelGame mainPanelGame;
     public CustomAudioManager audioManager;
+    public boolean isSetItemMode = false;
 }

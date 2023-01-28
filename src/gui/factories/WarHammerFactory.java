@@ -162,7 +162,7 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData, 
         mainPanel.getGamePanel().initializeOptionsPanelLabelData(new ArrayList<>(Arrays.asList("1", "0", "1", "2", "2"
         )));
         mainPanel.getGamePanel().changeActiveOptionsPanel();
-        mainPanel.getGamePanel().initializeOptionsButtonPanelData(new ArrayList<>(Arrays.asList(moveOption,
+        mainPanel.getGamePanel().initializeOptionsButtonPanelData(new ArrayList<>(Arrays.asList(tapImage,
                 cardOption)));
         mainPanel.getGamePanel().changeActiveOptionsPanel();
         mainPanel.getGamePanel().setAttackArmorPathContent(armorPath, knivesOpt);

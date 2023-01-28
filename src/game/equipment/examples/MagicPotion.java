@@ -11,18 +11,14 @@ import java.util.Random;
 
 public class MagicPotion extends DisposableItem implements WarhammerData {
     private AttributeEnum what;
-//    private Character user;
-    public MagicPotion()
-    {
-        super(new Random().nextInt(4)+1);
-        Random rand = new Random();setItemPathPicture(potionPath);enumAudio = WarhammerEnumAudio.POTION;
-
+    public MagicPotion() {
+        super(new Random().nextInt(4) + 1);
+        Random rand = new Random();
+        setItemPathPicture(potionPath);
+        enumAudio = WarhammerEnumAudio.POTION;
         AttributeEnum[] values = AttributeEnum.values();
-
         workOnEnemy = false;
-        what=values[rand.nextInt(values.length)];
-//        this.user=user;
-
+        what = values[rand.nextInt(values.length)];
         description = "Even the inventor don't know what it do. Just use it and try... MUHAHAHAHAHAHAHAAH";
     }
 
