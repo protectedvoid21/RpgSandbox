@@ -6,9 +6,8 @@ import game.equipment.Item;
 import game.filehandle.DummyCreator;
 import gui.card.fullCards.abstractCards.Card;
 import gui.factories.IOverallFactory;
-import gui.views.TitleView;
+import gui.views.utilsViews.TitleView;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class ItemActionController extends Controller {

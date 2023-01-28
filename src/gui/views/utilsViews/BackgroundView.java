@@ -1,4 +1,4 @@
-package gui.views;
+package gui.views.utilsViews;
 
 import gui.customUI.customUIStyles.borderStrategies.AverageBorderStartegy;
 import gui.menu.DefaultCustomMenuMenager;

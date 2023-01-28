@@ -1,7 +1,7 @@
 package gui.views.gamePanel.gamePanels;
 
 import gui.card.fullCards.abstractCards.Card;
-import gui.customComponents.AbstractCustomLabel;
+import gui.customComponents.abstractComponents.AbstractCustomLabel;
 import gui.customComponents.iconComponents.IconLabel;
 
 import java.util.ArrayList;

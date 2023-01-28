@@ -1,8 +1,6 @@
 package gui.views.gamePanel.optionsPanels;
 
 import game.generals.Vector2;
-import gui.card.SharedCmpsFont;
-import gui.customComponents.AbstractCustomLabel;
 import gui.factories.GuiFactory;
 
 import java.util.ArrayList;

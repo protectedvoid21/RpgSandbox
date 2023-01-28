@@ -1,9 +1,9 @@
 package gui.views.objectViews.itemsViews;
 
-import gui.customComponents.AbstractCustomButton;
+import gui.customComponents.abstractComponents.AbstractCustomButton;
 import gui.factories.GuiFactory;
 import gui.factories.IOverallFactory;
-import gui.factories.TextData;
+import gui.data.TextData;
 import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
 

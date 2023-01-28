@@ -1,8 +1,7 @@
 package gui.customComponents.booleanComponents;
 
-import gui.customComponents.CustomButton;
+import gui.customComponents.baseCustomComponents.CustomButton;
 
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class CustomBooleanButton extends CustomButton implements IBooleanComponent {

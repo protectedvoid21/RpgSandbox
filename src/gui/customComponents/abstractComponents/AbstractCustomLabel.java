@@ -1,5 +1,6 @@
-package gui.customComponents;
+package gui.customComponents.abstractComponents;
 
+import gui.customComponents.IContentCustomUICmp;
 import gui.customUI.componentsUIs.CustomLabelUI;
 import gui.customUI.interfaces.ICustomUI;
 import gui.margin.ComponentTextMarginManager;

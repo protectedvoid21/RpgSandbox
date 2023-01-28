@@ -12,6 +12,8 @@ import gui.card.fullCards.specificCards.onlyVisibleCards.OnlyVisibleShowCard;
 import gui.customUI.customUIStyles.borderStrategies.AverageBorderStartegy;
 import gui.customUI.customUIStyles.borderStrategies.DependantHeightBorderStrategy;
 import gui.customUI.customUIStyles.borderStrategies.DependantWidthBorderStrategy;
+import gui.data.TextData;
+import gui.data.WarhammerData;
 import gui.factories.customFactories.buttonFactories.BasicButton;
 import gui.factories.customFactories.buttonFactories.ButtonFactory;
 import gui.factories.customFactories.buttonFactories.ClickedWarhammerBasicFactory;

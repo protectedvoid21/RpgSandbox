@@ -7,7 +7,7 @@ import gui.card.contentCards.detailCards.AddingButtonCard;
 import gui.card.contentCards.detailCards.DetailButtonsCard;
 import gui.card.contentCards.detailCards.NormalDetailButtonsCard;
 import gui.card.fullCards.abstractCards.Card;
-import gui.customComponents.AbstractCustomButton;
+import gui.customComponents.abstractComponents.AbstractCustomButton;
 import gui.factories.GuiFactory;
 import gui.menu.ComponentPanelMenager;
 

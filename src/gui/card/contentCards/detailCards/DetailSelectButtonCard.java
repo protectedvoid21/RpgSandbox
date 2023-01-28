@@ -2,7 +2,7 @@ package gui.card.contentCards.detailCards;
 
 import gui.card.fullCards.abstractCards.Card;
 import gui.card.SharedCmpsFont;
-import gui.customComponents.AbstractCustomLabel;
+import gui.customComponents.abstractComponents.AbstractCustomLabel;
 import gui.factories.GuiFactory;
 
 import java.util.*;

@@ -2,19 +2,20 @@ package gui.views.objectViews;
 
 import gui.card.DoubleArrowPanel;
 import gui.card.SwitchableComponent;
-import gui.customComponents.AbstractCustomButton;
+import gui.customComponents.abstractComponents.AbstractCustomButton;
 import gui.factories.GuiFactory;
 import gui.factories.IOverallFactory;
+import gui.data.TextData;
 import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
-import gui.views.BackgroundView;
+import gui.views.utilsViews.BackgroundView;
 import gui.views.PanelContainer;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public abstract class AllObjectsView extends BackgroundView implements SwitchableComponent, PanelContainer {
+public abstract class AllObjectsView extends BackgroundView implements SwitchableComponent, PanelContainer, TextData {
     protected HashMap<Integer, HashMap<ButtonType, ActionListener>> listenerHashMap = new HashMap<>();
     protected IOverallFactory factory;
     protected DefaultCustomMenuMenager manager =
@@ -70,7 +71,8 @@ public abstract class AllObjectsView extends BackgroundView implements Switchabl
         arrowPanel = new DoubleArrowPanel(factory.getFactory(), this);
         arrowPanel.setSpace(2);
         factory.getFactory().setButtonType(GuiFactory.ButtonType.NORMAL);
-        cancelButton = factory.getFactory().createButton("CANCEL", null);
+        cancelButton = factory.getFactory().createButton(canceltext, null);
+        cancelButton.getCustomUI().setOffSet(5);
         manager.addMiddleComponent(arrowPanel.getPanel(), maxindex, 10);
         manager.addMiddleComponent(cancelButton, maxindex, 10);
         manager.getMiddleComponent(maxindex, 1).addSpace(2);

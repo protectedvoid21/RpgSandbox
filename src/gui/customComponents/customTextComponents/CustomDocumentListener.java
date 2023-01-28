@@ -1,7 +1,6 @@
 package gui.customComponents.customTextComponents;
 
-import gui.customComponents.AbstractCustomLabel;
-import gui.customComponents.CustomLabel;
+import gui.customComponents.abstractComponents.AbstractCustomLabel;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;

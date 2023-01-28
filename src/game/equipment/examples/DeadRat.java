@@ -2,7 +2,7 @@ package game.equipment.examples;
 
 import controllers.audio.WarhammerEnumAudio;
 import game.equipment.DisposableItem;
-import gui.factories.WarhammerData;
+import gui.data.WarhammerData;
 
 public class DeadRat extends DisposableItem implements WarhammerData {
     public DeadRat(int usageCount) {

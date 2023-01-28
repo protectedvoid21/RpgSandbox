@@ -1,5 +1,6 @@
 package gui.utils;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.concurrent.ThreadLocalRandom;
@@ -8,9 +9,9 @@ public class FileManager {
     private static String copyPath = "copyimages/";
     private static String  lastGeneratedNumber = null;
 
-    public static void copyFile(String from) {
+    public static void copyFile(File from) {
         try {
-            Path src = Paths.get(from);
+            Path src = Paths.get(from.getAbsolutePath());
             Path dest = Paths.get(StringAdapter.getRelativePathBegin() +copyPath+generateRandomImgName());
             Files.copy(src.toFile().toPath(), dest.toFile().toPath());
         } catch (IOException ex) {
@@ -18,8 +19,8 @@ public class FileManager {
         }
     }
 
-    public static void deleteFile(String src){
-        Path path = FileSystems.getDefault().getPath(src);
+    public static void deleteFile(File src){
+        Path path = FileSystems.getDefault().getPath(src.getPath());
         try {
             Files.delete(path);
         } catch (NoSuchFileException x) {
@@ -47,6 +48,10 @@ public class FileManager {
         } catch (IOException ignored) {
         }
         return true;
+    }
+
+    public static String reducePath(File file){
+        return file.getPath().substring(new File("").getAbsolutePath().length()+1);
     }
 
     public static String getPathToImage(String img){

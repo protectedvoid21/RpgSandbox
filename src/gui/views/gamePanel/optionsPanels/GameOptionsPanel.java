@@ -1,7 +1,7 @@
 package gui.views.gamePanel.optionsPanels;
 
 import gui.card.SharedCmpsFont;
-import gui.customComponents.AbstractCustomLabel;
+import gui.customComponents.abstractComponents.AbstractCustomLabel;
 import gui.factories.GuiFactory;
 import gui.menu.ComponentPanelMenager;
 

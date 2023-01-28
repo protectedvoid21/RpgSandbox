@@ -1,7 +1,5 @@
 package gui.menu;
 
-import gui.customComponents.CustomButton;
-import gui.customUI.customUIStyles.borderStrategies.DefaultBorderStrategy;
 import gui.customUI.customUIStyles.borderStrategies.IBorderStrategy;
 
 import javax.imageio.ImageIO;

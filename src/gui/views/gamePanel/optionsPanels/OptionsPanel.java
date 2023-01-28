@@ -1,18 +1,15 @@
 package gui.views.gamePanel.optionsPanels;
 
 import game.generals.Vector2;
-import gui.customComponents.AbstractCustomButton;
-import gui.customUI.customUIStyles.borderStrategies.AverageBorderStartegy;
+import gui.customComponents.abstractComponents.AbstractCustomButton;
 import gui.factories.GuiFactory;
-import gui.factories.customFactories.buttonFactories.BasicButton;
 import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
-import gui.views.BackgroundView;
+import gui.views.utilsViews.BackgroundView;
 import gui.views.PanelContainer;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;

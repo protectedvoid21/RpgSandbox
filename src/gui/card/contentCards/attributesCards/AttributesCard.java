@@ -1,10 +1,9 @@
 package gui.card.contentCards.attributesCards;
 
-import gui.card.CardContentDataSet;
 import gui.card.contentCards.AbstractCard;
 import gui.card.fullCards.abstractCards.Card;
 import gui.card.SharedCmpsFont;
-import gui.customComponents.AbstractCustomLabel;
+import gui.customComponents.abstractComponents.AbstractCustomLabel;
 import gui.customComponents.IContentCustomUICmp;
 import gui.factories.GuiFactory;
 import gui.menu.ComponentPanelMenager;

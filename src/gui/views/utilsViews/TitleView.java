@@ -1,11 +1,12 @@
-package gui.views;
+package gui.views.utilsViews;
 
-import gui.customComponents.AbstractCustomLabel;
+import gui.customComponents.abstractComponents.AbstractCustomLabel;
 import gui.customUI.customUIStyles.borderStrategies.DependantHeightBorderStrategy;
 import gui.factories.GuiFactory;
 import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
+import gui.views.PanelContainer;
 
 import javax.swing.*;
 import java.io.IOException;

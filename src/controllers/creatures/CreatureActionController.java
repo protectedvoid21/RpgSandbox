@@ -5,9 +5,8 @@ import controllers.utils.CreatureType;
 import controllers.utils.RedirectListener;
 import game.creature.Creature;
 import game.filehandle.DummyCreator;
-import gui.card.fullCards.abstractCards.Card;
 import gui.factories.IOverallFactory;
-import gui.views.TitleView;
+import gui.views.utilsViews.TitleView;
 
 import java.util.Map;
 

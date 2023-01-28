@@ -4,7 +4,7 @@ import controllers.audio.WarhammerEnumAudio;
 import game.creature.Character;
 import game.creature.Creature;
 import game.equipment.DisposableItem;
-import gui.factories.WarhammerData;
+import gui.data.WarhammerData;
 
 public class DragonsBlood extends DisposableItem implements WarhammerData {
 //    private Character user;

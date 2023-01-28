@@ -11,8 +11,8 @@ import game.utils.ErrorValidationChecker;
 import game.utils.MathHelper;
 import gui.card.CardContentDataSet;
 import gui.card.fullCards.abstractCards.Card;
-import gui.factories.TextData;
-import gui.factories.WarhammerData;
+import gui.data.TextData;
+import gui.data.WarhammerData;
 
 import java.util.*;
 

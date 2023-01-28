@@ -6,7 +6,7 @@
 //import game.creature.Creature;
 //import game.equipment.DisposableItem;
 //import game.generals.Vector2;
-//import gui.factories.WarhammerData;
+//import gui.data.WarhammerData;
 //
 //import java.util.List;
 //

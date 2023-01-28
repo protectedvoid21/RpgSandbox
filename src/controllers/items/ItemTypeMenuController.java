@@ -2,11 +2,10 @@ package controllers.items;
 
 import controllers.Controller;
 import controllers.MenuController;
-import controllers.utils.ItemType;
 import controllers.utils.RedirectListener;
 import gui.card.fullCards.abstractCards.Card;
 import gui.factories.IOverallFactory;
-import gui.views.TitleView;
+import gui.views.utilsViews.TitleView;
 
 public class ItemTypeMenuController extends Controller {
     @Override

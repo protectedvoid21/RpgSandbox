@@ -1,11 +1,10 @@
 package gui.card.fullCards.abstractCards;
 
-import gui.card.fullCards.abstractCards.Card;
 import gui.customComponents.*;
-import gui.customComponents.customTextComponents.CustomTextComponent;
+import gui.customComponents.abstractComponents.AbstractCustomLabel;
 import gui.customUI.customUIStyles.borderStrategies.AverageBorderStartegy;
 import gui.factories.GuiFactory;
-import gui.factories.TextData;
+import gui.data.TextData;
 import gui.menu.*;
 import gui.views.PanelContainer;
 

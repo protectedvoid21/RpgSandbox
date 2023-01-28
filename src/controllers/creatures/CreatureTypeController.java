@@ -5,7 +5,7 @@ import controllers.MenuController;
 import controllers.utils.CreatureType;
 import controllers.utils.RedirectListener;
 import gui.factories.IOverallFactory;
-import gui.views.TitleView;
+import gui.views.utilsViews.TitleView;
 
 public class CreatureTypeController extends Controller {
     @Override

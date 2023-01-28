@@ -9,14 +9,13 @@ import gui.card.contentCards.EmptyCard;
 import gui.card.contentCards.attributesCards.EntriesAttributesCard;
 import gui.card.contentCards.detailCards.AddingButtonCard;
 import gui.card.contentCards.detailCards.DetailButtonsCard;
-import gui.customComponents.AbstractCustomButton;
+import gui.customComponents.abstractComponents.AbstractCustomButton;
 import gui.customUI.customUIStyles.borderStrategies.DependantHeightBorderStrategy;
 import gui.factories.GuiFactory;
 import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 

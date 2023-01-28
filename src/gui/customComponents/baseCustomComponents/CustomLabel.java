@@ -1,8 +1,8 @@
-package gui.customComponents;
+package gui.customComponents.baseCustomComponents;
 
-import java.awt.*;
+import gui.customComponents.abstractComponents.AbstractCustomLabel;
 
-public class CustomLabel extends AbstractCustomLabel{
+public class CustomLabel extends AbstractCustomLabel {
 
     public CustomLabel() {
         super("");

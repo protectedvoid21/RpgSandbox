@@ -1,10 +1,8 @@
 package gui.card.fullCards.specificCards.onlyVisibleCards;
 
-import gui.card.SharedCmpsFont;
 import gui.card.fullCards.abstractCards.BaseCard;
 import gui.card.fullCards.abstractCards.Card;
-import gui.customComponents.AbstractCustomButton;
-import gui.customComponents.AbstractCustomLabel;
+import gui.customComponents.abstractComponents.AbstractCustomLabel;
 import gui.factories.GuiFactory;
 import gui.menu.ComponentPanelMenager;
 

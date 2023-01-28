@@ -2,7 +2,6 @@ package game.equipment;
 
 import game.creature.Creature;
 import game.interfaceWarhammer.EffectEnum;
-import gui.factories.WarhammerData;
 
 import java.util.ArrayList;
 import java.util.Random;

@@ -1,4 +1,4 @@
-package gui.factories;
+package gui.data;
 
 import gui.utils.StringAdapter;
 

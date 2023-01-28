@@ -1,7 +1,7 @@
 package gui.factories.customFactories.buttonFactories;
 
-import gui.customComponents.AbstractCustomButton;
-import gui.customComponents.CustomButton;
+import gui.customComponents.abstractComponents.AbstractCustomButton;
+import gui.customComponents.baseCustomComponents.CustomButton;
 import gui.customComponents.booleanComponents.CustomBooleanButton;
 import gui.customComponents.booleanComponents.CustomIconBooleanButton;
 import gui.customComponents.iconComponents.IconButton;
@@ -10,8 +10,6 @@ import gui.customUI.componentsUIs.CustomButtonUI;
 import gui.customUI.customUIStyles.RoundedBorderUI;
 import gui.customUI.interfaces.ICustomUI;
 import gui.customUI.wrapers.ChangingBorderColorWraper;
-import gui.customUI.wrapers.DarkerHoverComponentWraper;
-import gui.customUI.wrapers.ImageBorderWraper;
 
 import javax.swing.*;
 import java.awt.*;
