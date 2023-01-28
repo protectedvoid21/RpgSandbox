@@ -13,6 +13,7 @@ import gui.factories.IOverallFactory;
 import gui.utils.FileManager;
 import gui.views.objectViews.AllObjectsView;
 import gui.views.objectViews.itemsViews.FullSmallView;
+import gui.views.objectViews.itemsViews.SmallCardsView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,7 +23,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ItemListController extends Controller {
-    private FullSmallView view;
+    private SmallCardsView view;
     private Card.CardTypes creatorType;
     private Card.CardTypes cardType;
     private List<? extends Item> itemList;
@@ -33,7 +34,7 @@ public class ItemListController extends Controller {
 
     @Override
     public void run(IOverallFactory overallFactory) {
-        switch(creatorType) {
+        switch (creatorType) {
             case ARMOR -> {
                 cardType = Card.CardTypes.ARMOR;
                 itemList = EntityManager.getInstance().getArmorList();
@@ -49,21 +50,28 @@ public class ItemListController extends Controller {
                 itemList = EntityManager.getInstance().getMountList();
                 view = overallFactory.createAllMountsItemsView();
             }
+            case ITEMS -> {
+                cardType = Card.CardTypes.ITEMS;
+                itemList = EntityManager.getInstance().getDisposableItemList();
+                view = overallFactory.createAllItemsItemsView();
+            }
         }
-        
+
         ArrayList<ArrayList<String>> data = new ArrayList<>();
-        for(var item : itemList) {
+        for (var item : itemList) {
             data.add(new ArrayList<>(Arrays.asList(item.getItemPathPicture(), item.getName())));
         }
-        
+
         view.uploadData(data);
 
-        for(int i = 0; i < 4; i++) {
-            view.addButtonActionListener(AllObjectsView.ButtonType.DELETE, i, new DeleteButtonListener());
-            view.addButtonActionListener(AllObjectsView.ButtonType.EDIT, i, new EditButtonListener());
+        for (int i = 0; i < 4; i++) {
+            if (creatorType != Card.CardTypes.ITEMS) {
+                view.addButtonActionListener(AllObjectsView.ButtonType.DELETE, i, new DeleteButtonListener());
+                view.addButtonActionListener(AllObjectsView.ButtonType.EDIT, i, new EditButtonListener());
+            }
             view.addButtonActionListener(AllObjectsView.ButtonType.SHOW, i, new ShowButtonListener());
         }
-        
+
         view.getCancelButton().addActionListener(
                 new RedirectListener(controllerManager, new ItemTypeMenuController())
         );
@@ -74,7 +82,8 @@ public class ItemListController extends Controller {
     private class EditButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            controllerManager.changeController(new ItemCreateController(itemList.get(view.getClickedIndex()), creatorType));
+            controllerManager.changeController(new ItemCreateController(itemList.get(view.getClickedIndex()),
+                    creatorType));
         }
     }
 

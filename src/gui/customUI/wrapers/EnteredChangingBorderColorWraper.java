@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class EnteredChangingBorderColorWraper extends BorderDecorator{
+public class EnteredChangingBorderColorWraper extends BorderDecorator {
     private Color currentBaseBackgroundHelper;
 
     public EnteredChangingBorderColorWraper(ICustomUI ui) {
@@ -21,10 +21,12 @@ public class EnteredChangingBorderColorWraper extends BorderDecorator{
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mousePressed(e);
-                currentBaseBackgroundHelper = getAdditionalColor(Index.FIRST);
-                setAdditionaldColor(getAdditionalColor(Index.FOURTH), Index.FIRST);
-                c.repaint();
-                c.revalidate();
+                if (isOn()) {
+                    currentBaseBackgroundHelper = getAdditionalColor(Index.FIRST);
+                    setAdditionaldColor(getAdditionalColor(Index.FOURTH), Index.FIRST);
+                    c.repaint();
+                    c.revalidate();
+                }
             }
 
             @Override

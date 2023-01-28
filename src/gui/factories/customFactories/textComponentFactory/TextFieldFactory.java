@@ -30,7 +30,12 @@ public class TextFieldFactory extends TextFactory {
         var ui = new RoundedBorderUI(strategy, 2, 10);
         ui.setAdditionaldColor(new Color(0x1A3D10), ICustomUI.Index.FIRST);
         ui.setAdditionaldColor(new Color(0x206E0A), ICustomUI.Index.SECOND);
-        textField.setUI(new ChangingBorderColorWraper(ui));
+        textField.setUI(new ChangingBorderColorWraper(ui){
+            @Override
+            protected boolean isOn() {
+                return textField.getTextComponent().isEditable();
+            }
+        });
         textField.setUI(ui);
         ui.setRespectionBorder(true);
         textField.setListener(new CustomDocumentListener(new Color(0x697A69)));

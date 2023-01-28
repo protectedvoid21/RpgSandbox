@@ -26,7 +26,7 @@ public abstract class IOverallFactory {
 
     public abstract GameCard createGameCard();
 
-
+    public abstract ShowSmallView createAllItemsItemsView();
     public abstract FullOnlyVisibleCard createSmallFullCard();
 
     public abstract OnlyVisibleShowCard createSmallOnlyShowCard();

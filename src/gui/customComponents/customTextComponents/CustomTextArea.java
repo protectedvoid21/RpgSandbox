@@ -14,6 +14,7 @@ public class CustomTextArea extends CustomTextComponent {///to fix
         textComponent.setWrapStyleWord(true);
         textComponent.setLineWrap(true);
         textField = textComponent;
+        textField.setEditable(false);
         addComponentsToPanel();
         initializeTextField();
 
