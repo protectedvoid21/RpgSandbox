@@ -41,7 +41,6 @@ public class ImageBorderWraper extends BorderDecorator implements IRequieredReac
 
     public Image createImage(String path) {
         try {
-            System.out.println(path);
             return ImageIO.read(new File(path));
         } catch (IOException | NullPointerException e) {
             return null;
@@ -55,8 +54,7 @@ public class ImageBorderWraper extends BorderDecorator implements IRequieredReac
 
 
     @Override//to refactor
-    public void paintBackground(Graphics g, JComponent c, int Offset) {//zrefactoryzowac i dorzucic jakos zmiany
-        // pozycji x na start
+    public void paintBackground(Graphics g, JComponent c, int Offset) {git status
         super.paintBackground(g, c, Offset);
         var w = c.getWidth();
         var h = c.getHeight();

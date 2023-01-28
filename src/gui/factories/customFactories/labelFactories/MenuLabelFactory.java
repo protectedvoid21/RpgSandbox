@@ -18,7 +18,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MenuLabelFactory extends ImageLabelFactory implements WarhammerData {
-    private String pathLeft = "";
+    private String pathLeft = smallSward1;
     private String pathRight = smallSward3;
 
     public MenuLabelFactory(double scalingSizeValue, double scalingPositionValue) {
