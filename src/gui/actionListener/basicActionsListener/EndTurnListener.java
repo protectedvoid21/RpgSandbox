@@ -31,15 +31,17 @@ public class EndTurnListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
-        System.out.println("ssss");
         roundManager.moveToNextObject();
-        if(roundManager.getGameObjectWithTurn().getCreature().getStruggleStatistics().getAttribute(StruggleAtributeEnum.IS_BLOKING).getValue()==0){
-            listenerBaseData.mainPanelGame.getGamePanel().removeActionContent(roundManager.getGameObjectWithTurnPosition(), GamePanel.ActionsLabelsType.DEFEND);
-        }
+//        if(roundManager.getGameObjectWithTurn().getCreature().getStruggleStatistics().getAttribute(StruggleAtributeEnum.IS_BLOKING).getValue()==0){
+//            System.out.println("blokuje"+roundManager.getGameObjectWithTurnPosition() );
+//            listenerBaseData.mainPanelGame.getGamePanel().removeActionContent(roundManager.getGameObjectWithTurnPosition(), GamePanel.ActionsLabelsType.DEFEND);
+//        }
         mainPanelGame.getGamePanel().colorButtons(roundManager.getGameObjectWithTurnPosition());
         turnOffButtons.turnOff(roundManager, mainPanelGame, 2, 0);
         itemGenerator();
+        if(roundManager.getGameObjectWithTurn().getCreature().getStruggleStatistics().getAttribute(StruggleAtributeEnum.IS_BLOKING).getValue()==0){
+            listenerBaseData.mainPanelGame.getGamePanel().removeActionContent(roundManager.getGameObjectWithTurnPosition(), GamePanel.ActionsLabelsType.DEFEND);
+        }
 
     }
 

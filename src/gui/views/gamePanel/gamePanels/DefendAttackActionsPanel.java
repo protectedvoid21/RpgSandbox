@@ -8,6 +8,8 @@ import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;
 import gui.menu.DefaultCustomMenuMenager;
 import gui.views.PanelContainer;
+
+import javax.swing.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,15 +38,32 @@ public class DefendAttackActionsPanel implements PanelContainer {
             managerActions.addMainComponent(5);
             for (int j = 0; j < maxIndex; j++) {
                 var cmp = new ComponentsSeries<ComponentPanelMenager<AbstractCustomLabel>>(ComponentsSeries.ComponentsDimension.HORIZONTAL);
-                var cmp1 = new ComponentPanelMenager<AbstractCustomLabel>(new IconLabel(Card.EMPTY_DATA_CONTENT, true));
+                var cmp1 = new CustomCmpPanelManager(new IconLabel(Card.EMPTY_DATA_CONTENT, true));
                 cmp1.setVisible(false);
-                var cmp2 = new ComponentPanelMenager<AbstractCustomLabel>(new IconLabel(Card.EMPTY_DATA_CONTENT, true));
+                var cmp2 = new CustomCmpPanelManager(new IconLabel(Card.EMPTY_DATA_CONTENT, true));
                 cmp2.setVisible(false);
                 cmp.addOption(cmp1, 10);
                 cmp.addOption(cmp2, 10);
                 managerActions.addMiddleComponent(cmp, i, 5);
                 setrelevantSpace(new Vector2(i, j));
             }
+        }
+    }
+
+    private class CustomCmpPanelManager extends ComponentPanelMenager{
+
+        public CustomCmpPanelManager(JComponent component, int intiialWeight) {
+            super(component, intiialWeight);
+        }
+
+        public CustomCmpPanelManager(JComponent component) {
+            super(component);
+        }
+
+        @Override
+        public void setVisible(boolean aFlag) {
+            this.component.setVisible(aFlag);
+            super.setVisible(aFlag);
         }
     }
 
@@ -65,8 +84,10 @@ public class DefendAttackActionsPanel implements PanelContainer {
     }
 
     public void removeActionContent(Vector2 position, GamePanel.ActionsLabelsType type) {
-        actionsMap.get(type).removeObject(managerActions.getMiddleComponent(position.x,
-                position.y).getComponent().getOption(indexesMap.get(type)).getComponent());
+        var l =managerActions.getMiddleComponent(position.x,
+                position.y).getComponent().getOption(indexesMap.get(type));
+        actionsMap.get(type).removeObject(l.getComponent());
+        l.changeContent(new IconLabel(Card.EMPTY_DATA_CONTENT));
         managerActions.getMiddleComponent(position.x,
                 position.y).getComponent().getOption(indexesMap.get(type)).setVisible(false);
         setrelevantSpace(position);
