@@ -1,5 +1,6 @@
 package gui.views.objectViews.itemsViews;
 
+import gui.bundle.CustomBundle;
 import gui.customComponents.abstractComponents.AbstractCustomButton;
 import gui.factories.GuiFactory;
 import gui.factories.IOverallFactory;
@@ -68,7 +69,7 @@ public class ShowApplyCreatureView extends ShowSmallView implements TextData {
         man.addMainComponent(12);
         man.addMainComponent(3);
         for (int i = number; i < end; i++) {
-            var button = factory.getFactory().createButton(applyText, null);
+            var button = factory.getFactory().createButton(CustomBundle.getString(applyText), null);
             button.getCustomUI().setOffSet(4);
             applyButtons.add(button);
             man.addMiddleComponent(button, 1, 10);

@@ -1,5 +1,7 @@
 package gui.views.objectViews.creationViews;
 
+import gui.bundle.CustomBundle;
+import gui.data.TextData;
 import gui.factories.IOverallFactory;
 import gui.customComponents.abstractComponents.AbstractCustomButton;
 import gui.factories.GuiFactory;
@@ -11,7 +13,7 @@ import gui.views.gamePanel.gamePanels.CreatorPanel;
 
 import java.awt.*;
 
-public class CreatorGameView {
+public class CreatorGameView implements TextData {
     private CreatorPanel panel;
     private DefaultCustomMenuMenager manager =
             new DefaultCustomMenuMenager(ComponentsSeries.ComponentsDimension.VERTICAL,
@@ -27,8 +29,8 @@ public class CreatorGameView {
         manager.addMiddleComponent(panel.getPanel(), 0,10);
         factory.getFactory().setButtonFactory(new BasicButton());
         factory.getFactory().setButtonType(GuiFactory.ButtonType.NORMAL);
-        saveButton = factory.getFactory().createButton("SAVE", null);
-        exitButton = factory.getFactory().createButton("EXIT", null);
+        saveButton = factory.getFactory().createButton(CustomBundle.getString(saveText), null);
+        exitButton = factory.getFactory().createButton(CustomBundle.getString(exitText), null);
         manager.addMiddleComponent(saveButton, 1, 10);
         manager.getMainComponent(1).addSpace(6, ComponentPanelMenager.Side.LEFT, ComponentPanelMenager.Side.RIGHT);
         manager.getMainComponent(1).addSpace(3, ComponentPanelMenager.Side.BOTTOM, ComponentPanelMenager.Side.TOP);

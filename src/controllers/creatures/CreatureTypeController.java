@@ -4,15 +4,17 @@ import controllers.Controller;
 import controllers.MenuController;
 import controllers.utils.CreatureType;
 import controllers.utils.RedirectListener;
+import gui.bundle.CustomBundle;
+import gui.data.TextData;
 import gui.factories.IOverallFactory;
 import gui.views.utilsViews.TitleView;
 
-public class CreatureTypeController extends Controller {
+public class CreatureTypeController extends Controller implements TextData {
     @Override
     public void run(IOverallFactory overallFactory) {
         var view = overallFactory.createCreaturesPanel();
         var title = new TitleView(overallFactory.getFactory());
-        title.initialize("Creatures Manager", view, 12, 20);
+        title.initialize(CustomBundle.getString(creatureTitleManager), view, 12, 20);
         view.getReturnButton().addActionListener(
                 new RedirectListener(controllerManager, new MenuController())
         );

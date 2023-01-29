@@ -1,5 +1,6 @@
 package gui.card.fullCards.specificCards;
 
+import gui.bundle.CustomBundle;
 import gui.card.CardContentDataSet;
 import gui.card.contentCards.attributesCards.AttributesCard;
 import gui.card.contentCards.attributesCards.LabelAttributeCard;
@@ -91,7 +92,7 @@ public class ChoserCard extends Card {
     protected void createArrowComponentSeries() {
         super.createArrowComponentSeries();
         factory.setButtonType(GuiFactory.ButtonType.NORMAL);
-        button = new ComponentPanelMenager<>(factory.createButton(addText, null));
+        button = new ComponentPanelMenager<>(factory.createButton(CustomBundle.getString(addText), null));
         button.addSpace(5);
         arrowMenager.getOption(1).changeContent(new ComponentPanelMenager<>(button));
     }

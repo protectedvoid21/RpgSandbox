@@ -1,6 +1,8 @@
 package gui.card.contentCards.detailCards;
 
+import gui.bundle.CustomBundle;
 import gui.customComponents.abstractComponents.AbstractCustomButton;
+import gui.data.TextData;
 import gui.factories.GuiFactory;
 import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;
@@ -8,7 +10,7 @@ import gui.menu.DefaultCustomMenuMenager;
 
 import javax.swing.*;
 
-public class AddingItemButtonCard extends NormalDetailButtonsCard {
+public class AddingItemButtonCard extends NormalDetailButtonsCard implements TextData {
     private final DefaultCustomMenuMenager secondCustomMenager = new DefaultCustomMenuMenager(ComponentsSeries.ComponentsDimension.VERTICAL, ComponentsSeries.ComponentsDimension.HORIZONTAL);
     private final AbstractCustomButton button= createCustomButton();
     public AbstractCustomButton getPlusButton() {
@@ -21,7 +23,8 @@ public class AddingItemButtonCard extends NormalDetailButtonsCard {
 
     private AbstractCustomButton createCustomButton() {
         factory.setButtonType(GuiFactory.ButtonType.NORMAL);
-        var button = factory.createButton("add new Item", null);
+        var button = factory.createButton(CustomBundle.getString(additem), null);
+        button.getCustomUI().setOffSet(6);
         return button;
     }
     @Override
