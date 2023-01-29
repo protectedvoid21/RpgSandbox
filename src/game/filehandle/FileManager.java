@@ -3,6 +3,7 @@ package game.filehandle;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import controllers.audio.ICustomEnumAudio;
 import game.board.Scenario;
 import game.creature.Character;
 import game.creature.Creature;
@@ -46,8 +47,10 @@ public class FileManager {
                 .registerTypeAdapter(Creature.class, new CustomAdapter<Creature>())
                 .registerTypeAdapter(IStruggleStatistics.class, new StruggleDeserializer())
                 .registerTypeAdapter(IStruggleAtributeEnum.class, new CustomAdapter<IStruggleAtributeEnum>())
+                .registerTypeAdapter(ICustomEnumAudio.class, new AudioDeserializer())
                 .registerTypeAdapter(IAttributeEnum.class, new CustomAdapter<IAttributeEnum>())
-                .registerTypeAdapter(AttributeValue.class, new CustomAdapter<AttributeValue>()).registerTypeAdapter(DisposableItem.class, new CustomAdapter<DisposableItem>())
+                .registerTypeAdapter(AttributeValue.class, new CustomAdapter<AttributeValue>())
+                .registerTypeAdapter(DisposableItem.class, new CustomAdapter<DisposableItem>())
                 .create();
         try {
             ensurePathExists();
