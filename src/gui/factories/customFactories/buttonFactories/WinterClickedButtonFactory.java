@@ -4,6 +4,7 @@ import gui.customComponents.abstractComponents.AbstractCustomButton;
 import gui.customComponents.booleanComponents.CustomBooleanButton;
 import gui.customComponents.baseCustomComponents.CustomButton;
 import gui.customComponents.booleanComponents.CustomIconBooleanButton;
+import gui.customComponents.booleanComponents.MultiplyButton;
 import gui.customComponents.iconComponents.IconButton;
 import gui.customComponents.iconComponents.StretchIcon;
 import gui.customUI.componentsUIs.CustomButtonUI;
@@ -24,6 +25,10 @@ import java.awt.event.ActionListener;
 public class WinterClickedButtonFactory extends ImageButtonFactory {
     public WinterClickedButtonFactory(double scalingSizeValue, double scalingPositionValue) {
         super(scalingSizeValue, scalingPositionValue);
+    }
+    @Override
+    public MultiplyButton createMultiplyButton() {
+        return (MultiplyButton) helpCreatedMethod(new MultiplyButton(), null);
     }
 
     public WinterClickedButtonFactory() {

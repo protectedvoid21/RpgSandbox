@@ -3,6 +3,7 @@ package gui.factories.customFactories.buttonFactories;
 import gui.customComponents.abstractComponents.AbstractCustomButton;
 import gui.customComponents.booleanComponents.CustomBooleanButton;
 import gui.customComponents.booleanComponents.CustomIconBooleanButton;
+import gui.customComponents.booleanComponents.MultiplyButton;
 import gui.factories.customFactories.ComponentFactory;
 
 import java.awt.event.ActionListener;
@@ -11,6 +12,7 @@ import java.awt.event.ActionListener;
 public abstract class ButtonFactory extends ComponentFactory {
 
     public abstract AbstractCustomButton createNormalButton(String text, ActionListener listener);
+    public abstract MultiplyButton createMultiplyButton();
     public abstract AbstractCustomButton createIconPropButton(String text, ActionListener listener);
     public abstract AbstractCustomButton createIconStretchButton(String text, ActionListener listener);
     public abstract AbstractCustomButton createDisabledIconPropButton(String text1, String text2, ActionListener listener);

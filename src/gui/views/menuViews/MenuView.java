@@ -2,6 +2,7 @@ package gui.views.menuViews;
 
 import gui.bundle.CustomBundle;
 import gui.customComponents.booleanComponents.CustomBooleanButton;
+import gui.customComponents.booleanComponents.MultiplyButton;
 import gui.data.TextData;
 import gui.views.utilsViews.BackgroundView;
 import gui.card.SharedCmpsFont;
@@ -20,6 +21,7 @@ public class MenuView extends BackgroundView implements PanelContainer, TextData
     private GuiFactory factory;
     private ArrayList<AbstractCustomButton> buttons = new ArrayList<>();
     private CustomBooleanButton audioButton;
+    private MultiplyButton multiplyButton;
     private DefaultCustomMenuMenager<JComponent> manager =
             new DefaultCustomMenuMenager<>(ComponentsSeries.ComponentsDimension.VERTICAL,
                     ComponentsSeries.ComponentsDimension.HORIZONTAL);
@@ -32,12 +34,13 @@ public class MenuView extends BackgroundView implements PanelContainer, TextData
         factory.setLabelType(GuiFactory.LabelType.NORMAL);
         manager.addMiddleComponent(factory.createLabel(titleGame), 0, 1);
         manager.getMiddleComponent(0, 0).addSpace(3, ComponentPanelMenager.Side.BOTTOM);
-        createButton(CustomBundle.getDefaultString(newGameText), 1, false);
-        createButton(CustomBundle.getDefaultString(itemsTextTitle), 2, false);
-        createButton(CustomBundle.getDefaultString(creaturesTextTitle), 3, false);
-        createButton(CustomBundle.getDefaultString(scenarioTextTitle), 4, false);
-        createButton(null, 5, true);
-        createButton(CustomBundle.getDefaultString(exitText), 6, false);
+        createNormalButton(CustomBundle.getDefaultString(newGameText), 1);
+        createNormalButton(CustomBundle.getDefaultString(itemsTextTitle), 2);
+        createNormalButton(CustomBundle.getDefaultString(creaturesTextTitle), 3);
+        createNormalButton(CustomBundle.getDefaultString(scenarioTextTitle), 4);
+        createAudioButton( 5);
+        createMultiplyButton( 6);
+        createNormalButton(CustomBundle.getDefaultString(exitText), 7);
         SharedCmpsFont.setUniformFont(buttons);
     }
 
@@ -45,15 +48,40 @@ public class MenuView extends BackgroundView implements PanelContainer, TextData
         audioButton.setListeners(on, off);
     }
 
-    private void createButton(String name, int index, boolean boolValue) {
-        factory.setButtonType(!boolValue ? GuiFactory.ButtonType.NORMAL : GuiFactory.ButtonType.DOUBLE);
-        AbstractCustomButton button;
-        if (!boolValue) {
-            button = factory.createButton(name, null);
-        } else {
-            audioButton = factory.createButton(CustomBundle.getDefaultString(soundOn), CustomBundle.getDefaultString(soundOff), true);
-            button = audioButton;
-        }
+    private void createNormalButton(String name, int index) {
+        factory.setButtonType(GuiFactory.ButtonType.NORMAL);
+        AbstractCustomButton button = factory.createButton(name, null);
+        setButton(index, button);
+    }
+
+    private void createMultiplyButton(int index) {
+        factory.setButtonType(GuiFactory.ButtonType.MULTIPLY);
+        multiplyButton = factory.createButton();
+        setButton(index, multiplyButton);
+    }
+
+    private void createAudioButton(int index) {
+        factory.setButtonType(GuiFactory.ButtonType.DOUBLE);
+        audioButton = factory.createButton(CustomBundle.getDefaultString(soundOn), CustomBundle
+            .getDefaultString(soundOff), true);
+        setButton(index, audioButton);
+    }
+
+    public void addMultipleButtonListeners(ArrayList<String> indexes, ArrayList<ActionListener> listeners){
+        multiplyButton.setListeners(indexes, listeners);
+    }
+
+
+    private void setButton(int index, AbstractCustomButton button) {
+//        factory.setButtonType(!boolValue ? GuiFactory.ButtonType.NORMAL : GuiFactory.ButtonType.DOUBLE);
+//        AbstractCustomButton button;
+//        if (!boolValue) {
+//            button = factory.createButton(name, null);
+//        } else {
+//            audioButton = factory.createButton(CustomBundle.getDefaultString(soundOn), CustomBundle
+//            .getDefaultString(soundOff), true);
+//            button = audioButton;
+//        }
         buttons.add(button);
         manager.addMainComponent(10);
         manager.addMiddleComponent(button, index, 10);
@@ -84,7 +112,14 @@ public class MenuView extends BackgroundView implements PanelContainer, TextData
     }
 
     public JButton getExitButton() {
-        return buttons.get(5);
+        return buttons.get(6);
+    }
+
+    public int getMultipleButtonIndex(){
+        return multiplyButton.getIndex();
+    }
+    public void settMultipleButtonIndex(int value){
+         multiplyButton.setIndex(value);
     }
 
     @Override

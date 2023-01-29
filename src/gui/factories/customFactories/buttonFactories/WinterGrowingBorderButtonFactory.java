@@ -4,6 +4,7 @@ import gui.customComponents.abstractComponents.AbstractCustomButton;
 import gui.customComponents.booleanComponents.CustomBooleanButton;
 import gui.customComponents.baseCustomComponents.CustomButton;
 import gui.customComponents.booleanComponents.CustomIconBooleanButton;
+import gui.customComponents.booleanComponents.MultiplyButton;
 import gui.customComponents.iconComponents.IconButton;
 import gui.customComponents.iconComponents.StretchIcon;
 import gui.customUI.componentsUIs.CustomButtonUI;
@@ -32,6 +33,10 @@ public class WinterGrowingBorderButtonFactory extends ImageButtonFactory {
         super();
     }
 
+    @Override
+    public MultiplyButton createMultiplyButton() {
+        return (MultiplyButton) helpCreatedMethod(new MultiplyButton(), null);
+    }
 
     private AbstractCustomButton helpCreatedMethod(AbstractCustomButton button, ActionListener listener) {
         button.setFont(font);
@@ -81,7 +86,8 @@ public class WinterGrowingBorderButtonFactory extends ImageButtonFactory {
         return createDisableIconButton(text, text2, listener, false);
     }
 
-    private AbstractCustomButton createDisableIconButton(String text1, String text2, ActionListener listener, boolean proportionate){
+    private AbstractCustomButton createDisableIconButton(String text1, String text2, ActionListener listener,
+                                                         boolean proportionate) {
         var but = helpCreatedMethod(new IconButton(text1, true), listener);
         if (text2 != null) {
             but.setDisabledIcon(new StretchIcon(text2, proportionate));
@@ -89,6 +95,7 @@ public class WinterGrowingBorderButtonFactory extends ImageButtonFactory {
         but.getCustomUI().setBackGroundTransparent(false);
         return but;
     }
+
     @Override
     public CustomBooleanButton createBooleanButton(String text1, String text2, boolean initialValue) {
         var but = helpCreatedMethod(new CustomBooleanButton(initialValue), null);
@@ -97,7 +104,8 @@ public class WinterGrowingBorderButtonFactory extends ImageButtonFactory {
     }
 
     @Override
-    public CustomIconBooleanButton createBooleanButtonWithIcons(String path1, String path2, boolean initialValue, boolean proportionate) {
+    public CustomIconBooleanButton createBooleanButtonWithIcons(String path1, String path2, boolean initialValue,
+                                                                boolean proportionate) {
         return null;
     }
 }

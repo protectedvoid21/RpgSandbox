@@ -2,6 +2,8 @@ package game.struggle;
 
 import game.creature.Character;
 import game.creature.Creature;
+import gui.bundle.CustomBundle;
+import gui.data.WarhammerData;
 
 import java.util.ArrayList;
 
@@ -9,7 +11,7 @@ import static game.interfaceWarhammer.AttributeEnum.HEALTH_POINTS_NOW;
 import static game.interfaceWarhammer.DependantEnum.STRENGTH_BONUS;
 import static game.interfaceWarhammer.DependantEnum.TOUGHNESS_BONUS;
 
-public class DmgCalculator {
+public class DmgCalculator implements WarhammerData {
 
     public static int dealDMG(Creature you, Creature enemy, ArrayList<String> popUp){
 
@@ -25,7 +27,7 @@ public class DmgCalculator {
 
         if (dmg>0) {
             enemy.getStatistics().getAttribute(HEALTH_POINTS_NOW).decreaseValue(dmg);
-            popUp.add("You dealt " + dmg + " Dmg");
+            popUp.add(CustomBundle.getSpecificString(dealtInformation)+" " + dmg + " "+CustomBundle.getSpecificString(dmgInformation));
         } else {
             popUp.add("You dealt 0 Dmg");
         }
