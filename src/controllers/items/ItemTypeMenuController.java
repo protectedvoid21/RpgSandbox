@@ -4,10 +4,11 @@ import controllers.Controller;
 import controllers.MenuController;
 import controllers.utils.RedirectListener;
 import gui.card.fullCards.abstractCards.Card;
+import gui.data.TextData;
 import gui.factories.IOverallFactory;
 import gui.views.utilsViews.TitleView;
 
-public class ItemTypeMenuController extends Controller {
+public class ItemTypeMenuController extends Controller implements TextData {
     @Override
     public void run(IOverallFactory overallFactory) {
         var view = overallFactory.createViewingItemsPanel();
@@ -15,7 +16,7 @@ public class ItemTypeMenuController extends Controller {
                 new RedirectListener(controllerManager, new MenuController())
         );
         var title = new TitleView(overallFactory.getFactory());
-        title.initialize("Equipment Manager", view, 12, 20);
+        title.initialize(equipmentManager, view, 12, 20);
 
         view.getButton(0).addActionListener(
                 new RedirectListener(controllerManager, new ItemActionController(Card.CardTypes.MOUNT)));

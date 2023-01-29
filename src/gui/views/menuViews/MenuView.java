@@ -1,6 +1,8 @@
 package gui.views.menuViews;
 
+import gui.bundle.CustomBundle;
 import gui.customComponents.booleanComponents.CustomBooleanButton;
+import gui.data.TextData;
 import gui.views.utilsViews.BackgroundView;
 import gui.card.SharedCmpsFont;
 import gui.customComponents.abstractComponents.AbstractCustomButton;
@@ -14,7 +16,7 @@ import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class MenuView extends BackgroundView implements PanelContainer {
+public class MenuView extends BackgroundView implements PanelContainer, TextData {
     private GuiFactory factory;
     private ArrayList<AbstractCustomButton> buttons = new ArrayList<>();
     private CustomBooleanButton audioButton;
@@ -30,12 +32,12 @@ public class MenuView extends BackgroundView implements PanelContainer {
         factory.setLabelType(GuiFactory.LabelType.NORMAL);
         manager.addMiddleComponent(factory.createLabel(titleGame), 0, 1);
         manager.getMiddleComponent(0, 0).addSpace(3, ComponentPanelMenager.Side.BOTTOM);
-        createButton("NEW GAME", 1, false);
-        createButton("ITEMS", 2, false);
-        createButton("CREATURES", 3, false);
-        createButton("SCENARIO", 4, false);
+        createButton(CustomBundle.getString(newGameText), 1, false);
+        createButton(CustomBundle.getString(itemsTextTitle), 2, false);
+        createButton(CustomBundle.getString(creaturesTextTitle), 3, false);
+        createButton(CustomBundle.getString(scenarioTextTitle), 4, false);
         createButton(null, 5, true);
-        createButton("EXIT", 6, false);
+        createButton(CustomBundle.getString(exitText), 6, false);
         SharedCmpsFont.setUniformFont(buttons);
     }
 

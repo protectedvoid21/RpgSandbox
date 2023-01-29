@@ -4,16 +4,18 @@ import controllers.*;
 import controllers.utils.RedirectListener;
 import game.equipment.Item;
 import game.filehandle.DummyCreator;
+import gui.bundle.CustomBundle;
 import gui.card.fullCards.abstractCards.Card;
+import gui.data.TextData;
 import gui.factories.IOverallFactory;
 import gui.views.utilsViews.TitleView;
 
 import java.util.Map;
 
-public class ItemActionController extends Controller {
-    private static final Map<Card.CardTypes, String> titleTexts = Map.of(Card.CardTypes.ARMOR, "Armors manager",
-            Card.CardTypes.WEAPONS, "Weapons manager", Card.CardTypes.MOUNT, "Mounts manager", Card.CardTypes.ITEMS,
-            "Items manager");
+public class ItemActionController extends Controller implements TextData {
+    private static final Map<Card.CardTypes, String> titleTexts = Map.of(Card.CardTypes.ARMOR, CustomBundle.getString(titlearmorsManager),
+            Card.CardTypes.WEAPONS, CustomBundle.getString(titleweaponsManager), Card.CardTypes.MOUNT, CustomBundle.getString(titlemountsManager), Card.CardTypes.ITEMS,
+            CustomBundle.getString(titleitemsManager));
     private final Card.CardTypes creatorType;
 
     public ItemActionController(Card.CardTypes creatorType) {

@@ -1,5 +1,6 @@
 package gui.views.objectViews;
 
+import gui.bundle.CustomBundle;
 import gui.card.DoubleArrowPanel;
 import gui.card.SwitchableComponent;
 import gui.customComponents.abstractComponents.AbstractCustomButton;
@@ -71,7 +72,7 @@ public abstract class AllObjectsView extends BackgroundView implements Switchabl
         arrowPanel = new DoubleArrowPanel(factory.getFactory(), this);
         arrowPanel.setSpace(2);
         factory.getFactory().setButtonType(GuiFactory.ButtonType.NORMAL);
-        cancelButton = factory.getFactory().createButton(canceltext, null);
+        cancelButton = factory.getFactory().createButton(CustomBundle.getString(canceltext), null);
         cancelButton.getCustomUI().setOffSet(5);
         manager.addMiddleComponent(arrowPanel.getPanel(), maxindex, 10);
         manager.addMiddleComponent(cancelButton, maxindex, 10);

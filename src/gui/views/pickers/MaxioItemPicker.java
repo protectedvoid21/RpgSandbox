@@ -1,5 +1,6 @@
 package gui.views.pickers;
 
+import gui.bundle.CustomBundle;
 import gui.customComponents.abstractComponents.AbstractCustomButton;
 import gui.factories.GuiFactory;
 import gui.data.TextData;
@@ -15,7 +16,7 @@ public class MaxioItemPicker extends ItemPicker implements TextData {
     public MaxioItemPicker(GuiFactory factory) {
         super(factory);
         factory.setButtonType(GuiFactory.ButtonType.NORMAL);
-        button = factory.createButton(useTex, null);
+        button = factory.createButton(CustomBundle.getString(useTex), null);
         button.getCustomUI().setOffSet(7);
         menager.addMainComponent(5);
         menager.addMiddleComponent(button, 2, 10);

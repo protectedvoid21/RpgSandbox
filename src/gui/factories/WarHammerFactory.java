@@ -1,6 +1,7 @@
 package gui.factories;
 
 import controllers.utils.CreatureType;
+import gui.bundle.CustomBundle;
 import gui.card.fullCards.abstractCards.BaseCard;
 import gui.card.fullCards.abstractCards.Card;
 import gui.card.fullCards.specificCards.BasicCard;
@@ -35,11 +36,14 @@ import gui.views.objectViews.itemsViews.FullSmallView;
 import gui.views.objectViews.itemsViews.ShowApplyCreatureView;
 import gui.views.objectViews.itemsViews.ShowSmallView;
 import gui.views.pickers.FullItemPicker;
+import org.w3c.dom.Text;
 
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+
+import static gui.data.TextData.createText;
 
 public class WarHammerFactory extends IOverallFactory implements WarhammerData, TextData {
     private final ButtonFactory basicButtonFactory = new BasicButton();
@@ -98,16 +102,16 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData, 
     public SelectingView createOverallItemPanel() {
         setFactoriesMode(Mode.MENU);
         return createView(new ArrayList<>(Arrays.asList(
-                new AbstractMap.SimpleEntry<>(editPath, showText),
-                new AbstractMap.SimpleEntry<>(createPath, createText))));
+                new AbstractMap.SimpleEntry<>(editPath, CustomBundle.getString(showText)),
+                new AbstractMap.SimpleEntry<>(createPath,  CustomBundle.getString(createText)))));
     }
 
     @Override
     public SelectingView createOverallCreaturesPanel() {
         setFactoriesMode(Mode.MENU);
         return createView(new ArrayList<>(Arrays.asList(
-                new AbstractMap.SimpleEntry<>(createPath, createText),
-                new AbstractMap.SimpleEntry<>(viewPath, viewText))));
+                new AbstractMap.SimpleEntry<>(createPath,  CustomBundle.getString(createText)),
+                new AbstractMap.SimpleEntry<>(viewPath, CustomBundle.getString(viewText)))));
     }
 
     private SelectingView createView(ArrayList<AbstractMap.SimpleEntry<String, String>> content) {
@@ -127,19 +131,19 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData, 
     public SelectingView createViewingItemsPanel() {
         setFactoriesMode(Mode.MENU);
         return createView(new ArrayList<>(Arrays.asList(
-                new AbstractMap.SimpleEntry<>(horsePath, mountText),
-                new AbstractMap.SimpleEntry<>(armorPath, armorText),
-                new AbstractMap.SimpleEntry<>(weaponPath, weaponText),
-                new AbstractMap.SimpleEntry<>(trolleyPath, itemText))));
+                new AbstractMap.SimpleEntry<>(horsePath, CustomBundle.getString(mountText)),
+                new AbstractMap.SimpleEntry<>(armorPath, CustomBundle.getString(armorText)),
+                new AbstractMap.SimpleEntry<>(weaponPath, CustomBundle.getString(weaponText)),
+                new AbstractMap.SimpleEntry<>(trolleyPath, CustomBundle.getString(itemText)))));
     }
 
     @Override
     public SelectingView createCreaturesPanel() {
         setFactoriesMode(Mode.MENU);
         return createView(new ArrayList<>(Arrays.asList(
-                new AbstractMap.SimpleEntry<>(monsterPath, monsterText),
-                new AbstractMap.SimpleEntry<>(playerImagePath, playerText),
-                new AbstractMap.SimpleEntry<>(npcImage, npcText))));
+                new AbstractMap.SimpleEntry<>(monsterPath, CustomBundle.getString(monsterText)),
+                new AbstractMap.SimpleEntry<>(playerImagePath, CustomBundle.getString(playerText)),
+                new AbstractMap.SimpleEntry<>(npcImage, CustomBundle.getString(npcText)))));
     }
 
     @Override

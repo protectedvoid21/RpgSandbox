@@ -1,5 +1,6 @@
 package gui.card.contentCards.detailCards;
 
+import gui.bundle.CustomBundle;
 import gui.card.contentCards.AbstractCard;
 import gui.card.fullCards.abstractCards.Card;
 import gui.card.SharedCmpsFont;
@@ -52,7 +53,7 @@ public abstract class DetailButtonsCard extends AbstractCard<JComponent> {
         for (var key : sublist) {
             labelList.get(currentIndex).setContent(key.get(0));
             getContentList().get(currentIndex).setContent(key.get(1));
-            detailList.get(currentIndex).setContent(detailText);
+            detailList.get(currentIndex).setContent(CustomBundle.getString(detailText));
             currentIndex++;
         }
         if (sublist.size() < maximumElementNumber) {
@@ -75,7 +76,7 @@ public abstract class DetailButtonsCard extends AbstractCard<JComponent> {
             factory.setLabelType(GuiFactory.LabelType.ICON);
             initLabel(labelList, Card.EMPTY_DATA_CONTENT);
             initContentSegment();
-            initButton(detailList, detailText);
+            initButton(detailList, CustomBundle.getString(detailText));
         }
     }
 

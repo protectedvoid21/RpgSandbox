@@ -5,16 +5,19 @@ import controllers.utils.CreatureType;
 import controllers.utils.RedirectListener;
 import game.creature.Creature;
 import game.filehandle.DummyCreator;
+import gui.bundle.CustomBundle;
+import gui.data.TextData;
 import gui.factories.IOverallFactory;
 import gui.views.utilsViews.TitleView;
+import org.w3c.dom.Text;
 
 import java.util.Map;
 
-public class CreatureActionController extends Controller {
+public class CreatureActionController extends Controller implements TextData {
     private final CreatureType creatureType;
     private Creature dummyCreature;
-    private static final Map<CreatureType, String> titleTexts = Map.of(CreatureType.NPC, "NPC Manager",
-            CreatureType.MONSTER, "Monster Manager", CreatureType.PLAYER_CHARACTER, "Player Character Manager");
+    private static final Map<CreatureType, String> titleTexts = Map.of(CreatureType.NPC, CustomBundle.getString(titleNpcManager),
+            CreatureType.MONSTER, CustomBundle.getString(titleMonsterManager), CreatureType.PLAYER_CHARACTER, CustomBundle.getString(titlePlayerManager));
 
     public CreatureActionController(CreatureType creatureType) {
         this.creatureType = creatureType;

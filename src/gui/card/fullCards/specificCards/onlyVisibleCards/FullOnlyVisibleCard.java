@@ -1,8 +1,10 @@
 package gui.card.fullCards.specificCards.onlyVisibleCards;
 
+import gui.bundle.CustomBundle;
 import gui.card.SharedCmpsFont;
 import gui.customComponents.abstractComponents.AbstractCustomButton;
 import gui.factories.GuiFactory;
+import gui.margin.ComponentTextMarginManager;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -17,12 +19,13 @@ public class FullOnlyVisibleCard extends OnlyVisibleCard{
     }
 
     protected void initializeDownPanel(){
-        showbutton = factory.createButton(showText, null);
-        editButton = factory.createButton(editText, null);
-        deleteButton = factory.createButton(deleteText, null);
+        showbutton = factory.createButton(CustomBundle.getString(showText), null);
+        editButton = factory.createButton(CustomBundle.getString(editText), null);
+        deleteButton = factory.createButton(CustomBundle.getString(deleteText), null);
         var list = Arrays.asList(editButton, deleteButton, showbutton);
         for (var but : list){
-            int i = 0;
+            but.getCustomUI().getMargin().set(ComponentTextMarginManager.Side.LEFT, 3);
+            but.getCustomUI().getMargin().set(ComponentTextMarginManager.Side.RIGHT, 3);
             seriesPanel.addMiddleComponent(but, 2, 10);
             seriesPanel.getMiddleComponent(2, list.indexOf(but)).addSpace(4);
         }

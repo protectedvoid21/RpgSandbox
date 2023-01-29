@@ -1,5 +1,6 @@
 package gui.views.gamePanel;
 
+import gui.bundle.CustomBundle;
 import gui.factories.IOverallFactory;
 import gui.card.SharedCmpsFont;
 import gui.customComponents.abstractComponents.AbstractCustomButton;
@@ -47,8 +48,8 @@ public class MainPanelGame implements TextData {
         factory.getFactory().setButtonType(GuiFactory.ButtonType.NORMAL);
         factory.getFactory().setLabelType(GuiFactory.LabelType.NORMAL);
         remainingMoves = factory.getFactory().createLabel("0");
-        exitButton = factory.getFactory().createButton(exitText, null);
-        nextPlayerButton = factory.getFactory().createButton(nextText, null);
+        exitButton = factory.getFactory().createButton(CustomBundle.getString(exitText), null);
+        nextPlayerButton = factory.getFactory().createButton(CustomBundle.getString(nextText), null);
 
         factory.getFactory().setButtonType(GuiFactory.ButtonType.ICON);
         actionsVisibilityButton = factory.getFactory().createButton(eyePath, null);

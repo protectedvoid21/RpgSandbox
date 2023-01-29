@@ -1,5 +1,6 @@
 package gui.card.fullCards.specificCards.onlyVisibleCards;
 
+import gui.bundle.CustomBundle;
 import gui.card.SharedCmpsFont;
 import gui.customComponents.abstractComponents.AbstractCustomButton;
 import gui.factories.GuiFactory;
@@ -16,7 +17,7 @@ public class OnlyVisibleShowCard extends OnlyVisibleCard {
         super(factory);
     }
         protected void initializeDownPanel() {
-            showbutton = factory.createButton(showText, null);
+            showbutton = factory.createButton(CustomBundle.getString(showText), null);
             seriesPanel.addMiddleComponent(showbutton, 2, 10);
             seriesPanel.getMiddleComponent(2, 0).addSpace(4, ComponentPanelMenager.Side.TOP,
                     ComponentPanelMenager.Side.BOTTOM);

@@ -5,6 +5,8 @@ import gui.utils.StringAdapter;
 import java.awt.*;
 
 public interface WarhammerData {
+
+
     String damageText = "damage";
     String tapImage = StringAdapter.getActionsRelativePath("tap.png");
     String defenceText = "defence";

@@ -1,5 +1,6 @@
 package gui.card.fullCards.specificCards;
 
+import gui.bundle.CustomBundle;
 import gui.card.CardContentDataSet;
 import gui.card.DoubleArrowPanel;
 import gui.card.contentCards.attributesCards.AttributesCard;
@@ -213,7 +214,7 @@ public class EntriesCard extends Card {
     protected void createCancelPanel() {
         super.createCancelPanel();
         factory.setButtonType(GuiFactory.ButtonType.NORMAL);
-        saveButton = factory.createButton(saveText, null);
+        saveButton = factory.createButton(CustomBundle.getString(saveText), null);
         initializeCancelPanelObject(saveButton, 1);
     }
 
