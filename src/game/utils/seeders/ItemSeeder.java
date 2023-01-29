@@ -9,7 +9,7 @@ import game.equipment.examples.Bandage;
 import game.equipment.examples.Sharpener;
 import game.filehandle.EntityManager;
 
-public class ItemSeeder implements Seeder {
+public class ItemSeeder implements Seeder{
     @Override
     public void seed() {
         Weapon weapon1 = new Weapon("Sword of Death", 20, 2);

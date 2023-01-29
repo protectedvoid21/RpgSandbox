@@ -13,6 +13,9 @@ public interface WarhammerData {
     String speedText = "speed";
     String rangeText = "range";
     String gameTitle = "gameWarhammerTitle";
+
+    String dealtInformation = "dealtInformation";
+    String dmgInformation = "damage";
     String smallSward1 = StringAdapter.getWeaponsRelativePath("swo.png");
     String smallSward2 = StringAdapter.getWeaponsRelativePath("leftsword.png");
     String smallSward3 = StringAdapter.getWeaponsRelativePath("rightsword.png");
@@ -81,6 +84,7 @@ public interface WarhammerData {
     String avePath = StringAdapter.getViewsRelativePath("wood.jpg");
     String knivesOpt = StringAdapter.getWeaponsRelativePath("knivesOpt.png");
     String bobPath = StringAdapter.getNPCRelativePath("bob.jpg");
+
     Color basicBorderColor = new Color(0x4D0202);
     int basicBorderSize = 10;
 
