@@ -32,12 +32,12 @@ public class MenuView extends BackgroundView implements PanelContainer, TextData
         factory.setLabelType(GuiFactory.LabelType.NORMAL);
         manager.addMiddleComponent(factory.createLabel(titleGame), 0, 1);
         manager.getMiddleComponent(0, 0).addSpace(3, ComponentPanelMenager.Side.BOTTOM);
-        createButton(CustomBundle.getString(newGameText), 1, false);
-        createButton(CustomBundle.getString(itemsTextTitle), 2, false);
-        createButton(CustomBundle.getString(creaturesTextTitle), 3, false);
-        createButton(CustomBundle.getString(scenarioTextTitle), 4, false);
+        createButton(CustomBundle.getDefaultString(newGameText), 1, false);
+        createButton(CustomBundle.getDefaultString(itemsTextTitle), 2, false);
+        createButton(CustomBundle.getDefaultString(creaturesTextTitle), 3, false);
+        createButton(CustomBundle.getDefaultString(scenarioTextTitle), 4, false);
         createButton(null, 5, true);
-        createButton(CustomBundle.getString(exitText), 6, false);
+        createButton(CustomBundle.getDefaultString(exitText), 6, false);
         SharedCmpsFont.setUniformFont(buttons);
     }
 
@@ -51,7 +51,7 @@ public class MenuView extends BackgroundView implements PanelContainer, TextData
         if (!boolValue) {
             button = factory.createButton(name, null);
         } else {
-            audioButton = factory.createButton(CustomBundle.getString(soundOn), CustomBundle.getString(soundOff), true);
+            audioButton = factory.createButton(CustomBundle.getDefaultString(soundOn), CustomBundle.getDefaultString(soundOff), true);
             button = audioButton;
         }
         buttons.add(button);

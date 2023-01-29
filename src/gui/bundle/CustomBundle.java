@@ -11,8 +11,9 @@ import java.net.URLClassLoader;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-public class CustomBundle implements TextData {
+public abstract class CustomBundle implements TextData {
     private static ResourceBundle instance;
+    private static ResourceBundle specificInstance;
 
     public CustomBundle(Locale locale) {
         if (instance == null) {
@@ -22,21 +23,23 @@ public class CustomBundle implements TextData {
                 urls = new URL[]{file.toURI().toURL()};
                 ClassLoader loader = new URLClassLoader(urls);
                 instance = ResourceBundle.getBundle("RpgBundle", locale, loader);
+                specificInstance = generateSpecificInstance(locale, loader);
             } catch (MalformedURLException ignored) {
                 System.out.println("Cannot find file for bundle!");
             }
         }
     }
 
-    public static ResourceBundle getInstance() {
-        return instance;
-    }
+    protected abstract ResourceBundle generateSpecificInstance(Locale locale, ClassLoader loader);
 
-    public static void changeLanguage(Locale locale){
-        Locale.setDefault(locale);
-    }
+//    public static void changeLanguage(Locale locale){
+//        Locale.setDefault(locale);
+//    }
 
-    public static String getString(String key){
+    public static String getDefaultString(String key){
         return instance.getString(key);
+    }
+    public static String getSpecificString(String key){
+        return specificInstance.getString(key);
     }
 }

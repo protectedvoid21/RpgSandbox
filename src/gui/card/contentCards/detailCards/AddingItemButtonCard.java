@@ -23,7 +23,7 @@ public class AddingItemButtonCard extends NormalDetailButtonsCard implements Tex
 
     private AbstractCustomButton createCustomButton() {
         factory.setButtonType(GuiFactory.ButtonType.NORMAL);
-        var button = factory.createButton(CustomBundle.getString(additem), null);
+        var button = factory.createButton(CustomBundle.getDefaultString(additem), null);
         button.getCustomUI().setOffSet(6);
         return button;
     }

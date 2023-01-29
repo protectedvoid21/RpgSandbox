@@ -16,7 +16,7 @@ public class MaxioItemPicker extends ItemPicker implements TextData {
     public MaxioItemPicker(GuiFactory factory) {
         super(factory);
         factory.setButtonType(GuiFactory.ButtonType.NORMAL);
-        button = factory.createButton(CustomBundle.getString(useTex), null);
+        button = factory.createButton(CustomBundle.getDefaultString(useTex), null);
         button.getCustomUI().setOffSet(7);
         menager.addMainComponent(5);
         menager.addMiddleComponent(button, 2, 10);

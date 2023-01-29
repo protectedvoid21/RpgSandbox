@@ -43,7 +43,7 @@ public class ChoosingCreationGameView extends AllObjectsView {
         factory.getFactory().setButtonType(GuiFactory.ButtonType.NORMAL);
         manager.addMainComponent(3);
         for (int i = 0; i<number; i++){
-            var button = factory.getFactory().createButton(CustomBundle.getString(TextData.applyText), null);
+            var button = factory.getFactory().createButton(CustomBundle.getDefaultString(TextData.applyText), null);
             applyButtons.add(button);
             manager.addMiddleComponent(button, 2,10);
             manager.getMiddleComponent(2, i).addSpace(5);

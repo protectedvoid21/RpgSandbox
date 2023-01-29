@@ -16,8 +16,8 @@ import java.util.Map;
 public class CreatureActionController extends Controller implements TextData {
     private final CreatureType creatureType;
     private Creature dummyCreature;
-    private static final Map<CreatureType, String> titleTexts = Map.of(CreatureType.NPC, CustomBundle.getString(titleNpcManager),
-            CreatureType.MONSTER, CustomBundle.getString(titleMonsterManager), CreatureType.PLAYER_CHARACTER, CustomBundle.getString(titlePlayerManager));
+    private static final Map<CreatureType, String> titleTexts = Map.of(CreatureType.NPC, CustomBundle.getDefaultString(titleNpcManager),
+            CreatureType.MONSTER, CustomBundle.getDefaultString(titleMonsterManager), CreatureType.PLAYER_CHARACTER, CustomBundle.getDefaultString(titlePlayerManager));
 
     public CreatureActionController(CreatureType creatureType) {
         this.creatureType = creatureType;

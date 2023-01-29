@@ -14,7 +14,7 @@ public class CreatureTypeController extends Controller implements TextData {
     public void run(IOverallFactory overallFactory) {
         var view = overallFactory.createCreaturesPanel();
         var title = new TitleView(overallFactory.getFactory());
-        title.initialize(CustomBundle.getString(creatureTitleManager), view, 12, 20);
+        title.initialize(CustomBundle.getDefaultString(creatureTitleManager), view, 12, 20);
         view.getReturnButton().addActionListener(
                 new RedirectListener(controllerManager, new MenuController())
         );

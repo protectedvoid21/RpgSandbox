@@ -19,9 +19,9 @@ public class FullOnlyVisibleCard extends OnlyVisibleCard{
     }
 
     protected void initializeDownPanel(){
-        showbutton = factory.createButton(CustomBundle.getString(showText), null);
-        editButton = factory.createButton(CustomBundle.getString(editText), null);
-        deleteButton = factory.createButton(CustomBundle.getString(deleteText), null);
+        showbutton = factory.createButton(CustomBundle.getDefaultString(showText), null);
+        editButton = factory.createButton(CustomBundle.getDefaultString(editText), null);
+        deleteButton = factory.createButton(CustomBundle.getDefaultString(deleteText), null);
         var list = Arrays.asList(editButton, deleteButton, showbutton);
         for (var but : list){
             but.getCustomUI().getMargin().set(ComponentTextMarginManager.Side.LEFT, 3);

@@ -45,7 +45,7 @@ public class Converter implements WarhammerData, AbstractConverter, TextData {
         var map = new ArrayList<ArrayList<String>>();
         for (var item : items) {
             String armorName = item.getName();
-            map.add(new ArrayList<>(Arrays.asList(item.getItemPathPicture(), armorName, CustomBundle.getString(detailsText))));
+            map.add(new ArrayList<>(Arrays.asList(item.getItemPathPicture(), armorName, CustomBundle.getDefaultString(detailsText))));
         }
         data.content = map;
         data.setFullStringDataContent();
@@ -55,27 +55,27 @@ public class Converter implements WarhammerData, AbstractConverter, TextData {
 
 
     public CardContentDataSet convertArmorsToDataSet(Character character) {
-        return itemToDataSet(character.getInventory().getArmors(), CustomBundle.getString(TextData.armorsText), armorPath);
+        return itemToDataSet(character.getInventory().getArmors(), CustomBundle.getDefaultString(TextData.armorsText), armorPath);
     }
 
     public CardContentDataSet convertItemsToDataSet(Character character) {
-        return itemToDataSet(character.getInventory().getDisposableItems(), CustomBundle.getString(itemsText), trolleyPath);
+        return itemToDataSet(character.getInventory().getDisposableItems(), CustomBundle.getDefaultString(itemsText), trolleyPath);
     }
 
     public CardContentDataSet convertWeaponsToDataSet(Character character) {
-        return itemToDataSet(character.getInventory().getWeapons(), CustomBundle.getString(weaponsText), weaponPath);
+        return itemToDataSet(character.getInventory().getWeapons(), CustomBundle.getDefaultString(weaponsText), weaponPath);
     }
 
     public CardContentDataSet convertMountsToDataSet(Character character) {
-        return itemToDataSet(character.getInventory().getMounts(), CustomBundle.getString(mountsText), horsePath);
+        return itemToDataSet(character.getInventory().getMounts(), CustomBundle.getDefaultString(mountsText), horsePath);
     }
 
     public CardContentDataSet convertStatsToDataSet(Creature creature) {
-        CardContentDataSet data = new CardContentDataSet(statsPath,CustomBundle.getString( attrText));
+        CardContentDataSet data = new CardContentDataSet(statsPath,CustomBundle.getDefaultString( attrText));
         var map = new ArrayList<ArrayList<String>>();
         for (var attribute : AttributeEnum.values()) {
 //            String attibuteName = attribute.name().replace("_", " ");
-            String attibuteName = CustomBundle.getString(attribute.name());
+            String attibuteName = CustomBundle.getSpecificString(attribute.name());
             var value = creature.getStatistics().getAttribute(attribute).getValue();
             String attributeValue = Integer.toString(value);
             map.add(new ArrayList<>(Arrays.asList(attibuteName, attributeValue)));
@@ -151,18 +151,18 @@ public class Converter implements WarhammerData, AbstractConverter, TextData {
     }
 
     public CardContentDataSet editWeaponInEntriesCard(Weapon weapon) {
-        var firstPair = new Pair(Integer.toString(weapon.getDamage()), CustomBundle.getString(damageText));
-        var secondPair = new Pair(Integer.toString(weapon.getRange()), CustomBundle.getString(rangeText));
+        var firstPair = new Pair(Integer.toString(weapon.getDamage()), CustomBundle.getSpecificString(damageText));
+        var secondPair = new Pair(Integer.toString(weapon.getRange()), CustomBundle.getSpecificString(rangeText));
         return createItemInEntriesCard(weapon.getName(), weapon.getItemPathPicture(), firstPair, secondPair);
     }
 
     public CardContentDataSet editArmorInEntriesCard(Armor armor) {
-        var firstPair = new Pair(Integer.toString(armor.getDefence()), CustomBundle.getString(defenceText));
+        var firstPair = new Pair(Integer.toString(armor.getDefence()), CustomBundle.getSpecificString(defenceText));
         return createItemInEntriesCard(armor.getName(), armor.getItemPathPicture(), firstPair);
     }
 
     public CardContentDataSet editMountInEntriesCard(Mount mount) {
-        var firstPair = new Pair(Integer.toString(mount.getSpeed()),CustomBundle.getString( speedText));
+        var firstPair = new Pair(Integer.toString(mount.getSpeed()),CustomBundle.getSpecificString( speedText));
         return createItemInEntriesCard(mount.getName(), mount.getItemPathPicture(), firstPair);
     }
 
@@ -192,10 +192,10 @@ public class Converter implements WarhammerData, AbstractConverter, TextData {
         int damage = 0;
         int range = 0;
         for (var parameter : data.content) {
-            if (parameter.get(0).equals(CustomBundle.getString(damageText))) {
+            if (parameter.get(0).equals(CustomBundle.getSpecificString(damageText))) {
                 damage = getCheckedParameter(data, parameter);
             }
-            if (parameter.get(0).equals(CustomBundle.getString(rangeText))) {
+            if (parameter.get(0).equals(CustomBundle.getSpecificString(rangeText))) {
                 range = getCheckedParameter(data, parameter);
             }
         }
@@ -219,7 +219,7 @@ public class Converter implements WarhammerData, AbstractConverter, TextData {
         setValidationOfNameAndPath(name, data.titlePath);
         int defence = 0;
         for (var parameter : data.content) {
-            if (parameter.get(0).equals(CustomBundle.getString(defenceText))) {
+            if (parameter.get(0).equals(CustomBundle.getSpecificString(defenceText))) {
                 defence = getCheckedParameter(data, parameter);
             }
         }
@@ -242,7 +242,7 @@ public class Converter implements WarhammerData, AbstractConverter, TextData {
         setValidationOfNameAndPath(name, data.titlePath);
         int speed = 0;
         for (var parameter : data.content) {
-            if (parameter.get(0).equals(CustomBundle.getString(speedText))) {
+            if (parameter.get(0).equals(CustomBundle.getSpecificString(speedText))) {
                 speed = getCheckedParameter(data, parameter);
             }
         }
