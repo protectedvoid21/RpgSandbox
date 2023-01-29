@@ -4,6 +4,7 @@ import gui.customComponents.abstractComponents.AbstractCustomButton;
 import gui.customComponents.booleanComponents.CustomBooleanButton;
 import gui.customComponents.baseCustomComponents.CustomButton;
 import gui.customComponents.booleanComponents.CustomIconBooleanButton;
+import gui.customComponents.booleanComponents.MultiplyButton;
 import gui.customComponents.iconComponents.IconButton;
 import gui.customUI.componentsUIs.CustomButtonUI;
 import gui.customUI.customUIStyles.ClickedStyleUI;
@@ -32,6 +33,10 @@ public class CardDownPanelButtonFactory extends ButtonFactory{
     @Override
     public AbstractCustomButton createNormalButton(String text, ActionListener listener) {
         return helpCreatedMethod(new CustomButton(text), listener);
+    }
+    @Override
+    public MultiplyButton createMultiplyButton() {
+        return (MultiplyButton) helpCreatedMethod(new MultiplyButton(), null);
     }
 
     @Override

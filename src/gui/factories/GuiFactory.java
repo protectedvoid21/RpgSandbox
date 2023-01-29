@@ -3,6 +3,7 @@ package gui.factories;
 import gui.customComponents.abstractComponents.AbstractCustomButton;
 import gui.customComponents.abstractComponents.AbstractCustomLabel;
 import gui.customComponents.booleanComponents.CustomBooleanButton;
+import gui.customComponents.booleanComponents.MultiplyButton;
 import gui.customComponents.customTextComponents.CustomTextComponent;
 import gui.customComponents.booleanComponents.CustomIconBooleanButton;
 import gui.customUI.customUIStyles.borderStrategies.DefaultBorderStrategy;
@@ -29,7 +30,7 @@ public class GuiFactory {
 
     public enum LabelType {NORMAL, ICON, STRETCH_ICON}
 
-    public enum ButtonType {NORMAL, ICON, STRETCH_ICON, DISABLED_STRETCH_ICON, DISABLED_ICON, DOUBLE, DOUBLE_WITH_ICONS}
+    public enum ButtonType {NORMAL, ICON, STRETCH_ICON, DISABLED_STRETCH_ICON, DISABLED_ICON, DOUBLE, DOUBLE_WITH_ICONS, MULTIPLY}
 
     private LabelType labelType = LabelType.NORMAL;
     private ButtonType buttonType = ButtonType.NORMAL;
@@ -85,12 +86,16 @@ public class GuiFactory {
             case DOUBLE -> button = buttonFactory.createBooleanButton(text, disabledPath, true);
             case DOUBLE_WITH_ICONS ->
                     button = buttonFactory.createBooleanButtonWithIcons(text, disabledPath, true, true);
+            case MULTIPLY -> button = buttonFactory.createMultiplyButton();
         }
         return button;
     }
 
     public CustomBooleanButton createButton(String firstText, String secondText, boolean initialValue) {
         return buttonFactory.createBooleanButton(firstText, secondText, initialValue);
+    }
+    public MultiplyButton createButton() {
+        return buttonFactory.createMultiplyButton();
     }
 
     public CustomIconBooleanButton createButton(String firstText, String secondText, boolean initialValue,

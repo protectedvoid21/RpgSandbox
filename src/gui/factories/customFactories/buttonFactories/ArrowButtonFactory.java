@@ -4,6 +4,7 @@ import gui.customComponents.abstractComponents.AbstractCustomButton;
 import gui.customComponents.booleanComponents.CustomBooleanButton;
 import gui.customComponents.baseCustomComponents.CustomButton;
 import gui.customComponents.booleanComponents.CustomIconBooleanButton;
+import gui.customComponents.booleanComponents.MultiplyButton;
 import gui.customComponents.iconComponents.IconButton;
 import gui.customComponents.iconComponents.StretchIcon;
 import gui.customUI.componentsUIs.CustomButtonUI;
@@ -44,6 +45,11 @@ public class ArrowButtonFactory extends ImageButtonFactory {
     @Override
     public AbstractCustomButton createNormalButton(String text, ActionListener listener) {
         return helpCreatedMethod(new CustomButton(text), listener);
+    }
+
+    @Override
+    public MultiplyButton createMultiplyButton() {
+        return null;
     }
 
     @Override
