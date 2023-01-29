@@ -13,9 +13,9 @@ import gui.views.utilsViews.TitleView;
 import java.util.Map;
 
 public class ItemActionController extends Controller implements TextData {
-    private static final Map<Card.CardTypes, String> titleTexts = Map.of(Card.CardTypes.ARMOR, CustomBundle.getString(titlearmorsManager),
-            Card.CardTypes.WEAPONS, CustomBundle.getString(titleweaponsManager), Card.CardTypes.MOUNT, CustomBundle.getString(titlemountsManager), Card.CardTypes.ITEMS,
-            CustomBundle.getString(titleitemsManager));
+    private static final Map<Card.CardTypes, String> titleTexts = Map.of(Card.CardTypes.ARMOR, CustomBundle.getDefaultString(titlearmorsManager),
+            Card.CardTypes.WEAPONS, CustomBundle.getDefaultString(titleweaponsManager), Card.CardTypes.MOUNT, CustomBundle.getDefaultString(titlemountsManager), Card.CardTypes.ITEMS,
+            CustomBundle.getDefaultString(titleitemsManager));
     private final Card.CardTypes creatorType;
 
     public ItemActionController(Card.CardTypes creatorType) {

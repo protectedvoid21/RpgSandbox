@@ -66,7 +66,7 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
     protected void createCancelPanel() {
         seriesPanel.addMainComponent(1);
         factory.setButtonType(GuiFactory.ButtonType.NORMAL);
-        cancelButton = factory.createButton(CustomBundle.getString(canceltext), e -> seriesPanel.getCmp().setVisible(false));
+        cancelButton = factory.createButton(CustomBundle.getDefaultString(canceltext), e -> seriesPanel.getCmp().setVisible(false));
         initializeCancelPanelObject(cancelButton, 0);
     }
 
@@ -282,7 +282,7 @@ public abstract class Card extends BaseCard implements SwitchableComponent, ICan
 
     protected void createArrowComponentSeries() {
         factory.setButtonType(GuiFactory.ButtonType.NORMAL);
-        exitButton = new ComponentPanelMenager<>(factory.createButton(CustomBundle.getString(exitText), null));
+        exitButton = new ComponentPanelMenager<>(factory.createButton(CustomBundle.getDefaultString(exitText), null));
         exitButton.addSpace(5);
         exitButton.getComponent().addActionListener(e -> methodOfRightDownPanelComponent());
         arrowMenager = new ComponentsSeries<>(ComponentsSeries.ComponentsDimension.HORIZONTAL);

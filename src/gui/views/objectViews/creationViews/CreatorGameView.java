@@ -29,8 +29,8 @@ public class CreatorGameView implements TextData {
         manager.addMiddleComponent(panel.getPanel(), 0,10);
         factory.getFactory().setButtonFactory(new BasicButton());
         factory.getFactory().setButtonType(GuiFactory.ButtonType.NORMAL);
-        saveButton = factory.getFactory().createButton(CustomBundle.getString(saveText), null);
-        exitButton = factory.getFactory().createButton(CustomBundle.getString(exitText), null);
+        saveButton = factory.getFactory().createButton(CustomBundle.getDefaultString(saveText), null);
+        exitButton = factory.getFactory().createButton(CustomBundle.getDefaultString(exitText), null);
         manager.addMiddleComponent(saveButton, 1, 10);
         manager.getMainComponent(1).addSpace(6, ComponentPanelMenager.Side.LEFT, ComponentPanelMenager.Side.RIGHT);
         manager.getMainComponent(1).addSpace(3, ComponentPanelMenager.Side.BOTTOM, ComponentPanelMenager.Side.TOP);

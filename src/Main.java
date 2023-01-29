@@ -4,6 +4,7 @@ import game.filehandle.EntityManager;
 import game.utils.seeders.SeedManager;
 import game.utils.seeders.Seeder;
 import gui.bundle.CustomBundle;
+import gui.bundle.WarhammerBundle;
 import gui.factories.WarHammerFactory;
 import gui.utils.Converter;
 
@@ -13,7 +14,7 @@ import java.util.Locale;
 public class Main {
     public static void main(String[] args) {
         new EntityManager("Warhammer");
-        new CustomBundle(new Locale("de", "DE"));
+        new WarhammerBundle(new Locale("de", "DE"));
         WarHammerAudioManager audioManager = new WarHammerAudioManager();
         audioManager.initialize();
         Seeder seeder = new SeedManager();

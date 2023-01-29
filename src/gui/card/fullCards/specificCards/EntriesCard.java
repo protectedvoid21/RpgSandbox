@@ -214,7 +214,7 @@ public class EntriesCard extends Card {
     protected void createCancelPanel() {
         super.createCancelPanel();
         factory.setButtonType(GuiFactory.ButtonType.NORMAL);
-        saveButton = factory.createButton(CustomBundle.getString(saveText), null);
+        saveButton = factory.createButton(CustomBundle.getDefaultString(saveText), null);
         initializeCancelPanelObject(saveButton, 1);
     }
 

@@ -92,7 +92,7 @@ public class ChoserCard extends Card {
     protected void createArrowComponentSeries() {
         super.createArrowComponentSeries();
         factory.setButtonType(GuiFactory.ButtonType.NORMAL);
-        button = new ComponentPanelMenager<>(factory.createButton(CustomBundle.getString(addText), null));
+        button = new ComponentPanelMenager<>(factory.createButton(CustomBundle.getDefaultString(addText), null));
         button.addSpace(5);
         arrowMenager.getOption(1).changeContent(new ComponentPanelMenager<>(button));
     }

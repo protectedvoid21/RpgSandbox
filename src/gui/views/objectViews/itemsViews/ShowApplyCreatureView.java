@@ -69,7 +69,7 @@ public class ShowApplyCreatureView extends ShowSmallView implements TextData {
         man.addMainComponent(12);
         man.addMainComponent(3);
         for (int i = number; i < end; i++) {
-            var button = factory.getFactory().createButton(CustomBundle.getString(applyText), null);
+            var button = factory.getFactory().createButton(CustomBundle.getDefaultString(applyText), null);
             button.getCustomUI().setOffSet(4);
             applyButtons.add(button);
             man.addMiddleComponent(button, 1, 10);

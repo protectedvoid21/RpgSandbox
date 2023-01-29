@@ -92,7 +92,7 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData, 
         menuButtonsFactory.setPaths(smallSward1, smallSward1);
         menuLabelFactory.setPaths(smallSward2, WarhammerData.smallSward3);
         setFactoriesMode(Mode.MENU);
-        var menu = new MenuView(factory, CustomBundle.getString(gameTitle));
+        var menu = new MenuView(factory, CustomBundle.getSpecificString(gameTitle));
         menu.setBorder(basicBorderColor, basicBorderSize);
         uploadBackgroundImage(menu, background1);
         return menu;
@@ -102,16 +102,16 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData, 
     public SelectingView createOverallItemPanel() {
         setFactoriesMode(Mode.MENU);
         return createView(new ArrayList<>(Arrays.asList(
-                new AbstractMap.SimpleEntry<>(editPath, CustomBundle.getString(showText)),
-                new AbstractMap.SimpleEntry<>(createPath,  CustomBundle.getString(createText)))));
+                new AbstractMap.SimpleEntry<>(editPath, CustomBundle.getDefaultString(showText)),
+                new AbstractMap.SimpleEntry<>(createPath,  CustomBundle.getDefaultString(createText)))));
     }
 
     @Override
     public SelectingView createOverallCreaturesPanel() {
         setFactoriesMode(Mode.MENU);
         return createView(new ArrayList<>(Arrays.asList(
-                new AbstractMap.SimpleEntry<>(createPath,  CustomBundle.getString(createText)),
-                new AbstractMap.SimpleEntry<>(viewPath, CustomBundle.getString(viewText)))));
+                new AbstractMap.SimpleEntry<>(createPath,  CustomBundle.getDefaultString(createText)),
+                new AbstractMap.SimpleEntry<>(viewPath, CustomBundle.getDefaultString(viewText)))));
     }
 
     private SelectingView createView(ArrayList<AbstractMap.SimpleEntry<String, String>> content) {
@@ -131,19 +131,19 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData, 
     public SelectingView createViewingItemsPanel() {
         setFactoriesMode(Mode.MENU);
         return createView(new ArrayList<>(Arrays.asList(
-                new AbstractMap.SimpleEntry<>(horsePath, CustomBundle.getString(mountText)),
-                new AbstractMap.SimpleEntry<>(armorPath, CustomBundle.getString(armorText)),
-                new AbstractMap.SimpleEntry<>(weaponPath, CustomBundle.getString(weaponText)),
-                new AbstractMap.SimpleEntry<>(trolleyPath, CustomBundle.getString(itemText)))));
+                new AbstractMap.SimpleEntry<>(horsePath, CustomBundle.getDefaultString(mountText)),
+                new AbstractMap.SimpleEntry<>(armorPath, CustomBundle.getDefaultString(armorText)),
+                new AbstractMap.SimpleEntry<>(weaponPath, CustomBundle.getDefaultString(weaponText)),
+                new AbstractMap.SimpleEntry<>(trolleyPath, CustomBundle.getDefaultString(itemText)))));
     }
 
     @Override
     public SelectingView createCreaturesPanel() {
         setFactoriesMode(Mode.MENU);
         return createView(new ArrayList<>(Arrays.asList(
-                new AbstractMap.SimpleEntry<>(monsterPath, CustomBundle.getString(monsterText)),
-                new AbstractMap.SimpleEntry<>(playerImagePath, CustomBundle.getString(playerText)),
-                new AbstractMap.SimpleEntry<>(npcImage, CustomBundle.getString(npcText)))));
+                new AbstractMap.SimpleEntry<>(monsterPath, CustomBundle.getDefaultString(monsterText)),
+                new AbstractMap.SimpleEntry<>(playerImagePath, CustomBundle.getDefaultString(playerText)),
+                new AbstractMap.SimpleEntry<>(npcImage, CustomBundle.getDefaultString(npcText)))));
     }
 
     @Override

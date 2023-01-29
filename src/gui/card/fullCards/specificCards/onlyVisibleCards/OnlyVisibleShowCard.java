@@ -17,7 +17,7 @@ public class OnlyVisibleShowCard extends OnlyVisibleCard {
         super(factory);
     }
         protected void initializeDownPanel() {
-            showbutton = factory.createButton(CustomBundle.getString(showText), null);
+            showbutton = factory.createButton(CustomBundle.getDefaultString(showText), null);
             seriesPanel.addMiddleComponent(showbutton, 2, 10);
             seriesPanel.getMiddleComponent(2, 0).addSpace(4, ComponentPanelMenager.Side.TOP,
                     ComponentPanelMenager.Side.BOTTOM);

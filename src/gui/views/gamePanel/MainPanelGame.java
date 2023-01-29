@@ -48,8 +48,8 @@ public class MainPanelGame implements TextData {
         factory.getFactory().setButtonType(GuiFactory.ButtonType.NORMAL);
         factory.getFactory().setLabelType(GuiFactory.LabelType.NORMAL);
         remainingMoves = factory.getFactory().createLabel("0");
-        exitButton = factory.getFactory().createButton(CustomBundle.getString(exitText), null);
-        nextPlayerButton = factory.getFactory().createButton(CustomBundle.getString(nextText), null);
+        exitButton = factory.getFactory().createButton(CustomBundle.getDefaultString(exitText), null);
+        nextPlayerButton = factory.getFactory().createButton(CustomBundle.getDefaultString(nextText), null);
 
         factory.getFactory().setButtonType(GuiFactory.ButtonType.ICON);
         actionsVisibilityButton = factory.getFactory().createButton(eyePath, null);
