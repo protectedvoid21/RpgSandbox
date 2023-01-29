@@ -76,8 +76,8 @@ public class EntityManager {
                 new Bandage(5), new DragonsBlood(5), new HolyWater(5),
                 new ChickenLeg(5), new DeadRat(5),
                 new JustNormalWater(5), new MagicPills(5),
-                new MagicPotion(), new Sharpener(5),
-                new WarmSocksFromGrandma(5)));
+                new MagicPotion(), new Sharpener(5), new CatInBag(3), new SnowBall(8),
+                new WarmSocksFromGrandma(5), new HolyHandGrenadeofAntioch(1)));
     }
 
     public void addCreature(Creature creature) {
