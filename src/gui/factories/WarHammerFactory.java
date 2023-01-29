@@ -92,7 +92,7 @@ public class WarHammerFactory extends IOverallFactory implements WarhammerData, 
         menuButtonsFactory.setPaths(smallSward1, smallSward1);
         menuLabelFactory.setPaths(smallSward2, WarhammerData.smallSward3);
         setFactoriesMode(Mode.MENU);
-        var menu = new MenuView(factory, gameTitle);
+        var menu = new MenuView(factory, CustomBundle.getString(gameTitle));
         menu.setBorder(basicBorderColor, basicBorderSize);
         uploadBackgroundImage(menu, background1);
         return menu;

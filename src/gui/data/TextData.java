@@ -59,4 +59,6 @@ public interface TextData {
     String npcText = "npc";
     String playerText = "player";
     String additem = "addItem";
+    String soundOn = "soundOn";
+    String soundOff = "soundOff";
 }

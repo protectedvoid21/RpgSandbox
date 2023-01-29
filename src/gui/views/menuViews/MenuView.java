@@ -51,7 +51,7 @@ public class MenuView extends BackgroundView implements PanelContainer, TextData
         if (!boolValue) {
             button = factory.createButton(name, null);
         } else {
-            audioButton = factory.createButton("SOUND ON", "SOUND OFF", true);
+            audioButton = factory.createButton(CustomBundle.getString(soundOn), CustomBundle.getString(soundOff), true);
             button = audioButton;
         }
         buttons.add(button);

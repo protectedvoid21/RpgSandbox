@@ -12,7 +12,7 @@ public interface WarhammerData {
     String defenceText = "defence";
     String speedText = "speed";
     String rangeText = "range";
-    String gameTitle = "RPG ENGINE";
+    String gameTitle = "gameWarhammerTitle";
     String smallSward1 = StringAdapter.getWeaponsRelativePath("swo.png");
     String smallSward2 = StringAdapter.getWeaponsRelativePath("leftsword.png");
     String smallSward3 = StringAdapter.getWeaponsRelativePath("rightsword.png");
