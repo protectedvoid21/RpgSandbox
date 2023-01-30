@@ -61,4 +61,7 @@ public interface TextData {
     String additem = "addItem";
     String soundOn = "soundOn";
     String soundOff = "soundOff";
+    String englishLanguage = "english";
+    String germanLanguage = "german";
+    String polishLanguage = "polish";
 }

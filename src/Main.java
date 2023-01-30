@@ -15,12 +15,11 @@ public class Main {
     public static void main(String[] args) {
         new EntityManager("Warhammer");
         var bundle = new WarhammerBundle(new Locale("en", "US"));
-//        CustomBundle.changeLanguage(new Locale("en", "US"));
         WarHammerAudioManager audioManager = new WarHammerAudioManager();
         audioManager.initialize();
         Seeder seeder = new SeedManager();
-        seeder.seed();
-        EntityManager.getInstance().saveAllEntities();
+//        seeder.seed();
+//        EntityManager.getInstance().saveAllEntities();
         SwingUtilities.invokeLater(() -> {
             var manager = new ControllerManager(new WarHammerFactory(), audioManager, new Converter());
             manager.setFrameData("Warhammer", "war.png");

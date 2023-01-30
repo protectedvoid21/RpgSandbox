@@ -28,9 +28,10 @@ public class WarHammerAudioManager extends CustomAudioManager {
                 ".wav", false));
         setAudioData(new AudioData(WarhammerEnumAudio.HOLY, "src/controllers/audio/sounds" +
                 "/Water Flowing Sound Effect.wav", false));
-        setAudioData(new AudioData(WarhammerEnumAudio.MIAU, "src/controllers/audio/sounds"+"/miauczenie kota.wav",false));
-        setAudioData(new AudioData(WarhammerEnumAudio.PTSZ, "src/controllers/audio/sounds"+"Snowball.wav",false));
-        setAudioData(new AudioData(WarhammerEnumAudio.ARMOR, "src/controllers/audio/sounds"+"Armor.wav",false));
+        setAudioData(new AudioData(WarhammerEnumAudio.MIAU, "src/controllers/audio/sounds/miauczenie kota.wav",
+                false));
+        setAudioData(new AudioData(WarhammerEnumAudio.PTSZ, "src/controllers/audio/sounds/Snowball.wav", false));
+        setAudioData(new AudioData(WarhammerEnumAudio.ARMOR, "src/controllers/audio/sounds/Armor.wav", false));
 
 
         setAudio(WarhammerEnumAudio.MAIN_AUDIO);
@@ -40,12 +41,14 @@ public class WarHammerAudioManager extends CustomAudioManager {
 
     @Override
     public void setAudioData(AudioData data) {
-        super.setAudioData(data);
-        if (data.enumName != WarhammerEnumAudio.MAIN_AUDIO) {
-            audioHashMap.get(data.enumName).setActivityOnStop(() -> {
-                setAudio(WarhammerEnumAudio.MAIN_AUDIO);
+        if (data.enumName != WarhammerEnumAudio.EMPTY) {
+            super.setAudioData(data);
+            if (data.enumName != WarhammerEnumAudio.MAIN_AUDIO) {
+                audioHashMap.get(data.enumName).setActivityOnStop(() -> {
+                    setAudio(WarhammerEnumAudio.MAIN_AUDIO);
 
-            });
+                });
+            }
         }
     }
 }

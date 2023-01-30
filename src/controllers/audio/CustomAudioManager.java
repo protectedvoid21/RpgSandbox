@@ -16,6 +16,7 @@ public class CustomAudioManager {
             currentRunAudio.stop();
         }
         currentRunAudio = audioHashMap.get(audio);
+        System.out.println(currentRunAudio);
         new Thread(() -> {
             currentRunAudio.runMainClip();
         }).start();

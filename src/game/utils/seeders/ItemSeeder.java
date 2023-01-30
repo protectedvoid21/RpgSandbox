@@ -29,11 +29,11 @@ public class ItemSeeder implements Seeder, WarhammerData {
         Armor armor2 = new Armor("Leather Chestplate", 2);
         armor2.setItemPathPicture(ratPaht);
         Armor armor3 = new Armor("Golden Helmet", 4);
-        armor3.setItemPathPicture(cosbrzydkiegoPath);
+        armor3.setItemPathPicture(armorPath);
         Armor armor4 = new Armor("Bucket", 1);
         armor4.setItemPathPicture(armorBasicPath);
         Armor armor5 = new Armor("T-rex suit", 7);
-        armor5.setItemPathPicture(person7Path);
+        armor5.setItemPathPicture(armorBasicPath);
 
         Mount mount1 = new Mount("Horse", 3);
         mount1.setItemPathPicture(horsePath);
@@ -67,6 +67,23 @@ public class ItemSeeder implements Seeder, WarhammerData {
         EntityManager.getInstance().addItem(mount3);
         EntityManager.getInstance().addItem(mount4);
         EntityManager.getInstance().addItem(mount5);
+
+        for(var player : EntityManager.getInstance().getPlayerCharacterList()){
+            player.getInventory().addItem(weapon1);
+            player.getInventory().addItem(weapon2);
+            player.getInventory().addItem(weapon5);
+            player.getInventory().addItem(armor1);
+            player.getInventory().addItem(armor2);
+            player.getInventory().addItem(armor5);
+            player.getInventory().addItem(mount3);
+            player.getInventory().addItem(mount5);
+            player.getInventory().addItem(mount4);
+        }
+        for(var player : EntityManager.getInstance().getNPCList()){
+            player.getInventory().addItem(weapon3);
+            player.getInventory().addItem(armor5);
+            player.getInventory().addItem(armor4);
+        }
 
 //        EntityManager.getInstance().addItem(disposableItem1);
 //        EntityManager.getInstance().addItem(disposableItem2);

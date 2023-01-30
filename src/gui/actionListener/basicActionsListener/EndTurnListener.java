@@ -58,12 +58,12 @@ public class EndTurnListener implements ActionListener {
         mainPanelGame.setRightPickersVisibility(validator);
         if (validator) {
             var character = (Character) creature;
-            uploadPicker(FullItemPicker.LabelType.MOUNT, character.getInventory().getMounts(),
-                    character.getInventory().getActiveMount());
+            uploadPicker(FullItemPicker.LabelType.WEAPON, character.getInventory().getWeapons(),
+                    character.getInventory().getActiveWeapon());
             uploadPicker(FullItemPicker.LabelType.ARMOR, character.getInventory().getArmors(),
                     character.getInventory().getActiveArmor());
-            uploadPicker(FullItemPicker.LabelType.MOUNT, character.getInventory().getWeapons(),
-                    character.getInventory().getActiveWeapon());
+            uploadPicker(FullItemPicker.LabelType.MOUNT, character.getInventory().getMounts(),
+                    character.getInventory().getActiveMount());
             var array = generatePathsArrayList(character.getInventory().getDisposableItems());
             mainPanelGame.getItemsItemPicker().uploadData(array);
             mainPanelGame.getItemsItemPicker().setCurrentIndex(character.getInventory().getDisposableItems().
