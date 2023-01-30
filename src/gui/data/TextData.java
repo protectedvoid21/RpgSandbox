@@ -62,7 +62,7 @@ public interface TextData {
     String additem = "addItem";
     String soundOn = "soundOn";
     String soundOff = "soundOff";
-    String englishLanguage = "english";
-    String germanLanguage = "german";
-    String polishLanguage = "polish";
+    String attackBlocked ="attackBlocked";
+    String missed = "missed";
+    String result ="result";
 }

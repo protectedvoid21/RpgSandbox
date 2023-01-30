@@ -6,13 +6,15 @@ import game.struggle.Action;
 import game.struggle.Dice;
 import game.struggle.DmgCalculator;
 import game.struggle.Test;
+import gui.bundle.CustomBundle;
+import gui.data.TextData;
 
 import java.util.ArrayList;
 
 import static game.interfaceWarhammer.AttributeEnum.*;
 import static game.interfaceWarhammer.DependantEnum.*;
 import static game.interfaceWarhammer.StruggleAtributeEnum.*;
-public class Attack extends Action {
+public class Attack extends Action implements TextData {
 
 
     private  int actionCost = 1;
@@ -26,7 +28,7 @@ public class Attack extends Action {
         if (Test.test(you.getStatistics().getAttribute(WEAPON_SKILL).getValue(),you.getStruggleStatistics().getAttribute(IS_AIMING).getValue()*10)){
             if (enemy.getStruggleStatistics().getAttribute(IS_BLOKING).getValue() == 1){
                 if(Test.test(enemy.getStatistics().getAttribute(WEAPON_SKILL).getValue(),enemy.getStruggleStatistics().getAttribute(IS_IN_DEFENSE_STAND).getValue() * 10)){
-                    popUp.add("Enemy blocked your attack");
+                    popUp.add(CustomBundle.getDefaultString(attackBlocked));
                 } else {
                      DmgCalculator.dealDMG(you,enemy, popUp);
 
@@ -39,7 +41,7 @@ public class Attack extends Action {
 
                 }
             } else{
-            popUp.add("You missed");
+            popUp.add(CustomBundle.getDefaultString(missed));
         }
 
         you.getStruggleStatistics().getAttribute(IS_AIMING).setValue(0);

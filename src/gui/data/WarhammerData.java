@@ -86,6 +86,11 @@ public interface WarhammerData {
     String avePath = StringAdapter.getViewsRelativePath("wood.jpg");
     String knivesOpt = StringAdapter.getWeaponsRelativePath("knivesOpt.png");
     String bobPath = StringAdapter.getNPCRelativePath("bob.jpg");
+    String startBleeding ="startBleeding";
+    String startPoison="startPoison";
+    String startFire="startFire";
+    String startFReeeez="startFReeeez";
+
 
     Color basicBorderColor = new Color(0x4D0202);
     int basicBorderSize = 10;
