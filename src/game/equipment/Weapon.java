@@ -2,11 +2,13 @@ package game.equipment;
 
 import game.creature.Creature;
 import game.interfaceWarhammer.EffectEnum;
+import gui.bundle.CustomBundle;
+import gui.data.WarhammerData;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Weapon extends ManyUsageItem {
+public class Weapon extends ManyUsageItem implements WarhammerData {
     private int damage;
     private int range;
     private int chanceForBleeding;
@@ -40,19 +42,19 @@ public class Weapon extends ManyUsageItem {
 
         if (random.nextInt(100) < chanceForBleeding) {
             creature.getStatistics().getEffect(EffectEnum.BLEEDING).apply();
-            popUp.add("You have shed yours enemy blood");
+            popUp.add(CustomBundle.getSpecificString(startBleeding));
         }
         if (random.nextInt(100) < chanceForPoison) {
             creature.getStatistics().getEffect(EffectEnum.POISON).apply();
-            popUp.add("You poisoned the enemy's life!");
+            popUp.add(CustomBundle.getSpecificString(startPoison));
         }
         if (random.nextInt(100) < chanceForFire) {
             creature.getStatistics().getEffect(EffectEnum.IN_FIRE).apply();
-            popUp.add("You put your enemy on fire!");
+            popUp.add(CustomBundle.getSpecificString(startFire));
         }
         if (random.nextInt(100) < chanceForFreezing) {
             creature.getStatistics().getEffect(EffectEnum.FREEZING).apply();
-            popUp.add("You frozen enemy hearth");
+            popUp.add(CustomBundle.getSpecificString(startFReeeez));
         }
     }
 

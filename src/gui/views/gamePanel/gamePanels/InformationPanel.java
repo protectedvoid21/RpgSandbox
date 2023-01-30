@@ -1,7 +1,9 @@
 package gui.views.gamePanel.gamePanels;
 
+import gui.bundle.CustomBundle;
 import gui.customComponents.abstractComponents.AbstractCustomButton;
 import gui.customComponents.abstractComponents.AbstractCustomLabel;
+import gui.data.TextData;
 import gui.factories.GuiFactory;
 import gui.menu.ComponentPanelMenager;
 import gui.menu.ComponentsSeries;
@@ -15,7 +17,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-public class InformationPanel extends BackgroundView implements PanelContainer {
+public class InformationPanel extends BackgroundView implements PanelContainer, TextData {
     private ComponentPanelMenager mainCmp;
 
     private DefaultCustomMenuMenager<JComponent> managerActions =
@@ -46,7 +48,7 @@ public class InformationPanel extends BackgroundView implements PanelContainer {
         });
         button = factory.createButton("OK", e->mainCmp.setVisible(false));
         button.getCustomUI().setOffSet(12);
-        titleLabel = factory.createLabel("RESULT");
+        titleLabel = factory.createLabel(CustomBundle.getDefaultString(result));
         titleLabel.getCustomUI().setOffSet(8);
         informationLabels = new ArrayList<>();
         for (int i = 0; i<6; i++){

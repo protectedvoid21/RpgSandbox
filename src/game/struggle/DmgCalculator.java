@@ -29,7 +29,7 @@ public class DmgCalculator implements WarhammerData {
             enemy.getStatistics().getAttribute(HEALTH_POINTS_NOW).decreaseValue(dmg);
             popUp.add(CustomBundle.getSpecificString(dealtInformation)+" " + dmg + " "+CustomBundle.getSpecificString(dmgInformation));
         } else {
-            popUp.add("You dealt 0 Dmg");
+            popUp.add(CustomBundle.getSpecificString(dealtInformation)+" 0 "+CustomBundle.getDefaultString(dmgInformation));
         }
 
 
