@@ -8,10 +8,10 @@ import game.interfaces.Statistics;
 public abstract class DisposableItem extends Item {
     private int usageCount;
     protected String description;
-    protected boolean workOnEnemy = false;
+    protected boolean workOnEnemy;
     public ICustomEnumAudio enumAudio;
 
-    public DisposableItem( int usageCount) {
+    public DisposableItem(int usageCount) {
         super("");
         setName(getClass().getSimpleName());
         if(usageCount < 1) {

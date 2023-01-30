@@ -54,6 +54,8 @@ public interface WarhammerData {
     String potionPath = StringAdapter.getItemsRelativePath("potion.png");
     String ratPaht = StringAdapter.getItemsRelativePath("rat.png");
     String waterPath = StringAdapter.getItemsRelativePath("water.png");
+    String bagPath = StringAdapter.getItemsRelativePath("recycle-bag.png");
+    String snowBall = StringAdapter.getItemsRelativePath("snowball.png");
     String statsPath = StringAdapter.getViewsRelativePath("stats.png");
     String itemPath = StringAdapter.getRelativePath("item.png");
     String moveOption = StringAdapter.getActionsRelativePath("movingOpt.png");

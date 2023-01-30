@@ -9,10 +9,8 @@ import static game.interfaceWarhammer.AttributeEnum.HEALTH_POINTS_MAX;
 import static game.interfaceWarhammer.AttributeEnum.HEALTH_POINTS_NOW;
 
 public class ChickenLeg extends DisposableItem implements WarhammerData {
-    //    private Character user;
     public ChickenLeg(int usageCount) {
         super(usageCount);
-//        this.user = user;
         setItemPathPicture(chickenPath);
         enumAudio = WarhammerEnumAudio.EATING;
         workOnEnemy = false;
@@ -23,7 +21,6 @@ public class ChickenLeg extends DisposableItem implements WarhammerData {
     @Override
     public void use(Creature creature) {
         super.use(creature);
-
 
         creature.getStatistics().getAttribute(HEALTH_POINTS_NOW).increaseValue(5);
 
