@@ -41,7 +41,6 @@ public class WarHammerAudioManager extends CustomAudioManager {
 
     @Override
     public void setAudioData(AudioData data) {
-        if (data.enumName != WarhammerEnumAudio.EMPTY) {
             super.setAudioData(data);
             if (data.enumName != WarhammerEnumAudio.MAIN_AUDIO) {
                 audioHashMap.get(data.enumName).setActivityOnStop(() -> {
@@ -49,6 +48,5 @@ public class WarHammerAudioManager extends CustomAudioManager {
 
                 });
             }
-        }
     }
 }

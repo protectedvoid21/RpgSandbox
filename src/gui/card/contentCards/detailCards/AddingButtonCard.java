@@ -61,6 +61,7 @@ public class AddingButtonCard extends NormalDetailButtonsCard {
         for (int i = data.content.size(); i < getSideMaximumElementsNumber(); i++) {
             selectList.get(i % maximumElementNumber).setVisible(false);
         }
+
     }
 
     @Override

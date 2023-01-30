@@ -18,8 +18,8 @@ public class Main {
         WarHammerAudioManager audioManager = new WarHammerAudioManager();
         audioManager.initialize();
         Seeder seeder = new SeedManager();
-//        seeder.seed();
-//        EntityManager.getInstance().saveAllEntities();
+        seeder.seed();
+        EntityManager.getInstance().saveAllEntities();
         SwingUtilities.invokeLater(() -> {
             var manager = new ControllerManager(new WarHammerFactory(), audioManager, new Converter());
             manager.setFrameData("Warhammer", "war.png");

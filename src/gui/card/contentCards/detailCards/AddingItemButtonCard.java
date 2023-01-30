@@ -45,4 +45,9 @@ public class AddingItemButtonCard extends NormalDetailButtonsCard implements Tex
         secondCustomMenager.addMiddleComponent(super.getContentMenager().getCmp(), 0,11 );
         secondCustomMenager.addMiddleComponent(panel, 1,11 );
     }
+
+    @Override
+    protected void updateContent() {
+        super.updateContent();
+    }
 }

@@ -1,5 +1,6 @@
 package game.equipment.examples;
 
+import controllers.audio.DefaultEnumAudio;
 import controllers.audio.WarhammerEnumAudio;
 import game.creature.Creature;
 import game.equipment.DisposableItem;

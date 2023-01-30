@@ -17,6 +17,7 @@ public interface TextData {
     String disImage = StringAdapter.getViewsRelativePath("disimage.png");
     String nondisImage = StringAdapter.getViewsRelativePath("image.png");
     String saveText = "save";
+    String selected = "selected";
     String nextText = "next";
     String useTex = "use";
     String showText = "show";
