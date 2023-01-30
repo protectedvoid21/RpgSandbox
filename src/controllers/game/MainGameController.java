@@ -92,7 +92,7 @@ public class MainGameController extends Controller {
         gamePanel.getNextPlayerButton().addActionListener(new EndTurnListener(listenerBaseData));
 
         startGame();
-       var z=  EntityManager.getInstance().getPlayerCharacterList();
+        var z = EntityManager.getInstance().getPlayerCharacterList();
         gamePanel.getGamePanel().addOptionsListener(0, new MoveListener(listenerBaseData));
         gamePanel.getGamePanel().addOptionsListener(1, new ClickGameCardListener());
         gamePanel.getGamePanel().addOptionsListener(2, new AttackListener(listenerBaseData));
@@ -130,11 +130,11 @@ public class MainGameController extends Controller {
 
         gamePanel.getItemsItemPicker().addButtonLIstener(new UseListener(listenerBaseData));
 
-        for (var c : listenerBaseData.roundManager.getBoard().getAllGameObjects()){
+        for (var c : listenerBaseData.roundManager.getBoard().getAllGameObjects()) {
             var creature = c.getCreature();
-//            if(creature.getStruggleStatistics().getAttribute(StruggleAtributeEnum.IS_BLOKING).getValue()>0){
-//                listenerBaseData.mainPanelGame.getGamePanel().applyDefendActionsContent(listenerBaseData.roundManager.getGameObjectPosition(listenerBaseData.roundManager.getBoard().));
-//            }
+            if (creature.getStruggleStatistics().getAttribute(StruggleAtributeEnum.IS_BLOKING).getValue() > 0) {
+                listenerBaseData.mainPanelGame.getGamePanel().applyDefendActionsContent(roundManager.getGameObjectPositionFromCreature(creature));
+            }
         }
     }
 

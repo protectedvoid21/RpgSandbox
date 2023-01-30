@@ -26,7 +26,8 @@ public class Board {
             getPlace(scenarioData.position).setGameObject(new GameObject(scenarioData.creature));
         }
     }
-    
+
+
     public Place getPlace(Vector2 vector) {
         if(vector.x < 0 || vector.x >= places[0].length || vector.y < 0 || vector.y >= places.length) {
             throw new IllegalArgumentException();

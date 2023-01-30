@@ -38,6 +38,15 @@ public class RoundManager {
         return null;
     }
 
+    public Vector2 getGameObjectPositionFromCreature(Creature creature){
+        for (var obj : activeGameObjects){
+            if(obj.getCreature()==creature){
+                return getGameObjectPosition(obj);
+            }
+        }
+        return new Vector2(-1,-1);
+    }
+
     public Vector2 getGameObjectPosition(GameObject gameObject) {
         for (int i = 0; i < getBoard().getHeight(); i++) {
             for (int j = 0; j < getBoard().getWidth(); j++) {
