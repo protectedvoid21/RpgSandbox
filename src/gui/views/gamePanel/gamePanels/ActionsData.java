@@ -13,7 +13,7 @@ public class ActionsData {
 
     public ActionsData() {
         for (int i = 0; i < 10; i++) {
-            var la = new IconLabel(Card.EMPTY_DATA_CONTENT,true);
+            var la = new IconLabel(Card.EMPTY_DATA_CONTENT, true);
             la.setVisible(false);
             arrayList.add(la);
         }
@@ -30,12 +30,12 @@ public class ActionsData {
     public IconLabel getNextObject() {
         usedObjects++;
         if (usedObjects >= arrayList.size()) {
-            var l = new IconLabel(path,true);
+            var l = new IconLabel(path, true);
             arrayList.add(l);
             return l;
         }
-        for (var label : arrayList){
-            if(!label.isVisible()){
+        for (var label : arrayList) {
+            if (!label.isVisible()) {
                 label.setVisible(true);
                 return label;
             }
@@ -43,8 +43,11 @@ public class ActionsData {
         return null;
     }
 
-    public void removeObject(AbstractCustomLabel label){
-        label.setVisible(false);
-        usedObjects--;
+
+    public void removeObject(AbstractCustomLabel label) {
+        if (label.isVisible()) {
+            label.setVisible(false);
+            usedObjects--;
+        }
     }
 }

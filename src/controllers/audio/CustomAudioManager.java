@@ -12,13 +12,15 @@ public class CustomAudioManager {
     protected Audio currentRunAudio;
 
     public void setAudio(ICustomEnumAudio audio) {
-        if (currentRunAudio != null) {
-            currentRunAudio.stop();
+        if (audio != DefaultEnumAudio.EMPTY) {
+            if (currentRunAudio != null) {
+                currentRunAudio.stop();
+            }
+            currentRunAudio = audioHashMap.get(audio);
+            new Thread(() -> {
+                currentRunAudio.runMainClip();
+            }).start();
         }
-        currentRunAudio = audioHashMap.get(audio);
-        new Thread(() -> {
-            currentRunAudio.runMainClip();
-        }).start();
     }
 
     public void setSoundOff() {

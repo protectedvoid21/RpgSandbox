@@ -49,7 +49,6 @@ public class AddingButtonCard extends NormalDetailButtonsCard {
         this.addedIndexes = addedIndexes;
     }
 
-
     @Override
     protected void updateContent() {
         super.updateContent();
@@ -61,6 +60,7 @@ public class AddingButtonCard extends NormalDetailButtonsCard {
         for (int i = data.content.size(); i < getSideMaximumElementsNumber(); i++) {
             selectList.get(i % maximumElementNumber).setVisible(false);
         }
+
     }
 
     @Override

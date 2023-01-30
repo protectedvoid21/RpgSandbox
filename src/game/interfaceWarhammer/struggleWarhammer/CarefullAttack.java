@@ -4,6 +4,8 @@ import game.struggle.Action;
 import game.struggle.Dice;
 import game.struggle.DmgCalculator;
 import game.struggle.Test;
+import gui.bundle.CustomBundle;
+import gui.data.TextData;
 
 import java.util.ArrayList;
 
@@ -12,7 +14,7 @@ import static game.interfaceWarhammer.DependantEnum.TOUGHNESS_BONUS;
 import static game.interfaceWarhammer.StruggleAtributeEnum.*;
 import static game.interfaceWarhammer.DependantEnum.STRENGTH_BONUS;
 
-public class CarefullAttack extends Action {
+public class CarefullAttack extends Action implements TextData {
 
     private  int actionCost = 2;
     private boolean effectOnEnemy = true;
@@ -24,7 +26,7 @@ public class CarefullAttack extends Action {
 
             if (enemy.getStruggleStatistics().getAttribute(IS_BLOKING).getValue() == 1){
                 if(Test.test(enemy.getStatistics().getAttribute(WEAPON_SKILL).getValue(),enemy.getStruggleStatistics().getAttribute(IS_IN_DEFENSE_STAND).getValue() * 10)){
-                    popUp.add("Enemy Blocked");
+                    popUp.add(CustomBundle.getDefaultString(attackBlocked));
                 } else {
                     DmgCalculator.dealDMG(you,enemy,popUp);
 
@@ -37,7 +39,7 @@ public class CarefullAttack extends Action {
 
                 }
             } else {
-            popUp.add("You missed");
+            popUp.add(CustomBundle.getDefaultString(missed));
         }
 
         you.getStruggleStatistics().getAttribute(IS_BLOKING).setValue(1);

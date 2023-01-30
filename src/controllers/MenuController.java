@@ -6,6 +6,7 @@ import controllers.items.ItemTypeMenuController;
 import controllers.scenario.NewScenarioController;
 import controllers.utils.RedirectListener;
 import gui.bundle.CustomBundle;
+import gui.data.TextData;
 import gui.factories.IOverallFactory;
 import gui.views.menuViews.MenuView;
 
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
 
-public class MenuController extends Controller {
+public class MenuController extends Controller implements TextData {
     @Override
     public void run(IOverallFactory overallFactory) {
         MenuView menuView = overallFactory.createMenuView();
@@ -37,8 +38,9 @@ public class MenuController extends Controller {
         menuView.setAudioButtonsListener(e ->
                 audioManager.setSoundOn(), e -> audioManager.setSoundOff());
 
-        menuView.addMultipleButtonListeners(new ArrayList<>(Arrays.asList("ENGLISH", "DEUTSCH")),
-                new ArrayList<>(Arrays.asList(e -> generateNewController(menuView, new Locale("de", "DE"), e),
+        menuView.addMultipleButtonListeners(new ArrayList<>(Arrays.asList(CustomBundle.getDefaultString(englishLanguage), CustomBundle.getDefaultString(polishLanguage), CustomBundle.getDefaultString(germanLanguage))),
+                new ArrayList<>(Arrays.asList(e -> generateNewController(menuView, new Locale("pl", "PL"), e),
+                        e -> generateNewController(menuView, new Locale("de", "DE"), e),
                         e -> generateNewController(menuView, new Locale("en", "US"), e))));
         menuView.settMultipleButtonIndex(CustomBundle.getCurrentLanguageIndex());
 

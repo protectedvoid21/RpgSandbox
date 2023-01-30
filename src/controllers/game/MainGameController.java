@@ -10,6 +10,7 @@ import game.board.Scenario;
 import game.creature.Character;
 import game.filehandle.EntityManager;
 import game.generals.Vector2;
+import game.interfaceWarhammer.StruggleAtributeEnum;
 import gui.actionListener.ListenerBaseData;
 import gui.actionListener.basicActionsListener.EndTurnListener;
 import gui.actionListener.basicActionsListener.MoveListener;
@@ -29,6 +30,8 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
+
+import static game.interfaceWarhammer.ActionsEnum.DEFENSE_STAND;
 
 public class MainGameController extends Controller {
     private final ListenerBaseData listenerBaseData;
@@ -89,7 +92,7 @@ public class MainGameController extends Controller {
         gamePanel.getNextPlayerButton().addActionListener(new EndTurnListener(listenerBaseData));
 
         startGame();
-       var z=  EntityManager.getInstance().getPlayerCharacterList();
+        var z = EntityManager.getInstance().getPlayerCharacterList();
         gamePanel.getGamePanel().addOptionsListener(0, new MoveListener(listenerBaseData));
         gamePanel.getGamePanel().addOptionsListener(1, new ClickGameCardListener());
         gamePanel.getGamePanel().addOptionsListener(2, new AttackListener(listenerBaseData));
@@ -126,6 +129,13 @@ public class MainGameController extends Controller {
                 new NextActiveListener(listenerBaseData));
 
         gamePanel.getItemsItemPicker().addButtonLIstener(new UseListener(listenerBaseData));
+
+        for (var c : listenerBaseData.roundManager.getBoard().getAllGameObjects()) {
+            var creature = c.getCreature();
+            if (creature.getStruggleStatistics().getAttribute(StruggleAtributeEnum.IS_BLOKING).getValue() > 0) {
+                listenerBaseData.mainPanelGame.getGamePanel().applyDefendActionsContent(roundManager.getGameObjectPositionFromCreature(creature));
+            }
+        }
     }
 
     private void applyPickerListener(FullItemPicker.LabelType type, CustomLambdaExpression expLeft,

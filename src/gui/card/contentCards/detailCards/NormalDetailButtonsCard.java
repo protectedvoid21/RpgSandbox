@@ -22,6 +22,7 @@ public class NormalDetailButtonsCard extends DetailButtonsCard {
 
     @Override
     protected void updateContent() {
+        Card.setNonDependantAspectVisible(list);
         super.updateContent();
         Card.setAspectVisible(list, true);
     }

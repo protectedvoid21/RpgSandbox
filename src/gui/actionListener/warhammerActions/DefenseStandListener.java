@@ -27,7 +27,7 @@ public class DefenseStandListener implements ActionListener {
 
         Creature you = roundManager.getGameObjectWithTurn().getCreature();
         roundManager.getActions().doAction(BLOCK, you);
-        mainPanelGame.getGamePanel().applyDefendActionsContent(mainPanelGame.getGamePanel().getCurrentClickedIndexes());
+        mainPanelGame.getGamePanel().applyDefendActionsContent(roundManager.getGameObjectWithTurnPosition());
 
         turnOffButtons.turnOff(roundManager, mainPanelGame, 1, 2);
 

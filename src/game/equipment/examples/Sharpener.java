@@ -7,11 +7,10 @@ import game.equipment.DisposableItem;
 import gui.data.WarhammerData;
 
 public class Sharpener extends DisposableItem implements WarhammerData {
-//    private Character user;
     public Sharpener(int usageCount) {
         super(usageCount);
-//        this.user = user;
-        setItemPathPicture(sharper);enumAudio = WarhammerEnumAudio.BONECRACK;
+        setItemPathPicture(sharper);
+        enumAudio = WarhammerEnumAudio.BONECRACK;
 
         workOnEnemy = false;
         description = "Your big sword will become big and sharp (YES IT WILL MAKE MORE DAMAGE)";

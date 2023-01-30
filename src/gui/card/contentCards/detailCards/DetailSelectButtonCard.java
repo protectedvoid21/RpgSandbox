@@ -1,8 +1,10 @@
 package gui.card.contentCards.detailCards;
 
+import gui.bundle.CustomBundle;
 import gui.card.fullCards.abstractCards.Card;
 import gui.card.SharedCmpsFont;
 import gui.customComponents.abstractComponents.AbstractCustomLabel;
+import gui.data.TextData;
 import gui.factories.GuiFactory;
 
 import java.util.*;
@@ -36,12 +38,7 @@ public class DetailSelectButtonCard extends NormalDetailButtonsCard {
         int currentIndex = 0;
         Card.setNonDependantAspectVisible(selectList);
         for (var key : sublist) {
-            String content = " ";
-            var but = selectList.get(currentIndex);
-            if (currentAttrSide * maximumElementNumber + currentIndex == selectedIndex) {
-                content = "SELECTED";
-            }
-            selectList.get(currentIndex).setContent(content);
+            selectList.get(currentIndex).setContent((currentAttrSide * maximumElementNumber + currentIndex == selectedIndex)? CustomBundle.getDefaultString(selected) :" ");
             currentIndex++;
         }
         if (sublist.size() < maximumElementNumber) {

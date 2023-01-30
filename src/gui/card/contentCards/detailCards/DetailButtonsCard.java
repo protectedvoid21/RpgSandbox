@@ -66,7 +66,6 @@ public abstract class DetailButtonsCard extends AbstractCard<JComponent> {
         }
         Card.setAspectVisible(labelList, true);
         Card.setAspectVisible(detailList, true);
-
     }
 
     @Override

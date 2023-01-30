@@ -54,6 +54,8 @@ public interface WarhammerData {
     String potionPath = StringAdapter.getItemsRelativePath("potion.png");
     String ratPaht = StringAdapter.getItemsRelativePath("rat.png");
     String waterPath = StringAdapter.getItemsRelativePath("water.png");
+    String bagPath = StringAdapter.getItemsRelativePath("recycle-bag.png");
+    String snowBall = StringAdapter.getItemsRelativePath("snowball.png");
     String statsPath = StringAdapter.getViewsRelativePath("stats.png");
     String itemPath = StringAdapter.getRelativePath("item.png");
     String moveOption = StringAdapter.getActionsRelativePath("movingOpt.png");
@@ -84,6 +86,11 @@ public interface WarhammerData {
     String avePath = StringAdapter.getViewsRelativePath("wood.jpg");
     String knivesOpt = StringAdapter.getWeaponsRelativePath("knivesOpt.png");
     String bobPath = StringAdapter.getNPCRelativePath("bob.jpg");
+    String startBleeding ="startBleeding";
+    String startPoison="startPoison";
+    String startFire="startFire";
+    String startFReeeez="startFReeeez";
+
 
     Color basicBorderColor = new Color(0x4D0202);
     int basicBorderSize = 10;

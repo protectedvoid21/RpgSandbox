@@ -3,10 +3,12 @@ package gui.actionListener.basicActionsListener;
 import game.board.RoundManager;
 import game.creature.Character;
 import game.equipment.Item;
+import game.interfaceWarhammer.StruggleAtributeEnum;
 import gui.actionListener.ListenerBaseData;
 import gui.actionListener.ValidatorItemListener;
 import gui.actionListener.turnOffButtons;
 import gui.views.gamePanel.MainPanelGame;
+import gui.views.gamePanel.gamePanels.GamePanel;
 import gui.views.pickers.FullItemPicker;
 
 import java.awt.event.ActionEvent;
@@ -29,11 +31,17 @@ public class EndTurnListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
         roundManager.moveToNextObject();
+//        if(roundManager.getGameObjectWithTurn().getCreature().getStruggleStatistics().getAttribute(StruggleAtributeEnum.IS_BLOKING).getValue()==0){
+//            System.out.println("blokuje"+roundManager.getGameObjectWithTurnPosition() );
+//            listenerBaseData.mainPanelGame.getGamePanel().removeActionContent(roundManager.getGameObjectWithTurnPosition(), GamePanel.ActionsLabelsType.DEFEND);
+//        }
         mainPanelGame.getGamePanel().colorButtons(roundManager.getGameObjectWithTurnPosition());
         turnOffButtons.turnOff(roundManager, mainPanelGame, 2, 0);
         itemGenerator();
+        if(roundManager.getGameObjectWithTurn().getCreature().getStruggleStatistics().getAttribute(StruggleAtributeEnum.IS_BLOKING).getValue()==0){
+            listenerBaseData.mainPanelGame.getGamePanel().removeActionContent(roundManager.getGameObjectWithTurnPosition(), GamePanel.ActionsLabelsType.DEFEND);
+        }
 
     }
 
@@ -45,17 +53,17 @@ public class EndTurnListener implements ActionListener {
     }
 
     private void itemGenerator() {
-        var creature =  roundManager.getGameObjectWithTurn().getCreature();
+        var creature = roundManager.getGameObjectWithTurn().getCreature();
         boolean validator = creature instanceof Character;
         mainPanelGame.setRightPickersVisibility(validator);
         if (validator) {
-            var character = (Character)creature;
-            uploadPicker(FullItemPicker.LabelType.MOUNT, character.getInventory().getMounts(),
-                    character.getInventory().getActiveMount());
+            var character = (Character) creature;
+            uploadPicker(FullItemPicker.LabelType.WEAPON, character.getInventory().getWeapons(),
+                    character.getInventory().getActiveWeapon());
             uploadPicker(FullItemPicker.LabelType.ARMOR, character.getInventory().getArmors(),
                     character.getInventory().getActiveArmor());
-            uploadPicker(FullItemPicker.LabelType.MOUNT, character.getInventory().getWeapons(),
-                    character.getInventory().getActiveWeapon());
+            uploadPicker(FullItemPicker.LabelType.MOUNT, character.getInventory().getMounts(),
+                    character.getInventory().getActiveMount());
             var array = generatePathsArrayList(character.getInventory().getDisposableItems());
             mainPanelGame.getItemsItemPicker().uploadData(array);
             mainPanelGame.getItemsItemPicker().setCurrentIndex(character.getInventory().getDisposableItems().
