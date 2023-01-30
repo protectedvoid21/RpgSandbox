@@ -49,7 +49,6 @@ public class AddingButtonCard extends NormalDetailButtonsCard {
         this.addedIndexes = addedIndexes;
     }
 
-
     @Override
     protected void updateContent() {
         super.updateContent();

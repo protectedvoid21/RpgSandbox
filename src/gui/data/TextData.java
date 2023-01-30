@@ -65,4 +65,7 @@ public interface TextData {
     String attackBlocked ="attackBlocked";
     String missed = "missed";
     String result ="result";
+    String englishLanguage = "english";
+    String polishLanguage = "polish";
+    String germanLanguage = "german";
 }
